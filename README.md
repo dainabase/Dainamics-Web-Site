@@ -4,33 +4,62 @@ Site web officiel de DAINAMICS - Agence d'expertise IA, Automatisation & Dévelo
 
 ---
 
-## Documentation Complète
+## 🚨 RÈGLES CRITIQUES DE DÉVELOPPEMENT
 
-**IMPORTANT** : Avant de commencer, lisez la documentation d'architecture complète
+**POUR CLAUDE CODE ET TOUS LES ASSISTANTS IA** :
 
-### Guide d'Architecture
+### OBLIGATION ABSOLUE
+Après CHAQUE tâche terminée, vous **DEVEZ** :
+1. ✅ Commit avec message clair : `type(scope): description`
+2. ✅ Push sur GitHub immédiatement : `git push origin main`
+3. ✅ Attendre validation avant de continuer
 
-**[ARCHITECTURE.md](./ARCHITECTURE.md)** - Architecture Complète
-- Vision & Objectifs
-- Architecture Technique & Stack
-- Design System Ultra Détaillé
-- Animations Framer Motion Avancées
-- Structure des Pages (12+ pages détaillées)
-- Fonctionnalités Interactives (8 features majeures)
-- Plan d'Implémentation (7 semaines)
-- Guidelines Techniques
-- Checklists Complètes
-
-### Quick Start
-
-1. **Lire la documentation** (essentiel)
-2. **Suivre le plan d'implémentation**
-3. **Utiliser le Design System**
-4. **Développer phase par phase avec Claude Code**
+**Consultez [WORKFLOW.md](./WORKFLOW.md) pour les règles complètes** avant de commencer à développer.
 
 ---
 
-## Project Setup (Claude Code)
+## Documentation Complète
+
+### Ordre de Lecture (IMPORTANT)
+
+1. **[WORKFLOW.md](./WORKFLOW.md)** 🔴 **LIRE EN PREMIER**
+   - Règles de développement strictes
+   - Processus Git obligatoire
+   - Structure du repository
+   - Format des commits
+   - Checklists avant commit
+
+2. **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Document Principal (81KB)
+   - Vision & Objectifs
+   - Architecture Technique & Stack
+   - Design System Ultra Détaillé
+   - Animations Framer Motion Avancées
+   - Structure des Pages (12+ pages détaillées)
+   - Fonctionnalités Interactives (8 features majeures)
+   - Plan d'Implémentation (7 semaines)
+   - Guidelines Techniques
+   - Checklists Complètes
+
+3. **[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** - Pour nouvelles conversations
+   - Contexte complet du projet
+   - Instructions de développement
+   - Liens vers tous les documents
+
+4. **[CHANGELOG.md](./CHANGELOG.md)** - Historique des changements
+   - Version 2.0 documentée
+   - Liste des corrections
+   - Prochaines étapes
+
+### Quick Start
+
+1. **LIRE WORKFLOW.md** (OBLIGATOIRE - Règles de développement)
+2. **LIRE ARCHITECTURE.md** (Specs techniques complètes)
+3. **Setup environnement** (voir ci-dessous)
+4. **Développer phase par phase** avec Claude Code
+
+---
+
+## Project Setup
 
 ### Installation Locale
 
@@ -48,6 +77,7 @@ npm install
 
 # Start dev server
 npm run dev
+# App runs on http://localhost:5173
 ```
 
 ### Méthodes de Développement
@@ -55,17 +85,17 @@ npm run dev
 **1. Via Claude Code (Recommandé)**
 - Utilisez Claude Code dans votre terminal
 - Développement assisté par IA
-- Promptez avec Claude pour générer du code
-- Commits automatiques ou manuels
+- **OBLIGATION** : Commits et push après chaque tâche
+- Voir [WORKFLOW.md](./WORKFLOW.md) pour processus détaillé
 
 **2. Via IDE Local (VS Code, Cursor, etc.)**
 - Clone repo
 - Edit files localement
-- Push changes to GitHub
+- Push changes to GitHub après chaque feature
 
 **3. Via GitHub Web**
 - Edit files directly in GitHub
-- Commit changes
+- Commit changes avec messages clairs
 
 **4. Via GitHub Codespaces**
 - Click "Code" → "Codespaces" → "New codespace"
@@ -98,14 +128,23 @@ Hosting: Vercel (recommended) / Netlify
 ```
 src/
 ├─ components/
-│  ├─ common/          # Buttons, Cards, Badges, Forms
+│  ├─ common/          # Buttons, Cards, Badges, Forms (Design System)
 │  ├─ layout/          # Header, Footer, Navigation
 │  ├─ features/        # ROI Calculator, Diagnostic, etc.
 │  ├─ sections/        # Homepage, Solutions, Portfolio sections
-│  └─ animations/      # Neural Network, Energy Waves, Particles
+│  └─ ui/              # shadcn/ui components
 │
-├─ pages/              # All pages (12+ pages)
-├─ data/               # Solutions, Portfolio, Expertise data
+├─ data/               # 🎯 DONNÉES STATIQUES (Priority 1)
+│  ├─ solutions.ts     # 15 automatisations TOP 15
+│  ├─ portfolio.ts     # Projets (LEXAIA, ENKI-REALTY, etc.)
+│  ├─ expertise.ts     # 3 piliers (IA, Automatisation, Dev)
+│  ├─ testimonials.ts  # Témoignages clients
+│  ├─ integrations.ts  # Intégrations techniques
+│  ├─ pricingPackages.ts # 4 tiers de pricing
+│  ├─ useCases.ts      # Cas d'usage détaillés
+│  └─ glossary.ts      # Glossaire termes techniques
+│
+├─ pages/              # Pages routes
 ├─ types/              # TypeScript interfaces
 ├─ utils/              # Helper functions
 ├─ hooks/              # Custom React hooks
@@ -113,7 +152,7 @@ src/
 └─ styles/             # Global CSS, animations
 ```
 
-Voir [ARCHITECTURE.md](./ARCHITECTURE.md) pour structure complète et détaillée.
+Voir [WORKFLOW.md](./WORKFLOW.md) pour détails d'organisation et [ARCHITECTURE.md](./ARCHITECTURE.md) pour structure complète.
 
 ---
 
@@ -137,13 +176,27 @@ Voir spécifications détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 ## Plan de Développement
 
 ### Phase 1: MVP Foundation (Semaines 1-3)
-- Setup + Design System + Homepage complète
-- ROI Calculator + AI Diagnostic fonctionnels
-- Pages Expertise, Solutions, Portfolio
+**Priority 1 : Données** (EN COURS)
+- [ ] Créer 8 fichiers de données dans `/src/data/`
+- [ ] Design System components
+- [ ] Pages core (Expertise, Solutions, Portfolio)
+
+**Priority 2 : Design System**
+- [ ] Button variants améliorés
+- [ ] Card variants (4 types)
+- [ ] Badge variants (5 types)
+- [ ] SolutionCard, PortfolioCard
+
+**Priority 3 : Pages Core**
+- [ ] Page Expertise complète
+- [ ] Page Solutions complète
+- [ ] Page Portfolio complète
 
 ### Phase 2: Content & Features (Semaines 4-5)
+- ROI Calculator interactif
+- Diagnostic IA questionnaire
 - Case Studies détaillés (LEXAIA, ENKI-REALTY)
-- Ressources Hub + Blog
+- Resources Hub + Blog
 - Glossaire + Use Cases + AI Maturity Assessment
 
 ### Phase 3: Polish & Launch (Semaines 6-7)
@@ -151,7 +204,7 @@ Voir spécifications détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 - Contact + AI Chatbot opérationnel
 - SEO + Performance + QA Final
 
-Voir timeline détaillée avec tasks dans [ARCHITECTURE.md](./ARCHITECTURE.md)
+Voir timeline détaillée dans [ARCHITECTURE.md](./ARCHITECTURE.md) et processus dans [WORKFLOW.md](./WORKFLOW.md)
 
 ---
 
@@ -209,19 +262,28 @@ Chaque projet avec:
 ## Checklist de Développement
 
 ### Avant de Coder
-- [ ] Lire ARCHITECTURE.md complet (essentiel)
+- [ ] Lire [WORKFLOW.md](./WORKFLOW.md) (OBLIGATOIRE)
+- [ ] Lire [ARCHITECTURE.md](./ARCHITECTURE.md) complet
 - [ ] Comprendre le positionnement DAINAMICS
 - [ ] Setup Claude Code + environnement local
-- [ ] Configurer Supabase + GitHub
+- [ ] Configurer Git correctement
 
 ### Pendant le Développement
-- [ ] Suivre le Design System strictement
+- [ ] Suivre [WORKFLOW.md](./WORKFLOW.md) strictement
 - [ ] Respecter la structure de dossiers
 - [ ] Développer mobile-first
 - [ ] Tester animations à 60fps
-- [ ] Créer les données (solutions.ts, portfolio.ts, etc.)
-- [ ] Implémenter fonctionnalités interactives
-- [ ] Commits réguliers avec messages clairs
+- [ ] **Commit + Push après CHAQUE tâche**
+- [ ] Messages commit clairs : `type(scope): description`
+- [ ] Attendre validation avant de continuer
+
+### Avant Chaque Commit
+- [ ] TypeScript sans erreurs
+- [ ] ESLint warnings résolues
+- [ ] Pas de `console.log` oubliés
+- [ ] Pas d'emojis dans le code
+- [ ] Noms corrects : LEXAIA, ENKI-REALTY, Claude Code
+- [ ] "IA" utilisé (pas "AI") dans textes français
 
 ### Avant le Launch
 - [ ] Lighthouse score >90 (Performance, Accessibility, SEO, Best Practices)
@@ -235,15 +297,40 @@ Chaque projet avec:
 - [ ] Cross-browser testing
 - [ ] Security audit
 
-Voir checklists détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
+Voir checklists détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md) et [WORKFLOW.md](./WORKFLOW.md)
+
+---
+
+## Commandes Git Essentielles
+
+```bash
+# Vérifier statut
+git status
+
+# Ajouter fichiers
+git add .
+
+# Commit avec message clair
+git commit -m "feat(data): add solutions.ts with TOP 15 automations"
+
+# Push obligatoire après chaque tâche
+git push origin main
+
+# Vérifier historique
+git log --oneline -5
+```
+
+Voir [WORKFLOW.md](./WORKFLOW.md) pour processus Git complet.
 
 ---
 
 ## Liens Utiles
 
-### Documentation
-- [Architecture Complète](./ARCHITECTURE.md) - Document principal (81KB, ultra-détaillé)
-- [Prompt de Contexte](./PROMPT-CONTEXT.md) - Pour nouvelles conversations avec Claude
+### Documentation Projet
+- **[WORKFLOW.md](./WORKFLOW.md)** 🔴 - Règles de développement (LIRE EN PREMIER)
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Document principal (81KB, ultra-détaillé)
+- **[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** - Contexte conversations IA
+- **[CHANGELOG.md](./CHANGELOG.md)** - Historique changements
 
 ### Repository
 - [GitHub Repository](https://github.com/dainabase/Dainamics-Web-Site)
@@ -267,9 +354,10 @@ Voir checklists détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 
 1. **Lire la documentation dans l'ordre**
    ```bash
-   1. README.md (ce fichier) - Vue d'ensemble
-   2. ARCHITECTURE.md (document principal) - Specs complètes
-   3. PROMPT-CONTEXT.md (pour Claude) - Contexte conversations
+   1. WORKFLOW.md (OBLIGATOIRE) - Règles & Processus
+   2. README.md (ce fichier) - Vue d'ensemble
+   3. ARCHITECTURE.md (document principal) - Specs complètes
+   4. PROMPT-CONTEXT.md (pour Claude) - Contexte conversations
    ```
 
 2. **Setup l'environnement**
@@ -283,14 +371,17 @@ Voir checklists détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
    ```bash
    # Dans votre terminal
    claude-code
-   # Demander à Claude de vous aider à développer
+   
+   # Demander à Claude de vous aider
    # Référencer ARCHITECTURE.md pour specs
+   # Suivre WORKFLOW.md pour processus
    ```
 
 4. **Suivre le plan d'implémentation**
-   - Phase 1, Semaine 1: Setup + Homepage
+   - Phase 1, Priority 1: Créer fichiers de données
+   - Commit + Push après CHAQUE tâche
+   - Attendre validation avant de continuer
    - Utiliser les checklists détaillées
-   - Valider chaque étape avec les specs
 
 ---
 
@@ -315,23 +406,25 @@ Voir checklists détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 ## Support & Questions
 
 ### Utilisation de cette Documentation
+- **Pour les règles de développement**: [WORKFLOW.md](./WORKFLOW.md) (CRITICAL)
 - **Pour la vue d'ensemble**: README.md (ce fichier)
-- **Pour les specs détaillées**: ARCHITECTURE.md (document principal)
-- **Pour structurer**: Voir sections Architecture & Structure des Pages
-- **Pour designer**: Voir Design System ultra-détaillé
-- **Pour implémenter**: Suivre Plan d'Implémentation + Checklists
-- **Pour la timeline**: Voir Plan de Développement 7 semaines
+- **Pour les specs détaillées**: [ARCHITECTURE.md](./ARCHITECTURE.md)
+- **Pour structurer**: Voir WORKFLOW.md (Organisation Repository)
+- **Pour designer**: Voir ARCHITECTURE.md (Design System)
+- **Pour implémenter**: Suivre WORKFLOW.md + ARCHITECTURE.md
+- **Pour la timeline**: Voir Plan de Développement
 
 ### Développement avec Claude Code
-1. Ouvrir Claude Code dans votre terminal
-2. Référencer ARCHITECTURE.md dans vos prompts
-3. Utiliser les outils MCP:
+1. Lire [WORKFLOW.md](./WORKFLOW.md) en entier
+2. Ouvrir Claude Code dans votre terminal
+3. Référencer ARCHITECTURE.md dans vos prompts
+4. Utiliser les outils MCP:
    - Supabase (base de données, auth, storage)
    - GitHub (version control, CI/CD)
    - Desktop Commander (opérations fichiers système)
-4. Développer itérativement section par section
-5. Valider régulièrement avec les specs
-6. Tester animations et performance
+5. Développer tâche par tâche
+6. **Commit + Push après CHAQUE tâche**
+7. Attendre validation avant de continuer
 
 ### Pour Nouvelles Conversations
 - Utiliser [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)
@@ -343,6 +436,7 @@ Voir checklists détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 ## Let's Build!
 
 Vous avez maintenant:
+- **Règles strictes** de développement ([WORKFLOW.md](./WORKFLOW.md))
 - Documentation complète ultra-détaillée (ARCHITECTURE.md - 81KB)
 - Design System avec specs précises pour chaque component
 - Animations Framer Motion avancées documentées
@@ -352,15 +446,23 @@ Vous avez maintenant:
 - Stack technique moderne et performant
 
 **Prochaine étape**: 
-1. Lire ARCHITECTURE.md en entier
-2. Setup environnement local
-3. Commencer Phase 1, Semaine 1 avec Claude Code
-4. Build something amazing!
+1. **Lire [WORKFLOW.md](./WORKFLOW.md)** (OBLIGATOIRE)
+2. Lire [ARCHITECTURE.md](./ARCHITECTURE.md) en entier
+3. Setup environnement local
+4. Commencer Phase 1, Priority 1 avec Claude Code
+5. Build something amazing!
 
 ---
 
-## Corrections Apportées (v2.0)
+## Corrections Apportées
 
+### Version 2.1 - 11 Octobre 2025
+- **Ajout WORKFLOW.md** - Règles strictes de développement
+- **Mise à jour README** - Références WORKFLOW obligatoire
+- **Processus Git** - Commit + Push après chaque tâche
+- **Validation** - Attendre approbation avant de continuer
+
+### Version 2.0 - 11 Octobre 2025
 - **Suppression de tous les emojis** (conformité instructions)
 - **Mise à jour Lovable → Claude Code** (outil de développement)
 - **Correction noms projets**: L'Exia → **LEXAIA**, NK Reality → **ENKI-REALTY**
@@ -373,4 +475,4 @@ Vous avez maintenant:
 
 *DAINAMICS Website - Octobre 2025*  
 *Transforming businesses through IA, Automatisation & Développement*  
-*Développé avec Claude Code - v2.0*
+*Développé avec Claude Code - v2.1*
