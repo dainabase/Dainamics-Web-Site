@@ -11,7 +11,6 @@ interface NavItem {
   name: string;
   link?: string;
   children?: NavItem[];
-  comingSoon?: boolean;
 }
 
 const navItems: NavItem[] = [
@@ -33,25 +32,25 @@ const navItems: NavItem[] = [
       { name: 'Par industrie', link: '/solutions/industries' },
     ],
   },
-  { name: 'Portfolio', link: '/portfolio', comingSoon: true },
+  { name: 'Portfolio', link: '/portfolio' },
   {
     name: 'Resources',
     children: [
       { name: 'Blog', link: '/blog' },
-      { name: 'Glossaire', link: '/glossary', comingSoon: true },
-      { name: 'Cas d\'Usage', link: '/use-cases', comingSoon: true },
+      { name: 'Glossaire', link: '/glossary' },
+      { name: 'Cas d\'Usage', link: '/use-cases' },
     ],
   },
   {
     name: 'À Propos',
     children: [
       { name: 'Notre Histoire', link: '/about' },
-      { name: 'Notre Process', link: '/process', comingSoon: true },
+      { name: 'Notre Process', link: '/process' },
       { name: 'Notre Approche', link: '/about#approach' },
     ],
   },
-  { name: 'Pricing', link: '/pricing', comingSoon: true },
-  { name: 'Contact', link: '/contact', comingSoon: true },
+  { name: 'Pricing', link: '/pricing' },
+  { name: 'Contact', link: '/contact' },
 ];
 
 const languages = ['FR', 'EN', 'DE', 'IT'];
@@ -147,11 +146,6 @@ export function Navigation() {
                     )}
                   >
                     {item.name}
-                    {item.comingSoon && (
-                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-dainamics-accent/20 text-dainamics-accent">
-                        Soon
-                      </span>
-                    )}
                   </Link>
                 )}
 
@@ -170,16 +164,11 @@ export function Navigation() {
                           key={child.name}
                           to={child.link || '/'}
                           className={cn(
-                            "block px-4 py-3 text-dainamics-light/80 hover:text-dainamics-light hover:bg-dainamics-primary/10 transition-colors duration-200 flex items-center justify-between gap-2",
+                            "block px-4 py-3 text-dainamics-light/80 hover:text-dainamics-light hover:bg-dainamics-primary/10 transition-colors duration-200",
                             isActive(child.link) && "text-dainamics-primary bg-dainamics-primary/5"
                           )}
                         >
-                          <span>{child.name}</span>
-                          {child.comingSoon && (
-                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-dainamics-accent/20 text-dainamics-accent">
-                              Soon
-                            </span>
-                          )}
+                          {child.name}
                         </Link>
                       ))}
                     </motion.div>
@@ -297,16 +286,11 @@ export function Navigation() {
                                   key={child.name}
                                   to={child.link || '/'}
                                   className={cn(
-                                    "block text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 text-sm flex items-center justify-between",
+                                    "block text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 text-sm",
                                     isActive(child.link) && "text-dainamics-primary"
                                   )}
                                 >
-                                  <span>{child.name}</span>
-                                  {child.comingSoon && (
-                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-dainamics-accent/20 text-dainamics-accent">
-                                      Soon
-                                    </span>
-                                  )}
+                                  {child.name}
                                 </Link>
                               ))}
                             </motion.div>
@@ -318,16 +302,11 @@ export function Navigation() {
                       <Link
                         to={item.link || '/'}
                         className={cn(
-                          "text-dainamics-light/80 hover:text-dainamics-light font-medium py-2 px-4 flex items-center justify-between",
+                          "text-dainamics-light/80 hover:text-dainamics-light font-medium py-2 px-4",
                           isActive(item.link) && "text-dainamics-primary"
                         )}
                       >
-                        <span>{item.name}</span>
-                        {item.comingSoon && (
-                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-dainamics-accent/20 text-dainamics-accent">
-                            Soon
-                          </span>
-                        )}
+                        {item.name}
                       </Link>
                     )}
                   </div>
