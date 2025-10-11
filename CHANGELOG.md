@@ -1,5 +1,76 @@
 # CHANGELOG - DAINAMICS Website Documentation
 
+## Version 2.2 - 11 Octobre 2025
+
+### 🎯 STANDARDS DE PROMPTS POUR CLAUDE CODE
+
+#### Nouvelle Section dans WORKFLOW.md
+- **Standards de Prompts pour Claude Code** (section complète ajoutée)
+- Définition des rôles : Architecte vs Exécutant
+- Anatomie d'un prompt parfait (7 sections obligatoires)
+- Template de prompt complet
+- Niveau de détail requis par type de tâche
+- 5 principes d'or
+- Exemples de bons vs mauvais prompts
+- Erreurs à éviter
+
+#### Rôles Clarifiés
+**L'Architecte (Claude Assistant)** :
+- Crée des prompts ULTRA détaillés
+- Donne instructions complètes sans ambiguïté
+- Spécifie EXACTEMENT ce qui doit être fait
+- Fournit le code complet quand nécessaire
+- Valide le travail
+- Ne laisse AUCUNE place à l'interprétation
+
+**L'Exécutant (Claude Code)** :
+- Suit les instructions à la lettre
+- N'interprète pas, exécute
+- Demande clarification si ambigu
+- Commit + Push après chaque tâche
+- Attend validation
+
+#### Anatomie d'un Prompt Parfait
+1. **CONTEXTE PROJET** (Obligatoire)
+   - Identité du projet
+   - Documentation de référence
+   - Positionnement
+
+2. **OBJECTIF PRÉCIS** (Obligatoire)
+   - Ce qui doit être créé
+   - Ce qui NE doit PAS être fait
+
+3. **STRUCTURE TECHNIQUE EXACTE** (Obligatoire)
+   - Emplacement du fichier
+   - Code complet fourni
+
+4. **RÈGLES DE CONTENU** (Si applicable)
+   - Approche requise
+   - Principes avec exemples
+   - Bons vs mauvais exemples
+
+5. **VALIDATION** (Obligatoire)
+   - Checklist technique
+   - Checklist contenu
+   - Checklist qualité
+
+6. **PROCESSUS GIT** (Obligatoire)
+   - Commandes exactes
+   - Format de confirmation
+
+7. **GESTION D'ERREURS** (Recommandé)
+   - Instructions en cas d'erreur
+   - Erreurs possibles anticipées
+
+#### Principes d'Or
+1. **Être ULTRA Spécifique** - Pas de vague, tout précis
+2. **Donner le Code Complet** - Ne pas juste décrire, fournir
+3. **Anticiper les Questions** - Couvrir tous les cas
+4. **Validation Exhaustive** - Checklists détaillées
+5. **Process Git Exact** - Commandes complètes
+
+---
+
 ## Version 2.1 - 11 Octobre 2025
 
 ### 🚨 Changements Critiques - Workflow Strict
@@ -73,8 +144,11 @@
 
 ## Fichiers Créés
 
+### Version 2.2
+- Aucun nouveau fichier (mise à jour WORKFLOW.md)
+
 ### Version 2.1
-- **WORKFLOW.md** (8.5KB) - Règles strictes de développement
+- **WORKFLOW.md** (8.5KB → 14.7KB) - Règles strictes de développement
 
 ### Version 2.0
 - **ARCHITECTURE.md** (81KB) - Document principal
@@ -82,6 +156,9 @@
 - **CHANGELOG.md** - Historique changements
 
 ## Fichiers Modifiés
+
+### Version 2.2
+- **WORKFLOW.md** (14.7KB) - Ajout section standards de prompts
 
 ### Version 2.1
 - **README.md** (14.8KB) - Section critique ajoutée, structure améliorée
@@ -97,21 +174,26 @@
 
 ## Contenu des Documents Principaux
 
-### WORKFLOW.md (NOUVEAU - v2.1)
-1. Règles Critiques - À lire absolument
+### WORKFLOW.md (v2.2 - MISE À JOUR MAJEURE)
+1. Règles Critiques
 2. Processus de Développement (5 étapes)
-3. Organisation du Repository
-4. Règles de Nommage
-5. Plan d'Implémentation par Phases
-6. Checklist Avant Chaque Commit
-7. Format de Rapport Après Tâche
-8. Commandes Git Utiles
-9. Règles de Sécurité
-10. Documentation de Référence
+3. **STANDARDS DE PROMPTS** (NOUVEAU)
+   - Rôles Architecte vs Exécutant
+   - Anatomie prompt parfait (7 sections)
+   - Template complet
+   - Niveau de détail requis
+   - Principes d'or
+   - Exemples bons vs mauvais
+4. Organisation du Repository
+5. Plan d'Implémentation
+6. Checklists
+7. Communication
+8. Commandes Utiles
+9. Sécurité
+10. Documentation Référence
+11. Objectifs Qualité
 
 ### ARCHITECTURE.md (v2.0)
-Le document contient maintenant TOUT:
-
 1. Vision & Positionnement
 2. Architecture Technique
 3. Design System Ultra-Détaillé
@@ -124,7 +206,65 @@ Le document contient maintenant TOUT:
 
 ---
 
-## Processus de Développement (v2.1)
+## Standards de Prompts (v2.2 - NOUVEAU)
+
+### Sections Obligatoires d'un Prompt
+
+1. **CONTEXTE PROJET**
+   - Identité complète
+   - Documentation de référence
+   - Positionnement business
+
+2. **OBJECTIF PRÉCIS**
+   - Ce qui doit être créé
+   - Ce qui ne doit PAS être fait
+
+3. **STRUCTURE TECHNIQUE EXACTE**
+   - Emplacement exact
+   - Code complet fourni (pas de description)
+
+4. **RÈGLES DE CONTENU**
+   - Approche détaillée
+   - Principes avec exemples
+   - Bons/mauvais exemples
+
+5. **VALIDATION**
+   - Checklist technique complète
+   - Checklist contenu
+   - Checklist qualité
+
+6. **PROCESSUS GIT**
+   - Commandes exactes
+   - Messages préremplis
+   - Format confirmation
+
+7. **GESTION D'ERREURS**
+   - Instructions claires
+   - Erreurs anticipées
+
+### Niveau de Détail par Type
+
+**Fichiers de Données** :
+- Code TypeScript COMPLET (200-500 lignes)
+- 2-3 exemples d'objets complets
+- Tous champs obligatoires spécifiés
+- Structure exacte donnée
+
+**Components React** :
+- Code React COMPLET (100-300 lignes)
+- Imports exacts
+- Props et types détaillés
+- Exemple d'utilisation
+
+**Pages Complètes** :
+- Structure section par section
+- Components listés
+- Layout spécifié
+- Routing si nécessaire
+
+---
+
+## Processus de Développement (v2.1+)
 
 ### Workflow Obligatoire
 
@@ -132,20 +272,18 @@ Le document contient maintenant TOUT:
 
 1. **Recevoir la tâche**
    - Lire et comprendre
-   - Identifier fichiers à créer/modifier
-   - Demander clarification si nécessaire
+   - Identifier fichiers
+   - Clarification si besoin
 
 2. **Planifier**
    - Communiquer ce qui sera fait
    - Où les fichiers seront placés
-   - Quelle structure sera utilisée
    - Attendre confirmation
 
 3. **Développer**
-   - Créer/modifier les fichiers
-   - Suivre strictement ARCHITECTURE.md
-   - Respecter le Design System
-   - TypeScript strict, pas d'emojis
+   - Suivre ARCHITECTURE.md strictement
+   - TypeScript strict
+   - Pas d'emojis
 
 4. **Commit + Push (OBLIGATOIRE)**
    ```bash
@@ -156,9 +294,8 @@ Le document contient maintenant TOUT:
 
 5. **Valider et Attendre**
    - Confirmer push réussi
-   - Communiquer ce qui a été fait
+   - Communiquer résultats
    - **ATTENDRE validation**
-   - Ne PAS continuer
 
 ---
 
@@ -167,26 +304,21 @@ Le document contient maintenant TOUT:
 ### Phase 1 : Fondations (Semaines 1-3)
 
 **Priority 1 : Données** 🎯 EN COURS
-- [ ] `src/data/solutions.ts` - 15 automatisations TOP 15
-- [ ] `src/data/portfolio.ts` - Projets (LEXAIA, ENKI-REALTY, +3)
-- [ ] `src/data/expertise.ts` - 3 piliers (IA, Automatisation, Dev)
-- [ ] `src/data/testimonials.ts` - 8-10 témoignages clients
-- [ ] `src/data/integrations.ts` - 50-80 intégrations
-- [ ] `src/data/pricingPackages.ts` - 4 tiers de pricing
-- [ ] `src/data/useCases.ts` - 20-30 cas d'usage
-- [ ] `src/data/glossary.ts` - 50-100 termes
+- [ ] `src/data/solutions.ts` - 15 scénarios (EN ATTENTE CRÉATION)
+- [ ] `src/data/portfolio.ts` - Projets
+- [ ] `src/data/expertise.ts` - 3 piliers
+- [ ] `src/data/testimonials.ts` - Témoignages
+- [ ] `src/data/integrations.ts` - Intégrations
+- [ ] `src/data/pricingPackages.ts` - Pricing
+- [ ] `src/data/useCases.ts` - Use cases
+- [ ] `src/data/glossary.ts` - Glossaire
 
 **Priority 2 : Design System**
-- [ ] `src/components/common/Button.tsx` - Variants améliorés
-- [ ] `src/components/common/Card.tsx` - 4 variants
-- [ ] `src/components/common/Badge.tsx` - 5 variants
-- [ ] `src/components/common/SolutionCard.tsx`
-- [ ] `src/components/common/PortfolioCard.tsx`
+- [ ] Components common (Button, Card, Badge)
+- [ ] SolutionCard, PortfolioCard
 
 **Priority 3 : Pages Core**
-- [ ] `src/pages/Expertise.tsx` - Page complète
-- [ ] `src/pages/Solutions.tsx` - Page complète
-- [ ] `src/pages/Portfolio.tsx` - Page complète
+- [ ] Expertise, Solutions, Portfolio
 
 ---
 
@@ -196,72 +328,60 @@ Le document contient maintenant TOUT:
 - `feat`: Nouvelle fonctionnalité
 - `fix`: Correction de bug
 - `docs`: Documentation
-- `style`: Formatage (CSS, indentation)
-- `refactor`: Refactoring du code
-- `test`: Ajout/modification tests
-- `chore`: Maintenance, configuration
+- `style`: Formatage
+- `refactor`: Refactoring
+- `test`: Tests
+- `chore`: Maintenance
 
 ### Exemples
 ```bash
-feat(data): add solutions.ts with TOP 15 automations
+feat(data): add solutions.ts with 15 automation scenarios
 feat(components): add Button variants with glow effects
+docs(workflow): add prompt standards section
 docs(readme): add critical workflow section
-docs(workflow): create strict development rules
-fix(hero): correct animation timing
-style(card): improve hover effect
 ```
+
+---
+
+## Améliorations Documentation
+
+### v2.2 (Standards Prompts)
+- Section complète sur prompts pour Claude Code
+- Rôles clarifiés (Architecte vs Exécutant)
+- Template de prompt professionnel
+- Exemples concrets bons/mauvais
+- Guide détaillé par type de tâche
+
+### v2.1 (Workflow Strict)
+- Processus étape par étape
+- Format commits standardisé
+- Checklists complètes
+- Validation obligatoire
+
+### v2.0 (Fondation)
+- Documentation consolidée
+- Design System détaillé
+- Corrections noms
+- Suppression emojis
 
 ---
 
 ## Prochaines Étapes Immédiates
 
-### Tâche #1 : Créer Fichiers de Données (EN COURS)
-1. Créer `/src/data/solutions.ts`
-2. Créer `/src/data/portfolio.ts`
-3. Créer `/src/data/expertise.ts`
-4. Créer `/src/data/testimonials.ts`
-5. Créer `/src/data/integrations.ts`
-6. Créer `/src/data/pricingPackages.ts`
-7. Créer `/src/data/useCases.ts`
-8. Créer `/src/data/glossary.ts`
+### Tâche #1 : Créer solutions.ts
+**Statut** : Prompt complet prêt
+**Action** : Donner prompt à Claude Code
+**Après** : Validation puis portfolio.ts
 
-**Après chaque fichier** :
-- Commit avec message clair
-- Push sur GitHub
-- Attendre validation
+### Tâche #2 : Créer portfolio.ts
+**Statut** : En attente validation #1
+**Action** : Créer après validation solutions.ts
 
-### Tâche #2 : Design System Components
-- Après validation complète de Tâche #1
-- Créer components selon ARCHITECTURE.md
-- Commit + Push après chaque component
-
-### Tâche #3 : Pages Core
-- Après validation complète de Tâche #2
-- Développer pages une par une
-- Commit + Push après chaque page
+### Tâche #3 : Créer expertise.ts
+**Statut** : En attente validation #2
+**Action** : Créer après validation portfolio.ts
 
 ---
 
-## Améliorations Documentation (v2.1)
-
-### Clarté
-- Section critique visible en haut de README
-- Ordre de lecture explicite
-- Références croisées entre documents
-- Structure plus logique
-
-### Processus
-- Workflow étape par étape détaillé
-- Format des commits standardisé
-- Checklists complètes avant commit
-- Processus de validation clarifié
-
-### Organisation
-- Structure repository détaillée
-- Priorités clairement définies
-- Plan d'implémentation par phases
-- Tâches séquencées et validées
-
----
-
-*DAINAMICS - CHANGELOG v2.1 - 11 Octobre 2025*
+*DAINAMICS - CHANGELOG v2.2 - 11 Octobre 2025*  
+*Documentation Professionnelle et Standards Élevés*

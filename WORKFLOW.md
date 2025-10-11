@@ -73,6 +73,292 @@ git push origin main
 
 ---
 
+## 🎨 STANDARDS DE PROMPTS POUR CLAUDE CODE
+
+### Rôle de l'Architecte vs Exécutant
+
+**L'Architecte (Claude Assistant dans chat)** :
+- Crée des prompts ULTRA détaillés et précis
+- Donne des instructions complètes sans ambiguïté
+- Spécifie EXACTEMENT ce qui doit être fait et comment
+- Fournit le code complet quand nécessaire
+- Valide le travail de Claude Code
+- Ne laisse AUCUNE place à l'interprétation
+
+**L'Exécutant (Claude Code)** :
+- Suit les instructions à la lettre
+- N'interprète pas, exécute
+- Demande clarification si ambigu
+- Commit + Push après chaque tâche
+- Attend validation avant de continuer
+
+### Anatomie d'un Prompt Parfait
+
+Un prompt pour Claude Code DOIT contenir :
+
+#### 1. CONTEXTE PROJET (Obligatoire)
+```markdown
+## CONTEXTE PROJET
+
+### Identité
+- Nom : DAINAMICS Website
+- Type : Site vitrine + génération leads
+- Repository : https://github.com/dainabase/Dainamics-Web-Site
+- Branch : main
+- Stack : React 18+ TypeScript 5+ Vite 5+
+
+### Documentation
+- WORKFLOW.md - Processus
+- ARCHITECTURE.md - Specs techniques
+- README.md - Vue d'ensemble
+
+### Positionnement
+- Cible : PME suisses
+- USP : ROI mesurable, conformité suisse
+```
+
+#### 2. OBJECTIF PRÉCIS (Obligatoire)
+```markdown
+## OBJECTIF DE LA TÂCHE
+
+Créer le fichier `src/data/solutions.ts` contenant 15 scénarios.
+
+### Ce que tu dois créer
+- UN fichier TypeScript
+- Interfaces strictes
+- 15 objets dans un array
+- Helpers pour filtrage
+
+### Ce que tu NE dois PAS faire
+- ❌ Descriptions techniques figées
+- ❌ Utiliser des emojis
+- ❌ Écrire "AI" (toujours "IA")
+```
+
+#### 3. STRUCTURE TECHNIQUE EXACTE (Obligatoire)
+```markdown
+## STRUCTURE TECHNIQUE EXACTE
+
+### Emplacement
+`src/data/solutions.ts`
+
+### Code Complet
+```typescript
+// Donner le code COMPLET ici
+// Avec TOUTES les interfaces
+// Et TOUS les exemples nécessaires
+```
+```
+
+#### 4. RÈGLES DE CONTENU (Si applicable)
+```markdown
+## RÈGLES DE CONTENU
+
+### Approche Requise
+- Scénarios inspirants, pas specs techniques
+- Quantifier systématiquement (CHF, heures, %)
+- Langage business, pas jargon technique
+
+### Principes
+1. Principe 1 avec exemple
+2. Principe 2 avec exemple
+3. Etc.
+
+### Exemples Concrets
+Bon exemple ✅
+Mauvais exemple ❌
+```
+
+#### 5. VALIDATION (Obligatoire)
+```markdown
+## VALIDATION AVANT COMMIT
+
+### Checklist Technique
+- [ ] Item 1
+- [ ] Item 2
+
+### Checklist Contenu
+- [ ] Item 1
+- [ ] Item 2
+
+### Checklist Qualité
+- [ ] Item 1
+- [ ] Item 2
+```
+
+#### 6. PROCESSUS GIT (Obligatoire)
+```markdown
+## PROCESSUS GIT
+
+### Commandes Exactes
+```bash
+git add .
+git commit -m "feat(data): description détaillée"
+git push origin main
+```
+
+### Format de Confirmation
+```
+✅ TÂCHE TERMINÉE : [nom]
+
+FICHIERS :
+- Fichier 1
+
+COMMIT :
+- SHA : xxx
+
+PUSH :
+- Statut : ✅
+```
+```
+
+#### 7. GESTION D'ERREURS (Recommandé)
+```markdown
+## EN CAS D'ERREUR
+
+1. STOP immédiatement
+2. Documenter l'erreur
+3. Demander de l'aide
+4. Ne pas deviner
+
+### Erreurs Possibles
+- Erreur TypeScript : ...
+- Erreur Git : ...
+```
+
+### Template de Prompt Complet
+
+```markdown
+# TÂCHE : [Titre précis]
+
+## CONTEXTE PROJET
+[Identité + Docs + Positionnement]
+
+## OBJECTIF
+[Ce qui doit être créé + Ce qui NE doit PAS être fait]
+
+## STRUCTURE TECHNIQUE EXACTE
+[Emplacement + Code complet]
+
+## RÈGLES DE CONTENU (si applicable)
+[Approche + Principes + Exemples]
+
+## VALIDATION
+[3 checklists : Technique + Contenu + Qualité]
+
+## PROCESSUS GIT
+[Commandes + Format confirmation]
+
+## EN CAS D'ERREUR
+[Instructions claires]
+
+## RAPPELS CRITIQUES
+[5-7 points essentiels]
+
+COMMENCE MAINTENANT.
+```
+
+### Niveau de Détail Requis
+
+**Pour Fichiers de Données** :
+- Donner le code TypeScript COMPLET
+- Inclure 2-3 exemples d'objets complets
+- Spécifier TOUS les champs obligatoires
+- Donner la structure exacte
+
+**Pour Components** :
+- Donner le code React COMPLET
+- Inclure imports exacts
+- Spécifier props et types
+- Montrer exemple d'utilisation
+
+**Pour Pages** :
+- Donner la structure complète
+- Inclure sections et layout
+- Spécifier components utilisés
+- Montrer routing si nécessaire
+
+### Principes d'Or
+
+1. **Être ULTRA Spécifique**
+   - ❌ "Crée un fichier de données"
+   - ✅ "Crée src/data/solutions.ts avec interfaces TypeScript strictes, 15 objets Solution dans un array export const, et 4 helpers"
+
+2. **Donner le Code Complet**
+   - Ne pas dire "crée une interface Solution"
+   - Donner le code exact de l'interface
+
+3. **Anticiper les Questions**
+   - Si vous vous demandez "et si...", répondez dans le prompt
+   - Couvrir TOUS les cas possibles
+
+4. **Validation Exhaustive**
+   - Checklists détaillées
+   - Critères objectifs
+   - Pas de "vérifie que c'est bon"
+
+5. **Process Git Exact**
+   - Commandes complètes
+   - Messages de commit préremplis
+   - Format de confirmation
+
+### Erreurs à Éviter
+
+❌ **Prompts Vagues**
+```
+"Crée les fichiers de données pour le projet"
+```
+
+✅ **Prompts Précis**
+```
+"Crée src/data/solutions.ts avec :
+- Interface Solution (15 champs spécifiés)
+- Array de 15 objets (code complet donné)
+- 4 helpers (code exact fourni)
+- Répartition : 5 IA + 7 Auto + 3 Dev"
+```
+
+❌ **Instructions Ambiguës**
+```
+"Fais en sorte que ce soit bien"
+```
+
+✅ **Critères Objectifs**
+```
+"Validation :
+- TypeScript sans erreurs
+- 15 solutions présentes
+- Tous champs remplis
+- Pas d'emojis dans le code"
+```
+
+### Exemples de Prompts par Type
+
+**Fichier de Données** :
+- Contexte : 2 paragraphes
+- Objectif : 1 paragraphe
+- Code complet : 200-500 lignes
+- Validation : 3 checklists
+- Git process : Complet
+
+**Component React** :
+- Contexte : 2 paragraphes
+- Objectif : 1 paragraphe
+- Code complet : 100-300 lignes
+- Props détaillées : Toutes
+- Validation : 3 checklists
+- Git process : Complet
+
+**Page Complète** :
+- Contexte : 3 paragraphes
+- Objectif : 2 paragraphes
+- Structure : Section par section
+- Components : Liste complète
+- Validation : 4 checklists
+- Git process : Complet
+
+---
+
 ## 🗂️ Organisation du Repository
 
 ### Structure des Dossiers
@@ -285,7 +571,7 @@ Le `.gitignore` est configuré pour bloquer ces fichiers.
 
 ### Ordre de Lecture
 1. **README.md** - Vue d'ensemble et quick start
-2. **WORKFLOW.md** - Ce document (processus)
+2. **WORKFLOW.md** - Ce document (processus + standards prompts)
 3. **ARCHITECTURE.md** - Specs techniques complètes (81KB)
 4. **PROMPT-CONTEXT.md** - Contexte pour conversations IA
 
@@ -294,6 +580,7 @@ Le `.gitignore` est configuré pour bloquer ces fichiers.
 - **Créer components** → Voir ARCHITECTURE.md section "Design System"
 - **Créer pages** → Voir ARCHITECTURE.md section "Pages Structure"
 - **Animations** → Voir ARCHITECTURE.md section "Framer Motion"
+- **Créer prompts** → Voir cette section "Standards de Prompts"
 
 ---
 
@@ -317,7 +604,13 @@ Le `.gitignore` est configuré pour bloquer ces fichiers.
 - Navigation clavier
 - Contraste suffisant
 
+### Prompts
+- Ultra détaillés et précis
+- Code complet fourni
+- Aucune ambiguïté
+- Validation exhaustive
+
 ---
 
-*DAINAMICS - Workflow v1.0 - 11 Octobre 2025*  
+*DAINAMICS - Workflow v1.1 - 11 Octobre 2025*  
 *Développement Structuré et Professionnel*
