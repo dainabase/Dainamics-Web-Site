@@ -86,10 +86,10 @@ export interface ExpertisePillar {
   
   // Métriques d'expertise
   metrics: {
-    projectsCompleted: number; // Nombre de projets réalisés
-    avgROI: string; // ROI moyen ex: "CHF 85'000/an"
-    clientSatisfaction: string; // Score satisfaction ex: "4.9/5"
-    yearsExperience: number; // Années d'expérience
+    projectsCompleted: { label: string; value: string };
+    avgROI: { label: string; value: string };
+    clientSatisfaction: { label: string; value: string };
+    yearsExperience: { label: string; value: string };
   };
   
   // Quick wins possibles
@@ -341,10 +341,10 @@ export const expertisePillars: ExpertisePillar[] = [
     relatedProjects: ['lexaia-legal-ai', 'enki-realty-automation', 'ecommerce-chatbot-multilingual'],
     
     metrics: {
-      projectsCompleted: 12,
-      avgROI: 'CHF 65\'000/an',
-      clientSatisfaction: '4.9/5',
-      yearsExperience: 5
+      yearsExperience: { label: "Années d'expérience IA", value: "5+" },
+      projectsCompleted: { label: "Projets IA livrés", value: "12+" },
+      avgROI: { label: "ROI moyen annuel", value: "CHF 65'000" },
+      clientSatisfaction: { label: "Satisfaction client", value: "4.9/5" }
     },
     
     quickWins: [
@@ -549,10 +549,10 @@ export const expertisePillars: ExpertisePillar[] = [
     relatedProjects: ['swiss-fiduciaire-automation', 'manufacturing-iot-dashboard'],
     
     metrics: {
-      projectsCompleted: 18,
-      avgROI: 'CHF 48\'000/an',
-      clientSatisfaction: '4.8/5',
-      yearsExperience: 6
+      yearsExperience: { label: "Années d'expérience Automatisation", value: "6+" },
+      projectsCompleted: { label: "Projets d'automatisation", value: "18+" },
+      avgROI: { label: "ROI moyen annuel", value: "CHF 48'000" },
+      clientSatisfaction: { label: "Satisfaction client", value: "4.8/5" }
     },
     
     quickWins: [
@@ -772,10 +772,10 @@ export const expertisePillars: ExpertisePillar[] = [
     relatedProjects: ['manufacturing-iot-dashboard', 'ecommerce-chatbot-multilingual'],
     
     metrics: {
-      projectsCompleted: 24,
-      avgROI: 'CHF 78\'000/an',
-      clientSatisfaction: '4.9/5',
-      yearsExperience: 8
+      yearsExperience: { label: "Années d'expérience Dev", value: "8+" },
+      projectsCompleted: { label: "Applications livrées", value: "24+" },
+      avgROI: { label: "ROI moyen annuel", value: "CHF 78'000" },
+      clientSatisfaction: { label: "Satisfaction client", value: "4.9/5" }
     },
     
     quickWins: [
@@ -847,12 +847,17 @@ export const getCapabilitiesByComplexity = (
  * Obtenir statistiques globales
  */
 export const getGlobalStats = () => {
-  const totalProjects = expertisePillars.reduce((sum, pillar) => sum + pillar.metrics.projectsCompleted, 0);
+  const totalProjects = expertisePillars.reduce((sum, pillar) => {
+    const value = parseInt(pillar.metrics.projectsCompleted.value.replace('+', ''));
+    return sum + value;
+  }, 0);
   const avgSatisfaction = (
-    expertisePillars.reduce((sum, pillar) => sum + parseFloat(pillar.metrics.clientSatisfaction), 0) /
-    expertisePillars.length
+    expertisePillars.reduce((sum, pillar) => {
+      const value = parseFloat(pillar.metrics.clientSatisfaction.value.split('/')[0]);
+      return sum + value;
+    }, 0) / expertisePillars.length
   ).toFixed(1);
-  
+
   return {
     totalProjects,
     avgSatisfaction: `${avgSatisfaction}/5`,

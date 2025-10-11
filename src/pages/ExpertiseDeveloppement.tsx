@@ -57,7 +57,7 @@ export default function ExpertiseDeveloppement() {
       <HeroSection pillar={pillar} devColor={devColor} />
       
       {/* Metrics Section - Parallax Cards */}
-      <MetricsSection metrics={pillar.stats} devColor={devColor} />
+      <MetricsSection metrics={pillar.metrics} devColor={devColor} />
       
       {/* Technologies Section - MORPHING GRID */}
       <TechnologiesSection 
@@ -291,21 +291,21 @@ function MetricCard({ metric, index, devColor, y }: any) {
   return (
     <motion.div
       ref={cardRef}
-      style={{ y }}
       initial={{ opacity: 0, rotateY: -45 }}
       animate={isInView ? { opacity: 1, rotateY: 0 } : {}}
-      transition={{ 
-        duration: 0.8, 
+      transition={{
+        duration: 0.8,
         delay: index * 0.15,
         ease: [0.22, 1, 0.36, 1]
       }}
-      whileHover={{ 
+      whileHover={{
         scale: 1.05,
         rotateY: 10,
         z: 50
       }}
       className="relative p-8 rounded-2xl group cursor-pointer"
       style={{
+        y,
         background: `linear-gradient(135deg, ${devColor}12, transparent)`,
         border: `1px solid ${devColor}35`,
         transformStyle: 'preserve-3d',
