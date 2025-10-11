@@ -1,0 +1,207 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border selection:bg-dainamics-primary/30 selection:text-white;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  body {
+    @apply bg-dainamics-background text-foreground antialiased overflow-x-hidden;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-wide font-bold;
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+  }
+  
+  .neo-blur {
+    @apply backdrop-blur-2xl bg-black/40 border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-primary {
+    @apply bg-gradient-to-br from-dainamics-primary via-dainamics-primary/80 to-dainamics-primary/60 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-secondary {
+    @apply bg-gradient-to-br from-dainamics-secondary via-dainamics-secondary/80 to-dainamics-secondary/60 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-cta {
+    @apply bg-gradient-to-br from-dainamics-cta via-dainamics-cta/80 to-dainamics-cta/60 bg-clip-text text-transparent;
+  }
+
+  .glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .glow-sm {
+    text-shadow: 0 0 5px currentColor;
+  }
+
+  .glow-lg {
+    text-shadow: 0 0 15px currentColor;
+  }
+
+  .btn-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-glow::before {
+    @apply content-[''] absolute inset-0 rounded-full blur-md opacity-50;
+    background: inherit;
+    z-index: -1;
+  }
+
+  .btn-glow:hover::before {
+    @apply opacity-75 blur-lg;
+  }
+
+  /* Enhanced cursor effects */
+  .cursor-magnetic {
+    @apply transition-transform duration-300 ease-out;
+  }
+
+  .power-pulse {
+    animation: power-pulse 2s infinite;
+  }
+
+  @keyframes power-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 0 0 rgba(123, 47, 255, 0.7);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 20px 5px rgba(123, 47, 255, 0.5);
+      transform: scale(1.02);
+    }
+  }
+
+  /* Enhanced hover effects */
+  .hover-expand {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-expand:hover {
+    @apply transform scale-105;
+  }
+
+  /* Brain animation visual improvements */
+  .brain-animation-wrapper {
+    position: relative;
+    overflow: visible !important;
+  }
+  
+  /* Remove the black background and add a smooth transition */
+  .brain-video-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    background: transparent !important;
+    border: 1px solid rgba(16, 228, 255, 0.15) !important;
+  }
+  
+  /* Enhanced glow effect for the brain */
+  .glow-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140%;
+    height: 140%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+      circle,
+      rgba(16, 228, 255, 0.15) 0%,
+      rgba(16, 228, 255, 0.08) 40%,
+      rgba(16, 228, 255, 0.03) 60%,
+      rgba(0, 0, 0, 0) 80%
+    );
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  
+  /* Enhanced inner glow for video container */
+  .brain-video-container {
+    box-shadow: 0 0 40px rgba(16, 228, 255, 0.15) inset;
+  }
+  
+  /* Remove hard edges from the video */
+  .video-mask-overlay {
+    background: radial-gradient(
+      circle at center,
+      transparent 60%,
+      rgba(5, 5, 16, 0.8) 90%,
+      rgba(5, 5, 16, 1) 100%
+    ) !important;
+  }
+  
+  /* Enhanced orbital rings */
+  .orbital-ring {
+    border: 1px solid rgba(16, 228, 255, 0.25) !important;
+    box-shadow: 0 0 25px rgba(16, 228, 255, 0.35) !important;
+  }
+  
+  /* Remove brightness filter to improve visibility */
+  .brightness-filter {
+    background: rgba(0, 0, 0, 0) !important; 
+  }
+  
+  /* Brain 2D animation improvements */
+  .brain-container canvas {
+    filter: drop-shadow(0 0 8px rgba(16, 228, 255, 0.3)) !important;
+  }
+}
