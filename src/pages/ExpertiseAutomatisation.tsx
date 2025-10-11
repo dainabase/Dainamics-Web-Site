@@ -936,15 +936,14 @@ function QuickWinsSection({ quickWins, autoColor }: any) {
 function QuickWinCard({ win, index, autoColor }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.5 });
-  const Icon = iconMapper[win.icon];
 
   return (
     <motion.div
       ref={cardRef}
       initial={{ opacity: 0, scale: 0.8, y: 50 }}
       animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         delay: index * 0.1,
         ease: [0.22, 1, 0.36, 1]
       }}
@@ -957,7 +956,7 @@ function QuickWinCard({ win, index, autoColor }: any) {
     >
       {/* Quick Win Badge */}
       <div className="absolute top-4 right-4">
-        <Badge 
+        <Badge
           className="text-xs px-2 py-1"
           style={{
             backgroundColor: COLORS.success,
@@ -968,17 +967,6 @@ function QuickWinCard({ win, index, autoColor }: any) {
           QUICK WIN
         </Badge>
       </div>
-
-      {/* Icon */}
-      {Icon && (
-        <motion.div
-          whileHover={{ rotate: 10, scale: 1.1 }}
-          className="inline-flex p-3 rounded-xl mb-4"
-          style={{ backgroundColor: `${COLORS.success}20` }}
-        >
-          <Icon className="w-7 h-7" style={{ color: COLORS.success }} />
-        </motion.div>
-      )}
 
       {/* Title */}
       <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform">

@@ -844,7 +844,6 @@ function QuickWinsSection({ quickWins, devColor }: any) {
 function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.5 });
-  const Icon = iconMapper[win.icon];
 
   return (
     <motion.div
@@ -854,7 +853,7 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="rounded-2xl overflow-hidden"
       style={{
-        background: isExpanded 
+        background: isExpanded
           ? `linear-gradient(135deg, ${COLORS.success}15, transparent)`
           : `linear-gradient(135deg, ${COLORS.success}08, transparent)`,
         border: `1px solid ${isExpanded ? COLORS.success : `${COLORS.success}30`}`
@@ -867,17 +866,6 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
         whileHover={{ x: 8 }}
       >
         <div className="flex items-center gap-4 flex-grow">
-          {/* Icon */}
-          {Icon && (
-            <motion.div
-              animate={isExpanded ? { rotate: 360, scale: 1.2 } : { rotate: 0, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="flex-shrink-0 p-3 rounded-lg"
-              style={{ backgroundColor: `${COLORS.success}20` }}
-            >
-              <Icon className="w-6 h-6" style={{ color: COLORS.success }} />
-            </motion.div>
-          )}
 
           {/* Title & Badge */}
           <div>
