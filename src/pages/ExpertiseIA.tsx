@@ -52,7 +52,7 @@ export default function ExpertiseIA() {
       <HeroSection pillar={pillar} iaColor={iaColor} />
       
       {/* Metrics Section */}
-      <MetricsSection metrics={pillar.stats} iaColor={iaColor} />
+      <MetricsSection metrics={pillar.metrics} iaColor={iaColor} />
       
       {/* Technologies Section - STICKY SCROLL TYPE 1 */}
       <TechnologiesSection 

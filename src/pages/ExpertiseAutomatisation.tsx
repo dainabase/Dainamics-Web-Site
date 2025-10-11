@@ -50,7 +50,7 @@ export default function ExpertiseAutomatisation() {
       <HeroSection pillar={pillar} autoColor={autoColor} />
       
       {/* Metrics Section - Cards with Stagger */}
-      <MetricsSection metrics={pillar.stats} autoColor={autoColor} />
+      <MetricsSection metrics={pillar.metrics} autoColor={autoColor} />
       
       {/* Technologies Section - HORIZONTAL SCROLL IN VERTICAL STICKY */}
       <TechnologiesSection 
