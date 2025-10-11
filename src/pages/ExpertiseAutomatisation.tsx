@@ -1,5 +1,5 @@
 // src/pages/ExpertiseAutomatisation.tsx
-// CONCEPT: Workflow Symphony - Flow-based design, carousel, morphing cards, connected nodes
+// CONCEPT: Workflow Symphony - ENHANCED with full color palette & advanced sticky effects
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
@@ -25,8 +25,10 @@ import {
   Target,
   Workflow,
   GitBranch,
-  Network,
-  RefreshCw
+  RefreshCw,
+  Gauge,
+  Award,
+  Rocket
 } from 'lucide-react';
 
 export default function ExpertiseAutomatisation() {
@@ -53,20 +55,28 @@ export default function ExpertiseAutomatisation() {
     <div ref={containerRef} className="min-h-screen bg-dainamics-background relative">
       <Navigation />
 
-      {/* Sticky Sidebar Progress - unique à cette page */}
-      <StickyProgressSidebar scrollProgress={scrollYProgress} color={automationColor} />
+      {/* Rainbow sidebar progress */}
+      <RainbowSidebarProgress scrollProgress={scrollYProgress} />
 
-      {/* Hero Section - Workflow Nodes animés */}
+      {/* Multi-color progress bar */}
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-1 z-50 origin-left"
+        style={{ 
+          scaleX: scrollYProgress,
+          background: `linear-gradient(90deg, ${COLORS.accent}, ${COLORS.success}, ${COLORS.warning}, ${COLORS.cta})`
+        }}
+      />
+
+      {/* Hero with colorful workflow */}
       <section className="relative min-h-screen flex items-center px-4 md:px-8 lg:px-16 overflow-hidden">
-        {/* Animated Workflow Background */}
-        <WorkflowNodesBackground color={automationColor} />
+        <ColorfulWorkflowBackground />
 
         <div className="container mx-auto relative z-10">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, type: "spring" }}
+              transition={{ duration: 0.8 }}
               className="mb-8"
             >
               <Link 
@@ -79,11 +89,10 @@ export default function ExpertiseAutomatisation() {
             </motion.div>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left: Text Content */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
+                transition={{ delay: 0.3 }}
               >
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -92,12 +101,12 @@ export default function ExpertiseAutomatisation() {
                   className="mb-6"
                 >
                   <Badge 
-                    className="px-5 py-3 text-lg"
+                    className="px-5 py-3 text-lg border-2"
                     style={{
-                      backgroundColor: `${automationColor}20`,
-                      borderColor: `${automationColor}50`,
-                      color: automationColor,
-                      boxShadow: `0 0 40px ${automationColor}30`
+                      background: `linear-gradient(135deg, ${COLORS.accent}20, ${COLORS.success}20)`,
+                      borderColor: COLORS.accent,
+                      color: COLORS.accent,
+                      boxShadow: `0 0 40px ${COLORS.accent}30`
                     }}
                   >
                     <Workflow className="w-5 h-5 mr-2" />
@@ -111,8 +120,11 @@ export default function ExpertiseAutomatisation() {
                   transition={{ delay: 0.5 }}
                   className="text-5xl md:text-7xl font-bold mb-6"
                   style={{ 
-                    color: automationColor,
-                    textShadow: `0 0 40px ${automationColor}40`
+                    background: `linear-gradient(135deg, ${COLORS.accent}, ${COLORS.success}, ${COLORS.warning})`,
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundSize: '200% 200%',
+                    animation: 'gradient 3s ease infinite'
                   }}
                 >
                   {pillar.name}
@@ -131,7 +143,7 @@ export default function ExpertiseAutomatisation() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.7 }}
-                  className="text-lg text-dainamics-light/60 mb-8 leading-relaxed"
+                  className="text-lg text-dainamics-light/60 mb-8"
                 >
                   {pillar.description}
                 </motion.p>
@@ -147,8 +159,8 @@ export default function ExpertiseAutomatisation() {
                     size="lg"
                     className="text-white px-8 py-6 text-lg group"
                     style={{
-                      backgroundColor: automationColor,
-                      boxShadow: `0 10px 40px ${automationColor}40`
+                      background: `linear-gradient(135deg, ${COLORS.accent}, ${COLORS.success})`,
+                      boxShadow: `0 10px 40px ${COLORS.accent}40`
                     }}
                   >
                     <a href="#contact">
@@ -162,11 +174,11 @@ export default function ExpertiseAutomatisation() {
                     asChild
                     size="lg"
                     variant="outline"
-                    className="px-8 py-6 text-lg"
+                    className="px-8 py-6 text-lg border-2"
                     style={{
-                      borderColor: `${automationColor}50`,
-                      color: automationColor,
-                      backgroundColor: `${automationColor}10`
+                      borderColor: COLORS.accent,
+                      color: COLORS.accent,
+                      backgroundColor: `${COLORS.accent}10`
                     }}
                   >
                     <Link to="/portfolio">
@@ -176,41 +188,39 @@ export default function ExpertiseAutomatisation() {
                 </motion.div>
               </motion.div>
 
-              {/* Right: Animated Flow Diagram */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
+                transition={{ delay: 0.5 }}
               >
-                <FlowDiagram color={automationColor} />
+                <ColorfulFlowDiagram />
               </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Metrics Section - Cards flottantes */}
+      {/* Metrics - Rainbow cards */}
       <section className="relative py-20 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
-              { label: 'Workflows Créés', value: pillar.metrics.projectsCompleted, icon: Workflow, suffix: '+' },
-              { label: 'ROI Moyen', value: pillar.metrics.avgROI, icon: TrendingUp, suffix: '' },
-              { label: 'Clients Satisfaits', value: pillar.metrics.clientSatisfaction, icon: CheckCircle, suffix: '' },
-              { label: 'Expérience', value: `${pillar.metrics.yearsExperience}`, icon: Zap, suffix: ' ans' },
+              { label: 'Workflows', value: pillar.metrics.projectsCompleted, icon: Workflow, color: COLORS.accent, suffix: '+' },
+              { label: 'ROI Moyen', value: pillar.metrics.avgROI, icon: TrendingUp, color: COLORS.success, suffix: '' },
+              { label: 'Satisfaction', value: pillar.metrics.clientSatisfaction, icon: CheckCircle, color: COLORS.warning, suffix: '' },
+              { label: 'Expérience', value: `${pillar.metrics.yearsExperience}`, icon: Zap, color: COLORS.cta, suffix: ' ans' },
             ].map((metric, index) => (
-              <FloatingMetricCard
+              <RainbowMetricCard
                 key={metric.label}
                 metric={metric}
                 index={index}
-                color={automationColor}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Technologies Section - 3D Carousel rotatif */}
+      {/* Technologies - Colorful carousel */}
       <section className="relative py-32 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto">
           <motion.div
@@ -220,86 +230,62 @@ export default function ExpertiseAutomatisation() {
             className="text-center mb-16"
           >
             <h2 className="text-5xl md:text-6xl font-bold text-dainamics-light mb-6">
-              Stack <span style={{ color: automationColor }}>Automatisation</span>
+              Stack <span style={{ color: COLORS.accent }}>Automatisation</span>
             </h2>
             <p className="text-xl text-dainamics-light/70 max-w-3xl mx-auto mb-12">
               {pillar.technologies.length} technologies pour automatiser vos processus
             </p>
 
-            {/* Filtres morphing */}
+            {/* Rainbow filters */}
             <div className="flex flex-wrap justify-center gap-4 mb-16">
-              {['all', 'expert', 'advanced', 'intermediate'].map((level, idx) => (
+              {[
+                { level: 'all', label: 'Toutes', color: COLORS.accent },
+                { level: 'expert', label: 'Expert', color: COLORS.success },
+                { level: 'advanced', label: 'Advanced', color: COLORS.warning },
+                { level: 'intermediate', label: 'Intermediate', color: COLORS.cta }
+              ].map((filter, idx) => (
                 <motion.div
-                  key={level}
+                  key={filter.level}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button
-                    onClick={() => setSelectedProficiency(level as any)}
-                    variant={selectedProficiency === level ? 'default' : 'outline'}
+                    onClick={() => setSelectedProficiency(filter.level as any)}
+                    variant={selectedProficiency === filter.level ? 'default' : 'outline'}
                     size="lg"
                     className={`px-8 transition-all duration-300 ${
-                      selectedProficiency === level 
-                        ? 'text-white' 
-                        : 'backdrop-blur-xl'
+                      selectedProficiency === filter.level ? 'text-white' : ''
                     }`}
-                    style={selectedProficiency === level ? {
-                      backgroundColor: automationColor,
-                      boxShadow: `0 10px 40px ${automationColor}50`
+                    style={selectedProficiency === filter.level ? {
+                      backgroundColor: filter.color,
+                      boxShadow: `0 10px 40px ${filter.color}50`
                     } : {
-                      borderColor: `${automationColor}40`,
-                      color: automationColor,
-                      backgroundColor: `${automationColor}08`
+                      borderColor: `${filter.color}40`,
+                      color: filter.color,
+                      backgroundColor: `${filter.color}08`
                     }}
                   >
-                    {level === 'all' ? 'Toutes' : level.charAt(0).toUpperCase() + level.slice(1)}
+                    {filter.label}
                   </Button>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Carousel 3D - UNIQUE à cette page */}
-          <TechnologyCarousel3D 
+          <ColorfulCarousel3D 
             technologies={filteredTechnologies} 
-            color={automationColor}
             activeIndex={activeCarouselIndex}
             setActiveIndex={setActiveCarouselIndex}
           />
         </div>
       </section>
 
-      {/* Capabilities Section - Morphing Cards */}
-      <section className="relative py-32 px-4 md:px-8 lg:px-16">
-        <div className="container mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-6xl font-bold text-dainamics-light mb-6">
-              Services <span style={{ color: automationColor }}>d'Automatisation</span>
-            </h2>
-            <p className="text-xl text-dainamics-light/70">
-              {pillar.capabilities.length} solutions pour optimiser vos opérations
-            </p>
-          </motion.div>
+      {/* Capabilities - STICKY TOP + SCROLLING CARDS */}
+      <CapabilitiesStickyTopSection 
+        capabilities={pillar.capabilities}
+      />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pillar.capabilities.map((capability, index) => (
-              <MorphingCapabilityCard
-                key={capability.id}
-                capability={capability}
-                index={index}
-                color={automationColor}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases - Horizontal Scroll */}
+      {/* Use Cases - Colorful grid */}
       <section className="relative py-32 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-transparent via-dainamics-light/5 to-transparent">
         <div className="container mx-auto">
           <motion.div
@@ -309,7 +295,7 @@ export default function ExpertiseAutomatisation() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold text-dainamics-light mb-6">
-              Cas d'Usage <span style={{ color: automationColor }}>Réels</span>
+              Cas d'Usage <span style={{ color: COLORS.accent }}>Réels</span>
             </h2>
             <p className="text-xl text-dainamics-light/70">
               {pillar.useCases.length} exemples d'automatisation avec ROI prouvé
@@ -318,87 +304,71 @@ export default function ExpertiseAutomatisation() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {pillar.useCases.map((useCase, index) => (
-              <UseCaseRevealCard
+              <ColorfulUseCaseCard
                 key={useCase.id}
                 useCase={useCase}
                 index={index}
-                color={automationColor}
+                colors={[COLORS.accent, COLORS.success, COLORS.warning, COLORS.cta, COLORS.primary]}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Quick Wins - Stacked Cards avec décalage */}
-      <section className="relative py-32 px-4 md:px-8 lg:px-16">
-        <div className="container mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-6xl font-bold text-dainamics-light mb-6">
-              Quick Wins <span style={{ color: automationColor }}>Automatisation</span>
-            </h2>
-            <p className="text-xl text-dainamics-light/70">
-              Commencez rapidement avec des gains immédiats
-            </p>
-          </motion.div>
+      {/* Quick Wins - STICKY RIGHT + SCROLLING LEFT */}
+      <QuickWinsStickyRightSection 
+        quickWins={pillar.quickWins}
+      />
 
-          <div className="space-y-8">
-            {pillar.quickWins.map((quickWin, index) => (
-              <StackedQuickWinCard
-                key={index}
-                quickWin={quickWin}
-                index={index}
-                color={automationColor}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section - Morphing Shape */}
+      {/* CTA - Rainbow morphing */}
       <section className="relative py-32 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative rounded-3xl p-16 md:p-20 text-center overflow-hidden"
+            className="relative rounded-3xl p-16 md:p-20 text-center overflow-hidden border-2"
             style={{
-              background: `radial-gradient(circle at center, ${automationColor}20, ${automationColor}05)`,
-              border: `2px solid ${automationColor}30`,
-              boxShadow: `0 20px 80px ${automationColor}30`
+              background: `radial-gradient(circle at center, ${COLORS.accent}20, ${COLORS.success}10)`,
+              borderColor: COLORS.accent,
+              boxShadow: `0 20px 80px ${COLORS.accent}30`
             }}
           >
-            {/* Morphing shape animé */}
-            <motion.div
-              animate={{
-                borderRadius: ["30%", "50%", "40%", "30%"],
-                rotate: [0, 90, 180, 270, 360],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              className="absolute top-1/2 left-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-30"
-              style={{ backgroundColor: automationColor }}
-            />
+            {/* Multi-color morphing shapes */}
+            {[
+              { color: COLORS.accent, delay: 0 },
+              { color: COLORS.success, delay: 5 },
+              { color: COLORS.warning, delay: 10 }
+            ].map((shape, i) => (
+              <motion.div
+                key={i}
+                animate={{
+                  borderRadius: ["30%", "50%", "40%", "30%"],
+                  rotate: [0, 90, 180, 270, 360],
+                }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  delay: shape.delay
+                }}
+                className="absolute w-96 h-96 blur-3xl opacity-30"
+                style={{ 
+                  backgroundColor: shape.color,
+                  top: `${i * 30}%`,
+                  left: `${i * 30}%`
+                }}
+              />
+            ))}
 
             <div className="relative z-10">
-              <Workflow className="w-20 h-20 mx-auto mb-8" style={{ color: automationColor }} />
+              <Workflow className="w-20 h-20 mx-auto mb-8" style={{ color: COLORS.accent }} />
               
               <h2 className="text-4xl md:text-5xl font-bold text-dainamics-light mb-8">
                 Prêt à automatiser vos processus ?
               </h2>
               
               <p className="text-xl text-dainamics-light/70 mb-12 max-w-3xl mx-auto">
-                Libérez le potentiel de votre équipe en automatisant les tâches répétitives.
-                Concentrez-vous sur ce qui compte vraiment.
+                Libérez le potentiel de votre équipe en automatisant les tâches répétitives
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -408,8 +378,8 @@ export default function ExpertiseAutomatisation() {
                     size="lg"
                     className="text-white px-10 py-7 text-lg"
                     style={{
-                      backgroundColor: automationColor,
-                      boxShadow: `0 20px 60px ${automationColor}50`
+                      background: `linear-gradient(135deg, ${COLORS.accent}, ${COLORS.success})`,
+                      boxShadow: `0 20px 60px ${COLORS.accent}50`
                     }}
                   >
                     <Link to="/contact">
@@ -424,11 +394,11 @@ export default function ExpertiseAutomatisation() {
                     asChild
                     size="lg"
                     variant="outline"
-                    className="px-10 py-7 text-lg"
+                    className="px-10 py-7 text-lg border-2"
                     style={{
-                      borderColor: `${automationColor}50`,
-                      color: automationColor,
-                      backgroundColor: `${automationColor}10`
+                      borderColor: COLORS.warning,
+                      color: COLORS.warning,
+                      backgroundColor: `${COLORS.warning}10`
                     }}
                   >
                     <Link to="/portfolio">
@@ -443,12 +413,22 @@ export default function ExpertiseAutomatisation() {
       </section>
 
       <Footer />
+
+      <style>{`
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
     </div>
   );
 }
 
-// Sticky Progress Sidebar - UNIQUE à cette page
-function StickyProgressSidebar({ scrollProgress, color }: any) {
+// Rainbow Sidebar Progress
+function RainbowSidebarProgress({ scrollProgress }: any) {
+  const colors = [COLORS.accent, COLORS.success, COLORS.warning, COLORS.cta, COLORS.primary, COLORS.accent, COLORS.success];
+  
   return (
     <div className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:block">
       <div className="flex flex-col gap-3">
@@ -456,6 +436,7 @@ function StickyProgressSidebar({ scrollProgress, color }: any) {
           const progress = scrollProgress.get();
           const sectionProgress = index / 6;
           const isActive = progress >= sectionProgress && progress < sectionProgress + 1/6;
+          const color = colors[index];
           
           return (
             <motion.div
@@ -465,14 +446,14 @@ function StickyProgressSidebar({ scrollProgress, color }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <span className={`text-xs text-dainamics-light/50 transition-opacity ${isActive ? 'opacity-100' : 'opacity-30'}`}>
+              <span className={`text-xs text-dainamics-light/50 transition-all ${isActive ? 'opacity-100 font-bold' : 'opacity-30'}`}>
                 {label}
               </span>
               <div
                 className="w-2 h-2 rounded-full transition-all"
                 style={{
                   backgroundColor: isActive ? color : `${color}30`,
-                  boxShadow: isActive ? `0 0 10px ${color}` : 'none',
+                  boxShadow: isActive ? `0 0 15px ${color}` : 'none',
                   scale: isActive ? 1.5 : 1
                 }}
               />
@@ -484,28 +465,30 @@ function StickyProgressSidebar({ scrollProgress, color }: any) {
   );
 }
 
-// Workflow Nodes Background
-function WorkflowNodesBackground({ color }: any) {
+// Colorful Workflow Background
+function ColorfulWorkflowBackground() {
+  const colors = [COLORS.accent, COLORS.success, COLORS.warning, COLORS.cta];
+  
   return (
     <div className="absolute inset-0 overflow-hidden opacity-20">
-      {[...Array(5)].map((_, i) => (
+      {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute"
           initial={{ 
-            x: Math.random() * 100 + '%',
-            y: Math.random() * 100 + '%',
+            x: `${Math.random() * 100}%`,
+            y: `${Math.random() * 100}%`,
           }}
           animate={{
             x: [
-              Math.random() * 100 + '%',
-              Math.random() * 100 + '%',
-              Math.random() * 100 + '%',
+              `${Math.random() * 100}%`,
+              `${Math.random() * 100}%`,
+              `${Math.random() * 100}%`,
             ],
             y: [
-              Math.random() * 100 + '%',
-              Math.random() * 100 + '%',
-              Math.random() * 100 + '%',
+              `${Math.random() * 100}%`,
+              `${Math.random() * 100}%`,
+              `${Math.random() * 100}%`,
             ],
           }}
           transition={{
@@ -515,11 +498,11 @@ function WorkflowNodesBackground({ color }: any) {
           }}
         >
           <div 
-            className="w-16 h-16 rounded-lg"
+            className="w-16 h-16 rounded-lg border-2"
             style={{
-              backgroundColor: `${color}20`,
-              border: `2px solid ${color}40`,
-              boxShadow: `0 0 20px ${color}30`
+              backgroundColor: `${colors[i % colors.length]}15`,
+              borderColor: colors[i % colors.length],
+              boxShadow: `0 0 20px ${colors[i % colors.length]}30`
             }}
           />
         </motion.div>
@@ -528,58 +511,48 @@ function WorkflowNodesBackground({ color }: any) {
   );
 }
 
-// Flow Diagram animé
-function FlowDiagram({ color }: any) {
+// Colorful Flow Diagram
+function ColorfulFlowDiagram() {
+  const colors = [COLORS.accent, COLORS.success, COLORS.warning, COLORS.cta];
+  
   return (
     <div className="relative w-full h-96">
       <svg className="w-full h-full" viewBox="0 0 400 400">
-        {/* Connections animées */}
-        <motion.path
-          d="M 100 100 Q 200 150, 300 100"
-          stroke={color}
-          strokeWidth="2"
-          fill="none"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2, repeat: Infinity }}
-          opacity={0.5}
-        />
-        <motion.path
-          d="M 300 100 Q 300 200, 300 300"
-          stroke={color}
-          strokeWidth="2"
-          fill="none"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2, delay: 0.5, repeat: Infinity }}
-          opacity={0.5}
-        />
-        <motion.path
-          d="M 100 300 Q 200 250, 300 300"
-          stroke={color}
-          strokeWidth="2"
-          fill="none"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2, delay: 1, repeat: Infinity }}
-          opacity={0.5}
-        />
-        
-        {/* Nodes */}
+        {/* Colorful connections */}
         {[
-          { x: 100, y: 100, icon: '📥' },
-          { x: 300, y: 100, icon: '⚙️' },
-          { x: 300, y: 300, icon: '📤' },
-          { x: 100, y: 300, icon: '✅' },
+          { d: "M 100 100 Q 200 150, 300 100", color: colors[0] },
+          { d: "M 300 100 Q 300 200, 300 300", color: colors[1] },
+          { d: "M 100 300 Q 200 250, 300 300", color: colors[2] },
+          { d: "M 100 100 Q 100 200, 100 300", color: colors[3] }
+        ].map((path, i) => (
+          <motion.path
+            key={i}
+            d={path.d}
+            stroke={path.color}
+            strokeWidth="3"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
+            opacity={0.6}
+          />
+        ))}
+        
+        {/* Colorful nodes */}
+        {[
+          { x: 100, y: 100, icon: '📥', color: colors[0] },
+          { x: 300, y: 100, icon: '⚙️', color: colors[1] },
+          { x: 300, y: 300, icon: '📤', color: colors[2] },
+          { x: 100, y: 300, icon: '✅', color: colors[3] },
         ].map((node, i) => (
           <motion.g key={i}>
             <motion.circle
               cx={node.x}
               cy={node.y}
-              r="30"
-              fill={`${color}20`}
-              stroke={color}
-              strokeWidth="2"
+              r="35"
+              fill={`${node.color}20`}
+              stroke={node.color}
+              strokeWidth="3"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: i * 0.2, type: "spring" }}
@@ -589,7 +562,7 @@ function FlowDiagram({ color }: any) {
               y={node.y}
               textAnchor="middle"
               dominantBaseline="middle"
-              fontSize="24"
+              fontSize="28"
             >
               {node.icon}
             </text>
@@ -600,8 +573,8 @@ function FlowDiagram({ color }: any) {
   );
 }
 
-// Floating Metric Card
-function FloatingMetricCard({ metric, index, color }: any) {
+// Rainbow Metric Card
+function RainbowMetricCard({ metric, index }: any) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const IconComponent = metric.icon;
@@ -615,24 +588,23 @@ function FloatingMetricCard({ metric, index, color }: any) {
         y: 0,
         transition: {
           delay: index * 0.15,
-          type: "spring",
-          stiffness: 100
+          type: "spring"
         }
       } : {}}
       whileHover={{ 
         y: -10,
-        boxShadow: `0 20px 60px ${color}40`
+        boxShadow: `0 20px 60px ${metric.color}40`,
+        scale: 1.05
       }}
-      className="p-8 rounded-2xl text-center backdrop-blur-xl cursor-pointer"
+      className="p-8 rounded-2xl text-center backdrop-blur-xl cursor-pointer border-2"
       style={{
-        backgroundColor: `${color}10`,
-        border: `1px solid ${color}30`,
-        boxShadow: `0 10px 40px ${color}20`
+        backgroundColor: `${metric.color}10`,
+        borderColor: `${metric.color}40`
       }}
     >
       <IconComponent 
         className="w-10 h-10 mx-auto mb-4" 
-        style={{ color }}
+        style={{ color: metric.color }}
       />
       <p className="text-4xl font-bold text-dainamics-light mb-2">
         {metric.value}{metric.suffix}
@@ -644,23 +616,23 @@ function FloatingMetricCard({ metric, index, color }: any) {
   );
 }
 
-// 3D Carousel de technologies - UNIQUE
-function TechnologyCarousel3D({ technologies, color, activeIndex, setActiveIndex }: any) {
+// Colorful 3D Carousel
+function ColorfulCarousel3D({ technologies, activeIndex, setActiveIndex }: any) {
+  const colors = [COLORS.accent, COLORS.success, COLORS.warning, COLORS.cta, COLORS.primary];
+  
   return (
     <div className="relative h-96 flex items-center justify-center">
       <div className="relative w-full max-w-4xl">
         {technologies.map((tech: any, index: number) => {
           const offset = index - activeIndex;
           const IconComponent = iconMapper[tech.icon];
+          const cardColor = colors[index % colors.length];
           
           return (
             <motion.div
               key={tech.name}
               className="absolute left-1/2 top-1/2 cursor-pointer"
-              style={{
-                x: '-50%',
-                y: '-50%',
-              }}
+              style={{ x: '-50%', y: '-50%' }}
               animate={{
                 x: `${offset * 40 - 50}%`,
                 scale: offset === 0 ? 1.2 : 0.8,
@@ -672,21 +644,24 @@ function TechnologyCarousel3D({ technologies, color, activeIndex, setActiveIndex
               onClick={() => setActiveIndex(index)}
             >
               <div 
-                className="p-8 rounded-2xl backdrop-blur-xl w-64"
+                className="p-8 rounded-2xl backdrop-blur-xl w-64 border-2"
                 style={{
-                  backgroundColor: offset === 0 ? `${color}15` : `${color}08`,
-                  border: `2px solid ${offset === 0 ? color : `${color}30`}`,
-                  boxShadow: offset === 0 ? `0 20px 60px ${color}40` : `0 10px 30px ${color}20`
+                  backgroundColor: offset === 0 ? `${cardColor}20` : `${cardColor}08`,
+                  borderColor: offset === 0 ? cardColor : `${cardColor}30`,
+                  boxShadow: offset === 0 ? `0 20px 60px ${cardColor}40` : ''
                 }}
               >
                 {IconComponent && (
                   <div 
                     className="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto"
-                    style={{ backgroundColor: `${color}20` }}
+                    style={{ 
+                      backgroundColor: `${cardColor}20`,
+                      border: `2px solid ${cardColor}`
+                    }}
                   >
                     <IconComponent 
                       className="w-8 h-8" 
-                      style={{ color }}
+                      style={{ color: cardColor }}
                     />
                   </div>
                 )}
@@ -710,15 +685,15 @@ function TechnologyCarousel3D({ technologies, color, activeIndex, setActiveIndex
         })}
       </div>
       
-      {/* Controls */}
+      {/* Rainbow controls */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-4">
         <Button
           onClick={() => setActiveIndex(Math.max(0, activeIndex - 1))}
           disabled={activeIndex === 0}
           variant="outline"
           style={{
-            borderColor: `${color}40`,
-            color
+            borderColor: COLORS.accent,
+            color: COLORS.accent
           }}
         >
           <ChevronRight className="w-5 h-5 rotate-180" />
@@ -728,8 +703,8 @@ function TechnologyCarousel3D({ technologies, color, activeIndex, setActiveIndex
           disabled={activeIndex === technologies.length - 1}
           variant="outline"
           style={{
-            borderColor: `${color}40`,
-            color
+            borderColor: COLORS.success,
+            color: COLORS.success
           }}
         >
           <ChevronRight className="w-5 h-5" />
@@ -739,8 +714,41 @@ function TechnologyCarousel3D({ technologies, color, activeIndex, setActiveIndex
   );
 }
 
-// Morphing Capability Card
-function MorphingCapabilityCard({ capability, index, color }: any) {
+// Capabilities STICKY TOP + SCROLLING CARDS
+function CapabilitiesStickyTopSection({ capabilities }: any) {
+  const containerRef = useRef(null);
+  const colors = [COLORS.accent, COLORS.success, COLORS.warning, COLORS.cta, COLORS.primary];
+  
+  return (
+    <section ref={containerRef} className="relative py-32 px-4 md:px-8 lg:px-16">
+      <div className="container mx-auto max-w-7xl">
+        <div className="sticky top-20 mb-20 z-20 bg-dainamics-background/80 backdrop-blur-xl py-8 rounded-2xl border-2"
+             style={{ borderColor: `${COLORS.accent}30` }}>
+          <h2 className="text-5xl md:text-6xl font-bold text-dainamics-light mb-4 text-center">
+            Services <span style={{ color: COLORS.accent }}>d'Automatisation</span>
+          </h2>
+          <p className="text-xl text-dainamics-light/70 text-center">
+            {capabilities.length} solutions pour optimiser vos opérations
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {capabilities.map((capability: any, index: number) => (
+            <ColorfulCapabilityCard
+              key={capability.id}
+              capability={capability}
+              index={index}
+              cardColor={colors[index % colors.length]}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Colorful Capability Card
+function ColorfulCapabilityCard({ capability, index, cardColor }: any) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const IconComponent = iconMapper[capability.icon];
@@ -749,32 +757,31 @@ function MorphingCapabilityCard({ capability, index, color }: any) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
+      animate={isInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
       transition={{ delay: index * 0.1, duration: 0.6 }}
       whileHover={{ 
         scale: 1.05,
         rotate: [0, 2, -2, 0],
-        transition: { duration: 0.3 }
+        boxShadow: `0 20px 60px ${cardColor}40`
       }}
-      className="p-8 rounded-3xl backdrop-blur-xl cursor-pointer"
+      className="p-8 rounded-3xl backdrop-blur-xl cursor-pointer border-2"
       style={{
-        backgroundColor: `${color}08`,
-        border: `2px solid ${color}20`,
-        boxShadow: `0 10px 40px ${color}20`
+        backgroundColor: `${cardColor}08`,
+        borderColor: `${cardColor}30`
       }}
     >
       <div 
-        className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
+        className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border-2"
         style={{ 
-          backgroundColor: `${color}15`,
-          boxShadow: `0 0 30px ${color}30`
+          background: `linear-gradient(135deg, ${cardColor}20, ${complexityColor}20)`,
+          borderColor: cardColor
         }}
       >
         {IconComponent && (
           <IconComponent 
             className="w-8 h-8" 
-            style={{ color }}
+            style={{ color: cardColor }}
           />
         )}
       </div>
@@ -785,10 +792,11 @@ function MorphingCapabilityCard({ capability, index, color }: any) {
         </h3>
         <Badge 
           variant="outline"
+          className="border-2"
           style={{
-            borderColor: `${complexityColor}40`,
+            borderColor: complexityColor,
             color: complexityColor,
-            backgroundColor: `${complexityColor}10`
+            backgroundColor: `${complexityColor}15`
           }}
         >
           {capability.complexity}
@@ -800,7 +808,7 @@ function MorphingCapabilityCard({ capability, index, color }: any) {
       </p>
 
       <div className="flex items-center gap-2 text-sm text-dainamics-light/60 mb-4">
-        <Clock className="w-4 h-4" />
+        <Clock className="w-4 h-4" style={{ color: cardColor }} />
         <span>{capability.timeline}</span>
       </div>
 
@@ -808,12 +816,15 @@ function MorphingCapabilityCard({ capability, index, color }: any) {
         {capability.deliverables.slice(0, 2).map((deliverable: string, i: number) => (
           <div 
             key={i}
-            className="flex items-start gap-2 p-2 rounded-lg"
-            style={{ backgroundColor: `${color}10` }}
+            className="flex items-start gap-2 p-2 rounded-lg border"
+            style={{ 
+              backgroundColor: `${cardColor}10`,
+              borderColor: `${cardColor}20`
+            }}
           >
             <CheckCircle 
               className="w-4 h-4 mt-0.5 flex-shrink-0" 
-              style={{ color }}
+              style={{ color: cardColor }}
             />
             <span className="text-xs text-dainamics-light/80">{deliverable}</span>
           </div>
@@ -823,32 +834,35 @@ function MorphingCapabilityCard({ capability, index, color }: any) {
   );
 }
 
-// Use Case Reveal Card
-function UseCaseRevealCard({ useCase, index, color }: any) {
+// Colorful Use Case Card
+function ColorfulUseCaseCard({ useCase, index, colors }: any) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true });
+  const cardColor = colors[index % colors.length];
   
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, rotateX: 45 }}
-      animate={isInView ? { opacity: 1, rotateX: 0 } : {}}
+      initial={{ opacity: 0, rotateX: 45, y: 50 }}
+      animate={isInView ? { opacity: 1, rotateX: 0, y: 0 } : {}}
       transition={{ delay: index * 0.15, duration: 0.6 }}
-      className="p-8 rounded-3xl backdrop-blur-xl"
+      whileHover={{
+        scale: 1.02,
+        boxShadow: `0 30px 80px ${cardColor}40`
+      }}
+      className="p-8 rounded-3xl backdrop-blur-xl border-2"
       style={{
-        backgroundColor: `${color}08`,
-        border: `1px solid ${color}30`,
-        transformStyle: 'preserve-3d',
-        perspective: '1000px'
+        backgroundColor: `${cardColor}08`,
+        borderColor: `${cardColor}30`
       }}
     >
       <Badge 
         variant="outline" 
-        className="mb-4"
+        className="mb-4 border-2"
         style={{
-          borderColor: `${color}40`,
-          color,
-          backgroundColor: `${color}10`
+          borderColor: cardColor,
+          color: cardColor,
+          backgroundColor: `${cardColor}15`
         }}
       >
         {useCase.industry}
@@ -863,23 +877,24 @@ function UseCaseRevealCard({ useCase, index, color }: any) {
       </p>
 
       <div 
-        className="p-4 rounded-xl mb-4"
-        style={{ backgroundColor: `${color}10` }}
+        className="p-4 rounded-xl mb-4 border"
+        style={{ 
+          backgroundColor: `${cardColor}10`,
+          borderColor: `${cardColor}20`
+        }}
       >
-        <p className="text-xs text-dainamics-light/50 mb-2 uppercase">ROI</p>
+        <p className="text-xs text-dainamics-light/50 mb-3 uppercase">ROI</p>
         <div className="grid grid-cols-3 gap-2">
-          <div>
-            <p className="text-xs text-dainamics-light/70">Délai</p>
-            <p className="text-sm font-bold text-dainamics-light">{useCase.roi.timeframe}</p>
-          </div>
-          <div>
-            <p className="text-xs text-dainamics-light/70">Économies</p>
-            <p className="text-sm font-bold" style={{ color }}>{useCase.roi.savings}</p>
-          </div>
-          <div>
-            <p className="text-xs text-dainamics-light/70">Efficacité</p>
-            <p className="text-sm font-bold text-dainamics-light">{useCase.roi.efficiency}</p>
-          </div>
+          {[
+            { label: 'Délai', value: useCase.roi.timeframe, color: COLORS.accent },
+            { label: 'Économies', value: useCase.roi.savings, color: COLORS.success },
+            { label: 'Efficacité', value: useCase.roi.efficiency, color: COLORS.warning }
+          ].map((item, i) => (
+            <div key={i}>
+              <p className="text-xs text-dainamics-light/70 mb-1">{item.label}</p>
+              <p className="text-sm font-bold" style={{ color: item.color }}>{item.value}</p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -888,10 +903,11 @@ function UseCaseRevealCard({ useCase, index, color }: any) {
           asChild
           variant="outline"
           size="sm"
-          className="w-full"
+          className="w-full border-2"
           style={{
-            borderColor: `${color}40`,
-            color
+            borderColor: cardColor,
+            color: cardColor,
+            backgroundColor: `${cardColor}10`
           }}
         >
           <Link to={`/portfolio#${useCase.relatedProjectId}`}>
@@ -904,10 +920,84 @@ function UseCaseRevealCard({ useCase, index, color }: any) {
   );
 }
 
-// Stacked Quick Win Card - avec décalage
-function StackedQuickWinCard({ quickWin, index, color }: any) {
+// Quick Wins STICKY RIGHT + SCROLLING LEFT
+function QuickWinsStickyRightSection({ quickWins }: any) {
+  const colors = [COLORS.accent, COLORS.success, COLORS.warning];
+  
+  return (
+    <section className="relative py-32 px-4 md:px-8 lg:px-16">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* LEFT - SCROLLING */}
+          <div className="lg:col-span-7 space-y-8">
+            {quickWins.map((quickWin: any, index: number) => (
+              <ColorfulQuickWinCard
+                key={index}
+                quickWin={quickWin}
+                index={index}
+                colors={colors}
+              />
+            ))}
+          </div>
+
+          {/* RIGHT - STICKY */}
+          <motion.div 
+            className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="space-y-6">
+              <h2 className="text-5xl md:text-6xl font-bold text-dainamics-light">
+                Quick Wins <span style={{ color: COLORS.accent }}>Automatisation</span>
+              </h2>
+              <p className="text-xl text-dainamics-light/70">
+                Commencez rapidement avec des gains immédiats
+              </p>
+              
+              {/* Colorful benefits */}
+              <div className="space-y-4 mt-8">
+                {[
+                  { label: 'Délai rapide', value: '2-4 semaines', color: COLORS.accent, icon: Clock },
+                  { label: 'ROI garanti', value: '< 6 mois', color: COLORS.success, icon: TrendingUp },
+                  { label: 'Risque minimal', value: 'Investissement limité', color: COLORS.warning, icon: Target }
+                ].map((benefit, i) => {
+                  const IconComp = benefit.icon;
+                  return (
+                    <motion.div
+                      key={benefit.label}
+                      initial={{ opacity: 0, x: 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-center gap-4 p-4 rounded-xl border-2"
+                      style={{
+                        backgroundColor: `${benefit.color}10`,
+                        borderColor: `${benefit.color}30`
+                      }}
+                    >
+                      <IconComp className="w-8 h-8" style={{ color: benefit.color }} />
+                      <div>
+                        <p className="text-sm text-dainamics-light/60">{benefit.label}</p>
+                        <p className="text-xl font-bold" style={{ color: benefit.color }}>{benefit.value}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Colorful Quick Win Card
+function ColorfulQuickWinCard({ quickWin, index, colors }: any) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const cardColor = colors[index % colors.length];
   
   return (
     <motion.div
@@ -915,48 +1005,40 @@ function StackedQuickWinCard({ quickWin, index, color }: any) {
       initial={{ opacity: 0, x: -100 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ delay: index * 0.2 }}
-      whileHover={{ x: 20 }}
-      className="p-10 rounded-3xl backdrop-blur-xl"
+      whileHover={{ 
+        x: 20,
+        boxShadow: `0 30px 80px ${cardColor}40`
+      }}
+      className="p-10 rounded-3xl backdrop-blur-xl border-2"
       style={{
-        backgroundColor: `${color}10`,
-        border: `2px solid ${color}30`,
-        boxShadow: `0 10px 40px ${color}20`,
-        marginLeft: `${index * 20}px`
+        backgroundColor: `${cardColor}10`,
+        borderColor: `${cardColor}30`
       }}
     >
       <div className="flex flex-col md:flex-row gap-8 items-start">
         <div className="flex-1">
-          <Zap className="w-10 h-10 mb-4" style={{ color }} />
+          <Zap className="w-10 h-10 mb-4" style={{ color: cardColor }} />
           
           <h3 className="text-2xl font-bold text-dainamics-light mb-4">
             {quickWin.title}
           </h3>
 
           <div className="space-y-3">
-            <div className="flex items-center gap-3">
-              <Clock className="w-5 h-5 text-dainamics-light/50" />
-              <span className="text-dainamics-light/70">
-                <strong>Délai :</strong> {quickWin.timeframe}
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Target className="w-5 h-5 text-dainamics-light/50" />
-              <span className="text-dainamics-light/70">
-                <strong>Investment :</strong> {quickWin.investment}
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <TrendingUp 
-                className="w-5 h-5" 
-                style={{ color }}
-              />
-              <span 
-                className="font-semibold text-lg"
-                style={{ color }}
-              >
-                {quickWin.returns}
-              </span>
-            </div>
+            {[
+              { icon: Clock, label: 'Délai', value: quickWin.timeframe, color: COLORS.accent },
+              { icon: Target, label: 'Investment', value: quickWin.investment, color: COLORS.warning },
+              { icon: TrendingUp, label: 'Retours', value: quickWin.returns, color: COLORS.success }
+            ].map((item, i) => {
+              const IconComp = item.icon;
+              return (
+                <div key={i} className="flex items-center gap-3">
+                  <IconComp className="w-5 h-5" style={{ color: item.color }} />
+                  <span className="text-dainamics-light/70">
+                    <strong style={{ color: item.color }}>{item.label} :</strong> {item.value}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -965,8 +1047,8 @@ function StackedQuickWinCard({ quickWin, index, color }: any) {
           size="lg"
           className="text-white self-end md:self-center"
           style={{ 
-            backgroundColor: color,
-            boxShadow: `0 10px 30px ${color}40`
+            background: `linear-gradient(135deg, ${cardColor}, ${colors[(index + 1) % colors.length]})`,
+            boxShadow: `0 10px 30px ${cardColor}40`
           }}
         >
           <a href="#contact">
