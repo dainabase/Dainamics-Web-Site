@@ -169,7 +169,7 @@ export default function IntelligenceCenter() {
         
         if (ctx) {
           // Create pulse effect along the line
-          const pulseSize = Math.sin(this.progress * Math.PI) * 3;
+          const pulseSize = Math.abs(Math.sin(this.progress * Math.PI) * 3);
           ctx.fillStyle = this.color;
           ctx.beginPath();
           ctx.arc(x, y, pulseSize, 0, Math.PI * 2);
