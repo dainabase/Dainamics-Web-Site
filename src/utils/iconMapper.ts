@@ -25,6 +25,25 @@ import {
   DollarSign,
   CircleCheck,
   Star,
+  Sparkles,
+  Link,
+  Database,
+  Eye,
+  Cpu,
+  Cloud,
+  Send,
+  Timer,
+  Bot,
+  MessageSquare,
+  Workflow,
+  GitBranch,
+  Network,
+  Server,
+  Package,
+  Paintbrush,
+  Globe,
+  Smartphone,
+  Layout,
   type LucideIcon
 } from 'lucide-react';
 
@@ -41,6 +60,18 @@ export const iconMapper: Record<string, LucideIcon> = {
   // IA & Tech
   Brain,
   Code,
+  Sparkles,
+  Eye,
+  Cpu,
+  Bot,
+  
+  // Development
+  Server,
+  Package,
+  Paintbrush,
+  Globe,
+  Smartphone,
+  Layout,
   
   // Business & Finance
   Building,
@@ -57,10 +88,23 @@ export const iconMapper: Record<string, LucideIcon> = {
   Clock,
   CircleCheck,
   Zap,
+  Timer,
+  
+  // Communication
+  MessageSquare,
+  Send,
   
   // People & Content
   Users,
-  FileText
+  FileText,
+  
+  // Infrastructure & Integration
+  Link,
+  Database,
+  Cloud,
+  Workflow,
+  GitBranch,
+  Network
 };
 
 /**
