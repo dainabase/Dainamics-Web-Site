@@ -93,31 +93,6 @@ export default function Portfolio() {
             transition={{ duration: 1 }}
             className="text-center mb-20"
           >
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{
-                duration: 1.2,
-                ease: [0.34, 1.56, 0.64, 1],
-                delay: 0.2
-              }}
-              className="inline-block mb-8"
-            >
-              <div className="relative">
-                <motion.div
-                  animate={{
-                    rotate: 360,
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="absolute inset-0 bg-gradient-to-r from-dainamics-primary via-dainamics-accent to-dainamics-cta rounded-full blur-xl opacity-50"
-                />
-                <Sparkles className="w-16 h-16 relative z-10 text-dainamics-primary" />
-              </div>
-            </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
