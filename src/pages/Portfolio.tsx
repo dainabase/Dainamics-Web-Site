@@ -1,464 +1,674 @@
-// src/pages/Portfolio.tsx
-
-import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useMemo, useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
-  portfolioProjects, 
+import {
+  portfolioProjects,
   getFeaturedProjects,
-  getProjectsByCategory,
   categoryColors,
   complexityColors,
-  type PortfolioProject 
+  type PortfolioProject
 } from '@/data/portfolio';
 import { iconMapper } from '@/utils/iconMapper';
-import { ArrowRight, Filter, X } from 'lucide-react';
-
-/**
- * Page Portfolio - Projets DAINAMICS
- * 
- * Affiche les 5 projets phares avec:
- * - Featured projects (LEXAIA, ENKI-REALTY) en avant
- * - Filtres par catégorie, industrie, complexité
- * - Animations Framer Motion
- * - Design System strict (CATEGORY_COLORS, COMPLEXITY_COLORS)
- * - Icônes dynamiques via iconMapper
- */
+import { ArrowRight, Sparkles, X, Zap, Target } from 'lucide-react';
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
-  const [selectedComplexity, setSelectedComplexity] = useState<string | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [activeProject, setActiveProject] = useState<PortfolioProject | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // Featured projects (LEXAIA, ENKI-REALTY)
+  const { scrollYProgress } = useScroll();
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
   const featuredProjects = getFeaturedProjects();
 
-  // Filtrage des projets
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        mouseX.set(e.clientX - rect.left);
+        mouseY.set(e.clientY - rect.top);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
   const filteredProjects = useMemo(() => {
     return portfolioProjects.filter(project => {
-      if (project.featured) return false; // Featured projects séparés
+      if (project.featured) return false;
       if (selectedCategory && project.category !== selectedCategory) return false;
-      if (selectedIndustry && project.industry !== selectedIndustry) return false;
-      if (selectedComplexity && project.complexity !== selectedComplexity) return false;
       return true;
     });
-  }, [selectedCategory, selectedIndustry, selectedComplexity]);
-
-  // Liste unique des industries
-  const industries = useMemo(() => {
-    return [...new Set(portfolioProjects.map(p => p.industry))];
-  }, []);
-
-  // Reset filtres
-  const resetFilters = () => {
-    setSelectedCategory(null);
-    setSelectedIndustry(null);
-    setSelectedComplexity(null);
-  };
-
-  const hasActiveFilters = selectedCategory || selectedIndustry || selectedComplexity;
+  }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0F] text-white">
+    <div ref={containerRef} className="min-h-screen bg-dainamics-background text-dainamics-light overflow-hidden">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#6366F1]/10 via-transparent to-transparent" />
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6"
+      <motion.div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          background: `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(99, 102, 241, 0.15), transparent 80%)`
+        }}
+      />
+
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <motion.div
+          style={{ y: backgroundY }}
+          className="absolute inset-0"
+        >
+          {[...Array(50)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-dainamics-primary/30 rounded-full"
               style={{
-                background: 'linear-gradient(to right, #6366F1, #10E4FF)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
               }}
-            >
-              Projets qui Transforment
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-xl text-gray-400 mb-8"
-            >
-              5 projets • 3 catégories • CHF 850K+ économisés annuellement
-            </motion.p>
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 0.8, 0.3],
+              }}
+              transition={{
+                duration: 2 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </motion.div>
+      </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
+      <section className="relative pt-40 pb-32 px-4 md:px-8 lg:px-16 z-10">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="text-center mb-20"
+          >
+
+            <motion.h1
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex flex-wrap justify-center gap-4"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-6xl md:text-8xl font-bold mb-8 relative"
             >
-              {Object.entries(categoryColors).map(([key, color]) => (
-                <Badge
-                  key={key}
-                  variant="outline"
-                  className="px-4 py-2 text-sm border-2 cursor-pointer transition-all"
-                  style={{
-                    borderColor: selectedCategory === key ? color : 'rgba(255,255,255,0.2)',
-                    backgroundColor: selectedCategory === key ? `${color}20` : 'transparent',
-                    color: selectedCategory === key ? color : '#fff'
-                  }}
-                  onClick={() => setSelectedCategory(selectedCategory === key ? null : key)}
-                >
-                  {key === 'ia' ? 'Intelligence Artificielle' : 
-                   key === 'automatisation' ? 'Automatisation' : 'Développement'}
-                </Badge>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Featured Projects Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-12"
-          >
-            Projets Phares
-          </motion.h2>
-
-          <div className="space-y-12">
-            {featuredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300"
-              >
-                {/* Category Badge */}
-                <div className="flex items-center gap-3 mb-6">
-                  <Badge
-                    className="px-3 py-1"
-                    style={{
-                      backgroundColor: `${categoryColors[project.category]}20`,
-                      color: categoryColors[project.category],
-                      borderColor: categoryColors[project.category]
+              <span className="inline-block">
+                {['P', 'o', 'r', 't', 'f', 'o', 'l', 'i', 'o'].map((letter, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.5 + i * 0.05,
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                    className="inline-block hover:text-dainamics-primary transition-colors cursor-default"
+                    whileHover={{
+                      scale: 1.2,
+                      rotate: [-5, 5, -5, 0],
+                      transition: { duration: 0.3 }
                     }}
                   >
-                    {project.category.toUpperCase()}
-                  </Badge>
-                  <Badge
-                    variant="outline"
-                    className="px-3 py-1"
-                    style={{
-                      borderColor: complexityColors[project.complexity],
-                      color: complexityColors[project.complexity]
-                    }}
-                  >
-                    {project.complexity}
-                  </Badge>
-                  <span className="text-sm text-gray-400">{project.industry}</span>
-                </div>
+                    {letter}
+                  </motion.span>
+                ))}
+              </span>
+            </motion.h1>
 
-                {/* Title & Description */}
-                <h3 className="text-3xl font-bold mb-4">{project.title}</h3>
-                <p className="text-lg text-gray-300 mb-6">{project.description}</p>
-
-                {/* Challenge & Solution Grid */}
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-400 mb-2">DÉFI</h4>
-                    <p className="text-gray-300">{project.challenge}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-400 mb-2">SOLUTION</h4>
-                    <p className="text-gray-300">{project.solution}</p>
-                  </div>
-                </div>
-
-                {/* Metrics */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                  {Object.values(project.results).map((metric, idx) => {
-                    if (!metric) return null;
-                    const Icon = iconMapper[metric.icon];
-                    return (
-                      <div key={idx} className="flex items-start gap-3">
-                        {Icon && (
-                          <div 
-                            className="p-2 rounded-lg"
-                            style={{ backgroundColor: `${categoryColors[project.category]}20` }}
-                          >
-                            <Icon size={20} style={{ color: categoryColors[project.category] }} />
-                          </div>
-                        )}
-                        <div>
-                          <div className="text-2xl font-bold" style={{ color: categoryColors[project.category] }}>
-                            {metric.value}
-                          </div>
-                          <div className="text-sm text-gray-400">{metric.label}</div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Testimonial */}
-                {project.testimonial && (
-                  <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-800 mb-6">
-                    <p className="text-gray-300 italic mb-4">"{project.testimonial.quote}"</p>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#6366F1] to-[#10E4FF]" />
-                      <div>
-                        <div className="font-semibold">{project.testimonial.author}</div>
-                        <div className="text-sm text-gray-400">
-                          {project.testimonial.role} • {project.testimonial.company}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.slice(0, 6).map((tech) => (
-                    <Badge key={tech} variant="secondary" className="text-xs">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-
-                {/* CTA */}
-                <Button
-                  variant="outline"
-                  className="group/btn"
-                  style={{ borderColor: categoryColors[project.category] }}
-                >
-                  <span style={{ color: categoryColors[project.category] }}>Voir les Détails</span>
-                  <ArrowRight 
-                    size={16} 
-                    className="ml-2 group-hover/btn:translate-x-1 transition-transform"
-                    style={{ color: categoryColors[project.category] }}
-                  />
-                </Button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Filters Section */}
-      <section className="py-12 px-6 border-y border-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Filter size={20} className="text-gray-400" />
-              <span className="font-semibold">Filtres:</span>
-            </div>
-
-            {/* Industry Filter */}
-            <select
-              value={selectedIndustry || ''}
-              onChange={(e) => setSelectedIndustry(e.target.value || null)}
-              className="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm focus:outline-none focus:border-[#6366F1]"
-            >
-              <option value="">Toutes les Industries</option>
-              {industries.map((industry) => (
-                <option key={industry} value={industry}>{industry}</option>
-              ))}
-            </select>
-
-            {/* Complexity Filter */}
-            <select
-              value={selectedComplexity || ''}
-              onChange={(e) => setSelectedComplexity(e.target.value || null)}
-              className="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm focus:outline-none focus:border-[#6366F1]"
-            >
-              <option value="">Toutes Complexités</option>
-              <option value="starter">Starter</option>
-              <option value="intermediate">Intermediate</option>
-              <option value="advanced">Advanced</option>
-            </select>
-
-            {/* Reset Filters */}
-            {hasActiveFilters && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={resetFilters}
-                className="text-gray-400 hover:text-white"
-              >
-                <X size={16} className="mr-2" />
-                Réinitialiser
-              </Button>
-            )}
-
-            {/* Results Count */}
-            <span className="ml-auto text-sm text-gray-400">
-              {filteredProjects.length} projet{filteredProjects.length > 1 ? 's' : ''}
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* Other Projects Grid */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-12"
-          >
-            Autres Projets
-          </motion.h2>
-
-          <motion.div
-            layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="group bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-xl p-6 border border-gray-800 hover:border-gray-700 transition-all cursor-pointer"
-              >
-                {/* Badges */}
-                <div className="flex items-center gap-2 mb-4">
-                  <Badge
-                    className="px-2 py-1 text-xs"
-                    style={{
-                      backgroundColor: `${categoryColors[project.category]}20`,
-                      color: categoryColors[project.category]
-                    }}
-                  >
-                    {project.category.toUpperCase()}
-                  </Badge>
-                  <Badge
-                    variant="outline"
-                    className="px-2 py-1 text-xs"
-                    style={{
-                      borderColor: complexityColors[project.complexity],
-                      color: complexityColors[project.complexity]
-                    }}
-                  >
-                    {project.complexity}
-                  </Badge>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold mb-2 group-hover:text-[#6366F1] transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-gray-400 mb-4">{project.industry} • {project.year}</p>
-
-                {/* Description */}
-                <p className="text-gray-300 text-sm mb-6 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Metrics Preview */}
-                <div className="space-y-3 mb-6">
-                  {Object.values(project.results).slice(0, 2).map((metric, idx) => {
-                    if (!metric) return null;
-                    const Icon = iconMapper[metric.icon];
-                    return (
-                      <div key={idx} className="flex items-center gap-2">
-                        {Icon && <Icon size={16} className="text-[#6366F1]" />}
-                        <span className="text-sm font-semibold text-[#6366F1]">{metric.value}</span>
-                        <span className="text-xs text-gray-400">{metric.label}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-1">
-                  {project.technologies.slice(0, 4).map((tech) => (
-                    <Badge key={tech} variant="secondary" className="text-xs px-2 py-0.5">
-                      {tech}
-                    </Badge>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <Badge variant="secondary" className="text-xs px-2 py-0.5">
-                      +{project.technologies.length - 4}
-                    </Badge>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* No Results */}
-          {filteredProjects.length === 0 && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-20"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1 }}
+              className="flex flex-wrap justify-center gap-4 mb-12"
             >
-              <p className="text-xl text-gray-400 mb-4">
-                Aucun projet ne correspond aux filtres sélectionnés
-              </p>
-              <Button onClick={resetFilters} variant="outline">
-                Réinitialiser les filtres
-              </Button>
+              {Object.entries(categoryColors).map(([key, color], index) => (
+                <motion.button
+                  key={key}
+                  onClick={() => setSelectedCategory(selectedCategory === key ? null : key)}
+                  whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.2 + index * 0.1 }}
+                  className="relative px-6 py-3 rounded-2xl font-semibold overflow-hidden group"
+                  style={{
+                    backgroundColor: selectedCategory === key ? color : 'transparent',
+                    border: `2px solid ${color}`,
+                    color: selectedCategory === key ? '#0A0A0F' : color
+                  }}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-20"
+                    style={{
+                      background: `linear-gradient(90deg, ${color}, transparent)`
+                    }}
+                    animate={{
+                      x: ['-100%', '100%'],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  />
+                  <span className="relative z-10">
+                    {key === 'ia' ? 'Intelligence Artificielle' :
+                     key === 'automatisation' ? 'Automatisation' : 'Développement'}
+                  </span>
+                </motion.button>
+              ))}
             </motion.div>
-          )}
-        </div>
-      </section>
+          </motion.div>
 
-      {/* CTA Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#6366F1]/20 to-[#10E4FF]/20 rounded-2xl p-12 border border-[#6366F1]/30"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
           >
-            <h2 className="text-4xl font-bold mb-6">
-              Votre Projet Pourrait Être le Prochain
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Transformez votre entreprise avec l'IA et l'automatisation.
-              Démarrons ensemble.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button
-                size="lg"
-                className="bg-[#FF5A00] hover:bg-[#FF5A00]/90 text-white"
-              >
-                Démarrer un Projet
-                <ArrowRight size={20} className="ml-2" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-[#6366F1] text-[#6366F1] hover:bg-[#6366F1]/10"
-              >
-                Diagnostic Gratuit
-              </Button>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+              {featuredProjects.map((project, index) => (
+                <MagneticCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                  onHover={setHoveredCard}
+                  onClick={setActiveProject}
+                  isHovered={hoveredCard === project.id}
+                />
+              ))}
             </div>
+
+            <div className="relative mb-12">
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="h-px bg-gradient-to-r from-transparent via-dainamics-primary to-transparent"
+              />
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-dainamics-primary rounded-full"
+              >
+                <motion.div
+                  animate={{ scale: [1, 2, 1], opacity: [1, 0, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 bg-dainamics-primary rounded-full"
+                />
+              </motion.div>
+            </div>
+
+            <BentoGrid projects={filteredProjects} onProjectClick={setActiveProject} />
           </motion.div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {activeProject && (
+          <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>
+  );
+}
+
+function MagneticCard({ project, index, onHover, onClick, isHovered }: {
+  project: PortfolioProject;
+  index: number;
+  onHover: (id: string | null) => void;
+  onClick: (project: PortfolioProject) => void;
+  isHovered: boolean;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(useTransform(y, [-100, 100], [10, -10]));
+  const rotateY = useSpring(useTransform(x, [-100, 100], [-10, 10]));
+
+  const categoryColor = categoryColors[project.category];
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    x.set((e.clientX - centerX) / 5);
+    y.set((e.clientY - centerY) / 5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    onHover(null);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d"
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => onHover(project.id)}
+      onMouseLeave={handleMouseLeave}
+      onClick={() => onClick(project)}
+      className="relative cursor-pointer"
+    >
+      <motion.div
+        animate={{
+          scale: isHovered ? 1.02 : 1,
+        }}
+        transition={{ duration: 0.3 }}
+        className="relative h-full rounded-3xl overflow-hidden"
+        style={{
+          background: `linear-gradient(135deg, ${categoryColor}15 0%, transparent 100%)`,
+          border: `1px solid ${categoryColor}40`,
+          transformStyle: "preserve-3d"
+        }}
+      >
+        <div className="absolute inset-0 bg-dainamics-background/40 backdrop-blur-sm" />
+
+        <motion.div
+          className="absolute inset-0 opacity-0"
+          animate={{
+            opacity: isHovered ? 1 : 0,
+          }}
+          style={{
+            background: `radial-gradient(circle at 50% 50%, ${categoryColor}20, transparent 70%)`
+          }}
+        />
+
+        <div className="relative p-8 h-full" style={{ transform: "translateZ(50px)" }}>
+          <div className="flex items-start justify-between mb-6">
+            <Badge
+              className="px-4 py-2"
+              style={{
+                backgroundColor: `${categoryColor}30`,
+                color: categoryColor,
+                border: `1px solid ${categoryColor}`,
+                boxShadow: `0 0 20px ${categoryColor}40`
+              }}
+            >
+              {project.category.toUpperCase()}
+            </Badge>
+
+            <motion.div
+              animate={{ rotate: isHovered ? 360 : 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Zap className="w-6 h-6" style={{ color: categoryColor }} />
+            </motion.div>
+          </div>
+
+          <h3 className="text-3xl font-bold mb-3 text-dainamics-light">
+            {project.title}
+          </h3>
+
+          <p className="text-dainamics-light/60 mb-6">
+            {project.client} • {project.industry}
+          </p>
+
+          <p className="text-dainamics-light/80 leading-relaxed mb-8 line-clamp-3">
+            {project.description}
+          </p>
+
+          <div className="grid grid-cols-3 gap-4">
+            {Object.values(project.results).map((result, idx) => {
+              if (!result) return null;
+              const Icon = iconMapper[result.icon as keyof typeof iconMapper];
+
+              return (
+                <motion.div
+                  key={idx}
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  className="text-center p-4 rounded-xl"
+                  style={{
+                    backgroundColor: `${categoryColor}10`,
+                    border: `1px solid ${categoryColor}30`
+                  }}
+                >
+                  {Icon && (
+                    <Icon className="w-5 h-5 mx-auto mb-2" style={{ color: categoryColor }} />
+                  )}
+                  <div className="text-xl font-bold mb-1" style={{ color: categoryColor }}>
+                    {result.value}
+                  </div>
+                  <div className="text-xs text-dainamics-light/60">
+                    {result.label}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-2"
+          style={{ backgroundColor: categoryColor }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function BentoGrid({ projects, onProjectClick }: {
+  projects: PortfolioProject[];
+  onProjectClick: (project: PortfolioProject) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+      {projects.map((project, index) => {
+        const categoryColor = categoryColors[project.category];
+        const size = index % 7 === 0 ? 'lg:col-span-2 lg:row-span-2' :
+                     index % 5 === 0 ? 'lg:col-span-2' : '';
+
+        return (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, scale: 0.8, rotateY: -90 }}
+            whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.05,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            whileHover={{
+              scale: 1.05,
+              zIndex: 10,
+              transition: { duration: 0.2 }
+            }}
+            onClick={() => onProjectClick(project)}
+            className={`group relative rounded-2xl overflow-hidden cursor-pointer ${size}`}
+            style={{
+              background: `linear-gradient(135deg, ${categoryColor}10 0%, transparent 100%)`,
+              border: `1px solid ${categoryColor}30`
+            }}
+          >
+            <div className="absolute inset-0 bg-dainamics-background/60 backdrop-blur-sm" />
+
+            <motion.div
+              className="absolute inset-0"
+              style={{
+                background: `radial-gradient(circle at 0% 0%, ${categoryColor}20, transparent 70%)`
+              }}
+              animate={{
+                backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+
+            <div className="relative p-6 h-full flex flex-col min-h-[280px]">
+              <div className="flex items-start justify-between mb-4">
+                <Badge
+                  style={{
+                    backgroundColor: `${categoryColor}20`,
+                    color: categoryColor,
+                    border: `1px solid ${categoryColor}`
+                  }}
+                >
+                  {project.category}
+                </Badge>
+                <motion.div
+                  whileHover={{ rotate: 45, scale: 1.2 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Target className="w-5 h-5" style={{ color: categoryColor }} />
+                </motion.div>
+              </div>
+
+              <h3 className="text-xl font-bold mb-2 text-dainamics-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r transition-all duration-300"
+                style={{
+                  backgroundImage: `linear-gradient(to right, ${categoryColor}, ${categoryColors.accent})`
+                }}
+              >
+                {project.title}
+              </h3>
+
+              <p className="text-sm text-dainamics-light/60 mb-4">
+                {project.client} • {project.industry}
+              </p>
+
+              <p className="text-sm text-dainamics-light/70 mb-4 line-clamp-2 flex-grow">
+                {project.description}
+              </p>
+
+              <div className="mt-auto space-y-2">
+                {Object.values(project.results).slice(0, 2).map((result, idx) => {
+                  if (!result) return null;
+                  const Icon = iconMapper[result.icon as keyof typeof iconMapper];
+                  return (
+                    <div key={idx} className="flex items-center gap-2">
+                      {Icon && (
+                        <Icon className="w-4 h-4 flex-shrink-0" style={{ color: categoryColor }} />
+                      )}
+                      <div className="text-lg font-bold" style={{ color: categoryColor }}>
+                        {result.value}
+                      </div>
+                      <div className="text-xs text-dainamics-light/60 truncate">
+                        {result.label}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <motion.div
+                className="absolute bottom-0 right-0 w-20 h-20 rounded-tl-full opacity-10"
+                style={{ backgroundColor: categoryColor }}
+                whileHover={{ scale: 1.5 }}
+              />
+            </div>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
+function ProjectModal({ project, onClose }: {
+  project: PortfolioProject;
+  onClose: () => void;
+}) {
+  const categoryColor = categoryColors[project.category];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-dainamics-background/95 backdrop-blur-xl z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.8, rotateX: -90 }}
+        animate={{ scale: 1, rotateX: 0 }}
+        exit={{ scale: 0.8, rotateX: 90 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-3xl p-8"
+        style={{
+          background: `linear-gradient(135deg, ${categoryColor}15 0%, transparent 100%)`,
+          border: `2px solid ${categoryColor}`,
+          boxShadow: `0 0 60px ${categoryColor}40`
+        }}
+      >
+        <motion.button
+          onClick={onClose}
+          whileHover={{ rotate: 90, scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center"
+          style={{
+            backgroundColor: `${categoryColor}20`,
+            border: `1px solid ${categoryColor}`
+          }}
+        >
+          <X className="w-5 h-5" style={{ color: categoryColor }} />
+        </motion.button>
+
+        <Badge
+          className="mb-6"
+          style={{
+            backgroundColor: `${categoryColor}30`,
+            color: categoryColor,
+            border: `1px solid ${categoryColor}`
+          }}
+        >
+          {project.category.toUpperCase()}
+        </Badge>
+
+        <h2 className="text-4xl font-bold mb-4 text-dainamics-light">
+          {project.title}
+        </h2>
+
+        <p className="text-xl text-dainamics-light/60 mb-8">
+          {project.client} • {project.industry} • {project.year}
+        </p>
+
+        <div className="space-y-6 mb-8">
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider mb-2" style={{ color: categoryColor }}>
+              Description
+            </h3>
+            <p className="text-dainamics-light/80 leading-relaxed">
+              {project.description}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider mb-2" style={{ color: categoryColor }}>
+              Défi
+            </h3>
+            <p className="text-dainamics-light/80 leading-relaxed">
+              {project.challenge}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider mb-2" style={{ color: categoryColor }}>
+              Solution
+            </h3>
+            <p className="text-dainamics-light/80 leading-relaxed">
+              {project.solution}
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-4 mb-8">
+          {Object.values(project.results).map((result, idx) => {
+            if (!result) return null;
+            const Icon = iconMapper[result.icon as keyof typeof iconMapper];
+
+            return (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="p-4 rounded-xl text-center"
+                style={{
+                  backgroundColor: `${categoryColor}10`,
+                  border: `1px solid ${categoryColor}30`
+                }}
+              >
+                {Icon && (
+                  <Icon className="w-6 h-6 mx-auto mb-2" style={{ color: categoryColor }} />
+                )}
+                <div className="text-2xl font-bold mb-1" style={{ color: categoryColor }}>
+                  {result.value}
+                </div>
+                <div className="text-sm text-dainamics-light/60">
+                  {result.label}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-wrap gap-2 mb-8">
+          {project.technologies.map((tech) => (
+            <motion.span
+              key={tech}
+              whileHover={{ scale: 1.1, y: -2 }}
+              className="px-3 py-1 text-sm rounded-full"
+              style={{
+                backgroundColor: `${categoryColor}10`,
+                color: categoryColor,
+                border: `1px solid ${categoryColor}30`
+              }}
+            >
+              {tech}
+            </motion.span>
+          ))}
+        </div>
+
+        {project.testimonial && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="p-6 rounded-xl"
+            style={{
+              backgroundColor: `${categoryColor}10`,
+              borderLeft: `4px solid ${categoryColor}`
+            }}
+          >
+            <p className="text-dainamics-light/80 italic mb-4 text-lg">
+              "{project.testimonial.quote}"
+            </p>
+            <div>
+              <div className="font-semibold text-dainamics-light">
+                {project.testimonial.author}
+              </div>
+              <div className="text-sm text-dainamics-light/60">
+                {project.testimonial.role}, {project.testimonial.company}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="mt-8"
+        >
+          <Button
+            className="w-full py-6 text-lg font-semibold"
+            style={{
+              backgroundColor: categoryColor,
+              color: '#0A0A0F'
+            }}
+          >
+            Discuter de ce projet
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }
