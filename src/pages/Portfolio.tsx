@@ -425,7 +425,7 @@ function BentoGrid({ projects, onProjectClick }: {
               }}
             />
 
-            <div className="relative p-6 h-full flex flex-col">
+            <div className="relative p-6 h-full flex flex-col min-h-[280px]">
               <div className="flex items-start justify-between mb-4">
                 <Badge
                   style={{
@@ -453,18 +453,26 @@ function BentoGrid({ projects, onProjectClick }: {
               </h3>
 
               <p className="text-sm text-dainamics-light/60 mb-4">
-                {project.industry}
+                {project.client} • {project.industry}
               </p>
 
-              <div className="mt-auto">
-                {Object.values(project.results).slice(0, 1).map((result, idx) => {
+              <p className="text-sm text-dainamics-light/70 mb-4 line-clamp-2 flex-grow">
+                {project.description}
+              </p>
+
+              <div className="mt-auto space-y-2">
+                {Object.values(project.results).slice(0, 2).map((result, idx) => {
                   if (!result) return null;
+                  const Icon = iconMapper[result.icon as keyof typeof iconMapper];
                   return (
                     <div key={idx} className="flex items-center gap-2">
-                      <div className="text-2xl font-bold" style={{ color: categoryColor }}>
+                      {Icon && (
+                        <Icon className="w-4 h-4 flex-shrink-0" style={{ color: categoryColor }} />
+                      )}
+                      <div className="text-lg font-bold" style={{ color: categoryColor }}>
                         {result.value}
                       </div>
-                      <div className="text-sm text-dainamics-light/60">
+                      <div className="text-xs text-dainamics-light/60 truncate">
                         {result.label}
                       </div>
                     </div>
@@ -473,7 +481,7 @@ function BentoGrid({ projects, onProjectClick }: {
               </div>
 
               <motion.div
-                className="absolute bottom-0 right-0 w-20 h-20 rounded-tl-full opacity-20"
+                className="absolute bottom-0 right-0 w-20 h-20 rounded-tl-full opacity-10"
                 style={{ backgroundColor: categoryColor }}
                 whileHover={{ scale: 1.5 }}
               />
