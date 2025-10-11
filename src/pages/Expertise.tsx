@@ -11,6 +11,7 @@ import {
   expertisePillars, 
   categoryColors, 
   getGlobalStats,
+  COLORS,
   type ExpertisePillar 
 } from '@/data/expertise';
 import { iconMapper } from '@/utils/iconMapper';
@@ -323,25 +324,25 @@ export default function Expertise() {
                 icon: Target, 
                 value: globalStats.totalProjects, 
                 label: 'Projets Complétés',
-                color: '#6366F1'
+                color: COLORS.primary
               },
               { 
                 icon: Award, 
                 value: globalStats.avgSatisfaction, 
                 label: 'Satisfaction Client',
-                color: '#10B981'
+                color: COLORS.success
               },
               { 
                 icon: Sparkles, 
                 value: globalStats.totalTechnologies, 
                 label: 'Technologies',
-                color: '#10E4FF'
+                color: COLORS.accent
               },
               { 
                 icon: Users, 
                 value: '15+', 
                 label: 'Experts',
-                color: '#FF5A00'
+                color: COLORS.cta
               },
             ].map((stat, index) => {
               const IconComponent = stat.icon;
