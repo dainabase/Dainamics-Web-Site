@@ -106,14 +106,30 @@ export interface ExpertisePillar {
 // ============================================================================
 
 /**
+ * Couleurs principales du Design System
+ * Source: DESIGN-SYSTEM-MANDATORY.md
+ * ⚠️ NE JAMAIS MODIFIER CES VALEURS
+ */
+export const COLORS = {
+  primary: '#6366F1',      // Indigo - Tech/IA
+  success: '#10B981',      // Green - Success
+  accent: '#10E4FF',       // Cyan - Automatisation
+  cta: '#FF5A00',          // Orange - CTA/Développement
+  warning: '#F59E0B',      // Yellow - Warning
+  error: '#EF4444',        // Red - Error
+  background: '#0A0A0F',   // Dark Navy
+  light: '#F1F5F9'         // Light text
+} as const;
+
+/**
  * Mapping couleurs par catégorie
  * Source: DESIGN-SYSTEM-MANDATORY.md
  * ⚠️ NE JAMAIS MODIFIER CES VALEURS
  */
 export const categoryColors: Record<'ia' | 'automatisation' | 'developpement', string> = {
-  'ia': '#6366F1',              // Primary Indigo
-  'automatisation': '#10E4FF',   // Accent Cyan
-  'developpement': '#FF5A00'     // CTA Orange
+  'ia': COLORS.primary,           // Primary Indigo
+  'automatisation': COLORS.accent, // Accent Cyan
+  'developpement': COLORS.cta      // CTA Orange
 };
 
 /**
@@ -121,9 +137,9 @@ export const categoryColors: Record<'ia' | 'automatisation' | 'developpement', s
  * Source: DESIGN-SYSTEM-MANDATORY.md
  */
 export const complexityColors: Record<'starter' | 'intermediate' | 'advanced', string> = {
-  'starter': '#10B981',         // Success Green
-  'intermediate': '#F59E0B',    // Warning Yellow
-  'advanced': '#EF4444'         // Error Red
+  'starter': COLORS.success,      // Success Green
+  'intermediate': COLORS.warning,  // Warning Yellow
+  'advanced': COLORS.error         // Error Red
 };
 
 // ============================================================================
