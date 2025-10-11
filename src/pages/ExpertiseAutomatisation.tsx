@@ -299,7 +299,7 @@ function MetricsSection({ metrics, autoColor }: { metrics: any; autoColor: strin
 
   const metricsArray = [
     { label: metrics.yearsExperience.label, value: metrics.yearsExperience.value, icon: Award, color: autoColor },
-    { label: metrics.projectsDelivered.label, value: metrics.projectsDelivered.value, icon: Rocket, color: autoColor },
+    { label: metrics.projectsCompleted.label, value: metrics.projectsCompleted.value, icon: Rocket, color: autoColor },
     { label: metrics.avgROI.label, value: metrics.avgROI.value, icon: TrendingUp, color: COLORS.success },
     { label: metrics.clientSatisfaction.label, value: metrics.clientSatisfaction.value, icon: Target, color: autoColor }
   ];
@@ -837,20 +837,35 @@ function UseCaseCard({ useCase, index, autoColor }: any) {
         {useCase.description}
       </p>
 
-      {/* Results */}
+      {/* ROI Results */}
       <div className="space-y-3">
-        {useCase.results.map((result: string, idx: number) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
-            className="flex items-center gap-3 text-sm"
-          >
-            <TrendingUp className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
-            <span style={{ color: COLORS.success }}>{result}</span>
-          </motion.div>
-        ))}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex items-center gap-3 text-sm"
+        >
+          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
+          <span style={{ color: COLORS.success }}>{useCase.roi.timeframe}</span>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex items-center gap-3 text-sm"
+        >
+          <TrendingUp className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
+          <span style={{ color: COLORS.success }}>{useCase.roi.savings}</span>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex items-center gap-3 text-sm"
+        >
+          <Zap className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
+          <span style={{ color: COLORS.success }}>{useCase.roi.efficiency}</span>
+        </motion.div>
       </div>
 
       {/* Glow on Hover */}
@@ -970,15 +985,21 @@ function QuickWinCard({ win, index, autoColor }: any) {
         {win.title}
       </h3>
 
-      {/* Description */}
-      <p className="text-sm text-gray-400 mb-4 leading-relaxed">
-        {win.description}
+      {/* Timeframe */}
+      <p className="text-sm text-gray-400 mb-2">
+        <Clock className="w-4 h-4 inline mr-2" style={{ color: COLORS.success }} />
+        {win.timeframe}
       </p>
 
-      {/* ROI */}
+      {/* Investment */}
+      <p className="text-sm text-gray-400 mb-3">
+        {win.investment}
+      </p>
+
+      {/* Returns */}
       <div className="flex items-center gap-2 text-sm font-bold" style={{ color: COLORS.success }}>
         <Zap className="w-4 h-4" />
-        <span>ROI: {win.roi}</span>
+        <span>{win.returns}</span>
       </div>
 
       {/* Animated Border */}

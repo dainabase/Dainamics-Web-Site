@@ -263,7 +263,7 @@ function MetricsSection({ metrics, devColor }: { metrics: any; devColor: string 
 
   const metricsArray = [
     { label: metrics.yearsExperience.label, value: metrics.yearsExperience.value, icon: Award },
-    { label: metrics.projectsDelivered.label, value: metrics.projectsDelivered.value, icon: Rocket },
+    { label: metrics.projectsCompleted.label, value: metrics.projectsCompleted.value, icon: Rocket },
     { label: metrics.avgROI.label, value: metrics.avgROI.value, icon: TrendingUp },
     { label: metrics.clientSatisfaction.label, value: metrics.clientSatisfaction.value, icon: Target }
   ];
@@ -743,20 +743,35 @@ function UseCaseCard({ useCase, index, devColor }: any) {
         {useCase.description}
       </p>
 
-      {/* Results */}
+      {/* ROI Results */}
       <div className="space-y-3">
-        {useCase.results.map((result: string, idx: number) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.4 + idx * 0.1 }}
-            className="flex items-center gap-3 text-sm"
-          >
-            <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
-            <span style={{ color: COLORS.success }}>{result}</span>
-          </motion.div>
-        ))}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex items-center gap-3 text-sm"
+        >
+          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
+          <span style={{ color: COLORS.success }}>{useCase.roi.timeframe}</span>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex items-center gap-3 text-sm"
+        >
+          <TrendingUp className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
+          <span style={{ color: COLORS.success }}>{useCase.roi.savings}</span>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="flex items-center gap-3 text-sm"
+        >
+          <Zap className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
+          <span style={{ color: COLORS.success }}>{useCase.roi.efficiency}</span>
+        </motion.div>
       </div>
 
       {/* Floating Effect on Hover */}
@@ -879,7 +894,7 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
               </Badge>
             </div>
             <div className="text-sm" style={{ color: COLORS.success }}>
-              ROI: {win.roi}
+              {win.returns}
             </div>
           </div>
         </div>
@@ -903,9 +918,13 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <div className="px-6 pb-6 pt-2">
-          <p className="text-gray-400 leading-relaxed">
-            {win.description}
+        <div className="px-6 pb-6 pt-2 space-y-2">
+          <p className="text-gray-400">
+            <Clock className="w-4 h-4 inline mr-2" style={{ color: COLORS.success }} />
+            {win.timeframe}
+          </p>
+          <p className="text-gray-400">
+            <span className="font-semibold">Investissement:</span> {win.investment}
           </p>
         </div>
       </motion.div>
