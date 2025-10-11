@@ -35,9 +35,21 @@ import {
 
 export default function ExpertiseAutomatisation() {
   const pillar = getPillarByCategory('automatisation');
-  
+
   if (!pillar) {
-    return <div>Pilier non trouvé</div>;
+    return (
+      <div className="min-h-screen bg-dainamics-background text-dainamics-light flex items-center justify-center">
+        <Navigation />
+        <div className="text-center p-8">
+          <h1 className="text-2xl font-bold mb-4">Erreur: Pilier Automatisation non trouvé</h1>
+          <p className="text-gray-400">La catégorie 'automatisation' n'existe pas dans les données.</p>
+          <Link to="/expertise" className="text-dainamics-primary underline mt-4 inline-block">
+            Retour à l'expertise
+          </Link>
+        </div>
+        <Footer />
+      </div>
+    );
   }
 
   const autoColor = categoryColors['automatisation']; // #10E4FF

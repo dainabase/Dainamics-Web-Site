@@ -44,6 +44,16 @@ import {
   Globe,
   Smartphone,
   Layout,
+  Rocket,
+  CheckCircle,
+  ChevronRight,
+  ArrowRight,
+  Terminal,
+  Layers,
+  ChevronLeft,
+  Activity,
+  Gauge,
+  ArrowUpRight,
   type LucideIcon
 } from 'lucide-react';
 
@@ -64,7 +74,8 @@ export const iconMapper: Record<string, LucideIcon> = {
   Eye,
   Cpu,
   Bot,
-  
+  Terminal,
+
   // Development
   Server,
   Package,
@@ -72,39 +83,50 @@ export const iconMapper: Record<string, LucideIcon> = {
   Globe,
   Smartphone,
   Layout,
-  
+  Layers,
+
   // Business & Finance
   Building,
   DollarSign,
   Award,
   Star,
-  
+
   // Analytics & Metrics
   TrendingUp,
   BarChart,
   Target,
-  
+  Activity,
+  Gauge,
+
   // Time & Status
   Clock,
   CircleCheck,
+  CheckCircle,
   Zap,
   Timer,
-  
+
   // Communication
   MessageSquare,
   Send,
-  
+
   // People & Content
   Users,
   FileText,
-  
+
   // Infrastructure & Integration
   Link,
   Database,
   Cloud,
   Workflow,
   GitBranch,
-  Network
+  Network,
+
+  // Navigation & Actions
+  ArrowRight,
+  ArrowUpRight,
+  ChevronRight,
+  ChevronLeft,
+  Rocket
 };
 
 /**

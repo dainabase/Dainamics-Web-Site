@@ -34,9 +34,21 @@ export default function ExpertiseIA() {
   const pillar = getPillarByCategory('ia');
   const [selectedProficiency, setSelectedProficiency] = useState<'all' | 'expert' | 'advanced' | 'intermediate'>('all');
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   if (!pillar) {
-    return <div>Pilier non trouvé</div>;
+    return (
+      <div className="min-h-screen bg-dainamics-background text-dainamics-light flex items-center justify-center">
+        <Navigation />
+        <div className="text-center p-8">
+          <h1 className="text-2xl font-bold mb-4">Erreur: Pilier IA non trouvé</h1>
+          <p className="text-gray-400">La catégorie 'ia' n'existe pas dans les données.</p>
+          <Link to="/expertise" className="text-dainamics-primary underline mt-4 inline-block">
+            Retour à l'expertise
+          </Link>
+        </div>
+        <Footer />
+      </div>
+    );
   }
 
   const iaColor = categoryColors['ia']; // #6366F1
