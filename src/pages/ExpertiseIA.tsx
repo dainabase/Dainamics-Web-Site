@@ -222,7 +222,7 @@ function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string })
 
   const metricsArray = [
     { label: metrics.yearsExperience.label, value: metrics.yearsExperience.value, icon: Award },
-    { label: metrics.projectsDelivered.label, value: metrics.projectsDelivered.value, icon: Rocket },
+    { label: metrics.projectsCompleted.label, value: metrics.projectsCompleted.value, icon: Rocket },
     { label: metrics.avgROI.label, value: metrics.avgROI.value, icon: TrendingUp },
     { label: metrics.clientSatisfaction.label, value: metrics.clientSatisfaction.value, icon: Target }
   ];
@@ -689,22 +689,30 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
         {/* Description */}
         <p className="text-gray-400 mb-6">{useCase.description}</p>
 
-        {/* Results */}
+        {/* ROI Results */}
         <div className="grid grid-cols-2 gap-4">
-          {useCase.results.map((result: any, idx: number) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 + idx * 0.1 }}
-              className="flex items-center gap-2"
-            >
-              <TrendingUp className="w-4 h-4" style={{ color: COLORS.success }} />
-              <span className="text-sm" style={{ color: COLORS.success }}>
-                {result}
-              </span>
-            </motion.div>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            className="flex items-center gap-2"
+          >
+            <TrendingUp className="w-4 h-4" style={{ color: COLORS.success }} />
+            <span className="text-sm" style={{ color: COLORS.success }}>
+              {useCase.roi.savings}
+            </span>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
+            className="flex items-center gap-2"
+          >
+            <TrendingUp className="w-4 h-4" style={{ color: COLORS.success }} />
+            <span className="text-sm" style={{ color: COLORS.success }}>
+              {useCase.roi.efficiency}
+            </span>
+          </motion.div>
         </div>
       </motion.div>
     </motion.div>
@@ -736,7 +744,7 @@ function QuickWinsSection({ quickWins, iaColor }: any) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {quickWins.map((win: any, index: number) => (
             <QuickWinCard 
-              key={win.id}
+              key={index}
               win={win}
               index={index}
               iaColor={iaColor}
@@ -751,7 +759,6 @@ function QuickWinsSection({ quickWins, iaColor }: any) {
 function QuickWinCard({ win, index, iaColor }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.5 });
-  const Icon = iconMapper[win.icon];
 
   return (
     <motion.div
@@ -766,43 +773,39 @@ function QuickWinCard({ win, index, iaColor }: any) {
         border: `1px solid ${COLORS.success}30`
       }}
     >
-      {/* Icon with Badge */}
-      <div className="relative mb-4 inline-block">
-        {Icon && (
-          <div 
-            className="p-4 rounded-xl"
-            style={{ backgroundColor: `${COLORS.success}20` }}
-          >
-            <Icon className="w-8 h-8" style={{ color: COLORS.success }} />
-          </div>
-        )}
-        <Badge 
-          className="absolute -top-2 -right-2"
-          style={{
-            backgroundColor: COLORS.success,
-            color: 'white',
-            fontSize: '0.6rem',
-            padding: '0.25rem 0.5rem'
-          }}
-        >
-          QUICK WIN
-        </Badge>
-      </div>
+      {/* Badge */}
+      <Badge 
+        className="mb-4"
+        style={{
+          backgroundColor: COLORS.success,
+          color: 'white',
+          fontSize: '0.6rem',
+          padding: '0.25rem 0.5rem'
+        }}
+      >
+        QUICK WIN
+      </Badge>
 
       {/* Title */}
       <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform">
         {win.title}
       </h3>
 
-      {/* Description */}
-      <p className="text-sm text-gray-400 mb-4">
-        {win.description}
+      {/* Timeframe */}
+      <p className="text-sm text-gray-400 mb-2">
+        <Clock className="w-4 h-4 inline mr-2" style={{ color: COLORS.success }} />
+        {win.timeframe}
       </p>
 
-      {/* ROI */}
+      {/* Investment */}
+      <p className="text-sm text-gray-400 mb-2">
+        {win.investment}
+      </p>
+
+      {/* Returns */}
       <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: COLORS.success }}>
         <Zap className="w-4 h-4" />
-        <span>ROI: {win.roi}</span>
+        <span>{win.returns}</span>
       </div>
     </motion.div>
   );
