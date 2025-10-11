@@ -13,7 +13,7 @@ import {
   Target,
   Clock,
   DollarSign,
-  CheckCircle,
+  CircleCheck,  // CORRECTION: CheckCircle → CircleCheck (icône correcte dans Lucide React v0.263.1)
   Star
 } from 'lucide-react';
 
@@ -206,7 +206,7 @@ export const portfolioProjects: PortfolioProject[] = [
       metric3: {
         label: 'Erreurs TVA',
         value: '-98%',
-        icon: 'CheckCircle'
+        icon: 'CircleCheck'  // CORRECTION: CheckCircle → CircleCheck
       }
     },
     technologies: [
