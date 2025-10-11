@@ -54,31 +54,31 @@ export default function Portfolio() {
       <motion.div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          background: `radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(99, 102, 241, 0.03), transparent 70%)`
+          background: `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(99, 102, 241, 0.15), transparent 80%)`
         }}
       />
 
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-background to-transparent" />
         <motion.div
           style={{ y: backgroundY }}
           className="absolute inset-0"
         >
-          {[...Array(20)].map((_, i) => (
+          {[...Array(50)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-0.5 h-0.5 bg-dainamics-primary/10 rounded-full"
+              className="absolute w-1 h-1 bg-dainamics-primary/30 rounded-full"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                opacity: [0.1, 0.2, 0.1],
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 0.8, 0.3],
               }}
               transition={{
-                duration: 3 + Math.random() * 3,
+                duration: 2 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 3,
+                delay: Math.random() * 2,
               }}
             />
           ))}
@@ -95,38 +95,72 @@ export default function Portfolio() {
           >
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="text-6xl md:text-8xl font-bold mb-8 tracking-tight text-dainamics-light"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-6xl md:text-8xl font-bold mb-8 relative"
             >
-              Portfolio
+              <span className="inline-block">
+                {['P', 'o', 'r', 't', 'f', 'o', 'l', 'i', 'o'].map((letter, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.5 + i * 0.05,
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                    className="inline-block hover:text-dainamics-primary transition-colors cursor-default"
+                    whileHover={{
+                      scale: 1.2,
+                      rotate: [-5, 5, -5, 0],
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </span>
             </motion.h1>
 
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap justify-center gap-3 mb-12"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1 }}
+              className="flex flex-wrap justify-center gap-4 mb-12"
             >
               {Object.entries(categoryColors).map(([key, color], index) => (
                 <motion.button
                   key={key}
                   onClick={() => setSelectedCategory(selectedCategory === key ? null : key)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 + index * 0.05, duration: 0.3 }}
-                  className="relative px-6 py-2.5 rounded-lg font-medium overflow-hidden transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.2 + index * 0.1 }}
+                  className="relative px-6 py-3 rounded-2xl font-semibold overflow-hidden group"
                   style={{
-                    backgroundColor: selectedCategory === key ? `${color}20` : 'transparent',
-                    border: `1px solid ${selectedCategory === key ? color : `${color}40`}`,
-                    color: selectedCategory === key ? color : `${color}CC`,
-                    boxShadow: selectedCategory === key ? `0 0 20px ${color}30` : 'none'
+                    backgroundColor: selectedCategory === key ? color : 'transparent',
+                    border: `2px solid ${color}`,
+                    color: selectedCategory === key ? '#0A0A0F' : color
                   }}
                 >
-                  <span className="relative z-10 text-sm">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-20"
+                    style={{
+                      background: `linear-gradient(90deg, ${color}, transparent)`
+                    }}
+                    animate={{
+                      x: ['-100%', '100%'],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  />
+                  <span className="relative z-10">
                     {key === 'ia' ? 'Intelligence Artificielle' :
                      key === 'automatisation' ? 'Automatisation' : 'Développement'}
                   </span>
@@ -158,9 +192,22 @@ export default function Portfolio() {
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="h-px bg-gradient-to-r from-transparent via-dainamics-primary/30 to-transparent"
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="h-px bg-gradient-to-r from-transparent via-dainamics-primary to-transparent"
               />
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-dainamics-primary rounded-full"
+              >
+                <motion.div
+                  animate={{ scale: [1, 2, 1], opacity: [1, 0, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 bg-dainamics-primary rounded-full"
+                />
+              </motion.div>
             </div>
 
             <BentoGrid projects={filteredProjects} onProjectClick={setActiveProject} />
@@ -229,17 +276,17 @@ function MagneticCard({ project, index, onHover, onClick, isHovered }: {
     >
       <motion.div
         animate={{
-          scale: isHovered ? 1.01 : 1,
+          scale: isHovered ? 1.02 : 1,
         }}
         transition={{ duration: 0.3 }}
-        className="relative h-full rounded-2xl overflow-hidden"
+        className="relative h-full rounded-3xl overflow-hidden"
         style={{
-          background: `linear-gradient(135deg, ${categoryColor}10 0%, transparent 100%)`,
-          border: `1px solid ${categoryColor}30`,
+          background: `linear-gradient(135deg, ${categoryColor}15 0%, transparent 100%)`,
+          border: `1px solid ${categoryColor}40`,
           transformStyle: "preserve-3d"
         }}
       >
-        <div className="absolute inset-0 bg-dainamics-background/70 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-dainamics-background/40 backdrop-blur-sm" />
 
         <motion.div
           className="absolute inset-0 opacity-0"
@@ -247,7 +294,7 @@ function MagneticCard({ project, index, onHover, onClick, isHovered }: {
             opacity: isHovered ? 1 : 0,
           }}
           style={{
-            background: `radial-gradient(circle at 50% 50%, ${categoryColor}10, transparent 70%)`
+            background: `radial-gradient(circle at 50% 50%, ${categoryColor}20, transparent 70%)`
           }}
         />
 
@@ -256,17 +303,21 @@ function MagneticCard({ project, index, onHover, onClick, isHovered }: {
             <Badge
               className="px-4 py-2"
               style={{
-                backgroundColor: `${categoryColor}15`,
+                backgroundColor: `${categoryColor}30`,
                 color: categoryColor,
-                border: `1px solid ${categoryColor}40`
+                border: `1px solid ${categoryColor}`,
+                boxShadow: `0 0 20px ${categoryColor}40`
               }}
             >
               {project.category.toUpperCase()}
             </Badge>
 
-            <div className="opacity-70">
-              <Zap className="w-5 h-5" style={{ color: categoryColor }} />
-            </div>
+            <motion.div
+              animate={{ rotate: isHovered ? 360 : 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Zap className="w-6 h-6" style={{ color: categoryColor }} />
+            </motion.div>
           </div>
 
           <h3 className="text-3xl font-bold mb-3 text-dainamics-light">
@@ -287,12 +338,13 @@ function MagneticCard({ project, index, onHover, onClick, isHovered }: {
               const Icon = iconMapper[result.icon as keyof typeof iconMapper];
 
               return (
-                <div
+                <motion.div
                   key={idx}
-                  className="text-center p-4 rounded-lg"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  className="text-center p-4 rounded-xl"
                   style={{
-                    backgroundColor: `${categoryColor}08`,
-                    border: `1px solid ${categoryColor}25`
+                    backgroundColor: `${categoryColor}10`,
+                    border: `1px solid ${categoryColor}30`
                   }}
                 >
                   {Icon && (
@@ -304,18 +356,18 @@ function MagneticCard({ project, index, onHover, onClick, isHovered }: {
                   <div className="text-xs text-dainamics-light/60">
                     {result.label}
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </div>
 
-        <div
-          className="absolute bottom-0 left-0 right-0 h-px transition-opacity duration-300"
-          style={{
-            backgroundColor: categoryColor,
-            opacity: isHovered ? 0.3 : 0
-          }}
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-2"
+          style={{ backgroundColor: categoryColor }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
         />
       </motion.div>
     </motion.div>
@@ -345,22 +397,31 @@ function BentoGrid({ projects, onProjectClick }: {
               ease: [0.22, 1, 0.36, 1]
             }}
             whileHover={{
-              scale: 1.01,
-              transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
+              scale: 1.05,
+              zIndex: 10,
+              transition: { duration: 0.2 }
             }}
             onClick={() => onProjectClick(project)}
-            className={`group relative rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${size}`}
+            className={`group relative rounded-2xl overflow-hidden cursor-pointer ${size}`}
             style={{
-              background: `linear-gradient(135deg, ${categoryColor}08 0%, transparent 100%)`,
-              border: `1px solid ${categoryColor}25`
+              background: `linear-gradient(135deg, ${categoryColor}10 0%, transparent 100%)`,
+              border: `1px solid ${categoryColor}30`
             }}
           >
-            <div className="absolute inset-0 bg-dainamics-background/80 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-dainamics-background/60 backdrop-blur-sm" />
 
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            <motion.div
+              className="absolute inset-0"
               style={{
-                background: `radial-gradient(circle at 0% 0%, ${categoryColor}10, transparent 70%)`
+                background: `radial-gradient(circle at 0% 0%, ${categoryColor}20, transparent 70%)`
+              }}
+              animate={{
+                backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear"
               }}
             />
 
@@ -368,19 +429,26 @@ function BentoGrid({ projects, onProjectClick }: {
               <div className="flex items-start justify-between mb-4">
                 <Badge
                   style={{
-                    backgroundColor: `${categoryColor}15`,
+                    backgroundColor: `${categoryColor}20`,
                     color: categoryColor,
-                    border: `1px solid ${categoryColor}40`
+                    border: `1px solid ${categoryColor}`
                   }}
                 >
                   {project.category}
                 </Badge>
-                <div className="opacity-60">
-                  <Target className="w-4 h-4" style={{ color: categoryColor }} />
-                </div>
+                <motion.div
+                  whileHover={{ rotate: 45, scale: 1.2 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Target className="w-5 h-5" style={{ color: categoryColor }} />
+                </motion.div>
               </div>
 
-              <h3 className="text-xl font-bold mb-2 text-dainamics-light transition-colors duration-300 group-hover:text-dainamics-light/90">
+              <h3 className="text-xl font-bold mb-2 text-dainamics-light group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r transition-all duration-300"
+                style={{
+                  backgroundImage: `linear-gradient(to right, ${categoryColor}, ${categoryColors.accent})`
+                }}
+              >
                 {project.title}
               </h3>
 
@@ -412,9 +480,10 @@ function BentoGrid({ projects, onProjectClick }: {
                 })}
               </div>
 
-              <div
-                className="absolute bottom-0 right-0 w-16 h-16 rounded-tl-full opacity-5 transition-opacity duration-300 group-hover:opacity-10"
+              <motion.div
+                className="absolute bottom-0 right-0 w-20 h-20 rounded-tl-full opacity-10"
                 style={{ backgroundColor: categoryColor }}
+                whileHover={{ scale: 1.5 }}
               />
             </div>
           </motion.div>
