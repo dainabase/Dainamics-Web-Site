@@ -1,536 +1,563 @@
-# 📘 INSTRUCTIONS PROJET - DAINAMICS Website v2.0
+# 📘 DAINAMICS - Instructions Projet v2.1
 
-## Vue d'ensemble
+## 🎯 Vue d'ensemble
 
 DAINAMICS est une société suisse spécialisée dans l'IA, l'Automatisation et le Développement sur mesure pour PME. Ce projet vise à créer un site web moderne qui présente nos solutions et génère des leads qualifiés.
 
----
-
-## 🎯 Objectifs du Projet
-
-### Objectifs Business
-- Positionner DAINAMICS comme leader des solutions d'automatisation pour PME suisses
-- Générer 15-25 leads qualifiés/mois dans les 6 premiers mois
-- Démontrer ROI rapide et valeur tangible (économies CHF, gain de temps)
-- Établir crédibilité via cas clients et expertise suisse
-
-### Objectifs Techniques
-- Site performant (score Lighthouse >90)
-- Animations fluides 60fps
-- Responsive mobile-first
-- SEO optimisé pour marché suisse
-- Intégrations Supabase, analytics, emailing
+**Repository**: https://github.com/dainabase/Dainamics-Web-Site  
+**Phase Actuelle**: Développement Phase 1 - Fondations (Semaine 1-3)  
+**Stack**: React 18+ | TypeScript 5+ | Vite 5+ | Tailwind CSS 3+ | Framer Motion 11+
 
 ---
 
-## 🎨 DESIGN SYSTEM OBLIGATOIRE ⭐ CRITIQUE
+## 🚨 RÈGLES AVANT CHAQUE PROMPT À CLAUDE CODE
 
-### 📍 Référence Complète
+### ⚠️ STRUCTURE OBLIGATOIRE - 7 SECTIONS
 
-**Document Principal**: `DESIGN-SYSTEM-MANDATORY.md` (15.5 KB)  
-**Architecture Détaillée**: `ARCHITECTURE.md` (lignes 100-800)
+**CHAQUE prompt à Claude Code DOIT contenir ces 7 sections. AUCUNE EXCEPTION.**
 
-**⚠️ RÈGLE ABSOLUE**: TOUS les fichiers DOIVENT utiliser EXACTEMENT ce Design System pour garantir une cohérence parfaite du site.
+```
+1. CONTEXTE PROJET
+   - État actuel repository
+   - Fichier à créer/modifier
+   - Technologies utilisées
 
-### Palette Couleurs EXACTE
+2. OBJECTIF PRÉCIS
+   - Ce qui doit être fait exactement
+   - Résultat attendu
+
+3. STRUCTURE TECHNIQUE EXACTE
+   - CODE COMPLET (200-500 lignes minimum)
+   - ⚠️ OBLIGATOIRE: "Référencer DESIGN-SYSTEM-MANDATORY.md"
+   - ⚠️ OBLIGATOIRE: "Utiliser CATEGORY_COLORS et COMPLEXITY_COLORS"
+   - ⚠️ OBLIGATOIRE: "Vérifier icônes sur https://lucide.dev"
+   - Interface TypeScript stricte
+   - Exemples complets
+
+4. RÈGLES DE CONTENU
+   - Standards rédactionnels
+   - Gains TOUJOURS quantifiés (CHF, %, heures)
+   - Terminologie correcte (IA pas AI)
+
+5. VALIDATION - 3 CHECKLISTS
+   ✅ Checklist Technique (10-15 critères)
+   ✅ Checklist Contenu (10-15 critères)
+   ✅ Checklist Design System (10 critères minimum)
+
+6. PROCESSUS GIT
+   - Commandes exactes à exécuter
+   - Message commit standardisé
+   - Format confirmation attendu
+
+7. GESTION D'ERREURS
+   - Erreurs possibles + solutions
+   - Procédure si bloqué
+```
+
+### ⚠️ DESIGN SYSTEM - MENTIONS OBLIGATOIRES DANS SECTION 3
+
+**Dans CHAQUE prompt, section 3, vous DEVEZ inclure TEXTUELLEMENT :**
+
+```
+⚠️ DESIGN SYSTEM OBLIGATOIRE:
+
+1. Référencer le document DESIGN-SYSTEM-MANDATORY.md
+2. Utiliser UNIQUEMENT les couleurs suivantes:
+   - CATEGORY_COLORS pour catégories (ia/automatisation/developpement)
+   - COMPLEXITY_COLORS pour badges (starter/intermediate/advanced)
+3. Utiliser UNIQUEMENT des icônes Lucide React v0.263.1
+4. Vérifier CHAQUE icône sur https://lucide.dev AVANT utilisation
+5. JAMAIS de couleurs HEX hardcodées hors Design System
+6. JAMAIS d'icônes inventées ou non-Lucide
+
+Mappings à utiliser EXACTEMENT:
+const CATEGORY_COLORS = {
+  'ia': '#6366F1',
+  'automatisation': '#10E4FF',
+  'developpement': '#FF5A00'
+};
+
+const COMPLEXITY_COLORS = {
+  'starter': '#10B981',
+  'intermediate': '#F59E0B',
+  'advanced': '#EF4444'
+};
+```
+
+### 📋 EXEMPLE DE PROMPT CORRECT
+
+```
+# PROMPT: Créer src/data/expertise.ts
+
+## 1. CONTEXTE PROJET
+- Repository: https://github.com/dainabase/Dainamics-Web-Site
+- Fichier: src/data/expertise.ts (à créer)
+- Technologies: React 18+ TypeScript 5+ Tailwind CSS 3+
+- Référence: solutions.ts (même structure)
+
+## 2. OBJECTIF PRÉCIS
+Créer fichier expertise.ts contenant les 3 piliers DAINAMICS:
+- Intelligence Artificielle
+- Automatisation
+- Développement
+
+## 3. STRUCTURE TECHNIQUE EXACTE
+
+⚠️ DESIGN SYSTEM OBLIGATOIRE:
+1. Référencer DESIGN-SYSTEM-MANDATORY.md
+2. Utiliser CATEGORY_COLORS pour couleurs piliers
+3. Icônes Lucide uniquement (vérifier https://lucide.dev)
+4. Mappings EXACTS:
+   'ia' → '#6366F1'
+   'automatisation' → '#10E4FF'
+   'developpement' → '#FF5A00'
+
+[CODE COMPLET DE 200-500 LIGNES ICI]
+
+## 4. RÈGLES DE CONTENU
+- Gains quantifiés obligatoires
+- "IA" (pas "AI") en français
+- Pas d'emojis
+- Exemples concrets
+
+## 5. VALIDATION
+✅ Checklist Technique (12 critères)
+✅ Checklist Contenu (12 critères)
+✅ Checklist Design System (10 critères)
+
+## 6. PROCESSUS GIT
+git add src/data/expertise.ts
+git commit -m "feat(data): add expertise.ts with 3 pillars"
+git push origin main
+
+## 7. GESTION D'ERREURS
+[Solutions aux erreurs possibles]
+```
+
+### ❌ CE QUI SE PASSE SI VOUS NE SUIVEZ PAS CES RÈGLES
+
+**Si prompt sans 7 sections:**
+- Claude Code risque de créer code incomplet
+- Pas de validation = erreurs non détectées
+- Pas de cohérence avec Design System
+- → REFAIRE LE TRAVAIL = PERTE DE TEMPS
+
+**Si Design System non mentionné en section 3:**
+- Claude Code peut inventer ses propres couleurs
+- Icônes non-Lucide possibles
+- Incohérence visuelle totale du site
+- → FICHIER À REFAIRE COMPLÈTEMENT
+
+**Résultat: 2-3x plus de temps perdu à corriger qu'à bien faire dès le début**
+
+---
+
+## 🎨 DESIGN SYSTEM - COULEURS EXACTES
+
+### Référence Complète
+
+**Document**: `DESIGN-SYSTEM-MANDATORY.md` (15.5 KB)  
+**Architecture**: `ARCHITECTURE.md` (lignes 100-800)
+
+### Palette à Utiliser (AUCUNE AUTRE COULEUR)
 
 ```typescript
-export const COLORS = {
+// Couleurs principales - JAMAIS modifier
+const COLORS = {
   primary: '#6366F1',      // Indigo - Tech/IA
-  cta: '#FF5A00',          // Orange - Call-to-Action
+  cta: '#FF5A00',          // Orange - CTA
   accent: '#10E4FF',       // Cyan - Automatisation
-  success: '#10B981',      // Green - Success states
-  warning: '#F59E0B',      // Yellow - Warnings
-  error: '#EF4444',        // Red - Errors
+  success: '#10B981',      // Green
+  warning: '#F59E0B',      // Yellow
+  error: '#EF4444',        // Red
   background: '#0A0A0F',   // Dark Navy
-  light: '#F1F5F9',        // Light text/elements
-} as const;
-```
+  light: '#F1F5F9'         // Light text
+};
 
-### Mappings OBLIGATOIRES
+// Mappings OBLIGATOIRES
+const CATEGORY_COLORS = {
+  'ia': '#6366F1',              // Primary
+  'automatisation': '#10E4FF',   // Accent
+  'developpement': '#FF5A00'     // CTA
+};
 
-**Catégories → Couleurs:**
-```typescript
-export const CATEGORY_COLORS = {
-  'ia': '#6366F1',              // Primary Indigo
-  'automatisation': '#10E4FF',   // Accent Cyan
-  'developpement': '#FF5A00'     // CTA Orange
-} as const;
-```
-
-**Complexité → Couleurs:**
-```typescript
-export const COMPLEXITY_COLORS = {
-  'starter': '#10B981',         // Success Green
-  'intermediate': '#F59E0B',    // Warning Yellow
-  'advanced': '#EF4444'         // Error Red
-} as const;
+const COMPLEXITY_COLORS = {
+  'starter': '#10B981',         // Green
+  'intermediate': '#F59E0B',    // Yellow
+  'advanced': '#EF4444'         // Red
+};
 ```
 
 ### Icônes Lucide React UNIQUEMENT
 
 **Source**: Lucide React v0.263.1  
-**Vérification OBLIGATOIRE**: https://lucide.dev  
-**Format**: PascalCase (exemple: `Brain`, `Zap`, `Code`, `TrendingUp`)
+**Vérification OBLIGATOIRE**: https://lucide.dev avant CHAQUE utilisation
 
-**⚠️ Avant CHAQUE utilisation**: Vérifier que l'icône existe sur https://lucide.dev
-
----
-
-## 📋 STANDARDS DE PROMPTS (7 Sections Obligatoires)
-
-### Structure Obligatoire
-
-**Source**: `WORKFLOW.md` (section Standards de Prompts)
-
-Chaque prompt à Claude Code DOIT contenir:
-
-1. **CONTEXTE PROJET** - État actuel, fichier cible, technologies
-2. **OBJECTIF PRÉCIS** - Ce qui doit être fait, résultat attendu
-3. **STRUCTURE TECHNIQUE EXACTE** - CODE COMPLET (200-500 lignes) + Référence Design System
-4. **RÈGLES DE CONTENU** - Standards, gains quantifiés, terminologie
-5. **VALIDATION** - 3 checklists (Technique, Contenu, Design System)
-6. **PROCESSUS GIT** - Commandes exactes, message commit, format confirmation
-7. **GESTION D'ERREURS** - Erreurs possibles, solutions, procédure
-
-**⚠️ Règle**: Ne JAMAIS créer de prompt sans ces 7 sections.
+**⚠️ Workflow icônes:**
+1. Aller sur https://lucide.dev
+2. Chercher l'icône voulue
+3. Copier nom EXACT en PascalCase
+4. Utiliser dans le code
+5. ❌ JAMAIS inventer un nom d'icône
 
 ---
 
-## 📚 Hiérarchie Documentation
+## 📚 Documentation (Par ordre de priorité)
 
-### 1. DESIGN-SYSTEM-MANDATORY.md ⭐ NOUVEAU
-**Statut**: 🔒 Document de référence OBLIGATOIRE  
-**Commit**: 95e92a3  
-**Contenu**: Couleurs exactes, mappings, icônes Lucide, exemples code
-
-### 2. ARCHITECTURE.md
-**Taille**: 81 KB (3397 lignes)  
-**Contenu**: Architecture technique complète, design system détaillé, plan implémentation
-
-### 3. WORKFLOW.md
-**Taille**: 14.7 KB  
-**Contenu**: Standards de code, conventions, processus, standards prompts (7 sections)
-
-### 4. PROMPT-CONTEXT.md ⭐ MIS À JOUR
-**Version**: 2.0  
-**Commit**: 712c70a  
-**Contenu**: Contexte complet pour nouvelles conversations Claude
-
-### 5. CHANGELOG.md
-**Version**: 2.2  
-**Contenu**: Historique versions et changements
-
-### 6. README.md
-**Version**: 2.1  
-**Contenu**: Vue d'ensemble, quick start, règles critiques
+1. **DESIGN-SYSTEM-MANDATORY.md** ⭐ CRITIQUE (15.5 KB)
+2. **ARCHITECTURE.md** (81 KB, 3397 lignes)
+3. **WORKFLOW.md** (14.7 KB) - Standards prompts
+4. **PROMPT-CONTEXT.md v2.0** (16.4 KB)
+5. **INSTRUCTIONS.md v2.1** (ce document)
+6. **CHANGELOG.md v2.2**
 
 ---
 
-## 💻 Principes Directeurs
+## ✅ État Actuel
 
-### Contenu & Messaging
-1. **Langage Simple et Business**: Éviter jargon technique, focus valeur PME
-2. **Concret et Mesurable**: Toujours quantifier (CHF économisés, heures gagnées, % amélioration)
-3. **Approche Suisse**: Conformité nLPD, SwissDec, TVA, support trilingue DE/FR/IT
-4. **ROI Démontrable**: Calculateurs interactifs, études de cas avec chiffres réels
+### Terminé ✅
+- solutions.ts (21.2 KB, Commit 6a193bb)
+- Navigation.tsx (11.8 KB, Commit 0314f61)
+- DESIGN-SYSTEM-MANDATORY.md (Commit 95e92a3)
+- Documentation complète
 
-### Style Rédactionnel
-- Ton professionnel mais accessible
-- Phrases courtes et actionnables
-- Éviter promesses vagues ("révolutionnaire", "unique")
-- Privilégier exemples concrets et témoignages
-- **JAMAIS d'emojis** dans le code ou documentation
-- Toujours écrire "IA" (pas "AI") en français
+### En Cours ⏳
+- portfolio.ts (Claude Code exécute)
 
-### Design & UX
-- Design moderne et épuré (inspiration: Stripe, Linear)
-- Animations subtiles et fluides (Framer Motion)
-- Hiérarchie visuelle claire (Call-to-Actions évidents)
-- Navigation intuitive (maximum 3 clics vers information)
-- Mobile-first (60%+ trafic mobile attendu)
+### À Créer ⏹️
+- expertise.ts - 3 piliers
+- testimonials.ts - Témoignages
+- Page /solutions
+- Page /portfolio
+- Autres data files
 
----
-
-## 🏗️ Structure du Site
-
-### Pages Principales
-
-1. **Homepage** - Hero + 3 Piliers + Solutions Top 3 + Social Proof + CTA
-2. **Expertise** - IA, Automatisation, Développement (détail 3 piliers)
-3. **Solutions** - 15 automatisations + landing pages prioritaires
-4. **Portfolio** - LEXAIA, ENKI-REALTY, +3-5 cas clients
-5. **Resources** - Blog, Glossaire, Use Cases, Guides
-6. **À Propos** - Mission, Équipe, Approche
-7. **Process** - Méthodologie, Timeline, Garanties
-8. **Pricing** - 4 tiers (Starter, Professional, Enterprise, Custom)
-9. **Contact** - Formulaire + Chatbot IA + Calendrier RDV
-
-### Fonctionnalités Interactives
-
-1. Calculateur ROI (gains temps/argent selon industrie)
-2. Diagnostic IA (questionnaire → recommandations personnalisées)
-3. AI Maturity Assessment (scoring maturité digitale)
-4. Chatbot multilingue 24/7
-5. Comparateur solutions (side-by-side features)
-6. Simulateur pricing dynamique
-7. Démos interactives (vidéos + tooltips)
-8. Système réservation RDV intégré
+### Commits Récents
+```
+acb7d6cb - docs(instructions): update v2.0
+712c70a - docs(prompt-context): update v2.0
+95e92a3 - docs(design-system): add mandatory guide
+0314f61 - feat(navigation): complete menu
+6a193bb - feat(data): add solutions.ts
+```
 
 ---
 
-## 🛠️ Stack Technique
+## 🎯 Objectifs
+
+### Business
+- Leader solutions automatisation PME suisses
+- 15-25 leads qualifiés/mois (6 premiers mois)
+- ROI démontrable (CHF, heures, %)
+- Crédibilité cas clients (LEXAIA, ENKI-REALTY)
+
+### Techniques
+- Lighthouse >90
+- Animations 60fps
+- Mobile-first
+- SEO marché suisse
+- Conformité nLPD, SwissDec, TVA
+
+---
+
+## 📐 Principes
+
+### Contenu
+- Langage business (pas jargon)
+- Toujours quantifier (CHF, %, heures)
+- Approche suisse (nLPD, SwissDec, TVA)
+- ROI démontrable
+
+### Style
+- Professionnel mais accessible
+- Phrases courtes
+- Exemples concrets
+- **JAMAIS d'emojis** code/doc
+- "IA" (pas "AI") français
+
+### Design
+- Moderne épuré (Stripe, Linear)
+- Animations Framer Motion
+- Navigation max 3 clics
+- Mobile-first obligatoire
+
+---
+
+## 🏗️ Structure Site
+
+### Pages (9)
+1. Homepage - Hero + Piliers + Solutions
+2. Expertise - IA, Automatisation, Dev
+3. Solutions - 15 automatisations
+4. Portfolio - LEXAIA, ENKI-REALTY + 3
+5. Resources - Blog, Glossaire, Use Cases
+6. À Propos - Mission, Équipe
+7. Process - Méthodologie, Garanties
+8. Pricing - 4 tiers
+9. Contact - Form + Chatbot + RDV
+
+### Features (8)
+1. Calculateur ROI
+2. Diagnostic IA
+3. AI Maturity Assessment
+4. Chatbot multilingue (Claude API)
+5. Comparateur solutions
+6. Simulateur pricing
+7. Tech Stack Explorer
+8. Système RDV
+
+---
+
+## 🛠️ Stack
 
 ### Frontend
-- React 18.3.1 avec TypeScript 5.5.3
-- Vite 5.3.4 (build tool)
-- Tailwind CSS 3.4.1 (styling)
-- Framer Motion 11.3.21 (animations)
-- Lucide React 0.263.1 (icônes)
-- React Hook Form + Zod (formulaires)
+- React 18.3.1 + TypeScript 5.5.3
+- Vite 5.3.4
+- Tailwind CSS 3.4.1
+- Framer Motion 11.3.21
+- Lucide React 0.263.1
+- React Hook Form + Zod
 
-### Backend & Services
+### Backend
 - Supabase (PostgreSQL, Auth, Storage)
 - Brevo/SendGrid (emailing)
-- Google Analytics 4 + Plausible (analytics)
-- Cal.com (réservations RDV)
+- GA4 + Plausible (analytics)
+- Cal.com (RDV)
 
-### Développement
-- Claude Code (outil principal)
+### Dev
+- Claude Code (principal)
 - GitHub (version control)
 - Vercel/Netlify (hosting)
 
 ---
 
-## 📏 Standards de Code
+## 📏 Standards Code
 
-### Règles TypeScript
+### TypeScript Strict
 
 ```typescript
-// ✅ BON - Typage strict
+// ✅ BON
 interface Solution {
   id: string;
-  title: string;
   category: 'ia' | 'automatisation' | 'developpement';
   complexity: 'starter' | 'intermediate' | 'advanced';
-  icon: string;  // Nom Lucide React
-  roi: {
-    timeframe: string;
-    savings: number;
-  };
+  icon: string;  // Lucide React
+  roi: { timeframe: string; savings: number };
 }
 
-// ❌ MAUVAIS - any types
+// ❌ MAUVAIS
 const solution: any = {...}
 ```
 
-### Conventions Nommage
-- Components: PascalCase (`Hero.tsx`, `SolutionCard.tsx`)
-- Fichiers utils: camelCase (`formatCurrency.ts`)
-- Fichiers data: camelCase (`solutions.ts`, `testimonials.ts`)
-- CSS classes: kebab-case Tailwind
+### Conventions
+- Components: PascalCase (`Hero.tsx`)
+- Utils: camelCase (`formatCurrency.ts`)
+- Data: camelCase (`solutions.ts`)
+- CSS: kebab-case Tailwind
 
-### Structure Fichiers
-
+### Structure
 ```
 src/
 ├── components/
-│   ├── ui/         # Design System (Button, Card, Badge)
-│   ├── layout/     # Layout (Header, Footer)
-│   └── features/   # Feature components
-├── data/           # Data statiques
-│   ├── solutions.ts ✅
-│   ├── portfolio.ts ⏳
-│   ├── expertise.ts ⏹️
-│   └── ...
-├── hooks/          # Custom React hooks
-├── pages/          # Pages routes
-├── styles/         # Global styles
-├── types/          # TypeScript types
-└── utils/          # Fonctions utilitaires
+│   ├── ui/         # Design System
+│   ├── layout/     # Header, Footer
+│   └── features/   # Features
+├── data/           # solutions.ts ✅, portfolio.ts ⏳
+├── pages/          # Routes
+├── types/          # TypeScript
+└── utils/          # Helpers
 ```
 
 ---
 
-## 🚀 Workflow de Développement
+## 🚀 Workflow
 
-### Phase 1: MVP Foundation (Semaines 1-3)
+### Phase 1 (Semaines 1-3)
 
-**Semaine 1** ✅ TERMINÉE
-- [x] Setup projet Vite + TypeScript + Tailwind
-- [x] Créer Design System (Button, Card, Badge, Forms)
-- [x] Développer Layout (Header, Footer)
-- [x] Homepage sections 1-5
+**Semaine 1** ✅
+- [x] Setup + Design System + Layout + Homepage 1-5
 
 **Semaine 2** ⏳ EN COURS
-- [x] Homepage complète (sections 6-9)
-- [x] Navigation.tsx avec menu complet ✅
-- [x] solutions.ts avec 15 scénarios ✅
-- [⏳] portfolio.ts (EN COURS par Claude Code)
+- [x] Homepage complète
+- [x] Navigation.tsx ✅
+- [x] solutions.ts ✅
+- [⏳] portfolio.ts
 - [ ] expertise.ts
-- [ ] Calculateur ROI interactif
-- [ ] Diagnostic IA questionnaire
+- [ ] Calculateur ROI
+- [ ] Diagnostic IA
 
 **Semaine 3**
-- [ ] Page Expertise complète
-- [ ] Page Solutions + 3 landing pages prioritaires
-- [ ] Page Portfolio (LEXAIA, ENKI-REALTY)
+- [ ] Pages Expertise, Solutions, Portfolio
 
-### Phase 2: Content & Features (Semaines 4-5)
-- [ ] Case studies détaillés
-- [ ] Resources Hub + Blog structure
-- [ ] Glossaire + Use Cases
-- [ ] AI Maturity Assessment
+### Phase 2 (Semaines 4-5)
+- Case studies, Blog, Glossaire, Use Cases
 
-### Phase 3: Polish & Launch (Semaines 6-7)
-- [ ] Pages Business (Process, Pricing, About)
-- [ ] Contact + AI Chatbot
-- [ ] SEO optimization
-- [ ] Performance optimization
-- [ ] QA finale + tests
+### Phase 3 (Semaines 6-7)
+- Process, Pricing, About, Contact, Chatbot, SEO, QA
 
 ---
 
 ## ✅ Checklist Avant Commit
 
-### Code Quality
-- [ ] TypeScript sans erreurs
-- [ ] ESLint warnings résolues
-- [ ] Components typés strictement
-- [ ] Pas de console.log oubliés
-- [ ] Pas d'emojis dans le code
-- [ ] Design System respecté
+### Design System ⭐ CRITIQUE
+- [ ] CATEGORY_COLORS/COMPLEXITY_COLORS utilisés
+- [ ] Icônes Lucide vérifiées lucide.dev
+- [ ] Pas de HEX hardcodé hors Design System
+- [ ] Mappings respectés
+
+### Code
+- [ ] TypeScript sans erreurs (pas `any`)
+- [ ] ESLint OK
+- [ ] Pas de console.log
+- [ ] Pas d'emojis
 
 ### Performance
-- [ ] Images optimisées (WebP, lazy loading)
+- [ ] Images optimisées
 - [ ] Animations 60fps
-- [ ] Bundle size raisonnable
-- [ ] Lighthouse score >90
-
-### Accessibilité
-- [ ] Contraste WCAG AA minimum
-- [ ] Attributs ARIA appropriés
-- [ ] Navigation clavier fonctionnelle
-- [ ] Alt text sur images
+- [ ] Lighthouse >90
 
 ### Contenu
-- [ ] Textes relus (zéro fautes)
-- [ ] "IA" utilisé (pas "AI")
-- [ ] Noms projets corrects (LEXAIA, ENKI-REALTY)
-- [ ] URLs et emails valides
-- [ ] CTAs clairs et actionnables
 - [ ] Gains quantifiés (CHF, %, heures)
-
-### Design System
-- [ ] Couleurs EXACTES utilisées
-- [ ] Icônes Lucide vérifiées sur lucide.dev
-- [ ] Mappings catégories/complexité respectés
-- [ ] Pas de couleurs HEX hardcodées
-- [ ] TypeScript strict (pas de `any`)
+- [ ] "IA" (pas "AI")
+- [ ] LEXAIA, ENKI-REALTY corrects
+- [ ] CTAs clairs
 
 ---
 
-## 📖 Ressources & Documentation
+## 📖 Ressources
 
-### Documentation Projet (Par ordre d'importance)
-
-1. **DESIGN-SYSTEM-MANDATORY.md** ⭐ CRITIQUE (15.5 KB)
-   - Palette couleurs EXACTE
-   - Mappings obligatoires
-   - Icônes Lucide avec vérification
-   - Exemples code complets
-   - Checklist validation
-
-2. **ARCHITECTURE.md** (81 KB, 3397 lignes)
-   - Document principal specs complètes
-   - Design System ultra-détaillé (lignes 100-800)
-   - Animations Framer Motion (lignes 800-1500)
-   - Structure pages (lignes 1500-2500)
-   - Plan implémentation (lignes 3000-3200)
-
-3. **WORKFLOW.md** (14.7 KB)
-   - Standards de prompts (7 sections obligatoires)
-   - Processus développement
-   - Conventions code
-
-4. **PROMPT-CONTEXT.md v2.0** (16.4 KB)
-   - Contexte complet pour nouvelles conversations
-   - État actuel projet
-   - Prochaines étapes
-
-5. **CHANGELOG.md** (v2.2) - Historique changements
-6. **README.md** (v2.1) - Vue d'ensemble quick start
-
-### Documents Référence
-- TOP 15 Automatisations (scoring commercial + specs techniques)
-- Design System (components, couleurs, animations)
-- Content Guidelines (tone, messaging, exemples)
-
-### Liens Utiles
+### Documentation
 - **Repository**: https://github.com/dainabase/Dainamics-Web-Site
-- **Commits**: https://github.com/dainabase/Dainamics-Web-Site/commits/main
-- **Lucide Icons**: https://lucide.dev (v0.263.1)
-- **Tailwind Docs**: https://tailwindcss.com/docs
+- **Design System**: DESIGN-SYSTEM-MANDATORY.md
+- **Architecture**: ARCHITECTURE.md (lignes 100-800)
+- **Prompts**: WORKFLOW.md (7 sections)
+- **Contexte**: PROMPT-CONTEXT.md v2.0
+
+### Externes
+- **Lucide**: https://lucide.dev (v0.263.1)
+- **Tailwind**: https://tailwindcss.com/docs
 - **Framer Motion**: https://www.framer.com/motion
-- **Supabase Docs**: https://supabase.com/docs
 
 ---
 
-## 🆘 Support & Questions
+## 💡 Exemple Complet de Bon Prompt
 
-### Procédure Standard
+```
+# CRÉER expertise.ts
 
-1. ✅ Consulter **DESIGN-SYSTEM-MANDATORY.md** en priorité
-2. ✅ Vérifier **ARCHITECTURE.md** pour spécifications complètes
-3. ✅ Vérifier **WORKFLOW.md** pour standards prompts
-4. ✅ Examiner **PROMPT-CONTEXT.md** pour état actuel
-5. ✅ Regarder fichiers existants comme exemples (solutions.ts, Navigation.tsx)
+## 1. CONTEXTE PROJET
+Repository: Dainamics-Web-Site
+Fichier: src/data/expertise.ts (nouveau)
+Stack: React 18+ TypeScript 5+
+Référence: solutions.ts (même structure)
+
+## 2. OBJECTIF
+Créer expertise.ts avec 3 piliers DAINAMICS:
+- Intelligence Artificielle (LLMs, Agents, CV, NLP)
+- Automatisation (RPA, Workflow, Integration)
+- Développement (Web Apps, APIs, Cloud)
+
+## 3. STRUCTURE TECHNIQUE
+
+⚠️ DESIGN SYSTEM OBLIGATOIRE:
+- Référencer DESIGN-SYSTEM-MANDATORY.md
+- Utiliser CATEGORY_COLORS:
+  'ia' → '#6366F1'
+  'automatisation' → '#10E4FF'
+  'developpement' → '#FF5A00'
+- Icônes Lucide UNIQUEMENT (vérifier lucide.dev)
+- TypeScript strict (pas any)
+
+[CODE COMPLET 200-500 LIGNES]
+// Interface stricte
+// 3 piliers avec détails
+// Helpers exportés
+// Mappings couleurs
+
+## 4. RÈGLES CONTENU
+- Gains quantifiés obligatoires
+- "IA" pas "AI"
+- Pas d'emojis
+- Exemples concrets PME
+
+## 5. VALIDATION
+
+✅ Technique (12 critères)
+- TypeScript strict
+- Interfaces complètes
+- Helpers fonctionnels
+- Imports Lucide corrects
+
+✅ Contenu (12 critères)
+- 3 piliers complets
+- Exemples concrets
+- Gains quantifiés
+- Terminologie correcte
+
+✅ Design System (10 critères)
+- CATEGORY_COLORS utilisés
+- Icônes Lucide vérifiées
+- Pas de HEX hardcodé
+- Mappings conformes
+
+## 6. PROCESSUS GIT
+git add src/data/expertise.ts
+git commit -m "feat(data): add expertise.ts with 3 pillars"
+git push origin main
+
+## 7. GESTION ERREURS
+- Si TypeScript erreur → vérifier interfaces
+- Si icône manquante → lucide.dev
+- Si couleur incorrecte → CATEGORY_COLORS
+- Si bloqué → STOP et documenter
+```
+
+---
+
+## 🆘 Support
+
+### Si Perdu
+1. DESIGN-SYSTEM-MANDATORY.md
+2. ARCHITECTURE.md
+3. WORKFLOW.md
+4. Exemples: solutions.ts, Navigation.tsx
 
 ### Si Bloqué
-
-1. ⚠️ STOP immédiatement
-2. 📝 Noter l'erreur exacte (screenshot ou copie)
-3. 📝 Noter la commande qui a causé l'erreur
-4. 📝 Vérifier les derniers commits sur GitHub
-5. 🙋 Demander assistance avec contexte complet
+1. STOP immédiatement
+2. Noter erreur + commande
+3. Demander assistance
 
 ---
 
-## ⚠️ Règles d'Or (CRITIQUE)
+## 🎯 Prochaines Étapes
 
-### Développement
-1. ✅ **Design System OBLIGATOIRE** - Référencer dans CHAQUE prompt
-2. ✅ **Code Complet** - Toujours 200-500 lignes, pas descriptions
-3. ✅ **TypeScript Strict** - Jamais `any`, toujours typage
-4. ✅ **Icônes Lucide** - Vérifier sur lucide.dev AVANT usage
-5. ✅ **Commit + Push** - Après CHAQUE tâche
-6. ✅ **Validation** - Attendre avant de continuer
-
-### Contenu
-1. ✅ **Gains Quantifiés** - Toujours CHF, %, heures
-2. ✅ **"IA" pas "AI"** - En français uniquement
-3. ❌ **Pas d'Emojis** - Jamais dans code/documentation
-4. ✅ **Noms Corrects** - LEXAIA, ENKI-REALTY, Claude Code
-5. ✅ **Conformité Suisse** - nLPD, SwissDec, TVA
-6. ✅ **Mobile-First** - Toujours designer mobile d'abord
-
-### Prompts
-1. ✅ **7 Sections** - Structure obligatoire (WORKFLOW.md)
-2. ✅ **Code Complet** - Dans section 3
-3. ✅ **3 Checklists** - Technique + Contenu + Design System
-4. ✅ **Design System** - Référencé explicitement
-5. ✅ **Git Exact** - Commandes précises
-6. ✅ **Erreurs** - Gestion complète
+1. Attendre portfolio.ts ⏳
+2. Créer expertise.ts (avec bon prompt 7 sections)
+3. Page /solutions
+4. Page /portfolio
 
 ---
 
-## 📊 État Actuel du Projet
+## 🔒 Règles Absolues NON NÉGOCIABLES
 
-### Fichiers Terminés ✅
-- DESIGN-SYSTEM-MANDATORY.md (Commit 95e92a3)
-- ARCHITECTURE.md (v2.0, 81 KB)
-- WORKFLOW.md (v1.1)
-- PROMPT-CONTEXT.md (v2.0, Commit 712c70a)
-- CHANGELOG.md (v2.2)
-- README.md (v2.1)
-- src/data/solutions.ts (Commit 6a193bb)
-- src/components/Navigation.tsx (Commit 0314f61)
-
-### Fichiers En Cours ⏳
-- src/data/portfolio.ts (Claude Code en exécution)
-
-### Fichiers À Créer ⏹️
-- src/data/expertise.ts
-- src/data/testimonials.ts
-- src/data/integrations.ts
-- src/data/pricingPackages.ts
-- src/data/useCases.ts
-- src/data/glossary.ts
-
-### Commits Récents
-```
-712c70a - docs(prompt-context): update v2.0 with design system
-95e92a3 - docs(design-system): add mandatory design system guide
-0314f61 - feat(navigation): add complete menu structure
-6a193bb - feat(data): add solutions.ts with 15 scenarios
-```
+1. ✅ **Prompt 7 sections** - TOUJOURS, sans exception
+2. ✅ **Design System mention section 3** - OBLIGATOIRE textuellement
+3. ✅ **TypeScript strict** - Jamais `any`
+4. ✅ **Icônes Lucide** - Vérifier lucide.dev AVANT
+5. ✅ **Gains quantifiés** - CHF, %, heures
+6. ✅ **"IA" pas "AI"** - En français
+7. ❌ **Pas d'emojis** - Jamais code/doc
+8. ✅ **Mobile-first** - Toujours
+9. ✅ **Commit après chaque tâche** - Immédiat
+10. ✅ **CATEGORY_COLORS/COMPLEXITY_COLORS** - Obligatoires
 
 ---
 
-## 🎯 Prochaines Étapes Immédiates
-
-### 1. Attendre Validation portfolio.ts
-- Claude Code termine l'exécution
-- Vérifier le commit
-- Valider le contenu
-
-### 2. Créer expertise.ts
-- 3 piliers: IA, Automatisation, Développement
-- Structure similaire à solutions.ts
-- Design System obligatoire
-
-### 3. Créer Page /solutions
-- Afficher les 15 solutions
-- Filtres par catégorie/industrie
-- Animations Framer Motion
-
-### 4. Créer Page /portfolio
-- Afficher projets (LEXAIA, ENKI-REALTY + 3)
-- Featured projects en avant
-- Case studies détaillés
-
----
-
-## 💡 Exemples d'Utilisation
-
-### Créer un Prompt pour Claude Code
-
-```
-"Créer src/data/expertise.ts avec les 3 piliers DAINAMICS:
-
-1. IA (Intelligence Artificielle)
-   - LLMs, Agents, Computer Vision, NLP, ML
-
-2. Automatisation
-   - RPA, Workflow, Integration, Process Mining
-
-3. Développement
-   - Web Apps, Mobile Apps, APIs, Cloud
-
-Format similaire à solutions.ts avec:
-- Interface TypeScript stricte
-- Mappings CATEGORY_COLORS obligatoires
-- Icônes Lucide vérifiées sur lucide.dev
-- Helpers: getExpertiseByCategory(), etc.
-
-IMPORTANT: Référencer DESIGN-SYSTEM-MANDATORY.md
-et créer prompt avec 7 sections obligatoires."
-```
-
-### Valider un Fichier
-
-```
-"Vérifier que portfolio.ts respecte:
-
-✅ TypeScript strict (pas de `any`)
-✅ Couleurs CATEGORY_COLORS utilisées
-✅ Icônes Lucide vérifiées sur lucide.dev
-✅ Gains quantifiés (CHF, %, heures)
-✅ LEXAIA et ENKI-REALTY corrects
-✅ Pas d'emojis dans le code
-✅ Format helpers exportés
-
-Si OK → Valider
-Si NON → Lister corrections nécessaires"
-```
-
----
-
-**VERSION**: 2.0  
+**VERSION**: 2.1  
 **DATE**: 11 Octobre 2025  
-**STATUS**: ✅ Mis à jour avec Design System Mandatory + Standards Prompts  
-**DERNIÈRE MISE À JOUR**: Après création DESIGN-SYSTEM-MANDATORY.md et PROMPT-CONTEXT.md v2.0
+**CRITIQUE**: Structure 7 sections + Design System mention = NON NÉGOCIABLE  
 
----
+**🚨 NE PAS CRÉER DE PROMPT SANS:**
+1. Les 7 sections complètes
+2. La mention Design System en section 3 avec mappings EXACTS
 
-**🚨 RAPPEL FINAL**: La cohérence du site dépend de l'application STRICTE du Design System dans CHAQUE fichier créé ou modifié. Toujours référencer **DESIGN-SYSTEM-MANDATORY.md** et utiliser les **7 sections obligatoires** pour les prompts.
+**Si vous ne suivez pas ces règles = fichiers à refaire = 2-3x plus de temps perdu**
