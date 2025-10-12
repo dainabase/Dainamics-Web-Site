@@ -493,7 +493,7 @@ function FeaturedProjectCard({ project, index, onClick }: any) {
 // ============================================================================
 // ALL PROJECTS - Sticky Cards Animation
 // ============================================================================
-const CARD_HEIGHT = 600;
+const CARD_HEIGHT = 500;
 
 interface StickyProjectCardProps {
   position: number;
@@ -504,14 +504,14 @@ interface StickyProjectCardProps {
 }
 
 function AllProjectsSection({ projects, selectedCategory, onProjectClick }: any) {
-  const ref = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: containerRef,
     offset: ["start start", "end start"],
   });
 
   return (
-    <div ref={ref} className="relative">
+    <>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -529,41 +529,47 @@ function AllProjectsSection({ projects, selectedCategory, onProjectClick }: any)
         </p>
       </motion.div>
 
-      {projects.map((project: PortfolioProject, idx: number) => (
-        <StickyProjectCard
-          key={project.id}
-          project={project}
-          scrollYProgress={scrollYProgress}
-          position={idx + 1}
-          totalCards={projects.length}
-          onClick={() => onProjectClick(project)}
-        />
-      ))}
-      <div className="h-screen" />
-    </div>
+      <div ref={containerRef} className="relative">
+        {projects.map((project: PortfolioProject, idx: number) => (
+          <StickyProjectCard
+            key={project.id}
+            project={project}
+            scrollYProgress={scrollYProgress}
+            position={idx + 1}
+            totalCards={projects.length}
+            onClick={() => onProjectClick(project)}
+          />
+        ))}
+      </div>
+
+      <div className="h-screen bg-transparent" />
+    </>
   );
 }
 
 function StickyProjectCard({ position, project, scrollYProgress, totalCards, onClick }: StickyProjectCardProps) {
   const scaleFromPct = (position - 1) / totalCards;
-  const y = useTransform(scrollYProgress, [scaleFromPct, 1], [0, -CARD_HEIGHT]);
+  const y = useTransform(
+    scrollYProgress,
+    [scaleFromPct, 1],
+    [0, -CARD_HEIGHT]
+  );
 
   const categoryColor = categoryColors[project.category];
   const isOddCard = position % 2;
 
-  const cardBg = isOddCard ? 'rgba(10, 10, 15, 0.4)' : 'rgba(20, 20, 30, 0.4)';
-  const textColor = '#FFFFFF';
+  const cardBg = isOddCard ? 'rgba(10, 10, 15, 0.5)' : 'rgba(20, 20, 30, 0.5)';
+  const shadowColor = isOddCard ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.3)';
 
   return (
     <motion.div
       style={{
-        height: CARD_HEIGHT,
         y: position === totalCards ? undefined : y,
         backgroundColor: cardBg,
         backdropFilter: 'blur(10px)',
-        borderColor: `${categoryColor}20`
+        borderColor: `${categoryColor}20`,
       }}
-      className="sticky top-0 flex w-full origin-top flex-col items-center justify-center px-6 border-b cursor-pointer"
+      className="sticky top-0 w-full min-h-screen flex items-center justify-center px-6 py-20 border-b cursor-pointer"
       onClick={onClick}
     >
       <div className="max-w-4xl mx-auto text-center">
@@ -580,25 +586,25 @@ function StickyProjectCard({ position, project, scrollYProgress, totalCards, onC
           {project.category.toUpperCase()}
         </Badge>
 
-        <h3 className="mb-4 text-4xl font-bold md:text-5xl" style={{ color: textColor }}>
+        <h3 className="mb-4 text-4xl font-bold md:text-6xl" style={{ color: '#FFFFFF' }}>
           {project.title}
         </h3>
 
-        <p className="mb-3 text-lg font-medium" style={{ color: categoryColor }}>
+        <p className="mb-3 text-xl font-medium" style={{ color: categoryColor }}>
           {project.client}
         </p>
 
-        <p className="mb-8 max-w-2xl mx-auto text-base md:text-lg leading-relaxed" style={{ color: '#9CA3AF' }}>
+        <p className="mb-10 max-w-2xl mx-auto text-base md:text-lg leading-relaxed" style={{ color: '#9CA3AF' }}>
           {project.description}
         </p>
 
-        <div className="flex items-center justify-center gap-8 mb-8 flex-wrap">
+        <div className="flex items-center justify-center gap-12 mb-10 flex-wrap">
           {Object.values(project.results).filter(Boolean).map((result: any, idx: number) => {
             const Icon = iconMapper[result.icon];
             return (
               <div key={idx} className="flex flex-col items-center gap-2">
-                {Icon && <Icon className="w-6 h-6" style={{ color: COLORS.success }} />}
-                <span className="text-2xl font-bold" style={{ color: COLORS.success }}>
+                {Icon && <Icon className="w-7 h-7" style={{ color: COLORS.success }} />}
+                <span className="text-3xl font-bold" style={{ color: COLORS.success }}>
                   {result.value}
                 </span>
                 <span className="text-sm" style={{ color: '#6B7280' }}>
@@ -609,25 +615,25 @@ function StickyProjectCard({ position, project, scrollYProgress, totalCards, onC
           })}
         </div>
 
-        <Button
-          className="flex items-center gap-2 px-8 py-6 text-base font-medium uppercase transition-all"
+        <button
+          className="inline-flex items-center gap-2 px-8 py-4 text-base font-medium uppercase transition-all rounded"
           style={{
             backgroundColor: categoryColor,
             color: '#000000',
-            boxShadow: `4px 4px 0px ${isOddCard ? '#FFFFFF' : '#000000'}`,
+            boxShadow: `4px 4px 0px ${shadowColor}`,
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translate(-2px, -2px)';
-            e.currentTarget.style.boxShadow = `8px 8px 0px ${isOddCard ? '#FFFFFF' : '#000000'}`;
+            e.currentTarget.style.boxShadow = `8px 8px 0px ${shadowColor}`;
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translate(0, 0)';
-            e.currentTarget.style.boxShadow = `4px 4px 0px ${isOddCard ? '#FFFFFF' : '#000000'}`;
+            e.currentTarget.style.boxShadow = `4px 4px 0px ${shadowColor}`;
           }}
         >
           <span>Voir le projet</span>
           <ArrowRight className="w-5 h-5" />
-        </Button>
+        </button>
       </div>
     </motion.div>
   );
