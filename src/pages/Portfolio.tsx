@@ -1,5 +1,5 @@
 // src/pages/Portfolio.tsx
-// Portfolio Page - Ultra-Modern with Hero Background
+// Portfolio Page - Clean with Purple Grid Background
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 
 import { useState, useRef, useEffect } from 'react';
@@ -53,21 +53,16 @@ export default function Portfolio() {
     <div className="min-h-screen bg-dainamics-background text-dainamics-light overflow-hidden">
       <Navigation />
       
-      {/* Hero Background on entire page */}
-      <div className="fixed inset-0 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 z-0" />
-
-      {/* Animated Grid Background */}
+      {/* Purple Grid Background - Fixed on entire page */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(147, 51, 234, 0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(147, 51, 234, 0.1) 1px, transparent 1px)
+              linear-gradient(to right, rgba(99, 102, 241, 0.12) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(99, 102, 241, 0.12) 1px, transparent 1px)
             `,
-            backgroundSize: '50px 50px',
-            maskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)'
+            backgroundSize: '50px 50px'
           }}
         />
       </div>
@@ -75,7 +70,7 @@ export default function Portfolio() {
       {/* Global Progress Bar */}
       <ScrollProgressBar />
       
-      {/* Hero Section - 3D Holographic */}
+      {/* Hero Section */}
       <HeroSection />
       
       {/* Animated Stats */}
@@ -129,7 +124,7 @@ function ScrollProgressBar() {
 }
 
 // ============================================================================
-// HERO SECTION - 3D Holographic
+// HERO SECTION
 // ============================================================================
 function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
@@ -142,71 +137,13 @@ function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 4 + 2,
-    delay: Math.random() * 2
-  }));
-
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 z-10">
-      {/* Dark gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-dainamics-background to-dainamics-background" />
-
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            y,
-            backgroundImage: `
-              linear-gradient(rgba(16,228,255,0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(16,228,255,0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: '80px 80px'
-          }}
-        />
-      </div>
-
-      {/* Floating Particles - darker and subtler */}
-      <div className="absolute inset-0 pointer-events-none">
-        {particles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full blur-sm"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: particle.size,
-              height: particle.size,
-              backgroundColor: i % 3 === 0 ? COLORS.primary : i % 3 === 1 ? COLORS.accent : COLORS.cta,
-              opacity: 0.15
-            }}
-            animate={{
-              y: [-20, 20, -20],
-              opacity: [0.1, 0.2, 0.1],
-              scale: [1, 1.3, 1]
-            }}
-            transition={{
-              duration: 4 + Math.random() * 2,
-              repeat: Infinity,
-              delay: particle.delay,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Dark vignette effect */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/50" />
-
       {/* Content */}
       <motion.div
         className="relative z-10 max-w-6xl mx-auto px-6 text-center"
         style={{ y, opacity, scale }}
       >
-
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -447,16 +384,6 @@ function FilterSection({ selectedCategory, onCategoryChange }: any) {
 function FeaturedProjectsSection({ projects, hoveredProject, onHover }: any) {
   return (
     <section id="featured" className="py-32 px-6 relative z-10">
-      <div className="absolute inset-0 opacity-10">
-        <div 
-          className="w-full h-full"
-          style={{
-            background: `radial-gradient(circle at 30% 50%, ${COLORS.primary}, transparent 50%),
-                         radial-gradient(circle at 70% 50%, ${COLORS.accent}, transparent 50%)`
-          }}
-        />
-      </div>
-
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -776,19 +703,6 @@ function TechnologiesSection() {
 
   return (
     <section className="py-32 px-6 relative overflow-hidden z-10">
-      <motion.div
-        className="absolute inset-0 opacity-10"
-        animate={{
-          background: [
-            `radial-gradient(circle at 20% 50%, ${COLORS.primary}, transparent)`,
-            `radial-gradient(circle at 80% 50%, ${COLORS.accent}, transparent)`,
-            `radial-gradient(circle at 50% 80%, ${COLORS.cta}, transparent)`,
-            `radial-gradient(circle at 20% 50%, ${COLORS.primary}, transparent)`
-          ]
-        }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -855,18 +769,6 @@ function TechnologiesSection() {
 function CTASection() {
   return (
     <section className="py-32 px-6 relative overflow-hidden z-10">
-      <motion.div
-        className="absolute inset-0 opacity-20"
-        animate={{
-          backgroundPosition: ['0% 0%', '100% 100%']
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        style={{
-          backgroundImage: `repeating-linear-gradient(45deg, ${COLORS.primary} 0, ${COLORS.primary} 1px, transparent 0, transparent 50%)`,
-          backgroundSize: '20px 20px'
-        }}
-      />
-
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
