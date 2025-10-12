@@ -1,5 +1,5 @@
 // src/pages/ExpertiseIA.tsx
-// Intelligence Artificielle - Page d'Expertise avec VRAIS Effets Sticky Scroll
+// Intelligence Artificielle - Page d'Expertise avec Design Glass-Morphism
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 
 import { useState, useRef } from 'react';
@@ -62,7 +62,7 @@ export default function ExpertiseIA() {
       <EnhancedGridBackground />
       <Navigation />
       
-      {/* Hero Section - Neural Network Visual */}
+      {/* Hero Section - Glass-Morphism Visual */}
       <HeroSection pillar={pillar} iaColor={iaColor} />
       
       {/* Metrics Section */}
@@ -95,7 +95,7 @@ export default function ExpertiseIA() {
 }
 
 // ============================================================================
-// HERO SECTION - Neural Network Visual
+// HERO SECTION - Glass-Morphism Premium Design
 // ============================================================================
 function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
   const heroRef = useRef<HTMLElement>(null);
@@ -109,6 +109,23 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
+      {/* Gradient Glow Background */}
+      <motion.div 
+        className="absolute inset-0"
+        animate={{
+          background: [
+            `radial-gradient(circle at 30% 50%, ${iaColor}15, transparent 50%)`,
+            `radial-gradient(circle at 70% 50%, ${iaColor}15, transparent 50%)`,
+            `radial-gradient(circle at 30% 50%, ${iaColor}15, transparent 50%)`,
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
       {/* Floating Orbs */}
       <FloatingOrbs color={iaColor} />
 
@@ -117,19 +134,22 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
         style={{ opacity }}
       >
-        {/* Badge - AMÉLIORATION: border-2 + hover effect */}
+        {/* Badge - GLASS MORPHISM */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 transition-all hover:scale-105"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full mb-8 transition-all hover:scale-105"
           style={{ 
-            backgroundColor: `${iaColor}15`,
-            border: `2px solid ${iaColor}40`
+            background: `linear-gradient(135deg, ${iaColor}20, ${iaColor}05)`,
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: `1px solid ${iaColor}30`,
+            boxShadow: `0 8px 32px ${iaColor}10, inset 0 1px 1px rgba(255,255,255,0.1)`
           }}
         >
-          <Brain className="w-4 h-4" style={{ color: iaColor }} />
-          <span className="text-sm font-medium" style={{ color: iaColor }}>
+          <Brain className="w-5 h-5" style={{ color: iaColor }} />
+          <span className="text-sm font-semibold" style={{ color: iaColor }}>
             {pillar.name}
           </span>
         </motion.div>
@@ -149,7 +169,8 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
               className="inline-block mr-4"
               style={{ 
-                color: i % 3 === 0 ? iaColor : 'inherit'
+                color: i % 3 === 0 ? iaColor : 'inherit',
+                filter: i % 3 === 0 ? `drop-shadow(0 0 20px ${iaColor}40)` : 'none'
               }}
             >
               {word}
@@ -162,12 +183,12 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
+          className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
         >
           {pillar.description}
         </motion.p>
 
-        {/* CTAs - AMÉLIORATION: border-2 + transitions */}
+        {/* CTAs - GLASS MORPHISM BUTTONS */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -175,30 +196,55 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
           className="flex items-center justify-center gap-4 flex-wrap"
         >
           <Link to="/contact">
-            <Button 
-              size="lg" 
-              className="group border-2 border-white/30 hover:border-white/50 transition-all"
-              style={{ 
-                backgroundColor: iaColor,
-                color: 'white'
-              }}
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
-              Démarrer un Projet IA
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
+              <Button 
+                size="lg" 
+                className="group relative overflow-hidden"
+                style={{ 
+                  background: `linear-gradient(135deg, ${iaColor}, ${iaColor}dd)`,
+                  color: 'white',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  boxShadow: `0 8px 32px ${iaColor}40, inset 0 1px 1px rgba(255,255,255,0.2)`,
+                  backdropFilter: 'blur(10px)'
+                }}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Démarrer un Projet IA
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                {/* Hover Glow */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                  style={{ background: `radial-gradient(circle, ${iaColor}80, transparent)` }}
+                />
+              </Button>
+            </motion.div>
           </Link>
           <Link to="/portfolio">
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-2 hover:bg-opacity-10 transition-all"
-              style={{ 
-                borderColor: iaColor,
-                color: iaColor
-              }}
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
-              Voir Nos Projets
-            </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="relative overflow-hidden transition-all"
+                style={{ 
+                  background: `linear-gradient(135deg, ${iaColor}10, transparent)`,
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  borderColor: `${iaColor}40`,
+                  color: iaColor,
+                  borderWidth: '2px',
+                  boxShadow: `inset 0 1px 1px rgba(255,255,255,0.1)`
+                }}
+              >
+                Voir Nos Projets
+              </Button>
+            </motion.div>
           </Link>
         </motion.div>
       </motion.div>
@@ -207,7 +253,7 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
 }
 
 // ============================================================================
-// METRICS SECTION - Staggered Reveal
+// METRICS SECTION - Glass Cards with Glow
 // ============================================================================
 function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -236,18 +282,22 @@ function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string })
                 delay: index * 0.15,
                 ease: [0.22, 1, 0.36, 1]
               }}
-              className="relative p-8 rounded-2xl group transition-all hover:scale-105"
+              whileHover={{ scale: 1.08, y: -8 }}
+              className="relative p-8 rounded-3xl group transition-all cursor-pointer"
               style={{
                 background: `linear-gradient(135deg, ${iaColor}08, transparent)`,
-                border: `2px solid ${iaColor}30`
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: `1px solid ${iaColor}20`,
+                boxShadow: `0 8px 32px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.05)`
               }}
             >
               {/* Icon */}
               <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileHover={{ scale: 1.2, rotate: 10 }}
                 className="mb-4"
               >
-                <metric.icon className="w-8 h-8" style={{ color: iaColor }} />
+                <metric.icon className="w-10 h-10" style={{ color: iaColor, filter: `drop-shadow(0 0 10px ${iaColor}60)` }} />
               </motion.div>
 
               {/* Value */}
@@ -255,21 +305,30 @@ function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string })
                 initial={{ scale: 0.5 }}
                 animate={isInView ? { scale: 1 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.15 + 0.2 }}
-                className="text-4xl font-bold mb-2"
-                style={{ color: iaColor }}
+                className="text-5xl font-bold mb-2"
+                style={{ 
+                  color: iaColor,
+                  textShadow: `0 0 30px ${iaColor}50`
+                }}
               >
                 {metric.value}
               </motion.div>
 
               {/* Label */}
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-gray-400 font-medium">
                 {metric.label}
               </div>
 
-              {/* Hover Glow - AMÉLIORATION */}
+              {/* Hover Glow - Enhanced */}
               <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl -z-10"
-                style={{ backgroundColor: `${iaColor}30` }}
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl blur-2xl -z-10"
+                style={{ background: `radial-gradient(circle, ${iaColor}40, transparent 70%)` }}
+              />
+              
+              {/* Glass Reflection */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-1/2 rounded-t-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.2), transparent)' }}
               />
             </motion.div>
           ))}
@@ -280,7 +339,7 @@ function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string })
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - STICKY SCROLL TYPE 1 (Sticky Sidebar)
+// TECHNOLOGIES SECTION - STICKY SCROLL with Glass Design
 // ============================================================================
 function TechnologiesSection({ 
   technologies, 
@@ -296,7 +355,7 @@ function TechnologiesSection({
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* LEFT - STICKY SIDEBAR */}
+          {/* LEFT - STICKY SIDEBAR with Glass */}
           <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start space-y-8">
             {/* Title */}
             <motion.div
@@ -306,14 +365,14 @@ function TechnologiesSection({
               viewport={{ once: true }}
             >
               <h2 className="text-4xl font-bold mb-4">
-                Technologies <span style={{ color: iaColor }}>IA</span>
+                Technologies <span style={{ color: iaColor, textShadow: `0 0 20px ${iaColor}40` }}>IA</span>
               </h2>
-              <p className="text-gray-400 text-lg">
+              <p className="text-gray-400 text-lg leading-relaxed">
                 Notre stack technique pour l'intelligence artificielle
               </p>
             </motion.div>
 
-            {/* Filters - AMÉLIORATION: border-2 + transitions */}
+            {/* Filters - GLASS BUTTONS */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -325,45 +384,73 @@ function TechnologiesSection({
                 Niveau de Maîtrise
               </div>
               {(['all', 'expert', 'advanced', 'intermediate'] as const).map((level) => (
-                <button
+                <motion.button
                   key={level}
                   onClick={() => setSelectedProficiency(level)}
-                  className="w-full text-left px-4 py-3 rounded-lg transition-all duration-300 hover:scale-102"
+                  whileHover={{ scale: 1.02, x: 4 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full text-left px-5 py-4 rounded-xl transition-all duration-300 relative overflow-hidden"
                   style={{
-                    backgroundColor: selectedProficiency === level ? `${iaColor}20` : 'transparent',
+                    background: selectedProficiency === level 
+                      ? `linear-gradient(135deg, ${iaColor}25, ${iaColor}10)` 
+                      : 'linear-gradient(135deg, rgba(255,255,255,0.03), transparent)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
                     borderLeft: `4px solid ${selectedProficiency === level ? iaColor : 'transparent'}`,
                     color: selectedProficiency === level ? iaColor : '#9CA3AF',
-                    border: selectedProficiency === level ? `2px solid ${iaColor}40` : '2px solid transparent'
+                    border: `1px solid ${selectedProficiency === level ? `${iaColor}40` : 'rgba(255,255,255,0.05)'}`,
+                    boxShadow: selectedProficiency === level 
+                      ? `0 8px 24px ${iaColor}15, inset 0 1px 1px rgba(255,255,255,0.1)` 
+                      : 'none'
                   }}
                 >
-                  <span className="font-medium capitalize">
-                    {level === 'all' ? 'Toutes' : level === 'expert' ? 'Expert' : level === 'advanced' ? 'Avancé' : 'Intermédiaire'}
+                  <span className="font-semibold capitalize flex items-center justify-between">
+                    <span>{level === 'all' ? 'Toutes' : level === 'expert' ? 'Expert' : level === 'advanced' ? 'Avancé' : 'Intermédiaire'}</span>
+                    <span className="text-xs px-2 py-1 rounded-full" style={{
+                      background: selectedProficiency === level ? `${iaColor}20` : 'rgba(255,255,255,0.05)',
+                      color: selectedProficiency === level ? iaColor : '#6B7280'
+                    }}>
+                      {level === 'all' ? allTechnologies.length : allTechnologies.filter((t: any) => t.proficiency === level).length}
+                    </span>
                   </span>
-                  <span className="text-sm text-gray-500 ml-2">
-                    ({level === 'all' ? allTechnologies.length : allTechnologies.filter((t: any) => t.proficiency === level).length})
-                  </span>
-                </button>
+                  {/* Hover Glow */}
+                  {selectedProficiency === level && (
+                    <div 
+                      className="absolute inset-0 blur-xl -z-10"
+                      style={{ background: `radial-gradient(circle, ${iaColor}20, transparent 70%)` }}
+                    />
+                  )}
+                </motion.button>
               ))}
             </motion.div>
 
-            {/* Stats - AMÉLIORATION: border-2 */}
+            {/* Stats - GLASS CARD */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="p-6 rounded-xl transition-all hover:scale-105"
+              whileHover={{ scale: 1.05, y: -4 }}
+              className="p-8 rounded-2xl transition-all cursor-pointer relative overflow-hidden"
               style={{
-                background: `linear-gradient(135deg, ${iaColor}10, transparent)`,
-                border: `2px solid ${iaColor}40`
+                background: `linear-gradient(135deg, ${iaColor}15, transparent)`,
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: `1px solid ${iaColor}30`,
+                boxShadow: `0 8px 32px ${iaColor}10, inset 0 1px 1px rgba(255,255,255,0.1)`
               }}
             >
-              <div className="text-3xl font-bold mb-2" style={{ color: iaColor }}>
+              <div className="text-4xl font-bold mb-2" style={{ color: iaColor, textShadow: `0 0 20px ${iaColor}50` }}>
                 {allTechnologies.length}+
               </div>
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-gray-400 font-medium">
                 Technologies maîtrisées
               </div>
+              {/* Glass Reflection */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-1/2 rounded-t-2xl opacity-10"
+                style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.2), transparent)' }}
+              />
             </motion.div>
           </div>
 
@@ -399,57 +486,70 @@ function TechnologyCard({ tech, index, iaColor }: any) {
         delay: index * 0.1,
         ease: [0.22, 1, 0.36, 1]
       }}
-      whileHover={{ scale: 1.02, x: -8 }}
-      className="p-6 rounded-xl backdrop-blur-sm group cursor-pointer transition-all relative"
+      whileHover={{ scale: 1.02, x: -12, y: -4 }}
+      className="p-6 rounded-2xl group cursor-pointer transition-all relative overflow-hidden"
       style={{
-        background: `linear-gradient(135deg, ${iaColor}08, transparent)`,
-        border: `2px solid ${iaColor}30`
+        background: `linear-gradient(135deg, ${iaColor}05, transparent)`,
+        backdropFilter: 'blur(15px)',
+        WebkitBackdropFilter: 'blur(15px)',
+        border: `1px solid ${iaColor}20`,
+        boxShadow: '0 4px 20px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.05)'
       }}
     >
-      {/* Glow on hover - AMÉLIORATION */}
+      {/* Glow on hover - Enhanced */}
       <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl blur-xl -z-10"
-        style={{ backgroundColor: `${iaColor}20` }}
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl blur-2xl -z-10"
+        style={{ background: `radial-gradient(circle at 50% 50%, ${iaColor}25, transparent 70%)` }}
+      />
+      
+      {/* Glass Reflection */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-1/3 rounded-t-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+        style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.1), transparent)' }}
       />
 
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-4 relative z-10">
         {/* Icon */}
         {Icon && (
           <motion.div
             whileHover={{ rotate: 360, scale: 1.2 }}
             transition={{ duration: 0.6 }}
-            className="flex-shrink-0 p-3 rounded-lg"
+            className="flex-shrink-0 p-3 rounded-xl"
             style={{ 
-              backgroundColor: `${iaColor}15`,
-              border: `2px solid ${iaColor}30`
+              background: `linear-gradient(135deg, ${iaColor}20, ${iaColor}10)`,
+              border: `1px solid ${iaColor}30`,
+              boxShadow: `0 4px 16px ${iaColor}15, inset 0 1px 1px rgba(255,255,255,0.1)`,
+              backdropFilter: 'blur(10px)'
             }}
           >
-            <Icon className="w-6 h-6" style={{ color: iaColor }} />
+            <Icon className="w-6 h-6" style={{ color: iaColor, filter: `drop-shadow(0 0 6px ${iaColor}60)` }} />
           </motion.div>
         )}
 
         {/* Content */}
         <div className="flex-grow">
           <div className="flex items-center gap-3 mb-2">
-            <h3 className="text-xl font-semibold">{tech.name}</h3>
+            <h3 className="text-xl font-semibold text-white">{tech.name}</h3>
             <Badge 
               variant="outline"
-              className="border-2 transition-all"
+              className="text-xs px-2 py-1 transition-all"
               style={{ 
-                borderColor: iaColor,
+                background: `linear-gradient(135deg, ${iaColor}15, transparent)`,
+                borderColor: `${iaColor}40`,
                 color: iaColor,
-                fontSize: '0.7rem'
+                backdropFilter: 'blur(10px)',
+                boxShadow: `inset 0 1px 1px rgba(255,255,255,0.1)`
               }}
             >
               {tech.proficiency}
             </Badge>
           </div>
-          <p className="text-gray-400 text-sm mb-3">{tech.description}</p>
+          <p className="text-gray-400 text-sm mb-3 leading-relaxed">{tech.description}</p>
           
           {/* Used In Projects */}
           {tech.usedIn.length > 0 && (
             <div className="flex items-center gap-2 text-xs text-gray-500">
-              <CheckCircle className="w-3 h-3" style={{ color: COLORS.success }} />
+              <CheckCircle className="w-3 h-3" style={{ color: COLORS.success, filter: `drop-shadow(0 0 4px ${COLORS.success}40)` }} />
               <span>Utilisé dans {tech.usedIn.length} projet{tech.usedIn.length > 1 ? 's' : ''}</span>
             </div>
           )}
@@ -457,7 +557,8 @@ function TechnologyCard({ tech, index, iaColor }: any) {
 
         {/* Arrow */}
         <ChevronRight 
-          className="w-5 h-5 text-gray-600 group-hover:text-dainamics-light group-hover:translate-x-1 transition-all flex-shrink-0"
+          className="w-5 h-5 text-gray-600 group-hover:text-dainamics-light group-hover:translate-x-2 transition-all flex-shrink-0"
+          style={{ filter: 'drop-shadow(0 0 4px rgba(255,255,255,0.2))' }}
         />
       </div>
     </motion.div>
@@ -465,7 +566,7 @@ function TechnologyCard({ tech, index, iaColor }: any) {
 }
 
 // ============================================================================
-// CAPABILITIES SECTION - STICKY SCROLL TYPE 2 (Progress-based)
+// CAPABILITIES SECTION - Glass Cards with Progressive Scroll
 // ============================================================================
 function CapabilitiesSection({ capabilities, iaColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -482,9 +583,9 @@ function CapabilitiesSection({ capabilities, iaColor }: any) {
           className="text-center mb-20"
         >
           <h2 className="text-5xl font-bold mb-6">
-            Nos <span style={{ color: iaColor }}>Capacités</span> IA
+            Nos <span style={{ color: iaColor, textShadow: `0 0 30px ${iaColor}40` }}>Capacités</span> IA
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Des services complets pour transformer votre entreprise avec l'intelligence artificielle
           </p>
         </motion.div>
@@ -512,7 +613,7 @@ function CapabilityItem({ capability, index, iaColor }: any) {
     offset: ["start end", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const Icon = iconMapper[capability.icon];
@@ -532,43 +633,54 @@ function CapabilityItem({ capability, index, iaColor }: any) {
         viewport={{ once: true }}
         className="space-y-6"
       >
-        {/* Icon - AMÉLIORATION: border-2 */}
+        {/* Icon - GLASS */}
         <motion.div
-          whileHover={{ rotate: 5, scale: 1.05 }}
-          className="inline-flex p-6 rounded-2xl transition-all"
+          whileHover={{ rotate: 10, scale: 1.1 }}
+          className="inline-flex p-8 rounded-3xl transition-all relative overflow-hidden cursor-pointer"
           style={{ 
-            backgroundColor: `${iaColor}15`,
-            border: `2px solid ${iaColor}30`
+            background: `linear-gradient(135deg, ${iaColor}20, ${iaColor}05)`,
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: `1px solid ${iaColor}30`,
+            boxShadow: `0 8px 32px ${iaColor}15, inset 0 1px 1px rgba(255,255,255,0.1)`
           }}
         >
-          {Icon && <Icon className="w-12 h-12" style={{ color: iaColor }} />}
+          {Icon && <Icon className="w-14 h-14" style={{ color: iaColor, filter: `drop-shadow(0 0 12px ${iaColor}60)` }} />}
+          {/* Glass Reflection */}
+          <div 
+            className="absolute top-0 left-0 right-0 h-1/2 rounded-t-3xl opacity-10"
+            style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.2), transparent)' }}
+          />
         </motion.div>
 
-        {/* Title & Badge - AMÉLIORATION: border-2 sur badge */}
+        {/* Title & Badge */}
         <div>
           <Badge 
-            className="mb-4 border-2 transition-all"
+            className="mb-4 text-xs px-3 py-1 transition-all"
             style={{ 
-              backgroundColor: `${complexityColor}20`,
+              background: `linear-gradient(135deg, ${complexityColor}25, ${complexityColor}10)`,
               color: complexityColor,
-              borderColor: `${complexityColor}60`
+              borderColor: `${complexityColor}50`,
+              border: '1px solid',
+              backdropFilter: 'blur(10px)',
+              boxShadow: `0 4px 12px ${complexityColor}15, inset 0 1px 1px rgba(255,255,255,0.1)`
             }}
           >
             {capability.complexity}
           </Badge>
-          <h3 className="text-3xl font-bold mb-4">{capability.name}</h3>
-          <p className="text-gray-400 text-lg">{capability.description}</p>
+          <h3 className="text-3xl font-bold mb-4 text-white">{capability.name}</h3>
+          <p className="text-gray-300 text-lg leading-relaxed">{capability.description}</p>
         </div>
 
         {/* Timeline */}
         <div className="flex items-center gap-3 text-sm">
-          <Clock className="w-4 h-4" style={{ color: iaColor }} />
-          <span className="text-gray-500">Durée typique: </span>
+          <Clock className="w-5 h-5" style={{ color: iaColor, filter: `drop-shadow(0 0 6px ${iaColor}40)` }} />
+          <span className="text-gray-400">Durée typique: </span>
           <span style={{ color: iaColor }} className="font-semibold">{capability.timeline}</span>
         </div>
       </motion.div>
 
-      {/* Right - Deliverables - AMÉLIORATION: border-2 */}
+      {/* Right - Deliverables - GLASS CARDS */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -576,7 +688,7 @@ function CapabilityItem({ capability, index, iaColor }: any) {
         viewport={{ once: true }}
         className="space-y-4"
       >
-        <h4 className="text-xl font-semibold mb-6 text-gray-300">Livrables</h4>
+        <h4 className="text-xl font-semibold mb-6 text-gray-200">Livrables</h4>
         {capability.deliverables.map((deliverable: string, idx: number) => (
           <motion.div
             key={idx}
@@ -584,14 +696,24 @@ function CapabilityItem({ capability, index, iaColor }: any) {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
             viewport={{ once: true }}
-            className="flex items-start gap-3 p-4 rounded-lg transition-all hover:scale-102"
+            whileHover={{ scale: 1.02, x: 4 }}
+            className="flex items-start gap-3 p-5 rounded-xl transition-all relative overflow-hidden cursor-pointer"
             style={{
-              background: `linear-gradient(135deg, ${iaColor}05, transparent)`,
-              borderLeft: `3px solid ${iaColor}60`
+              background: `linear-gradient(135deg, ${iaColor}08, transparent)`,
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              borderLeft: `3px solid ${iaColor}50`,
+              border: `1px solid ${iaColor}15`,
+              boxShadow: '0 2px 12px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.05)'
             }}
           >
-            <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: COLORS.success }} />
-            <span className="text-gray-300">{deliverable}</span>
+            <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: COLORS.success, filter: `drop-shadow(0 0 6px ${COLORS.success}40)` }} />
+            <span className="text-gray-200 leading-relaxed">{deliverable}</span>
+            {/* Glass Reflection */}
+            <div 
+              className="absolute top-0 left-0 right-0 h-1/3 rounded-t-xl opacity-0 hover:opacity-10 transition-opacity duration-500"
+              style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.1), transparent)' }}
+            />
           </motion.div>
         ))}
       </motion.div>
@@ -600,7 +722,7 @@ function CapabilityItem({ capability, index, iaColor }: any) {
 }
 
 // ============================================================================
-// USE CASES SECTION - Scroll-Triggered Timeline
+// USE CASES SECTION - Glass Timeline
 // ============================================================================
 function UseCasesSection({ useCases, iaColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -617,19 +739,22 @@ function UseCasesSection({ useCases, iaColor }: any) {
           className="text-center mb-20"
         >
           <h2 className="text-5xl font-bold mb-6">
-            Cas d'<span style={{ color: iaColor }}>Usage</span> Concrets
+            Cas d'<span style={{ color: iaColor, textShadow: `0 0 30px ${iaColor}40` }}>Usage</span> Concrets
           </h2>
-          <p className="text-xl text-gray-400">
+          <p className="text-xl text-gray-300 leading-relaxed">
             Transformations réelles pour des entreprises suisses
           </p>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative space-y-16">
-          {/* Vertical Line - AMÉLIORATION: plus épaisse */}
+          {/* Vertical Line - GLASS */}
           <div 
-            className="absolute left-8 top-0 bottom-0 w-1"
-            style={{ backgroundColor: `${iaColor}40` }}
+            className="absolute left-8 top-0 bottom-0 w-1 rounded-full"
+            style={{ 
+              background: `linear-gradient(180deg, ${iaColor}60, ${iaColor}20)`,
+              boxShadow: `0 0 20px ${iaColor}30`
+            }}
           />
 
           {useCases.map((useCase: any, index: number) => (
@@ -658,50 +783,62 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
       transition={{ duration: 0.8, delay: index * 0.2 }}
       className="relative pl-24"
     >
-      {/* Timeline Dot - AMÉLIORATION: plus gros */}
+      {/* Timeline Dot - GLASS */}
       <motion.div
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : {}}
         transition={{ duration: 0.5, delay: index * 0.2 }}
-        className="absolute left-6 top-6 w-6 h-6 rounded-full border-4 border-dainamics-background"
+        className="absolute left-6 top-8 w-8 h-8 rounded-full border-4 border-dainamics-background"
         style={{ 
-          backgroundColor: iaColor,
-          boxShadow: `0 0 25px ${iaColor}`
+          background: `radial-gradient(circle, ${iaColor}, ${iaColor}cc)`,
+          boxShadow: `0 0 30px ${iaColor}80, 0 0 60px ${iaColor}40`
         }}
       />
 
-      {/* Card - AMÉLIORATION: border-2 + hover */}
+      {/* Card - GLASS */}
       <motion.div
-        whileHover={{ scale: 1.02, y: -4 }}
-        className="p-8 rounded-2xl transition-all group relative"
+        whileHover={{ scale: 1.02, y: -8, x: -4 }}
+        className="p-8 rounded-3xl transition-all group relative overflow-hidden cursor-pointer"
         style={{
-          background: `linear-gradient(135deg, ${iaColor}10, transparent)`,
-          border: `2px solid ${iaColor}40`
+          background: `linear-gradient(135deg, ${iaColor}12, transparent)`,
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: `1px solid ${iaColor}30`,
+          boxShadow: `0 8px 32px ${iaColor}10, inset 0 1px 1px rgba(255,255,255,0.05)`
         }}
       >
-        {/* Glow on hover - AMÉLIORATION */}
+        {/* Glow on hover */}
         <div 
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl -z-10"
-          style={{ backgroundColor: `${iaColor}20` }}
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl blur-3xl -z-10"
+          style={{ background: `radial-gradient(circle at 50% 50%, ${iaColor}30, transparent 70%)` }}
+        />
+        
+        {/* Glass Reflection */}
+        <div 
+          className="absolute top-0 left-0 right-0 h-1/3 rounded-t-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+          style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.15), transparent)' }}
         />
 
-        {/* Industry - AMÉLIORATION: border-2 */}
+        {/* Industry - GLASS BADGE */}
         <Badge 
-          className="mb-4 border-2 transition-all"
+          className="mb-4 text-xs px-3 py-1 transition-all"
           variant="outline"
           style={{ 
-            borderColor: iaColor,
-            color: iaColor
+            background: `linear-gradient(135deg, ${iaColor}20, transparent)`,
+            borderColor: `${iaColor}40`,
+            color: iaColor,
+            backdropFilter: 'blur(10px)',
+            boxShadow: `inset 0 1px 1px rgba(255,255,255,0.1)`
           }}
         >
           {useCase.industry}
         </Badge>
 
         {/* Title */}
-        <h3 className="text-2xl font-bold mb-4">{useCase.title}</h3>
+        <h3 className="text-2xl font-bold mb-4 text-white">{useCase.title}</h3>
 
         {/* Description */}
-        <p className="text-gray-400 mb-6">{useCase.description}</p>
+        <p className="text-gray-300 mb-6 leading-relaxed">{useCase.description}</p>
 
         {/* ROI Results */}
         <div className="grid grid-cols-2 gap-4">
@@ -709,10 +846,15 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg"
+            style={{
+              background: `linear-gradient(135deg, ${COLORS.success}15, transparent)`,
+              backdropFilter: 'blur(10px)',
+              border: `1px solid ${COLORS.success}20`
+            }}
           >
-            <TrendingUp className="w-4 h-4" style={{ color: COLORS.success }} />
-            <span className="text-sm" style={{ color: COLORS.success }}>
+            <TrendingUp className="w-4 h-4" style={{ color: COLORS.success, filter: `drop-shadow(0 0 6px ${COLORS.success}40)` }} />
+            <span className="text-sm font-semibold" style={{ color: COLORS.success }}>
               {useCase.roi.savings}
             </span>
           </motion.div>
@@ -720,10 +862,15 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg"
+            style={{
+              background: `linear-gradient(135deg, ${COLORS.success}15, transparent)`,
+              backdropFilter: 'blur(10px)',
+              border: `1px solid ${COLORS.success}20`
+            }}
           >
-            <TrendingUp className="w-4 h-4" style={{ color: COLORS.success }} />
-            <span className="text-sm" style={{ color: COLORS.success }}>
+            <TrendingUp className="w-4 h-4" style={{ color: COLORS.success, filter: `drop-shadow(0 0 6px ${COLORS.success}40)` }} />
+            <span className="text-sm font-semibold" style={{ color: COLORS.success }}>
               {useCase.roi.efficiency}
             </span>
           </motion.div>
@@ -734,7 +881,7 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
 }
 
 // ============================================================================
-// QUICK WINS SECTION
+// QUICK WINS SECTION - Glass Cards
 // ============================================================================
 function QuickWinsSection({ quickWins, iaColor }: any) {
   return (
@@ -748,9 +895,9 @@ function QuickWinsSection({ quickWins, iaColor }: any) {
           className="text-center mb-16"
         >
           <h2 className="text-5xl font-bold mb-6">
-            Quick <span style={{ color: COLORS.success }}>Wins</span>
+            Quick <span style={{ color: COLORS.success, textShadow: `0 0 30px ${COLORS.success}40` }}>Wins</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Résultats rapides et ROI immédiat avec nos solutions IA
           </p>
         </motion.div>
@@ -780,41 +927,51 @@ function QuickWinCard({ win, index, iaColor }: any) {
       initial={{ opacity: 0, y: 50, rotateX: -15 }}
       animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.15 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      className="p-6 rounded-2xl group cursor-pointer transition-all relative"
+      whileHover={{ y: -12, scale: 1.03 }}
+      className="p-6 rounded-3xl group cursor-pointer transition-all relative overflow-hidden"
       style={{
-        background: `linear-gradient(135deg, ${COLORS.success}10, transparent)`,
-        border: `2px solid ${COLORS.success}40`
+        background: `linear-gradient(135deg, ${COLORS.success}12, transparent)`,
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        border: `1px solid ${COLORS.success}30`,
+        boxShadow: `0 8px 32px ${COLORS.success}10, inset 0 1px 1px rgba(255,255,255,0.05)`
       }}
     >
-      {/* Glow on hover - AMÉLIORATION */}
+      {/* Glow on hover */}
       <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl -z-10"
-        style={{ backgroundColor: `${COLORS.success}20` }}
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl blur-3xl -z-10"
+        style={{ background: `radial-gradient(circle at 50% 50%, ${COLORS.success}30, transparent 70%)` }}
+      />
+      
+      {/* Glass Reflection */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-1/3 rounded-t-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+        style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.15), transparent)' }}
       />
 
-      {/* Badge - AMÉLIORATION: border */}
+      {/* Badge */}
       <Badge 
-        className="mb-4 border transition-all"
+        className="mb-4 transition-all"
         style={{
-          backgroundColor: COLORS.success,
+          background: `linear-gradient(135deg, ${COLORS.success}, ${COLORS.success}dd)`,
           color: 'white',
           fontSize: '0.6rem',
-          padding: '0.25rem 0.5rem',
-          borderColor: 'white'
+          padding: '0.35rem 0.6rem',
+          border: '1px solid rgba(255,255,255,0.2)',
+          boxShadow: `0 4px 12px ${COLORS.success}30, inset 0 1px 1px rgba(255,255,255,0.2)`
         }}
       >
         QUICK WIN
       </Badge>
 
       {/* Title */}
-      <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform">
+      <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform text-white">
         {win.title}
       </h3>
 
       {/* Timeframe */}
-      <p className="text-sm text-gray-400 mb-2">
-        <Clock className="w-4 h-4 inline mr-2" style={{ color: COLORS.success }} />
+      <p className="text-sm text-gray-400 mb-2 flex items-center gap-2">
+        <Clock className="w-4 h-4" style={{ color: COLORS.success, filter: `drop-shadow(0 0 4px ${COLORS.success}40)` }} />
         {win.timeframe}
       </p>
 
@@ -824,8 +981,12 @@ function QuickWinCard({ win, index, iaColor }: any) {
       </p>
 
       {/* Returns */}
-      <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: COLORS.success }}>
-        <Zap className="w-4 h-4" />
+      <div className="flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg mt-4" style={{ 
+        color: COLORS.success,
+        background: `linear-gradient(135deg, ${COLORS.success}15, transparent)`,
+        border: `1px solid ${COLORS.success}20`
+      }}>
+        <Zap className="w-4 h-4" style={{ filter: `drop-shadow(0 0 4px ${COLORS.success}40)` }} />
         <span>{win.returns}</span>
       </div>
     </motion.div>
@@ -833,63 +994,93 @@ function QuickWinCard({ win, index, iaColor }: any) {
 }
 
 // ============================================================================
-// CTA SECTION
+// CTA SECTION - Premium Glass
 // ============================================================================
 function CTASection({ iaColor }: { iaColor: string }) {
   return (
     <section className="py-32 px-6 relative">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative p-16 rounded-3xl overflow-hidden"
+          className="relative p-16 rounded-[2rem] overflow-hidden"
           style={{
-            background: `radial-gradient(circle at 50% 50%, ${iaColor}20, transparent)`,
-            border: `2px solid ${iaColor}50`
+            background: `linear-gradient(135deg, ${iaColor}15, transparent)`,
+            backdropFilter: 'blur(30px)',
+            WebkitBackdropFilter: 'blur(30px)',
+            border: `1px solid ${iaColor}40`,
+            boxShadow: `0 20px 60px ${iaColor}15, inset 0 1px 1px rgba(255,255,255,0.1)`
           }}
         >
-          {/* Animated Background */}
+          {/* Animated Background Glow */}
           <motion.div
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3]
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.4, 0.2],
+              rotate: [0, 180, 360]
             }}
             transition={{
-              duration: 4,
+              duration: 8,
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute inset-0 blur-3xl"
-            style={{ backgroundColor: iaColor }}
+            className="absolute inset-0 blur-[80px]"
+            style={{ background: `radial-gradient(circle, ${iaColor}40, transparent 60%)` }}
           />
 
           {/* Content */}
           <div className="relative z-10">
-            <Sparkles className="w-12 h-12 mx-auto mb-6" style={{ color: iaColor }} />
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Sparkles className="w-16 h-16 mx-auto mb-6" style={{ color: iaColor, filter: `drop-shadow(0 0 20px ${iaColor}60)` }} />
+            </motion.div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Prêt à transformer votre <span style={{ color: iaColor }}>entreprise</span> ?
+              Prêt à transformer votre <span style={{ color: iaColor, textShadow: `0 0 30px ${iaColor}50` }}>entreprise</span> ?
             </h2>
-            <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
               Discutons de vos besoins en IA et découvrons ensemble comment nous pouvons vous aider
             </p>
             <Link to="/contact">
-              <Button 
-                size="lg"
-                className="group border-2 border-white/30 hover:border-white/50 transition-all"
-                style={{ 
-                  backgroundColor: iaColor,
-                  color: 'white',
-                  padding: '1.5rem 3rem',
-                  fontSize: '1.125rem'
-                }}
+              <motion.div
+                whileHover={{ scale: 1.05, y: -4 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Démarrer Votre Projet IA
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
-              </Button>
+                <Button 
+                  size="lg"
+                  className="group relative overflow-hidden"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${iaColor}, ${iaColor}dd)`,
+                    color: 'white',
+                    padding: '1.75rem 3.5rem',
+                    fontSize: '1.25rem',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    boxShadow: `0 12px 40px ${iaColor}40, inset 0 1px 1px rgba(255,255,255,0.2)`,
+                    backdropFilter: 'blur(10px)'
+                  }}
+                >
+                  <span className="relative z-10 flex items-center gap-3">
+                    Démarrer Votre Projet IA
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform" />
+                  </span>
+                  {/* Hover Glow */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+                    style={{ background: `radial-gradient(circle, ${iaColor}cc, transparent)` }}
+                  />
+                </Button>
+              </motion.div>
             </Link>
           </div>
+          
+          {/* Glass Reflection */}
+          <div 
+            className="absolute top-0 left-0 right-0 h-1/2 rounded-t-[2rem] opacity-10"
+            style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.2), transparent)' }}
+          />
         </motion.div>
       </div>
     </section>
@@ -902,24 +1093,25 @@ function CTASection({ iaColor }: { iaColor: string }) {
 function FloatingOrbs({ color }: { color: string }) {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(3)].map((_, i) => (
+      {[...Array(4)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full blur-3xl"
+          className="absolute rounded-full"
           style={{
-            width: '400px',
-            height: '400px',
-            backgroundColor: `${color}15`,
-            top: `${20 + i * 30}%`,
-            left: `${10 + i * 30}%`,
+            width: `${350 + i * 50}px`,
+            height: `${350 + i * 50}px`,
+            background: `radial-gradient(circle, ${color}${20 - i * 3}, transparent 70%)`,
+            filter: `blur(${60 + i * 20}px)`,
+            top: `${15 + i * 20}%`,
+            left: `${5 + i * 25}%`,
           }}
           animate={{
-            y: [0, -50, 0],
-            x: [0, 30, 0],
-            scale: [1, 1.2, 1],
+            y: [0, -60, 0],
+            x: [0, 40, 0],
+            scale: [1, 1.15, 1],
           }}
           transition={{
-            duration: 8 + i * 2,
+            duration: 10 + i * 2,
             repeat: Infinity,
             ease: "easeInOut"
           }}
