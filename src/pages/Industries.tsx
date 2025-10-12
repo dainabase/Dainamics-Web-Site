@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { 
   ArrowRight, Building2, Store, Briefcase, Landmark, Scale, 
   Home, TrendingUp, Package, Factory, Users, Laptop, 
-  ShoppingCart, Target, CheckCircle2, Zap
+  ShoppingCart, Target, CheckCircle2, Zap, Shield, Clock, Award, HeadphonesIcon
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -108,7 +108,7 @@ export default function Industries() {
       <Navigation />
 
       <main className="relative z-10">
-        {/* Hero Section avec Parallax - MIEUX CENTRÉ */}
+        {/* Hero Section avec Parallax - ENCORE PLUS CENTRÉ */}
         <section ref={heroRef} className="relative py-20 md:py-24 overflow-hidden">
           {/* Éléments flottants en arrière-plan */}
           <motion.div
@@ -139,7 +139,7 @@ export default function Industries() {
             }}
           />
 
-          <div className="container mx-auto px-4 md:px-8 min-h-[70vh] flex items-center">
+          <div className="container mx-auto px-4 md:px-8 min-h-[85vh] flex items-center">
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
               {/* Texte - Gauche avec stagger */}
               <motion.div
@@ -210,7 +210,7 @@ export default function Industries() {
 
                 <motion.div 
                   variants={itemVariants}
-                  className="flex flex-col sm:flex-row gap-4 lg:justify-start"
+                  className="flex flex-col sm:flex-row gap-4 justify-start"
                 >
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
@@ -240,7 +240,7 @@ export default function Industries() {
                 </motion.div>
               </motion.div>
 
-              {/* Stats Card - Droite */}
+              {/* Stats Card - Droite - DESIGN MODERNE */}
               <motion.div
                 className="lg:w-1/2"
                 initial={{ opacity: 0, y: 50, rotateX: 10 }}
@@ -248,33 +248,98 @@ export default function Industries() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 style={{ perspective: 1000 }}
               >
-                <div className="glass-morphism rounded-xl p-8 border border-dainamics-accent/20 backdrop-blur-xl">
-                  <h3 className="text-2xl font-bold text-dainamics-light mb-6 text-center">
-                    Pourquoi par Industrie ?
-                  </h3>
+                <div className="relative glass-morphism rounded-2xl p-8 border border-dainamics-accent/30 backdrop-blur-xl overflow-hidden">
+                  {/* Gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-dainamics-accent/10 via-transparent to-dainamics-primary/10 opacity-50" />
+                  
+                  {/* Glow effect */}
+                  <motion.div 
+                    className="absolute -top-20 -right-20 w-40 h-40 bg-dainamics-accent/30 rounded-full filter blur-3xl"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.6, 0.3]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  />
 
-                  <div className="space-y-4">
-                    {[
-                      { title: 'Solutions Éprouvées', desc: 'Automatisations testées dans votre secteur' },
-                      { title: 'Conformité Garantie', desc: 'Respect des normes spécifiques (nLPD, SwissDec)' },
-                      { title: 'ROI Rapide', desc: 'Implémentation 2-6 semaines, ROI < 6 mois' },
-                      { title: 'Support Expert', desc: 'Équipe connaissant vos défis métier' }
-                    ].map((item, idx) => (
-                      <motion.div
-                        key={idx}
-                        className="flex items-start gap-3"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isHeroInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                        transition={{ delay: 0.6 + idx * 0.1 }}
-                        whileHover={{ x: 5 }}
-                      >
-                        <CheckCircle2 className="h-5 w-5 text-dainamics-accent flex-shrink-0 mt-1" />
-                        <div>
-                          <div className="text-dainamics-light font-medium mb-1">{item.title}</div>
-                          <div className="text-dainamics-light/60 text-sm">{item.desc}</div>
-                        </div>
-                      </motion.div>
-                    ))}
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold text-dainamics-light mb-8 text-center">
+                      Pourquoi par Industrie ?
+                    </h3>
+
+                    {/* Grid 2x2 avec icônes différentes */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        { 
+                          icon: Award, 
+                          title: 'Solutions Éprouvées', 
+                          desc: 'Automatisations testées dans votre secteur',
+                          color: '#10E4FF'
+                        },
+                        { 
+                          icon: Shield, 
+                          title: 'Conformité Garantie', 
+                          desc: 'Respect des normes spécifiques (nLPD, SwissDec)',
+                          color: '#10B981'
+                        },
+                        { 
+                          icon: Clock, 
+                          title: 'ROI Rapide', 
+                          desc: 'Implémentation 2-6 semaines, ROI < 6 mois',
+                          color: '#F59E0B'
+                        },
+                        { 
+                          icon: HeadphonesIcon, 
+                          title: 'Support Expert', 
+                          desc: 'Équipe connaissant vos défis métier',
+                          color: '#6366F1'
+                        }
+                      ].map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="relative p-4 rounded-xl bg-dainamics-background/40 border border-dainamics-light/10 hover:border-dainamics-accent/40 transition-all group"
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={isHeroInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                          transition={{ delay: 0.6 + idx * 0.1 }}
+                          whileHover={{ 
+                            scale: 1.05,
+                            y: -5,
+                            transition: { duration: 0.2 }
+                          }}
+                        >
+                          {/* Glow on hover */}
+                          <motion.div 
+                            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
+                            style={{
+                              background: `radial-gradient(circle at center, ${item.color}20, transparent 70%)`
+                            }}
+                          />
+
+                          <div className="relative z-10">
+                            {/* Icône avec background coloré */}
+                            <div 
+                              className="w-12 h-12 rounded-lg flex items-center justify-center mb-3"
+                              style={{
+                                backgroundColor: `${item.color}15`,
+                                border: `1px solid ${item.color}30`
+                              }}
+                            >
+                              <item.icon 
+                                className="h-6 w-6" 
+                                style={{ color: item.color }}
+                              />
+                            </div>
+
+                            <div className="text-dainamics-light font-semibold mb-2 text-sm">
+                              {item.title}
+                            </div>
+                            <div className="text-dainamics-light/70 text-xs leading-relaxed">
+                              {item.desc}
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
