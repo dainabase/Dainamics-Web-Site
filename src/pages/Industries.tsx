@@ -4,19 +4,12 @@ import { Button } from '@/components/ui/button';
 import { 
   ArrowRight, Building2, Store, Briefcase, Landmark, Scale, 
   Home, TrendingUp, Package, Factory, Users, Laptop, 
-  ShoppingCart, Target, Sparkles, CheckCircle2, Zap
+  ShoppingCart, Target, CheckCircle2, Zap
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { solutions } from '@/data/solutions';
-
-// Extract unique industries from solutions
-const extractIndustries = () => {
-  const allIndustries = solutions.flatMap(s => s.industries);
-  const uniqueIndustries = [...new Set(allIndustries)];
-  return uniqueIndustries.sort();
-};
 
 // Industry data with icons
 const industryData = [
@@ -37,9 +30,6 @@ const industryData = [
 export default function Industries() {
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.3 });
-  
-  const industriesRef = useRef(null);
-  const areIndustriesInView = useInView(industriesRef, { once: true, amount: 0.1 });
 
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
 
@@ -104,7 +94,7 @@ export default function Industries() {
 
       <main className="relative z-10">
         {/* Hero Section avec Parallax */}
-        <section ref={heroRef} className="relative min-h-[80vh] py-32 overflow-hidden">
+        <section ref={heroRef} className="relative py-20 md:py-24 overflow-hidden">
           {/* Éléments flottants en arrière-plan */}
           <motion.div
             className="absolute top-20 left-10 w-32 h-32 rounded-full bg-dainamics-primary/10 blur-3xl"
@@ -145,12 +135,7 @@ export default function Industries() {
               >
                 <motion.div variants={itemVariants} className="mb-4">
                   <span className="inline-flex items-center px-4 py-2 bg-dainamics-accent/10 border border-dainamics-accent/30 rounded-full backdrop-blur-sm">
-                    <motion.div
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                    >
-                      <Building2 className="h-4 w-4 text-dainamics-accent mr-2" />
-                    </motion.div>
+                    <Building2 className="h-4 w-4 text-dainamics-accent mr-2" />
                     <span className="text-dainamics-accent font-semibold tracking-wide uppercase text-sm">
                       Industries
                     </span>
@@ -187,7 +172,7 @@ export default function Industries() {
                   {[
                     { value: industryData.length, label: 'Industries' },
                     { value: solutions.length, label: 'Solutions' },
-                    { value: '15+', label: 'Secteurs' }
+                    { value: '2-6', label: 'Semaines' }
                   ].map((stat, idx) => (
                     <motion.div
                       key={idx}
@@ -200,19 +185,9 @@ export default function Industries() {
                       animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ delay: 0.6 + idx * 0.1 }}
                     >
-                      <motion.div 
-                        className="text-3xl font-bold text-dainamics-accent"
-                        animate={{ 
-                          textShadow: [
-                            "0 0 10px rgba(16,228,255,0.5)",
-                            "0 0 20px rgba(16,228,255,0.8)",
-                            "0 0 10px rgba(16,228,255,0.5)"
-                          ]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
+                      <div className="text-3xl font-bold text-dainamics-accent">
                         {stat.value}
-                      </motion.div>
+                      </div>
                       <div className="text-sm text-dainamics-light/60">{stat.label}</div>
                     </motion.div>
                   ))}
@@ -226,7 +201,7 @@ export default function Industries() {
                     <Button
                       asChild
                       size="lg"
-                      className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-dainamics-background btn-glow font-semibold power-pulse"
+                      className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-dainamics-background btn-glow font-semibold"
                     >
                       <a href="#industries">
                         DÉCOUVRIR LES INDUSTRIES
@@ -250,7 +225,7 @@ export default function Industries() {
                 </motion.div>
               </motion.div>
 
-              {/* Animation Industries - Droite avec 3D effects */}
+              {/* Stats Card - Droite */}
               <motion.div
                 className="lg:w-1/2"
                 initial={{ opacity: 0, y: 50, rotateX: 10 }}
@@ -259,291 +234,267 @@ export default function Industries() {
                 style={{ perspective: 1000 }}
               >
                 <div className="glass-morphism rounded-xl p-8 border border-dainamics-accent/20 backdrop-blur-xl">
-                  <motion.div 
-                    className="text-center mb-8"
-                    initial={{ opacity: 0 }}
-                    animate={isHeroInView ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ delay: 0.6 }}
-                  >
-                    <h3 className="text-2xl font-bold text-dainamics-light mb-2 flex items-center justify-center gap-2">
-                      <motion.div
-                        animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      >
-                        <Sparkles className="h-6 w-6 text-dainamics-accent" />
-                      </motion.div>
-                      Votre Secteur, Nos Solutions
-                    </h3>
-                    <p className="text-dainamics-light/60 text-sm">
-                      Solutions éprouvées par secteur d'activité
-                    </p>
-                  </motion.div>
+                  <h3 className="text-2xl font-bold text-dainamics-light mb-6 text-center">
+                    Pourquoi par Industrie ?
+                  </h3>
 
-                  {/* Grid d'icônes industries flottantes */}
-                  <div className="grid grid-cols-4 gap-6">
-                    {industryData.slice(0, 8).map((industry, idx) => (
+                  <div className="space-y-4">
+                    {[
+                      { title: 'Solutions Éprouvées', desc: 'Automatisations testées dans votre secteur' },
+                      { title: 'Conformité Garantie', desc: 'Respect des normes spécifiques (nLPD, SwissDec)' },
+                      { title: 'ROI Rapide', desc: 'Implémentation 2-6 semaines, ROI < 6 mois' },
+                      { title: 'Support Expert', desc: 'Équipe connaissant vos défis métier' }
+                    ].map((item, idx) => (
                       <motion.div
                         key={idx}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={isHeroInView ? { 
-                          opacity: 1, 
-                          scale: 1,
-                          y: [-5, 5, -5]
-                        } : { opacity: 0, scale: 0 }}
-                        transition={{ 
-                          opacity: { delay: 0.8 + idx * 0.1 },
-                          scale: { delay: 0.8 + idx * 0.1, type: "spring" },
-                          y: { 
-                            duration: 2 + idx * 0.3, 
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }
-                        }}
-                        whileHover={{ 
-                          scale: 1.2,
-                          rotate: 360,
-                          transition: { duration: 0.6 }
-                        }}
-                        className="flex items-center justify-center"
+                        className="flex items-start gap-3"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={isHeroInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                        transition={{ delay: 0.6 + idx * 0.1 }}
+                        whileHover={{ x: 5 }}
                       >
-                        <div 
-                          className="w-12 h-12 rounded-lg flex items-center justify-center"
-                          style={{ 
-                            backgroundColor: `${industry.color}20`,
-                            border: `1px solid ${industry.color}40`
-                          }}
-                        >
-                          <industry.icon 
-                            className="h-6 w-6" 
-                            style={{ color: industry.color }}
-                          />
+                        <CheckCircle2 className="h-5 w-5 text-dainamics-accent flex-shrink-0 mt-1" />
+                        <div>
+                          <div className="text-dainamics-light font-medium mb-1">{item.title}</div>
+                          <div className="text-dainamics-light/60 text-sm">{item.desc}</div>
                         </div>
                       </motion.div>
                     ))}
                   </div>
-
-                  {/* Stats au centre */}
-                  <motion.div 
-                    className="mt-8 text-center"
-                    initial={{ opacity: 0 }}
-                    animate={isHeroInView ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ delay: 1.2 }}
-                  >
-                    <div className="text-dainamics-light/60 text-sm mb-2">
-                      En moyenne par secteur
-                    </div>
-                    <div className="flex items-center justify-center gap-6">
-                      <div>
-                        <div className="text-2xl font-bold text-dainamics-success">3-5</div>
-                        <div className="text-xs text-dainamics-light/60">Solutions</div>
-                      </div>
-                      <div className="w-px h-8 bg-dainamics-light/20" />
-                      <div>
-                        <div className="text-2xl font-bold text-dainamics-accent">2-6</div>
-                        <div className="text-xs text-dainamics-light/60">Semaines</div>
-                      </div>
-                      <div className="w-px h-8 bg-dainamics-light/20" />
-                      <div>
-                        <div className="text-2xl font-bold text-dainamics-warning">ROI</div>
-                        <div className="text-xs text-dainamics-light/60">&lt; 6 mois</div>
-                      </div>
-                    </div>
-                  </motion.div>
                 </div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Grid Industries avec scroll animations */}
-        <section id="industries" ref={industriesRef} className="relative py-20 md:py-32">
+        {/* 2 Colonnes Layout : Liste Gauche + Détails Droite */}
+        <section id="industries" className="relative py-20 md:py-32">
           <div className="container mx-auto px-4 md:px-8">
             {/* Header */}
             <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 20 }}
-              animate={areIndustriesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <motion.h2 
-                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight"
-                whileHover={{ scale: 1.02 }}
-              >
-                <span className="text-gradient">Explorez par</span> <br />
-                <span className="text-gradient-primary glow">Industrie</span>
-              </motion.h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
+                <span className="text-gradient">Sélectionnez</span>{' '}
+                <span className="text-gradient-primary glow">Votre Industrie</span>
+              </h2>
               <p className="text-dainamics-light/70 text-lg max-w-2xl mx-auto">
-                Sélectionnez votre secteur pour découvrir les solutions adaptées à vos défis spécifiques.
+                Cliquez sur votre secteur pour découvrir les solutions adaptées à vos défis.
               </p>
             </motion.div>
 
-            {/* Grid industries avec animations 3D */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {industryData.map((industry, idx) => {
-                const solutionCount = solutions.filter(s => 
-                  s.industries.some(i => i.toLowerCase().includes(industry.name.toLowerCase()))
-                ).length;
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* GAUCHE : Liste Industries compacte */}
+              <div className="lg:w-1/3">
+                <div className="space-y-2 sticky top-24">
+                  {industryData.map((industry, idx) => {
+                    const solutionCount = solutions.filter(s => 
+                      s.industries.some(i => i.toLowerCase().includes(industry.name.toLowerCase()))
+                    ).length;
 
-                return (
-                  <motion.div
-                    key={industry.name}
-                    initial={{ opacity: 0, y: 30, rotateX: -10 }}
-                    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: idx * 0.1,
-                      type: "spring",
-                      stiffness: 100
-                    }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      rotateY: 5,
-                      z: 50,
-                      transition: { duration: 0.3 }
-                    }}
-                    style={{ perspective: 1000 }}
-                    onClick={() => setSelectedIndustry(
-                      selectedIndustry === industry.name ? null : industry.name
-                    )}
-                    className="cursor-pointer"
-                  >
-                    <div 
-                      className={`glass-morphism rounded-xl p-6 h-full group transition-all duration-300 ${
-                        selectedIndustry === industry.name 
-                          ? 'border-dainamics-accent/50 shadow-lg shadow-dainamics-accent/20' 
-                          : 'hover:border-dainamics-accent/30'
-                      }`}
-                    >
-                      {/* Icon avec rotation */}
-                      <motion.div 
-                        className="mb-4"
-                        whileHover={{ 
-                          scale: 1.2,
-                          rotate: 360,
-                          transition: { duration: 0.6 }
-                        }}
-                      >
-                        <div 
-                          className="w-16 h-16 rounded-lg flex items-center justify-center"
-                          style={{ 
-                            backgroundColor: `${industry.color}20`,
-                            border: `1px solid ${industry.color}40`
-                          }}
-                        >
-                          <industry.icon 
-                            className="h-8 w-8" 
-                            style={{ color: industry.color }}
-                          />
-                        </div>
-                      </motion.div>
+                    const isSelected = selectedIndustry === industry.name;
 
-                      {/* Titre */}
-                      <h3 className="text-xl font-bold text-dainamics-light mb-2 group-hover:text-dainamics-accent transition-colors">
-                        {industry.name}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-dainamics-light/70 text-sm mb-4">
-                        {industry.desc}
-                      </p>
-
-                      {/* Stats */}
-                      <div className="flex items-center justify-between pt-4 border-t border-dainamics-light/10">
-                        <div className="flex items-center gap-2 text-sm">
-                          <motion.div
-                            animate={selectedIndustry === industry.name ? {
-                              boxShadow: [
-                                "0 0 10px rgba(16,228,255,0.3)",
-                                "0 0 20px rgba(16,228,255,0.5)",
-                                "0 0 10px rgba(16,228,255,0.3)"
-                              ]
-                            } : {}}
-                            transition={{ duration: 2, repeat: Infinity }}
-                          >
-                            <Zap className="h-4 w-4 text-dainamics-accent" />
-                          </motion.div>
-                          <span className="text-dainamics-accent font-semibold">
-                            {solutionCount} solutions
-                          </span>
-                        </div>
-                        <motion.div
-                          animate={{ x: [0, 5, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        >
-                          <ArrowRight className="h-5 w-5 text-dainamics-light/40 group-hover:text-dainamics-accent transition-colors" />
-                        </motion.div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* Solutions filtrées */}
-            {selectedIndustry && filteredSolutions.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mt-16"
-              >
-                <div className="glass-morphism rounded-xl p-8 border border-dainamics-accent/30">
-                  <div className="flex items-center justify-between mb-8">
-                    <h3 className="text-2xl font-bold text-dainamics-light flex items-center gap-3">
-                      <Target className="h-6 w-6 text-dainamics-accent" />
-                      Solutions pour {selectedIndustry}
-                    </h3>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setSelectedIndustry(null)}
-                      className="border-dainamics-light/20 text-dainamics-light hover:bg-dainamics-light/5"
-                    >
-                      Voir toutes
-                    </Button>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {filteredSolutions.map((solution, idx) => (
-                      <motion.div
-                        key={solution.id}
+                    return (
+                      <motion.button
+                        key={industry.name}
                         initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.05 }}
+                        onClick={() => setSelectedIndustry(isSelected ? null : industry.name)}
+                        className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${
+                          isSelected
+                            ? 'bg-dainamics-accent/20 border border-dainamics-accent/50'
+                            : 'glass-morphism border border-dainamics-light/10 hover:border-dainamics-accent/30 hover:bg-dainamics-light/5'
+                        }`}
                         whileHover={{ scale: 1.02, x: 5 }}
-                        className="flex items-start gap-4 p-4 rounded-lg hover:bg-dainamics-light/5 transition-all"
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <motion.div
-                          whileHover={{ scale: 1.2, rotate: 360 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <CheckCircle2 className="h-6 w-6 text-dainamics-success flex-shrink-0 mt-1" />
-                        </motion.div>
-                        <div>
-                          <h4 className="font-semibold text-dainamics-light mb-1">
-                            {solution.title}
-                          </h4>
-                          <p className="text-sm text-dainamics-light/60 mb-2">
-                            {solution.tagline}
-                          </p>
-                          <Button
-                            asChild
-                            variant="link"
-                            size="sm"
-                            className="text-dainamics-accent hover:text-dainamics-accent/90 p-0 h-auto"
+                        <div className="flex items-center gap-3">
+                          <div
+                            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                            style={{
+                              backgroundColor: `${industry.color}20`,
+                              border: `1px solid ${industry.color}40`
+                            }}
                           >
-                            <a href={`/solutions#${solution.id}`}>
-                              En savoir plus →
-                            </a>
-                          </Button>
+                            <industry.icon className="h-5 w-5" style={{ color: industry.color }} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className={`font-semibold mb-1 ${
+                              isSelected ? 'text-dainamics-accent' : 'text-dainamics-light'
+                            }`}>
+                              {industry.name}
+                            </div>
+                            <div className="text-xs text-dainamics-light/60 truncate">
+                              {industry.desc}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 flex-shrink-0">
+                            <span className="text-xs font-semibold text-dainamics-accent">
+                              {solutionCount}
+                            </span>
+                            <ArrowRight className={`h-4 w-4 transition-transform ${
+                              isSelected ? 'rotate-90 text-dainamics-accent' : 'text-dainamics-light/40'
+                            }`} />
+                          </div>
                         </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                      </motion.button>
+                    );
+                  })}
                 </div>
-              </motion.div>
-            )}
+              </div>
+
+              {/* DROITE : Détails Solutions */}
+              <div className="lg:w-2/3">
+                {!selectedIndustry ? (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="glass-morphism rounded-xl p-12 border border-dainamics-light/10 text-center h-full flex flex-col items-center justify-center min-h-[400px]"
+                  >
+                    <Target className="h-16 w-16 text-dainamics-accent/40 mb-4" />
+                    <h3 className="text-2xl font-bold text-dainamics-light mb-3">
+                      Sélectionnez une Industrie
+                    </h3>
+                    <p className="text-dainamics-light/60 max-w-md">
+                      Cliquez sur un secteur dans la liste de gauche pour découvrir les solutions 
+                      d'automatisation et d'IA adaptées à vos besoins spécifiques.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key={selectedIndustry}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="glass-morphism rounded-xl p-8 border border-dainamics-accent/30"
+                  >
+                    {/* Header industrie sélectionnée */}
+                    <div className="flex items-center justify-between mb-8 pb-6 border-b border-dainamics-light/10">
+                      <div className="flex items-center gap-4">
+                        {(() => {
+                          const industry = industryData.find(i => i.name === selectedIndustry);
+                          if (!industry) return null;
+                          return (
+                            <>
+                              <div
+                                className="w-14 h-14 rounded-lg flex items-center justify-center"
+                                style={{
+                                  backgroundColor: `${industry.color}20`,
+                                  border: `2px solid ${industry.color}60`
+                                }}
+                              >
+                                <industry.icon className="h-7 w-7" style={{ color: industry.color }} />
+                              </div>
+                              <div>
+                                <h3 className="text-2xl font-bold text-dainamics-light mb-1">
+                                  {industry.name}
+                                </h3>
+                                <p className="text-dainamics-light/60 text-sm">{industry.desc}</p>
+                              </div>
+                            </>
+                          );
+                        })()}
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedIndustry(null)}
+                        className="text-dainamics-light/60 hover:text-dainamics-light hover:bg-dainamics-light/5"
+                      >
+                        Fermer
+                      </Button>
+                    </div>
+
+                    {/* Solutions */}
+                    {filteredSolutions.length > 0 ? (
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 mb-4">
+                          <Zap className="h-5 w-5 text-dainamics-accent" />
+                          <h4 className="text-lg font-semibold text-dainamics-light">
+                            {filteredSolutions.length} Solution{filteredSolutions.length > 1 ? 's' : ''} Disponible{filteredSolutions.length > 1 ? 's' : ''}
+                          </h4>
+                        </div>
+
+                        {filteredSolutions.map((solution, idx) => (
+                          <motion.div
+                            key={solution.id}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="p-5 rounded-lg border border-dainamics-light/10 hover:border-dainamics-accent/30 hover:bg-dainamics-light/5 transition-all group"
+                            whileHover={{ scale: 1.02 }}
+                          >
+                            <div className="flex items-start justify-between gap-4 mb-3">
+                              <div className="flex-1">
+                                <h5 className="font-bold text-dainamics-light mb-2 group-hover:text-dainamics-accent transition-colors">
+                                  {solution.title}
+                                </h5>
+                                <p className="text-sm text-dainamics-light/70 mb-3">
+                                  {solution.tagline}
+                                </p>
+                              </div>
+                              <span
+                                className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold flex-shrink-0"
+                                style={{
+                                  backgroundColor: `${categoryColors[solution.category]}20`,
+                                  color: categoryColors[solution.category]
+                                }}
+                              >
+                                {solution.category.toUpperCase()}
+                              </span>
+                            </div>
+
+                            {/* ROI */}
+                            <div className="flex items-center justify-between text-sm pt-3 border-t border-dainamics-light/10">
+                              <div className="flex items-center gap-4">
+                                {solution.outcomes.timeGained && (
+                                  <div>
+                                    <span className="text-dainamics-light/60">Gain temps: </span>
+                                    <span className="text-dainamics-success font-semibold">
+                                      {solution.outcomes.timeGained}
+                                    </span>
+                                  </div>
+                                )}
+                                {solution.outcomes.moneySaved && (
+                                  <div>
+                                    <span className="text-dainamics-light/60">Économies: </span>
+                                    <span className="text-dainamics-success font-semibold">
+                                      {solution.outcomes.moneySaved}
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                              <Button
+                                asChild
+                                variant="link"
+                                size="sm"
+                                className="text-dainamics-accent hover:text-dainamics-accent/90 p-0 h-auto group-hover:underline"
+                              >
+                                <a href={`/solutions#${solution.id}`}>
+                                  Détails →
+                                </a>
+                              </Button>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-8">
+                        <p className="text-dainamics-light/60">
+                          Aucune solution spécifique pour cette industrie actuellement.
+                        </p>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -556,39 +507,20 @@ export default function Industries() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <motion.h2 
-                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
-                whileHover={{ scale: 1.02 }}
-              >
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 <span className="text-gradient">Votre Industrie</span> <br />
                 <span className="text-gradient-primary glow">Mérite une Solution Sur Mesure</span>
-              </motion.h2>
-              <motion.p 
-                className="text-dainamics-light/70 text-lg max-w-2xl mx-auto mb-8"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
+              </h2>
+              <p className="text-dainamics-light/70 text-lg max-w-2xl mx-auto mb-8">
                 Diagnostic gratuit de 30 minutes pour identifier les opportunités d'automatisation 
                 spécifiques à votre secteur.
-              </motion.p>
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <motion.div 
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                   <Button
                     asChild
                     size="lg"
-                    className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-dainamics-background btn-glow font-semibold power-pulse"
+                    className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-dainamics-background btn-glow font-semibold"
                   >
                     <a href="/contact">
                       RÉSERVER MON DIAGNOSTIC
@@ -596,11 +528,7 @@ export default function Industries() {
                     </a>
                   </Button>
                 </motion.div>
-                <motion.div 
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                   <Button
                     asChild
                     variant="outline"
@@ -612,7 +540,7 @@ export default function Industries() {
                     </a>
                   </Button>
                 </motion.div>
-              </motion.div>
+              </div>
             </motion.div>
           </div>
         </section>
