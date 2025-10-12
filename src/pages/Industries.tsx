@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { 
   ArrowRight, Building2, Store, Briefcase, Landmark, Scale, 
   Home, TrendingUp, Package, Factory, Users, Laptop, 
-  ShoppingCart, Target, CheckCircle2, Zap, Shield, Clock, Award, HeadphonesIcon,
-  Sparkles
+  ShoppingCart, Target, CheckCircle2, Zap, Shield, Clock, Award, HeadphonesIcon
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -29,8 +27,6 @@ const industryData = [
   { name: 'Technology', icon: Laptop, desc: 'Tech et innovation', color: '#06B6D4' },
   { name: 'Comptabilité', icon: TrendingUp, desc: 'Expertise comptable et fiscale', color: '#84CC16' },
 ];
-
-const accentColor = '#10E4FF';
 
 export default function Industries() {
   const heroRef = useRef(null);
@@ -69,7 +65,7 @@ export default function Industries() {
     setTimeout(() => setSelectedSolution(null), 300);
   };
 
-  // Variants d'animation - GARDÉS INTACTS
+  // Variants d'animation
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -112,48 +108,40 @@ export default function Industries() {
       <Navigation />
 
       <main className="relative z-10">
-        {/* Hero Section - STYLE EXPERTISE IA AMÉLIORÉ */}
+        {/* Hero Section avec Parallax - ENCORE PLUS CENTRÉ */}
         <section ref={heroRef} className="relative py-20 md:py-24 overflow-hidden">
-          {/* Animated Background Grid - STYLE EXPERTISE IA */}
-          <motion.div 
-            className="absolute inset-0 opacity-20"
+          {/* Éléments flottants en arrière-plan */}
+          <motion.div
+            className="absolute top-20 left-10 w-32 h-32 rounded-full bg-dainamics-primary/10 blur-3xl"
             style={{ y: smoothY }}
-          >
-            <div className="absolute inset-0" style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, ${accentColor} 1px, transparent 0)`,
-              backgroundSize: '40px 40px'
-            }} />
-          </motion.div>
-
-          {/* Floating Orbs - PLUS NOMBREUX STYLE EXPERTISE IA */}
-          {[...Array(5)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full blur-3xl pointer-events-none"
-              style={{
-                width: `${300 + i * 50}px`,
-                height: `${300 + i * 50}px`,
-                backgroundColor: i % 2 === 0 ? `${accentColor}15` : `#6366F115`,
-                top: `${10 + i * 15}%`,
-                left: `${5 + i * 20}%`,
-              }}
-              animate={{
-                y: [0, -30 - i * 10, 0],
-                x: [0, 20 + i * 5, 0],
-                scale: [1, 1.1 + i * 0.05, 1],
-                opacity: [0.3, 0.5, 0.3]
-              }}
-              transition={{
-                duration: 8 + i * 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3]
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute top-40 right-20 w-40 h-40 rounded-full bg-dainamics-accent/10 blur-3xl"
+            style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
 
           <div className="container mx-auto px-4 md:px-8 min-h-[85vh] flex items-center">
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
-              {/* Texte - Gauche avec stagger */}
+              {/* Texte - Gauche avec stagger - PAS DE TEXT-CENTER */}
               <motion.div
                 className="lg:w-1/2 lg:text-left"
                 variants={containerVariants}
@@ -161,17 +149,12 @@ export default function Industries() {
                 animate={isHeroInView ? "visible" : "hidden"}
               >
                 <motion.div variants={itemVariants} className="mb-4">
-                  <Badge 
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm text-sm font-semibold"
-                    style={{ 
-                      backgroundColor: `${accentColor}15`,
-                      border: `1px solid ${accentColor}30`,
-                      color: accentColor
-                    }}
-                  >
-                    <Building2 className="h-4 w-4" />
-                    <span className="tracking-wide uppercase">Industries</span>
-                  </Badge>
+                  <span className="inline-flex items-center px-4 py-2 bg-dainamics-accent/10 border border-dainamics-accent/30 rounded-full backdrop-blur-sm">
+                    <Building2 className="h-4 w-4 text-dainamics-accent mr-2" />
+                    <span className="text-dainamics-accent font-semibold tracking-wide uppercase text-sm">
+                      Industries
+                    </span>
+                  </span>
                 </motion.div>
 
                 <motion.h1 
@@ -196,23 +179,19 @@ export default function Industries() {
                   d'automatisation conçues pour répondre aux besoins de votre industrie.
                 </motion.p>
 
-                {/* Stats rapides - STYLE AMÉLIORÉ */}
+                {/* Stats rapides */}
                 <motion.div 
                   variants={itemVariants}
                   className="grid grid-cols-3 gap-4 mb-8 max-w-lg"
                 >
                   {[
-                    { value: industryData.length, label: 'Industries', icon: Building2 },
-                    { value: solutions.length, label: 'Solutions', icon: Zap },
-                    { value: '2-6', label: 'Semaines', icon: Clock }
+                    { value: industryData.length, label: 'Industries' },
+                    { value: solutions.length, label: 'Solutions' },
+                    { value: '2-6', label: 'Semaines' }
                   ].map((stat, idx) => (
                     <motion.div
                       key={idx}
-                      className="relative p-4 rounded-xl group"
-                      style={{
-                        background: `linear-gradient(135deg, ${accentColor}08, transparent)`,
-                        border: `1px solid ${accentColor}20`
-                      }}
+                      className="text-left"
                       whileHover={{ 
                         scale: 1.1,
                         transition: { type: "spring", stiffness: 400 }
@@ -221,61 +200,38 @@ export default function Industries() {
                       animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ delay: 0.6 + idx * 0.1 }}
                     >
-                      {/* Glow on hover */}
-                      <div 
-                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl blur-xl"
-                        style={{ backgroundColor: `${accentColor}15` }}
-                      />
-                      <div className="relative z-10 text-left">
-                        <stat.icon className="w-5 h-5 mb-2" style={{ color: accentColor }} />
-                        <div className="text-2xl font-bold" style={{ color: accentColor }}>
-                          {stat.value}
-                        </div>
-                        <div className="text-xs text-dainamics-light/60">{stat.label}</div>
+                      <div className="text-3xl font-bold text-dainamics-accent">
+                        {stat.value}
                       </div>
+                      <div className="text-sm text-dainamics-light/60">{stat.label}</div>
                     </motion.div>
                   ))}
                 </motion.div>
 
-                {/* BOUTONS - STYLE EXPERTISE IA */}
+                {/* BOUTONS ALIGNÉS À GAUCHE - TEXTE BLANC POUR VISIBILITÉ */}
                 <motion.div 
                   variants={itemVariants}
                   className="flex flex-col sm:flex-row gap-4 items-start"
                 >
-                  <motion.div 
-                    whileHover={{ scale: 1.05 }} 
-                    whileTap={{ scale: 0.95 }}
-                  >
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
                       asChild
                       size="lg"
-                      className="group font-semibold w-full sm:w-auto"
-                      style={{ 
-                        backgroundColor: accentColor,
-                        color: 'white',
-                        border: 'none'
-                      }}
+                      className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-white btn-glow font-semibold w-full sm:w-auto"
                     >
-                      <a href="#industries" className="flex items-center">
+                      <a href="#industries">
                         DÉCOUVRIR LES INDUSTRIES
-                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="ml-2 h-5 w-5" />
                       </a>
                     </Button>
                   </motion.div>
 
-                  <motion.div 
-                    whileHover={{ scale: 1.05 }} 
-                    whileTap={{ scale: 0.95 }}
-                  >
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
                       asChild
                       variant="outline"
                       size="lg"
-                      className="font-semibold w-full sm:w-auto"
-                      style={{ 
-                        borderColor: accentColor,
-                        color: accentColor
-                      }}
+                      className="border-dainamics-light/20 text-dainamics-light hover:bg-dainamics-light/5 font-semibold w-full sm:w-auto"
                     >
                       <a href="/contact">
                         DIAGNOSTIC GRATUIT
@@ -285,7 +241,7 @@ export default function Industries() {
                 </motion.div>
               </motion.div>
 
-              {/* Stats Card - Droite - STYLE EXPERTISE IA AMÉLIORÉ */}
+              {/* Stats Card - Droite - DESIGN MODERNE */}
               <motion.div
                 className="lg:w-1/2"
                 initial={{ opacity: 0, y: 50, rotateX: 10 }}
@@ -293,16 +249,13 @@ export default function Industries() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 style={{ perspective: 1000 }}
               >
-                <div className="relative rounded-2xl p-8 backdrop-blur-xl overflow-hidden"
-                  style={{
-                    background: `linear-gradient(135deg, ${accentColor}10, transparent)`,
-                    border: `1px solid ${accentColor}30`
-                  }}
-                >
+                <div className="relative glass-morphism rounded-2xl p-8 border border-dainamics-accent/30 backdrop-blur-xl overflow-hidden">
+                  {/* Gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-dainamics-accent/10 via-transparent to-dainamics-primary/10 opacity-50" />
+                  
                   {/* Glow effect */}
                   <motion.div 
-                    className="absolute -top-20 -right-20 w-40 h-40 rounded-full filter blur-3xl"
-                    style={{ backgroundColor: `${accentColor}30` }}
+                    className="absolute -top-20 -right-20 w-40 h-40 bg-dainamics-accent/30 rounded-full filter blur-3xl"
                     animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.3, 0.6, 0.3]
@@ -315,7 +268,7 @@ export default function Industries() {
                       Pourquoi par Industrie ?
                     </h3>
 
-                    {/* Grid 2x2 avec icônes */}
+                    {/* Grid 2x2 avec icônes différentes */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {[
                         { 
@@ -345,11 +298,7 @@ export default function Industries() {
                       ].map((item, idx) => (
                         <motion.div
                           key={idx}
-                          className="relative p-4 rounded-xl group"
-                          style={{
-                            background: `linear-gradient(135deg, ${item.color}08, transparent)`,
-                            border: `1px solid ${item.color}20`
-                          }}
+                          className="relative p-4 rounded-xl bg-dainamics-background/40 border border-dainamics-light/10 hover:border-dainamics-accent/40 transition-all group"
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={isHeroInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                           transition={{ delay: 0.6 + idx * 0.1 }}
@@ -369,20 +318,18 @@ export default function Industries() {
 
                           <div className="relative z-10">
                             {/* Icône avec background coloré */}
-                            <motion.div 
+                            <div 
                               className="w-12 h-12 rounded-lg flex items-center justify-center mb-3"
                               style={{
                                 backgroundColor: `${item.color}15`,
                                 border: `1px solid ${item.color}30`
                               }}
-                              whileHover={{ rotate: 360, scale: 1.1 }}
-                              transition={{ duration: 0.6 }}
                             >
                               <item.icon 
                                 className="h-6 w-6" 
                                 style={{ color: item.color }}
                               />
-                            </motion.div>
+                            </div>
 
                             <div className="text-dainamics-light font-semibold mb-2 text-sm">
                               {item.title}
@@ -401,7 +348,7 @@ export default function Industries() {
           </div>
         </section>
 
-        {/* 2 Colonnes Layout - STYLE AMÉLIORÉ */}
+        {/* 2 Colonnes Layout : Liste Gauche + Détails Droite */}
         <section id="industries" className="relative py-20 md:py-32">
           <div className="container mx-auto px-4 md:px-8">
             {/* Header */}
@@ -422,7 +369,7 @@ export default function Industries() {
             </motion.div>
 
             <div className="flex flex-col lg:flex-row gap-8">
-              {/* GAUCHE : Liste Industries - STYLE AMÉLIORÉ */}
+              {/* GAUCHE : Liste Industries compacte */}
               <div className="lg:w-1/3">
                 <div className="space-y-2 sticky top-24">
                   {industryData.map((industry, idx) => {
@@ -440,32 +387,28 @@ export default function Industries() {
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.05 }}
                         onClick={() => setSelectedIndustry(isSelected ? null : industry.name)}
-                        className="w-full text-left p-4 rounded-lg transition-all duration-300"
-                        style={{
-                          background: isSelected 
-                            ? `linear-gradient(135deg, ${industry.color}20, transparent)`
-                            : 'transparent',
-                          border: `1px solid ${isSelected ? `${industry.color}50` : '#ffffff10'}`
-                        }}
+                        className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${
+                          isSelected
+                            ? 'bg-dainamics-accent/20 border border-dainamics-accent/50'
+                            : 'glass-morphism border border-dainamics-light/10 hover:border-dainamics-accent/30 hover:bg-dainamics-light/5'
+                        }`}
                         whileHover={{ scale: 1.02, x: 5 }}
                         whileTap={{ scale: 0.98 }}
                       >
                         <div className="flex items-center gap-3">
-                          <motion.div
+                          <div
                             className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                             style={{
                               backgroundColor: `${industry.color}20`,
                               border: `1px solid ${industry.color}40`
                             }}
-                            whileHover={{ rotate: 5, scale: 1.1 }}
                           >
                             <industry.icon className="h-5 w-5" style={{ color: industry.color }} />
-                          </motion.div>
+                          </div>
                           <div className="flex-1 min-w-0">
-                            <div 
-                              className="font-semibold mb-1"
-                              style={{ color: isSelected ? industry.color : '#F1F5F9' }}
-                            >
+                            <div className={`font-semibold mb-1 ${
+                              isSelected ? 'text-dainamics-accent' : 'text-dainamics-light'
+                            }`}>
                               {industry.name}
                             </div>
                             <div className="text-xs text-dainamics-light/60 truncate">
@@ -473,23 +416,12 @@ export default function Industries() {
                             </div>
                           </div>
                           <div className="flex items-center gap-2 flex-shrink-0">
-                            <Badge 
-                              variant="outline"
-                              style={{ 
-                                borderColor: industry.color,
-                                color: industry.color,
-                                fontSize: '0.65rem'
-                              }}
-                            >
+                            <span className="text-xs font-semibold text-dainamics-accent">
                               {solutionCount}
-                            </Badge>
-                            <ArrowRight 
-                              className="h-4 w-4 transition-transform" 
-                              style={{ 
-                                color: isSelected ? industry.color : '#9CA3AF',
-                                transform: isSelected ? 'rotate(90deg)' : 'rotate(0deg)'
-                              }}
-                            />
+                            </span>
+                            <ArrowRight className={`h-4 w-4 transition-transform ${
+                              isSelected ? 'rotate-90 text-dainamics-accent' : 'text-dainamics-light/40'
+                            }`} />
                           </div>
                         </div>
                       </motion.button>
@@ -504,21 +436,9 @@ export default function Industries() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="rounded-xl p-12 text-center h-full flex flex-col items-center justify-center min-h-[400px]"
-                    style={{
-                      background: `linear-gradient(135deg, ${accentColor}08, transparent)`,
-                      border: `1px solid ${accentColor}20`
-                    }}
+                    className="glass-morphism rounded-xl p-12 border border-dainamics-light/10 text-center h-full flex flex-col items-center justify-center min-h-[400px]"
                   >
-                    <motion.div
-                      animate={{
-                        scale: [1, 1.1, 1],
-                        rotate: [0, 5, 0]
-                      }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                    >
-                      <Target className="h-16 w-16 mb-4" style={{ color: `${accentColor}60` }} />
-                    </motion.div>
+                    <Target className="h-16 w-16 text-dainamics-accent/40 mb-4" />
                     <h3 className="text-2xl font-bold text-dainamics-light mb-3">
                       Sélectionnez une Industrie
                     </h3>
@@ -533,32 +453,25 @@ export default function Industries() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="rounded-xl p-8"
-                    style={{
-                      background: `linear-gradient(135deg, ${accentColor}10, transparent)`,
-                      border: `1px solid ${accentColor}30`
-                    }}
+                    className="glass-morphism rounded-xl p-8 border border-dainamics-accent/30"
                   >
                     {/* Header industrie sélectionnée */}
-                    <div className="flex items-center justify-between mb-8 pb-6" 
-                      style={{ borderBottom: `1px solid ${accentColor}20` }}
-                    >
+                    <div className="flex items-center justify-between mb-8 pb-6 border-b border-dainamics-light/10">
                       <div className="flex items-center gap-4">
                         {(() => {
                           const industry = industryData.find(i => i.name === selectedIndustry);
                           if (!industry) return null;
                           return (
                             <>
-                              <motion.div
+                              <div
                                 className="w-14 h-14 rounded-lg flex items-center justify-center"
                                 style={{
                                   backgroundColor: `${industry.color}20`,
                                   border: `2px solid ${industry.color}60`
                                 }}
-                                whileHover={{ scale: 1.1, rotate: 5 }}
                               >
                                 <industry.icon className="h-7 w-7" style={{ color: industry.color }} />
-                              </motion.div>
+                              </div>
                               <div>
                                 <h3 className="text-2xl font-bold text-dainamics-light mb-1">
                                   {industry.name}
@@ -579,11 +492,11 @@ export default function Industries() {
                       </Button>
                     </div>
 
-                    {/* Solutions - STYLE AMÉLIORÉ */}
+                    {/* Solutions - CARTES PLUS VISIBLES */}
                     {filteredSolutions.length > 0 ? (
                       <div className="space-y-4">
                         <div className="flex items-center gap-2 mb-4">
-                          <Zap className="h-5 w-5" style={{ color: accentColor }} />
+                          <Zap className="h-5 w-5 text-dainamics-accent" />
                           <h4 className="text-lg font-semibold text-dainamics-light">
                             {filteredSolutions.length} Solution{filteredSolutions.length > 1 ? 's' : ''} Disponible{filteredSolutions.length > 1 ? 's' : ''}
                           </h4>
@@ -592,78 +505,56 @@ export default function Industries() {
                         {filteredSolutions.map((solution, idx) => (
                           <motion.div
                             key={solution.id}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: idx * 0.1 }}
-                            whileHover={{ scale: 1.02, x: -5 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="p-6 rounded-lg border-2 border-dainamics-accent/20 bg-dainamics-background/50 hover:border-dainamics-accent/50 hover:bg-dainamics-accent/5 transition-all group cursor-pointer"
+                            whileHover={{ scale: 1.02, y: -2 }}
                             onClick={() => handleOpenModal(solution)}
-                            className="p-6 rounded-xl cursor-pointer group relative overflow-hidden"
-                            style={{
-                              background: `linear-gradient(135deg, ${categoryColors[solution.category]}08, transparent)`,
-                              border: `1px solid ${categoryColors[solution.category]}20`
-                            }}
                           >
-                            {/* Hover glow */}
-                            <div 
-                              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                              style={{
-                                background: `radial-gradient(circle at right, ${categoryColors[solution.category]}15, transparent 70%)`
-                              }}
-                            />
-
-                            <div className="relative z-10">
-                              <div className="flex items-start justify-between gap-4 mb-3">
-                                <div className="flex-1">
-                                  <h5 className="font-bold text-dainamics-light text-lg mb-2 group-hover:translate-x-1 transition-transform">
-                                    {solution.title}
-                                  </h5>
-                                  <p className="text-sm text-dainamics-light/70 mb-3">
-                                    {solution.tagline}
-                                  </p>
-                                </div>
-                                <Badge 
-                                  style={{ 
-                                    backgroundColor: `${categoryColors[solution.category]}20`,
-                                    color: categoryColors[solution.category],
-                                    borderColor: `${categoryColors[solution.category]}40`,
-                                    fontSize: '0.7rem'
-                                  }}
-                                >
-                                  {solution.category.toUpperCase()}
-                                </Badge>
+                            <div className="flex items-start justify-between gap-4 mb-3">
+                              <div className="flex-1">
+                                <h5 className="font-bold text-dainamics-light text-lg mb-2 group-hover:text-dainamics-accent transition-colors">
+                                  {solution.title}
+                                </h5>
+                                <p className="text-sm text-dainamics-light/70 mb-3">
+                                  {solution.tagline}
+                                </p>
                               </div>
-
-                              {/* ROI */}
-                              <div className="flex items-center justify-between text-sm pt-3" 
-                                style={{ borderTop: `1px solid ${categoryColors[solution.category]}20` }}
+                              <span
+                                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold flex-shrink-0"
+                                style={{
+                                  backgroundColor: `${categoryColors[solution.category]}20`,
+                                  color: categoryColors[solution.category]
+                                }}
                               >
-                                <div className="flex items-center gap-4">
-                                  {solution.outcomes.timeGained && (
-                                    <div className="flex items-center gap-2">
-                                      <Clock className="w-4 h-4" style={{ color: '#10B981' }} />
-                                      <span className="text-dainamics-light/60">
-                                        {solution.outcomes.timeGained}
-                                      </span>
-                                    </div>
-                                  )}
-                                  {solution.outcomes.moneySaved && (
-                                    <div className="flex items-center gap-2">
-                                      <TrendingUp className="w-4 h-4" style={{ color: '#10B981' }} />
-                                      <span className="text-dainamics-light/60">
-                                        {solution.outcomes.moneySaved}
-                                      </span>
-                                    </div>
-                                  )}
-                                </div>
-                                <motion.span 
-                                  className="font-medium flex items-center gap-1"
-                                  style={{ color: categoryColors[solution.category] }}
-                                  whileHover={{ x: 3 }}
-                                >
-                                  Voir détails
-                                  <ArrowRight className="w-4 h-4" />
-                                </motion.span>
+                                {solution.category.toUpperCase()}
+                              </span>
+                            </div>
+
+                            {/* ROI */}
+                            <div className="flex items-center justify-between text-sm pt-3 border-t border-dainamics-light/10">
+                              <div className="flex items-center gap-4">
+                                {solution.outcomes.timeGained && (
+                                  <div>
+                                    <span className="text-dainamics-light/60">Gain temps: </span>
+                                    <span className="text-dainamics-success font-semibold">
+                                      {solution.outcomes.timeGained}
+                                    </span>
+                                  </div>
+                                )}
+                                {solution.outcomes.moneySaved && (
+                                  <div>
+                                    <span className="text-dainamics-light/60">Économies: </span>
+                                    <span className="text-dainamics-success font-semibold">
+                                      {solution.outcomes.moneySaved}
+                                    </span>
+                                  </div>
+                                )}
                               </div>
+                              <span className="text-dainamics-accent font-medium group-hover:underline">
+                                Voir détails →
+                              </span>
                             </div>
                           </motion.div>
                         ))}
@@ -682,88 +573,48 @@ export default function Industries() {
           </div>
         </section>
 
-        {/* CTA Final - STYLE EXPERTISE IA */}
+        {/* CTA Final */}
         <section className="relative py-20 md:py-32">
           <div className="container mx-auto px-4 md:px-8 text-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative p-16 rounded-3xl overflow-hidden"
-              style={{
-                background: `radial-gradient(circle at 50% 50%, ${accentColor}20, transparent)`,
-                border: `1px solid ${accentColor}40`
-              }}
+              transition={{ duration: 0.7 }}
             >
-              {/* Animated Background */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.5, 0.3]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="absolute inset-0 blur-3xl"
-                style={{ backgroundColor: accentColor }}
-              />
-
-              {/* Content */}
-              <div className="relative z-10">
-                <motion.div
-                  animate={{ rotate: [0, 10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <Sparkles className="w-12 h-12 mx-auto mb-6" style={{ color: accentColor }} />
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                <span className="text-gradient">Votre Industrie</span> <br />
+                <span className="text-gradient-primary glow">Mérite une Solution Sur Mesure</span>
+              </h2>
+              <p className="text-dainamics-light/70 text-lg max-w-2xl mx-auto mb-8">
+                Diagnostic gratuit de 30 minutes pour identifier les opportunités d'automatisation 
+                spécifiques à votre secteur.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-white btn-glow font-semibold"
+                  >
+                    <a href="/contact">
+                      RÉSERVER MON DIAGNOSTIC
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </a>
+                  </Button>
                 </motion.div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                  Votre Industrie <br />
-                  <span style={{ color: accentColor }}>Mérite une Solution Sur Mesure</span>
-                </h2>
-                <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-                  Diagnostic gratuit de 30 minutes pour identifier les opportunités d'automatisation 
-                  spécifiques à votre secteur
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                    <Button
-                      asChild
-                      size="lg"
-                      className="group"
-                      style={{ 
-                        backgroundColor: accentColor,
-                        color: 'white',
-                        padding: '1.5rem 3rem',
-                        fontSize: '1.125rem'
-                      }}
-                    >
-                      <a href="/contact" className="flex items-center">
-                        RÉSERVER MON DIAGNOSTIC
-                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
-                      </a>
-                    </Button>
-                  </motion.div>
-                  <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="lg"
-                      style={{ 
-                        borderColor: '#F1F5F9',
-                        color: '#F1F5F9',
-                        padding: '1.5rem 3rem',
-                        fontSize: '1.125rem'
-                      }}
-                    >
-                      <a href="/solutions">
-                        TOUTES LES SOLUTIONS
-                      </a>
-                    </Button>
-                  </motion.div>
-                </div>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="border-dainamics-light/20 text-dainamics-light hover:bg-dainamics-light/5 font-semibold"
+                  >
+                    <a href="/solutions">
+                      TOUTES LES SOLUTIONS
+                    </a>
+                  </Button>
+                </motion.div>
               </div>
             </motion.div>
           </div>
