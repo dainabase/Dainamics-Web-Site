@@ -3,7 +3,7 @@
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 
 import { useState, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useInView, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -78,19 +78,8 @@ export default function Solutions() {
     <div className="min-h-screen bg-dainamics-background text-dainamics-light overflow-hidden">
       <Navigation />
 
-      {/* Purple Grid Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(99, 102, 241, 0.12) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(99, 102, 241, 0.12) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }}
-        />
-      </div>
+      {/* Enhanced 3D Grid Background with Parallax & Depth */}
+      <EnhancedGridBackground />
 
       {/* Hero Section */}
       <HeroSection />
@@ -128,6 +117,119 @@ export default function Solutions() {
       />
 
       <Footer />
+    </div>
+  );
+}
+
+// ============================================================================
+// ENHANCED GRID BACKGROUND - Maximum Depth Effect
+// ============================================================================
+function EnhancedGridBackground() {
+  const { scrollY } = useScroll();
+  
+  // Parallax effect - Grid moves slower than content
+  const y1 = useTransform(scrollY, [0, 1000], [0, -50]);
+  const y2 = useTransform(scrollY, [0, 1000], [0, -30]);
+
+  return (
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+      {/* Radial gradient overlay - Spotlight effect from center */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(
+              circle at 50% 30%,
+              rgba(99, 102, 241, 0.15) 0%,
+              rgba(99, 102, 241, 0.05) 25%,
+              transparent 50%
+            )
+          `
+        }}
+      />
+
+      {/* Primary Grid Layer - Main grid with dots at intersections */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ y: y1 }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at center, rgba(99, 102, 241, 0.4) 1px, transparent 1px),
+              linear-gradient(to right, rgba(99, 102, 241, 0.2) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(99, 102, 241, 0.2) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px, 50px 50px, 50px 50px',
+            backgroundPosition: '0 0, 0 0, 0 0'
+          }}
+        />
+      </motion.div>
+
+      {/* Secondary Grid Layer - Offset for moiré effect */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ y: y2 }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(16, 228, 255, 0.08) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(16, 228, 255, 0.08) 1px, transparent 1px)
+            `,
+            backgroundSize: '100px 100px',
+            backgroundPosition: '25px 25px'
+          }}
+        />
+      </motion.div>
+
+      {/* Vignette effect - Darkens edges for more depth */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(
+              ellipse at center,
+              transparent 0%,
+              transparent 40%,
+              rgba(10, 10, 15, 0.3) 70%,
+              rgba(10, 10, 15, 0.6) 100%
+            )
+          `
+        }}
+      />
+
+      {/* Top glow accent */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px]"
+        style={{
+          background: `
+            radial-gradient(
+              ellipse at center,
+              rgba(99, 102, 241, 0.1) 0%,
+              transparent 60%
+            )
+          `,
+          filter: 'blur(60px)'
+        }}
+      />
+
+      {/* Bottom accent glow */}
+      <div
+        className="absolute bottom-0 left-1/4 w-[600px] h-[300px]"
+        style={{
+          background: `
+            radial-gradient(
+              ellipse at center,
+              rgba(16, 228, 255, 0.08) 0%,
+              transparent 60%
+            )
+          `,
+          filter: 'blur(80px)'
+        }}
+      />
     </div>
   );
 }
