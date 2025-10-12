@@ -43,7 +43,7 @@ export default function Expertise() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-32 pb-20 px-4 md:px-8 lg:px-16 overflow-hidden">
+      <section className="relative pt-32 pb-20 px-4 md:px-8 lg:px-16 overflow-hidden">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-dainamics-primary/10 via-transparent to-dainamics-accent/10" />
         
@@ -141,7 +141,7 @@ export default function Expertise() {
       </section>
 
       {/* 3 Pillar Cards Section */}
-      <section className="relative z-10 py-20 px-4 md:px-8 lg:px-16">
+      <section className="py-20 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto">
           {/* Section Header */}
           <motion.div
@@ -302,7 +302,7 @@ export default function Expertise() {
       </section>
 
       {/* Global Metrics Section */}
-      <section className="relative z-10 py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-transparent to-dainamics-primary/5">
+      <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-transparent to-dainamics-primary/5">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -381,7 +381,7 @@ export default function Expertise() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative z-10 py-20 px-4 md:px-8 lg:px-16">
+      <section className="py-20 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

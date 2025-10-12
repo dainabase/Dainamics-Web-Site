@@ -11,7 +11,7 @@ export default function EnhancedGridBackground() {
   const y = useTransform(scrollY, [0, 1000], [0, -50]);
 
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       {/* Radial gradient overlay - Spotlight effect from center */}
       <div
         className="absolute inset-0"
