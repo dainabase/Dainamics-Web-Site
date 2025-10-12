@@ -8,6 +8,7 @@ import Services from '@/components/Services';
 import SocialProof from '@/components/SocialProof';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 
 const Index = () => {
   // Scroll to top on initial load
@@ -32,9 +33,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-dainamics-background">
+      {/* Enhanced Grid Background */}
+      <EnhancedGridBackground />
+
       {/* Custom cursor effects */}
       <CursorEffects />
-      
+
       {/* Navigation */}
       <Navigation />
       

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import ArchitecturesHero from '@/components/architectures/ArchitecturesHero';
 import ProcessVisualization from '@/components/architectures/ProcessVisualization';
 import UseCases from '@/components/architectures/UseCases';
@@ -17,9 +18,10 @@ const AIArchitectures = () => {
 
   return (
     <div className="min-h-screen bg-dainamics-background">
+      <EnhancedGridBackground />
       {/* Custom cursor effects */}
       <CursorEffects />
-      
+
       {/* Navigation */}
       <Navigation />
       

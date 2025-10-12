@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -61,6 +62,7 @@ export default function ExpertiseDeveloppement() {
 
   return (
     <div className="min-h-screen bg-dainamics-background text-dainamics-light">
+      <EnhancedGridBackground />
       <Navigation />
       
       {/* Sticky Progress Bar */}
