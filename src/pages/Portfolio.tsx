@@ -1,5 +1,5 @@
 // src/pages/Portfolio.tsx
-// Portfolio Page - Professional & Clean Design with Sticky Cards
+// Portfolio Page - Professional with REAL Sticky Cards
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 
 import { useState, useRef, useEffect } from 'react';
@@ -41,7 +41,7 @@ const COLORS = {
   success: '#10B981'
 };
 
-const CARD_HEIGHT = 600;
+const CARD_HEIGHT = 500;
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -68,7 +68,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-dainamics-background text-dainamics-light overflow-hidden">
+    <div className="min-h-screen bg-dainamics-background text-dainamics-light overflow-x-hidden">
       <Navigation />
       
       {/* Purple Grid Background - Fixed on entire page */}
@@ -106,7 +106,7 @@ export default function Portfolio() {
         onProjectClick={openProjectModal}
       />
       
-      {/* All Projects - Sticky Cards Animation */}
+      {/* All Projects - REAL Sticky Cards */}
       <StickyCardsSection 
         projects={filteredProjects}
         selectedCategory={selectedCategory}
@@ -149,7 +149,7 @@ function ScrollProgressBar() {
 }
 
 // ============================================================================
-// HERO SECTION - Clean & Professional
+// HERO SECTION
 // ============================================================================
 function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
@@ -163,7 +163,6 @@ function HeroSection() {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-20 z-10">
-      {/* Content */}
       <motion.div
         className="relative z-10 max-w-6xl mx-auto px-6 text-center flex-grow flex flex-col justify-center"
         style={{ y, opacity }}
@@ -234,7 +233,6 @@ function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator at the bottom */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -255,7 +253,7 @@ function HeroSection() {
 }
 
 // ============================================================================
-// STATS SECTION - Professional & Subtle
+// STATS SECTION
 // ============================================================================
 function StatsSection({ stats }: { stats: any }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -328,11 +326,9 @@ function ProfessionalStatCard({ stat, index, isInView }: any) {
       }}
     >
       <stat.icon className="w-8 h-8 mb-3" style={{ color: COLORS.accent }} />
-
       <div className="text-4xl font-bold mb-1" style={{ color: COLORS.primary }}>
         {count}{stat.suffix}
       </div>
-
       <div className="text-sm text-gray-400">
         {stat.label}
       </div>
@@ -341,7 +337,7 @@ function ProfessionalStatCard({ stat, index, isInView }: any) {
 }
 
 // ============================================================================
-// FILTER SECTION - Clean Design
+// FILTER SECTION
 // ============================================================================
 function FilterSection({ selectedCategory, onCategoryChange }: any) {
   const filters = [
@@ -380,7 +376,7 @@ function FilterSection({ selectedCategory, onCategoryChange }: any) {
 }
 
 // ============================================================================
-// FEATURED PROJECTS - Clean Cards with Modal
+// FEATURED PROJECTS
 // ============================================================================
 function FeaturedProjectsSection({ projects, onProjectClick }: any) {
   return (
@@ -450,7 +446,6 @@ function FeaturedProjectCard({ project, index, onClick }: any) {
 
       <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
       <p className="text-base text-gray-400 mb-4">{project.client} • {project.industry}</p>
-
       <p className="text-gray-300 mb-6 leading-relaxed line-clamp-3">
         {project.description}
       </p>
@@ -491,7 +486,7 @@ function FeaturedProjectCard({ project, index, onClick }: any) {
 }
 
 // ============================================================================
-// STICKY CARDS SECTION - All Projects
+// STICKY CARDS SECTION - CORRECT IMPLEMENTATION
 // ============================================================================
 function StickyCardsSection({ projects, selectedCategory, onProjectClick }: any) {
   const ref = useRef(null);
@@ -501,8 +496,8 @@ function StickyCardsSection({ projects, selectedCategory, onProjectClick }: any)
   });
 
   return (
-    <section className="relative z-10">
-      <div className="max-w-7xl mx-auto px-6 py-20">
+    <>
+      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -523,7 +518,7 @@ function StickyCardsSection({ projects, selectedCategory, onProjectClick }: any)
 
       <div ref={ref} className="relative">
         {projects.map((project: PortfolioProject, idx: number) => (
-          <StickyProjectCard
+          <StickyCard
             key={project.id}
             project={project}
             scrollYProgress={scrollYProgress}
@@ -533,12 +528,12 @@ function StickyCardsSection({ projects, selectedCategory, onProjectClick }: any)
           />
         ))}
       </div>
-      <div className="h-screen" />
-    </section>
+      <div className="h-screen bg-dainamics-background" />
+    </>
   );
 }
 
-interface StickyProjectCardProps {
+interface StickyCardProps {
   position: number;
   project: PortfolioProject;
   scrollYProgress: MotionValue;
@@ -546,74 +541,63 @@ interface StickyProjectCardProps {
   onClick: () => void;
 }
 
-function StickyProjectCard({ position, project, scrollYProgress, totalCards, onClick }: StickyProjectCardProps) {
+function StickyCard({ position, project, scrollYProgress, totalCards, onClick }: StickyCardProps) {
   const scaleFromPct = (position - 1) / totalCards;
   const y = useTransform(scrollYProgress, [scaleFromPct, 1], [0, -CARD_HEIGHT]);
   
   const categoryColor = categoryColors[project.category];
   const isOddCard = position % 2;
 
-  // Background color based on category
-  const backgroundColor = isOddCard 
-    ? 'rgba(10, 10, 15, 0.95)'  // Dark
-    : `${categoryColor}10`;      // Category color tint
-
-  const textColor = isOddCard ? '#FFFFFF' : '#FFFFFF';
-  const borderColor = `${categoryColor}50`;
+  const bgColor = isOddCard ? 'rgb(10, 10, 15)' : categoryColor;
+  const textColor = '#FFFFFF';
 
   return (
     <motion.div
       style={{
         height: CARD_HEIGHT,
         y: position === totalCards ? undefined : y,
-        backgroundColor,
-        borderTop: `2px solid ${borderColor}`,
+        background: isOddCard ? bgColor : `linear-gradient(135deg, ${bgColor}40, rgb(10, 10, 15))`,
         color: textColor,
       }}
-      className="sticky top-0 flex w-full origin-top flex-col items-center justify-center px-6 backdrop-blur-md"
+      className="sticky top-0 flex w-full origin-top flex-col items-center justify-center px-4 relative z-10"
     >
       <div className="max-w-4xl w-full">
-        {/* Badge */}
         <div className="flex justify-center mb-6">
           <Badge 
             style={{
-              backgroundColor: `${categoryColor}20`,
+              backgroundColor: `${categoryColor}30`,
               color: categoryColor,
-              border: `1px solid ${categoryColor}`,
+              border: `2px solid ${categoryColor}`,
               fontSize: '0.875rem',
-              padding: '0.5rem 1rem'
+              padding: '0.5rem 1.5rem'
             }}
           >
             {project.category.toUpperCase()}
           </Badge>
         </div>
 
-        {/* Title */}
-        <h3 className="mb-4 text-center text-4xl font-bold md:text-6xl">
+        <h3 className="mb-6 text-center text-4xl font-semibold md:text-6xl">
           {project.title}
         </h3>
-
-        {/* Client */}
-        <p className="text-center text-xl text-gray-400 mb-8">
+        
+        <p className="text-center text-xl text-gray-400 mb-4">
           {project.client} • {project.industry}
         </p>
 
-        {/* Description */}
-        <p className="mb-8 max-w-2xl mx-auto text-center text-base md:text-lg leading-relaxed">
+        <p className="mb-8 max-w-2xl mx-auto text-center text-sm md:text-base">
           {project.description}
         </p>
 
-        {/* Results */}
-        <div className="flex items-center justify-center gap-8 mb-10 flex-wrap">
+        <div className="flex items-center justify-center gap-8 mb-8 flex-wrap">
           {Object.values(project.results).filter(Boolean).slice(0, 3).map((result: any, idx: number) => {
             const Icon = iconMapper[result.icon];
             return (
               <div key={idx} className="text-center">
-                {Icon && <Icon className="w-8 h-8 mx-auto mb-2" style={{ color: COLORS.success }} />}
-                <div className="text-3xl font-bold" style={{ color: COLORS.success }}>
+                {Icon && <Icon className="w-6 h-6 mx-auto mb-2" style={{ color: COLORS.success }} />}
+                <div className="text-2xl font-bold" style={{ color: COLORS.success }}>
                   {result.value}
                 </div>
-                <div className="text-sm text-gray-400 mt-1">
+                <div className="text-xs text-gray-400 mt-1">
                   {result.label}
                 </div>
               </div>
@@ -621,24 +605,31 @@ function StickyProjectCard({ position, project, scrollYProgress, totalCards, onC
           })}
         </div>
 
-        {/* CTA Button */}
         <div className="flex justify-center">
-          <motion.button
+          <button
             onClick={onClick}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-3 rounded-xl px-8 py-4 text-base font-semibold uppercase transition-all"
+            className="flex items-center gap-2 rounded px-6 py-4 text-base font-medium uppercase transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 md:text-lg"
             style={{
               backgroundColor: categoryColor,
               color: '#FFFFFF',
               boxShadow: isOddCard 
-                ? `4px 4px 0px rgba(255,255,255,0.2)`
-                : `4px 4px 0px rgba(0,0,0,0.3)`
+                ? `4px 4px 0px white`
+                : `4px 4px 0px black`
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = isOddCard 
+                ? `8px 8px 0px white`
+                : `8px 8px 0px black`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = isOddCard 
+                ? `4px 4px 0px white`
+                : `4px 4px 0px black`;
             }}
           >
             <span>Voir le projet</span>
             <ArrowRight className="w-5 h-5" />
-          </motion.button>
+          </button>
         </div>
       </div>
     </motion.div>
@@ -646,12 +637,12 @@ function StickyProjectCard({ position, project, scrollYProgress, totalCards, onC
 }
 
 // ============================================================================
-// TECHNOLOGIES CAROUSEL - Clean & Professional
+// TECHNOLOGIES CAROUSEL
 // ============================================================================
 function TechnologiesSection() {
   const allTechs = portfolioProjects.flatMap(p => p.technologies);
   const uniqueTechs = [...new Set(allTechs)];
-  const displayTechs = [...uniqueTechs, ...uniqueTechs]; // Duplicate for infinite scroll
+  const displayTechs = [...uniqueTechs, ...uniqueTechs];
 
   return (
     <section className="py-20 px-6 relative overflow-hidden z-10">
@@ -702,7 +693,7 @@ function TechnologiesSection() {
 }
 
 // ============================================================================
-// CTA SECTION - Professional
+// CTA SECTION
 // ============================================================================
 function CTASection() {
   return (
@@ -761,7 +752,7 @@ function CTASection() {
 }
 
 // ============================================================================
-// PROJECT MODAL - Professional Design
+// PROJECT MODAL
 // ============================================================================
 function ProjectModal({ project, isOpen, onClose }: any) {
   if (!project) return null;
@@ -773,7 +764,6 @@ function ProjectModal({ project, isOpen, onClose }: any) {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -782,7 +772,6 @@ function ProjectModal({ project, isOpen, onClose }: any) {
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100]"
           />
 
-          {/* Modal */}
           <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -797,7 +786,6 @@ function ProjectModal({ project, isOpen, onClose }: any) {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close button */}
               <button
                 onClick={onClose}
                 className="absolute top-6 right-6 z-10 p-2 rounded-lg transition-colors"
@@ -809,9 +797,7 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                 <X className="w-6 h-6" />
               </button>
 
-              {/* Content */}
               <div className="overflow-y-auto max-h-[85vh] p-8 md:p-12">
-                {/* Header */}
                 <div className="mb-8">
                   <div className="flex items-center gap-3 mb-4">
                     <Badge 
@@ -838,14 +824,12 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                   <p className="text-xl text-gray-400">{project.client} • {project.industry}</p>
                 </div>
 
-                {/* Description */}
                 <div className="mb-8">
                   <p className="text-lg text-gray-300 leading-relaxed">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Results Grid */}
                 <div className="grid grid-cols-3 gap-6 mb-10">
                   {Object.values(project.results).filter(Boolean).map((result: any, idx: number) => {
                     const Icon = iconMapper[result.icon];
@@ -870,7 +854,6 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                   })}
                 </div>
 
-                {/* Challenge & Solution */}
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div 
                     className="p-6 rounded-xl"
@@ -901,7 +884,6 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                   </div>
                 </div>
 
-                {/* Technologies */}
                 <div className="mb-8">
                   <h3 className="text-xl font-bold mb-4">Stack Technique</h3>
                   <div className="flex flex-wrap gap-2">
@@ -922,7 +904,6 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                   </div>
                 </div>
 
-                {/* Testimonial */}
                 {project.testimonial && (
                   <div 
                     className="p-6 rounded-xl"
