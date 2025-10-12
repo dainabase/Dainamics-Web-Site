@@ -1,9 +1,9 @@
 // src/pages/Portfolio.tsx
-// Portfolio Page - Clean with Purple Grid Background
+// Portfolio Page - Professional & Clean Design
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -28,7 +28,12 @@ import {
   Rocket,
   CheckCircle,
   Quote,
-  ChevronDown
+  ChevronDown,
+  X,
+  ExternalLink,
+  Clock,
+  Users,
+  Target
 } from 'lucide-react';
 
 const COLORS = {
@@ -40,7 +45,8 @@ const COLORS = {
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const stats = getPortfolioStats();
   const featuredProjects = getFeaturedProjects();
@@ -48,6 +54,18 @@ export default function Portfolio() {
   const filteredProjects = selectedCategory 
     ? portfolioProjects.filter(p => p.category === selectedCategory)
     : portfolioProjects;
+
+  const openProjectModal = (project: PortfolioProject) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+    document.body.style.overflow = 'unset';
+  };
 
   return (
     <div className="min-h-screen bg-dainamics-background text-dainamics-light overflow-hidden">
@@ -73,33 +91,40 @@ export default function Portfolio() {
       {/* Hero Section */}
       <HeroSection />
       
-      {/* Animated Stats */}
+      {/* Animated Stats - Professional */}
       <StatsSection stats={stats} />
       
-      {/* Filter Bar */}
+      {/* Filter Bar - Clean */}
       <FilterSection 
         selectedCategory={selectedCategory}
         onCategoryChange={setSelectedCategory}
       />
       
-      {/* Featured Projects - 3D Cards */}
+      {/* Featured Projects - Cards with Modal */}
       <FeaturedProjectsSection 
         projects={featuredProjects}
-        hoveredProject={hoveredProject}
-        onHover={setHoveredProject}
+        onProjectClick={openProjectModal}
       />
       
-      {/* All Projects - Sticky Scroll */}
+      {/* All Projects - Bento Grid */}
       <AllProjectsSection 
         projects={filteredProjects}
         selectedCategory={selectedCategory}
+        onProjectClick={openProjectModal}
       />
       
-      {/* Technologies Showcase */}
+      {/* Technologies Carousel */}
       <TechnologiesSection />
       
-      {/* CTA Section */}
+      {/* CTA Section - Professional */}
       <CTASection />
+      
+      {/* Project Modal */}
+      <ProjectModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
       
       <Footer />
     </div>
@@ -124,7 +149,7 @@ function ScrollProgressBar() {
 }
 
 // ============================================================================
-// HERO SECTION
+// HERO SECTION - Clean & Professional
 // ============================================================================
 function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
@@ -133,16 +158,15 @@ function HeroSection() {
     offset: ["start start", "end start"]
   });
   
-  const y = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 z-10">
+    <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-20 z-10">
       {/* Content */}
       <motion.div
-        className="relative z-10 max-w-6xl mx-auto px-6 text-center"
-        style={{ y, opacity, scale }}
+        className="relative z-10 max-w-6xl mx-auto px-6 text-center flex-grow flex flex-col justify-center"
+        style={{ y, opacity }}
       >
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -161,11 +185,10 @@ function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-2xl text-gray-500 mb-12 max-w-4xl mx-auto leading-relaxed"
+          className="text-2xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed"
         >
           Des solutions concrètes qui génèrent des{' '}
-          <span className="font-bold" style={{ color: '#0AFF9D' }}>résultats mesurables</span>
-          {' '}pour nos clients suisses
+          <span className="font-bold" style={{ color: COLORS.success }}>résultats mesurables</span>
         </motion.p>
 
         <motion.div
@@ -181,11 +204,10 @@ function HeroSection() {
           >
             <Button
               size="lg"
-              className="text-lg px-8 py-6 group backdrop-blur-sm border-0"
+              className="text-lg px-8 py-6 group"
               style={{
-                background: `linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(16, 228, 255, 0.2))`,
-                border: '1px solid rgba(16, 228, 255, 0.3)',
-                boxShadow: '0 0 30px rgba(16, 228, 255, 0.2)',
+                background: `linear-gradient(135deg, ${COLORS.primary}, ${COLORS.accent})`,
+                border: 'none',
                 color: '#FFFFFF'
               }}
             >
@@ -198,12 +220,11 @@ function HeroSection() {
             <Button
               size="lg"
               variant="outline"
-              className="text-lg px-8 py-6 backdrop-blur-sm"
+              className="text-lg px-8 py-6"
               style={{
-                borderColor: 'rgba(255, 90, 0, 0.4)',
-                backgroundColor: 'rgba(255, 90, 0, 0.05)',
+                borderColor: COLORS.cta,
                 color: COLORS.cta,
-                boxShadow: '0 0 20px rgba(255, 90, 0, 0.1)'
+                backgroundColor: 'transparent'
               }}
             >
               <Rocket className="w-5 h-5 mr-2" />
@@ -211,21 +232,22 @@ function HeroSection() {
             </Button>
           </Link>
         </motion.div>
+      </motion.div>
 
+      {/* Scroll indicator at the bottom */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="relative z-10 mb-12"
+      >
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="flex flex-col items-center gap-2"
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-sm text-gray-500">Scroll pour explorer</span>
-            <ChevronDown className="w-6 h-6 text-gray-500" />
-          </motion.div>
+          <span className="text-sm text-gray-500">Scroll pour explorer</span>
+          <ChevronDown className="w-6 h-6 text-gray-500" />
         </motion.div>
       </motion.div>
     </section>
@@ -233,7 +255,7 @@ function HeroSection() {
 }
 
 // ============================================================================
-// STATS SECTION
+// STATS SECTION - Professional & Subtle
 // ============================================================================
 function StatsSection({ stats }: { stats: any }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -247,11 +269,11 @@ function StatsSection({ stats }: { stats: any }) {
   ];
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 relative z-10">
+    <section ref={sectionRef} className="py-16 px-6 relative z-10">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {statsData.map((stat, index) => (
-            <AnimatedStatCard 
+            <ProfessionalStatCard 
               key={index}
               stat={stat}
               index={index}
@@ -264,7 +286,7 @@ function StatsSection({ stats }: { stats: any }) {
   );
 }
 
-function AnimatedStatCard({ stat, index, isInView }: any) {
+function ProfessionalStatCard({ stat, index, isInView }: any) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -290,44 +312,24 @@ function AnimatedStatCard({ stat, index, isInView }: any) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-      animate={isInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ 
-        duration: 0.8, 
+        duration: 0.6, 
         delay: index * 0.1,
-        type: "spring",
-        stiffness: 100
+        ease: "easeOut"
       }}
-      whileHover={{ 
-        scale: 1.1,
-        rotateY: 10,
-        z: 50
-      }}
-      className="relative p-8 rounded-2xl group cursor-pointer"
+      whileHover={{ y: -5 }}
+      className="relative p-6 rounded-xl group cursor-pointer border"
       style={{
-        background: `linear-gradient(135deg, ${COLORS.primary}15, transparent)`,
-        border: `1px solid ${COLORS.primary}30`,
-        transformStyle: 'preserve-3d',
-        perspective: '1000px'
+        backgroundColor: 'rgba(10, 10, 15, 0.6)',
+        borderColor: `${COLORS.primary}30`,
+        backdropFilter: 'blur(10px)'
       }}
     >
-      <motion.div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
-        style={{
-          background: `radial-gradient(circle at center, ${COLORS.primary}30, transparent)`,
-          filter: 'blur(20px)'
-        }}
-      />
+      <stat.icon className="w-8 h-8 mb-3" style={{ color: COLORS.accent }} />
 
-      <motion.div
-        animate={isInView ? { rotate: 360 } : {}}
-        transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
-        className="mb-4"
-      >
-        <stat.icon className="w-12 h-12" style={{ color: COLORS.accent }} />
-      </motion.div>
-
-      <div className="text-6xl font-bold mb-2" style={{ color: COLORS.primary }}>
+      <div className="text-4xl font-bold mb-1" style={{ color: COLORS.primary }}>
         {count}{stat.suffix}
       </div>
 
@@ -339,7 +341,7 @@ function AnimatedStatCard({ stat, index, isInView }: any) {
 }
 
 // ============================================================================
-// FILTER SECTION
+// FILTER SECTION - Clean Design
 // ============================================================================
 function FilterSection({ selectedCategory, onCategoryChange }: any) {
   const filters = [
@@ -350,22 +352,21 @@ function FilterSection({ selectedCategory, onCategoryChange }: any) {
   ];
 
   return (
-    <section className="py-16 px-6 sticky top-20 z-40 backdrop-blur-xl" style={{ backgroundColor: 'rgba(10, 10, 15, 0.8)' }}>
+    <section className="py-12 px-6 relative z-10">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-center gap-4 flex-wrap">
-          <Filter className="w-5 h-5 text-gray-400" />
+        <div className="flex items-center justify-center gap-3 flex-wrap">
           {filters.map((filter) => (
             <motion.button
               key={filter.id || 'all'}
               onClick={() => onCategoryChange(filter.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 rounded-full font-medium transition-all"
+              className="px-5 py-2.5 rounded-lg font-medium transition-all text-sm"
               style={{
                 backgroundColor: selectedCategory === filter.id 
                   ? `${filter.color}20`
-                  : 'transparent',
-                border: `2px solid ${selectedCategory === filter.id ? filter.color : 'rgba(255,255,255,0.1)'}`,
+                  : 'rgba(255,255,255,0.05)',
+                border: `1px solid ${selectedCategory === filter.id ? filter.color : 'rgba(255,255,255,0.1)'}`,
                 color: selectedCategory === filter.id ? filter.color : '#9CA3AF'
               }}
             >
@@ -379,37 +380,33 @@ function FilterSection({ selectedCategory, onCategoryChange }: any) {
 }
 
 // ============================================================================
-// FEATURED PROJECTS - 3D Flip Cards
+// FEATURED PROJECTS - Clean Cards with Modal
 // ============================================================================
-function FeaturedProjectsSection({ projects, hoveredProject, onHover }: any) {
+function FeaturedProjectsSection({ projects, onProjectClick }: any) {
   return (
-    <section id="featured" className="py-32 px-6 relative z-10">
+    <section id="featured" className="py-20 px-6 relative z-10">
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-3 mb-6">
-            <Sparkles className="w-8 h-8" style={{ color: COLORS.accent }} />
-            <h2 className="text-6xl font-bold">
-              Projets <span style={{ color: COLORS.accent }}>Phares</span>
-            </h2>
-          </div>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <h2 className="text-5xl font-bold mb-4">
+            Projets <span style={{ color: COLORS.accent }}>Phares</span>
+          </h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             Nos réalisations les plus impressionnantes avec impact mesurable
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project: PortfolioProject, index: number) => (
             <FeaturedProjectCard 
               key={project.id}
               project={project}
               index={index}
-              isHovered={hoveredProject === project.id}
-              onHover={onHover}
+              onClick={() => onProjectClick(project)}
             />
           ))}
         </div>
@@ -418,208 +415,113 @@ function FeaturedProjectsSection({ projects, hoveredProject, onHover }: any) {
   );
 }
 
-function FeaturedProjectCard({ project, index, isHovered, onHover }: any) {
-  const [isFlipped, setIsFlipped] = useState(false);
+function FeaturedProjectCard({ project, index, onClick }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.3 });
-
   const categoryColor = categoryColors[project.category];
-  const complexityColor = complexityColors[project.complexity];
 
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 100, rotateX: -45 }}
-      animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-      className="relative h-[600px]"
-      style={{ perspective: '2000px' }}
-      onMouseEnter={() => onHover(project.id)}
-      onMouseLeave={() => onHover(null)}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.15 }}
+      whileHover={{ y: -8 }}
+      onClick={onClick}
+      className="relative p-8 rounded-2xl cursor-pointer border group"
+      style={{
+        backgroundColor: 'rgba(10, 10, 15, 0.6)',
+        borderColor: `${categoryColor}30`,
+        backdropFilter: 'blur(10px)'
+      }}
     >
-      <motion.div
-        className="relative w-full h-full"
-        style={{ transformStyle: 'preserve-3d' }}
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.8, type: "spring" }}
-      >
-        {/* FRONT SIDE */}
-        <div
-          className="absolute inset-0 rounded-3xl p-8 cursor-pointer"
+      <div className="flex items-center justify-between mb-6">
+        <Badge 
           style={{
-            backfaceVisibility: 'hidden',
-            background: `linear-gradient(135deg, ${categoryColor}20, transparent)`,
-            border: `2px solid ${categoryColor}40`
+            backgroundColor: `${categoryColor}20`,
+            color: categoryColor,
+            border: `1px solid ${categoryColor}50`
           }}
-          onClick={() => setIsFlipped(true)}
         >
-          <div className="flex items-center justify-between mb-6">
-            <Badge 
+          {project.category.toUpperCase()}
+        </Badge>
+        <ExternalLink className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: categoryColor }} />
+      </div>
+
+      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+      <p className="text-base text-gray-400 mb-4">{project.client} • {project.industry}</p>
+
+      <p className="text-gray-300 mb-6 leading-relaxed line-clamp-3">
+        {project.description}
+      </p>
+
+      <div className="grid grid-cols-3 gap-3">
+        {Object.values(project.results).filter(Boolean).map((result: any, idx: number) => {
+          const Icon = iconMapper[result.icon];
+          return (
+            <div
+              key={idx}
+              className="p-3 rounded-lg text-center"
               style={{
-                backgroundColor: `${categoryColor}30`,
-                color: categoryColor,
-                border: `1px solid ${categoryColor}`
+                backgroundColor: `${COLORS.success}10`,
+                border: `1px solid ${COLORS.success}20`
               }}
             >
-              {project.category.toUpperCase()}
-            </Badge>
-            <Badge
-              style={{
-                backgroundColor: `${complexityColor}20`,
-                color: complexityColor,
-                border: `1px solid ${complexityColor}50`
-              }}
-            >
-              {project.complexity}
-            </Badge>
-          </div>
-
-          <h3 className="text-3xl font-bold mb-3">{project.title}</h3>
-          <p className="text-lg text-gray-400 mb-6">{project.client} • {project.industry}</p>
-
-          <p className="text-gray-300 mb-8 leading-relaxed line-clamp-4">
-            {project.description}
-          </p>
-
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            {Object.values(project.results).filter(Boolean).map((result: any, idx: number) => {
-              const Icon = iconMapper[result.icon];
-              return (
-                <motion.div
-                  key={idx}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  className="p-4 rounded-xl text-center"
-                  style={{
-                    backgroundColor: `${COLORS.success}15`,
-                    border: `1px solid ${COLORS.success}30`
-                  }}
-                >
-                  {Icon && <Icon className="w-6 h-6 mx-auto mb-2" style={{ color: COLORS.success }} />}
-                  <div className="text-2xl font-bold" style={{ color: COLORS.success }}>
-                    {result.value}
-                  </div>
-                  <div className="text-xs text-gray-400 mt-1">
-                    {result.label}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <motion.div
-            className="absolute bottom-8 left-8 right-8"
-            whileHover={{ x: 5 }}
-          >
-            <div className="flex items-center gap-2 text-sm" style={{ color: categoryColor }}>
-              <Eye className="w-4 h-4" />
-              <span>Cliquer pour voir les détails</span>
-              <ArrowRight className="w-4 h-4" />
-            </div>
-          </motion.div>
-        </div>
-
-        {/* BACK SIDE */}
-        <div
-          className="absolute inset-0 rounded-3xl p-8 cursor-pointer overflow-y-auto"
-          style={{
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
-            background: `linear-gradient(135deg, ${categoryColor}25, rgba(10,10,15,0.95))`,
-            border: `2px solid ${categoryColor}60`
-          }}
-          onClick={() => setIsFlipped(false)}
-        >
-          <div className="mb-6">
-            <h4 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <TrendingUp className="w-5 h-5" style={{ color: COLORS.cta }} />
-              Challenge
-            </h4>
-            <p className="text-gray-300 text-sm leading-relaxed">{project.challenge}</p>
-          </div>
-
-          <div className="mb-6">
-            <h4 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <Rocket className="w-5 h-5" style={{ color: COLORS.primary }} />
-              Solution
-            </h4>
-            <p className="text-gray-300 text-sm leading-relaxed">{project.solution}</p>
-          </div>
-
-          <div className="mb-6">
-            <h4 className="text-lg font-bold mb-3">Stack Technique</h4>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.slice(0, 6).map((tech: string) => (
-                <Badge 
-                  key={tech}
-                  variant="outline"
-                  className="text-xs"
-                  style={{
-                    borderColor: categoryColor,
-                    color: categoryColor
-                  }}
-                >
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          {project.testimonial && (
-            <div className="p-4 rounded-xl" style={{ backgroundColor: `${COLORS.accent}10` }}>
-              <Quote className="w-6 h-6 mb-2" style={{ color: COLORS.accent }} />
-              <p className="text-sm italic text-gray-300 mb-3">"{project.testimonial.quote}"</p>
-              <div className="text-xs text-gray-400">
-                <strong>{project.testimonial.author}</strong>, {project.testimonial.role}
+              {Icon && <Icon className="w-5 h-5 mx-auto mb-1" style={{ color: COLORS.success }} />}
+              <div className="text-xl font-bold" style={{ color: COLORS.success }}>
+                {result.value}
+              </div>
+              <div className="text-xs text-gray-500 mt-0.5">
+                {result.label}
               </div>
             </div>
-          )}
+          );
+        })}
+      </div>
 
-          <motion.div
-            className="absolute bottom-8 left-8 right-8"
-            whileHover={{ x: -5 }}
-          >
-            <div className="flex items-center gap-2 text-sm" style={{ color: categoryColor }}>
-              <ArrowRight className="w-4 h-4 rotate-180" />
-              <span>Cliquer pour revenir</span>
-            </div>
-          </motion.div>
-        </div>
+      <motion.div
+        className="mt-6 flex items-center gap-2 text-sm"
+        style={{ color: categoryColor }}
+      >
+        <Eye className="w-4 h-4" />
+        <span>Cliquer pour voir les détails</span>
       </motion.div>
     </motion.div>
   );
 }
 
 // ============================================================================
-// ALL PROJECTS SECTION
+// ALL PROJECTS - Bento Grid Layout
 // ============================================================================
-function AllProjectsSection({ projects, selectedCategory }: any) {
+function AllProjectsSection({ projects, selectedCategory, onProjectClick }: any) {
   return (
-    <section className="py-32 px-6 relative z-10">
+    <section className="py-20 px-6 relative z-10">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <h2 className="text-6xl font-bold mb-6">
+          <h2 className="text-5xl font-bold mb-4">
             Tous nos <span style={{ color: COLORS.primary }}>Projets</span>
           </h2>
-          <p className="text-xl text-gray-400">
+          <p className="text-lg text-gray-400">
             {selectedCategory 
-              ? `Projets filtrés: ${selectedCategory}`
+              ? `Projets ${selectedCategory}`
               : 'Portfolio complet de nos réalisations'
             }
           </p>
         </motion.div>
 
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="wait">
             {projects.map((project: PortfolioProject, index: number) => (
-              <ProjectListItem 
+              <BentoProjectCard 
                 key={project.id}
                 project={project}
                 index={index}
+                onClick={() => onProjectClick(project)}
               />
             ))}
           </AnimatePresence>
@@ -629,134 +531,121 @@ function AllProjectsSection({ projects, selectedCategory }: any) {
   );
 }
 
-function ProjectListItem({ project, index }: any) {
+function BentoProjectCard({ project, index, onClick }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.3 });
+  const isInView = useInView(cardRef, { once: true, amount: 0.2 });
   const categoryColor = categoryColors[project.category];
 
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, x: -100 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      exit={{ opacity: 0, x: 100 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ scale: 1.02, x: 10 }}
-      className="p-8 rounded-2xl cursor-pointer"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      whileHover={{ y: -6, scale: 1.02 }}
+      onClick={onClick}
+      className="p-6 rounded-xl cursor-pointer border group"
       style={{
-        background: `linear-gradient(90deg, ${categoryColor}15, transparent)`,
-        border: `1px solid ${categoryColor}30`,
-        borderLeft: `4px solid ${categoryColor}`
+        backgroundColor: 'rgba(10, 10, 15, 0.6)',
+        borderColor: `${categoryColor}30`,
+        backdropFilter: 'blur(10px)'
       }}
     >
-      <div className="flex items-start gap-6">
-        <div className="flex-grow">
-          <div className="flex items-center gap-3 mb-3">
-            <h3 className="text-2xl font-bold">{project.title}</h3>
-            <Badge style={{ backgroundColor: `${categoryColor}20`, color: categoryColor }}>
-              {project.category}
-            </Badge>
-          </div>
-          <p className="text-gray-400 mb-4">{project.client} • {project.industry}</p>
-          <p className="text-gray-300 leading-relaxed mb-4 line-clamp-2">
-            {project.description}
-          </p>
-          
-          <div className="flex items-center gap-6">
-            {Object.values(project.results).filter(Boolean).slice(0, 2).map((result: any, idx: number) => {
-              const Icon = iconMapper[result.icon];
-              return (
-                <div key={idx} className="flex items-center gap-2">
-                  {Icon && <Icon className="w-4 h-4" style={{ color: COLORS.success }} />}
-                  <span className="font-bold" style={{ color: COLORS.success }}>
-                    {result.value}
-                  </span>
-                  <span className="text-xs text-gray-500">{result.label}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          className="flex-shrink-0"
+      <div className="flex items-center gap-2 mb-3">
+        <Badge 
+          className="text-xs"
+          style={{ 
+            backgroundColor: `${categoryColor}20`, 
+            color: categoryColor,
+            border: `1px solid ${categoryColor}40`
+          }}
         >
-          <div 
-            className="w-12 h-12 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: `${categoryColor}20` }}
-          >
-            <ArrowRight className="w-6 h-6" style={{ color: categoryColor }} />
-          </div>
-        </motion.div>
+          {project.category}
+        </Badge>
       </div>
+
+      <h3 className="text-lg font-bold mb-2 line-clamp-1">{project.title}</h3>
+      <p className="text-sm text-gray-400 mb-3">{project.client}</p>
+      <p className="text-sm text-gray-300 leading-relaxed line-clamp-2 mb-4">
+        {project.description}
+      </p>
+
+      <div className="flex items-center gap-4 text-xs">
+        {Object.values(project.results).filter(Boolean).slice(0, 2).map((result: any, idx: number) => {
+          const Icon = iconMapper[result.icon];
+          return (
+            <div key={idx} className="flex items-center gap-1.5">
+              {Icon && <Icon className="w-3.5 h-3.5" style={{ color: COLORS.success }} />}
+              <span className="font-semibold" style={{ color: COLORS.success }}>
+                {result.value}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      <motion.div
+        className="mt-4 flex items-center gap-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+        style={{ color: categoryColor }}
+      >
+        <span>Voir les détails</span>
+        <ArrowRight className="w-3.5 h-3.5" />
+      </motion.div>
     </motion.div>
   );
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION
+// TECHNOLOGIES CAROUSEL - Clean & Professional
 // ============================================================================
 function TechnologiesSection() {
   const allTechs = portfolioProjects.flatMap(p => p.technologies);
-  const uniqueTechs = [...new Set(allTechs)].slice(0, 16);
+  const uniqueTechs = [...new Set(allTechs)];
+  const displayTechs = [...uniqueTechs, ...uniqueTechs]; // Duplicate for infinite scroll
 
   return (
-    <section className="py-32 px-6 relative overflow-hidden z-10">
+    <section className="py-20 px-6 relative overflow-hidden z-10">
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
-          <h2 className="text-6xl font-bold mb-6">
+          <h2 className="text-5xl font-bold mb-4">
             Technologies <span style={{ color: COLORS.accent }}>Maîtrisées</span>
           </h2>
         </motion.div>
 
-        <div className="relative h-[500px] flex items-center justify-center">
-          {uniqueTechs.map((tech, index) => {
-            const angle = (index / uniqueTechs.length) * 360;
-            const radius = 200;
-            
-            return (
-              <motion.div
-                key={tech}
-                className="absolute"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                animate={{
-                  x: Math.cos((angle * Math.PI) / 180) * radius,
-                  y: Math.sin((angle * Math.PI) / 180) * radius
-                }}
-                whileHover={{ scale: 1.3, zIndex: 10 }}
-              >
-                <div 
-                  className="px-4 py-2 rounded-full font-medium text-sm"
-                  style={{
-                    backgroundColor: `${COLORS.primary}20`,
-                    border: `1px solid ${COLORS.primary}50`,
-                    color: COLORS.primary
-                  }}
-                >
-                  {tech}
-                </div>
-              </motion.div>
-            );
-          })}
-
-          <div 
-            className="w-32 h-32 rounded-full flex items-center justify-center"
-            style={{
-              background: `radial-gradient(circle, ${COLORS.primary}30, transparent)`,
-              border: `2px solid ${COLORS.primary}`
+        <div className="relative">
+          <motion.div
+            className="flex gap-4"
+            animate={{
+              x: [0, -50 * uniqueTechs.length]
+            }}
+            transition={{
+              x: {
+                duration: 30,
+                repeat: Infinity,
+                ease: "linear"
+              }
             }}
           >
-            <Rocket className="w-16 h-16" style={{ color: COLORS.primary }} />
-          </div>
+            {displayTechs.map((tech, index) => (
+              <div 
+                key={`${tech}-${index}`}
+                className="flex-shrink-0 px-6 py-3 rounded-lg font-medium text-sm whitespace-nowrap"
+                style={{
+                  backgroundColor: `${COLORS.primary}15`,
+                  border: `1px solid ${COLORS.primary}30`,
+                  color: COLORS.primary
+                }}
+              >
+                {tech}
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
@@ -764,76 +653,54 @@ function TechnologiesSection() {
 }
 
 // ============================================================================
-// CTA SECTION
+// CTA SECTION - Professional
 // ============================================================================
 function CTASection() {
   return (
-    <section className="py-32 px-6 relative overflow-hidden z-10">
-      <div className="max-w-5xl mx-auto text-center relative z-10">
+    <section className="py-24 px-6 relative overflow-hidden z-10">
+      <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.div
-            className="inline-flex mb-8"
-            animate={{ rotateY: [0, 360] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-          >
-            <Sparkles className="w-20 h-20" style={{ color: COLORS.accent }} />
-          </motion.div>
-
-          <h2 className="text-6xl md:text-7xl font-bold mb-8">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6">
             Prêt à créer votre{' '}
-            <span 
-              className="inline-block bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(135deg, ${COLORS.primary}, ${COLORS.accent})`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}
-            >
-              success story
-            </span>{' '}?
+            <span style={{ color: COLORS.accent }}>success story</span> ?
           </h2>
 
-          <p className="text-2xl text-gray-400 mb-12 max-w-3xl mx-auto">
-            Rejoignez nos clients qui ont déjà transformé leur business avec des solutions IA et automatisation sur mesure.
+          <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+            Rejoignez nos clients qui ont transformé leur business avec des solutions IA et automatisation sur mesure.
           </p>
 
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <Link to="/contact">
               <Button 
                 size="lg"
-                className="text-xl px-10 py-7 group"
+                className="text-lg px-8 py-6"
                 style={{
-                  background: `linear-gradient(135deg, ${COLORS.cta}, ${COLORS.primary})`,
-                  border: 'none'
+                  backgroundColor: COLORS.primary,
+                  border: 'none',
+                  color: '#FFFFFF'
                 }}
               >
-                <Rocket className="w-6 h-6 mr-2" />
+                <Rocket className="w-5 h-5 mr-2" />
                 Démarrer Votre Projet
-                <motion.div
-                  className="ml-2"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <ArrowRight className="w-6 h-6" />
-                </motion.div>
               </Button>
             </Link>
             <Link to="/process">
               <Button 
                 size="lg"
                 variant="outline"
-                className="text-xl px-10 py-7"
+                className="text-lg px-8 py-6"
                 style={{
                   borderColor: COLORS.accent,
-                  color: COLORS.accent
+                  color: COLORS.accent,
+                  backgroundColor: 'transparent'
                 }}
               >
-                <CheckCircle className="w-6 h-6 mr-2" />
+                <CheckCircle className="w-5 h-5 mr-2" />
                 Notre Processus
               </Button>
             </Link>
@@ -841,5 +708,197 @@ function CTASection() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+// ============================================================================
+// PROJECT MODAL - Professional Design
+// ============================================================================
+function ProjectModal({ project, isOpen, onClose }: any) {
+  if (!project) return null;
+
+  const categoryColor = categoryColors[project.category];
+  const complexityColor = complexityColors[project.complexity];
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100]"
+          />
+
+          {/* Modal */}
+          <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative w-full max-w-5xl my-8 rounded-2xl overflow-hidden"
+              style={{
+                backgroundColor: 'rgba(10, 10, 15, 0.98)',
+                border: `2px solid ${categoryColor}50`,
+                maxHeight: '90vh'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={onClose}
+                className="absolute top-6 right-6 z-10 p-2 rounded-lg transition-colors"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  color: '#FFFFFF'
+                }}
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {/* Content */}
+              <div className="overflow-y-auto max-h-[85vh] p-8 md:p-12">
+                {/* Header */}
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Badge 
+                      style={{
+                        backgroundColor: `${categoryColor}20`,
+                        color: categoryColor,
+                        border: `1px solid ${categoryColor}`
+                      }}
+                    >
+                      {project.category.toUpperCase()}
+                    </Badge>
+                    <Badge
+                      style={{
+                        backgroundColor: `${complexityColor}20`,
+                        color: complexityColor,
+                        border: `1px solid ${complexityColor}50`
+                      }}
+                    >
+                      {project.complexity}
+                    </Badge>
+                  </div>
+
+                  <h2 className="text-4xl font-bold mb-3">{project.title}</h2>
+                  <p className="text-xl text-gray-400">{project.client} • {project.industry}</p>
+                </div>
+
+                {/* Description */}
+                <div className="mb-8">
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Results Grid */}
+                <div className="grid grid-cols-3 gap-6 mb-10">
+                  {Object.values(project.results).filter(Boolean).map((result: any, idx: number) => {
+                    const Icon = iconMapper[result.icon];
+                    return (
+                      <div
+                        key={idx}
+                        className="p-6 rounded-xl text-center"
+                        style={{
+                          backgroundColor: `${COLORS.success}15`,
+                          border: `1px solid ${COLORS.success}30`
+                        }}
+                      >
+                        {Icon && <Icon className="w-8 h-8 mx-auto mb-3" style={{ color: COLORS.success }} />}
+                        <div className="text-3xl font-bold mb-1" style={{ color: COLORS.success }}>
+                          {result.value}
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          {result.label}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Challenge & Solution */}
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div 
+                    className="p-6 rounded-xl"
+                    style={{
+                      backgroundColor: `${COLORS.cta}10`,
+                      border: `1px solid ${COLORS.cta}30`
+                    }}
+                  >
+                    <div className="flex items-center gap-2 mb-4">
+                      <Target className="w-6 h-6" style={{ color: COLORS.cta }} />
+                      <h3 className="text-xl font-bold">Challenge</h3>
+                    </div>
+                    <p className="text-gray-300 leading-relaxed">{project.challenge}</p>
+                  </div>
+
+                  <div 
+                    className="p-6 rounded-xl"
+                    style={{
+                      backgroundColor: `${COLORS.primary}10`,
+                      border: `1px solid ${COLORS.primary}30`
+                    }}
+                  >
+                    <div className="flex items-center gap-2 mb-4">
+                      <Rocket className="w-6 h-6" style={{ color: COLORS.primary }} />
+                      <h3 className="text-xl font-bold">Solution</h3>
+                    </div>
+                    <p className="text-gray-300 leading-relaxed">{project.solution}</p>
+                  </div>
+                </div>
+
+                {/* Technologies */}
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold mb-4">Stack Technique</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech: string) => (
+                      <Badge 
+                        key={tech}
+                        variant="outline"
+                        className="text-sm px-3 py-1"
+                        style={{
+                          borderColor: categoryColor,
+                          color: categoryColor,
+                          backgroundColor: `${categoryColor}10`
+                        }}
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Testimonial */}
+                {project.testimonial && (
+                  <div 
+                    className="p-6 rounded-xl"
+                    style={{ 
+                      backgroundColor: `${COLORS.accent}10`,
+                      border: `1px solid ${COLORS.accent}30`
+                    }}
+                  >
+                    <Quote className="w-8 h-8 mb-4" style={{ color: COLORS.accent }} />
+                    <p className="text-lg italic text-gray-300 mb-4 leading-relaxed">
+                      "{project.testimonial.quote}"
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div>
+                        <div className="font-bold">{project.testimonial.author}</div>
+                        <div className="text-sm text-gray-400">{project.testimonial.role}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        </>
+      )}
+    </AnimatePresence>
   );
 }
