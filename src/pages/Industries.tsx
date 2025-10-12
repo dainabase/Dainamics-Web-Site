@@ -124,8 +124,8 @@ export default function Industries() {
             }}
           />
 
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="container mx-auto px-4 md:px-8 min-h-[60vh] flex items-center">
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
               {/* Texte - Gauche avec stagger */}
               <motion.div
                 className="lg:w-1/2 text-center lg:text-left"
