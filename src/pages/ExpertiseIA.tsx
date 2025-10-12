@@ -72,6 +72,7 @@ export default function ExpertiseIA() {
         selectedProficiency={selectedProficiency}
         setSelectedProficiency={setSelectedProficiency}
         iaColor={iaColor}
+        allTechnologies={pillar.technologies}
       />
       
       {/* Capabilities Section - STICKY SCROLL TYPE 2 (Progress-based) */}
@@ -293,7 +294,8 @@ function TechnologiesSection({
   technologies, 
   selectedProficiency, 
   setSelectedProficiency,
-  iaColor 
+  iaColor,
+  allTechnologies
 }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -345,7 +347,7 @@ function TechnologiesSection({
                     {level === 'all' ? 'Toutes' : level === 'expert' ? 'Expert' : level === 'advanced' ? 'Avancé' : 'Intermédiaire'}
                   </span>
                   <span className="text-sm text-gray-500 ml-2">
-                    ({level === 'all' ? technologies.length : technologies.filter((t: any) => t.proficiency === level).length})
+                    ({level === 'all' ? allTechnologies.length : allTechnologies.filter((t: any) => t.proficiency === level).length})
                   </span>
                 </button>
               ))}
@@ -364,7 +366,7 @@ function TechnologiesSection({
               }}
             >
               <div className="text-3xl font-bold mb-2" style={{ color: iaColor }}>
-                {technologies.length}+
+                {allTechnologies.length}+
               </div>
               <div className="text-sm text-gray-400">
                 Technologies maîtrisées
@@ -374,7 +376,7 @@ function TechnologiesSection({
 
           {/* RIGHT - SCROLLING CARDS */}
           <div className="lg:col-span-8 space-y-4">
-            {filteredTechnologies.map((tech: any, index: number) => (
+            {technologies.map((tech: any, index: number) => (
               <TechnologyCard 
                 key={tech.name} 
                 tech={tech} 
