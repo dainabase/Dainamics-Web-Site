@@ -55,6 +55,22 @@ export default function Portfolio() {
       
       {/* Hero Background on entire page */}
       <div className="fixed inset-0 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 z-0" />
+
+      {/* Animated Grid Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(147, 51, 234, 0.1) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(147, 51, 234, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+            maskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)'
+          }}
+        />
+      </div>
       
       {/* Global Progress Bar */}
       <ScrollProgressBar />
