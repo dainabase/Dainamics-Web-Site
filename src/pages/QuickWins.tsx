@@ -103,8 +103,8 @@ export default function QuickWins() {
       <Navigation />
 
       <main className="relative z-10">
-        {/* Hero Section avec Parallax */}
-        <section ref={heroRef} className="relative py-20 md:py-24 overflow-hidden">
+        {/* Hero Section avec Parallax - PLUS D'ESPACE EN HAUT */}
+        <section ref={heroRef} className="relative pt-32 md:pt-48 pb-20 md:pb-24 overflow-hidden">
           {/* Éléments flottants en arrière-plan avec parallax */}
           <motion.div
             className="absolute top-20 left-10 w-32 h-32 rounded-full bg-dainamics-success/10 blur-3xl"
