@@ -33,7 +33,8 @@ import {
   Server,
   Package,
   GitBranch,
-  Zap
+  Zap,
+  ChevronRight
 } from 'lucide-react';
 
 export default function ExpertiseDeveloppement() {
@@ -827,7 +828,7 @@ function QuickWinsSection({ quickWins, devColor }: any) {
         <div className="space-y-4">
           {quickWins.map((win: any, index: number) => (
             <QuickWinAccordion 
-              key={win.id}
+              key={`quick-win-${index}`}
               win={win}
               index={index}
               devColor={devColor}
