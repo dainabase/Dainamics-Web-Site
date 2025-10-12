@@ -1,4 +1,4 @@
-# 📘 DAINAMICS - Instructions Projet v2.1
+# 📘 DAINAMICS - Instructions Projet v2.2
 
 ## 🎯 Vue d'ensemble
 
@@ -10,145 +10,195 @@ DAINAMICS est une société suisse spécialisée dans l'IA, l'Automatisation et 
 
 ---
 
-## 🚨 RÈGLES AVANT CHAQUE PROMPT À CLAUDE CODE
+## 🚨 NOUVEAU WORKFLOW - CHANGEMENT CRITIQUE
 
-### ⚠️ STRUCTURE OBLIGATOIRE - 7 SECTIONS
+### ⚡ Claude Travaille DIRECTEMENT Maintenant
 
-**CHAQUE prompt à Claude Code DOIT contenir ces 7 sections. AUCUNE EXCEPTION.**
+**CHANGEMENT MAJEUR:**
+- ❌ **TERMINÉ**: Workflow avec Claude Code + prompts 7 sections
+- ✅ **NOUVEAU**: Claude fait le travail lui-même directement
 
-```
-1. CONTEXTE PROJET
-   - État actuel repository
-   - Fichier à créer/modifier
-   - Technologies utilisées
+**Comment ça fonctionne:**
+1. Claude se connecte au repository GitHub
+2. Claude lit, crée et modifie les fichiers
+3. Claude commit et push directement
+4. Tout se fait dans la conversation
 
-2. OBJECTIF PRÉCIS
-   - Ce qui doit être fait exactement
-   - Résultat attendu
+**Plus besoin de:**
+- Créer des prompts structurés en 7 sections
+- Copier-coller dans Claude Code
+- Attendre validation entre les étapes
 
-3. STRUCTURE TECHNIQUE EXACTE
-   - CODE COMPLET (200-500 lignes minimum)
-   - ⚠️ OBLIGATOIRE: "Référencer DESIGN-SYSTEM-MANDATORY.md"
-   - ⚠️ OBLIGATOIRE: "Utiliser CATEGORY_COLORS et COMPLEXITY_COLORS"
-   - ⚠️ OBLIGATOIRE: "Vérifier icônes sur https://lucide.dev"
-   - Interface TypeScript stricte
-   - Exemples complets
+**Claude fait directement:**
+- Lecture du repository
+- Création/modification de fichiers
+- Commit avec messages appropriés
+- Push sur la branche main
 
-4. RÈGLES DE CONTENU
-   - Standards rédactionnels
-   - Gains TOUJOURS quantifiés (CHF, %, heures)
-   - Terminologie correcte (IA pas AI)
+---
 
-5. VALIDATION - 3 CHECKLISTS
-   ✅ Checklist Technique (10-15 critères)
-   ✅ Checklist Contenu (10-15 critères)
-   ✅ Checklist Design System (10 critères minimum)
+## 🎨 APPROCHE PÉDAGOGIQUE OBLIGATOIRE
 
-6. PROCESSUS GIT
-   - Commandes exactes à exécuter
-   - Message commit standardisé
-   - Format confirmation attendu
+### 📐 Inspiration: Page d'Accueil (Index.tsx)
 
-7. GESTION D'ERREURS
-   - Erreurs possibles + solutions
-   - Procédure si bloqué
-```
+**RÈGLE D'OR**: S'inspirer au MAXIMUM de Index.tsx pour TOUTES les nouvelles pages
 
-### ⚠️ DESIGN SYSTEM - MENTIONS OBLIGATOIRES DANS SECTION 3
+**Ce qui DOIT être réutilisé de Index.tsx:**
 
-**Dans CHAQUE prompt, section 3, vous DEVEZ inclure TEXTUELLEMENT :**
+1. **Structure générale**
+   - Hero section avec animation principale
+   - Sections alternées (texte gauche/animation droite, puis inverse)
+   - Grid backgrounds animés
+   - Spacing et rythme vertical
 
-```
-⚠️ DESIGN SYSTEM OBLIGATOIRE:
+2. **Layouts multi-colonnes**
+   ```
+   ┌─────────────────────────────────────────┐
+   │  TEXTE (50%)          ANIMATION (50%)   │
+   │  ─────────────        ─────────────     │
+   │  • Titre h2           [Animation SVG]   │
+   │  • Description p      [Schéma animé]    │
+   │  • Bénéfices liste    [Illustration]    │
+   │  • CTA bouton         [Graphique]       │
+   └─────────────────────────────────────────┘
+   ```
 
-1. Référencer le document DESIGN-SYSTEM-MANDATORY.md
-2. Utiliser UNIQUEMENT les couleurs suivantes:
-   - CATEGORY_COLORS pour catégories (ia/automatisation/developpement)
-   - COMPLEXITY_COLORS pour badges (starter/intermediate/advanced)
-3. Utiliser UNIQUEMENT des icônes Lucide React v0.263.1
-4. Vérifier CHAQUE icône sur https://lucide.dev AVANT utilisation
-5. JAMAIS de couleurs HEX hardcodées hors Design System
-6. JAMAIS d'icônes inventées ou non-Lucide
+3. **Animations Framer Motion**
+   - Fade in au scroll (IntersectionObserver)
+   - Stagger pour les listes
+   - Hover effects sur les cards
+   - Parallax subtil
 
-Mappings à utiliser EXACTEMENT:
-const CATEGORY_COLORS = {
-  'ia': '#6366F1',
-  'automatisation': '#10E4FF',
-  'developpement': '#FF5A00'
-};
+4. **Typography**
+   - h1: text-5xl md:text-7xl font-bold
+   - h2: text-3xl md:text-5xl font-bold
+   - p: text-lg md:text-xl text-slate-300
+   - Espacement cohérent
 
-const COMPLEXITY_COLORS = {
-  'starter': '#10B981',
-  'intermediate': '#F59E0B',
-  'advanced': '#EF4444'
-};
-```
+5. **Components réutilisables**
+   - EnhancedGridBackground
+   - Button (primary/secondary)
+   - Card avec hover effects
+   - Badge pour catégories
 
-### 📋 EXEMPLE DE PROMPT CORRECT
+### 🧠 Principe Pédagogique: Montrer ET Expliquer
 
-```
-# PROMPT: Créer src/data/expertise.ts
+**OBJECTIF**: Rendre les concepts techniques accessibles visuellement
 
-## 1. CONTEXTE PROJET
-- Repository: https://github.com/dainabase/Dainamics-Web-Site
-- Fichier: src/data/expertise.ts (à créer)
-- Technologies: React 18+ TypeScript 5+ Tailwind CSS 3+
-- Référence: solutions.ts (même structure)
+**Format Standard par Section:**
 
-## 2. OBJECTIF PRÉCIS
-Créer fichier expertise.ts contenant les 3 piliers DAINAMICS:
-- Intelligence Artificielle
-- Automatisation
-- Développement
-
-## 3. STRUCTURE TECHNIQUE EXACTE
-
-⚠️ DESIGN SYSTEM OBLIGATOIRE:
-1. Référencer DESIGN-SYSTEM-MANDATORY.md
-2. Utiliser CATEGORY_COLORS pour couleurs piliers
-3. Icônes Lucide uniquement (vérifier https://lucide.dev)
-4. Mappings EXACTS:
-   'ia' → '#6366F1'
-   'automatisation' → '#10E4FF'
-   'developpement' → '#FF5A00'
-
-[CODE COMPLET DE 200-500 LIGNES ICI]
-
-## 4. RÈGLES DE CONTENU
-- Gains quantifiés obligatoires
-- "IA" (pas "AI") en français
-- Pas d'emojis
-- Exemples concrets
-
-## 5. VALIDATION
-✅ Checklist Technique (12 critères)
-✅ Checklist Contenu (12 critères)
-✅ Checklist Design System (10 critères)
-
-## 6. PROCESSUS GIT
-git add src/data/expertise.ts
-git commit -m "feat(data): add expertise.ts with 3 pillars"
-git push origin main
-
-## 7. GESTION D'ERREURS
-[Solutions aux erreurs possibles]
+```typescript
+<section className="py-20 md:py-32">
+  <div className="grid md:grid-cols-2 gap-12 items-center">
+    {/* Partie TEXTE (Gauche) */}
+    <div>
+      <h2>Concept à expliquer</h2>
+      <p>Explication claire et accessible</p>
+      <ul>Bénéfices quantifiés</ul>
+      <Button>CTA</Button>
+    </div>
+    
+    {/* Partie ANIMATION (Droite) */}
+    <div>
+      <AnimatedDiagram />
+      {/* Animation qui MONTRE le concept */}
+    </div>
+  </div>
+</section>
 ```
 
-### ❌ CE QUI SE PASSE SI VOUS NE SUIVEZ PAS CES RÈGLES
+### 💡 Exemples d'Animations Pédagogiques
 
-**Si prompt sans 7 sections:**
-- Claude Code risque de créer code incomplet
-- Pas de validation = erreurs non détectées
-- Pas de cohérence avec Design System
-- → REFAIRE LE TRAVAIL = PERTE DE TEMPS
+**Référence**: Animation cerveau sur hero de Index.tsx
 
-**Si Design System non mentionné en section 3:**
-- Claude Code peut inventer ses propres couleurs
-- Icônes non-Lucide possibles
-- Incohérence visuelle totale du site
-- → FICHIER À REFAIRE COMPLÈTEMENT
+**Types à créer selon le sujet:**
 
-**Résultat: 2-3x plus de temps perdu à corriger qu'à bien faire dès le début**
+1. **Intelligence Artificielle**
+   ```
+   - Cerveau avec connexions neuronales animées
+   - Flux de données (input → traitement → output)
+   - Analyse de texte en temps réel
+   - Classification/détection visuelle
+   ```
+
+2. **Automatisation**
+   ```
+   - Workflow en cascade (étape par étape)
+   - Connexions entre systèmes (APIs)
+   - Before/After avec timer
+   - Process automatisé vs manuel
+   ```
+
+3. **Développement**
+   ```
+   - Architecture en couches (frontend/backend/DB)
+   - Stack technique empilé
+   - User journey animé
+   - Code qui compile/déploie
+   ```
+
+4. **ROI/Gains**
+   ```
+   - Graphiques animés (CountUp)
+   - Comparaison avant/après (barres)
+   - Timeline d'implémentation
+   - Coûts économisés visualisés
+   ```
+
+### 🔧 Composants d'Animation à Créer
+
+**Bibliothèque de composants pédagogiques:**
+
+```typescript
+// À créer progressivement
+1. AnimatedDiagram      // Schémas techniques génériques
+2. ProcessFlow          // Workflows étape par étape
+3. BeforeAfterCompare   // Comparaisons animées
+4. DataVisualization    // Graphiques/stats animés
+5. SystemArchitecture   // Archi systèmes/intégrations
+6. CodeAnimation        // Code qui s'anime
+7. NetworkGraph         // Graphes de connexions
+8. TimelineStepper      // Timeline interactive
+9. MetricsCounter       // Compteurs animés (CountUp)
+10. InteractiveDemo     // Démos interactives
+```
+
+### 📋 Checklist Page Pédagogique
+
+Pour CHAQUE nouvelle page créée:
+
+**Structure (inspirée Index.tsx)**
+- [ ] Hero section avec animation principale
+- [ ] Au moins 3-4 sections multi-colonnes (texte + animation)
+- [ ] Grid background animé (EnhancedGridBackground)
+- [ ] Typography cohérente (h1, h2, p)
+- [ ] Spacing vertical régulier (py-20 md:py-32)
+
+**Contenu Pédagogique**
+- [ ] Chaque concept technique expliqué visuellement
+- [ ] Animation synchronisée avec le texte explicatif
+- [ ] Bénéfices TOUJOURS quantifiés (CHF, %, heures)
+- [ ] Exemples concrets et accessibles
+- [ ] Pas de jargon sans explication
+
+**Animations**
+- [ ] Au moins 1 animation par section majeure
+- [ ] Framer Motion pour toutes les animations
+- [ ] Animations déclenchées au scroll (viewport)
+- [ ] Performance 60fps minimum
+- [ ] Animations adaptées mobile (simplifiées si besoin)
+
+**Design System**
+- [ ] Couleurs CATEGORY_COLORS/COMPLEXITY_COLORS
+- [ ] Icônes Lucide vérifiées sur lucide.dev
+- [ ] Pas de HEX hardcodé hors Design System
+- [ ] Mappings respectés
+
+**Technique**
+- [ ] TypeScript strict (pas any)
+- [ ] Responsive (mobile-first)
+- [ ] SEO (meta tags, h1 unique)
+- [ ] Accessibilité (alt, aria-labels)
 
 ---
 
@@ -157,7 +207,8 @@ git push origin main
 ### Référence Complète
 
 **Document**: `DESIGN-SYSTEM-MANDATORY.md` (15.5 KB)  
-**Architecture**: `ARCHITECTURE.md` (lignes 100-800)
+**Architecture**: `ARCHITECTURE.md` (lignes 100-800)  
+**Référence Visuelle**: `Index.tsx` (page d'accueil)
 
 ### Palette à Utiliser (AUCUNE AUTRE COULEUR)
 
@@ -204,11 +255,11 @@ const COMPLEXITY_COLORS = {
 
 ## 📚 Documentation (Par ordre de priorité)
 
-1. **DESIGN-SYSTEM-MANDATORY.md** ⭐ CRITIQUE (15.5 KB)
-2. **ARCHITECTURE.md** (81 KB, 3397 lignes)
-3. **WORKFLOW.md** (14.7 KB) - Standards prompts
-4. **PROMPT-CONTEXT.md v2.0** (16.4 KB)
-5. **INSTRUCTIONS.md v2.1** (ce document)
+1. **Index.tsx** ⭐ **RÉFÉRENCE LAYOUTS** (page d'accueil)
+2. **DESIGN-SYSTEM-MANDATORY.md** ⭐ CRITIQUE (15.5 KB)
+3. **ARCHITECTURE.md** (81 KB, 3397 lignes)
+4. **PROMPT-CONTEXT.md v2.1** (nouveau workflow)
+5. **INSTRUCTIONS.md v2.2** (ce document)
 6. **CHANGELOG.md v2.2**
 
 ---
@@ -216,29 +267,31 @@ const COMPLEXITY_COLORS = {
 ## ✅ État Actuel
 
 ### Terminé ✅
-- solutions.ts (21.2 KB, Commit 6a193bb)
-- Navigation.tsx (11.8 KB, Commit 0314f61)
-- DESIGN-SYSTEM-MANDATORY.md (Commit 95e92a3)
-- Documentation complète
-
-### En Cours ⏳
-- portfolio.ts (Claude Code exécute)
+- solutions.ts (21.2 KB, 15 automatisations)
+- portfolio.ts (14.1 KB, 5 projets)
+- expertise.ts (30.1 KB, 3 piliers)
+- agents.ts
+- Navigation.tsx (11.8 KB, menu complet)
+- Index.tsx (page d'accueil complète) ⭐ RÉFÉRENCE
+- Solutions.tsx (page solutions)
+- Portfolio.tsx (page portfolio)
+- Expertise pages (IA, Auto, Dev)
+- EnhancedGridBackground.tsx
+- Documentation mise à jour
 
 ### À Créer ⏹️
-- expertise.ts - 3 piliers
-- testimonials.ts - Témoignages
-- Page /solutions
-- Page /portfolio
-- Autres data files
-
-### Commits Récents
-```
-acb7d6cb - docs(instructions): update v2.0
-712c70a - docs(prompt-context): update v2.0
-95e92a3 - docs(design-system): add mandatory guide
-0314f61 - feat(navigation): complete menu
-6a193bb - feat(data): add solutions.ts
-```
+- glossary.ts (30-50 termes)
+- useCases.ts (10-15 cas d'usage)
+- pricingPackages.ts (4 tiers)
+- testimonials.ts (8-10 témoignages)
+- integrations.ts
+- Page /solutions/quick-wins
+- Page /solutions/industries
+- Page /use-cases
+- Page /glossary (remplacer ComingSoon)
+- Page /about
+- Page /pricing
+- Page /process (remplacer ComingSoon)
 
 ---
 
@@ -266,6 +319,7 @@ acb7d6cb - docs(instructions): update v2.0
 - Toujours quantifier (CHF, %, heures)
 - Approche suisse (nLPD, SwissDec, TVA)
 - ROI démontrable
+- **Approche pédagogique**: expliquer visuellement
 
 ### Style
 - Professionnel mais accessible
@@ -276,7 +330,9 @@ acb7d6cb - docs(instructions): update v2.0
 
 ### Design
 - Moderne épuré (Stripe, Linear)
+- **S'inspirer d'Index.tsx** pour tous les layouts
 - Animations Framer Motion
+- **Sections multi-colonnes** (texte + animation)
 - Navigation max 3 clics
 - Mobile-first obligatoire
 
@@ -285,15 +341,15 @@ acb7d6cb - docs(instructions): update v2.0
 ## 🏗️ Structure Site
 
 ### Pages (9)
-1. Homepage - Hero + Piliers + Solutions
-2. Expertise - IA, Automatisation, Dev
-3. Solutions - 15 automatisations
-4. Portfolio - LEXAIA, ENKI-REALTY + 3
-5. Resources - Blog, Glossaire, Use Cases
-6. À Propos - Mission, Équipe
-7. Process - Méthodologie, Garanties
-8. Pricing - 4 tiers
-9. Contact - Form + Chatbot + RDV
+1. **Homepage** ✅ - Hero + Piliers + Solutions (Index.tsx)
+2. **Expertise** ✅ - IA, Automatisation, Dev
+3. **Solutions** ✅ - 15 automatisations
+4. **Portfolio** ✅ - LEXAIA, ENKI-REALTY + 3
+5. Resources ⏹️ - Blog, Glossaire, Use Cases
+6. À Propos ⏹️ - Mission, Équipe
+7. Process ⏹️ - Méthodologie, Garanties
+8. Pricing ⏹️ - 4 tiers
+9. Contact ✅ - Form + Chatbot + RDV
 
 ### Features (8)
 1. Calculateur ROI
@@ -324,7 +380,7 @@ acb7d6cb - docs(instructions): update v2.0
 - Cal.com (RDV)
 
 ### Dev
-- Claude Code (principal)
+- **Claude** (travail direct sur GitHub)
 - GitHub (version control)
 - Vercel/Netlify (hosting)
 
@@ -361,8 +417,8 @@ src/
 │   ├── ui/         # Design System
 │   ├── layout/     # Header, Footer
 │   └── features/   # Features
-├── data/           # solutions.ts ✅, portfolio.ts ⏳
-├── pages/          # Routes
+├── data/           # Data files (solutions.ts, etc.)
+├── pages/          # Routes (Index.tsx ⭐)
 ├── types/          # TypeScript
 └── utils/          # Helpers
 ```
@@ -374,35 +430,41 @@ src/
 ### Phase 1 (Semaines 1-3)
 
 **Semaine 1** ✅
-- [x] Setup + Design System + Layout + Homepage 1-5
+- [x] Setup + Design System + Layout + Homepage
 
-**Semaine 2** ⏳ EN COURS
-- [x] Homepage complète
-- [x] Navigation.tsx ✅
-- [x] solutions.ts ✅
-- [⏳] portfolio.ts
-- [ ] expertise.ts
+**Semaine 2** ✅
+- [x] Homepage complète (Index.tsx)
+- [x] Navigation.tsx
+- [x] solutions.ts
+- [x] portfolio.ts
+- [x] expertise.ts
+- [x] Pages Expertise
+
+**Semaine 3** ⏳ EN COURS
+- [ ] Pages Quick Wins, Industries
+- [ ] Pages Resources (Glossaire, Use Cases)
 - [ ] Calculateur ROI
 - [ ] Diagnostic IA
 
-**Semaine 3**
-- [ ] Pages Expertise, Solutions, Portfolio
-
 ### Phase 2 (Semaines 4-5)
-- Case studies, Blog, Glossaire, Use Cases
+- About, Process, Pricing
+- Blog, intégrations
+- Features interactives
 
 ### Phase 3 (Semaines 6-7)
-- Process, Pricing, About, Contact, Chatbot, SEO, QA
+- Chatbot, SEO, QA, Performance
 
 ---
 
 ## ✅ Checklist Avant Commit
 
 ### Design System ⭐ CRITIQUE
+- [ ] Référence Index.tsx pour layouts
+- [ ] Sections multi-colonnes (texte + animation)
+- [ ] Animations pédagogiques présentes
 - [ ] CATEGORY_COLORS/COMPLEXITY_COLORS utilisés
 - [ ] Icônes Lucide vérifiées lucide.dev
 - [ ] Pas de HEX hardcodé hors Design System
-- [ ] Mappings respectés
 
 ### Code
 - [ ] TypeScript sans erreurs (pas `any`)
@@ -417,6 +479,7 @@ src/
 
 ### Contenu
 - [ ] Gains quantifiés (CHF, %, heures)
+- [ ] Concepts expliqués visuellement
 - [ ] "IA" (pas "AI")
 - [ ] LEXAIA, ENKI-REALTY corrects
 - [ ] CTAs clairs
@@ -427,10 +490,10 @@ src/
 
 ### Documentation
 - **Repository**: https://github.com/dainabase/Dainamics-Web-Site
+- **Index.tsx**: Référence layouts et animations ⭐
 - **Design System**: DESIGN-SYSTEM-MANDATORY.md
-- **Architecture**: ARCHITECTURE.md (lignes 100-800)
-- **Prompts**: WORKFLOW.md (7 sections)
-- **Contexte**: PROMPT-CONTEXT.md v2.0
+- **Architecture**: ARCHITECTURE.md
+- **Contexte**: PROMPT-CONTEXT.md v2.1
 
 ### Externes
 - **Lucide**: https://lucide.dev (v0.263.1)
@@ -439,76 +502,72 @@ src/
 
 ---
 
-## 💡 Exemple Complet de Bon Prompt
+## 💡 Exemple: Créer une Page Pédagogique
 
-```
-# CRÉER expertise.ts
+### Page "/solutions/quick-wins"
 
-## 1. CONTEXTE PROJET
-Repository: Dainamics-Web-Site
-Fichier: src/data/expertise.ts (nouveau)
-Stack: React 18+ TypeScript 5+
-Référence: solutions.ts (même structure)
+**Inspiration**: Index.tsx
 
-## 2. OBJECTIF
-Créer expertise.ts avec 3 piliers DAINAMICS:
-- Intelligence Artificielle (LLMs, Agents, CV, NLP)
-- Automatisation (RPA, Workflow, Integration)
-- Développement (Web Apps, APIs, Cloud)
+**Structure:**
 
-## 3. STRUCTURE TECHNIQUE
+```typescript
+import { motion } from 'framer-motion';
+import { Zap, TrendingUp, Clock } from 'lucide-react';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 
-⚠️ DESIGN SYSTEM OBLIGATOIRE:
-- Référencer DESIGN-SYSTEM-MANDATORY.md
-- Utiliser CATEGORY_COLORS:
-  'ia' → '#6366F1'
-  'automatisation' → '#10E4FF'
-  'developpement' → '#FF5A00'
-- Icônes Lucide UNIQUEMENT (vérifier lucide.dev)
-- TypeScript strict (pas any)
-
-[CODE COMPLET 200-500 LIGNES]
-// Interface stricte
-// 3 piliers avec détails
-// Helpers exportés
-// Mappings couleurs
-
-## 4. RÈGLES CONTENU
-- Gains quantifiés obligatoires
-- "IA" pas "AI"
-- Pas d'emojis
-- Exemples concrets PME
-
-## 5. VALIDATION
-
-✅ Technique (12 critères)
-- TypeScript strict
-- Interfaces complètes
-- Helpers fonctionnels
-- Imports Lucide corrects
-
-✅ Contenu (12 critères)
-- 3 piliers complets
-- Exemples concrets
-- Gains quantifiés
-- Terminologie correcte
-
-✅ Design System (10 critères)
-- CATEGORY_COLORS utilisés
-- Icônes Lucide vérifiées
-- Pas de HEX hardcodé
-- Mappings conformes
-
-## 6. PROCESSUS GIT
-git add src/data/expertise.ts
-git commit -m "feat(data): add expertise.ts with 3 pillars"
-git push origin main
-
-## 7. GESTION ERREURS
-- Si TypeScript erreur → vérifier interfaces
-- Si icône manquante → lucide.dev
-- Si couleur incorrecte → CATEGORY_COLORS
-- Si bloqué → STOP et documenter
+export default function QuickWins() {
+  return (
+    <>
+      <EnhancedGridBackground />
+      
+      {/* Hero - Inspiré de Index.tsx */}
+      <section className="relative py-32">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="text-5xl md:text-7xl font-bold">
+              Quick Wins
+            </h1>
+            <p className="text-xl text-slate-300 mt-6">
+              ROI garanti en moins de 6 mois
+            </p>
+            <Button className="mt-8">Voir les solutions</Button>
+          </div>
+          
+          {/* Animation pédagogique */}
+          <div>
+            <QuickWinsAnimation />
+          </div>
+        </div>
+      </section>
+      
+      {/* Section Bénéfices - Multi-colonnes */}
+      <section className="py-20 md:py-32">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl md:text-5xl font-bold">
+              Pourquoi Quick Wins?
+            </h2>
+            <ul className="mt-8 space-y-4">
+              <li>Implémentation rapide (2-6 semaines)</li>
+              <li>ROI mesurable en 6 mois</li>
+              <li>Faible investissement initial</li>
+            </ul>
+          </div>
+          
+          {/* Schéma animé du processus */}
+          <ProcessFlowAnimation />
+        </div>
+      </section>
+      
+      {/* Grid Solutions */}
+      <section className="py-20">
+        {quickWinSolutions.map(solution => (
+          <SolutionCard key={solution.id} {...solution} />
+        ))}
+      </section>
+    </>
+  );
+}
 ```
 
 ---
@@ -516,48 +575,59 @@ git push origin main
 ## 🆘 Support
 
 ### Si Perdu
-1. DESIGN-SYSTEM-MANDATORY.md
-2. ARCHITECTURE.md
-3. WORKFLOW.md
-4. Exemples: solutions.ts, Navigation.tsx
+1. Regarder **Index.tsx** en priorité (layouts)
+2. Consulter **DESIGN-SYSTEM-MANDATORY.md** (couleurs/icônes)
+3. Vérifier **ARCHITECTURE.md** (specs)
+4. Examiner solutions.ts/portfolio.ts (structure data)
 
 ### Si Bloqué
 1. STOP immédiatement
-2. Noter erreur + commande
+2. Noter erreur + contexte
 3. Demander assistance
 
 ---
 
 ## 🎯 Prochaines Étapes
 
-1. Attendre portfolio.ts ⏳
-2. Créer expertise.ts (avec bon prompt 7 sections)
-3. Page /solutions
-4. Page /portfolio
+### Priorité 1: Finaliser Solutions
+1. Page /solutions/quick-wins
+2. Page /solutions/industries
+
+### Priorité 2: Section Resources
+1. Créer glossary.ts
+2. Créer useCases.ts
+3. Page /glossary (remplacer ComingSoon)
+4. Page /use-cases
+
+**Pour chaque page:**
+- S'inspirer d'Index.tsx
+- Créer animations pédagogiques
+- Sections multi-colonnes
+- Expliquer visuellement les concepts
 
 ---
 
 ## 🔒 Règles Absolues NON NÉGOCIABLES
 
-1. ✅ **Prompt 7 sections** - TOUJOURS, sans exception
-2. ✅ **Design System mention section 3** - OBLIGATOIRE textuellement
-3. ✅ **TypeScript strict** - Jamais `any`
-4. ✅ **Icônes Lucide** - Vérifier lucide.dev AVANT
-5. ✅ **Gains quantifiés** - CHF, %, heures
-6. ✅ **"IA" pas "AI"** - En français
-7. ❌ **Pas d'emojis** - Jamais code/doc
-8. ✅ **Mobile-first** - Toujours
-9. ✅ **Commit après chaque tâche** - Immédiat
-10. ✅ **CATEGORY_COLORS/COMPLEXITY_COLORS** - Obligatoires
+1. ✅ **S'inspirer d'Index.tsx** - Pour TOUS les layouts
+2. ✅ **Approche pédagogique** - Animations explicatives
+3. ✅ **Multi-colonnes** - Texte + Animation synchronisées
+4. ✅ **Design System** - CATEGORY_COLORS/COMPLEXITY_COLORS
+5. ✅ **TypeScript strict** - Jamais `any`
+6. ✅ **Icônes Lucide** - Vérifier lucide.dev AVANT
+7. ✅ **Gains quantifiés** - CHF, %, heures
+8. ✅ **"IA" pas "AI"** - En français
+9. ❌ **Pas d'emojis** - Jamais code/doc
+10. ✅ **Mobile-first** - Toujours
 
 ---
 
-**VERSION**: 2.1  
-**DATE**: 11 Octobre 2025  
-**CRITIQUE**: Structure 7 sections + Design System mention = NON NÉGOCIABLE  
+**VERSION**: 2.2  
+**DATE**: 12 Octobre 2025  
+**CRITIQUE**: Nouveau workflow direct + approche pédagogique obligatoire  
 
-**🚨 NE PAS CRÉER DE PROMPT SANS:**
-1. Les 7 sections complètes
-2. La mention Design System en section 3 avec mappings EXACTS
-
-**Si vous ne suivez pas ces règles = fichiers à refaire = 2-3x plus de temps perdu**
+**🎯 RÉSUMÉ CHANGEMENTS:**
+- Claude travaille directement (plus de Claude Code)
+- S'inspirer d'Index.tsx pour TOUS les layouts
+- Approche pédagogique: expliquer visuellement avec animations
+- Sections multi-colonnes (texte + animation)
