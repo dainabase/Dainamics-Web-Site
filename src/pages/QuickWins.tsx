@@ -49,7 +49,7 @@ export default function QuickWins() {
       <EnhancedGridBackground />
       <Navigation />
 
-      <main className="relative z-10">
+      <main className="relative">
         {/* Hero Section - 2 colonnes */}
         <section ref={heroRef} className="relative min-h-[80vh] py-32 overflow-hidden">
           <div className="container mx-auto px-4 md:px-8">
