@@ -135,39 +135,42 @@ function HeroSection() {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 z-10">
-      {/* 3D Background Grid */}
-      <div className="absolute inset-0 perspective-1000">
+      {/* Dark gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-dainamics-background to-dainamics-background" />
+
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
         <motion.div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0"
           style={{
             y,
             backgroundImage: `
-              linear-gradient(${COLORS.primary} 2px, transparent 2px),
-              linear-gradient(90deg, ${COLORS.primary} 2px, transparent 2px)
+              linear-gradient(rgba(16,228,255,0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(16,228,255,0.3) 1px, transparent 1px)
             `,
-            backgroundSize: '100px 100px',
-            transform: 'rotateX(60deg) translateZ(-200px)'
+            backgroundSize: '80px 80px'
           }}
         />
       </div>
 
-      {/* Floating Particles */}
+      {/* Floating Particles - darker and subtler */}
       <div className="absolute inset-0 pointer-events-none">
         {particles.map((particle, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full"
+            className="absolute rounded-full blur-sm"
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
               width: particle.size,
               height: particle.size,
-              backgroundColor: i % 3 === 0 ? COLORS.primary : i % 3 === 1 ? COLORS.accent : COLORS.cta
+              backgroundColor: i % 3 === 0 ? COLORS.primary : i % 3 === 1 ? COLORS.accent : COLORS.cta,
+              opacity: 0.15
             }}
             animate={{
               y: [-20, 20, -20],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [1, 1.5, 1]
+              opacity: [0.1, 0.2, 0.1],
+              scale: [1, 1.3, 1]
             }}
             transition={{
               duration: 4 + Math.random() * 2,
@@ -179,8 +182,11 @@ function HeroSection() {
         ))}
       </div>
 
+      {/* Dark vignette effect */}
+      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/50" />
+
       {/* Content */}
-      <motion.div 
+      <motion.div
         className="relative z-10 max-w-6xl mx-auto px-6 text-center"
         style={{ y, opacity, scale }}
       >
@@ -188,15 +194,15 @@ function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full mb-8"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full mb-8 backdrop-blur-sm"
           style={{
-            background: `linear-gradient(135deg, ${COLORS.primary}20, ${COLORS.accent}20)`,
-            border: `1px solid ${COLORS.primary}40`,
-            backdropFilter: 'blur(10px)'
+            background: 'rgba(16, 228, 255, 0.05)',
+            border: '1px solid rgba(16, 228, 255, 0.2)',
+            boxShadow: '0 0 20px rgba(16, 228, 255, 0.1)'
           }}
         >
           <Sparkles className="w-5 h-5" style={{ color: COLORS.accent }} />
-          <span className="text-sm font-semibold" style={{ color: COLORS.accent }}>
+          <span className="text-sm font-semibold text-gray-300">
             Portfolio Innovation
           </span>
         </motion.div>
@@ -207,8 +213,8 @@ function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mb-8"
         >
-          <h1 className="text-7xl md:text-8xl font-bold mb-6">
-            <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-dainamics-primary via-dainamics-accent to-dainamics-cta">
+          <h1 className="text-7xl md:text-8xl font-bold mb-6 leading-tight">
+            <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400">
               Projets qui
             </span>
             <br />
@@ -223,7 +229,7 @@ function HeroSection() {
                 ease: "linear"
               }}
               style={{
-                backgroundImage: `linear-gradient(90deg, ${COLORS.cta}, ${COLORS.primary}, ${COLORS.accent}, ${COLORS.cta})`,
+                backgroundImage: `linear-gradient(90deg, ${COLORS.cta}, ${COLORS.accent}, ${COLORS.primary}, ${COLORS.cta})`,
                 backgroundSize: '200% 100%',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
@@ -238,10 +244,10 @@ function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-2xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed"
+          className="text-2xl text-gray-500 mb-12 max-w-4xl mx-auto leading-relaxed"
         >
           Des solutions concrètes qui génèrent des{' '}
-          <span className="font-bold text-dainamics-success">résultats mesurables</span>
+          <span className="font-bold" style={{ color: '#0AFF9D' }}>résultats mesurables</span>
           {' '}pour nos clients suisses
         </motion.p>
 
@@ -256,12 +262,14 @@ function HeroSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button 
+            <Button
               size="lg"
-              className="text-lg px-8 py-6 group"
+              className="text-lg px-8 py-6 group backdrop-blur-sm border-0"
               style={{
-                background: `linear-gradient(135deg, ${COLORS.primary}, ${COLORS.accent})`,
-                border: 'none'
+                background: `linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(16, 228, 255, 0.2))`,
+                border: '1px solid rgba(16, 228, 255, 0.3)',
+                boxShadow: '0 0 30px rgba(16, 228, 255, 0.2)',
+                color: '#FFFFFF'
               }}
             >
               <Eye className="w-5 h-5 mr-2" />
@@ -270,13 +278,15 @@ function HeroSection() {
             </Button>
           </motion.a>
           <Link to="/contact">
-            <Button 
+            <Button
               size="lg"
               variant="outline"
-              className="text-lg px-8 py-6"
+              className="text-lg px-8 py-6 backdrop-blur-sm"
               style={{
-                borderColor: COLORS.cta,
-                color: COLORS.cta
+                borderColor: 'rgba(255, 90, 0, 0.4)',
+                backgroundColor: 'rgba(255, 90, 0, 0.05)',
+                color: COLORS.cta,
+                boxShadow: '0 0 20px rgba(255, 90, 0, 0.1)'
               }}
             >
               <Rocket className="w-5 h-5 mr-2" />
