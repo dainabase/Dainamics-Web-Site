@@ -214,7 +214,14 @@ function HeroSection() {
           className="mb-8"
         >
           <h1 className="text-7xl md:text-8xl font-bold mb-6 leading-tight">
-            <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400">
+            <span
+              className="inline-block bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(90deg, #7B2FFF, #FF5A00)`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >
               Projets qui
             </span>
             <br />
