@@ -1,5 +1,5 @@
 // src/pages/Portfolio.tsx
-// Portfolio Page - Professional & Clean Design
+// Portfolio Page - Professional & Clean Design with Sticky Cards
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 
 import { useState, useRef, useEffect } from 'react';
@@ -31,8 +31,6 @@ import {
   ChevronDown,
   X,
   ExternalLink,
-  Clock,
-  Users,
   Target
 } from 'lucide-react';
 
@@ -42,6 +40,8 @@ const COLORS = {
   accent: '#10E4FF',
   success: '#10B981'
 };
+
+const CARD_HEIGHT = 600;
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -106,8 +106,8 @@ export default function Portfolio() {
         onProjectClick={openProjectModal}
       />
       
-      {/* All Projects - Bento Grid */}
-      <AllProjectsSection 
+      {/* All Projects - Sticky Cards Animation */}
+      <StickyCardsSection 
         projects={filteredProjects}
         selectedCategory={selectedCategory}
         onProjectClick={openProjectModal}
@@ -491,34 +491,9 @@ function FeaturedProjectCard({ project, index, onClick }: any) {
 }
 
 // ============================================================================
-// ALL PROJECTS - Disappearing Animation
+// STICKY CARDS SECTION - All Projects
 // ============================================================================
-
-function AllProjectsSection({ projects, selectedCategory, onProjectClick }: any) {
-  return (
-    <section id="all-projects" className="py-20 px-6 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-5xl font-bold mb-4">
-            Tous nos <span style={{ color: COLORS.accent }}>Projets</span>
-          </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Découvrez l'ensemble de nos réalisations à travers différents secteurs
-          </p>
-        </motion.div>
-
-        <ProjectCarousel projects={projects} onProjectClick={onProjectClick} />
-      </div>
-    </section>
-  );
-}
-
-function ProjectCarousel({ projects, onProjectClick }: any) {
+function StickyCardsSection({ projects, selectedCategory, onProjectClick }: any) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -526,80 +501,145 @@ function ProjectCarousel({ projects, onProjectClick }: any) {
   });
 
   return (
-    <div className="relative w-full">
-      <div ref={ref} className="relative z-0 flex flex-col gap-6 md:gap-12 py-12">
+    <section className="relative z-10">
+      <div className="max-w-7xl mx-auto px-6 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl font-bold mb-4">
+            Tous nos <span style={{ color: COLORS.primary }}>Projets</span>
+          </h2>
+          <p className="text-lg text-gray-400">
+            {selectedCategory 
+              ? `Projets ${selectedCategory}`
+              : 'Portfolio complet de nos réalisations'
+            }
+          </p>
+        </motion.div>
+      </div>
+
+      <div ref={ref} className="relative">
         {projects.map((project: PortfolioProject, idx: number) => (
-          <ProjectCarouselItem
+          <StickyProjectCard
             key={project.id}
+            project={project}
             scrollYProgress={scrollYProgress}
             position={idx + 1}
-            numItems={projects.length}
-            project={project}
+            totalCards={projects.length}
             onClick={() => onProjectClick(project)}
           />
         ))}
       </div>
-      <div className="h-24 w-full md:h-48" />
-    </div>
+      <div className="h-screen" />
+    </section>
   );
 }
 
-interface ProjectCarouselItemProps {
-  scrollYProgress: MotionValue<number>;
+interface StickyProjectCardProps {
   position: number;
-  numItems: number;
   project: PortfolioProject;
+  scrollYProgress: MotionValue;
+  totalCards: number;
   onClick: () => void;
 }
 
-function ProjectCarouselItem({ scrollYProgress, position, numItems, project, onClick }: ProjectCarouselItemProps) {
-  const stepSize = 1 / numItems;
-  const end = stepSize * position;
-  const start = end - stepSize;
-
-  const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
-  const scale = useTransform(scrollYProgress, [start, end], [1, 0.75]);
-
+function StickyProjectCard({ position, project, scrollYProgress, totalCards, onClick }: StickyProjectCardProps) {
+  const scaleFromPct = (position - 1) / totalCards;
+  const y = useTransform(scrollYProgress, [scaleFromPct, 1], [0, -CARD_HEIGHT]);
+  
   const categoryColor = categoryColors[project.category];
+  const isOddCard = position % 2;
+
+  // Background color based on category
+  const backgroundColor = isOddCard 
+    ? 'rgba(10, 10, 15, 0.95)'  // Dark
+    : `${categoryColor}10`;      // Category color tint
+
+  const textColor = isOddCard ? '#FFFFFF' : '#FFFFFF';
+  const borderColor = `${categoryColor}50`;
 
   return (
     <motion.div
       style={{
-        opacity,
-        scale,
-        background: `linear-gradient(135deg, rgba(10, 10, 15, 0.8), rgba(20, 20, 30, 0.8))`,
-        backdropFilter: "blur(10px)",
-        border: `1px solid ${categoryColor}30`,
+        height: CARD_HEIGHT,
+        y: position === totalCards ? undefined : y,
+        backgroundColor,
+        borderTop: `2px solid ${borderColor}`,
+        color: textColor,
       }}
-      onClick={onClick}
-      className="w-full shrink-0 rounded-2xl p-8 md:p-12 cursor-pointer transition-all hover:shadow-2xl"
+      className="sticky top-0 flex w-full origin-top flex-col items-center justify-center px-6 backdrop-blur-md"
     >
-      <Badge
-        className="mb-4"
-        style={{
-          backgroundColor: `${categoryColor}20`,
-          color: categoryColor,
-          border: `1px solid ${categoryColor}50`,
-        }}
-      >
-        {project.category.toUpperCase()}
-      </Badge>
+      <div className="max-w-4xl w-full">
+        {/* Badge */}
+        <div className="flex justify-center mb-6">
+          <Badge 
+            style={{
+              backgroundColor: `${categoryColor}20`,
+              color: categoryColor,
+              border: `1px solid ${categoryColor}`,
+              fontSize: '0.875rem',
+              padding: '0.5rem 1rem'
+            }}
+          >
+            {project.category.toUpperCase()}
+          </Badge>
+        </div>
 
-      <h3 className="mb-4 text-3xl md:text-5xl font-bold text-white">
-        {project.title}
-      </h3>
+        {/* Title */}
+        <h3 className="mb-4 text-center text-4xl font-bold md:text-6xl">
+          {project.title}
+        </h3>
 
-      <p className="mb-3 text-xl font-medium" style={{ color: categoryColor }}>
-        {project.client}
-      </p>
+        {/* Client */}
+        <p className="text-center text-xl text-gray-400 mb-8">
+          {project.client} • {project.industry}
+        </p>
 
-      <p className="mb-6 text-base md:text-lg text-gray-300 leading-relaxed">
-        {project.description}
-      </p>
+        {/* Description */}
+        <p className="mb-8 max-w-2xl mx-auto text-center text-base md:text-lg leading-relaxed">
+          {project.description}
+        </p>
 
-      <div className="flex items-center gap-2 text-sm font-medium" style={{ color: categoryColor }}>
-        <span>Voir le projet</span>
-        <ArrowRight className="w-4 h-4" />
+        {/* Results */}
+        <div className="flex items-center justify-center gap-8 mb-10 flex-wrap">
+          {Object.values(project.results).filter(Boolean).slice(0, 3).map((result: any, idx: number) => {
+            const Icon = iconMapper[result.icon];
+            return (
+              <div key={idx} className="text-center">
+                {Icon && <Icon className="w-8 h-8 mx-auto mb-2" style={{ color: COLORS.success }} />}
+                <div className="text-3xl font-bold" style={{ color: COLORS.success }}>
+                  {result.value}
+                </div>
+                <div className="text-sm text-gray-400 mt-1">
+                  {result.label}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* CTA Button */}
+        <div className="flex justify-center">
+          <motion.button
+            onClick={onClick}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-3 rounded-xl px-8 py-4 text-base font-semibold uppercase transition-all"
+            style={{
+              backgroundColor: categoryColor,
+              color: '#FFFFFF',
+              boxShadow: isOddCard 
+                ? `4px 4px 0px rgba(255,255,255,0.2)`
+                : `4px 4px 0px rgba(0,0,0,0.3)`
+            }}
+          >
+            <span>Voir le projet</span>
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
+        </div>
       </div>
     </motion.div>
   );
