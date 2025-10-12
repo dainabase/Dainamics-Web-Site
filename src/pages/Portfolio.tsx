@@ -495,146 +495,93 @@ function FeaturedProjectCard({ project, index, onClick }: any) {
 // ============================================================================
 const CARD_HEIGHT = 500;
 
-interface StickyProjectCardProps {
+interface CardProps {
   position: number;
-  project: PortfolioProject;
+  card: PortfolioProject;
   scrollYProgress: MotionValue<number>;
-  totalCards: number;
   onClick: () => void;
+  totalCards: number;
 }
 
 function AllProjectsSection({ projects, selectedCategory, onProjectClick }: any) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: ref,
     offset: ["start start", "end start"],
   });
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center pt-20 pb-10 px-6 relative z-10"
-      >
-        <h2 className="text-5xl font-bold mb-4">
-          Tous nos <span style={{ color: COLORS.primary }}>Projets</span>
-        </h2>
-        <p className="text-lg text-gray-400">
-          {selectedCategory
-            ? `Projets ${selectedCategory}`
-            : 'Portfolio complet de nos réalisations'
-          }
-        </p>
-      </motion.div>
-
-      <div ref={containerRef} className="relative">
-        {projects.map((project: PortfolioProject, idx: number) => (
-          <StickyProjectCard
-            key={project.id}
-            project={project}
+      <div ref={ref} className="relative">
+        {projects.map((c: PortfolioProject, idx: number) => (
+          <Card
+            key={c.id}
+            card={c}
             scrollYProgress={scrollYProgress}
             position={idx + 1}
             totalCards={projects.length}
-            onClick={() => onProjectClick(project)}
+            onClick={() => onProjectClick(c)}
           />
         ))}
       </div>
-
       <div className="h-screen bg-transparent" />
     </>
   );
 }
 
-function StickyProjectCard({ position, project, scrollYProgress, totalCards, onClick }: StickyProjectCardProps) {
+function Card({ position, card, scrollYProgress, totalCards, onClick }: CardProps) {
   const scaleFromPct = (position - 1) / totalCards;
-  const y = useTransform(
-    scrollYProgress,
-    [scaleFromPct, 1],
-    [0, -CARD_HEIGHT]
-  );
+  const y = useTransform(scrollYProgress, [scaleFromPct, 1], [0, -CARD_HEIGHT]);
 
-  const categoryColor = categoryColors[project.category];
   const isOddCard = position % 2;
-
-  const cardBg = isOddCard ? 'rgba(10, 10, 15, 0.5)' : 'rgba(20, 20, 30, 0.5)';
-  const shadowColor = isOddCard ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.3)';
+  const categoryColor = categoryColors[card.category];
 
   return (
     <motion.div
       style={{
+        height: CARD_HEIGHT,
         y: position === totalCards ? undefined : y,
-        backgroundColor: cardBg,
-        backdropFilter: 'blur(10px)',
-        borderColor: `${categoryColor}20`,
+        background: isOddCard ? "rgba(10, 10, 15, 0.5)" : "rgba(20, 20, 30, 0.5)",
+        backdropFilter: "blur(10px)",
+        color: "white",
       }}
-      className="sticky top-0 w-full min-h-screen flex items-center justify-center px-6 py-20 border-b cursor-pointer"
+      className="sticky top-0 flex w-full origin-top flex-col items-center justify-center px-4"
       onClick={onClick}
     >
-      <div className="max-w-4xl mx-auto text-center">
-        <Badge
-          className="mb-6"
-          style={{
-            backgroundColor: `${categoryColor}20`,
-            color: categoryColor,
-            border: `1px solid ${categoryColor}50`,
-            fontSize: '0.9rem',
-            padding: '0.5rem 1.5rem'
-          }}
-        >
-          {project.category.toUpperCase()}
-        </Badge>
+      <Badge
+        className="mb-4"
+        style={{
+          backgroundColor: `${categoryColor}20`,
+          color: categoryColor,
+          border: `1px solid ${categoryColor}50`,
+        }}
+      >
+        {card.category.toUpperCase()}
+      </Badge>
 
-        <h3 className="mb-4 text-4xl font-bold md:text-6xl" style={{ color: '#FFFFFF' }}>
-          {project.title}
-        </h3>
+      <h3 className="mb-6 text-center text-4xl font-semibold md:text-6xl">
+        {card.title}
+      </h3>
 
-        <p className="mb-3 text-xl font-medium" style={{ color: categoryColor }}>
-          {project.client}
-        </p>
+      <p className="mb-2 text-center text-lg font-medium" style={{ color: categoryColor }}>
+        {card.client}
+      </p>
 
-        <p className="mb-10 max-w-2xl mx-auto text-base md:text-lg leading-relaxed" style={{ color: '#9CA3AF' }}>
-          {project.description}
-        </p>
+      <p className="mb-8 max-w-lg text-center text-sm md:text-base text-gray-300">
+        {card.description}
+      </p>
 
-        <div className="flex items-center justify-center gap-12 mb-10 flex-wrap">
-          {Object.values(project.results).filter(Boolean).map((result: any, idx: number) => {
-            const Icon = iconMapper[result.icon];
-            return (
-              <div key={idx} className="flex flex-col items-center gap-2">
-                {Icon && <Icon className="w-7 h-7" style={{ color: COLORS.success }} />}
-                <span className="text-3xl font-bold" style={{ color: COLORS.success }}>
-                  {result.value}
-                </span>
-                <span className="text-sm" style={{ color: '#6B7280' }}>
-                  {result.label}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-
-        <button
-          className="inline-flex items-center gap-2 px-8 py-4 text-base font-medium uppercase transition-all rounded"
-          style={{
-            backgroundColor: categoryColor,
-            color: '#000000',
-            boxShadow: `4px 4px 0px ${shadowColor}`,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translate(-2px, -2px)';
-            e.currentTarget.style.boxShadow = `8px 8px 0px ${shadowColor}`;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translate(0, 0)';
-            e.currentTarget.style.boxShadow = `4px 4px 0px ${shadowColor}`;
-          }}
-        >
-          <span>Voir le projet</span>
-          <ArrowRight className="w-5 h-5" />
-        </button>
-      </div>
+      <button
+        className={`flex items-center gap-2 rounded px-6 py-4 text-base font-medium uppercase text-black transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 md:text-lg ${
+          isOddCard
+            ? "shadow-[4px_4px_0px_white] hover:shadow-[8px_8px_0px_white]"
+            : "shadow-[4px_4px_0px_black] hover:shadow-[8px_8px_0px_black]"
+        }`}
+        style={{ backgroundColor: categoryColor }}
+      >
+        <span>En savoir plus</span>
+        <ArrowRight />
+      </button>
     </motion.div>
   );
 }
