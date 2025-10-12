@@ -190,22 +190,6 @@ function HeroSection() {
         className="relative z-10 max-w-6xl mx-auto px-6 text-center"
         style={{ y, opacity, scale }}
       >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full mb-8 backdrop-blur-sm"
-          style={{
-            background: 'rgba(16, 228, 255, 0.05)',
-            border: '1px solid rgba(16, 228, 255, 0.2)',
-            boxShadow: '0 0 20px rgba(16, 228, 255, 0.1)'
-          }}
-        >
-          <Sparkles className="w-5 h-5" style={{ color: COLORS.accent }} />
-          <span className="text-sm font-semibold text-gray-300">
-            Portfolio Innovation
-          </span>
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
