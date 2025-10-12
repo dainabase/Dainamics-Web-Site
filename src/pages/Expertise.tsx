@@ -253,13 +253,13 @@ export default function Expertise() {
                       <div className="grid grid-cols-2 gap-4 mb-6 py-6 border-t border-b border-dainamics-light/10">
                         <div>
                           <p className="text-2xl font-bold text-dainamics-light">
-                            {pillar.metrics.projectsCompleted}
+                            {pillar.metrics.projectsCompleted.value}
                           </p>
                           <p className="text-xs text-dainamics-light/50">Projets</p>
                         </div>
                         <div>
                           <p className="text-2xl font-bold text-dainamics-light">
-                            {pillar.metrics.clientSatisfaction}
+                            {pillar.metrics.clientSatisfaction.value}
                           </p>
                           <p className="text-xs text-dainamics-light/50">Satisfaction</p>
                         </div>
@@ -270,7 +270,7 @@ export default function Expertise() {
                         <div className="flex items-center gap-2 text-sm">
                           <TrendingUp className="w-4 h-4" style={{ color: pillarColor }} />
                           <span className="text-dainamics-light/70">
-                            ROI moyen : <span className="font-semibold text-dainamics-light">{pillar.metrics.avgROI}</span>
+                            ROI moyen : <span className="font-semibold text-dainamics-light">{pillar.metrics.avgROI.value}</span>
                           </span>
                         </div>
                       </div>
