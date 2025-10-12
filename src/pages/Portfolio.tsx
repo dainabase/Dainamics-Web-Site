@@ -496,9 +496,25 @@ function FeaturedProjectCard({ project, index, onClick }: any) {
 
 function AllProjectsSection({ projects, selectedCategory, onProjectClick }: any) {
   return (
-    <div className="relative mx-auto grid h-full w-full max-w-7xl grid-cols-1 gap-8 px-4">
-      <ProjectCarousel projects={projects} onProjectClick={onProjectClick} />
-    </div>
+    <section id="all-projects" className="py-20 px-6 relative z-10">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl font-bold mb-4">
+            Tous nos <span style={{ color: COLORS.accent }}>Projets</span>
+          </h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Découvrez l'ensemble de nos réalisations à travers différents secteurs
+          </p>
+        </motion.div>
+
+        <ProjectCarousel projects={projects} onProjectClick={onProjectClick} />
+      </div>
+    </section>
   );
 }
 
