@@ -22,6 +22,7 @@ import ExpertiseDeveloppement from "@/pages/ExpertiseDeveloppement";
 
 // Solutions Pages
 import QuickWins from "@/pages/QuickWins";
+import Industries from "@/pages/Industries";
 
 // Resource Pages
 import Glossary from "@/pages/Glossary";
@@ -51,7 +52,7 @@ function App() {
         {/* Solutions Routes */}
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/solutions/quick-wins" element={<QuickWins />} />
-        <Route path="/solutions/industries" element={<Solutions />} />
+        <Route path="/solutions/industries" element={<Industries />} />
         <Route path="/solutions/*" element={<Solutions />} />
         
         {/* Portfolio */}
