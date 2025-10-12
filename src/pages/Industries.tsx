@@ -9,7 +9,8 @@ import {
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
-import { solutions } from '@/data/solutions';
+import SolutionModal from '@/components/SolutionModal';
+import { solutions, Solution } from '@/data/solutions';
 
 // Industry data with icons
 const industryData = [
@@ -32,6 +33,8 @@ export default function Industries() {
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.3 });
 
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
+  const [selectedSolution, setSelectedSolution] = useState<Solution | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Scroll animations avec parallax
   const { scrollYProgress } = useScroll();
@@ -49,6 +52,18 @@ export default function Industries() {
         i.toLowerCase().includes(selectedIndustry.toLowerCase())
       ))
     : [];
+
+  // Ouvrir modal
+  const handleOpenModal = (solution: Solution) => {
+    setSelectedSolution(solution);
+    setIsModalOpen(true);
+  };
+
+  // Fermer modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedSolution(null), 300);
+  };
 
   // Variants d'animation
   const containerVariants = {
@@ -93,7 +108,7 @@ export default function Industries() {
       <Navigation />
 
       <main className="relative z-10">
-        {/* Hero Section avec Parallax */}
+        {/* Hero Section avec Parallax - MIEUX CENTRÉ */}
         <section ref={heroRef} className="relative py-20 md:py-24 overflow-hidden">
           {/* Éléments flottants en arrière-plan */}
           <motion.div
@@ -124,7 +139,7 @@ export default function Industries() {
             }}
           />
 
-          <div className="container mx-auto px-4 md:px-8 min-h-[60vh] flex items-center">
+          <div className="container mx-auto px-4 md:px-8 min-h-[70vh] flex items-center">
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
               {/* Texte - Gauche avec stagger */}
               <motion.div
@@ -195,7 +210,7 @@ export default function Industries() {
 
                 <motion.div 
                   variants={itemVariants}
-                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                  className="flex flex-col sm:flex-row gap-4 lg:justify-start"
                 >
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
@@ -411,7 +426,7 @@ export default function Industries() {
                       </Button>
                     </div>
 
-                    {/* Solutions */}
+                    {/* Solutions - CARTES PLUS VISIBLES */}
                     {filteredSolutions.length > 0 ? (
                       <div className="space-y-4">
                         <div className="flex items-center gap-2 mb-4">
@@ -427,12 +442,13 @@ export default function Industries() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.1 }}
-                            className="p-5 rounded-lg border border-dainamics-light/10 hover:border-dainamics-accent/30 hover:bg-dainamics-light/5 transition-all group"
-                            whileHover={{ scale: 1.02 }}
+                            className="p-6 rounded-lg border-2 border-dainamics-accent/20 bg-dainamics-background/50 hover:border-dainamics-accent/50 hover:bg-dainamics-accent/5 transition-all group cursor-pointer"
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            onClick={() => handleOpenModal(solution)}
                           >
                             <div className="flex items-start justify-between gap-4 mb-3">
                               <div className="flex-1">
-                                <h5 className="font-bold text-dainamics-light mb-2 group-hover:text-dainamics-accent transition-colors">
+                                <h5 className="font-bold text-dainamics-light text-lg mb-2 group-hover:text-dainamics-accent transition-colors">
                                   {solution.title}
                                 </h5>
                                 <p className="text-sm text-dainamics-light/70 mb-3">
@@ -440,7 +456,7 @@ export default function Industries() {
                                 </p>
                               </div>
                               <span
-                                className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold flex-shrink-0"
+                                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold flex-shrink-0"
                                 style={{
                                   backgroundColor: `${categoryColors[solution.category]}20`,
                                   color: categoryColors[solution.category]
@@ -470,16 +486,9 @@ export default function Industries() {
                                   </div>
                                 )}
                               </div>
-                              <Button
-                                asChild
-                                variant="link"
-                                size="sm"
-                                className="text-dainamics-accent hover:text-dainamics-accent/90 p-0 h-auto group-hover:underline"
-                              >
-                                <a href={`/solutions#${solution.id}`}>
-                                  Détails →
-                                </a>
-                              </Button>
+                              <span className="text-dainamics-accent font-medium group-hover:underline">
+                                Voir détails →
+                              </span>
                             </div>
                           </motion.div>
                         ))}
@@ -547,6 +556,13 @@ export default function Industries() {
       </main>
 
       <Footer />
+
+      {/* Modal Solution */}
+      <SolutionModal 
+        solution={selectedSolution}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }
