@@ -491,19 +491,18 @@ function FeaturedProjectCard({ project, index, onClick }: any) {
 }
 
 // ============================================================================
-// ALL PROJECTS - Sticky Cards Animation
+// ALL PROJECTS - Disappearing Animation
 // ============================================================================
-const CARD_HEIGHT = 500;
-
-interface CardProps {
-  position: number;
-  card: PortfolioProject;
-  scrollYProgress: MotionValue<number>;
-  onClick: () => void;
-  totalCards: number;
-}
 
 function AllProjectsSection({ projects, selectedCategory, onProjectClick }: any) {
+  return (
+    <div className="relative mx-auto grid h-full w-full max-w-7xl grid-cols-1 gap-8 px-4">
+      <ProjectCarousel projects={projects} onProjectClick={onProjectClick} />
+    </div>
+  );
+}
+
+function ProjectCarousel({ projects, onProjectClick }: any) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -511,42 +510,53 @@ function AllProjectsSection({ projects, selectedCategory, onProjectClick }: any)
   });
 
   return (
-    <>
-      <div ref={ref} className="relative">
-        {projects.map((c: PortfolioProject, idx: number) => (
-          <Card
-            key={c.id}
-            card={c}
+    <div className="relative w-full">
+      <div ref={ref} className="relative z-0 flex flex-col gap-6 md:gap-12 py-12">
+        {projects.map((project: PortfolioProject, idx: number) => (
+          <ProjectCarouselItem
+            key={project.id}
             scrollYProgress={scrollYProgress}
             position={idx + 1}
-            totalCards={projects.length}
-            onClick={() => onProjectClick(c)}
+            numItems={projects.length}
+            project={project}
+            onClick={() => onProjectClick(project)}
           />
         ))}
       </div>
-      <div className="h-screen bg-transparent" />
-    </>
+      <div className="h-24 w-full md:h-48" />
+    </div>
   );
 }
 
-function Card({ position, card, scrollYProgress, totalCards, onClick }: CardProps) {
-  const scaleFromPct = (position - 1) / totalCards;
-  const y = useTransform(scrollYProgress, [scaleFromPct, 1], [0, -CARD_HEIGHT]);
+interface ProjectCarouselItemProps {
+  scrollYProgress: MotionValue<number>;
+  position: number;
+  numItems: number;
+  project: PortfolioProject;
+  onClick: () => void;
+}
 
-  const isOddCard = position % 2;
-  const categoryColor = categoryColors[card.category];
+function ProjectCarouselItem({ scrollYProgress, position, numItems, project, onClick }: ProjectCarouselItemProps) {
+  const stepSize = 1 / numItems;
+  const end = stepSize * position;
+  const start = end - stepSize;
+
+  const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
+  const scale = useTransform(scrollYProgress, [start, end], [1, 0.75]);
+
+  const categoryColor = categoryColors[project.category];
 
   return (
     <motion.div
       style={{
-        height: CARD_HEIGHT,
-        y: position === totalCards ? undefined : y,
-        background: isOddCard ? "rgba(10, 10, 15, 0.5)" : "rgba(20, 20, 30, 0.5)",
+        opacity,
+        scale,
+        background: `linear-gradient(135deg, rgba(10, 10, 15, 0.8), rgba(20, 20, 30, 0.8))`,
         backdropFilter: "blur(10px)",
-        color: "white",
+        border: `1px solid ${categoryColor}30`,
       }}
-      className="sticky top-0 flex w-full origin-top flex-col items-center justify-center px-4"
       onClick={onClick}
+      className="w-full shrink-0 rounded-2xl p-8 md:p-12 cursor-pointer transition-all hover:shadow-2xl"
     >
       <Badge
         className="mb-4"
@@ -556,32 +566,25 @@ function Card({ position, card, scrollYProgress, totalCards, onClick }: CardProp
           border: `1px solid ${categoryColor}50`,
         }}
       >
-        {card.category.toUpperCase()}
+        {project.category.toUpperCase()}
       </Badge>
 
-      <h3 className="mb-6 text-center text-4xl font-semibold md:text-6xl">
-        {card.title}
+      <h3 className="mb-4 text-3xl md:text-5xl font-bold text-white">
+        {project.title}
       </h3>
 
-      <p className="mb-2 text-center text-lg font-medium" style={{ color: categoryColor }}>
-        {card.client}
+      <p className="mb-3 text-xl font-medium" style={{ color: categoryColor }}>
+        {project.client}
       </p>
 
-      <p className="mb-8 max-w-lg text-center text-sm md:text-base text-gray-300">
-        {card.description}
+      <p className="mb-6 text-base md:text-lg text-gray-300 leading-relaxed">
+        {project.description}
       </p>
 
-      <button
-        className={`flex items-center gap-2 rounded px-6 py-4 text-base font-medium uppercase text-black transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 md:text-lg ${
-          isOddCard
-            ? "shadow-[4px_4px_0px_white] hover:shadow-[8px_8px_0px_white]"
-            : "shadow-[4px_4px_0px_black] hover:shadow-[8px_8px_0px_black]"
-        }`}
-        style={{ backgroundColor: categoryColor }}
-      >
-        <span>En savoir plus</span>
-        <ArrowRight />
-      </button>
+      <div className="flex items-center gap-2 text-sm font-medium" style={{ color: categoryColor }}>
+        <span>Voir le projet</span>
+        <ArrowRight className="w-4 h-4" />
+      </div>
     </motion.div>
   );
 }
