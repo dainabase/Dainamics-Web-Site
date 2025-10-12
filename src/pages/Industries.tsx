@@ -141,9 +141,9 @@ export default function Industries() {
 
           <div className="container mx-auto px-4 md:px-8 min-h-[85vh] flex items-center">
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
-              {/* Texte - Gauche avec stagger */}
+              {/* Texte - Gauche avec stagger - PAS DE TEXT-CENTER */}
               <motion.div
-                className="lg:w-1/2 text-center lg:text-left"
+                className="lg:w-1/2 lg:text-left"
                 variants={containerVariants}
                 initial="hidden"
                 animate={isHeroInView ? "visible" : "hidden"}
@@ -173,7 +173,7 @@ export default function Industries() {
 
                 <motion.p 
                   variants={itemVariants}
-                  className="text-dainamics-light/80 text-lg md:text-xl mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed"
+                  className="text-dainamics-light/80 text-lg md:text-xl mb-8 max-w-lg leading-relaxed"
                 >
                   Chaque secteur a ses défis spécifiques. Découvrez les solutions d'IA et 
                   d'automatisation conçues pour répondre aux besoins de votre industrie.
@@ -182,7 +182,7 @@ export default function Industries() {
                 {/* Stats rapides */}
                 <motion.div 
                   variants={itemVariants}
-                  className="grid grid-cols-3 gap-4 mb-8 max-w-lg mx-auto lg:mx-0"
+                  className="grid grid-cols-3 gap-4 mb-8 max-w-lg"
                 >
                   {[
                     { value: industryData.length, label: 'Industries' },
@@ -191,7 +191,7 @@ export default function Industries() {
                   ].map((stat, idx) => (
                     <motion.div
                       key={idx}
-                      className="text-center lg:text-left"
+                      className="text-left"
                       whileHover={{ 
                         scale: 1.1,
                         transition: { type: "spring", stiffness: 400 }
@@ -208,15 +208,16 @@ export default function Industries() {
                   ))}
                 </motion.div>
 
+                {/* BOUTONS ALIGNÉS À GAUCHE - FORCÉ */}
                 <motion.div 
                   variants={itemVariants}
-                  className="flex flex-col sm:flex-row gap-4 justify-start"
+                  className="flex flex-col sm:flex-row gap-4 items-start"
                 >
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
                       asChild
                       size="lg"
-                      className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-dainamics-background btn-glow font-semibold"
+                      className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-dainamics-background btn-glow font-semibold w-full sm:w-auto"
                     >
                       <a href="#industries">
                         DÉCOUVRIR LES INDUSTRIES
@@ -230,7 +231,7 @@ export default function Industries() {
                       asChild
                       variant="outline"
                       size="lg"
-                      className="border-dainamics-light/20 text-dainamics-light hover:bg-dainamics-light/5 font-semibold"
+                      className="border-dainamics-light/20 text-dainamics-light hover:bg-dainamics-light/5 font-semibold w-full sm:w-auto"
                     >
                       <a href="/contact">
                         DIAGNOSTIC GRATUIT
