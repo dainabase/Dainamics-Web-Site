@@ -28,10 +28,12 @@ import UseCases from "@/pages/UseCases";
 import Process from "@/pages/Process";
 
 import { Toaster } from "@/components/ui/toaster";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/* Main Pages */}
         <Route path="/" element={<Index />} />
