@@ -1,159 +1,249 @@
-# 🎨 ANIMATION GUIDELINES - DAINAMICS v1.0
+# 🎨 ANIMATION GUIDELINES - Style Approuvé Client
 
-## 🎯 Philosophy
-
-**Style validé sur QuickWins.tsx** - Animations fluides, modernes, et professionnelles inspirées de sites premium (Stripe, Apple, Linear).
-
-### Principes Clés
-1. **Subtilité** - Animations présentes mais jamais distrayantes
-2. **Performance** - 60fps minimum, optimisé pour mobile
-3. **Cohérence** - Patterns réutilisables sur toutes les pages
-4. **Interaction** - Réagit au scroll, hover, et viewport
-5. **Physics** - Mouvements naturels avec spring animations
+**VERSION:** 1.0  
+**DATE:** 12 Octobre 2025  
+**STATUT:** ✅ Validé Client - "MEGA FAN" de ce style  
+**RÉFÉRENCE:** QuickWins.tsx (869 lignes, 39 KB)
 
 ---
 
-## 🚀 Stack Animation
+## 🎯 Vue d'Ensemble
+
+Le style d'animation de **QuickWins.tsx** est **approuvé client** et **DOIT être reproduit** sur toutes les nouvelles pages.
+
+**Caractéristiques:**
+- Animations Framer Motion avancées
+- Approche pédagogique (2 colonnes texte + animation)
+- Parallax scrolling fluide
+- 3D transforms au hover
+- Scroll-triggered progressif
+- Effets visuels riches (glow, floating, stagger)
+
+---
+
+## 📦 Imports Standard
 
 ```typescript
-import { 
-  motion, 
-  useInView, 
-  useScroll, 
-  useTransform, 
-  useSpring 
-} from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
 ```
 
-### Hooks Essentiels
-- `useScroll()` - Détecte position scroll
-- `useTransform()` - Transforme valeurs scroll en animations
-- `useSpring()` - Adoucit les animations
-- `useInView()` - Détecte éléments visibles
-- `whileHover` - Animations hover
-- `whileInView` - Animations viewport
+**Hooks utilisés:**
+- `useScroll()` - Position de scroll
+- `useTransform()` - Mapping de valeurs
+- `useSpring()` - Transitions smooth
+- `useInView()` - Détection viewport
 
 ---
 
-## 📐 Patterns d'Animation Validés
+## 🎬 8 Patterns d'Animation Principaux
 
-### 1. Parallax Scrolling ⭐
+### 1. Parallax Scrolling 🌊
 
-**Utilisé pour:** Backgrounds, éléments décoratifs, hero sections
+**Usage:** Éléments de fond qui se déplacent à vitesse différente du scroll.
 
 ```typescript
-// Dans le composant
+// Setup
 const { scrollYProgress } = useScroll();
 const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 const smoothY = useSpring(y, { stiffness: 100, damping: 30 });
 
 // Application
-<motion.div
-  style={{ y: smoothY }}
-  className="absolute top-20 left-10 w-32 h-32 bg-primary/10 blur-3xl"
-/>
+<motion.div style={{ y: smoothY }}>
+  {/* Élément avec parallax */}
+</motion.div>
+
+// Variations
+const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
+const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 ```
 
-**Variations:**
-- Éléments qui montent: `[0, -100]`
-- Éléments qui descendent: `[0, 100]`
-- Opacité parallax: `useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0])`
+**Où l'utiliser:**
+- Éléments flottants en arrière-plan
+- Sections hero
+- Particules décoratives
 
 ---
 
-### 2. 3D Transform Cards ⭐⭐⭐
+### 2. 3D Transforms ✨
 
-**Utilisé pour:** Cards, modals, sections importantes
+**Usage:** Effets de profondeur au hover.
 
 ```typescript
+// Card avec rotation 3D
 <motion.div
   whileHover={{ 
     scale: 1.05,
     rotateY: 5,
-    z: 50,
-    transition: { duration: 0.3 }
+    z: 50
   }}
   style={{ perspective: 1000 }}
-  className="glass-morphism rounded-xl p-6"
 >
   {/* Contenu */}
 </motion.div>
+
+// Variation avec rotateX
+<motion.div
+  initial={{ opacity: 0, y: 50, rotateX: 10 }}
+  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+  style={{ perspective: 1000 }}
+>
 ```
 
-**Variations:**
-- Cards gauche: `rotateY: 5`
-- Cards droite: `rotateY: -5`
-- Cards centrées: `rotateX: -5`
-- Scale: `1.02` (subtle) à `1.1` (prononcé)
+**⚠️ OBLIGATOIRE:** `perspective: 1000` sur le parent pour effet 3D.
+
+**Où l'utiliser:**
+- Cards de solutions
+- Cards témoignages
+- Éléments interactifs
 
 ---
 
-### 3. Floating Elements ⭐
+### 3. Spring Physics 🎪
 
-**Utilisé pour:** Backgrounds, particules, éléments décoratifs
+**Usage:** Mouvements naturels et rebondissants.
 
 ```typescript
+// Configuration standard
+transition={{ 
+  type: "spring",
+  stiffness: 100,
+  damping: 15,
+  duration: 0.8
+}}
+
+// Application sur bouton
+<motion.div 
+  whileHover={{ scale: 1.1 }}
+  whileTap={{ scale: 0.95 }}
+  transition={{ type: "spring", stiffness: 400 }}
+>
+```
+
+**Paramètres:**
+- `stiffness: 100` - Standard (300-400 pour réactif)
+- `damping: 15` - Contrôle le rebond
+- `duration: 0.8` - Durée totale
+
+**Où l'utiliser:**
+- Tous les boutons
+- Cards au hover
+- Éléments interactifs
+
+---
+
+### 4. Scroll-Triggered Animations 🎯
+
+**Usage:** Animations qui se déclenchent au scroll dans le viewport.
+
+```typescript
+// Configuration standard
+<motion.div
+  initial={{ opacity: 0, y: 30, rotateX: -10 }}
+  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+>
+```
+
+**Options viewport:**
+- `once: true` - Animation une seule fois (PERFORMANCE)
+- `amount: 0.2` - Déclenche à 20% visible
+- `amount: 0.1` - Pour listes longues
+
+**Où l'utiliser:**
+- Sections au scroll
+- Lists d'éléments
+- Grids de solutions
+
+---
+
+### 5. Floating Elements 💫
+
+**Usage:** Éléments qui flottent en boucle.
+
+```typescript
+// Mouvement vertical
 <motion.div
   animate={{
-    y: [-10, 10, -10],
+    y: [-20, 20, -20],
     opacity: [0.2, 0.5, 0.2]
   }}
   transition={{
-    duration: 4,
+    duration: 3,
     repeat: Infinity,
     ease: "easeInOut"
   }}
-  className="absolute w-32 h-32 bg-success/10 blur-3xl"
-/>
-```
+>
 
-**Variations:**
-- Mouvement vertical: `y: [-10, 10, -10]`
-- Mouvement horizontal: `x: [-20, 20, -20]`
-- Rotation: `rotate: [0, 360]`
-- Scale pulsing: `scale: [1, 1.2, 1]`
-
----
-
-### 4. Scroll-Triggered Entrance ⭐⭐
-
-**Utilisé pour:** Sections, cards, listes
-
-```typescript
-const ref = useRef(null);
-const isInView = useInView(ref, { once: true, amount: 0.3 });
-
+// Variation avec scale
 <motion.div
-  ref={ref}
-  initial={{ opacity: 0, y: 30, rotateX: -10 }}
-  animate={isInView ? { 
-    opacity: 1, 
-    y: 0, 
-    rotateX: 0 
-  } : {}}
-  transition={{ 
-    duration: 0.6,
-    type: "spring",
-    stiffness: 100
+  animate={{
+    scale: [1, 1.2, 1],
+    opacity: [0.3, 0.5, 0.3]
+  }}
+  transition={{
+    duration: 5,
+    repeat: Infinity,
+    ease: "easeInOut"
   }}
 >
-  {/* Contenu */}
-</motion.div>
 ```
 
-**Variations:**
-- De gauche: `initial={{ opacity: 0, x: -50 }}`
-- De droite: `initial={{ opacity: 0, x: 50 }}`
-- De bas: `initial={{ opacity: 0, y: 30 }}`
-- Avec rotation: `rotateX: -10`
+**Où l'utiliser:**
+- Éléments de fond décoratifs
+- Particules
+- Orbes de couleur
 
 ---
 
-### 5. Stagger Animations ⭐⭐⭐
+### 6. Glow Effects ✨
 
-**Utilisé pour:** Listes, grids, features
+**Usage:** Effets lumineux animés.
 
 ```typescript
+// Glow pulsant
+<motion.div
+  animate={{
+    boxShadow: [
+      "0 0 10px rgba(16,185,129,0.3)",
+      "0 0 20px rgba(16,185,129,0.5)",
+      "0 0 10px rgba(16,185,129,0.3)"
+    ]
+  }}
+  transition={{ duration: 2, repeat: Infinity }}
+>
+
+// Glow sur texte
+<motion.div
+  animate={{ 
+    textShadow: [
+      "0 0 10px rgba(16,185,129,0.5)",
+      "0 0 20px rgba(16,185,129,0.8)",
+      "0 0 10px rgba(16,185,129,0.5)"
+    ]
+  }}
+  transition={{ duration: 2, repeat: Infinity }}
+>
+```
+
+**Couleurs Design System:**
+- Success: `rgba(16,185,129,0.X)` - #10B981
+- Primary: `rgba(99,102,241,0.X)` - #6366F1
+- CTA: `rgba(255,90,0,0.X)` - #FF5A00
+
+**Où l'utiliser:**
+- Badges Quick Win
+- Éléments importants
+- CTAs principaux
+
+---
+
+### 7. Stagger Children 🎭
+
+**Usage:** Animations échelonnées sur liste d'éléments.
+
+```typescript
+// Variants parent
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -165,8 +255,13 @@ const containerVariants = {
   }
 };
 
+// Variants enfants
 const itemVariants = {
-  hidden: { opacity: 0, y: 60, scale: 0.95 },
+  hidden: { 
+    opacity: 0, 
+    y: 60,
+    scale: 0.95
+  },
   visible: { 
     opacity: 1, 
     y: 0,
@@ -179,504 +274,630 @@ const itemVariants = {
   }
 };
 
-<motion.div variants={containerVariants} initial="hidden" animate="visible">
+// Application
+<motion.div
+  variants={containerVariants}
+  initial="hidden"
+  animate="visible"
+>
   {items.map(item => (
     <motion.div key={item.id} variants={itemVariants}>
-      {item.content}
+      {/* Contenu */}
     </motion.div>
   ))}
 </motion.div>
 ```
 
-**Timing:**
-- Rapide: `staggerChildren: 0.05`
-- Normal: `staggerChildren: 0.15`
-- Lent: `staggerChildren: 0.3`
+**Paramètres:**
+- `staggerChildren: 0.15` - Délai entre éléments (150ms)
+- `delayChildren: 0.2` - Délai avant première animation
+
+**Où l'utiliser:**
+- Lists de features
+- Grids de solutions
+- Étapes de processus
 
 ---
 
-### 6. Hover Interactions ⭐⭐
+### 8. Magnetic Hover 🧲
 
-**Utilisé pour:** Buttons, links, icons, cards
+**Usage:** Effet magnétique au hover avec rotation.
 
 ```typescript
-// Button magnetic effect
+// Bouton magnétique
 <motion.div
-  whileHover={{ scale: 1.05 }}
+  whileHover={{ 
+    scale: 1.1,
+    rotate: 360
+  }}
   whileTap={{ scale: 0.95 }}
+  transition={{ duration: 0.6 }}
 >
-  <Button>Click me</Button>
-</motion.div>
 
-// Icon rotation
+// Variation sans rotation
 <motion.div
   whileHover={{ 
     scale: 1.2,
-    rotate: 360
+    backgroundColor: "rgba(16,185,129,0.4)"
   }}
   transition={{ duration: 0.4 }}
 >
-  <Icon />
-</motion.div>
-
-// Card subtle lift
-<motion.div
-  whileHover={{ y: -10 }}
-  transition={{ type: "spring", stiffness: 300 }}
->
-  <Card />
-</motion.div>
 ```
 
-**Variations:**
-- Scale subtil: `1.02`
-- Scale moyen: `1.05`
-- Scale prononcé: `1.1`
-- Rotation: `360` (full) ou `10` (tilt)
+**Où l'utiliser:**
+- Icons dans les listes
+- Badges
+- Petits éléments interactifs
 
 ---
 
-### 7. Pulsing/Glowing Effects ⭐
+## 🏗️ Structure Type d'une Page
 
-**Utilisé pour:** Badges, notifications, CTAs importantes
-
-```typescript
-<motion.div
-  animate={{
-    boxShadow: [
-      "0 0 10px rgba(16,185,129,0.3)",
-      "0 0 20px rgba(16,185,129,0.5)",
-      "0 0 10px rgba(16,185,129,0.3)"
-    ]
-  }}
-  transition={{ duration: 2, repeat: Infinity }}
-  className="bg-success/20 border border-success/30 rounded-full"
->
-  <Badge>Quick Win</Badge>
-</motion.div>
-```
-
-**Couleurs par contexte:**
-- Success: `rgba(16,185,129,X)`
-- Primary: `rgba(99,102,241,X)`
-- CTA: `rgba(255,90,0,X)`
-- Error: `rgba(239,68,68,X)`
-
----
-
-### 8. Progressive Timeline ⭐⭐
-
-**Utilisé pour:** Processus, étapes, roadmaps
+### Pattern Validé (QuickWins.tsx)
 
 ```typescript
-// Ligne verticale qui se dessine
-<motion.div
-  className="absolute left-8 w-0.5 bg-gradient-to-b from-success"
-  initial={{ height: 0 }}
-  animate={isInView ? { height: "100%" } : { height: 0 }}
-  transition={{ duration: 1.5, delay: 0.8 }}
-/>
-
-// Étapes qui apparaissent progressivement
-{steps.map((step, idx) => (
-  <motion.div
-    key={idx}
-    initial={{ opacity: 0, x: -20 }}
-    animate={isInView ? { opacity: 1, x: 0 } : {}}
-    transition={{ delay: 0.6 + idx * 0.2 }}
-  >
-    <Step {...step} />
-  </motion.div>
-))}
-```
-
----
-
-### 9. Magnetic Buttons ⭐
-
-**Utilisé pour:** CTAs principaux
-
-```typescript
-<motion.div
-  whileHover={{ scale: 1.1 }}
-  whileTap={{ scale: 0.95 }}
-  transition={{ type: "spring", stiffness: 400, damping: 17 }}
->
-  <Button className="power-pulse">
-    CALL TO ACTION
-  </Button>
-</motion.div>
-```
-
----
-
-### 10. Rotating Icons ⭐
-
-**Utilisé pour:** Loading states, decorative elements
-
-```typescript
-<motion.div
-  animate={{ rotate: [0, 360] }}
-  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
->
-  <Sparkles className="h-6 w-6" />
-</motion.div>
-```
-
----
-
-## 🎨 Variations par Type de Page
-
-### Hero Sections
-- **Parallax background** (3 blobs minimum)
-- **Stagger text** (titre, description, stats)
-- **Scale + opacity** sur scroll
-- **3D rotation** sur visual principal
-- **Magnetic CTAs**
-
-### Feature Grids
-- **Stagger cards** (0.15s delay)
-- **Hover lift** (y: -10)
-- **3D tilt** au hover (rotateY: 5)
-- **Pulsing badges**
-
-### Comparaison Avant/Après
-- **Shake effect** sur "Avant" (subtle)
-- **Glow effect** sur "Après" (pulsing)
-- **Scale au hover** (1.05)
-- **3D rotation** (rotateY: ±5)
-
-### Listes de Bénéfices
-- **Stagger items** (0.1s)
-- **Icon rotation** au hover (360°)
-- **Slide right** au hover (x: 10)
-- **CheckCircle animation**
-
-### CTAs Finaux
-- **Scale 1.1** au hover
-- **Glow pulsing**
-- **Arrow animation** (x: [0, 5, 0])
-
----
-
-## ⚡ Performance Tips
-
-### DO ✅
-```typescript
-// Utiliser transform (GPU-accelerated)
-style={{ y: smoothY, scale: smoothScale }}
-
-// Spring pour smoothness
-useSpring(value, { stiffness: 100, damping: 30 })
-
-// once: true pour animations uniques
-useInView(ref, { once: true })
-
-// Viewport amount pour trigger précis
-useInView(ref, { amount: 0.3 })
-```
-
-### DON'T ❌
-```typescript
-// Éviter margin/padding dans animations
-animate={{ marginTop: 20 }} // ❌
-
-// Préférer transform
-animate={{ y: 20 }} // ✅
-
-// Éviter trop d'éléments animés simultanément
-{items.map(item => <AnimatedCard />)} // OK si <50 items
-
-// Éviter animations complexes sur mobile
-const isMobile = window.innerWidth < 768;
-animate={!isMobile ? complexAnimation : simpleAnimation}
-```
-
----
-
-## 🎭 Exemples Complets par Section
-
-### Hero avec Parallax Full
-
-```typescript
-export default function HeroSection() {
+export default function MaPage() {
+  // 1. REFS pour sections
+  const heroRef = useRef(null);
+  const isHeroInView = useInView(heroRef, { once: true, amount: 0.3 });
+  
+  // 2. SCROLL ANIMATIONS
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const smoothY = useSpring(y, { stiffness: 100, damping: 30 });
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
-  const smoothScale = useSpring(scale, { stiffness: 100, damping: 30 });
+  
+  // 3. VARIANTS
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 60, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { 
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  };
 
   return (
-    <section className="relative min-h-screen">
-      {/* Floating backgrounds */}
-      <motion.div
-        style={{ y: smoothY }}
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 5, repeat: Infinity }}
-        className="absolute top-20 left-10 w-32 h-32 bg-primary/10 blur-3xl"
-      />
-      
-      {/* Content avec scale */}
-      <motion.div style={{ scale: smoothScale }}>
-        <h1>Hero Title</h1>
-      </motion.div>
-    </section>
-  );
-}
-```
+    <div className="min-h-screen bg-dainamics-background">
+      <EnhancedGridBackground />
+      <Navigation />
 
-### Grid Cards avec 3D
+      <main className="relative z-10">
+        {/* HERO - 2 colonnes */}
+        <section ref={heroRef} className="relative min-h-[80vh] py-32 overflow-hidden">
+          {/* Éléments flottants avec parallax */}
+          <motion.div style={{ y: smoothY }}>
+            {/* Orbes de couleur */}
+          </motion.div>
 
-```typescript
-export default function CardGrid({ items }) {
-  return (
-    <div className="grid md:grid-cols-3 gap-6">
-      {items.map((item, idx) => (
-        <motion.div
-          key={item.id}
-          initial={{ opacity: 0, y: 30, rotateX: -10 }}
-          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ delay: idx * 0.1, type: "spring" }}
-          whileHover={{ 
-            scale: 1.05, 
-            rotateY: 5,
-            transition: { duration: 0.3 }
-          }}
-          style={{ perspective: 1000 }}
-        >
-          <Card {...item} />
-        </motion.div>
-      ))}
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+              {/* GAUCHE - Texte avec stagger */}
+              <motion.div
+                className="lg:w-1/2"
+                variants={containerVariants}
+                initial="hidden"
+                animate={isHeroInView ? "visible" : "hidden"}
+              >
+                <motion.h1 variants={itemVariants}>
+                  {/* Titre */}
+                </motion.h1>
+                <motion.p variants={itemVariants}>
+                  {/* Description */}
+                </motion.p>
+                <motion.div variants={itemVariants}>
+                  {/* CTAs */}
+                </motion.div>
+              </motion.div>
+
+              {/* DROITE - Animation pédagogique */}
+              <motion.div
+                className="lg:w-1/2"
+                initial={{ opacity: 0, y: 50, rotateX: 10 }}
+                animate={isHeroInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                style={{ perspective: 1000 }}
+              >
+                {/* Timeline, Diagramme, ou autre animation */}
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION CONTENU - 2 colonnes inversées */}
+        <section className="relative py-20 md:py-32">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="flex flex-col lg:flex-row-reverse items-center gap-12">
+              {/* Texte droite */}
+              {/* Animation gauche */}
+            </div>
+          </div>
+        </section>
+
+        {/* GRID SOLUTIONS */}
+        <section className="relative py-20 md:py-32">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {items.map((item, idx) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ delay: idx * 0.1 }}
+                  whileHover={{ scale: 1.05, rotateY: 5, z: 50 }}
+                  style={{ perspective: 1000 }}
+                >
+                  {/* Card contenu */}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA FINAL */}
+        <section className="relative py-20 md:py-32">
+          <div className="container mx-auto px-4 md:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2>{/* Titre */}</h2>
+              <motion.div 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {/* Bouton CTA */}
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 }
 ```
 
-### Timeline Progressive
+---
+
+## 🎨 Classes CSS Spéciales
+
+### Tailwind + Custom
 
 ```typescript
-export default function Timeline({ steps }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+// Glass morphism
+className="glass-morphism rounded-xl p-6 border border-dainamics-success/20 backdrop-blur-xl"
 
-  return (
-    <div ref={ref} className="relative">
-      {/* Ligne animée */}
-      <motion.div
-        className="absolute left-8 w-0.5 bg-gradient-to-b from-success"
-        initial={{ height: 0 }}
-        animate={isInView ? { height: "100%" } : {}}
-        transition={{ duration: 1.5 }}
-      />
+// Gradient text
+className="text-gradient"           // Multi-color gradient
+className="text-gradient-primary"   // Primary color gradient
+className="glow"                    // Text glow effect
 
-      {/* Steps */}
-      {steps.map((step, idx) => (
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, x: -20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ delay: 0.6 + idx * 0.2 }}
-          whileHover={{ x: 10 }}
-        >
-          <TimelineStep {...step} />
-        </motion.div>
-      ))}
-    </div>
-  );
-}
+// Buttons
+className="btn-glow"                // Glow effect on button
+className="power-pulse"             // Pulse animation
+
+// Animations
+className="animate-pulse-glow"      // Pulsing glow
 ```
 
----
-
-## 🎨 Color-Specific Glows
+### Couleurs Design System (OBLIGATOIRES)
 
 ```typescript
-// Success (Green)
-boxShadow: [
-  "0 0 10px rgba(16,185,129,0.3)",
-  "0 0 20px rgba(16,185,129,0.5)",
-  "0 0 10px rgba(16,185,129,0.3)"
-]
-
-// Primary (Indigo)
-boxShadow: [
-  "0 0 10px rgba(99,102,241,0.3)",
-  "0 0 20px rgba(99,102,241,0.5)",
-  "0 0 10px rgba(99,102,241,0.3)"
-]
-
-// CTA (Orange)
-boxShadow: [
-  "0 0 10px rgba(255,90,0,0.3)",
-  "0 0 20px rgba(255,90,0,0.5)",
-  "0 0 10px rgba(255,90,0,0.3)"
-]
-
-// Accent (Cyan)
-boxShadow: [
-  "0 0 10px rgba(16,228,255,0.3)",
-  "0 0 20px rgba(16,228,255,0.5)",
-  "0 0 10px rgba(16,228,255,0.3)"
-]
-```
-
----
-
-## 🔥 Quick Reference Cheatsheet
-
-| Animation | Use Case | Code |
-|-----------|----------|------|
-| Parallax | Backgrounds | `useScroll() + useTransform()` |
-| 3D Cards | Features, Cards | `whileHover={{ rotateY: 5 }}` |
-| Stagger | Lists, Grids | `staggerChildren: 0.15` |
-| Scroll Trigger | Sections | `useInView() + initial/animate` |
-| Hover Lift | Interactive | `whileHover={{ y: -10 }}` |
-| Pulsing | Badges, CTAs | `animate + boxShadow array` |
-| Magnetic | Buttons | `whileHover={{ scale: 1.1 }}` |
-| Floating | Decorative | `animate={{ y: [-10, 10] }}` |
-| Progressive | Timelines | `initial={{ height: 0 }}` |
-| Rotation | Icons | `animate={{ rotate: 360 }}` |
-
----
-
-## 🎬 Animation Timing Standards
-
-```typescript
-// Spring Settings
-const springConfig = {
-  stiffness: 100,    // Rigidité (plus = plus rapide)
-  damping: 30,       // Amortissement (plus = moins de rebond)
+// Couleurs principales
+const COLORS = {
+  primary: '#6366F1',      // Indigo - Tech/IA
+  cta: '#FF5A00',          // Orange - CTA
+  accent: '#10E4FF',       // Cyan - Automatisation
+  success: '#10B981',      // Green - Quick Wins
+  warning: '#F59E0B',      // Yellow
+  error: '#EF4444',        // Red
+  background: '#0A0A0F',   // Dark Navy
+  light: '#F1F5F9'         // Light text
 };
 
-// Durations
-const TIMING = {
-  instant: 0.2,      // Micro-interactions
-  fast: 0.4,         // Hover effects
-  normal: 0.6,       // Entrances
-  slow: 0.8,         // Hero animations
-  verySlow: 1.5,     // Timeline draws
+// Mappings catégories
+const CATEGORY_COLORS = {
+  'ia': '#6366F1',
+  'automatisation': '#10E4FF',
+  'developpement': '#FF5A00'
 };
 
-// Delays
-const DELAY = {
-  none: 0,
-  short: 0.1,
-  medium: 0.2,
-  long: 0.4,
-};
-
-// Stagger
-const STAGGER = {
-  tight: 0.05,       // Rapid succession
-  normal: 0.15,      // Standard
-  relaxed: 0.3,      // Dramatic
+// Mappings complexité
+const COMPLEXITY_COLORS = {
+  'starter': '#10B981',
+  'intermediate': '#F59E0B',
+  'advanced': '#EF4444'
 };
 ```
 
 ---
 
-## 📱 Mobile Considerations
+## 📐 Approche Pédagogique
+
+### Principe des 2 Colonnes
+
+**Toujours:**
+- **Gauche/Droite:** Texte explicatif
+- **Droite/Gauche:** Animation qui illustre le concept
+
+**Types d'animations pédagogiques:**
+1. **Timeline** - Processus séquentiels (déploiement, ROI)
+2. **Avant/Après** - Comparaisons visuelles
+3. **Diagramme** - Relations entre concepts
+4. **Schéma** - Architecture technique
+5. **Icons flottants** - Concepts multiples
+
+**Exemple QuickWins:**
+- Hero: Timeline ROI avec icônes animées
+- Why: Comparaison Avant/Après en cards 3D
+
+---
+
+## ⚡ Performance
+
+### Optimisations OBLIGATOIRES
 
 ```typescript
-// Détecter mobile
+// 1. once: true pour scroll animations
+viewport={{ once: true, amount: 0.2 }}
+
+// 2. Spring physics pour smoothness
+transition={{ type: "spring", stiffness: 100, damping: 15 }}
+
+// 3. Stagger pour échelonner
+staggerChildren: 0.15
+
+// 4. Transform au lieu de position (GPU)
+// ✅ BON
+whileHover={{ scale: 1.05, rotateY: 5 }}
+
+// ❌ MAUVAIS
+whileHover={{ left: 10, top: 10 }}
+```
+
+### Métriques Cibles
+- **60fps** - Animations fluides
+- **Lighthouse > 90** - Performance globale
+- **CLS < 0.1** - Stabilité visuelle
+
+---
+
+## 🎯 Variations par Type de Page
+
+### Page Solutions / Industries
+
+```typescript
+// Grid avec filtres animés
+<motion.button
+  whileHover={{ scale: 1.05 }}
+  className="magnetic-effect"
+>
+  {/* Filtre catégorie */}
+</motion.button>
+
+// Cards avec hover 3D prononcé
+whileHover={{ 
+  scale: 1.08,
+  rotateY: 8,
+  z: 80
+}}
+```
+
+### Page Portfolio / Témoignages
+
+```typescript
+// Cards avec reveal progressif
+initial={{ opacity: 0, y: 40, scale: 0.9 }}
+whileInView={{ opacity: 1, y: 0, scale: 1 }}
+
+// Logos partenaires flottants
+animate={{
+  y: [-5, 5, -5],
+  rotate: [-2, 2, -2]
+}}
+```
+
+### Page Expertise / Process
+
+```typescript
+// Steps avec connexions animées
+<motion.div
+  className="line-connector"
+  initial={{ height: 0 }}
+  whileInView={{ height: "100%" }}
+  transition={{ duration: 1.5 }}
+/>
+
+// Icons avec rotation au hover
+whileHover={{ 
+  scale: 1.2,
+  rotate: 360
+}}
+```
+
+---
+
+## 🚨 RÈGLES ABSOLUES
+
+### ✅ À FAIRE
+
+1. **Toujours** utiliser `viewport={{ once: true }}` sur `whileInView`
+2. **Toujours** utiliser `type: "spring"` pour transitions naturelles
+3. **Toujours** utiliser `perspective: 1000` pour 3D transforms
+4. **Toujours** utiliser couleurs Design System (CATEGORY_COLORS, etc.)
+5. **Toujours** stagger animations sur listes/grids
+6. **Toujours** approche 2 colonnes (texte + animation)
+
+### ❌ À ÉVITER
+
+1. **Jamais** d'animations sans `once: true` (performance)
+2. **Jamais** de couleurs hardcodées hors Design System
+3. **Jamais** de position CSS animée (utiliser transform)
+4. **Jamais** d'animations > 4s (trop long)
+5. **Jamais** de stagger > 0.2s (trop lent)
+6. **Jamais** d'animations sans mobile-first
+
+---
+
+## 📱 Mobile-First
+
+### Adaptations Responsive
+
+```typescript
+// Désactiver 3D sur mobile
 const isMobile = window.innerWidth < 768;
 
-// Simplifier animations sur mobile
 <motion.div
-  whileHover={!isMobile ? { scale: 1.05, rotateY: 5 } : { scale: 1.02 }}
-  animate={!isMobile ? complexAnimation : simpleAnimation}
+  whileHover={!isMobile ? { 
+    scale: 1.05,
+    rotateY: 5
+  } : { scale: 1.02 }}
 >
-  <Card />
+
+// Réduire parallax sur mobile
+const y = useTransform(
+  scrollYProgress, 
+  [0, 1], 
+  isMobile ? [0, -30] : [0, -100]
+);
+```
+
+### Classes Responsive
+
+```typescript
+// Grid adaptatif
+className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+
+// Texte responsive
+className="text-3xl md:text-4xl lg:text-5xl"
+
+// Padding responsive
+className="py-12 md:py-20 lg:py-32"
+```
+
+---
+
+## 🔍 Exemples Concrets
+
+### Hero Section Complete
+
+```typescript
+<section ref={heroRef} className="relative min-h-[80vh] py-32 overflow-hidden">
+  {/* Orbe flottant gauche */}
+  <motion.div
+    className="absolute top-20 left-10 w-32 h-32 rounded-full bg-dainamics-success/10 blur-3xl"
+    style={{ y: smoothY }}
+    animate={{
+      scale: [1, 1.2, 1],
+      opacity: [0.3, 0.5, 0.3]
+    }}
+    transition={{
+      duration: 5,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
+
+  {/* Orbe flottant droit */}
+  <motion.div
+    className="absolute top-40 right-20 w-40 h-40 rounded-full bg-dainamics-primary/10 blur-3xl"
+    style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
+    animate={{
+      scale: [1, 1.3, 1],
+      opacity: [0.2, 0.4, 0.2]
+    }}
+    transition={{
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay: 1
+    }}
+  />
+
+  <div className="container mx-auto px-4 md:px-8">
+    <motion.div 
+      className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16"
+      style={{ scale: smoothScale, opacity }}
+    >
+      {/* Texte gauche */}
+      <motion.div
+        className="lg:w-1/2"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isHeroInView ? "visible" : "hidden"}
+      >
+        <motion.h1 variants={itemVariants}>
+          <span className="text-gradient">Titre Principal</span>
+        </motion.h1>
+        
+        <motion.p variants={itemVariants}>
+          Description du contenu...
+        </motion.p>
+        
+        <motion.div variants={itemVariants}>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button className="btn-glow power-pulse">
+              CTA Principal
+            </Button>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+
+      {/* Animation droite */}
+      <motion.div
+        className="lg:w-1/2"
+        initial={{ opacity: 0, y: 50, rotateX: 10 }}
+        animate={isHeroInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+        style={{ perspective: 1000 }}
+      >
+        <div className="glass-morphism rounded-xl p-8">
+          {/* Contenu animation */}
+        </div>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+```
+
+### Card Solution avec Hover 3D
+
+```typescript
+<motion.div
+  initial={{ opacity: 0, y: 30, rotateX: -10 }}
+  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{ 
+    duration: 0.6, 
+    delay: idx * 0.1,
+    type: "spring",
+    stiffness: 100
+  }}
+  whileHover={{ 
+    scale: 1.05,
+    rotateY: 5,
+    z: 50
+  }}
+  style={{ perspective: 1000 }}
+>
+  <div className="glass-morphism rounded-xl p-6 h-full group hover:border-dainamics-success/30 transition-all">
+    {/* Badge avec pulse */}
+    <motion.span 
+      className="inline-flex items-center px-2 py-1 bg-dainamics-success/20 border border-dainamics-success/30 rounded-full"
+      animate={{
+        boxShadow: [
+          "0 0 10px rgba(16,185,129,0.3)",
+          "0 0 20px rgba(16,185,129,0.5)",
+          "0 0 10px rgba(16,185,129,0.3)"
+        ]
+      }}
+      transition={{ duration: 2, repeat: Infinity }}
+    >
+      <Zap className="h-3 w-3 text-dainamics-success" />
+    </motion.span>
+
+    {/* Titre avec hover color */}
+    <h4 className="text-xl font-bold text-dainamics-light mb-3 group-hover:text-dainamics-success transition-colors">
+      {solution.title}
+    </h4>
+
+    {/* CTA avec arrow animée */}
+    <motion.div whileHover={{ x: 5 }}>
+      <Button variant="link">
+        En savoir plus
+        <motion.div
+          className="inline-block ml-2"
+          animate={{ x: [0, 5, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <ArrowRight className="h-4 w-4" />
+        </motion.div>
+      </Button>
+    </motion.div>
+  </div>
 </motion.div>
-
-// Désactiver parallax sur mobile si performance
-const shouldParallax = !isMobile && window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
 ```
 
 ---
 
-## ✨ Pro Tips
+## 📚 Référence Complète
 
-1. **Toujours utiliser `perspective: 1000`** pour 3D transforms
-2. **Spring > ease** pour animations naturelles
-3. **`once: true`** pour performances sur longues pages
-4. **Stagger < 0.2s** pour garder dynamisme
-5. **Scale max 1.1** pour éviter effet cartoon
-6. **Toujours smooth avec `useSpring`** pour parallax
-7. **Viewport `amount: 0.2-0.3`** pour trigger anticipé
-8. **Glow pulsing 2s** pour effet hypnotique
-9. **Arrow animation `[0, 5, 0]`** pour diriger attention
-10. **Combine scale + rotate** pour effet premium
+### Fichiers à Consulter
 
----
+1. **QuickWins.tsx** (869 lignes) - Référence principale
+2. **Hero.tsx** (23 KB) - Animations cerveau
+3. **IntelligenceCenter.tsx** (22 KB) - Particules canvas
+4. **DESIGN-SYSTEM-MANDATORY.md** - Couleurs/icônes
 
-## 🚀 Checklist Nouvelle Page
+### Documentation Externe
 
-Avant de publier une page, vérifier:
-
-- [ ] Hero avec parallax backgrounds (3+ blobs)
-- [ ] Stagger animations sur listes/grids
-- [ ] 3D hover effects sur cards principales
-- [ ] Scroll-triggered entrances (useInView)
-- [ ] Pulsing badges sur éléments importants
-- [ ] Magnetic effect sur CTAs principaux
-- [ ] Floating elements en background
-- [ ] Progressive timeline si processus
-- [ ] Glow effects sur éléments success
-- [ ] Icon rotations sur hover
-- [ ] Scale animation sur scroll (hero)
-- [ ] Mobile optimization (animations simplifiées)
-- [ ] Performance: 60fps maintenu
-- [ ] Cohérence avec QuickWins.tsx
+- [Framer Motion](https://www.framer.com/motion/) - API complète
+- [Lucide Icons](https://lucide.dev) - v0.263.1
+- [Tailwind CSS](https://tailwindcss.com/docs) - Utility classes
 
 ---
 
-## 🎨 Exemples de Variations
+## ✅ Checklist Avant Commit
 
-### Hero Variants
+**Animation Quality:**
+- [ ] `viewport={{ once: true }}` sur tous `whileInView`
+- [ ] `type: "spring"` sur toutes transitions
+- [ ] `perspective: 1000` sur tous 3D transforms
+- [ ] Stagger utilisé sur listes/grids
+- [ ] Floating elements avec `repeat: Infinity`
+- [ ] Glow effects sur éléments importants
 
-**Style A - Parallax Dominant** (comme QuickWins)
-- 3+ floating blobs
-- Scale + opacity sur scroll
-- Timeline 3D à droite
+**Design System:**
+- [ ] CATEGORY_COLORS utilisés
+- [ ] COMPLEXITY_COLORS utilisés
+- [ ] Pas de HEX hardcodé
+- [ ] Icônes Lucide vérifiées lucide.dev
+- [ ] Classes glass-morphism, text-gradient utilisées
 
-**Style B - 3D Dominant**
-- Visual principal en 3D rotation
-- Cards flottantes autour
-- Particles subtiles
+**Performance:**
+- [ ] Animations < 4s
+- [ ] Stagger < 0.2s
+- [ ] Transform utilisé (pas position)
+- [ ] Mobile-first testé
 
-**Style C - Minimal + Élégant**
-- 1 gradient blob
-- Texte avec subtle scale
-- Focus sur typography
-
-### Card Grid Variants
-
-**Grid A - 3D Tilt** (comme QuickWins)
-```typescript
-whileHover={{ scale: 1.05, rotateY: 5 }}
-```
-
-**Grid B - Lift + Shadow**
-```typescript
-whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}
-```
-
-**Grid C - Expand**
-```typescript
-whileHover={{ scale: 1.02 }}
-whileTap={{ scale: 0.98 }}
-```
+**Structure:**
+- [ ] Approche 2 colonnes (texte + animation)
+- [ ] Hero avec parallax
+- [ ] Grid avec scroll-triggered
+- [ ] CTA final centré
 
 ---
 
-**VERSION**: 1.0  
-**DATE**: 12 Octobre 2025  
-**VALIDÉ SUR**: QuickWins.tsx  
-**STATUS**: ✅ Production Ready  
-**NEXT**: Appliquer sur toutes nouvelles pages avec variations
+## 🎉 Résultat Attendu
+
+**Quand ces guidelines sont suivies:**
+- ✅ Animations fluides 60fps
+- ✅ Expérience immersive
+- ✅ Cohérence visuelle totale
+- ✅ Performance optimale
+- ✅ Client satisfait (MEGA FAN)
+
+**Style QuickWins = Standard qualité DAINAMICS** 🚀
 
 ---
 
-🎉 **Style approuvé et documenté - Prêt pour déploiement sur toutes les pages !**
+**VERSION:** 1.0  
+**DERNIÈRE MAJ:** 12 Octobre 2025  
+**STATUT:** ✅ Validé et Approuvé Client
