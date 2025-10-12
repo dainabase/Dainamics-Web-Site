@@ -5,15 +5,15 @@ import { ArrowRight, Zap, TrendingUp, Clock, CheckCircle2, Target, Rocket } from
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
-import { solutions, quickWinSolutions } from '@/data/solutions';
+import { quickWinSolutions } from '@/data/solutions';
 
 export default function QuickWins() {
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.3 });
-
+  
   const whyRef = useRef(null);
   const isWhyInView = useInView(whyRef, { once: true, amount: 0.3 });
-
+  
   const solutionsRef = useRef(null);
   const areSolutionsInView = useInView(solutionsRef, { once: true, amount: 0.1 });
 
@@ -49,7 +49,7 @@ export default function QuickWins() {
       <EnhancedGridBackground />
       <Navigation />
 
-      <main className="relative">
+      <main className="relative z-10">
         {/* Hero Section - 2 colonnes */}
         <section ref={heroRef} className="relative min-h-[80vh] py-32 overflow-hidden">
           <div className="container mx-auto px-4 md:px-8">
@@ -216,7 +216,7 @@ export default function QuickWins() {
                           </div>
                           <div className="pt-2">
                             <div className="text-dainamics-success font-semibold mb-1">Mois 4-6</div>
-                            <div className="text-dainamics-light font-medium mb-1">ROI Atteint 🎯</div>
+                            <div className="text-dainamics-light font-medium mb-1">ROI Atteint</div>
                             <div className="text-dainamics-light/60 text-sm">
                               Retour sur investissement complet
                             </div>
@@ -482,19 +482,19 @@ export default function QuickWins() {
                             {solution.tagline}
                           </p>
 
-                          {/* ROI */}
+                          {/* ROI - FIX: utiliser outcomes au lieu de roi */}
                           <div className="mt-auto pt-4 border-t border-dainamics-light/10">
                             <div className="flex items-center justify-between text-sm">
                               <div>
-                                <div className="text-dainamics-light/60 mb-1">ROI</div>
+                                <div className="text-dainamics-light/60 mb-1">Gain temps</div>
                                 <div className="text-dainamics-success font-semibold">
-                                  {solution.roi.timeframe}
+                                  {solution.outcomes.timeGained || 'Variable'}
                                 </div>
                               </div>
                               <div className="text-right">
                                 <div className="text-dainamics-light/60 mb-1">Économies</div>
                                 <div className="text-dainamics-success font-semibold">
-                                  CHF {solution.roi.savings.toLocaleString('fr-CH')}/an
+                                  {solution.outcomes.moneySaved || 'Sur mesure'}
                                 </div>
                               </div>
                             </div>
@@ -507,7 +507,7 @@ export default function QuickWins() {
                               variant="link"
                               className="text-dainamics-success hover:text-dainamics-success/90 p-0 h-auto font-medium group-hover:underline"
                             >
-                              <a href={`/solutions/${solution.id}`}>
+                              <a href={`/solutions#${solution.id}`}>
                                 En savoir plus
                                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                               </a>
