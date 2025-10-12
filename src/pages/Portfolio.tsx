@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence, MotionValue } from 'framer-motion';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,7 @@ import {
   type PortfolioProject
 } from '@/data/portfolio';
 import { iconMapper } from '@/utils/iconMapper';
+import { COLORS } from '@/data/expertise';
 import { ArrowRight, Sparkles, X, Zap, Target } from 'lucide-react';
 
 export default function Portfolio() {
@@ -210,10 +211,17 @@ export default function Portfolio() {
               </motion.div>
             </div>
 
-            <BentoGrid projects={filteredProjects} onProjectClick={setActiveProject} />
+            {/* Removed BentoGrid - replaced by StickyCardsSection below */}
           </motion.div>
         </div>
       </section>
+
+      {/* Sticky Cards Section - All Projects */}
+      <StickyCardsSection 
+        projects={filteredProjects}
+        selectedCategory={selectedCategory}
+        onProjectClick={setActiveProject}
+      />
 
       <AnimatePresence>
         {activeProject && (
@@ -223,6 +231,176 @@ export default function Portfolio() {
 
       <Footer />
     </div>
+  );
+}
+
+// ============================================================================
+// STICKY CARDS SECTION - Constant for card height
+// ============================================================================
+const CARD_HEIGHT = 500;
+
+// ============================================================================
+// STICKY CARDS SECTION - Main Component
+// ============================================================================
+function StickyCardsSection({ projects, selectedCategory, onProjectClick }: {
+  projects: PortfolioProject[];
+  selectedCategory: string | null;
+  onProjectClick: (project: PortfolioProject) => void;
+}) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  return (
+    <>
+      {/* Header section */}
+      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl font-bold mb-4">
+            Tous nos <span style={{ color: COLORS.primary }}>Projets</span>
+          </h2>
+          <p className="text-lg text-gray-400">
+            {selectedCategory 
+              ? `Projets ${selectedCategory}`
+              : 'Portfolio complet de nos réalisations'
+            }
+          </p>
+        </motion.div>
+      </div>
+
+      {/* Sticky cards container */}
+      <div ref={ref} className="relative">
+        {projects.map((project: PortfolioProject, idx: number) => (
+          <Card
+            key={project.id}
+            project={project}
+            scrollYProgress={scrollYProgress}
+            position={idx + 1}
+            totalCards={projects.length}
+            onClick={() => onProjectClick(project)}
+          />
+        ))}
+      </div>
+      <div className="h-screen bg-dainamics-background" />
+    </>
+  );
+}
+
+// ============================================================================
+// STICKY CARDS - Individual Card Component
+// ============================================================================
+interface CardProps {
+  position: number;
+  project: PortfolioProject;
+  scrollYProgress: MotionValue;
+  totalCards: number;
+  onClick: () => void;
+}
+
+function Card({ position, project, scrollYProgress, totalCards, onClick }: CardProps) {
+  const scaleFromPct = (position - 1) / totalCards;
+  const y = useTransform(scrollYProgress, [scaleFromPct, 1], [0, -CARD_HEIGHT]);
+  
+  const isOddCard = position % 2;
+  const categoryColor = categoryColors[project.category];
+
+  return (
+    <motion.div
+      style={{
+        height: CARD_HEIGHT,
+        y: position === totalCards ? undefined : y,
+        background: isOddCard ? 'black' : categoryColor,
+        color: 'white',
+      }}
+      className="sticky top-0 flex w-full origin-top flex-col items-center justify-center px-4"
+      onClick={onClick}
+    >
+      <div className="max-w-4xl mx-auto text-center">
+        {/* Badge catégorie */}
+        <Badge
+          className="mb-6"
+          style={{
+            backgroundColor: isOddCard ? `${categoryColor}30` : 'rgba(255,255,255,0.2)',
+            color: isOddCard ? categoryColor : 'white',
+            border: `1px solid ${isOddCard ? categoryColor : 'rgba(255,255,255,0.4)'}`,
+            fontSize: '0.875rem',
+            padding: '0.5rem 1rem',
+          }}
+        >
+          {project.category.toUpperCase()}
+        </Badge>
+
+        {/* Titre projet */}
+        <h3 className="text-4xl md:text-6xl font-bold mb-4">
+          {project.title}
+        </h3>
+
+        {/* Client + Industrie */}
+        <p className="text-lg md:text-xl mb-6 opacity-80">
+          {project.client} • {project.industry}
+        </p>
+
+        {/* Description */}
+        <p className="text-base md:text-lg mb-10 max-w-2xl mx-auto opacity-90 leading-relaxed">
+          {project.description}
+        </p>
+
+        {/* 3 résultats max */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-3xl mx-auto">
+          {Object.values(project.results).slice(0, 3).map((result, idx) => {
+            if (!result) return null;
+            const Icon = iconMapper[result.icon as keyof typeof iconMapper];
+            
+            return (
+              <div 
+                key={idx} 
+                className="flex flex-col items-center"
+              >
+                {Icon && (
+                  <Icon 
+                    className="w-8 h-8 mb-2" 
+                    style={{ color: COLORS.success }} 
+                  />
+                )}
+                <div 
+                  className="text-2xl font-bold mb-1"
+                  style={{ color: COLORS.success }}
+                >
+                  {result.value}
+                </div>
+                <div className="text-sm opacity-80">
+                  {result.label}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bouton CTA */}
+        <Button
+          size="lg"
+          className={`group font-medium uppercase transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 ${
+            isOddCard
+              ? "bg-white text-black shadow-[4px_4px_0px_white] hover:shadow-[8px_8px_0px_white]"
+              : "bg-black text-white shadow-[4px_4px_0px_black] hover:shadow-[8px_8px_0px_black]"
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClick();
+          }}
+        >
+          <span>Voir le projet</span>
+          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+        </Button>
+      </div>
+    </motion.div>
   );
 }
 
