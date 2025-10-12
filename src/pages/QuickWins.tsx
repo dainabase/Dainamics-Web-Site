@@ -134,9 +134,9 @@ export default function QuickWins() {
             }}
           />
 
-          <div className="container mx-auto px-4 md:px-8">
+          <div className="container mx-auto px-4 md:px-8 min-h-[60vh] flex items-center">
             <motion.div 
-              className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16"
+              className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full"
               style={{ scale: smoothScale, opacity }}
             >
               {/* Texte - Gauche avec stagger */}
