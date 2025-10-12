@@ -1,6 +1,152 @@
-# 📋 PROMPT CONTEXT COMPLET - DAINAMICS Website v2.0
+# 📋 PROMPT CONTEXT COMPLET - DAINAMICS Website v2.1
 
-> **Copiez-collez ce prompt dans une nouvelle conversation avec Claude pour avoir tout le contexte nécessaire**
+> **MISE À JOUR CRITIQUE**: Claude travaille maintenant en direct (plus de Claude Code)
+
+---
+
+## 🚨 NOUVEAU WORKFLOW D'EXÉCUTION - CRITIQUE
+
+### ⚡ Claude Travaille DIRECTEMENT Maintenant
+
+**CHANGEMENT MAJEUR:**
+- ❌ **TERMINÉ**: Workflow avec Claude Code
+- ✅ **NOUVEAU**: Claude fait le travail lui-même directement sur GitHub
+
+**Comment ça fonctionne:**
+1. Claude se connecte directement au repository GitHub
+2. Claude lit, crée et modifie les fichiers
+3. Claude commit et push directement
+4. Tout se fait dans la conversation
+
+**Avantages:**
+- Plus rapide (pas d'intermédiaire)
+- Plus fluide (conversation unique)
+- Meilleur contrôle qualité
+- Pas de copier-coller de prompts
+
+---
+
+## 🎨 APPROCHE PÉDAGOGIQUE OBLIGATOIRE
+
+### 📐 Design des Pages - Inspiration Index.tsx
+
+**RÈGLE D'OR**: S'inspirer au MAXIMUM de la page d'accueil (Index.tsx) pour toutes les nouvelles pages
+
+**Éléments à réutiliser:**
+1. **Layouts multi-colonnes** (texte + visuel)
+2. **Animations Framer Motion** synchronisées avec le contenu
+3. **Sections structurées** (Hero, Features, Benefits, etc.)
+4. **Grid Background** avec effets parallax
+5. **Typography** (h1, h2, p) consistante
+6. **Spacing** et rythme vertical
+
+### 🧠 Approche Pédagogique = Montrer + Expliquer
+
+**PRINCIPE CLEF**: Chaque solution/concept DOIT être expliqué visuellement avec des animations
+
+**Format Standard:**
+```
+┌─────────────────────────────────────────┐
+│  TEXTE (Gauche)        ANIMATION (Droite) │
+│  ─────────────         ────────────────  │
+│  • Titre               [Animation SVG]   │
+│  • Description         [Schéma animé]    │
+│  • Bénéfices           [Illustration]    │
+│  • ROI quantifié       [Graphique]       │
+└─────────────────────────────────────────┘
+```
+
+### 💡 Exemples d'Animations Pédagogiques
+
+**Référence**: Animation cerveau sur hero de la page d'accueil
+
+**Types d'animations à créer:**
+
+1. **Pour l'IA:**
+   - Cerveau connecté avec nœuds
+   - Flux de données animés
+   - Analyse de texte en temps réel
+   - Transformation input → output
+
+2. **Pour l'Automatisation:**
+   - Workflow en cascade
+   - Connexion entre systèmes (APIs)
+   - Processus before → after
+   - Temps gagné visualisé
+
+3. **Pour le Développement:**
+   - Architecture système
+   - Stack technique en couches
+   - Flux utilisateur (user journey)
+   - Code qui s'écrit/compile
+
+### 🎯 Structure Type d'une Page
+
+**Inspiré de Index.tsx:**
+
+```typescript
+// Page Structure
+1. Hero Section
+   - Titre accrocheur
+   - Description courte
+   - Animation principale (ex: cerveau)
+   - CTA primaire
+
+2. Problème Section (2 colonnes)
+   - Gauche: Explication du problème
+   - Droite: Animation illustrant le problème
+
+3. Solution Section (2 colonnes)
+   - Gauche: Comment on résout
+   - Droite: Schéma animé de la solution
+
+4. Bénéfices Section (Grid 3 cols)
+   - Cards avec icônes animées
+   - Gains quantifiés
+   - Hover effects
+
+5. Fonctionnement Section (Stepper)
+   - Étapes numérotées
+   - Animations progressives
+   - Timeline visuelle
+
+6. Résultats Section (Stats)
+   - Métriques animées (CountUp)
+   - Graphiques
+   - Témoignages
+
+7. CTA Section
+   - Appel à l'action clair
+   - Formulaire ou lien contact
+```
+
+### 🔧 Composants Réutilisables à Créer
+
+**Pour animations pédagogiques:**
+
+1. **AnimatedDiagram** - Schémas techniques animés
+2. **ProcessFlow** - Workflows en cascade
+3. **BeforeAfter** - Comparaison avant/après
+4. **DataVisualization** - Graphiques animés
+5. **SystemArchitecture** - Architecture systèmes
+6. **CodeAnimation** - Code qui s'anime
+7. **NetworkGraph** - Graphes de connexions
+8. **TimelineStepper** - Timeline interactive
+
+### 📋 Checklist Design Pédagogique
+
+Pour CHAQUE nouvelle page, vérifier:
+
+- [ ] S'inspire du layout Index.tsx
+- [ ] Sections multi-colonnes (texte + animation)
+- [ ] Au moins 1 animation pédagogique par section
+- [ ] Schémas animés pour expliquer concepts techniques
+- [ ] Gains TOUJOURS visualisés (graphiques, compteurs)
+- [ ] Processus expliqués étape par étape avec visuels
+- [ ] Animations synchronisées avec scroll (IntersectionObserver)
+- [ ] Mobile-first (animations adaptées)
+- [ ] Performance (animations 60fps)
+- [ ] Framer Motion pour toutes les animations
 
 ---
 
@@ -12,27 +158,22 @@
 - **Phase**: Développement Phase 1 - Fondations (Semaine 1-3)
 - **Repository**: https://github.com/dainabase/Dainamics-Web-Site
 - **Branch**: main
-- **Date**: 11 Octobre 2025
+- **Date**: 12 Octobre 2025
 - **Stack**: React 18+ | TypeScript 5+ | Vite 5+ | Tailwind CSS 3+ | Framer Motion 11+
 
-### Rôle des Assistants
+### Mode de Travail
 
-**Claude Assistant (Chat) = ARCHITECTE**
-- Crée des prompts ULTRA détaillés (7 sections obligatoires)
-- Donne le code complet (200-500 lignes, pas juste des descriptions)
-- Valide le travail de Claude Code
-- Référence OBLIGATOIREMENT le Design System dans chaque prompt
-
-**Claude Code (Terminal) = EXÉCUTANT**
-- Suit les instructions à la lettre
-- Commit + Push après CHAQUE tâche
-- Attend validation avant de continuer
+**NOUVEAU**: Claude travaille directement
+- Se connecte à GitHub
+- Lit/crée/modifie les fichiers
+- Commit et push directement
+- Pas de Claude Code intermédiaire
 
 ---
 
 ## 📚 DOCUMENTATION PRINCIPALE (Hiérarchie)
 
-### 1. DESIGN-SYSTEM-MANDATORY.md ⭐ **NOUVEAU & CRITIQUE**
+### 1. DESIGN-SYSTEM-MANDATORY.md ⭐ **CRITIQUE**
 **Statut**: 🔒 Document de référence OBLIGATOIRE  
 **Taille**: 15.5 KB  
 **Commit**: 95e92a3
@@ -60,24 +201,29 @@
 - Plan d'Implémentation 7 semaines (lignes 3000-3200)
 - Guidelines Techniques (lignes 3200-3397)
 
-### 3. WORKFLOW.md ⭐ **NOUVEAUX STANDARDS**
+### 3. WORKFLOW.md
 **Taille**: 14.7 KB  
-**Standards de Prompts (7 sections obligatoires):**
-1. Contexte Projet
-2. Objectif Précis
-3. Structure Technique Exacte (avec CODE COMPLET 200-500 lignes)
-4. Règles de Contenu
-5. Validation (3 checklists: Technique, Contenu, Design System)
-6. Processus Git (commandes exactes)
-7. Gestion d'Erreurs
+**NOTE**: Ce document décrit l'ancien workflow avec Claude Code. À mettre à jour pour refléter le nouveau workflow direct.
 
-**⚠️ Règle**: Chaque prompt à Claude Code DOIT suivre ces 7 sections.
+### 4. Index.tsx ⭐ **RÉFÉRENCE DESIGN**
+**Localisation**: src/pages/Index.tsx  
+**Taille**: ~800 lignes  
+**Statut**: Page d'accueil complète et validée
 
-### 4. CHANGELOG.md
+**À utiliser comme référence pour:**
+- Structure de page (Hero, Features, sections)
+- Layouts multi-colonnes
+- Animations Framer Motion
+- Intégration Design System
+- Typography et spacing
+- Grid Background effects
+- Responsive design
+
+### 5. CHANGELOG.md
 **Version**: 2.2  
 **Historique**: Toutes les versions et changements
 
-### 5. README.md
+### 6. README.md
 **Version**: 2.1  
 **Vue d'ensemble**: Quick start + Stack + Règles critiques
 
@@ -86,47 +232,45 @@
 ## ✅ CE QUI A ÉTÉ FAIT (État Actuel)
 
 ### Fichiers Documentation ✅
-- ✅ DESIGN-SYSTEM-MANDATORY.md (v1.0 - Commit 95e92a3)
+- ✅ DESIGN-SYSTEM-MANDATORY.md (v1.0)
 - ✅ ARCHITECTURE.md (v2.0 - 81 KB)
-- ✅ WORKFLOW.md (v1.1 - Standards prompts)
+- ✅ WORKFLOW.md (v1.1 - à mettre à jour)
 - ✅ CHANGELOG.md (v2.2)
 - ✅ README.md (v2.1)
-- ✅ PROMPT-CONTEXT.md (v2.0 - CE FICHIER)
+- ✅ PROMPT-CONTEXT.md (v2.1 - CE FICHIER)
 
 ### Fichiers Data Créés ✅
-- ✅ **src/data/solutions.ts** (Commit 6a193bb)
-  - 15 scénarios d'automatisation
-  - Interface TypeScript stricte
-  - 7 Quick Wins identifiés
-  - Helpers: getProjectsByCategory, quickWinSolutions, etc.
-  - Design System respecté (couleurs, icônes Lucide)
-  - Taille: 21.2 KB (478 lignes)
+- ✅ **src/data/solutions.ts** (21.2 KB, 15 automatisations)
+- ✅ **src/data/portfolio.ts** (14.1 KB, 5 projets)
+- ✅ **src/data/expertise.ts** (30.1 KB, 3 piliers)
+- ✅ **src/data/agents.ts** (existe)
 
-### Components Mis à Jour ✅
-- ✅ **src/components/Navigation.tsx** (Commit 0314f61)
-  - Menu complet 8 items principaux + 13 sous-items
-  - Dropdowns desktop (hover) + Accordéons mobile (click)
-  - Badge "Coming Soon" sur 6 pages
-  - Active state avec useLocation
-  - Langue par défaut: FR
-  - CTAs: "Diagnostic Gratuit" + "Contact"
-  - Taille: 11.8 KB (381 lignes)
+### Components & Pages ✅
+- ✅ **src/components/Navigation.tsx** (11.8 KB, menu complet)
+- ✅ **src/pages/Index.tsx** (page d'accueil complète)
+- ✅ **src/pages/Solutions.tsx** (page solutions)
+- ✅ **src/pages/Portfolio.tsx** (page portfolio)
+- ✅ **src/pages/Expertise.tsx** (hub expertise)
+- ✅ **src/pages/ExpertiseIA.tsx** (IA pilier)
+- ✅ **src/pages/ExpertiseAutomatisation.tsx** (Auto pilier)
+- ✅ **src/pages/ExpertiseDeveloppement.tsx** (Dev pilier)
+- ✅ **EnhancedGridBackground.tsx** (2.5 KB, background animé)
 
 ### Fichiers à Créer ⏹️
-- ⏳ **src/data/portfolio.ts** (EN COURS par Claude Code)
-- ⏹️ src/data/expertise.ts
-- ⏹️ src/data/testimonials.ts
-- ⏹️ src/data/integrations.ts
-- ⏹️ src/data/pricingPackages.ts
-- ⏹️ src/data/useCases.ts
-- ⏹️ src/data/glossary.ts
+- ⏹️ src/data/glossary.ts (30-50 termes)
+- ⏹️ src/data/useCases.ts (10-15 cas d'usage)
+- ⏹️ src/data/pricingPackages.ts (4 tiers)
+- ⏹️ src/data/testimonials.ts (8-10 témoignages)
+- ⏹️ src/data/integrations.ts (intégrations tech)
 
-### Commits Récents (3 derniers)
-```
-95e92a3 - docs(design-system): add mandatory design system reference guide
-0314f61 - feat(navigation): add complete menu structure with dropdowns
-6a193bb - feat(data): add solutions.ts with 15 automation scenarios
-```
+### Pages à Créer/Améliorer ⏹️
+- ⏹️ /solutions/quick-wins
+- ⏹️ /solutions/industries
+- ⏹️ /use-cases
+- ⏹️ /glossary (remplacer ComingSoon)
+- ⏹️ /about
+- ⏹️ /pricing
+- ⏹️ /process (remplacer ComingSoon)
 
 ---
 
@@ -180,184 +324,6 @@ export const COMPLEXITY_COLORS = {
 
 **⚠️ VÉRIFICATION OBLIGATOIRE**: Avant d'utiliser une icône, TOUJOURS vérifier sur https://lucide.dev
 
-**Icônes Recommandées:**
-```typescript
-import { 
-  Brain,           // IA
-  Zap,             // Automatisation
-  Code,            // Développement
-  TrendingUp,      // ROI
-  Clock,           // Temps
-  CheckCircle,     // Success
-  Star,            // Featured
-  FileText,        // Documents
-  Building,        // Entreprise
-  Users,           // Équipe
-  Target,          // Objectifs
-  // ... voir DESIGN-SYSTEM-MANDATORY.md pour liste complète
-} from 'lucide-react';
-```
-
----
-
-## 📋 STANDARDS DE PROMPTS (7 Sections Obligatoires)
-
-### Structure Template
-
-Chaque prompt à Claude Code DOIT contenir:
-
-```
-1. CONTEXTE PROJET
-   - État actuel
-   - Fichier à créer/modifier
-   - Technologies
-
-2. OBJECTIF PRÉCIS
-   - Ce qui doit être fait
-   - Résultat attendu
-
-3. STRUCTURE TECHNIQUE EXACTE
-   - CODE COMPLET (200-500 lignes)
-   - Interface TypeScript
-   - Exemples complets
-   - ⚠️ Référence Design System
-
-4. RÈGLES DE CONTENU
-   - Standards rédactionnels
-   - Gains quantifiés
-   - Terminologie correcte
-
-5. VALIDATION (3 Checklists)
-   ✅ Checklist Technique (10-15 critères)
-   ✅ Checklist Contenu (10-15 critères)
-   ✅ Checklist Design System (10 critères)
-
-6. PROCESSUS GIT
-   - Commandes exactes
-   - Message commit standardisé
-   - Format confirmation
-
-7. GESTION D'ERREURS
-   - Erreurs possibles
-   - Solutions
-   - Procédure si bloqué
-```
-
-**Exemple Prompt Référence**: Voir le prompt pour portfolio.ts créé aujourd'hui (1500+ lignes).
-
----
-
-## 🚀 PROCHAINES ÉTAPES IMMÉDIATES
-
-### Tâche #3: portfolio.ts (EN COURS)
-**Status**: ⏳ Claude Code exécute le prompt  
-**Fichier**: `src/data/portfolio.ts`  
-**Contenu**:
-- Interface PortfolioProject strictement typée
-- 5 projets minimum (LEXAIA, ENKI-REALTY + 3 autres)
-- Métriques quantifiées (CHF, %, heures)
-- Technologies utilisées
-- Témoignages clients
-- Mapping categoryColors et complexityColors
-- Helpers: getProjectsByCategory, getFeaturedProjects, etc.
-
-### Après portfolio.ts
-1. **expertise.ts** - 3 piliers (IA, Automatisation, Développement)
-2. **testimonials.ts** - Témoignages clients
-3. **Page /solutions** - Afficher les 15 solutions
-4. **Page /portfolio** - Afficher les projets
-
----
-
-## 📊 PLAN DE DÉVELOPPEMENT (Phase 1)
-
-### Phase 1: MVP Foundation (Semaines 1-3)
-
-**Semaine 1** ✅ TERMINÉE
-- [x] Setup projet Vite + TypeScript + Tailwind
-- [x] Créer Design System (Button, Card, Badge, Forms)
-- [x] Développer Layout (Header, Footer)
-- [x] Homepage sections 1-5
-
-**Semaine 2** ⏳ EN COURS
-- [x] Homepage complète
-- [x] Navigation complète avec menu
-- [x] Créer solutions.ts ✅
-- [⏳] Créer portfolio.ts (EN COURS)
-- [ ] Créer expertise.ts
-- [ ] Calculateur ROI interactif
-- [ ] Diagnostic IA questionnaire
-
-**Semaine 3**
-- [ ] Page Expertise complète
-- [ ] Page Solutions + 3 landing pages prioritaires
-- [ ] Page Portfolio (LEXAIA, ENKI-REALTY)
-
-Voir timeline complète dans ARCHITECTURE.md (lignes 3000-3200).
-
----
-
-## 🔧 STACK TECHNIQUE
-
-```yaml
-# Frontend
-Framework: React 18.3.1
-Language: TypeScript 5.5.3
-Build Tool: Vite 5.3.4
-Styling: Tailwind CSS 3.4.1
-Animations: Framer Motion 11.3.21
-Icons: Lucide React 0.263.1
-UI Components: shadcn/ui
-Router: React Router DOM 6.x
-
-# State Management
-Global State: Zustand
-Form State: React Hook Form
-Validation: Zod
-
-# Backend & Services
-Database: Supabase (PostgreSQL)
-Authentication: Supabase Auth
-Storage: Supabase Storage
-Email: Brevo / SendGrid
-Analytics: GA4 + Plausible
-
-# Development Tools
-Version Control: Git + GitHub
-IDE: Claude Code (primary)
-Package Manager: npm
-Linting: ESLint + Prettier
-Testing: Vitest + Testing Library
-```
-
----
-
-## 📁 STRUCTURE DU PROJET
-
-```
-src/
-├── components/
-│   ├── common/         # Design System (Button, Card, Badge)
-│   ├── layout/         # Header, Footer, Navigation
-│   ├── features/       # ROI Calculator, Diagnostic, etc.
-│   ├── sections/       # Page sections
-│   └── ui/             # shadcn/ui components
-├── data/
-│   ├── solutions.ts ✅    # 15 automatisations
-│   ├── portfolio.ts ⏳    # Projets (EN COURS)
-│   ├── expertise.ts ⏹️    # 3 piliers
-│   ├── testimonials.ts ⏹️
-│   ├── integrations.ts ⏹️
-│   ├── pricingPackages.ts ⏹️
-│   ├── useCases.ts ⏹️
-│   └── glossary.ts ⏹️
-├── pages/              # Route pages
-├── types/              # TypeScript interfaces
-├── hooks/              # Custom React hooks
-├── lib/                # Utils, configs
-└── styles/             # Global CSS
-```
-
 ---
 
 ## 🎯 POSITIONNEMENT DAINAMICS
@@ -405,31 +371,19 @@ src/
 
 3. **+3 autres projets** variés (industries/catégories différentes)
 
-### Format Case Study
-
-Chaque projet doit inclure:
-- ID, title, client, industry
-- Category (ia/automatisation/developpement)
-- Complexity (starter/intermediate/advanced)
-- Description, challenge, solution
-- Results avec 2-3 métriques quantifiées
-- Technologies utilisées (8-12)
-- Testimonial client
-- Featured boolean
-- Year, duration, team
-
 ---
 
 ## ⚠️ RÈGLES CRITIQUES À RESPECTER
 
 ### Développement
 
-1. ✅ **Design System OBLIGATOIRE** - Référencer DESIGN-SYSTEM-MANDATORY.md dans CHAQUE prompt
-2. ✅ **Code Complet** - Toujours donner le code complet (200-500 lignes), pas juste des descriptions
-3. ✅ **TypeScript Strict** - Jamais de `any`, toujours typage strict
-4. ✅ **Icônes Lucide** - Vérifier sur https://lucide.dev avant usage
-5. ✅ **Commit + Push** - Après CHAQUE tâche terminée
-6. ✅ **Validation** - Attendre validation avant de continuer
+1. ✅ **Design System OBLIGATOIRE** - Référencer DESIGN-SYSTEM-MANDATORY.md
+2. ✅ **Inspiration Index.tsx** - S'inspirer de la page d'accueil pour layouts
+3. ✅ **Approche Pédagogique** - Schémas animés pour expliquer concepts
+4. ✅ **Multi-colonnes** - Sections texte + animation synchronisées
+5. ✅ **TypeScript Strict** - Jamais de `any`, toujours typage strict
+6. ✅ **Icônes Lucide** - Vérifier sur https://lucide.dev avant usage
+7. ✅ **Commit Direct** - Claude commit directement sur GitHub
 
 ### Contenu
 
@@ -440,13 +394,13 @@ Chaque projet doit inclure:
 5. ✅ **Conformité Suisse** - nLPD, SwissDec, TVA
 6. ✅ **Mobile-First** - Toujours designer mobile d'abord
 
-### Standards Prompts
+### Design Pédagogique
 
-1. ✅ **7 Sections Obligatoires** - Voir WORKFLOW.md
-2. ✅ **Code Complet Fourni** - 200-500 lignes minimum
-3. ✅ **3 Checklists** - Technique + Contenu + Design System
-4. ✅ **Design System Référencé** - Dans section 4
-5. ✅ **Commandes Git Exactes** - Dans section 6
+1. ✅ **Animations Explicatives** - Au moins 1 par section majeure
+2. ✅ **Schémas Visuels** - Pour chaque concept technique
+3. ✅ **Framer Motion** - Pour toutes les animations
+4. ✅ **Performance** - Animations à 60fps minimum
+5. ✅ **Responsive** - Animations adaptées mobile/desktop
 
 ---
 
@@ -455,10 +409,9 @@ Chaque projet doit inclure:
 ### Documentation
 
 - **Repository**: https://github.com/dainabase/Dainamics-Web-Site
-- **DESIGN-SYSTEM-MANDATORY.md**: https://github.com/dainabase/Dainamics-Web-Site/blob/main/DESIGN-SYSTEM-MANDATORY.md
-- **ARCHITECTURE.md**: https://github.com/dainabase/Dainamics-Web-Site/blob/main/ARCHITECTURE.md
-- **WORKFLOW.md**: https://github.com/dainabase/Dainamics-Web-Site/blob/main/WORKFLOW.md
-- **Commits**: https://github.com/dainabase/Dainamics-Web-Site/commits/main
+- **DESIGN-SYSTEM-MANDATORY.md**: Document de référence couleurs/icônes
+- **ARCHITECTURE.md**: Architecture complète du projet
+- **Index.tsx**: Référence pour layouts et animations
 
 ### Ressources Externes
 
@@ -470,43 +423,21 @@ Chaque projet doit inclure:
 
 ---
 
-## 💡 EXEMPLES DE DEMANDES
+## 💡 PROCHAINES ACTIONS
 
-### Pour Créer des Fichiers Data
+### Priorités Immédiates
 
-```
-"Créer src/data/expertise.ts avec les 3 piliers:
-- IA (LLMs, Agents, Computer Vision, NLP, ML)
-- Automatisation (RPA, Workflow, Integration)
-- Développement (Web Apps, Mobile Apps, APIs)
-Suivre le même format que solutions.ts avec TypeScript strict
-et Design System obligatoire."
-```
+1. **Page Quick Wins** (/solutions/quick-wins)
+2. **Page Industries** (/solutions/industries)
+3. **Data Files** (glossary, useCases)
+4. **Page Glossaire** (remplacer ComingSoon)
+5. **Page Use Cases** (nouvelle)
 
-### Pour Créer des Pages
-
-```
-"Créer la page /solutions qui affiche les 15 solutions
-de solutions.ts avec:
-- Grid responsive
-- Filtres par catégorie
-- Filtres par industrie
-- Badge Quick Win
-- Modal détail solution
-Design System obligatoire + Framer Motion animations."
-```
-
-### Pour Créer des Components
-
-```
-"Créer le component SolutionCard.tsx pour afficher
-une solution avec:
-- Icône Lucide (dynamique depuis solution.icon)
-- Couleur catégorie (depuis CATEGORY_COLORS)
-- Badge complexité (depuis COMPLEXITY_COLORS)
-- Hover effects Framer Motion
-TypeScript strict + Design System obligatoire."
-```
+**Pour chaque page:**
+- S'inspirer de Index.tsx pour la structure
+- Créer des animations pédagogiques
+- Sections multi-colonnes (texte + animation)
+- Expliquer visuellement chaque concept
 
 ---
 
@@ -514,48 +445,45 @@ TypeScript strict + Design System obligatoire."
 
 ### Si Vous Êtes Perdu
 
-1. ✅ Consulter **DESIGN-SYSTEM-MANDATORY.md** en priorité
-2. ✅ Vérifier **ARCHITECTURE.md** pour specs complètes
-3. ✅ Regarder **WORKFLOW.md** pour standards prompts
-4. ✅ Examiner **solutions.ts** et **Navigation.tsx** comme exemples
-5. ✅ Vérifier les derniers commits sur GitHub
+1. ✅ Regarder **Index.tsx** en priorité (référence layouts)
+2. ✅ Consulter **DESIGN-SYSTEM-MANDATORY.md** (couleurs/icônes)
+3. ✅ Vérifier **ARCHITECTURE.md** pour specs complètes
+4. ✅ Examiner **solutions.ts** pour structure data
 
-### Si Claude Code Est Bloqué
+### Si Bloqué
 
 1. ⚠️ STOP immédiatement
-2. 📝 Noter l'erreur exacte (screenshot ou copie)
-3. 📝 Noter la commande qui a causé l'erreur
-4. 🙋 Demander assistance avec contexte complet
-5. ❌ NE PAS continuer sans validation
+2. 📝 Noter l'erreur exacte
+3. 📝 Noter ce qui a été tenté
+4. 🙋 Demander assistance avec contexte
 
 ---
 
-## 🎯 PRÊT À COMMENCER ?
+## 🎯 RÉSUMÉ CHANGEMENTS CRITIQUES
 
-**Dis-moi ce que tu veux développer et je crée le prompt ultra-détaillé !**
+### ⚡ Workflow
+- **AVANT**: Claude Code exécutait les prompts
+- **MAINTENANT**: Claude travaille directement sur GitHub
 
-Exemples:
-- "Créer expertise.ts"
-- "Créer la page /solutions"
-- "Créer le component SolutionCard"
-- "Implémenter le Calculateur ROI"
-- "Créer testimonials.ts"
+### 🎨 Design
+- **AVANT**: Suivre ARCHITECTURE.md
+- **MAINTENANT**: S'inspirer d'Index.tsx + approche pédagogique
 
-**Rappel**: Je vais créer un prompt de 1500+ lignes avec:
-- ✅ 7 sections obligatoires
-- ✅ Code complet fourni (200-500 lignes)
-- ✅ Design System référencé explicitement
-- ✅ 3 checklists de validation
-- ✅ Commandes Git exactes
-- ✅ Gestion d'erreurs complète
+### 📐 Approche
+- **AVANT**: Pages standards
+- **MAINTENANT**: Pages pédagogiques avec animations explicatives
+
+### 🧠 Philosophie
+**Montrer ET Expliquer visuellement chaque concept**
 
 ---
 
-**VERSION**: 2.0  
-**DATE**: 11 Octobre 2025  
-**STATUS**: ✅ Mis à jour avec Design System Mandatory + Standards Prompts  
-**PROCHAINE ÉTAPE**: portfolio.ts validation → expertise.ts
+**VERSION**: 2.1  
+**DATE**: 12 Octobre 2025  
+**STATUS**: ✅ Mis à jour avec nouveau workflow direct + approche pédagogique  
+**CHANGEMENT CRITIQUE**: Claude travaille maintenant en direct (pas Claude Code)  
+**RÉFÉRENCE DESIGN**: Index.tsx pour tous les layouts
 
 ---
 
-Voilà ! Tu as maintenant TOUT le contexte nécessaire pour développer avec Claude Code. 🚀
+Voilà ! Tu as maintenant le contexte complet pour développer avec le nouveau workflow. 🚀
