@@ -20,6 +20,9 @@ import ExpertiseIA from "@/pages/ExpertiseIA";
 import ExpertiseAutomatisation from "@/pages/ExpertiseAutomatisation";
 import ExpertiseDeveloppement from "@/pages/ExpertiseDeveloppement";
 
+// Solutions Pages
+import QuickWins from "@/pages/QuickWins";
+
 // Resource Pages
 import Glossary from "@/pages/Glossary";
 import UseCases from "@/pages/UseCases";
@@ -47,9 +50,9 @@ function App() {
         
         {/* Solutions Routes */}
         <Route path="/solutions" element={<Solutions />} />
-        <Route path="/solutions/*" element={<Solutions />} />
-        <Route path="/solutions/quick-wins" element={<Solutions />} />
+        <Route path="/solutions/quick-wins" element={<QuickWins />} />
         <Route path="/solutions/industries" element={<Solutions />} />
+        <Route path="/solutions/*" element={<Solutions />} />
         
         {/* Portfolio */}
         <Route path="/portfolio" element={<Portfolio />} />
