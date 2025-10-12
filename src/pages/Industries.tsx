@@ -208,7 +208,7 @@ export default function Industries() {
                   ))}
                 </motion.div>
 
-                {/* BOUTONS ALIGNÉS À GAUCHE - FORCÉ */}
+                {/* BOUTONS ALIGNÉS À GAUCHE - TEXTE BLANC POUR VISIBILITÉ */}
                 <motion.div 
                   variants={itemVariants}
                   className="flex flex-col sm:flex-row gap-4 items-start"
@@ -217,7 +217,7 @@ export default function Industries() {
                     <Button
                       asChild
                       size="lg"
-                      className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-dainamics-background btn-glow font-semibold w-full sm:w-auto"
+                      className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-white btn-glow font-semibold w-full sm:w-auto"
                     >
                       <a href="#industries">
                         DÉCOUVRIR LES INDUSTRIES
@@ -595,7 +595,7 @@ export default function Industries() {
                   <Button
                     asChild
                     size="lg"
-                    className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-dainamics-background btn-glow font-semibold"
+                    className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-white btn-glow font-semibold"
                   >
                     <a href="/contact">
                       RÉSERVER MON DIAGNOSTIC
