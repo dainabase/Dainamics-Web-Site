@@ -213,40 +213,10 @@ function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mb-8"
         >
-          <h1 className="text-7xl md:text-8xl font-bold mb-6 leading-tight">
-            <span
-              className="inline-block bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(90deg, #7B2FFF, #FF5A00)`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}
-            >
-              Projets{' '}
-            </span>
-            <span style={{ color: '#FF5A00' }}>
-              qui
-            </span>
+          <h1 className="text-7xl md:text-8xl font-bold mb-6 leading-tight" style={{ color: '#FF5A00' }}>
+            Projets qui
             <br />
-            <motion.span
-              className="inline-block"
-              animate={{
-                backgroundPosition: ['0%', '100%', '0%']
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${COLORS.cta}, ${COLORS.accent}, ${COLORS.primary}, ${COLORS.cta})`,
-                backgroundSize: '200% 100%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}
-            >
-              transforment
-            </motion.span>
+            transforment
           </h1>
         </motion.div>
 
