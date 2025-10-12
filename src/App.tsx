@@ -19,6 +19,8 @@ import Expertise from "@/pages/Expertise";
 import ExpertiseIA from "@/pages/ExpertiseIA";
 import ExpertiseAutomatisation from "@/pages/ExpertiseAutomatisation";
 import ExpertiseDeveloppement from "@/pages/ExpertiseDeveloppement";
+import ExpertiseDebug from "@/pages/ExpertiseDebug";
+import ExpertiseIAFixed from "@/pages/ExpertiseIAFixed";
 
 // Resource Pages
 import Glossary from "@/pages/Glossary";
@@ -42,6 +44,8 @@ function App() {
         <Route path="/expertise/ia" element={<ExpertiseIA />} />
         <Route path="/expertise/automatisation" element={<ExpertiseAutomatisation />} />
         <Route path="/expertise/developpement" element={<ExpertiseDeveloppement />} />
+        <Route path="/expertise/debug" element={<ExpertiseDebug />} />
+        <Route path="/expertise/ia-fixed" element={<ExpertiseIAFixed />} />
         
         {/* Solutions Routes */}
         <Route path="/solutions" element={<Solutions />} />
