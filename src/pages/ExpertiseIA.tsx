@@ -128,15 +128,15 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
         style={{ opacity }}
       >
-        {/* Badge */}
+        {/* Badge - AMÉLIORATION: border-2 + hover effect */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 transition-all hover:scale-105"
           style={{ 
             backgroundColor: `${iaColor}15`,
-            border: `1px solid ${iaColor}30`
+            border: `2px solid ${iaColor}40`
           }}
         >
           <Brain className="w-4 h-4" style={{ color: iaColor }} />
@@ -178,7 +178,7 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
           {pillar.description}
         </motion.p>
 
-        {/* CTAs */}
+        {/* CTAs - AMÉLIORATION: border-2 + transitions */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -188,7 +188,7 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
           <Link to="/contact">
             <Button 
               size="lg" 
-              className="group"
+              className="group border-2 border-white/30 hover:border-white/50 transition-all"
               style={{ 
                 backgroundColor: iaColor,
                 color: 'white'
@@ -202,6 +202,7 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
             <Button 
               size="lg" 
               variant="outline"
+              className="border-2 hover:bg-opacity-10 transition-all"
               style={{ 
                 borderColor: iaColor,
                 color: iaColor
@@ -246,10 +247,10 @@ function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string })
                 delay: index * 0.15,
                 ease: [0.22, 1, 0.36, 1]
               }}
-              className="relative p-8 rounded-2xl group"
+              className="relative p-8 rounded-2xl group transition-all hover:scale-105"
               style={{
                 background: `linear-gradient(135deg, ${iaColor}08, transparent)`,
-                border: `1px solid ${iaColor}20`
+                border: `2px solid ${iaColor}30`
               }}
             >
               {/* Icon */}
@@ -276,10 +277,10 @@ function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string })
                 {metric.label}
               </div>
 
-              {/* Hover Glow */}
+              {/* Hover Glow - AMÉLIORATION */}
               <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl"
-                style={{ backgroundColor: `${iaColor}15` }}
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl -z-10"
+                style={{ backgroundColor: `${iaColor}30` }}
               />
             </motion.div>
           ))}
@@ -323,7 +324,7 @@ function TechnologiesSection({
               </p>
             </motion.div>
 
-            {/* Filters */}
+            {/* Filters - AMÉLIORATION: border-2 + transitions */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -338,11 +339,12 @@ function TechnologiesSection({
                 <button
                   key={level}
                   onClick={() => setSelectedProficiency(level)}
-                  className="w-full text-left px-4 py-3 rounded-lg transition-all duration-300"
+                  className="w-full text-left px-4 py-3 rounded-lg transition-all duration-300 hover:scale-102"
                   style={{
                     backgroundColor: selectedProficiency === level ? `${iaColor}20` : 'transparent',
-                    borderLeft: `3px solid ${selectedProficiency === level ? iaColor : 'transparent'}`,
-                    color: selectedProficiency === level ? iaColor : '#9CA3AF'
+                    borderLeft: `4px solid ${selectedProficiency === level ? iaColor : 'transparent'}`,
+                    color: selectedProficiency === level ? iaColor : '#9CA3AF',
+                    border: selectedProficiency === level ? `2px solid ${iaColor}40` : '2px solid transparent'
                   }}
                 >
                   <span className="font-medium capitalize">
@@ -355,16 +357,16 @@ function TechnologiesSection({
               ))}
             </motion.div>
 
-            {/* Stats */}
+            {/* Stats - AMÉLIORATION: border-2 */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="p-6 rounded-xl"
+              className="p-6 rounded-xl transition-all hover:scale-105"
               style={{
                 background: `linear-gradient(135deg, ${iaColor}10, transparent)`,
-                border: `1px solid ${iaColor}30`
+                border: `2px solid ${iaColor}40`
               }}
             >
               <div className="text-3xl font-bold mb-2" style={{ color: iaColor }}>
@@ -409,12 +411,18 @@ function TechnologyCard({ tech, index, iaColor }: any) {
         ease: [0.22, 1, 0.36, 1]
       }}
       whileHover={{ scale: 1.02, x: -8 }}
-      className="p-6 rounded-xl backdrop-blur-sm group cursor-pointer"
+      className="p-6 rounded-xl backdrop-blur-sm group cursor-pointer transition-all relative"
       style={{
         background: `linear-gradient(135deg, ${iaColor}08, transparent)`,
-        border: `1px solid ${iaColor}20`
+        border: `2px solid ${iaColor}30`
       }}
     >
+      {/* Glow on hover - AMÉLIORATION */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl blur-xl -z-10"
+        style={{ backgroundColor: `${iaColor}20` }}
+      />
+
       <div className="flex items-start gap-4">
         {/* Icon */}
         {Icon && (
@@ -422,7 +430,10 @@ function TechnologyCard({ tech, index, iaColor }: any) {
             whileHover={{ rotate: 360, scale: 1.2 }}
             transition={{ duration: 0.6 }}
             className="flex-shrink-0 p-3 rounded-lg"
-            style={{ backgroundColor: `${iaColor}15` }}
+            style={{ 
+              backgroundColor: `${iaColor}15`,
+              border: `2px solid ${iaColor}30`
+            }}
           >
             <Icon className="w-6 h-6" style={{ color: iaColor }} />
           </motion.div>
@@ -434,6 +445,7 @@ function TechnologyCard({ tech, index, iaColor }: any) {
             <h3 className="text-xl font-semibold">{tech.name}</h3>
             <Badge 
               variant="outline"
+              className="border-2 transition-all"
               style={{ 
                 borderColor: iaColor,
                 color: iaColor,
@@ -464,7 +476,7 @@ function TechnologyCard({ tech, index, iaColor }: any) {
 }
 
 // ============================================================================
-// CAPABILITIES SECTION - STICKY SCROLL TYPE 2 (Progress-Based)
+// CAPABILITIES SECTION - STICKY SCROLL TYPE 2 (Progress-based)
 // ============================================================================
 function CapabilitiesSection({ capabilities, iaColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -531,23 +543,26 @@ function CapabilityItem({ capability, index, iaColor }: any) {
         viewport={{ once: true }}
         className="space-y-6"
       >
-        {/* Icon */}
+        {/* Icon - AMÉLIORATION: border-2 */}
         <motion.div
           whileHover={{ rotate: 5, scale: 1.05 }}
-          className="inline-flex p-6 rounded-2xl"
-          style={{ backgroundColor: `${iaColor}15` }}
+          className="inline-flex p-6 rounded-2xl transition-all"
+          style={{ 
+            backgroundColor: `${iaColor}15`,
+            border: `2px solid ${iaColor}30`
+          }}
         >
           {Icon && <Icon className="w-12 h-12" style={{ color: iaColor }} />}
         </motion.div>
 
-        {/* Title & Badge */}
+        {/* Title & Badge - AMÉLIORATION: border-2 sur badge */}
         <div>
           <Badge 
-            className="mb-4"
+            className="mb-4 border-2 transition-all"
             style={{ 
               backgroundColor: `${complexityColor}20`,
               color: complexityColor,
-              border: `1px solid ${complexityColor}40`
+              borderColor: `${complexityColor}60`
             }}
           >
             {capability.complexity}
@@ -564,7 +579,7 @@ function CapabilityItem({ capability, index, iaColor }: any) {
         </div>
       </motion.div>
 
-      {/* Right - Deliverables */}
+      {/* Right - Deliverables - AMÉLIORATION: border-2 */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -580,10 +595,10 @@ function CapabilityItem({ capability, index, iaColor }: any) {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
             viewport={{ once: true }}
-            className="flex items-start gap-3 p-4 rounded-lg"
+            className="flex items-start gap-3 p-4 rounded-lg transition-all hover:scale-102"
             style={{
               background: `linear-gradient(135deg, ${iaColor}05, transparent)`,
-              borderLeft: `2px solid ${iaColor}40`
+              borderLeft: `3px solid ${iaColor}60`
             }}
           >
             <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: COLORS.success }} />
@@ -622,10 +637,10 @@ function UseCasesSection({ useCases, iaColor }: any) {
 
         {/* Timeline */}
         <div className="relative space-y-16">
-          {/* Vertical Line */}
+          {/* Vertical Line - AMÉLIORATION: plus épaisse */}
           <div 
-            className="absolute left-8 top-0 bottom-0 w-0.5"
-            style={{ backgroundColor: `${iaColor}30` }}
+            className="absolute left-8 top-0 bottom-0 w-1"
+            style={{ backgroundColor: `${iaColor}40` }}
           />
 
           {useCases.map((useCase: any, index: number) => (
@@ -654,30 +669,36 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
       transition={{ duration: 0.8, delay: index * 0.2 }}
       className="relative pl-24"
     >
-      {/* Timeline Dot */}
+      {/* Timeline Dot - AMÉLIORATION: plus gros */}
       <motion.div
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : {}}
         transition={{ duration: 0.5, delay: index * 0.2 }}
-        className="absolute left-6 top-6 w-5 h-5 rounded-full"
+        className="absolute left-6 top-6 w-6 h-6 rounded-full border-4 border-dainamics-background"
         style={{ 
           backgroundColor: iaColor,
-          boxShadow: `0 0 20px ${iaColor}80`
+          boxShadow: `0 0 25px ${iaColor}`
         }}
       />
 
-      {/* Card */}
+      {/* Card - AMÉLIORATION: border-2 + hover */}
       <motion.div
         whileHover={{ scale: 1.02, y: -4 }}
-        className="p-8 rounded-2xl"
+        className="p-8 rounded-2xl transition-all group relative"
         style={{
           background: `linear-gradient(135deg, ${iaColor}10, transparent)`,
-          border: `1px solid ${iaColor}30`
+          border: `2px solid ${iaColor}40`
         }}
       >
-        {/* Industry */}
+        {/* Glow on hover - AMÉLIORATION */}
+        <div 
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl -z-10"
+          style={{ backgroundColor: `${iaColor}20` }}
+        />
+
+        {/* Industry - AMÉLIORATION: border-2 */}
         <Badge 
-          className="mb-4"
+          className="mb-4 border-2 transition-all"
           variant="outline"
           style={{ 
             borderColor: iaColor,
@@ -771,20 +792,27 @@ function QuickWinCard({ win, index, iaColor }: any) {
       animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.15 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="p-6 rounded-2xl group cursor-pointer"
+      className="p-6 rounded-2xl group cursor-pointer transition-all relative"
       style={{
         background: `linear-gradient(135deg, ${COLORS.success}10, transparent)`,
-        border: `1px solid ${COLORS.success}30`
+        border: `2px solid ${COLORS.success}40`
       }}
     >
-      {/* Badge */}
+      {/* Glow on hover - AMÉLIORATION */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl -z-10"
+        style={{ backgroundColor: `${COLORS.success}20` }}
+      />
+
+      {/* Badge - AMÉLIORATION: border */}
       <Badge 
-        className="mb-4"
+        className="mb-4 border transition-all"
         style={{
           backgroundColor: COLORS.success,
           color: 'white',
           fontSize: '0.6rem',
-          padding: '0.25rem 0.5rem'
+          padding: '0.25rem 0.5rem',
+          borderColor: 'white'
         }}
       >
         QUICK WIN
@@ -830,7 +858,7 @@ function CTASection({ iaColor }: { iaColor: string }) {
           className="relative p-16 rounded-3xl overflow-hidden"
           style={{
             background: `radial-gradient(circle at 50% 50%, ${iaColor}20, transparent)`,
-            border: `1px solid ${iaColor}40`
+            border: `2px solid ${iaColor}50`
           }}
         >
           {/* Animated Background */}
@@ -860,7 +888,7 @@ function CTASection({ iaColor }: { iaColor: string }) {
             <Link to="/contact">
               <Button 
                 size="lg"
-                className="group"
+                className="group border-2 border-white/30 hover:border-white/50 transition-all"
                 style={{ 
                   backgroundColor: iaColor,
                   color: 'white',
