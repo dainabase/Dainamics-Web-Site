@@ -5,15 +5,15 @@ import { ArrowRight, Zap, TrendingUp, Clock, CheckCircle2, Target, Rocket } from
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
-import { solutions, quickWinSolutions, getSolutionsByCategory } from '@/data/solutions';
+import { solutions, quickWinSolutions } from '@/data/solutions';
 
 export default function QuickWins() {
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.3 });
-  
+
   const whyRef = useRef(null);
   const isWhyInView = useInView(whyRef, { once: true, amount: 0.3 });
-  
+
   const solutionsRef = useRef(null);
   const areSolutionsInView = useInView(solutionsRef, { once: true, amount: 0.1 });
 
@@ -23,7 +23,7 @@ export default function QuickWins() {
   }, []);
 
   // Get Quick Win solutions
-  const quickWins = quickWinSolutions();
+  const quickWins = quickWinSolutions;
 
   // Group by category
   const quickWinsByCategory = {
