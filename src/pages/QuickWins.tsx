@@ -104,7 +104,7 @@ export default function QuickWins() {
 
       <main className="relative z-10">
         {/* Hero Section avec Parallax */}
-        <section ref={heroRef} className="relative min-h-[80vh] py-32 overflow-hidden">
+        <section ref={heroRef} className="relative py-20 md:py-24 overflow-hidden">
           {/* Éléments flottants en arrière-plan avec parallax */}
           <motion.div
             className="absolute top-20 left-10 w-32 h-32 rounded-full bg-dainamics-success/10 blur-3xl"
@@ -148,12 +148,7 @@ export default function QuickWins() {
               >
                 <motion.div variants={itemVariants} className="mb-4">
                   <span className="inline-flex items-center px-4 py-2 bg-dainamics-success/10 border border-dainamics-success/30 rounded-full backdrop-blur-sm">
-                    <motion.div
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                    >
-                      <Zap className="h-4 w-4 text-dainamics-success mr-2" />
-                    </motion.div>
+                    <Zap className="h-4 w-4 text-dainamics-success mr-2" />
                     <span className="text-dainamics-success font-semibold tracking-wide uppercase text-sm">
                       Quick Wins
                     </span>
@@ -203,19 +198,9 @@ export default function QuickWins() {
                       animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ delay: 0.6 + idx * 0.1 }}
                     >
-                      <motion.div 
-                        className="text-3xl font-bold text-dainamics-success"
-                        animate={{ 
-                          textShadow: [
-                            "0 0 10px rgba(16,185,129,0.5)",
-                            "0 0 20px rgba(16,185,129,0.8)",
-                            "0 0 10px rgba(16,185,129,0.5)"
-                          ]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
+                      <div className="text-3xl font-bold text-dainamics-success">
                         {stat.value}
-                      </motion.div>
+                      </div>
                       <div className="text-sm text-dainamics-light/60">{stat.label}</div>
                     </motion.div>
                   ))}
@@ -229,7 +214,7 @@ export default function QuickWins() {
                     <Button
                       asChild
                       size="lg"
-                      className="bg-dainamics-success hover:bg-dainamics-success/90 text-white btn-glow font-semibold power-pulse"
+                      className="bg-dainamics-success hover:bg-dainamics-success/90 text-white btn-glow font-semibold"
                     >
                       <a href="#quick-wins">
                         VOIR LES QUICK WINS
@@ -278,12 +263,7 @@ export default function QuickWins() {
                       transition={{ delay: 0.6 }}
                     >
                       <h3 className="text-2xl font-bold text-dainamics-light mb-2 flex items-center justify-center gap-2">
-                        <motion.div
-                          animate={{ rotate: [0, 360] }}
-                          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        >
-                          <Sparkles className="h-6 w-6 text-dainamics-success" />
-                        </motion.div>
+                        <Sparkles className="h-6 w-6 text-dainamics-success" />
                         Timeline Typique
                       </h3>
                       <p className="text-dainamics-light/60 text-sm">
@@ -329,18 +309,9 @@ export default function QuickWins() {
                                   : 'bg-dainamics-success/20'
                               } border-2 border-dainamics-success flex items-center justify-center relative z-10`}
                               whileHover={{ 
-                                scale: 1.1, 
-                                rotate: 360,
-                                transition: { duration: 0.6 }
+                                scale: 1.1,
+                                transition: { duration: 0.3 }
                               }}
-                              animate={step.special ? {
-                                boxShadow: [
-                                  "0 0 20px rgba(16,185,129,0.5)",
-                                  "0 0 40px rgba(16,185,129,0.8)",
-                                  "0 0 20px rgba(16,185,129,0.5)"
-                                ]
-                              } : {}}
-                              transition={{ duration: 2, repeat: Infinity }}
                             >
                               <step.icon className={`h-6 w-6 ${step.special ? 'text-white' : 'text-dainamics-success'}`} />
                             </motion.div>
@@ -464,10 +435,9 @@ export default function QuickWins() {
                         className="flex-shrink-0 w-8 h-8 rounded-full bg-dainamics-success/20 flex items-center justify-center mt-1"
                         whileHover={{ 
                           scale: 1.2,
-                          rotate: 360,
                           backgroundColor: "rgba(16,185,129,0.4)"
                         }}
-                        transition={{ duration: 0.4 }}
+                        transition={{ duration: 0.3 }}
                       >
                         <CheckCircle2 className="h-5 w-5 text-dainamics-success" />
                       </motion.div>
@@ -514,19 +484,9 @@ export default function QuickWins() {
                     style={{ perspective: 1000 }}
                   >
                     <div className="text-center mb-4">
-                      <motion.div 
-                        className="inline-flex items-center px-3 py-1 bg-dainamics-error/20 rounded-full mb-2"
-                        animate={{
-                          boxShadow: [
-                            "0 0 10px rgba(239,68,68,0.3)",
-                            "0 0 20px rgba(239,68,68,0.5)",
-                            "0 0 10px rgba(239,68,68,0.3)"
-                          ]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
+                      <div className="inline-flex items-center px-3 py-1 bg-dainamics-error/20 rounded-full mb-2">
                         <span className="text-dainamics-error font-semibold text-sm">AVANT</span>
-                      </motion.div>
+                      </div>
                       <h4 className="text-lg font-bold text-dainamics-light">Processus Manuel</h4>
                     </div>
 
@@ -560,29 +520,11 @@ export default function QuickWins() {
                       boxShadow: "0 20px 60px rgba(16,185,129,0.4)"
                     }}
                     style={{ perspective: 1000 }}
-                    animate={{
-                      boxShadow: [
-                        "0 10px 30px rgba(16,185,129,0.2)",
-                        "0 20px 40px rgba(16,185,129,0.3)",
-                        "0 10px 30px rgba(16,185,129,0.2)"
-                      ]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
                   >
                     <div className="text-center mb-4">
-                      <motion.div 
-                        className="inline-flex items-center px-3 py-1 bg-dainamics-success/20 rounded-full mb-2"
-                        animate={{
-                          boxShadow: [
-                            "0 0 10px rgba(16,185,129,0.3)",
-                            "0 0 20px rgba(16,185,129,0.5)",
-                            "0 0 10px rgba(16,185,129,0.3)"
-                          ]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
+                      <div className="inline-flex items-center px-3 py-1 bg-dainamics-success/20 rounded-full mb-2">
                         <span className="text-dainamics-success font-semibold text-sm">APRÈS</span>
-                      </motion.div>
+                      </div>
                       <h4 className="text-lg font-bold text-dainamics-light">Quick Win Déployé</h4>
                     </div>
 
@@ -602,8 +544,8 @@ export default function QuickWins() {
                           whileHover={{ x: 5 }}
                         >
                           <motion.div
-                            whileHover={{ scale: 1.3, rotate: 360 }}
-                            transition={{ duration: 0.4 }}
+                            whileHover={{ scale: 1.3 }}
+                            transition={{ duration: 0.3 }}
                           >
                             <item.icon className="h-4 w-4 text-dainamics-success flex-shrink-0" />
                           </motion.div>
@@ -663,18 +605,9 @@ export default function QuickWins() {
                     transition={{ duration: 0.6 }}
                   >
                     <h3 className="text-2xl md:text-3xl font-bold mb-2 flex items-center gap-3">
-                      <motion.span
+                      <span
                         className="w-1 h-8 rounded-full"
                         style={{ backgroundColor: categoryColors[category as keyof typeof categoryColors] }}
-                        animate={{
-                          height: [32, 40, 32],
-                          boxShadow: [
-                            `0 0 10px ${categoryColors[category as keyof typeof categoryColors]}40`,
-                            `0 0 20px ${categoryColors[category as keyof typeof categoryColors]}60`,
-                            `0 0 10px ${categoryColors[category as keyof typeof categoryColors]}40`
-                          ]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
                       />
                       <span className="text-dainamics-light">
                         {categoryLabels[category as keyof typeof categoryLabels]}
@@ -716,19 +649,9 @@ export default function QuickWins() {
                             >
                               {categoryLabels[category as keyof typeof categoryLabels]}
                             </span>
-                            <motion.span 
-                              className="inline-flex items-center px-2 py-1 bg-dainamics-success/20 border border-dainamics-success/30 rounded-full"
-                              animate={{
-                                boxShadow: [
-                                  "0 0 10px rgba(16,185,129,0.3)",
-                                  "0 0 20px rgba(16,185,129,0.5)",
-                                  "0 0 10px rgba(16,185,129,0.3)"
-                                ]
-                              }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                            >
+                            <span className="inline-flex items-center px-2 py-1 bg-dainamics-success/20 border border-dainamics-success/30 rounded-full">
                               <Zap className="h-3 w-3 text-dainamics-success" />
-                            </motion.span>
+                            </span>
                           </div>
 
                           {/* Titre */}
@@ -832,7 +755,7 @@ export default function QuickWins() {
                   <Button
                     asChild
                     size="lg"
-                    className="bg-dainamics-success hover:bg-dainamics-success/90 text-white btn-glow font-semibold power-pulse"
+                    className="bg-dainamics-success hover:bg-dainamics-success/90 text-white btn-glow font-semibold"
                   >
                     <a href="/contact">
                       RÉSERVER MON DIAGNOSTIC
