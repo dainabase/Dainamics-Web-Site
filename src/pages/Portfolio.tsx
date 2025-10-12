@@ -1,9 +1,9 @@
 // src/pages/Portfolio.tsx
-// Portfolio Page - Professional with REAL Sticky Cards
+// Portfolio Page - Professional & Clean Design
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useInView, AnimatePresence, MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -41,8 +41,6 @@ const COLORS = {
   success: '#10B981'
 };
 
-const CARD_HEIGHT = 500;
-
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
@@ -68,7 +66,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-dainamics-background text-dainamics-light overflow-x-hidden">
+    <div className="min-h-screen bg-dainamics-background text-dainamics-light overflow-hidden">
       <Navigation />
       
       {/* Purple Grid Background - Fixed on entire page */}
@@ -106,8 +104,8 @@ export default function Portfolio() {
         onProjectClick={openProjectModal}
       />
       
-      {/* All Projects - REAL Sticky Cards */}
-      <StickyCardsSection 
+      {/* All Projects - Bento Grid */}
+      <AllProjectsSection 
         projects={filteredProjects}
         selectedCategory={selectedCategory}
         onProjectClick={openProjectModal}
@@ -149,7 +147,7 @@ function ScrollProgressBar() {
 }
 
 // ============================================================================
-// HERO SECTION
+// HERO SECTION - Clean & Professional
 // ============================================================================
 function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
@@ -163,6 +161,7 @@ function HeroSection() {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-20 z-10">
+      {/* Content */}
       <motion.div
         className="relative z-10 max-w-6xl mx-auto px-6 text-center flex-grow flex flex-col justify-center"
         style={{ y, opacity }}
@@ -233,6 +232,7 @@ function HeroSection() {
         </motion.div>
       </motion.div>
 
+      {/* Scroll indicator at the bottom */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -253,7 +253,7 @@ function HeroSection() {
 }
 
 // ============================================================================
-// STATS SECTION
+// STATS SECTION - Professional & Subtle
 // ============================================================================
 function StatsSection({ stats }: { stats: any }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -326,9 +326,11 @@ function ProfessionalStatCard({ stat, index, isInView }: any) {
       }}
     >
       <stat.icon className="w-8 h-8 mb-3" style={{ color: COLORS.accent }} />
+
       <div className="text-4xl font-bold mb-1" style={{ color: COLORS.primary }}>
         {count}{stat.suffix}
       </div>
+
       <div className="text-sm text-gray-400">
         {stat.label}
       </div>
@@ -337,7 +339,7 @@ function ProfessionalStatCard({ stat, index, isInView }: any) {
 }
 
 // ============================================================================
-// FILTER SECTION
+// FILTER SECTION - Clean Design
 // ============================================================================
 function FilterSection({ selectedCategory, onCategoryChange }: any) {
   const filters = [
@@ -376,7 +378,7 @@ function FilterSection({ selectedCategory, onCategoryChange }: any) {
 }
 
 // ============================================================================
-// FEATURED PROJECTS
+// FEATURED PROJECTS - Clean Cards with Modal
 // ============================================================================
 function FeaturedProjectsSection({ projects, onProjectClick }: any) {
   return (
@@ -446,6 +448,7 @@ function FeaturedProjectCard({ project, index, onClick }: any) {
 
       <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
       <p className="text-base text-gray-400 mb-4">{project.client} • {project.industry}</p>
+
       <p className="text-gray-300 mb-6 leading-relaxed line-clamp-3">
         {project.description}
       </p>
@@ -486,18 +489,12 @@ function FeaturedProjectCard({ project, index, onClick }: any) {
 }
 
 // ============================================================================
-// STICKY CARDS SECTION - CORRECT IMPLEMENTATION
+// ALL PROJECTS - Bento Grid Layout
 // ============================================================================
-function StickyCardsSection({ projects, selectedCategory, onProjectClick }: any) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
+function AllProjectsSection({ projects, selectedCategory, onProjectClick }: any) {
   return (
-    <>
-      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
+    <section className="py-20 px-6 relative z-10">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -514,135 +511,96 @@ function StickyCardsSection({ projects, selectedCategory, onProjectClick }: any)
             }
           </p>
         </motion.div>
-      </div>
 
-      <div ref={ref} className="relative">
-        {projects.map((project: PortfolioProject, idx: number) => (
-          <StickyCard
-            key={project.id}
-            project={project}
-            scrollYProgress={scrollYProgress}
-            position={idx + 1}
-            totalCards={projects.length}
-            onClick={() => onProjectClick(project)}
-          />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="wait">
+            {projects.map((project: PortfolioProject, index: number) => (
+              <BentoProjectCard 
+                key={project.id}
+                project={project}
+                index={index}
+                onClick={() => onProjectClick(project)}
+              />
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
-      <div className="h-screen bg-dainamics-background" />
-    </>
+    </section>
   );
 }
 
-interface StickyCardProps {
-  position: number;
-  project: PortfolioProject;
-  scrollYProgress: MotionValue;
-  totalCards: number;
-  onClick: () => void;
-}
-
-function StickyCard({ position, project, scrollYProgress, totalCards, onClick }: StickyCardProps) {
-  const scaleFromPct = (position - 1) / totalCards;
-  const y = useTransform(scrollYProgress, [scaleFromPct, 1], [0, -CARD_HEIGHT]);
-  
+function BentoProjectCard({ project, index, onClick }: any) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.2 });
   const categoryColor = categoryColors[project.category];
-  const isOddCard = position % 2;
-
-  const bgColor = isOddCard ? 'rgb(10, 10, 15)' : categoryColor;
-  const textColor = '#FFFFFF';
 
   return (
     <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      whileHover={{ y: -6, scale: 1.02 }}
+      onClick={onClick}
+      className="p-6 rounded-xl cursor-pointer border group"
       style={{
-        height: CARD_HEIGHT,
-        y: position === totalCards ? undefined : y,
-        background: isOddCard ? bgColor : `linear-gradient(135deg, ${bgColor}40, rgb(10, 10, 15))`,
-        color: textColor,
+        backgroundColor: 'rgba(10, 10, 15, 0.6)',
+        borderColor: `${categoryColor}30`,
+        backdropFilter: 'blur(10px)'
       }}
-      className="sticky top-0 flex w-full origin-top flex-col items-center justify-center px-4 relative z-10"
     >
-      <div className="max-w-4xl w-full">
-        <div className="flex justify-center mb-6">
-          <Badge 
-            style={{
-              backgroundColor: `${categoryColor}30`,
-              color: categoryColor,
-              border: `2px solid ${categoryColor}`,
-              fontSize: '0.875rem',
-              padding: '0.5rem 1.5rem'
-            }}
-          >
-            {project.category.toUpperCase()}
-          </Badge>
-        </div>
-
-        <h3 className="mb-6 text-center text-4xl font-semibold md:text-6xl">
-          {project.title}
-        </h3>
-        
-        <p className="text-center text-xl text-gray-400 mb-4">
-          {project.client} • {project.industry}
-        </p>
-
-        <p className="mb-8 max-w-2xl mx-auto text-center text-sm md:text-base">
-          {project.description}
-        </p>
-
-        <div className="flex items-center justify-center gap-8 mb-8 flex-wrap">
-          {Object.values(project.results).filter(Boolean).slice(0, 3).map((result: any, idx: number) => {
-            const Icon = iconMapper[result.icon];
-            return (
-              <div key={idx} className="text-center">
-                {Icon && <Icon className="w-6 h-6 mx-auto mb-2" style={{ color: COLORS.success }} />}
-                <div className="text-2xl font-bold" style={{ color: COLORS.success }}>
-                  {result.value}
-                </div>
-                <div className="text-xs text-gray-400 mt-1">
-                  {result.label}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="flex justify-center">
-          <button
-            onClick={onClick}
-            className="flex items-center gap-2 rounded px-6 py-4 text-base font-medium uppercase transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 md:text-lg"
-            style={{
-              backgroundColor: categoryColor,
-              color: '#FFFFFF',
-              boxShadow: isOddCard 
-                ? `4px 4px 0px white`
-                : `4px 4px 0px black`
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = isOddCard 
-                ? `8px 8px 0px white`
-                : `8px 8px 0px black`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = isOddCard 
-                ? `4px 4px 0px white`
-                : `4px 4px 0px black`;
-            }}
-          >
-            <span>Voir le projet</span>
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </div>
+      <div className="flex items-center gap-2 mb-3">
+        <Badge 
+          className="text-xs"
+          style={{ 
+            backgroundColor: `${categoryColor}20`, 
+            color: categoryColor,
+            border: `1px solid ${categoryColor}40`
+          }}
+        >
+          {project.category}
+        </Badge>
       </div>
+
+      <h3 className="text-lg font-bold mb-2 line-clamp-1">{project.title}</h3>
+      <p className="text-sm text-gray-400 mb-3">{project.client}</p>
+      <p className="text-sm text-gray-300 leading-relaxed line-clamp-2 mb-4">
+        {project.description}
+      </p>
+
+      <div className="flex items-center gap-4 text-xs">
+        {Object.values(project.results).filter(Boolean).slice(0, 2).map((result: any, idx: number) => {
+          const Icon = iconMapper[result.icon];
+          return (
+            <div key={idx} className="flex items-center gap-1.5">
+              {Icon && <Icon className="w-3.5 h-3.5" style={{ color: COLORS.success }} />}
+              <span className="font-semibold" style={{ color: COLORS.success }}>
+                {result.value}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      <motion.div
+        className="mt-4 flex items-center gap-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+        style={{ color: categoryColor }}
+      >
+        <span>Voir les détails</span>
+        <ArrowRight className="w-3.5 h-3.5" />
+      </motion.div>
     </motion.div>
   );
 }
 
 // ============================================================================
-// TECHNOLOGIES CAROUSEL
+// TECHNOLOGIES CAROUSEL - Clean & Professional
 // ============================================================================
 function TechnologiesSection() {
   const allTechs = portfolioProjects.flatMap(p => p.technologies);
   const uniqueTechs = [...new Set(allTechs)];
-  const displayTechs = [...uniqueTechs, ...uniqueTechs];
+  const displayTechs = [...uniqueTechs, ...uniqueTechs]; // Duplicate for infinite scroll
 
   return (
     <section className="py-20 px-6 relative overflow-hidden z-10">
@@ -693,7 +651,7 @@ function TechnologiesSection() {
 }
 
 // ============================================================================
-// CTA SECTION
+// CTA SECTION - Professional
 // ============================================================================
 function CTASection() {
   return (
@@ -752,7 +710,7 @@ function CTASection() {
 }
 
 // ============================================================================
-// PROJECT MODAL
+// PROJECT MODAL - Professional Design
 // ============================================================================
 function ProjectModal({ project, isOpen, onClose }: any) {
   if (!project) return null;
@@ -764,6 +722,7 @@ function ProjectModal({ project, isOpen, onClose }: any) {
     <AnimatePresence>
       {isOpen && (
         <>
+          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -772,6 +731,7 @@ function ProjectModal({ project, isOpen, onClose }: any) {
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100]"
           />
 
+          {/* Modal */}
           <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -786,6 +746,7 @@ function ProjectModal({ project, isOpen, onClose }: any) {
               }}
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Close button */}
               <button
                 onClick={onClose}
                 className="absolute top-6 right-6 z-10 p-2 rounded-lg transition-colors"
@@ -797,7 +758,9 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                 <X className="w-6 h-6" />
               </button>
 
+              {/* Content */}
               <div className="overflow-y-auto max-h-[85vh] p-8 md:p-12">
+                {/* Header */}
                 <div className="mb-8">
                   <div className="flex items-center gap-3 mb-4">
                     <Badge 
@@ -824,12 +787,14 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                   <p className="text-xl text-gray-400">{project.client} • {project.industry}</p>
                 </div>
 
+                {/* Description */}
                 <div className="mb-8">
                   <p className="text-lg text-gray-300 leading-relaxed">
                     {project.description}
                   </p>
                 </div>
 
+                {/* Results Grid */}
                 <div className="grid grid-cols-3 gap-6 mb-10">
                   {Object.values(project.results).filter(Boolean).map((result: any, idx: number) => {
                     const Icon = iconMapper[result.icon];
@@ -854,6 +819,7 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                   })}
                 </div>
 
+                {/* Challenge & Solution */}
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div 
                     className="p-6 rounded-xl"
@@ -884,6 +850,7 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                   </div>
                 </div>
 
+                {/* Technologies */}
                 <div className="mb-8">
                   <h3 className="text-xl font-bold mb-4">Stack Technique</h3>
                   <div className="flex flex-wrap gap-2">
@@ -904,6 +871,7 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                   </div>
                 </div>
 
+                {/* Testimonial */}
                 {project.testimonial && (
                   <div 
                     className="p-6 rounded-xl"
