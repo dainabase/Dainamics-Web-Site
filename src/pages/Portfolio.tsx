@@ -222,7 +222,10 @@ function HeroSection() {
                 WebkitTextFillColor: 'transparent'
               }}
             >
-              Projets qui
+              Projets{' '}
+            </span>
+            <span style={{ color: '#FF5A00' }}>
+              qui
             </span>
             <br />
             <motion.span
