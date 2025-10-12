@@ -109,17 +109,6 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
-      {/* Animated Background Grid */}
-      <motion.div 
-        className="absolute inset-0 opacity-20"
-        style={{ y }}
-      >
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, ${iaColor} 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
-      </motion.div>
-
       {/* Floating Orbs */}
       <FloatingOrbs color={iaColor} />
 
