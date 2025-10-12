@@ -3,7 +3,7 @@
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, AnimatePresence, MotionValue } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -551,7 +551,7 @@ function StickyProjectCard({ position, project, scrollYProgress, totalCards, onC
   const categoryColor = categoryColors[project.category];
   const isOddCard = position % 2;
 
-  const cardBg = isOddCard ? 'rgba(10, 10, 15, 0.95)' : 'rgba(20, 20, 30, 0.95)';
+  const cardBg = isOddCard ? 'rgba(10, 10, 15, 0.4)' : 'rgba(20, 20, 30, 0.4)';
   const textColor = '#FFFFFF';
 
   return (
@@ -560,7 +560,8 @@ function StickyProjectCard({ position, project, scrollYProgress, totalCards, onC
         height: CARD_HEIGHT,
         y: position === totalCards ? undefined : y,
         backgroundColor: cardBg,
-        backdropFilter: 'blur(20px)',
+        backdropFilter: 'blur(10px)',
+        borderColor: `${categoryColor}20`
       }}
       className="sticky top-0 flex w-full origin-top flex-col items-center justify-center px-6 border-b cursor-pointer"
       onClick={onClick}
