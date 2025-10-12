@@ -208,7 +208,7 @@ export default function Industries() {
                   ))}
                 </motion.div>
 
-                {/* BOUTONS ALIGNÉS À GAUCHE - TEXTE BLANC POUR VISIBILITÉ */}
+                {/* BOUTONS ALIGNÉS À GAUCHE - AVEC BORDERS PROPRES */}
                 <motion.div 
                   variants={itemVariants}
                   className="flex flex-col sm:flex-row gap-4 items-start"
@@ -217,7 +217,7 @@ export default function Industries() {
                     <Button
                       asChild
                       size="lg"
-                      className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-white btn-glow font-semibold w-full sm:w-auto"
+                      className="bg-dainamics-accent hover:bg-dainamics-accent/90 text-white border-2 border-white/30 hover:border-white/50 btn-glow font-semibold w-full sm:w-auto transition-all"
                     >
                       <a href="#industries">
                         DÉCOUVRIR LES INDUSTRIES
@@ -231,7 +231,7 @@ export default function Industries() {
                       asChild
                       variant="outline"
                       size="lg"
-                      className="border-dainamics-light/20 text-dainamics-light hover:bg-dainamics-light/5 font-semibold w-full sm:w-auto"
+                      className="border-2 border-dainamics-light/20 hover:border-dainamics-light/40 text-dainamics-light hover:bg-dainamics-light/5 font-semibold w-full sm:w-auto transition-all"
                     >
                       <a href="/contact">
                         DIAGNOSTIC GRATUIT
