@@ -262,36 +262,50 @@ const COMPLEXITY_COLORS = {
 5. **INSTRUCTIONS.md v2.2** (ce document)
 6. **CHANGELOG.md v2.2**
 
+### Ordre de Lecture Mis à Jour (NOUVEAU)
+
+**Pour comprendre la transformation:**
+1. [STATUS.md](./STATUS.md) - Où en sommes-nous ?
+2. [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Où allons-nous ?
+3. [PRIORITIES.md](./PRIORITIES.md) - Que faire en premier ?
+
+**Pour développer:**
+1. [WORKFLOW.md](./WORKFLOW.md) - Process strict
+2. [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure site
+3. [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - Guidelines rédaction
+4. [ARCHITECTURE.md](./ARCHITECTURE.md) - Specs techniques
+5. [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md) - Couleurs/Icônes
+6. **Index.tsx** - Référence layouts et animations
+
+**Pour nouvelles conversations Claude:**
+[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md) - Contexte complet
+
 ---
 
 ## ✅ État Actuel
 
-### Terminé ✅
-- solutions.ts (21.2 KB, 15 automatisations)
-- portfolio.ts (14.1 KB, 5 projets)
-- expertise.ts (30.1 KB, 3 piliers)
-- agents.ts
-- Navigation.tsx (11.8 KB, menu complet)
-- Index.tsx (page d'accueil complète) ⭐ RÉFÉRENCE
-- Solutions.tsx (page solutions)
-- Portfolio.tsx (page portfolio)
-- Expertise pages (IA, Auto, Dev)
-- EnhancedGridBackground.tsx
-- Documentation mise à jour
+**Pour l'état détaillé du projet, consultez [STATUS.md](./STATUS.md)**
 
-### À Créer ⏹️
-- glossary.ts (30-50 termes)
-- useCases.ts (10-15 cas d'usage)
-- pricingPackages.ts (4 tiers)
-- testimonials.ts (8-10 témoignages)
-- integrations.ts
-- Page /solutions/quick-wins
-- Page /solutions/industries
-- Page /use-cases
-- Page /glossary (remplacer ComingSoon)
-- Page /about
-- Page /pricing
-- Page /process (remplacer ComingSoon)
+**Vue d'ensemble rapide:**
+
+**Terminé ✅**
+- Data files (solutions.ts, portfolio.ts, expertise.ts, agents.ts)
+- Navigation.tsx (menu complet)
+- Index.tsx (page d'accueil) ⭐ RÉFÉRENCE
+- Pages principales (Solutions, Portfolio, Expertise)
+- EnhancedGridBackground.tsx
+- Documentation restructurée
+
+**En cours ⏳**
+- Phase 1 transformation (Semaine 2/4)
+- Pages Resources
+
+**À créer ⏹️**
+- glossary.ts, useCases.ts, pricingPackages.ts, testimonials.ts
+- Pages /glossary, /use-cases, /about, /pricing, /process
+- Features interactives (Calculateur ROI, Assessment, etc.)
+
+**Consulter [STATUS.md](./STATUS.md) pour les détails complets et les métriques de progression**
 
 ---
 
@@ -446,6 +460,8 @@ src/
 - [ ] Calculateur ROI
 - [ ] Diagnostic IA
 
+**Pour le plan complet, voir [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)**
+
 ### Phase 2 (Semaines 4-5)
 - About, Process, Pricing
 - Blog, intégrations
@@ -488,12 +504,24 @@ src/
 
 ## 📖 Ressources
 
-### Documentation
-- **Repository**: https://github.com/dainabase/Dainamics-Web-Site
-- **Index.tsx**: Référence layouts et animations ⭐
-- **Design System**: DESIGN-SYSTEM-MANDATORY.md
-- **Architecture**: ARCHITECTURE.md
-- **Contexte**: PROMPT-CONTEXT.md v2.1
+### Documentation Projet
+
+**Transformation (Nouveau):**
+- [STATUS.md](./STATUS.md) - Dashboard état projet
+- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan 24 semaines
+- [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure menu optimale
+- [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - Guidelines contenu
+- [PRIORITIES.md](./PRIORITIES.md) - Priorisation P0/P1/P2/P3
+
+**Développement:**
+- [WORKFLOW.md](./WORKFLOW.md) - Process strict
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - Specs techniques (81KB)
+- [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md) - Couleurs/Icônes
+- [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md) - Contexte conversations
+
+**Repository:**
+- https://github.com/dainabase/Dainamics-Web-Site
+- **Index.tsx** - Référence layouts et animations ⭐
 
 ### Externes
 - **Lucide**: https://lucide.dev (v0.263.1)
@@ -576,9 +604,11 @@ export default function QuickWins() {
 
 ### Si Perdu
 1. Regarder **Index.tsx** en priorité (layouts)
-2. Consulter **DESIGN-SYSTEM-MANDATORY.md** (couleurs/icônes)
-3. Vérifier **ARCHITECTURE.md** (specs)
-4. Examiner solutions.ts/portfolio.ts (structure data)
+2. Consulter **[STATUS.md](./STATUS.md)** (état actuel)
+3. Consulter **[PRIORITIES.md](./PRIORITIES.md)** (quoi faire en premier)
+4. Consulter **DESIGN-SYSTEM-MANDATORY.md** (couleurs/icônes)
+5. Vérifier **ARCHITECTURE.md** (specs)
+6. Examiner solutions.ts/portfolio.ts (structure data)
 
 ### Si Bloqué
 1. STOP immédiatement
@@ -588,6 +618,8 @@ export default function QuickWins() {
 ---
 
 ## 🎯 Prochaines Étapes
+
+**Consulter [PRIORITIES.md](./PRIORITIES.md) pour le tableau de priorisation complet**
 
 ### Priorité 1: Finaliser Solutions
 1. Page /solutions/quick-wins
@@ -623,11 +655,11 @@ export default function QuickWins() {
 ---
 
 **VERSION**: 2.2  
-**DATE**: 12 Octobre 2025  
-**CRITIQUE**: Nouveau workflow direct + approche pédagogique obligatoire  
+**DATE**: 13 Octobre 2025  
+**CRITIQUE**: Références nouveaux documents transformation
 
-**🎯 RÉSUMÉ CHANGEMENTS:**
-- Claude travaille directement (plus de Claude Code)
-- S'inspirer d'Index.tsx pour TOUS les layouts
-- Approche pédagogique: expliquer visuellement avec animations
-- Sections multi-colonnes (texte + animation)
+**🎯 RÉSUMÉ CHANGEMENTS v2.2:**
+- Ajout références STATUS.md, TRANSFORMATION-PLAN.md, PRIORITIES.md
+- Section "Ordre de Lecture Mis à Jour" avec organisation claire
+- État Actuel renvoyé vers STATUS.md (single source of truth)
+- Liens croisés vers nouvelle documentation
