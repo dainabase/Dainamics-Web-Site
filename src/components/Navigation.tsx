@@ -13,44 +13,48 @@ interface NavItem {
   children?: NavItem[];
 }
 
+// ✅ NOUVELLE ARCHITECTURE - 6 ITEMS (optimal pour conversion)
+// Basé sur analyse 25+ sites leaders (Zapier, Boldare, Netguru, Swisscom)
+// Ref: NAVIGATION-ARCHITECTURE.md
 const navItems: NavItem[] = [
-  { name: 'Home', link: '/' },
   {
-    name: 'Expertise',
+    name: 'Services',
     children: [
-      { name: 'Vue d\'ensemble', link: '/expertise' },
-      { name: 'Intelligence Artificielle', link: '/expertise/ia' },
-      { name: 'Automatisation', link: '/expertise/automatisation' },
-      { name: 'Développement', link: '/expertise/developpement' },
+      { name: 'Discovery & Stratégie IA', link: '/services/discovery' },
+      { name: 'Développement IA & Automation', link: '/services/developpement' },
+      { name: 'Quick Wins', link: '/services/quick-wins' },
+      { name: 'Extension d\'équipe', link: '/services/equipe' },
+    ],
+  },
+  { 
+    name: 'Projets', 
+    link: '/projets' // Anciennement "Portfolio" - renommé pour clarté PME
+  },
+  {
+    name: 'Notre Approche',
+    children: [
+      { name: 'Notre Processus', link: '/approche/processus' },
+      { name: 'Intégration IA', link: '/approche/integration-ia' },
+      { name: 'Standards de Service', link: '/approche/standards' },
+      { name: 'Équipe', link: '/approche/equipe' },
     ],
   },
   {
-    name: 'Solutions',
-    children: [
-      { name: 'Toutes les solutions', link: '/solutions' },
-      { name: 'Quick Wins', link: '/solutions/quick-wins' },
-      { name: 'Par industrie', link: '/solutions/industries' },
-    ],
-  },
-  { name: 'Portfolio', link: '/portfolio' },
-  {
-    name: 'Resources',
+    name: 'Ressources',
     children: [
       { name: 'Blog', link: '/blog' },
-      { name: 'Glossaire', link: '/glossary' },
-      { name: 'Cas d\'Usage', link: '/use-cases' },
+      { name: 'Cas d\'Usage', link: '/cas-usage' },
+      { name: 'Glossaire', link: '/glossaire' },
     ],
   },
-  {
-    name: 'À Propos',
-    children: [
-      { name: 'Notre Histoire', link: '/about' },
-      { name: 'Notre Process', link: '/process' },
-      { name: 'Notre Approche', link: '/about#approach' },
-    ],
+  { 
+    name: 'Pricing', 
+    link: '/pricing' // Différenciateur marché suisse (0% concurrents transparents)
   },
-  { name: 'Pricing', link: '/pricing' },
-  { name: 'Contact', link: '/contact' },
+  { 
+    name: 'Contact', 
+    link: '/contact' 
+  },
 ];
 
 const languages = ['FR', 'EN', 'DE', 'IT'];
@@ -230,7 +234,7 @@ export function Navigation() {
               asChild
               className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow"
             >
-              <a href="#diagnostic">Diagnostic Gratuit</a>
+              <a href="#diagnostic">Évaluation Gratuite</a>
             </Button>
           </div>
         </div>
@@ -302,7 +306,7 @@ export function Navigation() {
                       <Link
                         to={item.link || '/'}
                         className={cn(
-                          "text-dainamics-light/80 hover:text-dainamics-light font-medium py-2 px-4",
+                          "text-dainamics-light/80 hover:text-dainamics-light font-medium py-2 px-4 block",
                           isActive(item.link) && "text-dainamics-primary"
                         )}
                       >
@@ -345,7 +349,7 @@ export function Navigation() {
                     asChild
                     className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow w-full"
                   >
-                    <a href="#diagnostic">Diagnostic Gratuit</a>
+                    <a href="#diagnostic">Évaluation Gratuite</a>
                   </Button>
                 </div>
               </div>
