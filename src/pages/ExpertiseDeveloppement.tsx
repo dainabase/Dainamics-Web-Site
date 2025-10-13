@@ -1,7 +1,7 @@
 // src/pages/ExpertiseDeveloppement.tsx
-// Développement - Page d'Expertise OPTIMISÉE
+// Développement - Page d'Expertise OPTIMISÉE & PROFESSIONNELLE
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
-// Performance: 60fps garanti - Grid orange supprimé, opacités optimisées
+// Performance: 60fps garanti - Animations simplifiées, sobre comme ExpertiseIA
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
@@ -28,8 +28,6 @@ import {
   Target,
   Award,
   CheckCircle,
-  Layers,
-  Cloud,
   Smartphone,
   Globe,
   Server,
@@ -75,13 +73,13 @@ export default function ExpertiseDeveloppement() {
       {/* Metrics Section - Parallax Cards */}
       <MetricsSection metrics={pillar.metrics} devColor={devColor} />
       
-      {/* Technologies Section - MORPHING GRID */}
+      {/* Technologies Section - Grid */}
       <TechnologiesSection 
         technologies={pillar.technologies}
         devColor={devColor}
       />
       
-      {/* Capabilities Section - PARALLAX LAYERS */}
+      {/* Capabilities Section - Simple Cards */}
       <CapabilitiesSection 
         capabilities={pillar.capabilities} 
         devColor={devColor}
@@ -117,7 +115,7 @@ function ScrollProgressBar() {
 }
 
 // ============================================================================
-// HERO SECTION - Floating Code Blocks (GRID ORANGE SUPPRIMÉ)
+// HERO SECTION - Floating Code Blocks (SIMPLIFIÉ)
 // ============================================================================
 function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
   const heroRef = useRef<HTMLElement>(null);
@@ -159,14 +157,12 @@ function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
         ))}
       </div>
 
-      {/* ⚠️ GRID ORANGE SUPPRIMÉ - On garde uniquement EnhancedGridBackground */}
-
       {/* Content */}
       <motion.div 
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
         style={{ opacity }}
       >
-        {/* Badge - OPTIMISÉ: 90% → 70% comme ExpertiseIA */}
+        {/* Badge - OPTIMISÉ: 90% → 70% */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -248,7 +244,7 @@ function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
 }
 
 // ============================================================================
-// METRICS SECTION - Parallax Cards (OPACITÉ OPTIMISÉE: 60% → 40%)
+// METRICS SECTION - Parallax Cards (ANIMATIONS SIMPLIFIÉES)
 // ============================================================================
 function MetricsSection({ metrics, devColor }: { metrics: any; devColor: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -299,25 +295,22 @@ function MetricCard({ metric, index, devColor, y }: any) {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, rotateY: -45 }}
-      animate={isInView ? { opacity: 1, rotateY: 0 } : {}}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.8,
+        duration: 0.6,
         delay: index * 0.15,
         ease: [0.22, 1, 0.36, 1]
       }}
       whileHover={{
         scale: 1.05,
-        rotateY: 10,
-        z: 50
+        y: -12
       }}
       className="relative p-8 rounded-2xl group cursor-pointer"
       style={{
         y,
         background: `linear-gradient(135deg, ${devColor}60, ${devColor}40)`,
         border: `2px solid ${devColor}80`,
-        transformStyle: 'preserve-3d',
-        perspective: '1000px',
         boxShadow: `0 4px 20px rgba(0,0,0,0.3)`
       }}
     >
@@ -329,10 +322,10 @@ function MetricCard({ metric, index, devColor, y }: any) {
         }}
       />
 
-      {/* Icon */}
+      {/* Icon - SIMPLIFIÉ: pas de rotation */}
       <motion.div
-        whileHover={{ rotate: 360, scale: 1.2 }}
-        transition={{ duration: 0.8 }}
+        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.3 }}
         className="relative z-10 mb-4"
       >
         <metric.icon className="w-12 h-12" style={{ color: devColor }} />
@@ -355,7 +348,7 @@ function MetricCard({ metric, index, devColor, y }: any) {
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - MORPHING GRID (OPACITÉ OPTIMISÉE: 40% → 25%)
+// TECHNOLOGIES SECTION - Grid (ANIMATIONS SIMPLIFIÉES)
 // ============================================================================
 function TechnologiesSection({ technologies, devColor }: any) {
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
@@ -380,7 +373,7 @@ function TechnologiesSection({ technologies, devColor }: any) {
           </p>
         </motion.div>
 
-        {/* Morphing Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {technologies.map((tech: any, index: number) => (
             <TechnologyCard 
@@ -406,16 +399,15 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-      animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ 
-        duration: 0.8, 
+        duration: 0.6, 
         delay: index * 0.05,
         ease: [0.22, 1, 0.36, 1]
       }}
       whileHover={{ 
-        scale: 1.1,
-        rotate: 5,
+        scale: 1.05,
         zIndex: 10
       }}
       onHoverStart={() => onHover(tech.name)}
@@ -430,11 +422,11 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
         boxShadow: '0 2px 12px rgba(0,0,0,0.2)'
       }}
     >
-      {/* Icon */}
+      {/* Icon - SIMPLIFIÉ: pas de rotation */}
       {Icon && (
         <motion.div
-          animate={isHovered ? { scale: 1.2, rotate: 360 } : { scale: 1, rotate: 0 }}
-          transition={{ duration: 0.6 }}
+          animate={isHovered ? { scale: 1.15 } : { scale: 1 }}
+          transition={{ duration: 0.3 }}
           className="mb-4"
         >
           <Icon className="w-10 h-10 text-white" />
@@ -472,40 +464,14 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
 }
 
 // ============================================================================
-// CAPABILITIES SECTION - PARALLAX LAYERS (OPACITÉ OPTIMISÉE: 50% → 30%)
+// CAPABILITIES SECTION - Simple Cards (FILIGRANES SUPPRIMÉS, ANIMATIONS SIMPLIFIÉES)
 // ============================================================================
 function CapabilitiesSection({ capabilities, devColor, sectionRefs }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const layerY1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const layerY2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const layerY3 = useTransform(scrollYProgress, [0, 1], [0, -300]);
 
   return (
     <section ref={sectionRef} className="py-32 px-6 relative overflow-hidden">
-      {/* Parallax Background Layers */}
-      <motion.div 
-        style={{ y: layerY1 }}
-        className="absolute inset-0 opacity-5"
-      >
-        <Layers className="w-96 h-96 absolute top-20 left-10" style={{ color: devColor }} />
-      </motion.div>
-      <motion.div 
-        style={{ y: layerY2 }}
-        className="absolute inset-0 opacity-5"
-      >
-        <Cloud className="w-80 h-80 absolute top-40 right-20" style={{ color: devColor }} />
-      </motion.div>
-      <motion.div 
-        style={{ y: layerY3 }}
-        className="absolute inset-0 opacity-5"
-      >
-        <Server className="w-72 h-72 absolute bottom-20 left-1/3" style={{ color: devColor }} />
-      </motion.div>
+      {/* FILIGRANES SUPPRIMÉS - Section propre et sobre */}
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title */}
@@ -554,39 +520,35 @@ function CapabilityCard({ capability, index, devColor }: any) {
       ref={cardRef}
       initial={{ 
         opacity: 0, 
-        x: fromLeft ? -100 : 100,
-        rotateY: fromLeft ? -30 : 30
+        x: fromLeft ? -100 : 100
       }}
       animate={isInView ? { 
         opacity: 1, 
-        x: 0,
-        rotateY: 0
+        x: 0
       } : {}}
       transition={{ 
-        duration: 0.8, 
+        duration: 0.6, 
         delay: (index % 2) * 0.2,
         ease: [0.22, 1, 0.36, 1]
       }}
       whileHover={{ 
         scale: 1.03,
-        y: -10,
-        rotateY: 5
+        y: -10
       }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
         background: `linear-gradient(135deg, ${devColor}50, ${devColor}30)`,
         border: `2px solid ${devColor}70`,
-        transformStyle: 'preserve-3d',
         boxShadow: `0 4px 20px ${devColor}25`
       }}
     >
       {/* Header */}
       <div className="flex items-start gap-6 mb-6">
-        {/* Icon - OPTIMISÉ: 80% → 60% */}
+        {/* Icon - SIMPLIFIÉ: pas de rotation */}
         {Icon && (
           <motion.div
-            whileHover={{ scale: 1.2, rotate: 360 }}
-            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
             className="flex-shrink-0 p-4 rounded-xl"
             style={{ 
               background: `linear-gradient(135deg, ${devColor}80, ${devColor}60)`,
@@ -624,7 +586,7 @@ function CapabilityCard({ capability, index, devColor }: any) {
         </span>
       </div>
 
-      {/* Deliverables - OPTIMISÉ: 25% */}
+      {/* Deliverables */}
       <div className="space-y-2">
         {capability.deliverables.slice(0, 3).map((deliverable: string, idx: number) => (
           <motion.div
@@ -655,7 +617,7 @@ function CapabilityCard({ capability, index, devColor }: any) {
 }
 
 // ============================================================================
-// USE CASES SECTION - Floating Cards (OPACITÉ OPTIMISÉE: 50% → 30%)
+// USE CASES SECTION - Floating Cards (ANIMATIONS SIMPLIFIÉES)
 // ============================================================================
 function UseCasesSection({ useCases, devColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -704,30 +666,25 @@ function UseCaseCard({ useCase, index, devColor }: any) {
       ref={cardRef}
       initial={{ 
         opacity: 0, 
-        y: 100,
-        rotateX: -45
+        y: 100
       }}
       animate={isInView ? { 
         opacity: 1, 
-        y: 0,
-        rotateX: 0
+        y: 0
       } : {}}
       transition={{ 
-        duration: 0.8, 
+        duration: 0.6, 
         delay: index * 0.15,
         ease: [0.22, 1, 0.36, 1]
       }}
       whileHover={{ 
         y: -15,
-        rotateX: 5,
         scale: 1.03
       }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
         background: `linear-gradient(135deg, ${devColor}50, ${devColor}30)`,
         border: `2px solid ${devColor}70`,
-        transformStyle: 'preserve-3d',
-        perspective: '1000px',
         boxShadow: `0 4px 20px ${devColor}25`
       }}
     >
@@ -805,7 +762,7 @@ function UseCaseCard({ useCase, index, devColor }: any) {
 }
 
 // ============================================================================
-// QUICK WINS SECTION - Accordion Style (OPACITÉ OPTIMISÉE: 50% → 30%)
+// QUICK WINS SECTION - Accordion Style
 // ============================================================================
 function QuickWinsSection({ quickWins, devColor }: any) {
   const [expandedWin, setExpandedWin] = useState<string | null>(null);
@@ -932,29 +889,12 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
 }
 
 // ============================================================================
-// CTA SECTION (OPACITÉ OPTIMISÉE: 60% → 40%)
+// CTA SECTION (BACKGROUND RAYÉ SUPPRIMÉ, ICÔNE SIMPLIFIÉE)
 // ============================================================================
 function CTASection({ devColor }: { devColor: string }) {
   return (
     <section className="py-32 px-6 relative overflow-hidden">
-      {/* Animated Code Background */}
-      <div className="absolute inset-0 opacity-5">
-        <motion.div
-          animate={{
-            backgroundPosition: ['0% 0%', '100% 100%']
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="w-full h-full"
-          style={{
-            backgroundImage: `repeating-linear-gradient(45deg, ${devColor} 0, ${devColor} 1px, transparent 0, transparent 50%)`,
-            backgroundSize: '10px 10px'
-          }}
-        />
-      </div>
+      {/* BACKGROUND RAYÉ SUPPRIMÉ - Section propre */}
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <motion.div
@@ -969,16 +909,16 @@ function CTASection({ devColor }: { devColor: string }) {
             boxShadow: `0 8px 40px ${devColor}30`
           }}
         >
-          {/* Icon */}
+          {/* Icon - SIMPLIFIÉ: pulse au lieu de rotation infinie */}
           <motion.div
             className="inline-flex mb-8"
             animate={{ 
-              rotateY: [0, 360],
+              scale: [1, 1.1, 1]
             }}
             transition={{
-              duration: 3,
+              duration: 2,
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
             }}
           >
             <Terminal className="w-16 h-16 text-white" />
@@ -1040,7 +980,7 @@ function CTASection({ devColor }: { devColor: string }) {
             {[
               { icon: Globe, label: 'Web' },
               { icon: Smartphone, label: 'Mobile' },
-              { icon: Cloud, label: 'Cloud' },
+              { icon: Server, label: 'Cloud' },
               { icon: Package, label: 'API' }
             ].map((item, i) => (
               <motion.div
