@@ -1,5 +1,5 @@
 // src/pages/ExpertiseAutomatisation.tsx
-// Automatisation - Page d'Expertise avec ScrollStack Technologies
+// Automatisation - Page d'Expertise avec ScrollStack Technologies CORRIGÉ
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 // Performance: 60fps garanti - ScrollStack élégant pour le stack technique
 
@@ -66,7 +66,7 @@ export default function ExpertiseAutomatisation() {
       {/* Metrics Section - Cards with Stagger */}
       <MetricsSection metrics={pillar.metrics} autoColor={autoColor} />
       
-      {/* Technologies Section - SCROLLSTACK */}
+      {/* Technologies Section - SCROLLSTACK CORRIGÉ */}
       <TechnologiesSection 
         technologies={pillar.technologies}
         autoColor={autoColor}
@@ -371,10 +371,18 @@ function MetricsSection({ metrics, autoColor }: { metrics: any; autoColor: strin
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - SCROLLSTACK
+// TECHNOLOGIES SECTION - SCROLLSTACK CORRIGÉ
 // ============================================================================
 function TechnologiesSection({ technologies, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Helper pour convertir hex en rgba
+  const hexToRgba = (hex: string, alpha: number) => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
 
   return (
     <section ref={sectionRef} className="py-32 px-6 relative">
@@ -395,53 +403,78 @@ function TechnologiesSection({ technologies, autoColor }: any) {
           </p>
         </motion.div>
 
-        {/* ScrollStack Container */}
-        <div className="h-[600px]">
+        {/* ScrollStack Container - CORRIGÉ avec sticky */}
+        <div className="relative h-[800px]">
           <ScrollStack
-            itemDistance={100}
-            itemScale={0.03}
-            itemStackDistance={30}
-            stackPosition="20%"
-            baseScale={0.85}
+            itemDistance={120}
+            itemScale={0.04}
+            itemStackDistance={40}
+            stackPosition="25%"
+            baseScale={0.9}
             rotationAmount={0}
             blurAmount={0}
             useWindowScroll={false}
+            className="h-full"
           >
             {technologies.map((tech: any, index: number) => {
               const Icon = iconMapper[tech.icon];
               return (
                 <ScrollStackItem
                   key={tech.name}
-                  itemClassName={`bg-gradient-to-br from-[${autoColor}]/40 to-[${autoColor}]/25 border-2 border-[${autoColor}]/60`}
+                  className="mb-8"
+                  style={{
+                    minHeight: '220px'
+                  }}
                 >
-                  {/* Icon */}
-                  {Icon && (
-                    <div className="mb-4 p-3 rounded-lg inline-block" style={{ backgroundColor: `${autoColor}20` }}>
-                      <Icon className="w-8 h-8 text-white" />
-                    </div>
-                  )}
-                  
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold mb-2 text-white">
-                    {tech.name}
-                  </h3>
-                  
-                  {/* Category + Proficiency */}
-                  <p className="text-sm text-gray-400 mb-3">
-                    {tech.category} • {tech.proficiency}
-                  </p>
-                  
-                  {/* Description */}
-                  <p className="text-gray-300 text-sm">
-                    {tech.description}
-                  </p>
-                  
-                  {/* Projects badge */}
-                  {tech.usedIn.length > 0 && (
-                    <div className="mt-4 text-xs" style={{ color: autoColor }}>
-                      {tech.usedIn.length} projet{tech.usedIn.length > 1 ? 's' : ''}
-                    </div>
-                  )}
+                  <div 
+                    className="w-full h-full rounded-2xl p-8 shadow-2xl transition-all duration-300"
+                    style={{
+                      background: `linear-gradient(135deg, ${hexToRgba(autoColor, 0.85)}, ${hexToRgba(autoColor, 0.65)})`,
+                      border: `3px solid ${hexToRgba(autoColor, 0.9)}`,
+                      boxShadow: `0 8px 32px ${hexToRgba(autoColor, 0.4)}`
+                    }}
+                  >
+                    {/* Icon */}
+                    {Icon && (
+                      <div 
+                        className="mb-4 p-3 rounded-lg inline-block" 
+                        style={{ 
+                          backgroundColor: hexToRgba(autoColor, 0.3),
+                          border: `2px solid ${autoColor}`
+                        }}
+                      >
+                        <Icon className="w-10 h-10 text-white" />
+                      </div>
+                    )}
+                    
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold mb-2 text-white">
+                      {tech.name}
+                    </h3>
+                    
+                    {/* Category + Proficiency */}
+                    <p className="text-sm text-gray-200 mb-3 font-medium">
+                      {tech.category} • {tech.proficiency}
+                    </p>
+                    
+                    {/* Description */}
+                    <p className="text-gray-100 text-sm leading-relaxed">
+                      {tech.description}
+                    </p>
+                    
+                    {/* Projects badge */}
+                    {tech.usedIn.length > 0 && (
+                      <div 
+                        className="mt-4 text-xs font-semibold px-3 py-1 rounded-full inline-block" 
+                        style={{ 
+                          color: '#0A0A0F',
+                          backgroundColor: autoColor
+                        }}
+                      >
+                        {tech.usedIn.length} projet{tech.usedIn.length > 1 ? 's' : ''}
+                      </div>
+                    )}
+                  </div>
                 </ScrollStackItem>
               );
             })}
