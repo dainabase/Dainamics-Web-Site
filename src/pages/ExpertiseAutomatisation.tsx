@@ -1,5 +1,5 @@
 // src/pages/ExpertiseAutomatisation.tsx
-// Automatisation - Page d'Expertise avec ScrollStack Technologies CORRIGÉ
+// Automatisation - Page d'Expertise avec ScrollStack Technologies OPTIMISÉ
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
 // Performance: 60fps garanti - ScrollStack élégant pour le stack technique
 
@@ -66,7 +66,7 @@ export default function ExpertiseAutomatisation() {
       {/* Metrics Section - Cards with Stagger */}
       <MetricsSection metrics={pillar.metrics} autoColor={autoColor} />
       
-      {/* Technologies Section - SCROLLSTACK CORRIGÉ */}
+      {/* Technologies Section - SCROLLSTACK OPTIMISÉ */}
       <TechnologiesSection 
         technologies={pillar.technologies}
         autoColor={autoColor}
@@ -371,7 +371,7 @@ function MetricsSection({ metrics, autoColor }: { metrics: any; autoColor: strin
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - SCROLLSTACK CORRIGÉ
+// TECHNOLOGIES SECTION - SCROLLSTACK OPTIMISÉ
 // ============================================================================
 function TechnologiesSection({ technologies, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -403,14 +403,14 @@ function TechnologiesSection({ technologies, autoColor }: any) {
           </p>
         </motion.div>
 
-        {/* ScrollStack Container - CORRIGÉ avec sticky */}
-        <div className="relative h-[800px]">
+        {/* ScrollStack Container - PARAMÈTRES OPTIMISÉS */}
+        <div className="relative h-[900px]">
           <ScrollStack
-            itemDistance={120}
-            itemScale={0.04}
-            itemStackDistance={40}
-            stackPosition="25%"
-            baseScale={0.9}
+            itemDistance={150}
+            itemScale={0.05}
+            itemStackDistance={50}
+            stackPosition="30%"
+            baseScale={0.88}
             rotationAmount={0}
             blurAmount={0}
             useWindowScroll={false}
@@ -423,15 +423,15 @@ function TechnologiesSection({ technologies, autoColor }: any) {
                   key={tech.name}
                   className="mb-8"
                   style={{
-                    minHeight: '220px'
+                    minHeight: '240px'
                   }}
                 >
                   <div 
                     className="w-full h-full rounded-2xl p-8 shadow-2xl transition-all duration-300"
                     style={{
-                      background: `linear-gradient(135deg, ${hexToRgba(autoColor, 0.85)}, ${hexToRgba(autoColor, 0.65)})`,
-                      border: `3px solid ${hexToRgba(autoColor, 0.9)}`,
-                      boxShadow: `0 8px 32px ${hexToRgba(autoColor, 0.4)}`
+                      background: `linear-gradient(135deg, ${hexToRgba(autoColor, 0.9)}, ${hexToRgba(autoColor, 0.7)})`,
+                      border: `3px solid ${hexToRgba(autoColor, 0.95)}`,
+                      boxShadow: `0 12px 40px ${hexToRgba(autoColor, 0.5)}`
                     }}
                   >
                     {/* Icon */}
