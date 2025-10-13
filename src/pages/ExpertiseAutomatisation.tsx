@@ -1,7 +1,7 @@
 // src/pages/ExpertiseAutomatisation.tsx
-// Automatisation - Page d'Expertise avec Carousel Technologies
+// Automatisation - Page d'Expertise avec ScrollStack Technologies
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
-// Performance: 60fps garanti - Carousel interactif pour le stack technique
+// Performance: 60fps garanti - ScrollStack avec effets empilés
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import Carousel, { CarouselItem } from '@/components/ui/carousel';
+import ScrollStack, { ScrollStackItem } from '@/components/ui/scroll-stack';
 import { 
   getPillarByCategory,
   categoryColors,
@@ -66,7 +66,7 @@ export default function ExpertiseAutomatisation() {
       {/* Metrics Section - Cards with Stagger */}
       <MetricsSection metrics={pillar.metrics} autoColor={autoColor} />
       
-      {/* Technologies Section - CAROUSEL */}
+      {/* Technologies Section - SCROLLSTACK */}
       <TechnologiesSection 
         technologies={pillar.technologies}
         autoColor={autoColor}
@@ -371,22 +371,10 @@ function MetricsSection({ metrics, autoColor }: { metrics: any; autoColor: strin
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - CAROUSEL
+// TECHNOLOGIES SECTION - SCROLLSTACK
 // ============================================================================
 function TechnologiesSection({ technologies, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Transform technologies into CarouselItems
-  const carouselItems: CarouselItem[] = technologies.map((tech: any, index: number) => {
-    const Icon = iconMapper[tech.icon];
-    
-    return {
-      id: index,
-      title: tech.name,
-      description: tech.description || `${tech.category} - ${tech.proficiency}`,
-      icon: Icon ? <Icon className="h-[16px] w-[16px] text-white" /> : <Zap className="h-[16px] w-[16px] text-white" />
-    };
-  });
 
   return (
     <section ref={sectionRef} className="py-32 px-6 relative">
@@ -405,33 +393,100 @@ function TechnologiesSection({ technologies, autoColor }: any) {
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Technologies et outils que nous maîtrisons pour automatiser vos processus
           </p>
-        </motion.div>
-
-        {/* Carousel Container - Centered */}
-        <div className="flex items-center justify-center">
-          <Carousel 
-            items={carouselItems}
-            baseWidth={600}
-            autoplay={true}
-            autoplayDelay={3000}
-            pauseOnHover={true}
-            loop={true}
-            round={false}
-          />
-        </div>
-
-        {/* Tech Count */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <p className="text-sm text-gray-500">
-            {technologies.length} technologies maîtrisées
+          <p className="text-sm text-gray-500 mt-4">
+            {technologies.length} technologies • Scroll pour explorer
           </p>
         </motion.div>
+
+        {/* ScrollStack Container */}
+        <div className="h-[800px] rounded-3xl overflow-hidden"
+          style={{
+            background: `linear-gradient(135deg, ${autoColor}10, transparent)`,
+            border: `1px solid ${autoColor}30`
+          }}
+        >
+          <ScrollStack
+            itemDistance={50}
+            itemScale={0.04}
+            itemStackDistance={20}
+            stackPosition="15%"
+            scaleEndPosition="5%"
+            baseScale={0.9}
+            rotationAmount={0}
+            blurAmount={0}
+          >
+            {technologies.map((tech: any, index: number) => {
+              const Icon = iconMapper[tech.icon];
+              
+              return (
+                <ScrollStackItem
+                  key={tech.name}
+                  itemClassName=""
+                >
+                  <div 
+                    className="w-full h-full flex flex-col"
+                    style={{
+                      background: `linear-gradient(135deg, ${autoColor}30, ${autoColor}15)`,
+                      border: `2px solid ${autoColor}60`,
+                      borderRadius: '40px'
+                    }}
+                  >
+                    {/* Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-4">
+                        {Icon && (
+                          <div 
+                            className="p-4 rounded-2xl"
+                            style={{ 
+                              background: `linear-gradient(135deg, ${autoColor}70, ${autoColor}50)`,
+                              border: `2px solid ${autoColor}`
+                            }}
+                          >
+                            <Icon className="w-8 h-8 text-white" />
+                          </div>
+                        )}
+                        <div>
+                          <h3 className="text-2xl font-bold text-white mb-1">
+                            {tech.name}
+                          </h3>
+                          <p className="text-sm text-gray-400">
+                            {tech.category}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <Badge 
+                        variant="outline"
+                        style={{ 
+                          background: `${autoColor}30`,
+                          borderColor: `${autoColor}70`,
+                          color: 'white',
+                          fontSize: '0.7rem',
+                          borderWidth: '2px'
+                        }}
+                      >
+                        {tech.proficiency}
+                      </Badge>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-300 mb-4 flex-grow">
+                      {tech.description}
+                    </p>
+
+                    {/* Footer */}
+                    {tech.usedIn.length > 0 && (
+                      <div className="flex items-center gap-2 text-xs" style={{ color: COLORS.success }}>
+                        <CheckCircle className="w-4 h-4" />
+                        <span>{tech.usedIn.length} projet{tech.usedIn.length > 1 ? 's' : ''} réalisé{tech.usedIn.length > 1 ? 's' : ''}</span>
+                      </div>
+                    )}
+                  </div>
+                </ScrollStackItem>
+              );
+            })}
+          </ScrollStack>
+        </div>
       </div>
     </section>
   );
