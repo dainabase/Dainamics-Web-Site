@@ -114,8 +114,13 @@ function ScrollStack({
         // Scale
         const scale = baseScale + (1 - baseScale) * (1 - progress);
 
-        // Y offset
-        const yOffset = index * itemStackDistance * progress;
+        // Y offset - CORRECTED FORMULA for proper stacking
+        // Cards stack from top to bottom with visible offset
+        // Card 0: starts at yOffset 0 (top)
+        // Card 1: starts at yOffset -itemStackDistance (slightly below)
+        // Card 2: starts at yOffset -2*itemStackDistance (further below)
+        // As progress increases, all cards move toward yOffset 0 (stacked)
+        const yOffset = -index * itemStackDistance * (1 - progress);
 
         // Rotation
         const rotation = rotationAmount * (1 - progress);
@@ -123,7 +128,7 @@ function ScrollStack({
         // Blur
         const blur = blurAmount * progress;
 
-        // Z-index
+        // Z-index - higher index = on top
         const zIndex = items.length - index;
 
         // Apply transforms
