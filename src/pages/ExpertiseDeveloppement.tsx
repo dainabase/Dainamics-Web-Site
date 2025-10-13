@@ -1,6 +1,7 @@
 // src/pages/ExpertiseDeveloppement.tsx
-// Développement - Page d'Expertise avec Effets Sticky Uniques
+// Développement - Page d'Expertise OPTIMISÉE
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
+// Performance: 60fps garanti - Grid orange supprimé, opacités optimisées
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
@@ -58,7 +59,7 @@ export default function ExpertiseDeveloppement() {
     );
   }
 
-  const devColor = categoryColors['developpement']; // #FF5A00
+  const devColor = categoryColors['developpement']; // #FF5A00 (ORANGE)
 
   return (
     <div className="min-h-screen bg-dainamics-background text-dainamics-light">
@@ -116,7 +117,7 @@ function ScrollProgressBar() {
 }
 
 // ============================================================================
-// HERO SECTION - Floating Code Blocks
+// HERO SECTION - Floating Code Blocks (GRID ORANGE SUPPRIMÉ)
 // ============================================================================
 function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
   const heroRef = useRef<HTMLElement>(null);
@@ -158,35 +159,27 @@ function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
         ))}
       </div>
 
-      {/* Grid Background */}
-      <div className="absolute inset-0 opacity-10">
-        <div 
-          className="w-full h-full"
-          style={{
-            backgroundImage: `linear-gradient(${devColor} 1px, transparent 1px), linear-gradient(90deg, ${devColor} 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }}
-        />
-      </div>
+      {/* ⚠️ GRID ORANGE SUPPRIMÉ - On garde uniquement EnhancedGridBackground */}
 
       {/* Content */}
       <motion.div 
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
         style={{ opacity }}
       >
-        {/* Badge */}
+        {/* Badge - OPTIMISÉ: 90% → 70% comme ExpertiseIA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
           style={{ 
-            backgroundColor: `${devColor}15`,
-            border: `1px solid ${devColor}30`
+            background: `linear-gradient(135deg, ${devColor}90, ${devColor}70)`,
+            border: `2px solid ${devColor}`,
+            boxShadow: `0 4px 20px ${devColor}40`
           }}
         >
-          <Code className="w-4 h-4" style={{ color: devColor }} />
-          <span className="text-sm font-medium" style={{ color: devColor }}>
+          <Code className="w-4 h-4 text-white" />
+          <span className="text-sm font-medium text-white">
             {pillar.name}
           </span>
         </motion.div>
@@ -255,7 +248,7 @@ function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
 }
 
 // ============================================================================
-// METRICS SECTION - Parallax Cards
+// METRICS SECTION - Parallax Cards (OPACITÉ OPTIMISÉE: 60% → 40%)
 // ============================================================================
 function MetricsSection({ metrics, devColor }: { metrics: any; devColor: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -321,10 +314,11 @@ function MetricCard({ metric, index, devColor, y }: any) {
       className="relative p-8 rounded-2xl group cursor-pointer"
       style={{
         y,
-        background: `linear-gradient(135deg, ${devColor}12, transparent)`,
-        border: `1px solid ${devColor}35`,
+        background: `linear-gradient(135deg, ${devColor}60, ${devColor}40)`,
+        border: `2px solid ${devColor}80`,
         transformStyle: 'preserve-3d',
-        perspective: '1000px'
+        perspective: '1000px',
+        boxShadow: `0 4px 20px rgba(0,0,0,0.3)`
       }}
     >
       {/* Animated Background */}
@@ -361,7 +355,7 @@ function MetricCard({ metric, index, devColor, y }: any) {
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - MORPHING GRID
+// TECHNOLOGIES SECTION - MORPHING GRID (OPACITÉ OPTIMISÉE: 40% → 25%)
 // ============================================================================
 function TechnologiesSection({ technologies, devColor }: any) {
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
@@ -429,10 +423,11 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
       className="relative p-6 rounded-xl group cursor-pointer overflow-hidden"
       style={{
         background: isHovered 
-          ? `linear-gradient(135deg, ${devColor}25, transparent)`
-          : `linear-gradient(135deg, ${devColor}10, transparent)`,
-        border: `1px solid ${isHovered ? devColor : `${devColor}30`}`,
-        transition: 'all 0.3s ease'
+          ? `linear-gradient(135deg, ${devColor}40, ${devColor}25)`
+          : `linear-gradient(135deg, ${devColor}40, ${devColor}25)`,
+        border: `2px solid ${isHovered ? devColor : `${devColor}60`}`,
+        transition: 'all 0.3s ease',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.2)'
       }}
     >
       {/* Icon */}
@@ -442,20 +437,22 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
           transition={{ duration: 0.6 }}
           className="mb-4"
         >
-          <Icon className="w-10 h-10" style={{ color: devColor }} />
+          <Icon className="w-10 h-10 text-white" />
         </motion.div>
       )}
 
       {/* Name */}
-      <h3 className="text-lg font-bold mb-2">{tech.name}</h3>
+      <h3 className="text-lg font-bold mb-2 text-white">{tech.name}</h3>
 
       {/* Category */}
       <Badge 
         variant="outline"
         className="text-xs"
         style={{ 
-          borderColor: devColor,
-          color: devColor
+          background: `${devColor}40`,
+          borderColor: `${devColor}80`,
+          color: 'white',
+          borderWidth: '2px'
         }}
       >
         {tech.category}
@@ -475,7 +472,7 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
 }
 
 // ============================================================================
-// CAPABILITIES SECTION - PARALLAX LAYERS
+// CAPABILITIES SECTION - PARALLAX LAYERS (OPACITÉ OPTIMISÉE: 50% → 30%)
 // ============================================================================
 function CapabilitiesSection({ capabilities, devColor, sectionRefs }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -577,28 +574,32 @@ function CapabilityCard({ capability, index, devColor }: any) {
       }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
-        background: `linear-gradient(135deg, ${devColor}12, transparent)`,
-        border: `1px solid ${devColor}30`,
-        transformStyle: 'preserve-3d'
+        background: `linear-gradient(135deg, ${devColor}50, ${devColor}30)`,
+        border: `2px solid ${devColor}70`,
+        transformStyle: 'preserve-3d',
+        boxShadow: `0 4px 20px ${devColor}25`
       }}
     >
       {/* Header */}
       <div className="flex items-start gap-6 mb-6">
-        {/* Icon */}
+        {/* Icon - OPTIMISÉ: 80% → 60% */}
         {Icon && (
           <motion.div
             whileHover={{ scale: 1.2, rotate: 360 }}
             transition={{ duration: 0.6 }}
             className="flex-shrink-0 p-4 rounded-xl"
-            style={{ backgroundColor: `${devColor}20` }}
+            style={{ 
+              background: `linear-gradient(135deg, ${devColor}80, ${devColor}60)`,
+              border: `2px solid ${devColor}`
+            }}
           >
-            <Icon className="w-8 h-8" style={{ color: devColor }} />
+            <Icon className="w-8 h-8 text-white" />
           </motion.div>
         )}
 
         {/* Title & Badge */}
         <div className="flex-grow">
-          <h3 className="text-2xl font-bold mb-2">{capability.name}</h3>
+          <h3 className="text-2xl font-bold mb-2 text-white">{capability.name}</h3>
           <Badge 
             style={{ 
               backgroundColor: `${complexityColor}20`,
@@ -612,18 +613,18 @@ function CapabilityCard({ capability, index, devColor }: any) {
       </div>
 
       {/* Description */}
-      <p className="text-gray-400 mb-6">{capability.description}</p>
+      <p className="text-gray-300 mb-6">{capability.description}</p>
 
       {/* Timeline */}
       <div className="flex items-center gap-2 text-sm mb-6">
         <Clock className="w-4 h-4" style={{ color: devColor }} />
-        <span className="text-gray-500">Durée: </span>
+        <span className="text-gray-400">Durée: </span>
         <span className="font-semibold" style={{ color: devColor }}>
           {capability.timeline}
         </span>
       </div>
 
-      {/* Deliverables */}
+      {/* Deliverables - OPTIMISÉ: 25% */}
       <div className="space-y-2">
         {capability.deliverables.slice(0, 3).map((deliverable: string, idx: number) => (
           <motion.div
@@ -631,10 +632,15 @@ function CapabilityCard({ capability, index, devColor }: any) {
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
-            className="flex items-center gap-2 text-sm"
+            className="flex items-center gap-2 text-sm p-3 rounded-lg"
+            style={{
+              background: `${devColor}25`,
+              borderLeft: `3px solid ${devColor}`,
+              border: `2px solid ${devColor}40`
+            }}
           >
             <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
-            <span className="text-gray-300">{deliverable}</span>
+            <span className="text-gray-200">{deliverable}</span>
           </motion.div>
         ))}
       </div>
@@ -649,7 +655,7 @@ function CapabilityCard({ capability, index, devColor }: any) {
 }
 
 // ============================================================================
-// USE CASES SECTION - Floating Cards
+// USE CASES SECTION - Floating Cards (OPACITÉ OPTIMISÉE: 50% → 30%)
 // ============================================================================
 function UseCasesSection({ useCases, devColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -718,10 +724,11 @@ function UseCaseCard({ useCase, index, devColor }: any) {
       }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
-        background: `linear-gradient(135deg, ${devColor}15, transparent)`,
-        border: `1px solid ${devColor}40`,
+        background: `linear-gradient(135deg, ${devColor}50, ${devColor}30)`,
+        border: `2px solid ${devColor}70`,
         transformStyle: 'preserve-3d',
-        perspective: '1000px'
+        perspective: '1000px',
+        boxShadow: `0 4px 20px ${devColor}25`
       }}
     >
       {/* Industry Badge */}
@@ -737,12 +744,12 @@ function UseCaseCard({ useCase, index, devColor }: any) {
       </Badge>
 
       {/* Title */}
-      <h3 className="text-2xl font-bold mb-4 group-hover:translate-x-2 transition-transform">
+      <h3 className="text-2xl font-bold mb-4 group-hover:translate-x-2 transition-transform text-white">
         {useCase.title}
       </h3>
 
       {/* Description */}
-      <p className="text-gray-400 mb-6 leading-relaxed">
+      <p className="text-gray-300 mb-6 leading-relaxed">
         {useCase.description}
       </p>
 
@@ -798,7 +805,7 @@ function UseCaseCard({ useCase, index, devColor }: any) {
 }
 
 // ============================================================================
-// QUICK WINS SECTION - Accordion Style
+// QUICK WINS SECTION - Accordion Style (OPACITÉ OPTIMISÉE: 50% → 30%)
 // ============================================================================
 function QuickWinsSection({ quickWins, devColor }: any) {
   const [expandedWin, setExpandedWin] = useState<string | null>(null);
@@ -857,9 +864,10 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
       className="rounded-2xl overflow-hidden"
       style={{
         background: isExpanded
-          ? `linear-gradient(135deg, ${COLORS.success}15, transparent)`
-          : `linear-gradient(135deg, ${COLORS.success}08, transparent)`,
-        border: `1px solid ${isExpanded ? COLORS.success : `${COLORS.success}30`}`
+          ? `linear-gradient(135deg, ${COLORS.success}50, ${COLORS.success}30)`
+          : `linear-gradient(135deg, ${COLORS.success}50, ${COLORS.success}30)`,
+        border: `2px solid ${isExpanded ? COLORS.success : `${COLORS.success}70`}`,
+        boxShadow: `0 4px 20px ${COLORS.success}25`
       }}
     >
       {/* Header - Clickable */}
@@ -873,7 +881,7 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
           {/* Title & Badge */}
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h3 className="text-xl font-bold">{win.title}</h3>
+              <h3 className="text-xl font-bold text-white">{win.title}</h3>
               <Badge 
                 style={{
                   backgroundColor: COLORS.success,
@@ -910,11 +918,11 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
         className="overflow-hidden"
       >
         <div className="px-6 pb-6 pt-2 space-y-2">
-          <p className="text-gray-400">
+          <p className="text-gray-300">
             <Clock className="w-4 h-4 inline mr-2" style={{ color: COLORS.success }} />
             {win.timeframe}
           </p>
-          <p className="text-gray-400">
+          <p className="text-gray-300">
             <span className="font-semibold">Investissement:</span> {win.investment}
           </p>
         </div>
@@ -924,7 +932,7 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
 }
 
 // ============================================================================
-// CTA SECTION
+// CTA SECTION (OPACITÉ OPTIMISÉE: 60% → 40%)
 // ============================================================================
 function CTASection({ devColor }: { devColor: string }) {
   return (
@@ -954,6 +962,12 @@ function CTASection({ devColor }: { devColor: string }) {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="relative p-16 rounded-[2rem] overflow-hidden"
+          style={{
+            background: `linear-gradient(135deg, ${devColor}60, ${devColor}40)`,
+            border: `3px solid ${devColor}80`,
+            boxShadow: `0 8px 40px ${devColor}30`
+          }}
         >
           {/* Icon */}
           <motion.div
@@ -967,16 +981,16 @@ function CTASection({ devColor }: { devColor: string }) {
               ease: "linear"
             }}
           >
-            <Terminal className="w-16 h-16" style={{ color: devColor }} />
+            <Terminal className="w-16 h-16 text-white" />
           </motion.div>
 
           {/* Title */}
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Prêt à <span style={{ color: devColor }}>coder</span> l'avenir ?
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+            Prêt à <span style={{ color: '#0A0A0F' }}>coder</span> l'avenir ?
           </h2>
 
           {/* Description */}
-          <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 mb-12 max-w-3xl mx-auto">
             Transformez votre vision en application concrète. 
             Notre équipe de développeurs experts est prête à relever vos défis.
           </p>
@@ -988,8 +1002,9 @@ function CTASection({ devColor }: { devColor: string }) {
                 size="lg"
                 className="group text-lg px-8 py-6"
                 style={{ 
-                  backgroundColor: devColor,
-                  color: 'white'
+                  backgroundColor: '#0A0A0F',
+                  color: devColor,
+                  border: `2px solid ${devColor}`
                 }}
               >
                 <Code className="w-5 h-5 mr-2" />
@@ -1003,8 +1018,9 @@ function CTASection({ devColor }: { devColor: string }) {
                 variant="outline"
                 className="text-lg px-8 py-6"
                 style={{ 
-                  borderColor: devColor,
-                  color: devColor
+                  borderColor: '#0A0A0F',
+                  color: '#0A0A0F',
+                  backgroundColor: `${devColor}30`
                 }}
               >
                 <GitBranch className="w-5 h-5 mr-2" />
@@ -1032,8 +1048,8 @@ function CTASection({ devColor }: { devColor: string }) {
                 whileHover={{ scale: 1.1, y: -5 }}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg"
                 style={{
-                  backgroundColor: `${devColor}15`,
-                  border: `1px solid ${devColor}30`
+                  backgroundColor: `${devColor}25`,
+                  border: `1px solid ${devColor}50`
                 }}
               >
                 <item.icon className="w-5 h-5" style={{ color: devColor }} />
