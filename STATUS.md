@@ -1,8 +1,8 @@
 # 📊 DAINAMICS - État du Projet
 
 **Type:** Suivi  
-**Version:** 1.0  
-**Dernière MAJ:** 11 Octobre 2025  
+**Version:** 1.1  
+**Dernière MAJ:** 13 Octobre 2025  
 **Liens Rapides:** [TRANSFORMATION-PLAN](./TRANSFORMATION-PLAN.md) | [PRIORITIES](./PRIORITIES.md) | [CHANGELOG](./CHANGELOG.md)
 
 ---
@@ -14,9 +14,9 @@
 
 ### Progression Globale
 ```
-████████░░░░░░░░░░░░░░░░░░ 33% (8/24 semaines)
+████████░░░░░░░░░░░░░░░░░░ 35% (8.5/24 semaines)
 
-Phase 1: ████████░░ 40% (Semaines 1-4)
+Phase 1: █████████░ 45% (Semaines 1-4)
 Phase 2: ░░░░░░░░░░  0% (Semaines 5-12)
 Phase 3: ░░░░░░░░░░  0% (Semaines 13-24)
 ```
@@ -38,10 +38,14 @@ Transformer le site DAINAMICS en leader de conversion pour PME suisses
 - [x] Workflow développement (WORKFLOW.md)
 
 ### Composants de Base ✅
-- [x] Navigation.tsx (11.8 KB, Commit 0314f61)
-  - 9 items menu (À RÉDUIRE à 6 - voir TRANSFORMATION-PLAN)
-  - Multilingue ready
-  - Mobile responsive
+- [x] **Navigation.tsx** (14.4 KB, Commit 34e77bb) ⭐ **NOUVEAU**
+  - ✅ **6 items menu** (optimal conversion B2B)
+  - ✅ **Redondances éliminées** (Expertise + Solutions → Services)
+  - ✅ **Portfolio → Projets** (renommé)
+  - ✅ **"Notre Approche" créé** (remplace Expertise + À Propos + Process)
+  - Multilingue ready (FR/DE/EN/IT)
+  - Mobile responsive (hamburger accordion)
+  - **Structure:** Services | Projets | Notre Approche | Ressources | Pricing | Contact
 
 ### Données ✅
 - [x] solutions.ts (21.2 KB, Commit 6a193bb)
@@ -50,32 +54,55 @@ Transformer le site DAINAMICS en leader de conversion pour PME suisses
   - Catégories (ia/automatisation/developpement)
   - Complexité (starter/intermediate/advanced)
 
+- [x] portfolio.ts (estimé, en validation)
+  - Projets : LEXAIA, ENKI-REALTY + 3-5 autres
+  - Structure : Client, Challenge, Solution, Technologies, Outcomes
+  - À vérifier si terminé
+
 ### Documentation ✅
-- [x] README.md v2.1 (14.5 KB)
+- [x] README.md v2.3 (Hub central)
 - [x] ARCHITECTURE.md (79.2 KB)
-- [x] INSTRUCTIONS.md v2.1 (16.5 KB)
+- [x] INSTRUCTIONS.md v2.2 (16.5 KB)
 - [x] WORKFLOW.md (14.3 KB)
-- [x] PROMPT-CONTEXT.md (14.6 KB)
-- [x] CHANGELOG.md v2.2 (9.9 KB)
+- [x] PROMPT-CONTEXT.md v2.1 (14.6 KB)
+- [x] CHANGELOG.md v2.3 (9.9 KB)
 - [x] DESIGN-SYSTEM-MANDATORY.md (15.1 KB)
+
+### Documentation Transformation ✅
+- [x] STATUS.md v1.1 (ce fichier) ⭐ **MIS À JOUR**
+- [x] TRANSFORMATION-PLAN.md (29.4 KB)
+- [x] NAVIGATION-ARCHITECTURE.md (24.2 KB)
+- [x] CONTENT-STRATEGY.md (17.2 KB)
+- [x] PRIORITIES.md (17.0 KB)
 
 ---
 
 ## ⏳ En Cours (Semaine 2)
 
-### Données en Développement
-- [⏳] **portfolio.ts** - Claude Code en cours d'exécution
-  - Projets : LEXAIA, ENKI-REALTY + 3-5 autres
-  - Structure : Client, Challenge, Solution, Technologies, Outcomes
-  - Statut : En création
+### Tâches Actives
 
-### Documentation en Cours
-- [⏳] **Transformation Documentation** - Restructuration complète
-  - STATUS.md (ce fichier) ⏳
-  - TRANSFORMATION-PLAN.md ⏹️
-  - NAVIGATION-ARCHITECTURE.md ⏹️
-  - CONTENT-STRATEGY.md ⏹️
-  - PRIORITIES.md ⏹️
+#### Homepage Refonte (Priority P0) ⏳
+- [ ] **Index.tsx** - Refonte complète 8 sections
+  - Section 1: Hero (1 CTA primaire)
+  - Section 2: Métriques Confiance (4 chiffres)
+  - Section 3: Featured Case Studies (2 cas)
+  - Section 4: Client Logos (8-12)
+  - Section 5: Services Overview (4 cards)
+  - Section 6: Swiss Differentiator (3 points)
+  - Section 7: Single Testimonial
+  - Section 8: Final CTA
+  - **Deadline:** 15 Octobre 2025
+
+#### Données Manquantes
+- [ ] **expertise.ts** (Priority P1)
+  - 3 piliers : IA, Automatisation, Développement
+  - Détails techniques + cas d'usage
+  - Structure similaire à solutions.ts
+
+- [ ] **testimonials.ts** (Priority P1)
+  - 8-12 témoignages clients
+  - Photos + citations + métriques
+  - Industries variées
 
 ---
 
@@ -83,18 +110,24 @@ Transformer le site DAINAMICS en leader de conversion pour PME suisses
 
 ### Phase 1 - Semaine 2 (Suite)
 
-#### Données Manquantes (Priority P0)
+#### Pages Critiques (Priority P0)
 ```
-⏹️ expertise.ts
-   └─ 3 piliers : IA, Automatisation, Développement
-   └─ Détails techniques + cas d'usage
-   └─ Structure similaire à solutions.ts
+⏹️ Pricing.tsx complète
+   └─ 4 tiers avec prix transparents
+   └─ FAQ (5-8 questions)
+   └─ Lien calculateur ROI
+   └─ Deadline: 16 Octobre 2025
 
-⏹️ testimonials.ts
-   └─ 8-12 témoignages clients
-   └─ Photos + citations + métriques
-   └─ Industries variées
+⏹️ 4 Pages Services (début)
+   └─ ServiceDiscovery.tsx
+   └─ ServiceDeveloppement.tsx
+   └─ ServiceQuickWins.tsx
+   └─ ServiceEquipe.tsx
+   └─ Deadline: 20 Octobre 2025
+```
 
+#### Données Manquantes (Priority P1)
+```
 ⏹️ integrations.ts
    └─ Partenaires technologiques
    └─ APIs supportées
@@ -106,48 +139,14 @@ Transformer le site DAINAMICS en leader de conversion pour PME suisses
    └─ Inclus/Options détaillés
 ```
 
-#### Navigation (Priority P0)
-```
-⏹️ Réduire menu 9 → 6 items
-   Navigation.tsx actuel : Home, Expertise, Solutions, Portfolio, Resources, À Propos, Pricing, Contact, Legacy
-   
-   Navigation cible : Services, Projets, Notre Approche, Ressources, Pricing, Contact
-   
-   ⚠️ CRITIQUE : Éliminer redondance Expertise/Solutions/Portfolio
-```
-
-#### Homepage (Priority P0)
-```
-⏹️ Refonte complète Index.tsx
-   Sections actuelles → 8 sections optimales
-   
-   Structure cible :
-   1. Hero (1 CTA primaire)
-   2. Metrics Confiance (4 chiffres)
-   3. Featured Case Studies (2 cas)
-   4. Client Logos (8-12)
-   5. Services Overview (4 cards)
-   6. Swiss Differentiator (3 points)
-   7. Single Testimonial
-   8. Final CTA
-```
-
 ### Phase 1 - Semaine 3
 
-#### Pages Services (4 pages)
+#### Pages Notre Approche
 ```
-⏹️ ServiceDiscovery.tsx
-⏹️ ServiceDeveloppement.tsx
-⏹️ ServiceQuickWins.tsx
-⏹️ ServiceEquipe.tsx
-```
-
-#### Page Pricing
-```
-⏹️ Pricing.tsx complète
-   └─ 4 tiers avec prix transparents
-   └─ FAQ (5-8 questions)
-   └─ Lien calculateur ROI
+⏹️ ApprochProcessus.tsx (5 phases détaillées)
+⏹️ ApprochIntegrationIA.tsx (méthodologie)
+⏹️ ApprochStandards.tsx (document public)
+⏹️ ApprochEquipe.tsx (équipe + expertise)
 ```
 
 ### Phase 1 - Semaine 4
@@ -157,30 +156,35 @@ Transformer le site DAINAMICS en leader de conversion pour PME suisses
    └─ Système filtres (3 critères)
    └─ 15-20 projets minimum
 
-⏹️ Notre Approche (4 pages)
-   └─ ApprochProcessus.tsx
-   └─ ApprochIntegrationIA.tsx
-   └─ ApprochStandards.tsx
-   └─ ApprochEquipe.tsx
+⏹️ App.tsx Routes Update
+   └─ Supprimer routes legacy (Expertise, Solutions, Portfolio)
+   └─ Ajouter routes nouvelles (Services/*, Approche/*)
+   └─ Redirections 301
 ```
 
 ---
 
 ## 🚧 Problèmes Identifiés
 
+### ✅ RÉSOLUS
+
+#### ~~1. Redondance Navigation~~ ✅
+**Problème:** Menu actuel avait 3 sections qui parlaient de la même chose
+- ~~Expertise → Technologies offertes~~
+- ~~Solutions → Automatisations offertes~~  
+- ~~Portfolio → Projets réalisés~~
+
+**Solution Appliquée:** Restructuré en 6 items
+- Services (fusionné Expertise + Solutions)
+- Projets (renommé Portfolio)
+- Notre Approche (nouveau, remplace Expertise + À Propos + Process)
+- Ressources, Pricing, Contact (maintenus)
+
+**Status:** ✅ Résolu (Commit 34e77bb, 13 Oct 2025)
+
+---
+
 ### CRITIQUES (P0 - Bloquer Progression)
-
-#### 1. Redondance Navigation ❌
-**Problème:** Menu actuel a 3 sections qui parlent de la même chose
-- Expertise → Technologies offertes
-- Solutions → Automatisations offertes  
-- Portfolio → Projets réalisés
-
-**Impact:** Confusion utilisateur, parcours non-optimal
-
-**Solution:** Restructurer en 6 items (voir NAVIGATION-ARCHITECTURE.md)
-
-**Deadline:** Semaine 2
 
 #### 2. Homepage Non-Optimale ❌
 **Problème:** Structure actuelle ne suit pas patterns de conversion
@@ -192,7 +196,7 @@ Transformer le site DAINAMICS en leader de conversion pour PME suisses
 
 **Solution:** Refonte complète 8 sections (voir TRANSFORMATION-PLAN.md)
 
-**Deadline:** Semaine 2-3
+**Deadline:** 15 Octobre 2025
 
 #### 3. Pas de Pricing Transparent ❌
 **Problème:** Aucun prix visible = friction décision
@@ -201,21 +205,31 @@ Transformer le site DAINAMICS en leader de conversion pour PME suisses
 
 **Solution:** Page Pricing avec ranges (8-15K€ Quick Wins, etc.)
 
-**Deadline:** Semaine 3
+**Deadline:** 16 Octobre 2025
 
 ### IMPORTANTS (P1 - Ralentir Progression)
 
-#### 4. Portfolio Incomplet
-**Statut:** En cours de création
-**Besoin:** Minimum 5 projets complets pour crédibilité
+#### 4. Pages Services Manquantes
+**Problème:** Nouvelle structure navigation pointe vers pages inexistantes
+- /services/discovery
+- /services/developpement
+- /services/quick-wins
+- /services/equipe
 
-#### 5. Contenu "Coming Soon"
-**Problème:** Plusieurs pages marquées "Coming Soon"
-- Glossaire
-- Cas d'Usage
-- Process
+**Impact:** 404 errors, navigation cassée
 
-**Impact:** Site incomplet, pas professionnel
+**Solution:** Créer 4 pages Services avec template standard
+
+**Deadline:** 20 Octobre 2025
+
+#### 5. Routes Legacy à Nettoyer
+**Problème:** App.tsx contient routes obsolètes (Expertise, Solutions, Portfolio ancien)
+
+**Impact:** Confusion, liens cassés
+
+**Solution:** Supprimer routes + Redirections 301
+
+**Deadline:** 25 Octobre 2025
 
 ---
 
@@ -258,42 +272,42 @@ Leads/mois:         20-30 (x3-4)
 
 ### Priorité Immédiate (Faire MAINTENANT)
 
-1. **Terminer portfolio.ts** (En cours Claude Code)
-   - Vérifier structure conforme
-   - Valider 5+ projets complets
-   - Commit + Push
+1. ✅ ~~**Restructurer Navigation.tsx**~~ (Terminé 13 Oct)
+   - ~~Réduire 9 → 6 items~~
+   - ~~Éliminer redondance~~
+   - ~~Tester navigation mobile~~
 
-2. **Créer expertise.ts** (2-3 heures)
+2. **Refonte Homepage Index.tsx** (EN COURS - 4-6 heures)
+   - 8 sections optimales
+   - Composants nouveaux (MetricsConfiance, FeaturedCaseStudies, etc.)
+   - Validation design system
+
+3. **Page Pricing.tsx complète** (2-3 heures)
+   - 4 tiers détaillés
+   - FAQ pricing
+   - CTA calculateur ROI
+
+4. **Créer expertise.ts** (2-3 heures)
    - 3 piliers détaillés
    - Cas d'usage par pilier
    - Différenciation claire
 
-3. **Restructurer Navigation.tsx** (1-2 heures)
-   - Réduire 9 → 6 items
-   - Éliminer redondance
-   - Tester navigation mobile
-
-4. **Refonte Homepage Index.tsx** (4-6 heures)
-   - 8 sections optimales
-   - Composants nouveaux (MetricsConfidence, etc.)
-   - Validation design system
-
 ### Cette Semaine (Semaine 2)
 
-5. **Page Pricing.tsx complète**
-6. **testimonials.ts**
-7. **Début pages Services (4 pages)**
+5. **testimonials.ts** (1-2 heures)
+6. **Début pages Services** (4 pages, 6-8 heures)
+7. **Review & corrections**
 
 ---
 
 ## 📅 Planning 4 Prochaines Semaines
 
-### Semaine 2 (11-17 Oct) - EN COURS
+### Semaine 2 (11-17 Oct) - EN COURS ⏳
 ```
-Lun-Mar : portfolio.ts + expertise.ts ✅
-Mer-Jeu : Navigation + Homepage refonte
-Ven     : Pricing page
-Sam-Dim : testimonials.ts + review
+✅ Lun-Mar : Documentation transformation + Navigation refonte
+⏳ Mer-Jeu : Homepage refonte (8 sections)
+⏹️ Ven     : Pricing page
+⏹️ Sam-Dim : testimonials.ts + expertise.ts
 ```
 
 ### Semaine 3 (18-24 Oct)
@@ -307,7 +321,7 @@ Sam-Dim : Review + corrections
 ```
 Lun-Mar : Notre Approche (2/4 restantes)
 Mer-Jeu : Projets.tsx avec filtres
-Ven     : integrations.ts + pricingPackages.ts
+Ven     : integrations.ts + pricingPackages.ts + Routes cleanup
 Sam-Dim : Review Phase 1 complète
 ```
 
@@ -324,7 +338,7 @@ Sam-Dim : Tests + ajustements
 
 ### Documentation Projet
 - [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan complet 24 semaines
-- [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure menu optimale
+- [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure menu optimale ✅
 - [PRIORITIES.md](./PRIORITIES.md) - Tableau priorisation P0/P1/P2/P3
 - [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - Guidelines contenu
 
@@ -341,6 +355,34 @@ Sam-Dim : Tests + ajustements
 
 ## 💬 Notes & Décisions
 
+### Décisions Prises (13 Oct 2025)
+
+#### ✅ Navigation Restructurée (Commit 34e77bb)
+**Décision:** Menu réduit 9 → 6 items
+**Structure finale:** Services | Projets | Notre Approche | Ressources | Pricing | Contact
+
+**Justification:** 
+- Patterns leaders internationaux (Zapier 5 items, Boldare 6 items, Netguru 6 items)
+- Élimination totale redondances (Expertise + Solutions fusionnés)
+- Organisation par type d'engagement (Discovery, Dev, Support) > par technologie
+- 2 niveaux max = optimal PME B2B
+
+**Impact attendu:** 
+- -15% bounce rate (parcours plus clair)
+- +20% temps sur site (navigation intuitive)
+- +10% conversion (friction réduite)
+
+#### Pricing Transparent
+**Décision:** Afficher ranges de prix publiquement
+- Discovery: 5-12K€
+- Quick Wins: 8-15K€
+- Custom: 25-75K€
+- Équipe: 7K€/mois
+
+**Raison:** Différenciation marché suisse (0% concurrents montrent prix)
+
+**Status:** À implémenter (Deadline 16 Oct)
+
 ### Décisions Prises (11 Oct 2025)
 
 #### Restructuration Documentation
@@ -353,20 +395,7 @@ Sam-Dim : Tests + ajustements
 
 **Raison:** Éviter duplication, single source of truth
 
-#### Architecture Navigation
-**Décision:** Réduire menu 9 → 6 items
-**Structure cible:** Services | Projets | Notre Approche | Ressources | Pricing | Contact
-
-**Raison:** Patterns leaders internationaux (Zapier, Boldare, Netguru)
-
-#### Pricing Transparent
-**Décision:** Afficher ranges de prix publiquement
-- Discovery: 5-12K€
-- Quick Wins: 8-15K€
-- Custom: 25-75K€
-- Équipe: 7K€/mois
-
-**Raison:** Différenciation marché suisse (0% concurrents montrent prix)
+**Status:** ✅ Complété
 
 ### Questions En Suspens
 
@@ -399,9 +428,11 @@ Sam-Dim : Tests + ajustements
 
 ---
 
-**Dernière mise à jour:** 11 Octobre 2025 - 16:30 CET  
-**Prochaine review:** 13 Octobre 2025  
+**Dernière mise à jour:** 13 Octobre 2025 - 15:35 CET  
+**Prochaine review:** 15 Octobre 2025  
 **Responsable:** Équipe DAINAMICS
+
+**Dernière action:** ✅ Navigation.tsx restructuré 9→6 items (Commit 34e77bb)
 
 ---
 
