@@ -260,7 +260,7 @@ const COMPLEXITY_COLORS = {
 3. **ARCHITECTURE.md** (81 KB, 3397 lignes)
 4. **PROMPT-CONTEXT.md v2.1** (nouveau workflow)
 5. **INSTRUCTIONS.md v2.2** (ce document)
-6. **CHANGELOG.md v2.2**
+6. **CHANGELOG.md v2.3**
 
 ### Ordre de Lecture Mis à Jour (NOUVEAU)
 
@@ -524,8 +524,8 @@ src/
 - **Index.tsx** - Référence layouts et animations ⭐
 
 ### Externes
-- **Lucide**: https://lucide.dev (v0.263.1)
-- **Tailwind**: https://tailwindcss.com/docs
+- **Lucide Icons**: https://lucide.dev (v0.263.1)
+- **Tailwind CSS**: https://tailwindcss.com/docs
 - **Framer Motion**: https://www.framer.com/motion
 
 ---
