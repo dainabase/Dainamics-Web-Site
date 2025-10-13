@@ -1,7 +1,7 @@
 // src/pages/ExpertiseDeveloppement.tsx
-// Développement - Page d'Expertise OPTIMISÉE
+// Développement - Page d'Expertise PROFESSIONNELLE (Style sobre comme ExpertiseIA)
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
-// Performance: 60fps garanti - Grid orange supprimé, opacités optimisées
+// Performance: 60fps garanti - Animations simplifiées, design professionnel
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
@@ -28,11 +28,8 @@ import {
   Target,
   Award,
   CheckCircle,
-  Layers,
-  Cloud,
   Smartphone,
   Globe,
-  Server,
   Package,
   GitBranch,
   Zap,
@@ -41,7 +38,6 @@ import {
 
 export default function ExpertiseDeveloppement() {
   const pillar = getPillarByCategory('developpement');
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   if (!pillar) {
     return (
@@ -66,35 +62,12 @@ export default function ExpertiseDeveloppement() {
       <EnhancedGridBackground />
       <Navigation />
       
-      {/* Sticky Progress Bar */}
-      <ScrollProgressBar />
-      
-      {/* Hero Section - Code Animation */}
       <HeroSection pillar={pillar} devColor={devColor} />
-      
-      {/* Metrics Section - Parallax Cards */}
       <MetricsSection metrics={pillar.metrics} devColor={devColor} />
-      
-      {/* Technologies Section - MORPHING GRID */}
-      <TechnologiesSection 
-        technologies={pillar.technologies}
-        devColor={devColor}
-      />
-      
-      {/* Capabilities Section - PARALLAX LAYERS */}
-      <CapabilitiesSection 
-        capabilities={pillar.capabilities} 
-        devColor={devColor}
-        sectionRefs={sectionRefs}
-      />
-      
-      {/* Use Cases - Floating Cards */}
+      <TechnologiesSection technologies={pillar.technologies} devColor={devColor} />
+      <CapabilitiesSection capabilities={pillar.capabilities} devColor={devColor} />
       <UseCasesSection useCases={pillar.useCases} devColor={devColor} />
-      
-      {/* Quick Wins - Accordion Style */}
       <QuickWinsSection quickWins={pillar.quickWins} devColor={devColor} />
-      
-      {/* CTA Section */}
       <CTASection devColor={devColor} />
       
       <Footer />
@@ -103,21 +76,7 @@ export default function ExpertiseDeveloppement() {
 }
 
 // ============================================================================
-// SCROLL PROGRESS BAR - STICKY TOP
-// ============================================================================
-function ScrollProgressBar() {
-  const { scrollYProgress } = useScroll();
-  
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-dainamics-cta via-dainamics-primary to-dainamics-accent z-50 origin-left"
-      style={{ scaleX: scrollYProgress }}
-    />
-  );
-}
-
-// ============================================================================
-// HERO SECTION - Floating Code Blocks (GRID ORANGE SUPPRIMÉ)
+// HERO SECTION - Simple & Professional (comme ExpertiseIA)
 // ============================================================================
 function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
   const heroRef = useRef<HTMLElement>(null);
@@ -126,83 +85,80 @@ function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
     offset: ["start start", "end start"]
   });
   
-  const codeY = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const codeSnippets = [
-    { code: '<App />', x: '10%', y: '20%', delay: 0 },
-    { code: 'const', x: '80%', y: '30%', delay: 0.2 },
-    { code: '{ }', x: '15%', y: '70%', delay: 0.4 },
-    { code: '=>', x: '85%', y: '65%', delay: 0.6 }
-  ];
-
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-32">
-      {/* Floating Code Snippets */}
-      <div className="absolute inset-0 pointer-events-none">
-        {codeSnippets.map((snippet, i) => (
-          <motion.div
-            key={i}
-            className="absolute font-mono text-4xl font-bold opacity-10"
-            style={{ 
-              left: snippet.x, 
-              top: snippet.y,
-              color: devColor,
-              y: codeY
-            }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 0.1, scale: 1 }}
-            transition={{ duration: 1, delay: snippet.delay }}
-          >
-            {snippet.code}
-          </motion.div>
-        ))}
-      </div>
-
-      {/* ⚠️ GRID ORANGE SUPPRIMÉ - On garde uniquement EnhancedGridBackground */}
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
+      {/* Gradient Glow Background - Sobre comme ExpertiseIA */}
+      <motion.div 
+        className="absolute inset-0"
+        animate={{
+          background: [
+            `radial-gradient(circle at 30% 50%, ${devColor}20, transparent 50%)`,
+            `radial-gradient(circle at 70% 50%, ${devColor}20, transparent 50%)`,
+            `radial-gradient(circle at 30% 50%, ${devColor}20, transparent 50%)`,
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
 
       {/* Content */}
       <motion.div 
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
         style={{ opacity }}
       >
-        {/* Badge - OPTIMISÉ: 90% → 70% comme ExpertiseIA */}
+        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full mb-8"
           style={{ 
             background: `linear-gradient(135deg, ${devColor}90, ${devColor}70)`,
             border: `2px solid ${devColor}`,
             boxShadow: `0 4px 20px ${devColor}40`
           }}
         >
-          <Code className="w-4 h-4 text-white" />
-          <span className="text-sm font-medium text-white">
+          <Code className="w-5 h-5 text-white" />
+          <span className="text-sm font-semibold text-white">
             {pillar.name}
           </span>
         </motion.div>
 
-        {/* Title with Terminal Effect */}
-        <motion.div
+        {/* Title */}
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-6xl md:text-7xl font-bold mb-6 leading-tight"
         >
-          <h1 className="text-6xl md:text-7xl font-bold leading-tight">
-            <span className="font-mono" style={{ color: devColor }}>&gt;</span>{' '}
-            {pillar.tagline}
-          </h1>
-        </motion.div>
+          {pillar.tagline.split(' ').map((word: string, i: number) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
+              className="inline-block mr-4"
+              style={{ 
+                color: i % 3 === 0 ? devColor : 'inherit',
+                filter: i % 3 === 0 ? `drop-shadow(0 0 20px ${devColor}60)` : 'none'
+              }}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </motion.h1>
 
         {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
+          className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
         >
           {pillar.description}
         </motion.p>
@@ -215,31 +171,46 @@ function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
           className="flex items-center justify-center gap-4 flex-wrap"
         >
           <Link to="/contact">
-            <Button 
-              size="lg" 
-              className="group"
-              style={{ 
-                backgroundColor: devColor,
-                color: 'white'
-              }}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              <Terminal className="w-5 h-5 mr-2" />
-              Démarrer un Projet
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
-            </Button>
+              <Button 
+                size="lg" 
+                className="group"
+                style={{ 
+                  background: `linear-gradient(135deg, ${devColor}, ${devColor}dd)`,
+                  color: 'white',
+                  border: '2px solid rgba(255,255,255,0.15)',
+                  boxShadow: `0 4px 20px ${devColor}60`
+                }}
+              >
+                <Terminal className="w-5 h-5 mr-2" />
+                Démarrer un Projet
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+              </Button>
+            </motion.div>
           </Link>
           <Link to="/portfolio">
-            <Button 
-              size="lg" 
-              variant="outline"
-              style={{ 
-                borderColor: devColor,
-                color: devColor
-              }}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              <GitBranch className="w-5 h-5 mr-2" />
-              Voir le Portfolio
-            </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                style={{ 
+                  background: `${devColor}30`,
+                  borderColor: `${devColor}60`,
+                  color: 'white',
+                  borderWidth: '2px'
+                }}
+              >
+                Voir Nos Projets
+              </Button>
+            </motion.div>
           </Link>
         </motion.div>
       </motion.div>
@@ -248,14 +219,11 @@ function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
 }
 
 // ============================================================================
-// METRICS SECTION - Parallax Cards (OPACITÉ OPTIMISÉE: 60% → 40%)
+// METRICS SECTION - Simplifié comme ExpertiseIA
 // ============================================================================
 function MetricsSection({ metrics, devColor }: { metrics: any; devColor: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   const metricsArray = [
     { label: metrics.yearsExperience.label, value: metrics.yearsExperience.value, icon: Award },
@@ -265,97 +233,53 @@ function MetricsSection({ metrics, devColor }: { metrics: any; devColor: string 
   ];
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 relative">
+    <section ref={sectionRef} className="py-24 px-6 relative">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {metricsArray.map((metric, index) => {
-            // Different parallax speed for each card
-            const y = useTransform(
-              scrollYProgress, 
-              [0, 1], 
-              [100 - index * 20, -100 + index * 20]
-            );
+        <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {metricsArray.map((metric, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.15,
+                ease: [0.22, 1, 0.36, 1]
+              }}
+              whileHover={{ y: -8 }}
+              className="relative p-8 rounded-3xl group transition-all duration-300 cursor-pointer"
+              style={{
+                background: `linear-gradient(135deg, ${devColor}60, ${devColor}40)`,
+                border: `2px solid ${devColor}80`,
+                boxShadow: `0 4px 20px rgba(0,0,0,0.3)`
+              }}
+            >
+              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }} className="mb-4">
+                <metric.icon className="w-10 h-10 text-white" style={{ filter: `drop-shadow(0 0 8px ${devColor})` }} />
+              </motion.div>
 
-            return (
-              <MetricCard 
-                key={index}
-                metric={metric}
-                index={index}
-                devColor={devColor}
-                y={y}
-              />
-            );
-          })}
-        </div>
+              <motion.div
+                initial={{ scale: 0.5 }}
+                animate={isInView ? { scale: 1 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.15 + 0.2 }}
+                className="text-5xl font-bold mb-2 text-white"
+              >
+                {metric.value}
+              </motion.div>
+
+              <div className="text-sm text-gray-200 font-medium">
+                {metric.label}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function MetricCard({ metric, index, devColor, y }: any) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.5 });
-
-  return (
-    <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, rotateY: -45 }}
-      animate={isInView ? { opacity: 1, rotateY: 0 } : {}}
-      transition={{
-        duration: 0.8,
-        delay: index * 0.15,
-        ease: [0.22, 1, 0.36, 1]
-      }}
-      whileHover={{
-        scale: 1.05,
-        rotateY: 10,
-        z: 50
-      }}
-      className="relative p-8 rounded-2xl group cursor-pointer"
-      style={{
-        y,
-        background: `linear-gradient(135deg, ${devColor}60, ${devColor}40)`,
-        border: `2px solid ${devColor}80`,
-        transformStyle: 'preserve-3d',
-        perspective: '1000px',
-        boxShadow: `0 4px 20px rgba(0,0,0,0.3)`
-      }}
-    >
-      {/* Animated Background */}
-      <motion.div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{
-          background: `radial-gradient(circle at center, ${devColor}20, transparent)`
-        }}
-      />
-
-      {/* Icon */}
-      <motion.div
-        whileHover={{ rotate: 360, scale: 1.2 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 mb-4"
-      >
-        <metric.icon className="w-12 h-12" style={{ color: devColor }} />
-      </motion.div>
-
-      {/* Value */}
-      <motion.div
-        className="relative z-10 text-5xl font-bold mb-2"
-        style={{ color: devColor }}
-      >
-        {metric.value}
-      </motion.div>
-
-      {/* Label */}
-      <div className="relative z-10 text-sm text-gray-400">
-        {metric.label}
-      </div>
-    </motion.div>
-  );
-}
-
 // ============================================================================
-// TECHNOLOGIES SECTION - MORPHING GRID (OPACITÉ OPTIMISÉE: 40% → 25%)
+// TECHNOLOGIES SECTION - Simplifié (pas de morphing excessif)
 // ============================================================================
 function TechnologiesSection({ technologies, devColor }: any) {
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
@@ -380,7 +304,7 @@ function TechnologiesSection({ technologies, devColor }: any) {
           </p>
         </motion.div>
 
-        {/* Morphing Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {technologies.map((tech: any, index: number) => (
             <TechnologyCard 
@@ -406,34 +330,27 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-      animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ 
-        duration: 0.8, 
+        duration: 0.5, 
         delay: index * 0.05,
         ease: [0.22, 1, 0.36, 1]
       }}
-      whileHover={{ 
-        scale: 1.1,
-        rotate: 5,
-        zIndex: 10
-      }}
+      whileHover={{ y: -8, scale: 1.05 }}
       onHoverStart={() => onHover(tech.name)}
       onHoverEnd={() => onHover(null)}
-      className="relative p-6 rounded-xl group cursor-pointer overflow-hidden"
+      className="relative p-6 rounded-xl group cursor-pointer overflow-hidden transition-all duration-300"
       style={{
-        background: isHovered 
-          ? `linear-gradient(135deg, ${devColor}40, ${devColor}25)`
-          : `linear-gradient(135deg, ${devColor}40, ${devColor}25)`,
+        background: `linear-gradient(135deg, ${devColor}40, ${devColor}25)`,
         border: `2px solid ${isHovered ? devColor : `${devColor}60`}`,
-        transition: 'all 0.3s ease',
         boxShadow: '0 2px 12px rgba(0,0,0,0.2)'
       }}
     >
       {/* Icon */}
       {Icon && (
         <motion.div
-          animate={isHovered ? { scale: 1.2, rotate: 360 } : { scale: 1, rotate: 0 }}
+          whileHover={{ rotate: 360 }}
           transition={{ duration: 0.6 }}
           className="mb-4"
         >
@@ -457,55 +374,19 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
       >
         {tech.category}
       </Badge>
-
-      {/* Glow Effect */}
-      {isHovered && (
-        <motion.div
-          className="absolute inset-0 blur-xl -z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          style={{ backgroundColor: `${devColor}30` }}
-        />
-      )}
     </motion.div>
   );
 }
 
 // ============================================================================
-// CAPABILITIES SECTION - PARALLAX LAYERS (OPACITÉ OPTIMISÉE: 50% → 30%)
+// CAPABILITIES SECTION - Simplifié (FILIGRANES SUPPRIMÉS)
 // ============================================================================
-function CapabilitiesSection({ capabilities, devColor, sectionRefs }: any) {
+function CapabilitiesSection({ capabilities, devColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const layerY1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const layerY2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const layerY3 = useTransform(scrollYProgress, [0, 1], [0, -300]);
 
   return (
     <section ref={sectionRef} className="py-32 px-6 relative overflow-hidden">
-      {/* Parallax Background Layers */}
-      <motion.div 
-        style={{ y: layerY1 }}
-        className="absolute inset-0 opacity-5"
-      >
-        <Layers className="w-96 h-96 absolute top-20 left-10" style={{ color: devColor }} />
-      </motion.div>
-      <motion.div 
-        style={{ y: layerY2 }}
-        className="absolute inset-0 opacity-5"
-      >
-        <Cloud className="w-80 h-80 absolute top-40 right-20" style={{ color: devColor }} />
-      </motion.div>
-      <motion.div 
-        style={{ y: layerY3 }}
-        className="absolute inset-0 opacity-5"
-      >
-        <Server className="w-72 h-72 absolute bottom-20 left-1/3" style={{ color: devColor }} />
-      </motion.div>
+      {/* ⚠️ FILIGRANES ORANGE SUPPRIMÉS (Layers, Cloud, Server) */}
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title */}
@@ -546,47 +427,31 @@ function CapabilityCard({ capability, index, devColor }: any) {
   const Icon = iconMapper[capability.icon];
   const complexityColor = complexityColors[capability.complexity];
 
-  // Alternate side animation
-  const fromLeft = index % 2 === 0;
-
   return (
     <motion.div
       ref={cardRef}
-      initial={{ 
-        opacity: 0, 
-        x: fromLeft ? -100 : 100,
-        rotateY: fromLeft ? -30 : 30
-      }}
-      animate={isInView ? { 
-        opacity: 1, 
-        x: 0,
-        rotateY: 0
-      } : {}}
+      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ 
         duration: 0.8, 
         delay: (index % 2) * 0.2,
         ease: [0.22, 1, 0.36, 1]
       }}
-      whileHover={{ 
-        scale: 1.03,
-        y: -10,
-        rotateY: 5
-      }}
+      whileHover={{ y: -4 }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
         background: `linear-gradient(135deg, ${devColor}50, ${devColor}30)`,
         border: `2px solid ${devColor}70`,
-        transformStyle: 'preserve-3d',
         boxShadow: `0 4px 20px ${devColor}25`
       }}
     >
       {/* Header */}
       <div className="flex items-start gap-6 mb-6">
-        {/* Icon - OPTIMISÉ: 80% → 60% */}
+        {/* Icon */}
         {Icon && (
           <motion.div
-            whileHover={{ scale: 1.2, rotate: 360 }}
-            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.2 }}
             className="flex-shrink-0 p-4 rounded-xl"
             style={{ 
               background: `linear-gradient(135deg, ${devColor}80, ${devColor}60)`,
@@ -624,7 +489,7 @@ function CapabilityCard({ capability, index, devColor }: any) {
         </span>
       </div>
 
-      {/* Deliverables - OPTIMISÉ: 25% */}
+      {/* Deliverables */}
       <div className="space-y-2">
         {capability.deliverables.slice(0, 3).map((deliverable: string, idx: number) => (
           <motion.div
@@ -644,18 +509,12 @@ function CapabilityCard({ capability, index, devColor }: any) {
           </motion.div>
         ))}
       </div>
-
-      {/* Hover Glow */}
-      <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-2xl -z-10"
-        style={{ backgroundColor: `${devColor}15` }}
-      />
     </motion.div>
   );
 }
 
 // ============================================================================
-// USE CASES SECTION - Floating Cards (OPACITÉ OPTIMISÉE: 50% → 30%)
+// USE CASES SECTION - Simplifié
 // ============================================================================
 function UseCasesSection({ useCases, devColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -702,32 +561,18 @@ function UseCaseCard({ useCase, index, devColor }: any) {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ 
-        opacity: 0, 
-        y: 100,
-        rotateX: -45
-      }}
-      animate={isInView ? { 
-        opacity: 1, 
-        y: 0,
-        rotateX: 0
-      } : {}}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ 
         duration: 0.8, 
         delay: index * 0.15,
         ease: [0.22, 1, 0.36, 1]
       }}
-      whileHover={{ 
-        y: -15,
-        rotateX: 5,
-        scale: 1.03
-      }}
+      whileHover={{ y: -8 }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
         background: `linear-gradient(135deg, ${devColor}50, ${devColor}30)`,
         border: `2px solid ${devColor}70`,
-        transformStyle: 'preserve-3d',
-        perspective: '1000px',
         boxShadow: `0 4px 20px ${devColor}25`
       }}
     >
@@ -744,7 +589,7 @@ function UseCaseCard({ useCase, index, devColor }: any) {
       </Badge>
 
       {/* Title */}
-      <h3 className="text-2xl font-bold mb-4 group-hover:translate-x-2 transition-transform text-white">
+      <h3 className="text-2xl font-bold mb-4 text-white group-hover:translate-x-2 transition-transform">
         {useCase.title}
       </h3>
 
@@ -783,29 +628,12 @@ function UseCaseCard({ useCase, index, devColor }: any) {
           <span style={{ color: COLORS.success }}>{useCase.roi.efficiency}</span>
         </motion.div>
       </div>
-
-      {/* Floating Effect on Hover */}
-      <motion.div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 -z-10"
-        style={{
-          background: `radial-gradient(circle at center, ${devColor}20, transparent)`,
-          filter: 'blur(20px)'
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
     </motion.div>
   );
 }
 
 // ============================================================================
-// QUICK WINS SECTION - Accordion Style (OPACITÉ OPTIMISÉE: 50% → 30%)
+// QUICK WINS SECTION - Simplifié
 // ============================================================================
 function QuickWinsSection({ quickWins, devColor }: any) {
   const [expandedWin, setExpandedWin] = useState<string | null>(null);
@@ -863,9 +691,7 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="rounded-2xl overflow-hidden"
       style={{
-        background: isExpanded
-          ? `linear-gradient(135deg, ${COLORS.success}50, ${COLORS.success}30)`
-          : `linear-gradient(135deg, ${COLORS.success}50, ${COLORS.success}30)`,
+        background: `linear-gradient(135deg, ${COLORS.success}50, ${COLORS.success}30)`,
         border: `2px solid ${isExpanded ? COLORS.success : `${COLORS.success}70`}`,
         boxShadow: `0 4px 20px ${COLORS.success}25`
       }}
@@ -877,8 +703,6 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
         whileHover={{ x: 8 }}
       >
         <div className="flex items-center gap-4 flex-grow">
-
-          {/* Title & Badge */}
           <div>
             <div className="flex items-center gap-3 mb-1">
               <h3 className="text-xl font-bold text-white">{win.title}</h3>
@@ -932,33 +756,29 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
 }
 
 // ============================================================================
-// CTA SECTION (OPACITÉ OPTIMISÉE: 60% → 40%)
+// CTA SECTION - Simplifié (BACKGROUND RAYÉ SUPPRIMÉ)
 // ============================================================================
 function CTASection({ devColor }: { devColor: string }) {
   return (
     <section className="py-32 px-6 relative overflow-hidden">
-      {/* Animated Code Background */}
-      <div className="absolute inset-0 opacity-5">
+      {/* ⚠️ BACKGROUND RAYÉ SUPPRIMÉ - Gradient simple comme ExpertiseIA */}
+      <div className="absolute inset-0">
         <motion.div
+          className="absolute inset-0"
           animate={{
-            backgroundPosition: ['0% 0%', '100% 100%']
+            background: [
+              `radial-gradient(circle at 20% 50%, ${devColor}15, transparent 50%)`,
+              `radial-gradient(circle at 80% 50%, ${devColor}15, transparent 50%)`,
+              `radial-gradient(circle at 20% 50%, ${devColor}15, transparent 50%)`
+            ]
           }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="w-full h-full"
-          style={{
-            backgroundImage: `repeating-linear-gradient(45deg, ${devColor} 0, ${devColor} 1px, transparent 0, transparent 50%)`,
-            backgroundSize: '10px 10px'
-          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      <div className="max-w-5xl mx-auto text-center relative z-10">
+      <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
@@ -969,29 +789,23 @@ function CTASection({ devColor }: { devColor: string }) {
             boxShadow: `0 8px 40px ${devColor}30`
           }}
         >
-          {/* Icon */}
+          {/* Icon - Simple rotation */}
           <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             className="inline-flex mb-8"
-            animate={{ 
-              rotateY: [0, 360],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear"
-            }}
           >
             <Terminal className="w-16 h-16 text-white" />
           </motion.div>
 
           {/* Title */}
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-            Prêt à <span style={{ color: '#0A0A0F' }}>coder</span> l'avenir ?
+            Prêt à transformer votre <span style={{ color: '#0A0A0F' }}>vision</span> ?
           </h2>
 
           {/* Description */}
           <p className="text-xl text-gray-200 mb-12 max-w-3xl mx-auto">
-            Transformez votre vision en application concrète. 
+            Transformez votre idée en application concrète. 
             Notre équipe de développeurs experts est prête à relever vos défis.
           </p>
 
@@ -1040,7 +854,6 @@ function CTASection({ devColor }: { devColor: string }) {
             {[
               { icon: Globe, label: 'Web' },
               { icon: Smartphone, label: 'Mobile' },
-              { icon: Cloud, label: 'Cloud' },
               { icon: Package, label: 'API' }
             ].map((item, i) => (
               <motion.div
