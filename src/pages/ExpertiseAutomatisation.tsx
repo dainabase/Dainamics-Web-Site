@@ -1,7 +1,7 @@
 // src/pages/ExpertiseAutomatisation.tsx
-// Automatisation - Page d'Expertise avec Carousel Technologies
+// Automatisation - Page d'Expertise avec ScrollStack Technologies
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
-// Performance: 60fps garanti - Carousel interactif pour le stack technique
+// Performance: 60fps garanti - ScrollStack élégant pour le stack technique
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import Carousel, { CarouselItem } from '@/components/ui/carousel';
+import ScrollStack, { ScrollStackItem } from '@/components/ui/scroll-stack';
 import { 
   getPillarByCategory,
   categoryColors,
@@ -66,7 +66,7 @@ export default function ExpertiseAutomatisation() {
       {/* Metrics Section - Cards with Stagger */}
       <MetricsSection metrics={pillar.metrics} autoColor={autoColor} />
       
-      {/* Technologies Section - CAROUSEL */}
+      {/* Technologies Section - SCROLLSTACK */}
       <TechnologiesSection 
         technologies={pillar.technologies}
         autoColor={autoColor}
@@ -371,22 +371,10 @@ function MetricsSection({ metrics, autoColor }: { metrics: any; autoColor: strin
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - CAROUSEL
+// TECHNOLOGIES SECTION - SCROLLSTACK
 // ============================================================================
 function TechnologiesSection({ technologies, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Transform technologies into CarouselItems
-  const carouselItems: CarouselItem[] = technologies.map((tech: any, index: number) => {
-    const Icon = iconMapper[tech.icon];
-    
-    return {
-      id: index,
-      title: tech.name,
-      description: tech.description || `${tech.category} - ${tech.proficiency}`,
-      icon: Icon ? <Icon className="h-[16px] w-[16px] text-white" /> : <Zap className="h-[16px] w-[16px] text-white" />
-    };
-  });
 
   return (
     <section ref={sectionRef} className="py-32 px-6 relative">
@@ -407,31 +395,63 @@ function TechnologiesSection({ technologies, autoColor }: any) {
           </p>
         </motion.div>
 
-        {/* Carousel Container - Centered */}
-        <div className="flex items-center justify-center">
-          <Carousel 
-            items={carouselItems}
-            baseWidth={600}
-            autoplay={true}
-            autoplayDelay={3000}
-            pauseOnHover={true}
-            loop={true}
-            round={false}
-          />
+        {/* ScrollStack Container */}
+        <div className="h-[600px]">
+          <ScrollStack
+            itemDistance={100}
+            itemScale={0.03}
+            itemStackDistance={30}
+            stackPosition="20%"
+            baseScale={0.85}
+            rotationAmount={0}
+            blurAmount={0}
+            useWindowScroll={false}
+          >
+            {technologies.map((tech: any, index: number) => {
+              const Icon = iconMapper[tech.icon];
+              return (
+                <ScrollStackItem
+                  key={tech.name}
+                  itemClassName={`bg-gradient-to-br from-[${autoColor}]/40 to-[${autoColor}]/25 border-2 border-[${autoColor}]/60`}
+                >
+                  {/* Icon */}
+                  {Icon && (
+                    <div className="mb-4 p-3 rounded-lg inline-block" style={{ backgroundColor: `${autoColor}20` }}>
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+                  )}
+                  
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold mb-2 text-white">
+                    {tech.name}
+                  </h3>
+                  
+                  {/* Category + Proficiency */}
+                  <p className="text-sm text-gray-400 mb-3">
+                    {tech.category} • {tech.proficiency}
+                  </p>
+                  
+                  {/* Description */}
+                  <p className="text-gray-300 text-sm">
+                    {tech.description}
+                  </p>
+                  
+                  {/* Projects badge */}
+                  {tech.usedIn.length > 0 && (
+                    <div className="mt-4 text-xs" style={{ color: autoColor }}>
+                      {tech.usedIn.length} projet{tech.usedIn.length > 1 ? 's' : ''}
+                    </div>
+                  )}
+                </ScrollStackItem>
+              );
+            })}
+          </ScrollStack>
         </div>
 
-        {/* Tech Count */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <p className="text-sm text-gray-500">
-            {technologies.length} technologies maîtrisées
-          </p>
-        </motion.div>
+        {/* Tech count */}
+        <p className="text-center mt-8 text-sm text-gray-500">
+          {technologies.length} technologies maîtrisées
+        </p>
       </div>
     </section>
   );
