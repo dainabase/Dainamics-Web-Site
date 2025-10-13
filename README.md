@@ -20,8 +20,55 @@ Après CHAQUE tâche terminée, vous **DEVEZ** :
 
 ## Documentation Complète
 
+### Documentation Transformation (NOUVEAU - 11 Oct 2025)
+
+**Plan de Transformation 24 Semaines** - Restructuration complète du site
+
+1. **[STATUS.md](./STATUS.md)** - Dashboard État Projet
+   - Progression globale (Phase 1: 40%, Phase 2: 0%, Phase 3: 0%)
+   - Ce qui est terminé, en cours, à faire
+   - Problèmes identifiés (redondance navigation, homepage non-optimale)
+   - Métriques de succès (baseline → objectifs)
+   - Prochaines actions prioritaires
+
+2. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Plan Complet 24 Semaines
+   - Diagnostic initial (9 items menu → 6 items)
+   - Vision cible (architecture optimale)
+   - Phase 1: Quick Wins (Semaines 1-4)
+   - Phase 2: Contenu & Différenciation (Semaines 5-12)
+   - Phase 3: Optimisation & Scale (Semaines 13-24)
+   - Checklist finale de validation
+
+3. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure Menu Optimale
+   - Analyse comparative 10 sites référence (Zapier, Boldare, Netguru, etc.)
+   - Patterns récurrents qui marchent vraiment
+   - Recommandations DAINAMICS (6 items, 2 niveaux max)
+   - Parcours navigation idéal visiteur PME
+   - Meilleures pratiques UX/UI actionnables
+
+4. **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** - Guidelines Contenu & Rédaction
+   - Principes fondamentaux (langage business, toujours quantifier)
+   - Tone of Voice DAINAMICS (pragmatique, transparent, accessible)
+   - Structure homepage optimale (8 sections)
+   - Guidelines rédaction (longueurs idéales, structure paragraphes)
+   - Templates pages types (services, cas clients, blog)
+   - Format cas clients optimal
+
+5. **[PRIORITIES.md](./PRIORITIES.md)** - Tableau Priorisation P0/P1/P2/P3
+   - Vue d'ensemble (25 tâches principales)
+   - P0 Critique (8 tâches, Semaines 1-4)
+   - P1 Important (7 tâches, Semaines 5-12)
+   - P2 Utile (6 tâches, Semaines 13-20)
+   - P3 Nice-to-have (4 tâches, Semaines 21-24)
+   - Matrice Impact vs Effort
+
+**Objectif Transformation:** Conversion 2-3% → 5-8% (x2-3 leads qualifiés)
+
+---
+
 ### Ordre de Lecture (IMPORTANT)
 
+**Pour Développement Immédiat:**
 1. **[WORKFLOW.md](./WORKFLOW.md)** 🔴 **LIRE EN PREMIER**
    - Règles de développement strictes
    - Processus Git obligatoire
@@ -29,7 +76,33 @@ Après CHAQUE tâche terminée, vous **DEVEZ** :
    - Format des commits
    - Checklists avant commit
 
-2. **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Document Principal (81KB)
+2. **[STATUS.md](./STATUS.md)** 🆕 **État Actuel Projet**
+   - Où en sommes-nous maintenant
+   - Ce qui est terminé/en cours/à faire
+   - Prochaines actions prioritaires
+
+3. **[PRIORITIES.md](./PRIORITIES.md)** 🆕 **Tableau Priorisation**
+   - Quoi faire en premier (P0)
+   - Impact vs Effort chaque tâche
+
+**Pour Comprendre la Vision:**
+4. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** 🆕 **Plan 24 Semaines**
+   - Vue complète transformation
+   - 3 phases détaillées
+   - Checklist finale
+
+5. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** 🆕 **Structure Menu**
+   - Pourquoi 6 items (pas 9)
+   - Analyse comparative sites leaders
+   - Parcours utilisateur optimal
+
+6. **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** 🆕 **Guidelines Contenu**
+   - Comment écrire (tone of voice)
+   - Templates pages
+   - Formats optimaux
+
+**Pour Spécifications Techniques:**
+7. **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Document Principal (81KB)
    - Vision & Objectifs
    - Architecture Technique & Stack
    - Design System Ultra Détaillé
@@ -40,22 +113,31 @@ Après CHAQUE tâche terminée, vous **DEVEZ** :
    - Guidelines Techniques
    - Checklists Complètes
 
-3. **[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** - Pour nouvelles conversations
+8. **[DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)** - Couleurs & Icônes
+   - Palette exacte à utiliser
+   - CATEGORY_COLORS et COMPLEXITY_COLORS
+   - Icônes Lucide React uniquement
+
+**Pour Nouvelles Conversations:**
+9. **[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** - Contexte Complet
    - Contexte complet du projet
    - Instructions de développement
    - Liens vers tous les documents
 
-4. **[CHANGELOG.md](./CHANGELOG.md)** - Historique des changements
-   - Version 2.0 documentée
-   - Liste des corrections
-   - Prochaines étapes
+**Historique:**
+10. **[CHANGELOG.md](./CHANGELOG.md)** - Historique des changements
+    - Version 2.2 documentée
+    - Liste des corrections
+    - Prochaines étapes
 
 ### Quick Start
 
-1. **LIRE WORKFLOW.md** (OBLIGATOIRE - Règles de développement)
-2. **LIRE ARCHITECTURE.md** (Specs techniques complètes)
-3. **Setup environnement** (voir ci-dessous)
-4. **Développer phase par phase** avec Claude Code
+1. **LIRE STATUS.md** (État actuel - 2 min)
+2. **LIRE PRIORITIES.md** (Ce qu'il faut faire - 5 min)
+3. **LIRE WORKFLOW.md** (OBLIGATOIRE - Règles développement - 10 min)
+4. **LIRE TRANSFORMATION-PLAN.md** (Vision complète - 20 min)
+5. **Setup environnement** (voir ci-dessous)
+6. **Développer phase par phase** avec Claude Code
 
 ---
 
@@ -175,36 +257,36 @@ Voir spécifications détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 
 ## Plan de Développement
 
-### Phase 1: MVP Foundation (Semaines 1-3)
-**Priority 1 : Données** (EN COURS)
-- [ ] Créer 8 fichiers de données dans `/src/data/`
-- [ ] Design System components
-- [ ] Pages core (Expertise, Solutions, Portfolio)
+### NOUVEAU : Plan Transformation 24 Semaines
 
-**Priority 2 : Design System**
-- [ ] Button variants améliorés
-- [ ] Card variants (4 types)
-- [ ] Badge variants (5 types)
-- [ ] SolutionCard, PortfolioCard
+**Consulter [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) pour détails complets**
 
-**Priority 3 : Pages Core**
-- [ ] Page Expertise complète
-- [ ] Page Solutions complète
-- [ ] Page Portfolio complète
+#### Phase 1: Quick Wins (Semaines 1-4) - EN COURS
+**Objectif:** Éliminer redondance, simplifier navigation, homepage optimale
 
-### Phase 2: Content & Features (Semaines 4-5)
-- ROI Calculator interactif
-- Diagnostic IA questionnaire
-- Case Studies détaillés (LEXAIA, ENKI-REALTY)
-- Resources Hub + Blog
-- Glossaire + Use Cases + AI Maturity Assessment
+- [ ] Semaine 1 : Restructuration Navigation (9→6 items)
+- [ ] Semaine 2 : Refonte Homepage (8 sections)
+- [ ] Semaine 3 : Page Pricing Transparente
+- [ ] Semaine 4 : Portfolio → Projets + Filtres
 
-### Phase 3: Polish & Launch (Semaines 6-7)
-- Pages Business (Process, Pricing, About)
-- Contact + AI Chatbot opérationnel
-- SEO + Performance + QA Final
+**État actuel:** Semaine 2 en cours
 
-Voir timeline détaillée dans [ARCHITECTURE.md](./ARCHITECTURE.md) et processus dans [WORKFLOW.md](./WORKFLOW.md)
+#### Phase 2: Contenu & Différenciation (Semaines 5-12)
+**Objectif:** Créer contenu manquant, outils conversion
+
+- Pages Services détaillées (4 pages)
+- Notre Approche (4 pages)
+- Calculateur ROI interactif
+- Assessment Maturité IA
+- Ressources (Glossaire, Cas d'Usage, Blog)
+
+#### Phase 3: Optimisation & Scale (Semaines 13-24)
+**Objectif:** Multilingue, analytics, A/B testing
+
+- Multilingue DE/FR/EN
+- Analytics complet (GA4 + Plausible)
+- A/B Testing (2-3 tests)
+- Portfolio avancé + Video testimonials
 
 ---
 
@@ -238,15 +320,15 @@ Voir timeline détaillée dans [ARCHITECTURE.md](./ARCHITECTURE.md) et processus
 - Modals, Tooltips, Toasts avec animations entrée/sortie
 - Progress bars, Spinners, Accordions
 
-Voir Design System complet ultra-détaillé dans [ARCHITECTURE.md](./ARCHITECTURE.md)
+Voir Design System complet ultra-détaillé dans [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)
 
 ---
 
 ## Projets Portfolio
 
 ### Projets de Référence
-1. **LEXAIA** - [Détails dans ARCHITECTURE.md]
-2. **ENKI-REALTY** - [Détails dans ARCHITECTURE.md]
+1. **LEXAIA** - Chatbot IA Support Client 24/7
+2. **ENKI-REALTY** - Automatisation Gestion Immobilière
 3. +3 à 5 projets additionnels
 
 Chaque projet avec:
@@ -254,22 +336,29 @@ Chaque projet avec:
 - Challenge client
 - Solution implémentée
 - Technologies utilisées
-- Résultats & métriques
+- Résultats & métriques (quantifiés : CHF, %, heures)
 - Témoignage client
+
+Voir [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) pour détails complets cas clients
 
 ---
 
 ## Checklist de Développement
 
 ### Avant de Coder
+- [ ] Lire [STATUS.md](./STATUS.md) (état actuel)
+- [ ] Lire [PRIORITIES.md](./PRIORITIES.md) (priorisation)
 - [ ] Lire [WORKFLOW.md](./WORKFLOW.md) (OBLIGATOIRE)
-- [ ] Lire [ARCHITECTURE.md](./ARCHITECTURE.md) complet
+- [ ] Lire [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) (vision)
 - [ ] Comprendre le positionnement DAINAMICS
 - [ ] Setup Claude Code + environnement local
 - [ ] Configurer Git correctement
 
 ### Pendant le Développement
 - [ ] Suivre [WORKFLOW.md](./WORKFLOW.md) strictement
+- [ ] Consulter [PRIORITIES.md](./PRIORITIES.md) pour ordre tâches
+- [ ] Référencer [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) pour rédaction
+- [ ] Respecter [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)
 - [ ] Respecter la structure de dossiers
 - [ ] Développer mobile-first
 - [ ] Tester animations à 60fps
@@ -284,6 +373,7 @@ Chaque projet avec:
 - [ ] Pas d'emojis dans le code
 - [ ] Noms corrects : LEXAIA, ENKI-REALTY, Claude Code
 - [ ] "IA" utilisé (pas "AI") dans textes français
+- [ ] Gains quantifiés (CHF, %, heures) - voir [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)
 
 ### Avant le Launch
 - [ ] Lighthouse score >90 (Performance, Accessibility, SEO, Best Practices)
@@ -297,7 +387,7 @@ Chaque projet avec:
 - [ ] Cross-browser testing
 - [ ] Security audit
 
-Voir checklists détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md) et [WORKFLOW.md](./WORKFLOW.md)
+Voir checklist finale complète dans [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)
 
 ---
 
@@ -327,8 +417,18 @@ Voir [WORKFLOW.md](./WORKFLOW.md) pour processus Git complet.
 ## Liens Utiles
 
 ### Documentation Projet
+
+**Transformation (Nouveau):**
+- **[STATUS.md](./STATUS.md)** 🆕 - Dashboard état projet
+- **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** 🆕 - Plan 24 semaines
+- **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** 🆕 - Structure menu optimale
+- **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** 🆕 - Guidelines contenu
+- **[PRIORITIES.md](./PRIORITIES.md)** 🆕 - Priorisation P0/P1/P2/P3
+
+**Développement:**
 - **[WORKFLOW.md](./WORKFLOW.md)** 🔴 - Règles de développement (LIRE EN PREMIER)
 - **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Document principal (81KB, ultra-détaillé)
+- **[DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)** - Couleurs & Icônes
 - **[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** - Contexte conversations IA
 - **[CHANGELOG.md](./CHANGELOG.md)** - Historique changements
 
@@ -354,10 +454,15 @@ Voir [WORKFLOW.md](./WORKFLOW.md) pour processus Git complet.
 
 1. **Lire la documentation dans l'ordre**
    ```bash
-   1. WORKFLOW.md (OBLIGATOIRE) - Règles & Processus
-   2. README.md (ce fichier) - Vue d'ensemble
-   3. ARCHITECTURE.md (document principal) - Specs complètes
-   4. PROMPT-CONTEXT.md (pour Claude) - Contexte conversations
+   1. STATUS.md (état actuel) - 5 min
+   2. PRIORITIES.md (priorisation) - 5 min
+   3. WORKFLOW.md (OBLIGATOIRE - règles) - 10 min
+   4. TRANSFORMATION-PLAN.md (vision) - 20 min
+   5. README.md (ce fichier) - Vue d'ensemble
+   6. ARCHITECTURE.md (specs techniques) - 30 min
+   7. DESIGN-SYSTEM-MANDATORY.md (couleurs/icônes) - 5 min
+   8. NAVIGATION-ARCHITECTURE.md (structure menu) - 15 min
+   9. CONTENT-STRATEGY.md (rédaction) - 10 min
    ```
 
 2. **Setup l'environnement**
@@ -373,12 +478,14 @@ Voir [WORKFLOW.md](./WORKFLOW.md) pour processus Git complet.
    claude-code
    
    # Demander à Claude de vous aider
-   # Référencer ARCHITECTURE.md pour specs
-   # Suivre WORKFLOW.md pour processus
+   # Référencer STATUS.md pour état actuel
+   # Suivre PRIORITIES.md pour ordre tâches
+   # Utiliser WORKFLOW.md pour processus
    ```
 
 4. **Suivre le plan d'implémentation**
-   - Phase 1, Priority 1: Créer fichiers de données
+   - Consulter STATUS.md → Section "Prochaines Actions"
+   - Voir PRIORITIES.md → Tableau P0 (Critique)
    - Commit + Push après CHAQUE tâche
    - Attendre validation avant de continuer
    - Utiliser les checklists détaillées
@@ -394,37 +501,61 @@ Voir [WORKFLOW.md](./WORKFLOW.md) pour processus Git complet.
 - Animation Performance: **60fps constant**
 - Accessibility: **WCAG 2.1 AA**
 
-### KPIs Business
-- Taux de conversion: **>5%**
-- Temps moyen sur site: **>3 min**
-- Leads qualifiés/mois: **20-30**
+### KPIs Business (Transformation)
+
+**Baseline Actuel:**
+- Taux de conversion: ~2-3%
+- Bounce rate: ~55-65%
+- Temps moyen sur site: ~1-2 min
+- Pages vues/session: ~2-3
+- Leads qualifiés/mois: ~5-10
+
+**Objectifs Fin Transformation (6 mois):**
+- Taux de conversion: **5-8%** (x2-3)
 - Bounce rate: **<40%**
-- ROI démontré: **Mesurable et trackable**
+- Temps moyen sur site: **>3 min**
+- Pages vues/session: **>4**
+- Leads qualifiés/mois: **20-30** (x3-4)
+
+Voir [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) pour métriques détaillées
 
 ---
 
 ## Support & Questions
 
 ### Utilisation de cette Documentation
-- **Pour les règles de développement**: [WORKFLOW.md](./WORKFLOW.md) (CRITICAL)
-- **Pour la vue d'ensemble**: README.md (ce fichier)
-- **Pour les specs détaillées**: [ARCHITECTURE.md](./ARCHITECTURE.md)
-- **Pour structurer**: Voir WORKFLOW.md (Organisation Repository)
-- **Pour designer**: Voir ARCHITECTURE.md (Design System)
-- **Pour implémenter**: Suivre WORKFLOW.md + ARCHITECTURE.md
-- **Pour la timeline**: Voir Plan de Développement
+
+**Pour État Actuel:**
+- **[STATUS.md](./STATUS.md)** - Où en sommes-nous maintenant
+
+**Pour Planification:**
+- **[PRIORITIES.md](./PRIORITIES.md)** - Quoi faire en priorité
+- **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Plan complet 24 semaines
+
+**Pour Développement:**
+- **[WORKFLOW.md](./WORKFLOW.md)** - Règles strictes (CRITICAL)
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Specs techniques complètes
+
+**Pour Navigation/Contenu:**
+- **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure menu optimale
+- **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** - Comment écrire
+
+**Pour Design:**
+- **[DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)** - Couleurs & Icônes obligatoires
 
 ### Développement avec Claude Code
-1. Lire [WORKFLOW.md](./WORKFLOW.md) en entier
-2. Ouvrir Claude Code dans votre terminal
-3. Référencer ARCHITECTURE.md dans vos prompts
-4. Utiliser les outils MCP:
+1. Lire [STATUS.md](./STATUS.md) (état actuel)
+2. Lire [PRIORITIES.md](./PRIORITIES.md) (priorisation)
+3. Lire [WORKFLOW.md](./WORKFLOW.md) en entier
+4. Ouvrir Claude Code dans votre terminal
+5. Référencer documentation appropriée dans vos prompts
+6. Utiliser les outils MCP:
    - Supabase (base de données, auth, storage)
    - GitHub (version control, CI/CD)
    - Desktop Commander (opérations fichiers système)
-5. Développer tâche par tâche
-6. **Commit + Push après CHAQUE tâche**
-7. Attendre validation avant de continuer
+7. Développer tâche par tâche
+8. **Commit + Push après CHAQUE tâche**
+9. Attendre validation avant de continuer
 
 ### Pour Nouvelles Conversations
 - Utiliser [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)
@@ -436,25 +567,38 @@ Voir [WORKFLOW.md](./WORKFLOW.md) pour processus Git complet.
 ## Let's Build!
 
 Vous avez maintenant:
-- **Règles strictes** de développement ([WORKFLOW.md](./WORKFLOW.md))
-- Documentation complète ultra-détaillée (ARCHITECTURE.md - 81KB)
-- Design System avec specs précises pour chaque component
-- Animations Framer Motion avancées documentées
-- Plan d'implémentation de 7 semaines avec tasks
-- Guidelines techniques (Supabase, Analytics, SEO, etc.)
-- Checklists exhaustives pour chaque phase
-- Stack technique moderne et performant
+- **Dashboard état projet** ([STATUS.md](./STATUS.md))
+- **Plan transformation complet** ([TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - 29KB)
+- **Priorisation claire** ([PRIORITIES.md](./PRIORITIES.md) - 25 tâches)
+- **Architecture navigation optimale** ([NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - 24KB)
+- **Guidelines contenu** ([CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - 17KB)
+- **Règles strictes développement** ([WORKFLOW.md](./WORKFLOW.md))
+- **Documentation technique complète** (ARCHITECTURE.md - 81KB)
+- **Design System précis** (DESIGN-SYSTEM-MANDATORY.md)
+- **Stack technique moderne et performant**
 
 **Prochaine étape**: 
-1. **Lire [WORKFLOW.md](./WORKFLOW.md)** (OBLIGATOIRE)
-2. Lire [ARCHITECTURE.md](./ARCHITECTURE.md) en entier
-3. Setup environnement local
-4. Commencer Phase 1, Priority 1 avec Claude Code
-5. Build something amazing!
+1. **Lire [STATUS.md](./STATUS.md)** (état actuel)
+2. **Lire [PRIORITIES.md](./PRIORITIES.md)** (priorisation)
+3. **Lire [WORKFLOW.md](./WORKFLOW.md)** (OBLIGATOIRE)
+4. **Consulter [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** (vision)
+5. Setup environnement local
+6. Commencer Phase 1 avec Claude Code
+7. Build something amazing!
 
 ---
 
 ## Corrections Apportées
+
+### Version 2.2 - 11 Octobre 2025
+- **Restructuration documentation complète** - Nouveaux documents transformation
+- **Ajout STATUS.md** - Dashboard état projet en temps réel
+- **Ajout TRANSFORMATION-PLAN.md** - Plan complet 24 semaines (3 phases)
+- **Ajout NAVIGATION-ARCHITECTURE.md** - Structure menu optimale (analyse 25+ sites)
+- **Ajout CONTENT-STRATEGY.md** - Guidelines contenu et rédaction
+- **Ajout PRIORITIES.md** - Tableau priorisation P0/P1/P2/P3
+- **Mise à jour README.md** - Hub central vers toute documentation
+- **Ordre lecture réorganisé** - Priorisation selon besoin immédiat
 
 ### Version 2.1 - 11 Octobre 2025
 - **Ajout WORKFLOW.md** - Règles strictes de développement
@@ -475,4 +619,4 @@ Vous avez maintenant:
 
 *DAINAMICS Website - Octobre 2025*  
 *Transforming businesses through IA, Automatisation & Développement*  
-*Développé avec Claude Code - v2.1*
+*Développé avec Claude Code - v2.2*
