@@ -18,126 +18,197 @@ Après CHAQUE tâche terminée, vous **DEVEZ** :
 
 ---
 
-## Documentation Complète
+## 📚 Documentation Structure
 
-### Documentation Transformation (NOUVEAU - 11 Oct 2025)
+Notre documentation est organisée en 5 catégories pour une navigation optimale :
 
-**Plan de Transformation 24 Semaines** - Restructuration complète du site
+### 🗺️ Planification (Vision Long-Terme)
+Documentation stratégique pour comprendre la transformation globale du site.
 
-1. **[STATUS.md](./STATUS.md)** - Dashboard État Projet
-   - Progression globale (Phase 1: 40%, Phase 2: 0%, Phase 3: 0%)
-   - Ce qui est terminé, en cours, à faire
-   - Problèmes identifiés (redondance navigation, homepage non-optimale)
-   - Métriques de succès (baseline → objectifs)
-   - Prochaines actions prioritaires
+- **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** (29.4 KB) - Plan complet 24 semaines
+  - Diagnostic initial (9 items menu → 6 items)
+  - Vision cible (architecture optimale)
+  - Phase 1: Quick Wins (Semaines 1-4)
+  - Phase 2: Contenu & Différenciation (Semaines 5-12)
+  - Phase 3: Optimisation & Scale (Semaines 13-24)
+  - Checklist finale de validation
 
-2. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Plan Complet 24 Semaines
-   - Diagnostic initial (9 items menu → 6 items)
-   - Vision cible (architecture optimale)
-   - Phase 1: Quick Wins (Semaines 1-4)
-   - Phase 2: Contenu & Différenciation (Semaines 5-12)
-   - Phase 3: Optimisation & Scale (Semaines 13-24)
-   - Checklist finale de validation
+- **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** (24.2 KB) - Structure menu optimale
+  - Analyse comparative 10 sites référence (Zapier, Boldare, Netguru)
+  - Patterns récurrents qui marchent vraiment
+  - Recommandations DAINAMICS (6 items, 2 niveaux max)
+  - Parcours navigation idéal visiteur PME
+  - Meilleures pratiques UX/UI actionnables
 
-3. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure Menu Optimale
-   - Analyse comparative 10 sites référence (Zapier, Boldare, Netguru, etc.)
-   - Patterns récurrents qui marchent vraiment
-   - Recommandations DAINAMICS (6 items, 2 niveaux max)
-   - Parcours navigation idéal visiteur PME
-   - Meilleures pratiques UX/UI actionnables
+- **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** (17.2 KB) - Guidelines contenu & rédaction
+  - Principes fondamentaux (langage business, toujours quantifier)
+  - Tone of Voice DAINAMICS (pragmatique, transparent, accessible)
+  - Structure homepage optimale (8 sections)
+  - Guidelines rédaction (longueurs idéales, structure paragraphes)
+  - Templates pages types (services, cas clients, blog)
 
-4. **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** - Guidelines Contenu & Rédaction
-   - Principes fondamentaux (langage business, toujours quantifier)
-   - Tone of Voice DAINAMICS (pragmatique, transparent, accessible)
-   - Structure homepage optimale (8 sections)
-   - Guidelines rédaction (longueurs idéales, structure paragraphes)
-   - Templates pages types (services, cas clients, blog)
-   - Format cas clients optimal
+### 📈 Suivi (État Actuel)
+Dashboard et priorisation pour suivre l'avancement du projet.
 
-5. **[PRIORITIES.md](./PRIORITIES.md)** - Tableau Priorisation P0/P1/P2/P3
-   - Vue d'ensemble (25 tâches principales)
-   - P0 Critique (8 tâches, Semaines 1-4)
-   - P1 Important (7 tâches, Semaines 5-12)
-   - P2 Utile (6 tâches, Semaines 13-20)
-   - P3 Nice-to-have (4 tâches, Semaines 21-24)
-   - Matrice Impact vs Effort
+- **[STATUS.md](./STATUS.md)** (10.8 KB) - Dashboard état projet
+  - Progression globale (Phase 1: 40%, Phase 2: 0%, Phase 3: 0%)
+  - Ce qui est terminé, en cours, à faire
+  - Problèmes identifiés (redondance navigation, homepage non-optimale)
+  - Métriques de succès (baseline → objectifs)
+  - Prochaines actions prioritaires
 
-**Objectif Transformation:** Conversion 2-3% → 5-8% (x2-3 leads qualifiés)
+- **[PRIORITIES.md](./PRIORITIES.md)** (17.0 KB) - Tableau priorisation P0/P1/P2/P3
+  - Vue d'ensemble (25 tâches principales)
+  - P0 Critique (8 tâches, Semaines 1-4)
+  - P1 Important (7 tâches, Semaines 5-12)
+  - P2 Utile (6 tâches, Semaines 13-20)
+  - P3 Nice-to-have (4 tâches, Semaines 21-24)
+  - Matrice Impact vs Effort
+
+- **[CHANGELOG.md](./CHANGELOG.md)** - Historique changements
+  - Version 2.2 documentée
+  - Liste des corrections
+  - Prochaines étapes
+
+### ⚙️ Opérationnel (Usage Quotidien)
+Documentation pour le développement jour-à-jour.
+
+- **[INSTRUCTIONS.md](./INSTRUCTIONS.md)** - Instructions projet jour-à-jour
+  - Vue d'ensemble projet
+  - Règles avant chaque prompt
+  - Design System couleurs exactes
+  - Standards code
+  - Workflow
+  - Checklist avant commit
+
+- **[WORKFLOW.md](./WORKFLOW.md)** 🔴 **LIRE EN PREMIER** - Process développement
+  - Règles de développement strictes
+  - Processus Git obligatoire
+  - Structure du repository
+  - Format des commits
+  - Checklists avant commit
+
+- **[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** - Contexte pour conversations Claude
+  - Contexte complet du projet
+  - Instructions de développement
+  - Liens vers tous les documents
+  - Pour démarrer nouvelles conversations avec Claude
+
+### 📘 Référence (Standards Techniques)
+Spécifications techniques et standards de design.
+
+- **[DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)** (15.5 KB) - Couleurs & Icônes
+  - Palette exacte à utiliser (JAMAIS modifier)
+  - CATEGORY_COLORS et COMPLEXITY_COLORS
+  - Icônes Lucide React v0.263.1 uniquement
+  - Workflow icônes obligatoire
+
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** (81 KB, 3397 lignes) - Document principal
+  - Vision & Objectifs
+  - Architecture Technique & Stack
+  - Design System Ultra Détaillé
+  - Animations Framer Motion Avancées
+  - Structure des Pages (12+ pages détaillées)
+  - Fonctionnalités Interactives (8 features majeures)
+  - Plan d'Implémentation (7 semaines)
+  - Guidelines Techniques
+  - Checklists Complètes
+
+### 🏠 Hub Central
+Point d'entrée de la documentation.
+
+- **[README.md](./README.md)** (ce fichier) - Index vers toute la documentation
+  - Vue d'ensemble projet
+  - Quick Start
+  - Structure complète
+  - Liens vers tous les documents
 
 ---
 
-### Ordre de Lecture (IMPORTANT)
+## 🚀 Quick Start (Nouveau Développeur)
 
-**Pour Développement Immédiat:**
-1. **[WORKFLOW.md](./WORKFLOW.md)** 🔴 **LIRE EN PREMIER**
-   - Règles de développement strictes
-   - Processus Git obligatoire
-   - Structure du repository
-   - Format des commits
-   - Checklists avant commit
+### Parcours Recommandé (60 minutes)
 
-2. **[STATUS.md](./STATUS.md)** 🆕 **État Actuel Projet**
-   - Où en sommes-nous maintenant
-   - Ce qui est terminé/en cours/à faire
-   - Prochaines actions prioritaires
+**1. Comprendre la vision** (20 min)
+   - Lire [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)
+   - Comprendre les 3 phases de transformation
+   - Objectif : Conversion 2-3% → 5-8%
 
-3. **[PRIORITIES.md](./PRIORITIES.md)** 🆕 **Tableau Priorisation**
-   - Quoi faire en premier (P0)
-   - Impact vs Effort chaque tâche
+**2. Voir l'état actuel** (5 min)
+   - Lire [STATUS.md](./STATUS.md)
+   - Identifier ce qui est terminé/en cours/à faire
+   - Noter les blocages actuels
 
-**Pour Comprendre la Vision:**
-4. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** 🆕 **Plan 24 Semaines**
-   - Vue complète transformation
-   - 3 phases détaillées
-   - Checklist finale
+**3. Consulter les priorités** (5 min)
+   - Lire [PRIORITIES.md](./PRIORITIES.md)
+   - Identifier les tâches P0 (critiques)
+   - Comprendre l'impact vs effort
 
-5. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** 🆕 **Structure Menu**
-   - Pourquoi 6 items (pas 9)
-   - Analyse comparative sites leaders
-   - Parcours utilisateur optimal
+**4. Suivre le workflow** (10 min) 🔴 **OBLIGATOIRE**
+   - Lire [WORKFLOW.md](./WORKFLOW.md) EN ENTIER
+   - Comprendre le processus Git strict
+   - Mémoriser les règles de commit
 
-6. **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** 🆕 **Guidelines Contenu**
-   - Comment écrire (tone of voice)
-   - Templates pages
-   - Formats optimaux
+**5. Lire les specs techniques** (20 min)
+   - Parcourir [ARCHITECTURE.md](./ARCHITECTURE.md)
+   - Noter le stack technique
+   - Comprendre la structure du projet
+   - Consulter [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)
 
-**Pour Spécifications Techniques:**
-7. **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Document Principal (81KB)
-   - Vision & Objectifs
-   - Architecture Technique & Stack
-   - Design System Ultra Détaillé
-   - Animations Framer Motion Avancées
-   - Structure des Pages (12+ pages détaillées)
-   - Fonctionnalités Interactives (8 features majeures)
-   - Plan d'Implémentation (7 semaines)
-   - Guidelines Techniques
-   - Checklists Complètes
+### Setup Environnement
 
-8. **[DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)** - Couleurs & Icônes
-   - Palette exacte à utiliser
-   - CATEGORY_COLORS et COMPLEXITY_COLORS
-   - Icônes Lucide React uniquement
+```bash
+# 1. Clone le repository
+git clone https://github.com/dainabase/Dainamics-Web-Site.git
+cd Dainamics-Web-Site
 
-**Pour Nouvelles Conversations:**
-9. **[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** - Contexte Complet
-   - Contexte complet du projet
-   - Instructions de développement
-   - Liens vers tous les documents
+# 2. Install dependencies
+npm install
 
-**Historique:**
-10. **[CHANGELOG.md](./CHANGELOG.md)** - Historique des changements
-    - Version 2.2 documentée
-    - Liste des corrections
-    - Prochaines étapes
+# 3. Start dev server
+npm run dev
+# App runs on http://localhost:5173
+```
 
-### Quick Start
+### Premier Développement
 
-1. **LIRE STATUS.md** (État actuel - 2 min)
-2. **LIRE PRIORITIES.md** (Ce qu'il faut faire - 5 min)
-3. **LIRE WORKFLOW.md** (OBLIGATOIRE - Règles développement - 10 min)
-4. **LIRE TRANSFORMATION-PLAN.md** (Vision complète - 20 min)
-5. **Setup environnement** (voir ci-dessous)
-6. **Développer phase par phase** avec Claude Code
+```bash
+# 1. Consulter les priorités
+cat STATUS.md          # État actuel
+cat PRIORITIES.md      # Que faire en premier
+
+# 2. Lire les guidelines
+cat WORKFLOW.md        # Processus OBLIGATOIRE
+cat CONTENT-STRATEGY.md   # Si création contenu
+cat NAVIGATION-ARCHITECTURE.md   # Si modification navigation
+
+# 3. Développer avec Claude Code
+# Référencer la documentation appropriée dans vos prompts
+
+# 4. Commit + Push APRÈS CHAQUE TÂCHE
+git add .
+git commit -m "feat(scope): description"
+git push origin main
+
+# 5. Attendre validation avant de continuer
+```
+
+---
+
+## 🎯 Pour Nouvelles Conversations Claude
+
+Lorsque vous démarrez une nouvelle conversation avec Claude pour développer sur ce projet :
+
+**Utilisez [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** pour donner tout le contexte à Claude.
+
+Ce document contient :
+- Contexte complet du projet
+- État actuel de développement
+- Transformation en cours
+- Liens vers toute la documentation
+- Instructions spécifiques
+
+Copier-coller ce fichier au début de votre conversation pour que Claude ait tout le contexte nécessaire.
 
 ---
 
@@ -195,7 +266,7 @@ Styling: Tailwind CSS 3+
 State: Zustand / React Context
 Forms: React Hook Form + Zod
 Animations: Framer Motion 11+ (Advanced)
-Icons: Lucide React
+Icons: Lucide React v0.263.1
 UI Components: shadcn/ui + custom
 Backend: Supabase (PostgreSQL)
 Email: Brevo / SendGrid
@@ -257,7 +328,7 @@ Voir spécifications détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 
 ## Plan de Développement
 
-### NOUVEAU : Plan Transformation 24 Semaines
+### Plan Transformation 24 Semaines
 
 **Consulter [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) pour détails complets**
 
@@ -269,7 +340,7 @@ Voir spécifications détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [ ] Semaine 3 : Page Pricing Transparente
 - [ ] Semaine 4 : Portfolio → Projets + Filtres
 
-**État actuel:** Semaine 2 en cours
+**État actuel:** Semaine 2 en cours - Voir [STATUS.md](./STATUS.md)
 
 #### Phase 2: Contenu & Différenciation (Semaines 5-12)
 **Objectif:** Créer contenu manquant, outils conversion
@@ -298,6 +369,8 @@ Voir spécifications détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 - **Background**: `#050510` (Dark Navy)
 - **Accent**: `#10E4FF` (Cyan électrique)
 
+**IMPORTANT:** Voir [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md) pour les mappings CATEGORY_COLORS et COMPLEXITY_COLORS obligatoires.
+
 ### Typographie
 - **Display**: Cal Sans (H1-H2) - Headlines puissants
 - **Sans**: Inter (Body) - Lisibilité optimale
@@ -311,6 +384,12 @@ Voir spécifications détaillées dans [ARCHITECTURE.md](./ARCHITECTURE.md)
 - Particle field background animé
 - Neural network avec orbital rings
 - Smooth page transitions
+
+### Icônes
+**UNIQUEMENT Lucide React v0.263.1**
+- Vérifier CHAQUE icône sur https://lucide.dev AVANT utilisation
+- Workflow strict : Rechercher → Copier nom exact → Utiliser
+- JAMAIS inventer un nom d'icône
 
 ### Components
 - Buttons avec variants (primary, secondary, tertiary, ghost) + glow effects
@@ -358,6 +437,7 @@ Voir [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) pour détails complets c
 - [ ] Suivre [WORKFLOW.md](./WORKFLOW.md) strictement
 - [ ] Consulter [PRIORITIES.md](./PRIORITIES.md) pour ordre tâches
 - [ ] Référencer [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) pour rédaction
+- [ ] Référencer [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) pour structure
 - [ ] Respecter [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)
 - [ ] Respecter la structure de dossiers
 - [ ] Développer mobile-first
@@ -374,6 +454,8 @@ Voir [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) pour détails complets c
 - [ ] Noms corrects : LEXAIA, ENKI-REALTY, Claude Code
 - [ ] "IA" utilisé (pas "AI") dans textes français
 - [ ] Gains quantifiés (CHF, %, heures) - voir [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)
+- [ ] Icônes Lucide vérifiées sur lucide.dev
+- [ ] CATEGORY_COLORS et COMPLEXITY_COLORS utilisés
 
 ### Avant le Launch
 - [ ] Lighthouse score >90 (Performance, Accessibility, SEO, Best Practices)
@@ -418,19 +500,24 @@ Voir [WORKFLOW.md](./WORKFLOW.md) pour processus Git complet.
 
 ### Documentation Projet
 
-**Transformation (Nouveau):**
-- **[STATUS.md](./STATUS.md)** 🆕 - Dashboard état projet
-- **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** 🆕 - Plan 24 semaines
-- **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** 🆕 - Structure menu optimale
-- **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** 🆕 - Guidelines contenu
-- **[PRIORITIES.md](./PRIORITIES.md)** 🆕 - Priorisation P0/P1/P2/P3
+**Planification (Vision Long-Terme):**
+- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan 24 semaines
+- [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure menu optimale
+- [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - Guidelines contenu
 
-**Développement:**
-- **[WORKFLOW.md](./WORKFLOW.md)** 🔴 - Règles de développement (LIRE EN PREMIER)
-- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Document principal (81KB, ultra-détaillé)
-- **[DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)** - Couleurs & Icônes
-- **[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** - Contexte conversations IA
-- **[CHANGELOG.md](./CHANGELOG.md)** - Historique changements
+**Suivi (État Actuel):**
+- [STATUS.md](./STATUS.md) - Dashboard état projet
+- [PRIORITIES.md](./PRIORITIES.md) - Priorisation P0/P1/P2/P3
+- [CHANGELOG.md](./CHANGELOG.md) - Historique changements
+
+**Opérationnel (Usage Quotidien):**
+- [INSTRUCTIONS.md](./INSTRUCTIONS.md) - Instructions projet
+- [WORKFLOW.md](./WORKFLOW.md) 🔴 - Règles développement (LIRE EN PREMIER)
+- [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md) - Contexte conversations Claude
+
+**Référence (Standards Techniques):**
+- [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md) - Couleurs & Icônes
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - Document principal (81KB)
 
 ### Repository
 - [GitHub Repository](https://github.com/dainabase/Dainamics-Web-Site)
@@ -441,54 +528,10 @@ Voir [WORKFLOW.md](./WORKFLOW.md) pour processus Git complet.
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Framer Motion](https://www.framer.com/motion/)
-- [Lucide React](https://lucide.dev)
+- [Lucide React](https://lucide.dev) - v0.263.1
 - [shadcn/ui](https://ui.shadcn.com)
 - [Supabase](https://supabase.com)
 - [Claude Code Docs](https://docs.claude.com/en/docs/claude-code)
-
----
-
-## Démarrage Rapide
-
-### Pour développer efficacement:
-
-1. **Lire la documentation dans l'ordre**
-   ```bash
-   1. STATUS.md (état actuel) - 5 min
-   2. PRIORITIES.md (priorisation) - 5 min
-   3. WORKFLOW.md (OBLIGATOIRE - règles) - 10 min
-   4. TRANSFORMATION-PLAN.md (vision) - 20 min
-   5. README.md (ce fichier) - Vue d'ensemble
-   6. ARCHITECTURE.md (specs techniques) - 30 min
-   7. DESIGN-SYSTEM-MANDATORY.md (couleurs/icônes) - 5 min
-   8. NAVIGATION-ARCHITECTURE.md (structure menu) - 15 min
-   9. CONTENT-STRATEGY.md (rédaction) - 10 min
-   ```
-
-2. **Setup l'environnement**
-   ```bash
-   npm install
-   npm run dev
-   # App runs on http://localhost:5173
-   ```
-
-3. **Développer avec Claude Code**
-   ```bash
-   # Dans votre terminal
-   claude-code
-   
-   # Demander à Claude de vous aider
-   # Référencer STATUS.md pour état actuel
-   # Suivre PRIORITIES.md pour ordre tâches
-   # Utiliser WORKFLOW.md pour processus
-   ```
-
-4. **Suivre le plan d'implémentation**
-   - Consulter STATUS.md → Section "Prochaines Actions"
-   - Voir PRIORITIES.md → Tableau P0 (Critique)
-   - Commit + Push après CHAQUE tâche
-   - Attendre validation avant de continuer
-   - Utiliser les checklists détaillées
 
 ---
 
@@ -517,36 +560,48 @@ Voir [WORKFLOW.md](./WORKFLOW.md) pour processus Git complet.
 - Pages vues/session: **>4**
 - Leads qualifiés/mois: **20-30** (x3-4)
 
-Voir [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) pour métriques détaillées
+Voir [STATUS.md](./STATUS.md) et [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) pour métriques détaillées
 
 ---
 
 ## Support & Questions
 
-### Utilisation de cette Documentation
+### Navigation dans la Documentation
 
-**Pour État Actuel:**
-- **[STATUS.md](./STATUS.md)** - Où en sommes-nous maintenant
+**Vous cherchez quoi ?**
 
-**Pour Planification:**
-- **[PRIORITIES.md](./PRIORITIES.md)** - Quoi faire en priorité
-- **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Plan complet 24 semaines
+📊 **État actuel du projet**
+→ Lire [STATUS.md](./STATUS.md)
 
-**Pour Développement:**
-- **[WORKFLOW.md](./WORKFLOW.md)** - Règles strictes (CRITICAL)
-- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Specs techniques complètes
+🎯 **Quoi faire en priorité**
+→ Lire [PRIORITIES.md](./PRIORITIES.md)
 
-**Pour Navigation/Contenu:**
-- **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure menu optimale
-- **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** - Comment écrire
+🗺️ **Plan de transformation complet**
+→ Lire [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)
 
-**Pour Design:**
-- **[DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)** - Couleurs & Icônes obligatoires
+⚙️ **Comment développer (règles strictes)**
+→ Lire [WORKFLOW.md](./WORKFLOW.md) 🔴 OBLIGATOIRE
+
+🏗️ **Architecture navigation/menu**
+→ Lire [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)
+
+✍️ **Comment écrire le contenu**
+→ Lire [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)
+
+🎨 **Couleurs et icônes à utiliser**
+→ Lire [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)
+
+🔧 **Specs techniques complètes**
+→ Lire [ARCHITECTURE.md](./ARCHITECTURE.md)
+
+💬 **Démarrer conversation avec Claude**
+→ Utiliser [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)
 
 ### Développement avec Claude Code
+
 1. Lire [STATUS.md](./STATUS.md) (état actuel)
 2. Lire [PRIORITIES.md](./PRIORITIES.md) (priorisation)
-3. Lire [WORKFLOW.md](./WORKFLOW.md) en entier
+3. Lire [WORKFLOW.md](./WORKFLOW.md) en entier 🔴
 4. Ouvrir Claude Code dans votre terminal
 5. Référencer documentation appropriée dans vos prompts
 6. Utiliser les outils MCP:
@@ -558,30 +613,33 @@ Voir [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) pour métriques détaill
 9. Attendre validation avant de continuer
 
 ### Pour Nouvelles Conversations
-- Utiliser [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)
+
+Utilisez [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md) :
 - Copier-coller le contenu dans une nouvelle conversation
 - Claude aura tout le contexte nécessaire
+- Référencer les documents appropriés selon la tâche
 
 ---
 
 ## Let's Build!
 
-Vous avez maintenant:
-- **Dashboard état projet** ([STATUS.md](./STATUS.md))
-- **Plan transformation complet** ([TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - 29KB)
-- **Priorisation claire** ([PRIORITIES.md](./PRIORITIES.md) - 25 tâches)
-- **Architecture navigation optimale** ([NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - 24KB)
-- **Guidelines contenu** ([CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - 17KB)
-- **Règles strictes développement** ([WORKFLOW.md](./WORKFLOW.md))
-- **Documentation technique complète** (ARCHITECTURE.md - 81KB)
-- **Design System précis** (DESIGN-SYSTEM-MANDATORY.md)
-- **Stack technique moderne et performant**
+Vous avez maintenant :
+- ✅ **Structure documentation claire** (5 catégories)
+- ✅ **Dashboard état projet** ([STATUS.md](./STATUS.md))
+- ✅ **Plan transformation complet** ([TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - 29KB)
+- ✅ **Priorisation transparente** ([PRIORITIES.md](./PRIORITIES.md) - 25 tâches)
+- ✅ **Architecture navigation optimale** ([NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - 24KB)
+- ✅ **Guidelines contenu** ([CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - 17KB)
+- ✅ **Règles strictes développement** ([WORKFLOW.md](./WORKFLOW.md))
+- ✅ **Documentation technique complète** ([ARCHITECTURE.md](./ARCHITECTURE.md) - 81KB)
+- ✅ **Design System précis** ([DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md))
+- ✅ **Stack technique moderne et performant**
 
-**Prochaine étape**: 
-1. **Lire [STATUS.md](./STATUS.md)** (état actuel)
-2. **Lire [PRIORITIES.md](./PRIORITIES.md)** (priorisation)
-3. **Lire [WORKFLOW.md](./WORKFLOW.md)** (OBLIGATOIRE)
-4. **Consulter [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** (vision)
+**Prochaines étapes** : 
+1. **Lire [STATUS.md](./STATUS.md)** (état actuel - 5 min)
+2. **Lire [PRIORITIES.md](./PRIORITIES.md)** (priorisation - 5 min)
+3. **Lire [WORKFLOW.md](./WORKFLOW.md)** (OBLIGATOIRE - 10 min) 🔴
+4. **Consulter [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** (vision - 20 min)
 5. Setup environnement local
 6. Commencer Phase 1 avec Claude Code
 7. Build something amazing!
@@ -590,6 +648,14 @@ Vous avez maintenant:
 
 ## Corrections Apportées
 
+### Version 2.3 - 13 Octobre 2025
+- **Restructuration README.md** - Hub central documentation
+- **Ajout section "Documentation Structure"** - 5 catégories (Planification, Suivi, Opérationnel, Référence, Hub)
+- **Amélioration Quick Start** - Parcours recommandé 60 minutes
+- **Section "Pour Nouvelles Conversations Claude"** - Guide utilisation PROMPT-CONTEXT.md
+- **Amélioration navigation** - Section "Vous cherchez quoi?" pour trouver rapidement
+- **Mise à jour liens croisés** - Tous documents interconnectés
+
 ### Version 2.2 - 11 Octobre 2025
 - **Restructuration documentation complète** - Nouveaux documents transformation
 - **Ajout STATUS.md** - Dashboard état projet en temps réel
@@ -597,12 +663,9 @@ Vous avez maintenant:
 - **Ajout NAVIGATION-ARCHITECTURE.md** - Structure menu optimale (analyse 25+ sites)
 - **Ajout CONTENT-STRATEGY.md** - Guidelines contenu et rédaction
 - **Ajout PRIORITIES.md** - Tableau priorisation P0/P1/P2/P3
-- **Mise à jour README.md** - Hub central vers toute documentation
-- **Ordre lecture réorganisé** - Priorisation selon besoin immédiat
 
 ### Version 2.1 - 11 Octobre 2025
 - **Ajout WORKFLOW.md** - Règles strictes de développement
-- **Mise à jour README** - Références WORKFLOW obligatoire
 - **Processus Git** - Commit + Push après chaque tâche
 - **Validation** - Attendre approbation avant de continuer
 
@@ -612,11 +675,9 @@ Vous avez maintenant:
 - **Correction noms projets**: L'Exia → **LEXAIA**, NK Reality → **ENKI-REALTY**
 - **Design System ultra-détaillé** avec toutes les animations Framer Motion
 - **Documentation consolidée** en un seul fichier ARCHITECTURE.md
-- **Specs animations avancées** (energy waves, neural network, parallax, etc.)
-- **Structure complète** avec tous les components et leurs variants
 
 ---
 
 *DAINAMICS Website - Octobre 2025*  
 *Transforming businesses through IA, Automatisation & Développement*  
-*Développé avec Claude Code - v2.2*
+*Développé avec Claude Code - v2.3*
