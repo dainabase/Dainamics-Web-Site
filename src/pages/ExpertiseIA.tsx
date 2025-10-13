@@ -234,9 +234,6 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
 // METRICS SECTION - Ultra Optimized
 // ============================================================================
 function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string }) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-
   const metricsArray = [
     { label: metrics.yearsExperience.label, value: metrics.yearsExperience.value, icon: Award },
     { label: metrics.projectsCompleted.label, value: metrics.projectsCompleted.value, icon: Rocket },
@@ -245,18 +242,19 @@ function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string })
   ];
 
   return (
-    <section ref={sectionRef} className="py-24 px-6 relative">
+    <section className="py-24 px-6 relative">
       <div className="max-w-7xl mx-auto">
-        <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {metricsArray.map((metric, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.15,
-                ease: [0.22, 1, 0.36, 1]
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: "easeOut"
               }}
               whileHover={{ y: -8 }}
               className="relative p-8 rounded-3xl group transition-all duration-300 cursor-pointer"
@@ -270,21 +268,16 @@ function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string })
                 <metric.icon className="w-10 h-10 text-white" style={{ filter: `drop-shadow(0 0 8px ${iaColor})` }} />
               </motion.div>
 
-              <motion.div
-                initial={{ scale: 0.5 }}
-                animate={isInView ? { scale: 1 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.15 + 0.2 }}
-                className="text-5xl font-bold mb-2 text-white"
-              >
+              <div className="text-5xl font-bold mb-2 text-white">
                 {metric.value}
-              </motion.div>
+              </div>
 
               <div className="text-sm text-gray-200 font-medium">
                 {metric.label}
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -402,19 +395,17 @@ function TechnologiesSection({
 }
 
 function TechnologyCard({ tech, index, iaColor }: any) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.5 });
   const Icon = iconMapper[tech.icon];
 
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, x: 100 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ 
-        duration: 0.6, 
-        delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1]
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        duration: 0.4,
+        delay: index * 0.05,
+        ease: "easeOut"
       }}
       whileHover={{ x: -8, y: -4 }}
       className="p-6 rounded-2xl group cursor-pointer transition-all duration-300"
@@ -587,8 +578,8 @@ function CapabilityItem({ capability, index, iaColor }: any) {
             key={idx}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: idx * 0.05 }}
+            viewport={{ once: true, amount: 0.3 }}
             whileHover={{ x: 4 }}
             className="flex items-start gap-3 p-5 rounded-xl transition-all duration-200 cursor-pointer"
             style={{
@@ -654,23 +645,21 @@ function UseCasesSection({ useCases, iaColor }: any) {
 }
 
 function UseCaseCard({ useCase, index, iaColor }: any) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.5 });
-
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, x: -50 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       className="relative pl-24"
     >
       <motion.div
         initial={{ scale: 0 }}
-        animate={isInView ? { scale: 1 } : {}}
-        transition={{ duration: 0.5, delay: index * 0.2 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3, delay: index * 0.1 }}
         className="absolute left-6 top-8 w-8 h-8 rounded-full border-4 border-dainamics-background"
-        style={{ 
+        style={{
           background: iaColor,
           boxShadow: `0 0 20px ${iaColor}`
         }}
@@ -703,10 +692,7 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
         <p className="text-gray-300 mb-6 leading-relaxed">{useCase.description}</p>
 
         <div className="grid grid-cols-2 gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
+          <div
             className="flex items-center gap-2 px-3 py-2 rounded-lg"
             style={{
               background: `${COLORS.success}40`,
@@ -717,11 +703,8 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
             <span className="text-sm font-semibold text-white">
               {useCase.roi.savings}
             </span>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
+          </div>
+          <div
             className="flex items-center gap-2 px-3 py-2 rounded-lg"
             style={{
               background: `${COLORS.success}40`,
@@ -732,7 +715,7 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
             <span className="text-sm font-semibold text-white">
               {useCase.roi.efficiency}
             </span>
-          </motion.div>
+          </div>
         </div>
       </motion.div>
     </motion.div>
@@ -777,15 +760,12 @@ function QuickWinsSection({ quickWins, iaColor }: any) {
 }
 
 function QuickWinCard({ win, index, iaColor }: any) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.5 });
-
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
       whileHover={{ y: -8 }}
       className="p-6 rounded-3xl group cursor-pointer transition-all duration-300"
       style={{
