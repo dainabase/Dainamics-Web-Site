@@ -1,7 +1,7 @@
 // src/pages/ExpertiseAutomatisation.tsx
-// Automatisation - Page d'Expertise OPTIMISÉE (même opacités que ExpertiseIA)
+// Automatisation - Page d'Expertise avec Carousel Technologies
 // Référence Design System: DESIGN-SYSTEM-MANDATORY.md
-// Performance: 60fps garanti - backdrop-filter supprimé, opacités optimisées
+// Performance: 60fps garanti - Carousel interactif pour le stack technique
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
@@ -11,6 +11,7 @@ import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import Carousel, { CarouselItem } from '@/components/ui/carousel';
 import { 
   getPillarByCategory,
   categoryColors,
@@ -30,9 +31,7 @@ import {
   ArrowUpRight,
   Timer,
   Gauge,
-  Activity,
-  ChevronLeft,
-  ChevronRight
+  Activity
 } from 'lucide-react';
 
 export default function ExpertiseAutomatisation() {
@@ -67,13 +66,13 @@ export default function ExpertiseAutomatisation() {
       {/* Metrics Section - Cards with Stagger */}
       <MetricsSection metrics={pillar.metrics} autoColor={autoColor} />
       
-      {/* Technologies Section - HORIZONTAL SCROLL IN VERTICAL STICKY */}
+      {/* Technologies Section - CAROUSEL */}
       <TechnologiesSection 
         technologies={pillar.technologies}
         autoColor={autoColor}
       />
       
-      {/* Capabilities Section - STICKY RIGHT + SCROLLING LEFT (inverse de IA) */}
+      {/* Capabilities Section - STICKY RIGHT + SCROLLING LEFT */}
       <CapabilitiesSection capabilities={pillar.capabilities} autoColor={autoColor} />
       
       {/* Use Cases - Cards Grid with Reveal */}
@@ -91,7 +90,7 @@ export default function ExpertiseAutomatisation() {
 }
 
 // ============================================================================
-// HERO SECTION - Workflow Animation (OPACITÉ OPTIMISÉE)
+// HERO SECTION - Workflow Animation
 // ============================================================================
 function HeroSection({ pillar, autoColor }: { pillar: any; autoColor: string }) {
   const heroRef = useRef<HTMLElement>(null);
@@ -131,7 +130,7 @@ function HeroSection({ pillar, autoColor }: { pillar: any; autoColor: string }) 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* LEFT - Content */}
           <motion.div style={{ y: leftY }}>
-            {/* Badge - OPTIMISÉ: 90% → 70% comme ExpertiseIA */}
+            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -295,7 +294,7 @@ function WorkflowAnimation({ autoColor }: { autoColor: string }) {
 }
 
 // ============================================================================
-// METRICS SECTION - Staggered Cards (OPACITÉ OPTIMISÉE: 60% → 40%)
+// METRICS SECTION - Staggered Cards
 // ============================================================================
 function MetricsSection({ metrics, autoColor }: { metrics: any; autoColor: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -372,31 +371,22 @@ function MetricsSection({ metrics, autoColor }: { metrics: any; autoColor: strin
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - HORIZONTAL SCROLL (OPACITÉ OPTIMISÉE: 40% → 25%)
+// TECHNOLOGIES SECTION - CAROUSEL
 // ============================================================================
 function TechnologiesSection({ technologies, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 400;
-      scrollContainerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
+  // Transform technologies into CarouselItems
+  const carouselItems: CarouselItem[] = technologies.map((tech: any, index: number) => {
+    const Icon = iconMapper[tech.icon];
+    
+    return {
+      id: index,
+      title: tech.name,
+      description: tech.description || `${tech.category} - ${tech.proficiency}`,
+      icon: Icon ? <Icon className="h-[16px] w-[16px] text-white" /> : <Zap className="h-[16px] w-[16px] text-white" />
+    };
+  });
 
   return (
     <section ref={sectionRef} className="py-32 px-6 relative">
@@ -417,143 +407,38 @@ function TechnologiesSection({ technologies, autoColor }: any) {
           </p>
         </motion.div>
 
-        {/* Horizontal Scroll Container - STICKY */}
-        <div className="sticky top-32 rounded-3xl p-8 border border-gray-800"
-          style={{
-            background: `linear-gradient(135deg, ${autoColor}30, transparent)`,
-            borderColor: `${autoColor}60`
-          }}
-        >
-          {/* Navigation Arrows */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="text-sm text-gray-500">
-              {technologies.length} technologies
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => scroll('left')}
-                disabled={!canScrollLeft}
-                className="p-2 rounded-lg transition-all disabled:opacity-30"
-                style={{
-                  backgroundColor: canScrollLeft ? `${autoColor}20` : 'transparent',
-                  borderColor: canScrollLeft ? autoColor : '#374151',
-                  border: '1px solid'
-                }}
-              >
-                <ChevronLeft className="w-5 h-5" style={{ color: canScrollLeft ? autoColor : '#6B7280' }} />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                disabled={!canScrollRight}
-                className="p-2 rounded-lg transition-all disabled:opacity-30"
-                style={{
-                  backgroundColor: canScrollRight ? `${autoColor}20` : 'transparent',
-                  borderColor: canScrollRight ? autoColor : '#374151',
-                  border: '1px solid'
-                }}
-              >
-                <ChevronRight className="w-5 h-5" style={{ color: canScrollRight ? autoColor : '#6B7280' }} />
-              </button>
-            </div>
-          </div>
-
-          {/* Scrolling Cards */}
-          <div 
-            ref={scrollContainerRef}
-            onScroll={handleScroll}
-            className="flex gap-6 overflow-x-auto hide-scrollbar pb-4"
-            style={{ scrollSnapType: 'x mandatory' }}
-          >
-            {technologies.map((tech: any, index: number) => (
-              <TechnologyCard 
-                key={tech.name} 
-                tech={tech} 
-                index={index}
-                autoColor={autoColor}
-              />
-            ))}
-          </div>
+        {/* Carousel Container - Centered */}
+        <div className="flex items-center justify-center">
+          <Carousel 
+            items={carouselItems}
+            baseWidth={600}
+            autoplay={true}
+            autoplayDelay={3000}
+            pauseOnHover={true}
+            loop={true}
+            round={false}
+          />
         </div>
+
+        {/* Tech Count */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <p className="text-sm text-gray-500">
+            {technologies.length} technologies maîtrisées
+          </p>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function TechnologyCard({ tech, index, autoColor }: any) {
-  const Icon = iconMapper[tech.icon];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -8, scale: 1.05 }}
-      className="flex-shrink-0 w-80 p-6 rounded-xl group cursor-pointer"
-      style={{
-        background: `linear-gradient(135deg, ${autoColor}40, ${autoColor}25)`,
-        border: `2px solid ${autoColor}60`,
-        scrollSnapAlign: 'start',
-        boxShadow: '0 2px 12px rgba(0,0,0,0.2)'
-      }}
-    >
-      {/* Icon & Badge */}
-      <div className="flex items-start justify-between mb-4">
-        {Icon && (
-          <motion.div
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.6 }}
-            className="p-3 rounded-lg"
-            style={{ 
-              background: `linear-gradient(135deg, ${autoColor}70, ${autoColor}50)`,
-              border: `2px solid ${autoColor}90`
-            }}
-          >
-            <Icon className="w-7 h-7 text-white" />
-          </motion.div>
-        )}
-        <Badge 
-          variant="outline"
-          style={{ 
-            background: `${autoColor}40`,
-            borderColor: `${autoColor}80`,
-            color: 'white',
-            fontSize: '0.65rem',
-            borderWidth: '2px'
-          }}
-        >
-          {tech.proficiency}
-        </Badge>
-      </div>
-
-      {/* Name */}
-      <h3 className="text-xl font-bold mb-2 group-hover:translate-x-1 transition-transform text-white">
-        {tech.name}
-      </h3>
-
-      {/* Category */}
-      <div className="text-xs text-gray-500 mb-3 uppercase tracking-wider">
-        {tech.category}
-      </div>
-
-      {/* Description */}
-      <p className="text-sm text-gray-400 mb-4 line-clamp-3">
-        {tech.description}
-      </p>
-
-      {/* Projects */}
-      {tech.usedIn.length > 0 && (
-        <div className="flex items-center gap-2 text-xs" style={{ color: COLORS.success }}>
-          <CheckCircle className="w-3 h-3" />
-          <span>{tech.usedIn.length} projet{tech.usedIn.length > 1 ? 's' : ''}</span>
-        </div>
-      )}
-    </motion.div>
-  );
-}
-
 // ============================================================================
-// CAPABILITIES SECTION - STICKY RIGHT (OPACITÉS OPTIMISÉES)
+// CAPABILITIES SECTION - STICKY RIGHT
 // ============================================================================
 function CapabilitiesSection({ capabilities, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -592,7 +477,7 @@ function CapabilitiesSection({ capabilities, autoColor }: any) {
 
           {/* RIGHT - STICKY SIDEBAR */}
           <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start space-y-8">
-            {/* Stats Card - OPTIMISÉ: 70% → 50% */}
+            {/* Stats Card */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -624,7 +509,7 @@ function CapabilitiesSection({ capabilities, autoColor }: any) {
               </div>
             </motion.div>
 
-            {/* CTA Card - OPTIMISÉ */}
+            {/* CTA Card */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -689,7 +574,7 @@ function CapabilityCard({ capability, index, autoColor }: any) {
       }}
     >
       <div className="flex gap-6">
-        {/* Icon - OPTIMISÉ: 80% → 60% */}
+        {/* Icon */}
         {Icon && (
           <motion.div
             whileHover={{ scale: 1.15, rotate: -10 }}
@@ -732,7 +617,7 @@ function CapabilityCard({ capability, index, autoColor }: any) {
             <span className="font-semibold" style={{ color: autoColor }}>{capability.timeline}</span>
           </div>
 
-          {/* Deliverables Preview - OPTIMISÉ: 25% */}
+          {/* Deliverables Preview */}
           <div className="flex flex-wrap gap-2">
             {capability.deliverables.slice(0, 3).map((deliverable: string, idx: number) => (
               <span
@@ -760,7 +645,7 @@ function CapabilityCard({ capability, index, autoColor }: any) {
 }
 
 // ============================================================================
-// USE CASES SECTION - Cards Grid (OPACITÉ OPTIMISÉE: 50% → 30%)
+// USE CASES SECTION - Cards Grid
 // ============================================================================
 function UseCasesSection({ useCases, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -804,7 +689,6 @@ function UseCaseCard({ useCase, index, autoColor }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.3 });
 
-  // Alternate animation direction
   const isEven = index % 2 === 0;
 
   return (
@@ -901,7 +785,7 @@ function UseCaseCard({ useCase, index, autoColor }: any) {
 }
 
 // ============================================================================
-// QUICK WINS SECTION - STICKY HEADER (OPACITÉ OPTIMISÉE: 50% → 30%)
+// QUICK WINS SECTION - STICKY HEADER
 // ============================================================================
 function QuickWinsSection({ quickWins, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -1036,7 +920,7 @@ function QuickWinCard({ win, index, autoColor }: any) {
 }
 
 // ============================================================================
-// CTA SECTION (OPACITÉ OPTIMISÉE: 60% → 40%)
+// CTA SECTION
 // ============================================================================
 function CTASection({ autoColor }: { autoColor: string }) {
   return (
