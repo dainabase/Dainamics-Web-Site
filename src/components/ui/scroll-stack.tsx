@@ -3,6 +3,7 @@
 // Source: https://reactbits.dev/r/ScrollStack-TS-TW
 // Adapté pour DAINAMICS Design System
 // Référence: DESIGN-SYSTEM-MANDATORY.md
+// FIX: Corrected stacking animation for proper card layering effect
 
 'use client';
 
@@ -111,11 +112,16 @@ function ScrollStack({
           (itemDistance + index * itemStackDistance);
         progress = Math.max(0, Math.min(1, progress));
 
-        // Scale
+        // Scale: cards get smaller as they go down the stack
         const scale = baseScale + (1 - baseScale) * (1 - progress);
 
-        // Y offset
-        const yOffset = index * itemStackDistance * progress;
+        // Y offset - CORRECTED STACKING LOGIC:
+        // Cards should be stacked on top of each other with visible offset
+        // When progress = 0 (inactive), card is at baseOffset position
+        // When progress = 1 (active), card moves to yOffset = 0
+        // This creates the "peeling off from stack" effect
+        const baseOffset = index * itemStackDistance;
+        const yOffset = baseOffset * (1 - progress);
 
         // Rotation
         const rotation = rotationAmount * (1 - progress);
@@ -123,7 +129,7 @@ function ScrollStack({
         // Blur
         const blur = blurAmount * progress;
 
-        // Z-index
+        // Z-index: higher cards should be on top
         const zIndex = items.length - index;
 
         // Apply transforms
