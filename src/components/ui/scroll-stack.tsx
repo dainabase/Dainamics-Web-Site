@@ -1,7 +1,6 @@
 // src/components/ui/scroll-stack.tsx
-// ScrollStack Component - Cards qui se "stackent" en scrollant
-// Source: https://reactbits.dev/r/ScrollStack-TS-TW
-// Adapté pour DAINAMICS Design System
+// ScrollStack Component - Cards qui s'empilent avec sticky positioning
+// Effet: Les cartes s'empilent les unes sur les autres avec un décalage visible
 // Référence: DESIGN-SYSTEM-MANDATORY.md
 
 'use client';
@@ -10,7 +9,6 @@ import React, {
   type HTMLAttributes,
   type ReactNode,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState
 } from 'react';
@@ -19,46 +17,33 @@ import Lenis from 'lenis';
 
 // Types
 interface ScrollStackProps extends HTMLAttributes<HTMLDivElement> {
-  itemDistance?: number;
-  itemScale?: number;
-  itemStackDistance?: number;
-  stackPosition?: string;
-  baseScale?: number;
-  rotationAmount?: number;
-  blurAmount?: number;
-  useWindowScroll?: boolean;
+  stackGap?: number; // Décalage vertical entre les cartes empilées (en px)
+  stickyTop?: number; // Position top du sticky (en px)
+  scaleEffect?: boolean; // Active l'effet de scale
   children: ReactNode;
 }
 
 interface ScrollStackItemProps extends HTMLAttributes<HTMLDivElement> {
-  itemClassName?: string;
   children: ReactNode;
 }
 
 // ScrollStack Component
 function ScrollStack({
-  itemDistance = 100,
-  itemScale = 0.03,
-  itemStackDistance = 30,
-  stackPosition = '20%',
-  baseScale = 0.85,
-  rotationAmount = 0,
-  blurAmount = 0,
-  useWindowScroll = false,
+  stackGap = 40,
+  stickyTop = 100,
+  scaleEffect = true,
   className,
   children,
   ...props
 }: ScrollStackProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const [lenis, setLenis] = useState<Lenis | null>(null);
 
-  // Initialize Lenis
+  // Initialize Lenis for smooth scroll
   useEffect(() => {
-    if (!useWindowScroll && containerRef.current) {
+    if (containerRef.current) {
       const lenisInstance = new Lenis({
         wrapper: containerRef.current,
-        content: contentRef.current!,
         lerp: 0.1,
         duration: 1.2,
         orientation: 'vertical',
@@ -82,128 +67,79 @@ function ScrollStack({
         lenisInstance.destroy();
       };
     }
-  }, [useWindowScroll]);
+  }, []);
 
-  // Apply scroll animations
-  useLayoutEffect(() => {
-    const items = contentRef.current?.querySelectorAll(
-      '[data-scroll-stack-item]'
-    );
+  // Apply scale effect on scroll if enabled
+  useEffect(() => {
+    if (!scaleEffect || !lenis) return;
+
+    const items = containerRef.current?.querySelectorAll('[data-scroll-stack-item]');
     if (!items || items.length === 0) return;
 
-    let ticking = false;
-
-    function updateItems() {
-      if (!contentRef.current) return;
-
-      const containerRect = containerRef.current!.getBoundingClientRect();
-      const containerHeight = containerRect.height;
-      const stackOffset = (parseFloat(stackPosition) / 100) * containerHeight;
-
+    function updateScale() {
+      const scrollY = containerRef.current?.scrollTop || 0;
+      
       items.forEach((item, index) => {
         const element = item as HTMLElement;
-        const rect = element.getBoundingClientRect();
-        const offsetTop = rect.top - containerRect.top;
-
-        // Calculate progress
-        let progress =
-          (stackOffset - offsetTop) /
-          (itemDistance + index * itemStackDistance);
-        progress = Math.max(0, Math.min(1, progress));
-
-        // Scale
-        const scale = baseScale + (1 - baseScale) * (1 - progress);
-
-        // Y offset
-        const yOffset = index * itemStackDistance * progress;
-
-        // Rotation
-        const rotation = rotationAmount * (1 - progress);
-
-        // Blur
-        const blur = blurAmount * progress;
-
-        // Z-index
-        const zIndex = items.length - index;
-
-        // Apply transforms
-        element.style.transform = `translateY(${yOffset}px) scale(${scale}) rotateX(${rotation}deg)`;
-        element.style.filter = blur > 0 ? `blur(${blur}px)` : '';
-        element.style.zIndex = `${zIndex}`;
+        const itemTop = index * stackGap;
+        
+        // Calculate scale based on scroll position
+        const progress = Math.max(0, Math.min(1, (scrollY - itemTop) / 200));
+        const scale = 1 - progress * 0.05; // Scale from 1 to 0.95
+        
+        element.style.transform = `scale(${scale})`;
       });
-
-      ticking = false;
     }
 
-    function onScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(updateItems);
-        ticking = true;
-      }
-    }
+    lenis.on('scroll', updateScale);
+    updateScale();
 
-    if (useWindowScroll) {
-      window.addEventListener('scroll', onScroll);
-      window.addEventListener('resize', onScroll);
-      onScroll(); // Initial update
-      return () => {
-        window.removeEventListener('scroll', onScroll);
-        window.removeEventListener('resize', onScroll);
-      };
-    } else if (lenis) {
-      lenis.on('scroll', onScroll);
-      onScroll(); // Initial update
-      return () => {
-        lenis.off('scroll', onScroll);
-      };
-    }
-  }, [
-    lenis,
-    useWindowScroll,
-    itemDistance,
-    itemScale,
-    itemStackDistance,
-    stackPosition,
-    baseScale,
-    rotationAmount,
-    blurAmount,
-  ]);
+    return () => {
+      lenis.off('scroll', updateScale);
+    };
+  }, [lenis, scaleEffect, stackGap]);
+
+  const childrenArray = React.Children.toArray(children);
 
   return (
     <div
       ref={containerRef}
-      className={cn('relative w-full overflow-hidden', className)}
+      className={cn('relative w-full overflow-y-auto', className)}
+      style={{ height: '100%' }}
       {...props}
     >
-      <div ref={contentRef} className="relative w-full">
-        {children}
+      <div className="relative" style={{ paddingBottom: '100vh' }}>
+        {childrenArray.map((child, index) => (
+          <div
+            key={index}
+            data-scroll-stack-item
+            className="sticky w-full"
+            style={{
+              top: `${stickyTop + index * stackGap}px`,
+              zIndex: childrenArray.length - index,
+              transformOrigin: 'center top',
+            }}
+          >
+            {child}
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-// ScrollStackItem Component
+// ScrollStackItem Component - Simplifié
 function ScrollStackItem({
   className,
-  itemClassName,
   children,
   ...props
 }: ScrollStackItemProps) {
   return (
     <div
-      data-scroll-stack-item
-      className={cn('relative mb-4 w-full', className)}
-      style={{ transformOrigin: 'center top' }}
+      className={cn('w-full', className)}
       {...props}
     >
-      <div
-        className={cn(
-          'w-full rounded-2xl p-8 shadow-lg transition-all duration-300',
-          itemClassName
-        )}
-      >
-        {children}
-      </div>
+      {children}
     </div>
   );
 }
