@@ -1,219 +1,241 @@
-# 📘 DAINAMICS - Instructions Projet v2.2
+# 📘 DAINAMICS - Instructions Projet v3.0 (MVP Focus)
 
 ## 🎯 Vue d'ensemble
 
-DAINAMICS est une société suisse spécialisée dans l'IA, l'Automatisation et le Développement sur mesure pour PME. Ce projet vise à créer un site web moderne qui présente nos solutions et génère des leads qualifiés.
+DAINAMICS est une société suisse spécialisée dans l'IA, l'Automatisation et le Développement sur mesure pour PME.
 
-**Repository**: https://github.com/dainabase/Dainamics-Web-Site  
-**Phase Actuelle**: Développement Phase 1 - Fondations (Semaine 1-3)  
-**Stack**: React 18+ | TypeScript 5+ | Vite 5+ | Tailwind CSS 3+ | Framer Motion 11+
+**Objectif :** Site web qui génère des leads qualifiés  
+**Repository :** https://github.com/dainabase/Dainamics-Web-Site  
+**Phase Actuelle :** **MVP 4 Semaines - Semaine 0**  
+**Stack :** React 18+ | TypeScript 5+ | Vite 5+ | Tailwind CSS 3+ | Framer Motion 11+
 
----
-
-## 🚨 NOUVEAU WORKFLOW - CHANGEMENT CRITIQUE
-
-### ⚡ Claude Travaille DIRECTEMENT Maintenant
-
-**CHANGEMENT MAJEUR:**
-- ❌ **TERMINÉ**: Workflow avec Claude Code + prompts 7 sections
-- ✅ **NOUVEAU**: Claude fait le travail lui-même directement
-
-**Comment ça fonctionne:**
-1. Claude se connecte au repository GitHub
-2. Claude lit, crée et modifie les fichiers
-3. Claude commit et push directement
-4. Tout se fait dans la conversation
-
-**Plus besoin de:**
-- Créer des prompts structurés en 7 sections
-- Copier-coller dans Claude Code
-- Attendre validation entre les étapes
-
-**Claude fait directement:**
-- Lecture du repository
-- Création/modification de fichiers
-- Commit avec messages appropriés
-- Push sur la branche main
+**🎯 OBJECTIF TRANSFORMATION :** Conversion 2-3% → 4-6% en 4 semaines
 
 ---
 
-## 🎨 APPROCHE PÉDAGOGIQUE OBLIGATOIRE
+## 🚨 CHANGEMENT RADICAL DE STRATÉGIE
 
-### 📐 Inspiration: Page d'Accueil (Index.tsx)
+### Ce qui change FONDAMENTALEMENT
 
-**RÈGLE D'OR**: S'inspirer au MAXIMUM de Index.tsx pour TOUTES les nouvelles pages
-
-**Ce qui DOIT être réutilisé de Index.tsx:**
-
-1. **Structure générale**
-   - Hero section avec animation principale
-   - Sections alternées (texte gauche/animation droite, puis inverse)
-   - Grid backgrounds animés
-   - Spacing et rythme vertical
-
-2. **Layouts multi-colonnes**
-   ```
-   ┌─────────────────────────────────────────┐
-   │  TEXTE (50%)          ANIMATION (50%)   │
-   │  ─────────────        ─────────────     │
-   │  • Titre h2           [Animation SVG]   │
-   │  • Description p      [Schéma animé]    │
-   │  • Bénéfices liste    [Illustration]    │
-   │  • CTA bouton         [Graphique]       │
-   └─────────────────────────────────────────┘
-   ```
-
-3. **Animations Framer Motion**
-   - Fade in au scroll (IntersectionObserver)
-   - Stagger pour les listes
-   - Hover effects sur les cards
-   - Parallax subtil
-
-4. **Typography**
-   - h1: text-5xl md:text-7xl font-bold
-   - h2: text-3xl md:text-5xl font-bold
-   - p: text-lg md:text-xl text-slate-300
-   - Espacement cohérent
-
-5. **Components réutilisables**
-   - EnhancedGridBackground
-   - Button (primary/secondary)
-   - Card avec hover effects
-   - Badge pour catégories
-
-### 🧠 Principe Pédagogique: Montrer ET Expliquer
-
-**OBJECTIF**: Rendre les concepts techniques accessibles visuellement
-
-**Format Standard par Section:**
-
-```typescript
-<section className="py-20 md:py-32">
-  <div className="grid md:grid-cols-2 gap-12 items-center">
-    {/* Partie TEXTE (Gauche) */}
-    <div>
-      <h2>Concept à expliquer</h2>
-      <p>Explication claire et accessible</p>
-      <ul>Bénéfices quantifiés</ul>
-      <Button>CTA</Button>
-    </div>
-    
-    {/* Partie ANIMATION (Droite) */}
-    <div>
-      <AnimatedDiagram />
-      {/* Animation qui MONTRE le concept */}
-    </div>
-  </div>
-</section>
+**AVANT (24 semaines, 14+ pages) :**
+```
+❌ Navigation complexe (9 items, 3 niveaux)
+❌ Message technique : "IA & Automatisation pour PME"
+❌ 14+ pages principales
+❌ Features avant preuves
+❌ Timeline 6 mois avant feedback
 ```
 
-### 💡 Exemples d'Animations Pédagogiques
-
-**Référence**: Animation cerveau sur hero de Index.tsx
-
-**Types à créer selon le sujet:**
-
-1. **Intelligence Artificielle**
-   ```
-   - Cerveau avec connexions neuronales animées
-   - Flux de données (input → traitement → output)
-   - Analyse de texte en temps réel
-   - Classification/détection visuelle
-   ```
-
-2. **Automatisation**
-   ```
-   - Workflow en cascade (étape par étape)
-   - Connexions entre systèmes (APIs)
-   - Before/After avec timer
-   - Process automatisé vs manuel
-   ```
-
-3. **Développement**
-   ```
-   - Architecture en couches (frontend/backend/DB)
-   - Stack technique empilé
-   - User journey animé
-   - Code qui compile/déploie
-   ```
-
-4. **ROI/Gains**
-   ```
-   - Graphiques animés (CountUp)
-   - Comparaison avant/après (barres)
-   - Timeline d'implémentation
-   - Coûts économisés visualisés
-   ```
-
-### 🔧 Composants d'Animation à Créer
-
-**Bibliothèque de composants pédagogiques:**
-
-```typescript
-// À créer progressivement
-1. AnimatedDiagram      // Schémas techniques génériques
-2. ProcessFlow          // Workflows étape par étape
-3. BeforeAfterCompare   // Comparaisons animées
-4. DataVisualization    // Graphiques/stats animés
-5. SystemArchitecture   // Archi systèmes/intégrations
-6. CodeAnimation        // Code qui s'anime
-7. NetworkGraph         // Graphes de connexions
-8. TimelineStepper      // Timeline interactive
-9. MetricsCounter       // Compteurs animés (CountUp)
-10. InteractiveDemo     // Démos interactives
+**APRÈS (4 semaines, 4 pages) :**
 ```
-
-### 📋 Checklist Page Pédagogique
-
-Pour CHAQUE nouvelle page créée:
-
-**Structure (inspirée Index.tsx)**
-- [ ] Hero section avec animation principale
-- [ ] Au moins 3-4 sections multi-colonnes (texte + animation)
-- [ ] Grid background animé (EnhancedGridBackground)
-- [ ] Typography cohérente (h1, h2, p)
-- [ ] Spacing vertical régulier (py-20 md:py-32)
-
-**Contenu Pédagogique**
-- [ ] Chaque concept technique expliqué visuellement
-- [ ] Animation synchronisée avec le texte explicatif
-- [ ] Bénéfices TOUJOURS quantifiés (CHF, %, heures)
-- [ ] Exemples concrets et accessibles
-- [ ] Pas de jargon sans explication
-
-**Animations**
-- [ ] Au moins 1 animation par section majeure
-- [ ] Framer Motion pour toutes les animations
-- [ ] Animations déclenchées au scroll (viewport)
-- [ ] Performance 60fps minimum
-- [ ] Animations adaptées mobile (simplifiées si besoin)
-
-**Design System**
-- [ ] Couleurs CATEGORY_COLORS/COMPLEXITY_COLORS
-- [ ] Icônes Lucide vérifiées sur lucide.dev
-- [ ] Pas de HEX hardcodé hors Design System
-- [ ] Mappings respectés
-
-**Technique**
-- [ ] TypeScript strict (pas any)
-- [ ] Responsive (mobile-first)
-- [ ] SEO (meta tags, h1 unique)
-- [ ] Accessibilité (alt, aria-labels)
+✅ Navigation plate (4 items, 1 niveau)
+✅ Message émotionnel : "Vous Perdez 15 Heures Par Semaine..."
+✅ 4 pages principales SEULEMENT
+✅ Preuve avant pitch (témoignages d'abord)
+✅ MVP lancé semaine 4, feedback immédiat
+```
 
 ---
 
-## 🎨 DESIGN SYSTEM - COULEURS EXACTES
+## 📋 NOUVELLE ARCHITECTURE SITE (4 PAGES)
 
-### Référence Complète
+```
+SITE DAINAMICS (MVP)
+│
+├─ 1. HOMEPAGE (/) ⭐⭐⭐
+│  └─ 80% trafic, 90% conversions
+│  └─ 5 sections : Hero | Aide | Preuve | Processus | CTA
+│
+├─ 2. EXEMPLES (/exemples)
+│  └─ 6-8 cas clients, proof sociale massive
+│  └─ Filtres : Industrie + Problème
+│
+├─ 3. COMMENT ÇA MARCHE (/processus)
+│  └─ 3 étapes + 4 différenciateurs + FAQ 7Q
+│  └─ Rassurer, expliquer, répondre objections
+│
+└─ 4. CONTACT (/contact) ⭐
+   └─ Calendly + formulaire + infos
+   └─ Conversion maximale, friction minimale
+```
 
-**Document**: `DESIGN-SYSTEM-MANDATORY.md` (15.5 KB)  
-**Architecture**: `ARCHITECTURE.md` (lignes 100-800)  
-**Référence Visuelle**: `Index.tsx` (page d'accueil)
+**OUTILS ADDITIONNELS (Phase 2) :**
+- `/calculateur` - Lead magnet ROI
+- `/ressources` - Blog optionnel
 
-### Palette à Utiliser (AUCUNE AUTRE COULEUR)
+---
+
+## 🎯 PRINCIPES DIRECTEURS MVP
+
+### 1. MESSAGE EN 30 SECONDES (Règle Absolue)
+
+**Un visiteur doit comprendre en 30 secondes :**
+1. Qui vous êtes : Agence IA/Automatisation PME
+2. Votre promesse : Économiser 10-15h/semaine, ROI 2-6 mois
+3. La preuve : 50+ PME, 8 ans, 99% satisfaction
+4. L'action : "Réserver 30 min gratuites"
+
+**Test :** Si vous devez expliquer votre site > 30s → Simplifier
+
+---
+
+### 2. PROBLÈME AVANT SOLUTION
+
+**❌ AVANT (Features-First) :**
+```
+"Nous sommes experts en Intelligence Artificielle..."
+"Nos services incluent..."
+"Nous utilisons React, TypeScript..."
+```
+
+**✅ APRÈS (Problem-First) :**
+```
+"Vous Perdez 15 Heures Par Semaine à Faire des Tâches 
+Qu'un Robot Pourrait Faire"
+
+"C'est le quotidien de milliers de dirigeants PME."
+
+"Pendant ce temps : Vos concurrents automatisent."
+```
+
+**Règle :** Commencez TOUJOURS par le pain point. Solution vient après.
+
+---
+
+### 3. PREUVE AVANT PITCH
+
+**❌ AVANT (Nous d'abord) :**
+```
+1. Qui sommes-nous (À propos)
+2. Notre expertise (Compétences)
+3. Nos services (Features)
+4. Nos clients (Preuve sociale tout en bas)
+```
+
+**✅ APRÈS (Preuve d'abord) :**
+```
+1. Votre problème (15h perdues)
+2. Ces 3 PME l'ont résolu (Témoignages avec ROI)
+3. Comment on peut vous aider (Solution)
+4. Réservez 30 minutes gratuites (CTA)
+```
+
+**Règle :** Témoignages clients AVANT de parler de vous.
+
+---
+
+### 4. TON CONVERSATIONNEL (Test Café)
+
+**❌ AVANT (Corporate) :**
+```
+"Nous accompagnons les organisations dans leur 
+transformation digitale en implémentant des solutions..."
+```
+
+**✅ APRÈS (Humain) :**
+```
+"On automatise vos tâches chiantes en 2-4 semaines.
+Vous récupérez 15h par semaine. Point."
+```
+
+**Test :** Lisez à voix haute. Si vous ne diriez PAS ça à un ami au café → Réécrivez.
+
+---
+
+### 5. QUANTIFIER TOUJOURS
+
+**❌ AVANT (Vague) :**
+```
+"Nous aidons les PME à gagner du temps"
+"Résultats significatifs"
+"ROI important"
+```
+
+**✅ APRÈS (Précis) :**
+```
+"15-25h/semaine économisées"
+"ROI 280% première année"
+"Breakeven 3-4 mois"
+"35K€/an économisés"
+```
+
+**Règle :** Chiffres concrets. CHF, %, heures. Pas de "beaucoup", "significatif".
+
+---
+
+### 6. UN SEUL CTA (Répété 3x)
+
+**❌ AVANT (CTAs multiples) :**
+```
+• Découvrir nos services
+• Voir portfolio
+• Télécharger brochure
+• Demander devis
+• Réserver démo
+• Newsletter
+```
+
+**✅ APRÈS (CTA unique) :**
+```
+[Réserver 30 min gratuites]
+     ↓
+Répété 3x homepage (Hero, Cards, Final)
+Répété sur CHAQUE page
+AUCUN autre CTA
+```
+
+**Règle :** Un seul appel à l'action. Clarifié. Amplifié. Répété.
+
+---
+
+## 📚 Documentation (Par Ordre de Priorité)
+
+### Pour Comprendre la Transformation
+
+1. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Plan MVP 4 semaines ⭐
+2. **[STATUS.md](./STATUS.md)** - Dashboard temps réel
+3. **[PRIORITIES.md](./PRIORITIES.md)** - Priorisation P0/P1/P2
+
+### Pour le Contenu
+
+4. **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** - Ton storytelling ⭐
+5. **[Présentation Optimisée](./DAINAMICS_Presentation_Optimisee.md)** - Copywriting
+6. **[Plan Site Optimisé](./DAINAMICS_Plan_Site_Optimise.md)** - Structure 4 pages
+
+### Pour l'Architecture
+
+7. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure site
+8. **ARCHITECTURE.md** - Specs techniques (si besoin)
+
+### Pour Nouvelles Conversations
+
+9. **[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)** - Contexte complet
+
+---
+
+## 🎯 WORKFLOW DÉVELOPPEMENT
+
+### Claude Travaille Directement
+
+**Plus besoin de Claude Code :**
+- ✅ Claude lit/crée/modifie directement sur GitHub
+- ✅ Claude commit et push automatiquement
+- ✅ Tout dans la conversation
+
+**Process par Page :**
+1. Consulter [PRIORITIES.md](./PRIORITIES.md) (P0 en premier)
+2. Lire [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) (ton storytelling)
+3. Créer page avec contenu émotionnel
+4. Commit avec message clair
+5. Mettre à jour [STATUS.md](./STATUS.md)
+
+---
+
+## 🎨 DESIGN SYSTEM (Rappels)
+
+### Couleurs OBLIGATOIRES
 
 ```typescript
-// Couleurs principales - JAMAIS modifier
 const COLORS = {
   primary: '#6366F1',      // Indigo - Tech/IA
   cta: '#FF5A00',          // Orange - CTA
@@ -222,444 +244,166 @@ const COLORS = {
   warning: '#F59E0B',      // Yellow
   error: '#EF4444',        // Red
   background: '#0A0A0F',   // Dark Navy
-  light: '#F1F5F9'         // Light text
-};
-
-// Mappings OBLIGATOIRES
-const CATEGORY_COLORS = {
-  'ia': '#6366F1',              // Primary
-  'automatisation': '#10E4FF',   // Accent
-  'developpement': '#FF5A00'     // CTA
-};
-
-const COMPLEXITY_COLORS = {
-  'starter': '#10B981',         // Green
-  'intermediate': '#F59E0B',    // Yellow
-  'advanced': '#EF4444'         // Red
+  light: '#F1F5F9'         // Light
 };
 ```
 
-### Icônes Lucide React UNIQUEMENT
-
-**Source**: Lucide React v0.263.1  
-**Vérification OBLIGATOIRE**: https://lucide.dev avant CHAQUE utilisation
-
-**⚠️ Workflow icônes:**
-1. Aller sur https://lucide.dev
-2. Chercher l'icône voulue
-3. Copier nom EXACT en PascalCase
-4. Utiliser dans le code
-5. ❌ JAMAIS inventer un nom d'icône
+**Référence complète :** [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)
 
 ---
 
-## 📚 Documentation (Par ordre de priorité)
+## ✅ CHECKLIST AVANT COMMIT
 
-1. **Index.tsx** ⭐ **RÉFÉRENCE LAYOUTS** (page d'accueil)
-2. **DESIGN-SYSTEM-MANDATORY.md** ⭐ CRITIQUE (15.5 KB)
-3. **ARCHITECTURE.md** (81 KB, 3397 lignes)
-4. **PROMPT-CONTEXT.md v2.1** (nouveau workflow)
-5. **INSTRUCTIONS.md v2.2** (ce document)
-6. **CHANGELOG.md v2.3**
-
-### Ordre de Lecture Mis à Jour (NOUVEAU)
-
-**Pour comprendre la transformation:**
-1. [STATUS.md](./STATUS.md) - Où en sommes-nous ?
-2. [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Où allons-nous ?
-3. [PRIORITIES.md](./PRIORITIES.md) - Que faire en premier ?
-
-**Pour développer:**
-1. [WORKFLOW.md](./WORKFLOW.md) - Process strict
-2. [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure site
-3. [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - Guidelines rédaction
-4. [ARCHITECTURE.md](./ARCHITECTURE.md) - Specs techniques
-5. [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md) - Couleurs/Icônes
-6. **Index.tsx** - Référence layouts et animations
-
-**Pour nouvelles conversations Claude:**
-[PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md) - Contexte complet
-
----
-
-## ✅ État Actuel
-
-**Pour l'état détaillé du projet, consultez [STATUS.md](./STATUS.md)**
-
-**Vue d'ensemble rapide:**
-
-**Terminé ✅**
-- Data files (solutions.ts, portfolio.ts, expertise.ts, agents.ts)
-- Navigation.tsx (menu complet)
-- Index.tsx (page d'accueil) ⭐ RÉFÉRENCE
-- Pages principales (Solutions, Portfolio, Expertise)
-- EnhancedGridBackground.tsx
-- Documentation restructurée
-
-**En cours ⏳**
-- Phase 1 transformation (Semaine 2/4)
-- Pages Resources
-
-**À créer ⏹️**
-- glossary.ts, useCases.ts, pricingPackages.ts, testimonials.ts
-- Pages /glossary, /use-cases, /about, /pricing, /process
-- Features interactives (Calculateur ROI, Assessment, etc.)
-
-**Consulter [STATUS.md](./STATUS.md) pour les détails complets et les métriques de progression**
-
----
-
-## 🎯 Objectifs
-
-### Business
-- Leader solutions automatisation PME suisses
-- 15-25 leads qualifiés/mois (6 premiers mois)
-- ROI démontrable (CHF, heures, %)
-- Crédibilité cas clients (LEXAIA, ENKI-REALTY)
-
-### Techniques
-- Lighthouse >90
-- Animations 60fps
-- Mobile-first
-- SEO marché suisse
-- Conformité nLPD, SwissDec, TVA
-
----
-
-## 📐 Principes
+### Architecture
+- [ ] Page s'intègre dans structure 4 pages
+- [ ] Pas de redondance
+- [ ] Navigation cohérente
 
 ### Contenu
-- Langage business (pas jargon)
-- Toujours quantifier (CHF, %, heures)
-- Approche suisse (nLPD, SwissDec, TVA)
-- ROI démontrable
-- **Approche pédagogique**: expliquer visuellement
-
-### Style
-- Professionnel mais accessible
-- Phrases courtes
-- Exemples concrets
-- **JAMAIS d'emojis** code/doc
-- "IA" (pas "AI") français
-
-### Design
-- Moderne épuré (Stripe, Linear)
-- **S'inspirer d'Index.tsx** pour tous les layouts
-- Animations Framer Motion
-- **Sections multi-colonnes** (texte + animation)
-- Navigation max 3 clics
-- Mobile-first obligatoire
-
----
-
-## 🏗️ Structure Site
-
-### Pages (9)
-1. **Homepage** ✅ - Hero + Piliers + Solutions (Index.tsx)
-2. **Expertise** ✅ - IA, Automatisation, Dev
-3. **Solutions** ✅ - 15 automatisations
-4. **Portfolio** ✅ - LEXAIA, ENKI-REALTY + 3
-5. Resources ⏹️ - Blog, Glossaire, Use Cases
-6. À Propos ⏹️ - Mission, Équipe
-7. Process ⏹️ - Méthodologie, Garanties
-8. Pricing ⏹️ - 4 tiers
-9. Contact ✅ - Form + Chatbot + RDV
-
-### Features (8)
-1. Calculateur ROI
-2. Diagnostic IA
-3. AI Maturity Assessment
-4. Chatbot multilingue (Claude API)
-5. Comparateur solutions
-6. Simulateur pricing
-7. Tech Stack Explorer
-8. Système RDV
-
----
-
-## 🛠️ Stack
-
-### Frontend
-- React 18.3.1 + TypeScript 5.5.3
-- Vite 5.3.4
-- Tailwind CSS 3.4.1
-- Framer Motion 11.3.21
-- Lucide React 0.263.1
-- React Hook Form + Zod
-
-### Backend
-- Supabase (PostgreSQL, Auth, Storage)
-- Brevo/SendGrid (emailing)
-- GA4 + Plausible (analytics)
-- Cal.com (RDV)
-
-### Dev
-- **Claude** (travail direct sur GitHub)
-- GitHub (version control)
-- Vercel/Netlify (hosting)
-
----
-
-## 📏 Standards Code
-
-### TypeScript Strict
-
-```typescript
-// ✅ BON
-interface Solution {
-  id: string;
-  category: 'ia' | 'automatisation' | 'developpement';
-  complexity: 'starter' | 'intermediate' | 'advanced';
-  icon: string;  // Lucide React
-  roi: { timeframe: string; savings: number };
-}
-
-// ❌ MAUVAIS
-const solution: any = {...}
-```
-
-### Conventions
-- Components: PascalCase (`Hero.tsx`)
-- Utils: camelCase (`formatCurrency.ts`)
-- Data: camelCase (`solutions.ts`)
-- CSS: kebab-case Tailwind
-
-### Structure
-```
-src/
-├── components/
-│   ├── ui/         # Design System
-│   ├── layout/     # Header, Footer
-│   └── features/   # Features
-├── data/           # Data files (solutions.ts, etc.)
-├── pages/          # Routes (Index.tsx ⭐)
-├── types/          # TypeScript
-└── utils/          # Helpers
-```
-
----
-
-## 🚀 Workflow
-
-### Phase 1 (Semaines 1-3)
-
-**Semaine 1** ✅
-- [x] Setup + Design System + Layout + Homepage
-
-**Semaine 2** ✅
-- [x] Homepage complète (Index.tsx)
-- [x] Navigation.tsx
-- [x] solutions.ts
-- [x] portfolio.ts
-- [x] expertise.ts
-- [x] Pages Expertise
-
-**Semaine 3** ⏳ EN COURS
-- [ ] Pages Quick Wins, Industries
-- [ ] Pages Resources (Glossaire, Use Cases)
-- [ ] Calculateur ROI
-- [ ] Diagnostic IA
-
-**Pour le plan complet, voir [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)**
-
-### Phase 2 (Semaines 4-5)
-- About, Process, Pricing
-- Blog, intégrations
-- Features interactives
-
-### Phase 3 (Semaines 6-7)
-- Chatbot, SEO, QA, Performance
-
----
-
-## ✅ Checklist Avant Commit
-
-### Design System ⭐ CRITIQUE
-- [ ] Référence Index.tsx pour layouts
-- [ ] Sections multi-colonnes (texte + animation)
-- [ ] Animations pédagogiques présentes
-- [ ] CATEGORY_COLORS/COMPLEXITY_COLORS utilisés
-- [ ] Icônes Lucide vérifiées lucide.dev
-- [ ] Pas de HEX hardcodé hors Design System
-
-### Code
-- [ ] TypeScript sans erreurs (pas `any`)
-- [ ] ESLint OK
-- [ ] Pas de console.log
-- [ ] Pas d'emojis
-
-### Performance
-- [ ] Images optimisées
-- [ ] Animations 60fps
-- [ ] Lighthouse >90
-
-### Contenu
+- [ ] Hook émotionnel (pas technique)
+- [ ] Problème AVANT solution
 - [ ] Gains quantifiés (CHF, %, heures)
-- [ ] Concepts expliqués visuellement
-- [ ] "IA" (pas "AI")
-- [ ] LEXAIA, ENKI-REALTY corrects
-- [ ] CTAs clairs
+- [ ] Témoignages avec noms réels
+- [ ] "IA" (pas "AI") en français
+- [ ] Test café (ton conversationnel)
+
+### UX
+- [ ] Message "30 secondes" validé
+- [ ] 1 CTA principal répété
+- [ ] Preuve avant pitch
+- [ ] Mobile-first responsive
+
+### Technique
+- [ ] TypeScript strict (pas any)
+- [ ] Design System respecté
+- [ ] Performance OK
+- [ ] SEO meta tags
 
 ---
 
-## 📖 Ressources
+## 🚀 PLAN MVP 4 SEMAINES
 
-### Documentation Projet
+### Semaine 1 : Homepage Nouvelle Génération ⏳
 
-**Transformation (Nouveau):**
-- [STATUS.md](./STATUS.md) - Dashboard état projet
-- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan 24 semaines
-- [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure menu optimale
-- [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - Guidelines contenu
-- [PRIORITIES.md](./PRIORITIES.md) - Priorisation P0/P1/P2/P3
+**Objectif :** Homepage qui convertit à 4-6%
 
-**Développement:**
-- [WORKFLOW.md](./WORKFLOW.md) - Process strict
-- [ARCHITECTURE.md](./ARCHITECTURE.md) - Specs techniques (81KB)
-- [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md) - Couleurs/Icônes
-- [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md) - Contexte conversations
+**Tâches :**
+- [ ] Simplifier Navigation.tsx (9→4 items)
+- [ ] Hero : "Vous Perdez 15 Heures..."
+- [ ] 4 exemples concrets (Grid 2x2)
+- [ ] 2 cas clients featured
+- [ ] 3 étapes processus
+- [ ] CTA final + photo équipe
+- [ ] Mobile responsive
 
-**Repository:**
-- https://github.com/dainabase/Dainamics-Web-Site
-- **Index.tsx** - Référence layouts et animations ⭐
-
-### Externes
-- **Lucide Icons**: https://lucide.dev (v0.263.1)
-- **Tailwind CSS**: https://tailwindcss.com/docs
-- **Framer Motion**: https://www.framer.com/motion
+**Validation :** Homepage complète, CTA répété 3x, ~1,500 mots
 
 ---
 
-## 💡 Exemple: Créer une Page Pédagogique
+### Semaine 2 : Page Exemples
 
-### Page "/solutions/quick-wins"
+**Objectif :** Proof sociale massive
 
-**Inspiration**: Index.tsx
+**Tâches :**
+- [ ] Créer page /exemples
+- [ ] 6-8 cas clients complets
+- [ ] Filtres Industrie + Problème
+- [ ] Métriques quantifiées chaque cas
 
-**Structure:**
+**Validation :** 6-8 cas, filtres fonctionnels, 200-300 mots/cas
 
-```typescript
-import { motion } from 'framer-motion';
-import { Zap, TrendingUp, Clock } from 'lucide-react';
-import EnhancedGridBackground from '@/components/EnhancedGridBackground';
+---
 
-export default function QuickWins() {
-  return (
-    <>
-      <EnhancedGridBackground />
-      
-      {/* Hero - Inspiré de Index.tsx */}
-      <section className="relative py-32">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-5xl md:text-7xl font-bold">
-              Quick Wins
-            </h1>
-            <p className="text-xl text-slate-300 mt-6">
-              ROI garanti en moins de 6 mois
-            </p>
-            <Button className="mt-8">Voir les solutions</Button>
-          </div>
-          
-          {/* Animation pédagogique */}
-          <div>
-            <QuickWinsAnimation />
-          </div>
-        </div>
-      </section>
-      
-      {/* Section Bénéfices - Multi-colonnes */}
-      <section className="py-20 md:py-32">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-bold">
-              Pourquoi Quick Wins?
-            </h2>
-            <ul className="mt-8 space-y-4">
-              <li>Implémentation rapide (2-6 semaines)</li>
-              <li>ROI mesurable en 6 mois</li>
-              <li>Faible investissement initial</li>
-            </ul>
-          </div>
-          
-          {/* Schéma animé du processus */}
-          <ProcessFlowAnimation />
-        </div>
-      </section>
-      
-      {/* Grid Solutions */}
-      <section className="py-20">
-        {quickWinSolutions.map(solution => (
-          <SolutionCard key={solution.id} {...solution} />
-        ))}
-      </section>
-    </>
-  );
-}
+### Semaine 3 : Page Comment ça marche
+
+**Objectif :** Rassurer, répondre objections
+
+**Tâches :**
+- [ ] Créer page /processus
+- [ ] 3 étapes détaillées
+- [ ] 4 différenciateurs
+- [ ] FAQ 7 questions
+- [ ] Garantie ROI affichée
+
+**Validation :** Process clair, FAQ répond objections, ~1,500 mots
+
+---
+
+### Semaine 4 : Page Contact + Lancement 🚀
+
+**Objectif :** Conversion maximale, MVP lancé
+
+**Tâches :**
+- [ ] Créer page /contact
+- [ ] Intégrer Calendly
+- [ ] Formulaire contact
+- [ ] Footer + 404 + Meta tags
+- [ ] Performance Lighthouse >85
+- [ ] **LANCEMENT MVP**
+
+**Validation :** 4 pages complètes, mobile parfait, Lighthouse >85
+
+---
+
+## 🎯 MÉTRIQUES DE SUCCÈS MVP
+
+### Baseline Actuel
+```
+Taux conversion:      ~2-3%
+Bounce rate:          ~55-65%
+Temps sur site:       ~1-2 min
+Leads/mois:           ~5-10
+```
+
+### Objectifs MVP (4 semaines)
+```
+🎯 Taux conversion:   4-6% (+50-100%)
+🎯 Bounce rate:       <45%
+🎯 Temps sur site:    >2.5 min
+🎯 Leads/mois:        15-20 (+100-200%)
 ```
 
 ---
 
-## 🆘 Support
+## 🔒 RÈGLES ABSOLUES NON NÉGOCIABLES
 
-### Si Perdu
-1. Regarder **Index.tsx** en priorité (layouts)
-2. Consulter **[STATUS.md](./STATUS.md)** (état actuel)
-3. Consulter **[PRIORITIES.md](./PRIORITIES.md)** (quoi faire en premier)
-4. Consulter **DESIGN-SYSTEM-MANDATORY.md** (couleurs/icônes)
-5. Vérifier **ARCHITECTURE.md** (specs)
-6. Examiner solutions.ts/portfolio.ts (structure data)
-
-### Si Bloqué
-1. STOP immédiatement
-2. Noter erreur + contexte
-3. Demander assistance
+✅ **4 pages menu** - Jamais 9+  
+✅ **Navigation plate** - 1 niveau, pas 3  
+✅ **Message 30 secondes** - Test obligatoire  
+✅ **Problème avant solution** - Toujours  
+✅ **Preuve avant pitch** - Témoignages en haut  
+✅ **1 CTA répété** - "Réserver 30 min gratuites"  
+✅ **Quantifier toujours** - CHF, %, heures  
+✅ **Ton conversationnel** - Test café  
+✅ **"IA" pas "AI"** - En français  
+❌ **Pas d'emojis** - Jamais code/doc  
 
 ---
 
-## 🎯 Prochaines Étapes
+## 📞 CONTACT & SUPPORT
 
-**Consulter [PRIORITIES.md](./PRIORITIES.md) pour le tableau de priorisation complet**
+**Questions transformation :**
+- Lire [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)
+- Lire [Plan Site Optimisé](./DAINAMICS_Plan_Site_Optimise.md)
 
-### Priorité 1: Finaliser Solutions
-1. Page /solutions/quick-wins
-2. Page /solutions/industries
-
-### Priorité 2: Section Resources
-1. Créer glossary.ts
-2. Créer useCases.ts
-3. Page /glossary (remplacer ComingSoon)
-4. Page /use-cases
-
-**Pour chaque page:**
-- S'inspirer d'Index.tsx
-- Créer animations pédagogiques
-- Sections multi-colonnes
-- Expliquer visuellement les concepts
+**Clarifications :**
+- Contact : contact@dainamics.ch
+- Référencer [PRIORITIES.md](./PRIORITIES.md)
 
 ---
 
-## 🔒 Règles Absolues NON NÉGOCIABLES
-
-1. ✅ **S'inspirer d'Index.tsx** - Pour TOUS les layouts
-2. ✅ **Approche pédagogique** - Animations explicatives
-3. ✅ **Multi-colonnes** - Texte + Animation synchronisées
-4. ✅ **Design System** - CATEGORY_COLORS/COMPLEXITY_COLORS
-5. ✅ **TypeScript strict** - Jamais `any`
-6. ✅ **Icônes Lucide** - Vérifier lucide.dev AVANT
-7. ✅ **Gains quantifiés** - CHF, %, heures
-8. ✅ **"IA" pas "AI"** - En français
-9. ❌ **Pas d'emojis** - Jamais code/doc
-10. ✅ **Mobile-first** - Toujours
+**VERSION:** 3.0 - MVP FOCUS  
+**DERNIÈRE MAJ:** 15 Octobre 2025  
+**CRITIQUE:** Architecture 4 pages - Approche storytelling - MVP 4 semaines
 
 ---
 
-**VERSION**: 2.2  
-**DATE**: 13 Octobre 2025  
-**CRITIQUE**: Références nouveaux documents transformation
+*"Perfection is the enemy of done. Ship MVP, then iterate."*
 
-**🎯 RÉSUMÉ CHANGEMENTS v2.2:**
-- Ajout références STATUS.md, TRANSFORMATION-PLAN.md, PRIORITIES.md
-- Section "Ordre de Lecture Mis à Jour" avec organisation claire
-- État Actuel renvoyé vers STATUS.md (single source of truth)
-- Liens croisés vers nouvelle documentation
+**🚨 TRANSFORMATION EN COURS - TOUT CHANGE**
+
+**📚 Documents clés :**
+- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan MVP
+- [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - Ton storytelling
+- [STATUS.md](./STATUS.md) - Dashboard
+- [PRIORITIES.md](./PRIORITIES.md) - Priorisation
