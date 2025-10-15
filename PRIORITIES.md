@@ -1,752 +1,344 @@
-# 📊 DAINAMICS - Tableau de Priorisation
+# 📊 DAINAMICS - Priorisation MVP 4 Semaines
 
 **Type:** Suivi  
-**Version:** 1.0  
-**Dernière MAJ:** 11 Octobre 2025  
-**Liens Rapides:** [STATUS](./STATUS.md) | [TRANSFORMATION-PLAN](./TRANSFORMATION-PLAN.md) | [NAVIGATION-ARCHITECTURE](./NAVIGATION-ARCHITECTURE.md)
+**Version:** 2.0 - APPROCHE MVP  
+**Dernière MAJ:** 15 Octobre 2025  
+**Liens Rapides:** [STATUS](./STATUS.md) | [TRANSFORMATION-PLAN](./TRANSFORMATION-PLAN.md) | [Plan Site Optimisé](./DAINAMICS_Plan_Site_Optimise.md)
 
 ---
 
-## 🎯 Objectif de ce Document
+## 🎯 NOUVELLE APPROCHE : MVP FIRST
 
-Ce document contient le **tableau de priorisation complet** de toutes les tâches du projet DAINAMICS.
+### Changement de Philosophie
 
-**Méthodologie:** Impact business × Effort développement = Priorité
+**AVANT (Waterfall):**
+```
+24 semaines → 14+ pages → Lancement
+❌ Aucun feedback avant 6 mois
+❌ Risque de construire ce que personne ne veut
+```
 
-**Échelle:**
+**APRÈS (MVP Iterative):**
+```
+4 semaines → 4 pages → Lancement → Test → Iterate
+✅ Feedback utilisateur dès semaine 4
+✅ Pivot rapide si besoin
+✅ ROI dès semaine 5
+```
+
+---
+
+## 📊 PRIORISATION MVP
+
+### Échelle
+
 - **Impact:** 🔥 Low | 🔥🔥 Medium | 🔥🔥🔥 High
-- **Effort:** 🔧 Low (<1 sem) | 🔧🔧 Medium (1-2 sem) | 🔧🔧🔧 High (2+ sem)
-- **Priorité:** P0 (Critique) | P1 (Important) | P2 (Utile) | P3 (Nice-to-have)
+- **Effort:** 🔧 Low (<3j) | 🔧🔧 Medium (3-7j) | 🔧🔧🔧 High (7+j)
+- **Priorité:** **P0** (MVP Critique) | **P1** (Post-MVP) | **P2** (Phase 2) | **P3** (Phase 3)
 
 ---
 
-## 📋 Table des Matières
+## 🚀 P0 - MVP CRITIQUE (Semaines 1-4)
 
-1. [Vue d'Ensemble](#-vue-densemble)
-2. [P0 - Critique](#-p0---critique-démarrer-immédiatement)
-3. [P1 - Important](#-p1---important-démarrer-dans-4-semaines)
-4. [P2 - Utile](#-p2---utile-démarrer-dans-8-semaines)
-5. [P3 - Nice-to-have](#-p3---nice-to-have-démarrer-dans-12-semaines)
+### SEMAINE 1 : Homepage Nouvelle Génération
+
+| **Tâche** | **Impact** | **Effort** | **Statut** | **Notes** |
+|-----------|------------|------------|------------|-----------|
+| **1.1 Simplifier Navigation.tsx** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | 9 items → 4 items. Navigation plate. |
+| **1.2 Créer Hero Section** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | Hook émotionnel : "Vous Perdez 15 Heures..." |
+| **1.3 Section Comment On Aide** | 🔥🔥🔥 | 🔧🔧 | ⏹️ TODO | 4 exemples concrets (Grid 2x2) |
+| **1.4 Section Preuve** | 🔥🔥🔥 | 🔧🔧 | ⏹️ TODO | 2 cas clients featured + chiffres globaux |
+| **1.5 Section Processus** | 🔥🔥 | 🔧 | ⏹️ TODO | 3 étapes simples visuelles |
+| **1.6 Section CTA Final** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | Photo équipe + CTA principal |
+| **1.7 Mobile Responsive** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | Test iOS + Android, touch 48×48px |
+
+**Résultat Semaine 1 :** Homepage complète qui convertit à 4-6%
 
 ---
 
-## 📊 Vue d'Ensemble
+### SEMAINE 2 : Page Exemples
 
-### Répartition par Priorité
+| **Tâche** | **Impact** | **Effort** | **Statut** | **Notes** |
+|-----------|------------|------------|------------|-----------|
+| **2.1 Créer page /exemples** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | Structure : Header + Grille + CTA |
+| **2.2 Header avec filtres** | 🔥🔥 | 🔧 | ⏹️ TODO | Filtres simples : Industrie + Problème |
+| **2.3 Rédiger 6-8 cas clients** | 🔥🔥🔥 | 🔧🔧 | ⏹️ TODO | Format : Logo \| Problème \| Solution \| Résultats |
+| **2.4 Composant CaseStudyCard** | 🔥🔥 | 🔧 | ⏹️ TODO | Réutilisable, responsive, métriques bold |
+| **2.5 Système filtres** | 🔥🔥 | 🔧 | ⏹️ TODO | JavaScript vanilla, pas de lib complexe |
+| **2.6 CTA page Exemples** | 🔥🔥 | 🔧 | ⏹️ TODO | "Votre PME a un défi similaire ?" |
+
+**Résultat Semaine 2 :** Page Exemples avec 6-8 cas, proof sociale massive
+
+---
+
+### SEMAINE 3 : Page Comment ça marche
+
+| **Tâche** | **Impact** | **Effort** | **Statut** | **Notes** |
+|-----------|------------|------------|------------|-----------|
+| **3.1 Créer page /processus** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | Structure : Header + 3 Étapes + FAQ + CTA |
+| **3.2 Processus 3 étapes détaillé** | 🔥🔥🔥 | 🔧🔧 | ⏹️ TODO | Évaluer → Prototyper → Livrer (avec garantie) |
+| **3.3 Section Pourquoi Nous** | 🔥🔥 | 🔧 | ⏹️ TODO | 4 différenciateurs (Grid 2x2) |
+| **3.4 FAQ 7 questions** | 🔥🔥🔥 | 🔧🔧 | ⏹️ TODO | Prix, Temps, Taille, Secteur, Garantie, Europe, Démarrage |
+| **3.5 Composant FAQ Accordion** | 🔥🔥 | 🔧 | ⏹️ TODO | Accessible, keyboard nav, animations |
+| **3.6 CTA page Process** | 🔥🔥 | 🔧 | ⏹️ TODO | "Prêt à démarrer ?" |
+
+**Résultat Semaine 3 :** Page Process qui rassure et répond aux objections
+
+---
+
+### SEMAINE 4 : Page Contact + Lancement
+
+| **Tâche** | **Impact** | **Effort** | **Statut** | **Notes** |
+|-----------|------------|------------|------------|-----------|
+| **4.1 Créer page /contact** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | Structure : Header + Calendly + Formulaire + Infos |
+| **4.2 Intégrer Calendly** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | RDV 30 min, formulaire pré-RDV (3 questions) |
+| **4.3 Formulaire contact alternatif** | 🔥🔥 | 🔧 | ⏹️ TODO | 6 champs, auto-responder email |
+| **4.4 Footer simplifié** | 🔥 | 🔧 | ⏹️ TODO | Nav secondaire, coordonnées, multilingue |
+| **4.5 404 page custom** | 🔥 | 🔧 | ⏹️ TODO | Message clair + liens utiles |
+| **4.6 Meta tags SEO (4 pages)** | 🔥🔥 | 🔧 | ⏹️ TODO | Title, description, OG images |
+| **4.7 Performance Lighthouse** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | Objectif >85, optimiser images/fonts |
+| **4.8 Tests finaux** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | Mobile, desktop, browsers (Chrome, Safari, Firefox) |
+| **4.9 🚀 LANCEMENT MVP** | 🔥🔥🔥 | 🔧 | ⏹️ TODO | Deploy production, analytics actif, monitoring |
+
+**Résultat Semaine 4 :** MVP complet lancé, 4 pages opérationnelles
+
+---
+
+## 📊 TABLEAU RÉCAPITULATIF P0 (MVP)
+
+| **Semaine** | **Objectif** | **Tâches** | **Effort Total** | **Validation** |
+|-------------|--------------|------------|------------------|----------------|
+| **1** | Homepage Nouvelle Génération | 7 tâches | 🔧🔧🔧 (5-7j) | Homepage convertit 4-6% |
+| **2** | Page Exemples | 6 tâches | 🔧🔧 (3-5j) | 6-8 cas clients avec proof |
+| **3** | Page Comment ça marche | 6 tâches | 🔧🔧 (3-5j) | Process + FAQ répond objections |
+| **4** | Page Contact + Lancement | 9 tâches | 🔧🔧🔧 (5-7j) | MVP lancé, Lighthouse >85 |
+
+**Total MVP :** 28 tâches, 16-24 jours de dev, 4 semaines
+
+---
+
+## 🔄 P1 - POST-MVP (Semaines 5-8)
+
+### Analyse & Optimisation
+
+**Démarrer SI :**
+- Trafic minimum atteint (100+ visites/semaine)
+- Leads minimum (5+ leads en 2 semaines)
+- Feedback utilisateurs collecté
+
+| **Tâche** | **Impact** | **Effort** | **Deadline** | **Notes** |
+|-----------|------------|------------|--------------|-----------|
+| **5.1 Analytics approfondi** | 🔥🔥🔥 | 🔧 | Sem 5 | Heatmaps (Hotjar), événements GA4 |
+| **5.2 A/B testing CTA** | 🔥🔥🔥 | 🔧 | Sem 5 | Tester variations Hero CTA |
+| **5.3 Optimisations conversion** | 🔥🔥🔥 | 🔧🔧 | Sem 6 | Basé sur données analytics |
+| **5.4 Calculateur ROI** | 🔥🔥🔥 | 🔧🔧 | Sem 7 | Lead magnet interactif |
+| **5.5 Assessment Maturité IA** | 🔥🔥 | 🔧🔧 | Sem 8 | 7 questions, auto-qualification |
+
+**Résultat P1 :** Conversion optimisée 4-6% → 6-8%
+
+---
+
+## 🌍 P2 - SCALE (Semaines 9-12)
+
+### Expansion & SEO
+
+**Démarrer SI :**
+- Objectifs P1 atteints (conversion 6-8%)
+- Budget marketing disponible
+- Équipe prête pour multilingue
+
+| **Tâche** | **Impact** | **Effort** | **Deadline** | **Notes** |
+|-----------|------------|------------|--------------|-----------|
+| **6.1 Multilingue DE** | 🔥🔥🔥 | 🔧🔧 | Sem 9 | Traduction complète (pas juste nav) |
+| **6.2 Multilingue EN** | 🔥🔥 | 🔧🔧 | Sem 10 | Marché secondaire |
+| **6.3 Blog (5 articles SEO)** | 🔥🔥 | 🔧🔧 | Sem 11 | "5 Erreurs PME avec IA", etc. |
+| **6.4 Glossaire (30 termes)** | 🔥 | 🔧 | Sem 11 | SEO long-tail |
+| **6.5 Video testimonials** | 🔥🔥 | 🔧🔧🔧 | Sem 12 | 2-3 clients, 60-90 sec |
+| **6.6 Cas clients avancés** | 🔥🔥 | 🔧 | Sem 12 | 10-15 cas total, filtres multiples |
+
+**Résultat P2 :** Traction multilingue, SEO boost, leads 30-40/mois
+
+---
+
+## 🚀 P3 - ADVANCED (Semaines 13+)
+
+### Features Avancées
+
+**Démarrer SI :**
+- Objectifs P2 atteints
+- Retour positif utilisateurs sur features existantes
+
+| **Tâche** | **Impact** | **Effort** | **Notes** |
+|-----------|------------|------------|-----------|
+| **7.1 Chatbot IA support** | 🔥🔥 | 🔧🔧🔧 | Réponses automatiques FAQ |
+| **7.2 Multilingue IT** | 🔥 | 🔧🔧 | Marché tertiaire |
+| **7.3 Portfolio filtres avancés** | 🔥 | 🔧🔧 | Filtre par tech, budget, durée |
+| **7.4 Dashboards clients** | 🔥 | 🔧🔧🔧 | Portail clients avec métriques |
+
+**Résultat P3 :** Plateforme complète, leader marché suisse
+
+---
+
+## 🎯 RÈGLES DE PRIORISATION
+
+### 1. La Règle MVP First
+
+**TOUJOURS commencer par :**
+1. Ce qui prouve/invalide l'hypothèse business
+2. Ce qui génère feedback utilisateur
+3. Ce qui peut lancer en 4 semaines
+
+**JAMAIS commencer par :**
+1. Features "nice-to-have"
+2. Optimisations prématurées
+3. Contenu encyclopédique
+
+---
+
+### 2. La Règle 80/20
+
+**Focus :**
+- 20% des pages = 80% de la conversion
+- Homepage + Exemples + Contact = 90% du trafic
+
+**Donc :**
+- Perfectionnez ces 3 pages AVANT les autres
+- Blog, Glossaire, Resources = Phase 2+
+
+---
+
+### 3. La Règle "Data First"
+
+**Avant d'ajouter une feature :**
+1. Analyser données existantes
+2. Identifier friction réelle utilisateurs
+3. Tester solution minimale
+4. Mesurer impact
+5. Itérer ou abandonner
+
+**Ne JAMAIS ajouter une feature "parce que concurrent l'a"**
+
+---
+
+### 4. La Règle "One Metric That Matters"
+
+**MVP (Semaines 1-4) :**
+- **OMTM :** Taux conversion (objectif 4-6%)
+- Tout le reste est secondaire
+
+**Post-MVP (Semaines 5-8) :**
+- **OMTM :** Nombre leads qualifiés/mois (objectif 15-20)
+
+**Scale (Semaines 9-12) :**
+- **OMTM :** CAC (Cost Acquisition Client) vs LTV (objectif CAC < 500€)
+
+---
+
+## 📊 DÉPENDANCES & BLOQUEURS
+
+### Dépendances MVP
 
 ```
-P0 (Critique):      8 tâches  → Semaines 1-4
-P1 (Important):     7 tâches  → Semaines 5-12
-P2 (Utile):         6 tâches  → Semaines 13-20
-P3 (Nice-to-have):  4 tâches  → Semaines 21-24
+Semaine 1 (Homepage)
+  └─ Bloque : Semaine 2-4 (besoin navigation finale)
+  └─ Dépend de : Rien (peut démarrer immédiatement)
 
-Total: 25 tâches principales
+Semaine 2 (Exemples)
+  └─ Bloque : Rien
+  └─ Dépend de : Navigation S1 (pour liens)
+
+Semaine 3 (Process)
+  └─ Bloque : Rien
+  └─ Dépend de : Navigation S1 (pour liens)
+
+Semaine 4 (Contact + Launch)
+  └─ Bloque : Post-MVP
+  └─ Dépend de : S1-2-3 terminées
 ```
 
-### Graphique Impact vs Effort
-
-```
-Impact
-  🔥🔥🔥 |  P0 P0      | P1 P1      | P2        
-        |  P0 P0 P0   | P1 P1      | P2 P2     
-  🔥🔥   |  P0 P0      | P1 P1 P1   | P2 P2 P2  
-        |             | P1         | P2 P3     
-  🔥     |             |            | P3 P3 P3  
-        |_____________|____________|___________
-         🔧          🔧🔧          🔧🔧🔧
-                   Effort
-```
-
-### Légende Impact
-
-**🔥🔥🔥 High Impact:**
-- Conversion lift estimé : +30%+
-- Résout problème critique utilisateur
-- Différenciateur marché fort
-
-**🔥🔥 Medium Impact:**
-- Conversion lift estimé : +10-20%
-- Améliore expérience significativement
-- Nice-to-have devenant essentiel
-
-**🔥 Low Impact:**
-- Conversion lift estimé : +5-10%
-- Polish et finitions
-- Features avancées
-
-### Légende Effort
-
-**🔧 Low Effort (<1 semaine):**
-- 1-3 jours développement
-- Modifications simples
-- Pas de nouvelle infra
-
-**🔧🔧 Medium Effort (1-2 semaines):**
-- 1-2 semaines développement
-- Features moyennes complexité
-- Quelques dépendances
-
-**🔧🔧🔧 High Effort (2+ semaines):**
-- 2+ semaines développement
-- Features complexes
-- Multi-dépendances
+**Conclusion :** Peut paralléliser S2 et S3 si S1 terminée
 
 ---
 
-## 🚨 P0 - Critique (Démarrer Immédiatement)
+### Bloqueurs Potentiels
 
-**Deadline:** Semaines 1-4  
-**Objectif:** Éliminer blocages majeurs, établir fondations solides
-
-### Tableau P0
-
-| # | **Action** | **Impact** | **Effort** | **Délai** | **Raison Critique** |
-|---|------------|-----------|-----------|-----------|---------------------|
-| 1 | Réduire menu 9→6 items | 🔥🔥🔥 | 🔧 | Sem 1 | Navigation confuse = bounce rate élevé |
-| 2 | Éliminer redondance Services/Solutions/Expertise | 🔥🔥🔥 | 🔧 | Sem 1 | Confusion utilisateur, parcours non-optimal |
-| 3 | Refonte homepage 8 sections optimales | 🔥🔥🔥 | 🔧🔧 | Sem 2-3 | Homepage = première impression critique |
-| 4 | Ajouter page Pricing avec ranges prix | 🔥🔥🔥 | 🔧 | Sem 1 | Différenciateur marché suisse majeur |
-| 5 | Créer portfolio.ts avec 5+ projets | 🔥🔥🔥 | 🔧🔧 | Sem 2 | Proof critique pour crédibilité |
-| 6 | Créer expertise.ts (3 piliers) | 🔥🔥 | 🔧 | Sem 2 | Structure contenu manquante |
-| 7 | Renommer Portfolio → Projets + filtres | 🔥🔥 | 🔧 | Sem 4 | Clarté navigation |
-| 8 | testimonials.ts (8-12 témoignages) | 🔥🔥 | 🔧 | Sem 3 | Social proof essentiel |
-
-### Détails P0
-
-#### #1 : Réduire Menu 9→6 Items
-
-**Impact:** 🔥🔥🔥 High
-- Conversion lift estimé : +25%
-- Bounce rate reduction : -20%
-
-**Effort:** 🔧 Low (2-3 jours)
-
-**Fichiers:**
-- `src/components/Navigation.tsx`
-- `src/App.tsx` (routes)
-
-**Actions:**
-1. Supprimer items redondants
-2. Restructurer en 6 items
-3. Configurer dropdowns 2 niveaux
-4. Tester mobile accordion
-
-**Validation:**
-- [ ] 6 items visibles desktop
-- [ ] Dropdowns fonctionnels
-- [ ] Mobile hamburger OK
-- [ ] Tous liens valides
+| **Bloqueur** | **Impact** | **Mitigation** |
+|--------------|------------|----------------|
+| **Calendly non configuré** | 🔥🔥🔥 Critique | Config immédiate Sem 4, backup formulaire |
+| **Cas clients manquants** | 🔥🔥🔥 Critique | Utiliser cas fictifs réalistes, disclaimer |
+| **Traduction DE retardée** | 🔥 Low | Lancer FR d'abord, ajouter DE en P2 |
+| **Performance <85** | 🔥🔥 Medium | Optimiser images, lazy load, code splitting |
 
 ---
 
-#### #2 : Éliminer Redondance Services/Solutions/Expertise
+## ✅ CHECKLIST PRIORISATION
 
-**Impact:** 🔥🔥🔥 High
-- Confusion éliminée
-- Parcours utilisateur fluide
+### Avant d'Ajouter une Tâche
 
-**Effort:** 🔧 Low (2 jours)
+- [ ] Est-ce que ça aide à prouver/invalider l'hypothèse business ?
+- [ ] Est-ce que ça génère du feedback utilisateur ?
+- [ ] Est-ce qu'on peut le faire en <1 semaine ?
+- [ ] Est-ce que ça augmente la conversion directement ?
+- [ ] A-t-on des données qui justifient cette feature ?
 
-**Actions:**
-1. Supprimer sections "Expertise" et "Solutions"
-2. Tout consolider sous "Services"
-3. Créer "Notre Approche" (remplace Expertise)
-4. Rediriger anciennes URLs
+**Si 3+ réponses "Non" → P2 ou P3**
 
-**Validation:**
-- [ ] Zéro duplication contenu
-- [ ] Navigation claire
-- [ ] Redirections 301 configurées
+### Avant de Démarrer une Tâche
 
----
+- [ ] Toutes les dépendances sont terminées ?
+- [ ] Les ressources sont disponibles (design, contenu, dev) ?
+- [ ] Le critère de validation est clair ?
+- [ ] L'impact business est quantifié ?
+- [ ] Le temps estimé est réaliste ?
 
-#### #3 : Refonte Homepage 8 Sections
-
-**Impact:** 🔥🔥🔥 High
-- Conversion lift estimé : +35%
-- Temps sur site : +30%
-
-**Effort:** 🔧🔧 Medium (1-2 semaines)
-
-**Composants nouveaux:**
-1. `MetricsConfiance.tsx`
-2. `FeaturedCaseStudies.tsx`
-3. `ClientLogos.tsx`
-4. `ServicesOverview.tsx`
-5. `SwissDifferentiator.tsx`
-6. `SingleTestimonial.tsx`
-7. `FinalCTA.tsx`
-
-**Validation:**
-- [ ] 8 sections présentes
-- [ ] Metrics prominents
-- [ ] 2 cas featured
-- [ ] CTAs clairs
+**Si 1+ réponse "Non" → Reporter ou replanifier**
 
 ---
 
-#### #4 : Page Pricing Transparente
+## 🎯 PROCHAINES ACTIONS IMMÉDIATES
 
-**Impact:** 🔥🔥🔥 High
-- Différenciateur #1 marché suisse
-- Leads qualifiés : +40%
+### Cette Semaine (Semaine 1)
 
-**Effort:** 🔧 Low (3-4 jours)
+**Lundi - Tâche 1.1 + 1.2 :**
+- [ ] Simplifier Navigation.tsx (9→4 items)
+- [ ] Créer Hero avec hook émotionnel
 
-**Structure:**
-- 4 tiers prix
-- FAQ 5-8 questions
-- Garantie satisfaction
-- Link calculateur ROI
+**Mardi - Tâche 1.3 :**
+- [ ] Section Comment On Aide (4 exemples)
 
-**Ranges recommandés:**
-- Discovery : 5-12K CHF
-- Quick Wins : 8-15K CHF
-- Custom : 25-75K CHF
-- Équipe : 7K CHF/mois
+**Mercredi - Tâche 1.4 :**
+- [ ] Section Preuve (2 cas clients)
 
-**Validation:**
-- [ ] 4 tiers affichés
-- [ ] FAQ complète
-- [ ] Garantie visible
-- [ ] Link calculator
+**Jeudi - Tâche 1.5 + 1.6 :**
+- [ ] Section Processus (3 étapes)
+- [ ] Section CTA Final (photo équipe)
 
----
-
-#### #5 : portfolio.ts (5+ Projets)
-
-**Impact:** 🔥🔥🔥 High
-- Crédibilité établie
-- Proof quantifié
-
-**Effort:** 🔧🔧 Medium (1 semaine)
-
-**Projets minimum:**
-1. LEXAIA (Chatbot IA)
-2. ENKI-REALTY (Automation gestion)
-3. + 3 projets additionnels
-
-**Structure chaque projet:**
-```typescript
-{
-  id: string;
-  title: string;
-  client: { name, industry, size, logo };
-  challenge: string;
-  solution: string;
-  technologies: string[];
-  outcomes: { metric, value }[];
-  testimonial: { quote, author, role, photo };
-  duration: string;
-  type: 'ia' | 'automatisation' | 'developpement';
-}
-```
-
-**Validation:**
-- [ ] 5+ projets complets
-- [ ] Outcomes quantifiés
-- [ ] Testimonials avec photos
-- [ ] Technologies listées
-
----
-
-#### #6 : expertise.ts (3 Piliers)
-
-**Impact:** 🔥🔥 Medium
-- Structure contenu claire
-
-**Effort:** 🔧 Low (2-3 jours)
-
-**Structure:**
-```typescript
-{
-  pillar: 'ia' | 'automatisation' | 'developpement';
-  title: string;
-  description: string;
-  capabilities: string[];
-  useCases: string[];
-  technologies: string[];
-}
-```
-
-**3 Piliers:**
-1. Intelligence Artificielle
-2. Automatisation
-3. Développement
-
-**Validation:**
-- [ ] 3 piliers détaillés
-- [ ] Cas d'usage par pilier
-- [ ] Technologies listées
-
----
-
-#### #7 : Portfolio → Projets + Filtres
-
-**Impact:** 🔥🔥 Medium
-- Navigation plus claire
-
-**Effort:** 🔧 Low (3 jours)
-
-**Actions:**
-1. Renommer fichier + routes
-2. Ajouter système filtres
-3. 3 critères : Industrie, Type, Outcome
-
-**Validation:**
-- [ ] Renommage complet
-- [ ] Filtres fonctionnels
+**Vendredi - Tâche 1.7 + Review :**
 - [ ] Mobile responsive
+- [ ] Tests & validations
 
 ---
 
-#### #8 : testimonials.ts
+## 📞 CONTACT & QUESTIONS
 
-**Impact:** 🔥🔥 Medium
-- Social proof
+**Questions sur priorisation :**
+- Lire [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Contexte MVP
+- Lire [STATUS.md](./STATUS.md) - État actuel
 
-**Effort:** 🔧 Low (2 jours)
-
-**Structure:**
-```typescript
-{
-  id: string;
-  quote: string;
-  author: string;
-  role: string;
-  company: string;
-  photo: string;
-  metric?: string;
-}
-```
-
-**Validation:**
-- [ ] 8-12 témoignages
-- [ ] Photos clients
-- [ ] Métriques intégrées
+**Doutes sur une tâche :**
+- Appliquer les 4 règles de priorisation ci-dessus
+- Si toujours doute : MVP First → P0
 
 ---
 
-## 📈 P1 - Important (Démarrer dans 4 Semaines)
-
-**Deadline:** Semaines 5-12  
-**Objectif:** Contenu différenciation, outils conversion
-
-### Tableau P1
-
-| # | **Action** | **Impact** | **Effort** | **Délai** | **Raison Importante** |
-|---|------------|-----------|-----------|-----------|----------------------|
-| 9 | 4 pages Services détaillées | 🔥🔥 | 🔧🔧 | Sem 5-6 | Conversion pages service = clé |
-| 10 | Pages Notre Approche (4 pages) | 🔥🔥 | 🔧🔧 | Sem 7-8 | Différenciation processus |
-| 11 | Calculateur ROI interactif | 🔥🔥🔥 | 🔧🔧🔧 | Mois 2 | Lead gen #1 tool |
-| 12 | Assessment Maturité IA | 🔥🔥 | 🔧🔧 | Mois 3 | Qualification leads |
-| 13 | Page Glossaire (30-50 termes) | 🔥 | 🔧🔧 | Sem 11 | SEO + éducation |
-| 14 | Cas d'Usage (8-10 scénarios) | 🔥🔥 | 🔧🔧 | Sem 12 | Content marketing |
-| 15 | Blog (3-5 articles initiaux) | 🔥 | 🔧🔧 | Sem 11-12 | Thought leadership |
-
-### Détails P1
-
-#### #9 : 4 Pages Services Détaillées
-
-**Impact:** 🔥🔥 Medium (+15% conversion pages service)
-
-**Effort:** 🔧🔧 Medium (1-2 semaines)
-
-**Pages à créer:**
-1. ServiceDiscovery.tsx
-2. ServiceDeveloppement.tsx
-3. ServiceQuickWins.tsx
-4. ServiceEquipe.tsx
-
-**Structure chaque page:**
-- Hero service
-- Qu'est-ce que c'est
-- Quand l'utiliser
-- Exemples projets (3)
-- Cas clients (2-3)
-- Processus (4-6 étapes)
-- Pricing détaillé
-- CTA final
-
-**Validation:**
-- [ ] 4 pages complètes
-- [ ] Template suivi
-- [ ] Exemples concrets
-- [ ] Pricing détaillé
-
----
-
-#### #10 : Notre Approche (4 Pages)
-
-**Impact:** 🔥🔥 Medium (+10% trust)
-
-**Effort:** 🔧🔧 Medium (1 semaine)
-
-**Pages:**
-1. ApprochProcessus.tsx (5 phases)
-2. ApprochIntegrationIA.tsx
-3. ApprochStandards.tsx (document public)
-4. ApprochEquipe.tsx
-
-**Validation:**
-- [ ] 4 pages créées
-- [ ] Processus 5 phases détaillé
-- [ ] Standards téléchargeables
-- [ ] Équipe présentée
-
----
-
-#### #11 : Calculateur ROI
-
-**Impact:** 🔥🔥🔥 High (+20 leads/mois)
-
-**Effort:** 🔧🔧🔧 High (2-3 semaines)
-
-**Features:**
-- 4 inputs ajustables
-- Calculs temps réel
-- Export PDF
-- Lead capture
-
-**Inputs:**
-1. Heures/semaine tâches répétitives
-2. Coût horaire moyen
-3. % automatisable
-4. Investissement projet
-
-**Outputs:**
-1. Économies annuelles
-2. ROI %
-3. Breakeven mois
-
-**Validation:**
-- [ ] Calculs corrects
-- [ ] UI intuitive
-- [ ] PDF export
-- [ ] Lead form intégré
-
----
-
-#### #12 : Assessment Maturité IA
-
-**Impact:** 🔥🔥 Medium (+15 leads/mois)
-
-**Effort:** 🔧🔧 Medium (1-2 semaines)
-
-**Structure:**
-- 7-10 questions
-- Score 0-100
-- Niveaux : Débutant/Intermédiaire/Avancé
-- Recommandations personnalisées
-- Lead capture
-
-**Validation:**
-- [ ] 7+ questions
-- [ ] Scoring fonctionnel
-- [ ] Recommandations pertinentes
-- [ ] Lead form
-
----
-
-#### #13-15 : Ressources (Glossaire, Cas d'Usage, Blog)
-
-**Impact:** 🔥 Low à 🔥🔥 Medium
-
-**Effort:** 🔧🔧 Medium (2 semaines total)
-
-**Glossaire:**
-- 30-50 termes IA/Automation
-- Search fonctionnel
-- Filtres par catégorie
-
-**Cas d'Usage:**
-- 8-10 scénarios détaillés
-- Industries variées
-- ROI estimés
-
-**Blog:**
-- 3-5 articles initiaux
-- SEO optimisés
-- Thought leadership
-
-**Validation:**
-- [ ] Glossaire 30+ termes
-- [ ] 8+ cas d'usage
-- [ ] 3+ articles blog
-
----
-
-## 🔧 P2 - Utile (Démarrer dans 8 Semaines)
-
-**Deadline:** Semaines 13-20  
-**Objectif:** Optimisation, multilingue, analytics
-
-### Tableau P2
-
-| # | **Action** | **Impact** | **Effort** | **Délai** | **Raison Utile** |
-|---|------------|-----------|-----------|-----------|------------------|
-| 16 | Multilingue DE/FR/EN | 🔥🔥 | 🔧🔧🔧 | Mois 3-4 | Marché suisse = multilingue |
-| 17 | Analytics complet (GA4 + Plausible) | 🔥🔥 | 🔧🔧 | Sem 17 | Data-driven decisions |
-| 18 | A/B Testing (2-3 tests) | 🔥🔥 | 🔧🔧 | Sem 18-20 | Optimisation continue |
-| 19 | Service Standards doc public | 🔥 | 🔧 | Mois 2 | Trust + différenciation |
-| 20 | integrations.ts | 🔥 | 🔧 | Mois 4 | Showcase partenaires |
-| 21 | pricingPackages.ts | 🔥 | 🔧 | Mois 4 | Structure pricing |
-
-### Détails P2
-
-#### #16 : Multilingue (DE/FR/EN)
-
-**Impact:** 🔥🔥 Medium (+40% trafic potentiel)
-
-**Effort:** 🔧🔧🔧 High (3-4 semaines)
-
-**Stack:** i18next + react-i18next
-
-**Scope:**
-- Toutes pages traduites
-- URLs localisées
-- Switcher langue
-- Browser detection
-
-**Validation:**
-- [ ] 3 langues complètes
-- [ ] URLs /fr/, /de/, /en/
-- [ ] Switcher opérationnel
-- [ ] Fallback FR
-
----
-
-#### #17 : Analytics Complet
-
-**Impact:** 🔥🔥 Medium (data-driven)
-
-**Effort:** 🔧🔧 Medium (1 semaine)
-
-**Setup:**
-- GA4 tracking
-- Plausible (privacy-friendly)
-- 15+ events
-- Funnels conversion
-
-**Events clés:**
-- CTA clicks
-- Calculator usage
-- Filter applications
-- Form submissions
-
-**Validation:**
-- [ ] GA4 configuré
-- [ ] Plausible backup
-- [ ] 15+ events
-- [ ] Dashboard hebdo
-
----
-
-#### #18 : A/B Testing
-
-**Impact:** 🔥🔥 Medium (+10-20% conversion)
-
-**Effort:** 🔧🔧 Medium (2 semaines)
-
-**Tests prioritaires:**
-1. Hero CTA wording
-2. Pricing format (cards vs table)
-3. Homepage sections ordre
-4. Services prix visible vs caché
-5. Testimonials format
-
-**Validation:**
-- [ ] 2-3 tests actifs
-- [ ] Résultats trackés
-- [ ] Décisions data-driven
-
----
-
-#### #19-21 : Documents & Data Files
-
-**Impact:** 🔥 Low
-
-**Effort:** 🔧 Low (1-2 jours chacun)
-
-**Fichiers:**
-- Service Standards doc (PDF téléchargeable)
-- integrations.ts (partenaires tech)
-- pricingPackages.ts (structure pricing)
-
-**Validation:**
-- [ ] Documents créés
-- [ ] Data files fonctionnels
-
----
-
-## 🌟 P3 - Nice-to-have (Démarrer dans 12+ Semaines)
-
-**Deadline:** Semaines 21-24  
-**Objectif:** Polish, features avancées
-
-### Tableau P3
-
-| # | **Action** | **Impact** | **Effort** | **Délai** | **Raison Nice-to-have** |
-|---|------------|-----------|-----------|-----------|------------------------|
-| 22 | Portfolio filtres avancés | 🔥 | 🔧🔧 | Mois 4-5 | UX améliorée |
-| 23 | Video testimonials (2-3) | 🔥🔥 | 🔧🔧🔧 | Mois 5-6 | Social proof fort |
-| 24 | Animations Framer Motion avancées | 🔥 | 🔧🔧 | Mois 6 | Polish visuel |
-| 25 | Email courses automation | 🔥 | 🔧🔧🔧 | Mois 6 | Nurture avancé |
-
-### Détails P3
-
-#### #22 : Portfolio Filtres Avancés
-
-**Impact:** 🔥 Low
-
-**Effort:** 🔧🔧 Medium
-
-**Features:**
-- Multi-select filtres
-- Sort options
-- Search
-- Tags
-
-**Validation:**
-- [ ] Multi-filtres fonctionnels
-- [ ] Sort opérationnel
-
----
-
-#### #23 : Video Testimonials
-
-**Impact:** 🔥🔥 Medium
-
-**Effort:** 🔧🔧🔧 High (production externe)
-
-**Specs:**
-- 2-3 vidéos 60-90sec
-- Clients PME suisses
-- Métriques intégrées
-
-**Validation:**
-- [ ] 2+ vidéos produites
-- [ ] Intégrées site
-
----
-
-#### #24 : Animations Avancées
-
-**Impact:** 🔥 Low (polish)
-
-**Effort:** 🔧🔧 Medium
-
-**Scope:**
-- Hero parallax
-- Energy waves
-- Magnetic buttons
-- Particle field
-
-**Validation:**
-- [ ] 60fps constant
-- [ ] Mobile performant
-
----
-
-#### #25 : Email Courses
-
-**Impact:** 🔥 Low
-
-**Effort:** 🔧🔧🔧 High
-
-**Scope:**
-- 5-7 cours email
-- Automation Brevo
-- Lead nurture
-
-**Validation:**
-- [ ] Cours créés
-- [ ] Automation configurée
-
----
-
-## 📊 Résumé Priorisation
-
-### Par Impact
-
-**🔥🔥🔥 High Impact (11 tâches):**
-- Menu 6 items, Éliminer redondance, Homepage refonte
-- Pricing page, portfolio.ts
-- Calculateur ROI
-
-**🔥🔥 Medium Impact (10 tâches):**
-- expertise.ts, testimonials.ts
-- Pages Services, Notre Approche
-- Assessment, Multilingue, Analytics, A/B testing
-- Video testimonials
-
-**🔥 Low Impact (4 tâches):**
-- Glossaire, Blog, Animations, Email courses
-
-### Par Effort
-
-**🔧 Low Effort (9 tâches):**
-- Menu, Redondance, Pricing
-- expertise.ts, testimonials.ts, Standards doc
-- integrations.ts, pricingPackages.ts
-
-**🔧🔧 Medium Effort (11 tâches):**
-- Homepage, portfolio.ts
-- Pages Services, Notre Approche
-- Assessment, Glossaire, Cas d'Usage, Blog
-- Analytics, A/B testing, Filtres portfolio, Animations
-
-**🔧🔧🔧 High Effort (5 tâches):**
-- Calculateur ROI, Multilingue
-- Video testimonials, Email courses
-
-### Timeline Recommandée
-
-**Semaines 1-4 (P0):**
-Focus navigation + homepage + pricing + données
-
-**Semaines 5-12 (P1):**
-Focus contenu + outils conversion
-
-**Semaines 13-20 (P2):**
-Focus multilingue + analytics + optimisation
-
-**Semaines 21-24 (P3):**
-Focus polish + features avancées
-
----
-
-## 🎯 Comment Utiliser ce Document
-
-### Pour Planification Sprint
-
-1. Consulter section P0 pour semaine actuelle
-2. Vérifier dépendances tâches
-3. Assigner priorités équipe
-4. Valider checklists
-
-### Pour Reporting
-
-1. Cocher tâches terminées
-2. Mettre à jour STATUS.md
-3. Reporter blocages
-4. Ajuster timeline si nécessaire
-
-### Pour Décisions
-
-1. Si nouvelle demande → Classifier P0/P1/P2/P3
-2. Si conflit ressources → Référencer Impact/Effort
-3. Si doute → Privilégier P0 et P1
-
----
-
-**Version:** 1.0  
-**Dernière mise à jour:** 11 Octobre 2025  
+**Version:** 2.0 - APPROCHE MVP  
+**Dernière mise à jour:** 15 Octobre 2025  
 **Contact:** contact@dainamics.ch
 
 ---
 
+*"Perfection is the enemy of done. Ship MVP, then iterate."*
+
 **📚 Voir aussi:**
-- [STATUS.md](./STATUS.md) - État actuel projet
-- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan 24 semaines
-- [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure menu
+- [STATUS.md](./STATUS.md) - Dashboard temps réel
+- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan MVP complet
