@@ -1,439 +1,366 @@
-# 📊 DAINAMICS - État du Projet
+# 📊 DAINAMICS - État du Projet (MVP 4 Semaines)
 
 **Type:** Suivi  
-**Version:** 1.1  
-**Dernière MAJ:** 13 Octobre 2025  
-**Liens Rapides:** [TRANSFORMATION-PLAN](./TRANSFORMATION-PLAN.md) | [PRIORITIES](./PRIORITIES.md) | [CHANGELOG](./CHANGELOG.md)
+**Version:** 2.0 - NOUVELLE APPROCHE  
+**Dernière MAJ:** 15 Octobre 2025  
+**Liens Rapides:** [TRANSFORMATION-PLAN](./TRANSFORMATION-PLAN.md) | [PRIORITIES](./PRIORITIES.md) | [Plan Site Optimisé](./DAINAMICS_Plan_Site_Optimise.md)
 
 ---
 
-## 🎯 Vue d'Ensemble
+## 🎯 VUE D'ENSEMBLE
+
+### Changement Radical de Stratégie
+
+**AVANT :** 24 semaines, 14+ pages, navigation complexe  
+**APRÈS :** **4 semaines MVP, 4 pages, navigation plate**
 
 ### Phase Actuelle
-**Phase 1 - Semaine 2** : Quick Wins (Fondations)
+**Semaine 0 - Démarrage MVP**
 
-### Progression Globale
+### Progression MVP (4 Semaines)
 ```
-████████░░░░░░░░░░░░░░░░░░ 35% (8.5/24 semaines)
+░░░░░░░░░░░░░░░░░░░░ 0% (0/4 semaines)
 
-Phase 1: █████████░ 45% (Semaines 1-4)
-Phase 2: ░░░░░░░░░░  0% (Semaines 5-12)
-Phase 3: ░░░░░░░░░░  0% (Semaines 13-24)
+Semaine 1: ░░░░░ Homepage Nouvelle Génération
+Semaine 2: ░░░░░ Page Exemples (6-8 cas)
+Semaine 3: ░░░░░ Page Comment ça marche
+Semaine 4: ░░░░░ Page Contact + Lancement
 ```
 
-### Objectif Principal
-Transformer le site DAINAMICS en leader de conversion pour PME suisses
-- **Cible:** Conversion 2-3% → 5-8% (x2-3 leads qualifiés)
-- **Deadline:** 24 semaines (fin Mars 2026)
+### Objectif Principal MVP
+Lancer site simplifié qui convertit **2x mieux** (4-6% vs 2-3%)
+
+**Cibles MVP (4 semaines) :**
+- ✅ 4 pages principales créées
+- ✅ Message "30 secondes" validé
+- ✅ Conversion 2-3% → 4-6% (+50-100%)
+- ✅ 15-20 leads/mois (vs 5-10)
+
+**Deadline MVP :** Mi-novembre 2025
 
 ---
 
-## ✅ Terminé (Semaines 1-2)
-
-### Infrastructure & Design System ✅
-- [x] Repository GitHub configuré
-- [x] Stack technique installé (React 18 + TypeScript 5 + Vite 5)
-- [x] Design System complet (DESIGN-SYSTEM-MANDATORY.md)
-- [x] Animations guidelines (ANIMATION-GUIDELINES.md, ANIMATION-PATTERNS.md)
-- [x] Workflow développement (WORKFLOW.md)
-
-### Composants de Base ✅
-- [x] **Navigation.tsx** (14.4 KB, Commit 34e77bb) ⭐ **NOUVEAU**
-  - ✅ **6 items menu** (optimal conversion B2B)
-  - ✅ **Redondances éliminées** (Expertise + Solutions → Services)
-  - ✅ **Portfolio → Projets** (renommé)
-  - ✅ **"Notre Approche" créé** (remplace Expertise + À Propos + Process)
-  - Multilingue ready (FR/DE/EN/IT)
-  - Mobile responsive (hamburger accordion)
-  - **Structure:** Services | Projets | Notre Approche | Ressources | Pricing | Contact
-
-### Données ✅
-- [x] solutions.ts (21.2 KB, Commit 6a193bb)
-  - 15 automatisations détaillées
-  - ROI quantifiés
-  - Catégories (ia/automatisation/developpement)
-  - Complexité (starter/intermediate/advanced)
-
-- [x] portfolio.ts (estimé, en validation)
-  - Projets : LEXAIA, ENKI-REALTY + 3-5 autres
-  - Structure : Client, Challenge, Solution, Technologies, Outcomes
-  - À vérifier si terminé
-
-### Documentation ✅
-- [x] README.md v2.3 (Hub central)
-- [x] ARCHITECTURE.md (79.2 KB)
-- [x] INSTRUCTIONS.md v2.2 (16.5 KB)
-- [x] WORKFLOW.md (14.3 KB)
-- [x] PROMPT-CONTEXT.md v2.1 (14.6 KB)
-- [x] CHANGELOG.md v2.3 (9.9 KB)
-- [x] DESIGN-SYSTEM-MANDATORY.md (15.1 KB)
+## ✅ TERMINÉ (Préparation)
 
 ### Documentation Transformation ✅
-- [x] STATUS.md v1.1 (ce fichier) ⭐ **MIS À JOUR**
-- [x] TRANSFORMATION-PLAN.md (29.4 KB)
-- [x] NAVIGATION-ARCHITECTURE.md (24.2 KB)
-- [x] CONTENT-STRATEGY.md (17.2 KB)
-- [x] PRIORITIES.md (17.0 KB)
+- [x] **TRANSFORMATION-PLAN.md v2.0** - Plan MVP 4 semaines (nouveau)
+- [x] **NAVIGATION-ARCHITECTURE.md v2.0** - Structure 4 pages (simplifié)
+- [x] **CONTENT-STRATEGY.md v2.0** - Ton storytelling (nouveau)
+- [x] **STATUS.md v2.0** - Dashboard MVP (ce fichier)
+- [x] **Plan Site Optimisé** - Structure détaillée 4 pages
+- [x] **Présentation Optimisée** - Contenu copywriting
+
+### Infrastructure Existante ✅
+- [x] Repository GitHub configuré
+- [x] Stack technique (React 18, TypeScript 5, Vite 5, Tailwind)
+- [x] Design System (couleurs, animations)
+- [x] Navigation.tsx existante (à simplifier 9→4 items)
+
+### Données Existantes ✅
+- [x] solutions.ts (15 automatisations)
+- [x] portfolio.ts (5+ projets)
+- [x] expertise.ts (3 piliers)
 
 ---
 
-## ⏳ En Cours (Semaine 2)
+## ⏳ EN COURS (Semaine 1 - À Démarrer)
 
-### Tâches Actives
+### Semaine 1 : Homepage Nouvelle Génération
 
-#### Homepage Refonte (Priority P0) ⏳
-- [ ] **Index.tsx** - Refonte complète 8 sections
-  - Section 1: Hero (1 CTA primaire)
-  - Section 2: Métriques Confiance (4 chiffres)
-  - Section 3: Featured Case Studies (2 cas)
-  - Section 4: Client Logos (8-12)
-  - Section 5: Services Overview (4 cards)
-  - Section 6: Swiss Differentiator (3 points)
-  - Section 7: Single Testimonial
-  - Section 8: Final CTA
-  - **Deadline:** 15 Octobre 2025
+**Objectif :** Homepage qui convertit à 4-6%
 
-#### Données Manquantes
-- [ ] **expertise.ts** (Priority P1)
-  - 3 piliers : IA, Automatisation, Développement
-  - Détails techniques + cas d'usage
-  - Structure similaire à solutions.ts
+**Tâches Semaine 1 :**
 
-- [ ] **testimonials.ts** (Priority P1)
-  - 8-12 témoignages clients
-  - Photos + citations + métriques
-  - Industries variées
+1. **Simplifier Navigation.tsx** (P0)
+   - [ ] Réduire de 9 items → 4 items
+   - [ ] Supprimer dropdowns complexes
+   - [ ] Navigation plate : Homepage | Exemples | Process | Contact
+   - [ ] Mobile hamburger simple
 
----
+2. **Créer Homepage 5 Sections** (P0)
+   - [ ] Section 1 - Hero (Hook émotionnel)
+     - Titre : "Vous Perdez 15 Heures Par Semaine..."
+     - 1 CTA primaire : "Réserver 30 min gratuites"
+   - [ ] Section 2 - Comment On Aide (4 exemples concrets)
+     - Facturation Auto | Support IA | Documents | Prédictions
+     - Résultats quantifiés chaque
+   - [ ] Section 3 - Preuve (2 cas clients featured)
+     - PME Services : -70% charge, ROI 4 mois
+     - PME Immobilière : -80% temps, ROI 3 mois
+     - Chiffres globaux : 50+ PME, 8 ans, 99%
+   - [ ] Section 4 - Processus (3 étapes)
+     - Évaluer (30min gratuit) → Prototyper (1 sem) → Livrer (2-4 sem)
+   - [ ] Section 5 - CTA Final
+     - Photo équipe + "Réserver 30 min"
 
-## ⏹️ À Faire (Priorité Immédiate)
+3. **Composants Nouveaux à Créer** (P0)
+   - [ ] MetricsConfidence.tsx (4 chiffres clés)
+   - [ ] FeaturedCaseStudies.tsx (2 cas)
+   - [ ] ClientLogos.tsx (8-12 logos)
+   - [ ] ServicesOverview.tsx (4 cards exemples)
+   - [ ] SwissDifferentiator.tsx (3 différenciateurs)
+   - [ ] SingleTestimonial.tsx (1 témoignage)
+   - [ ] FinalCTA.tsx (photo équipe)
 
-### Phase 1 - Semaine 2 (Suite)
-
-#### Pages Critiques (Priority P0)
-```
-⏹️ Pricing.tsx complète
-   └─ 4 tiers avec prix transparents
-   └─ FAQ (5-8 questions)
-   └─ Lien calculateur ROI
-   └─ Deadline: 16 Octobre 2025
-
-⏹️ 4 Pages Services (début)
-   └─ ServiceDiscovery.tsx
-   └─ ServiceDeveloppement.tsx
-   └─ ServiceQuickWins.tsx
-   └─ ServiceEquipe.tsx
-   └─ Deadline: 20 Octobre 2025
-```
-
-#### Données Manquantes (Priority P1)
-```
-⏹️ integrations.ts
-   └─ Partenaires technologiques
-   └─ APIs supportées
-   └─ Logos + descriptions
-
-⏹️ pricingPackages.ts
-   └─ 4 tiers : Discovery, Quick Wins, Custom, Équipe
-   └─ Prix ranges transparents
-   └─ Inclus/Options détaillés
-```
-
-### Phase 1 - Semaine 3
-
-#### Pages Notre Approche
-```
-⏹️ ApprochProcessus.tsx (5 phases détaillées)
-⏹️ ApprochIntegrationIA.tsx (méthodologie)
-⏹️ ApprochStandards.tsx (document public)
-⏹️ ApprochEquipe.tsx (équipe + expertise)
-```
-
-### Phase 1 - Semaine 4
-
-```
-⏹️ Projets.tsx (renommer Portfolio)
-   └─ Système filtres (3 critères)
-   └─ 15-20 projets minimum
-
-⏹️ App.tsx Routes Update
-   └─ Supprimer routes legacy (Expertise, Solutions, Portfolio)
-   └─ Ajouter routes nouvelles (Services/*, Approche/*)
-   └─ Redirections 301
-```
+**Validation Semaine 1 :**
+- [ ] Homepage 5 sections complète
+- [ ] Navigation 4 items
+- [ ] Hook émotionnel testé (règle 30 secondes)
+- [ ] 2 cas clients avec ROI quantifié
+- [ ] CTA répété 3x
+- [ ] Mobile parfait
+- [ ] Longueur ~1,500 mots
 
 ---
 
-## 🚧 Problèmes Identifiés
+## 📅 À FAIRE (Semaines 2-4)
 
-### ✅ RÉSOLUS
+### Semaine 2 : Page Exemples
 
-#### ~~1. Redondance Navigation~~ ✅
-**Problème:** Menu actuel avait 3 sections qui parlaient de la même chose
-- ~~Expertise → Technologies offertes~~
-- ~~Solutions → Automatisations offertes~~  
-- ~~Portfolio → Projets réalisés~~
+**Tâches :**
+- [ ] Créer page /exemples
+- [ ] 6-8 cas clients complets
+- [ ] Filtres : Industrie + Problème
+- [ ] Chaque cas avec métriques quantifiées
+- [ ] CTA : "Réserver appel gratuit"
 
-**Solution Appliquée:** Restructuré en 6 items
-- Services (fusionné Expertise + Solutions)
-- Projets (renommé Portfolio)
-- Notre Approche (nouveau, remplace Expertise + À Propos + Process)
-- Ressources, Pricing, Contact (maintenus)
-
-**Status:** ✅ Résolu (Commit 34e77bb, 13 Oct 2025)
+**Validation :**
+- [ ] 6-8 cas clients
+- [ ] Filtres fonctionnels
+- [ ] Longueur 200-300 mots par cas
 
 ---
 
-### CRITIQUES (P0 - Bloquer Progression)
+### Semaine 3 : Page Comment ça marche
 
-#### 2. Homepage Non-Optimale ❌
-**Problème:** Structure actuelle ne suit pas patterns de conversion
-- Pas de metrics confiance immédiate
-- Proof (cas clients) pas assez visible
-- Pas de différenciation suisse claire
+**Tâches :**
+- [ ] Créer page /processus
+- [ ] Processus 3 étapes détaillé
+- [ ] 4 différenciateurs (Adapté PME, Pragmatique, Rapide, Transparent)
+- [ ] FAQ 7 questions (Combien ? Temps ? Trop petite ? Secteur ? Garantie ? Europe ? Par où commencer ?)
+- [ ] CTA : "Réserver appel gratuit"
 
-**Impact:** Conversion basse (~2-3% actuel)
-
-**Solution:** Refonte complète 8 sections (voir TRANSFORMATION-PLAN.md)
-
-**Deadline:** 15 Octobre 2025
-
-#### 3. Pas de Pricing Transparent ❌
-**Problème:** Aucun prix visible = friction décision
-
-**Impact:** Leads non qualifiés, taux abandon élevé
-
-**Solution:** Page Pricing avec ranges (8-15K€ Quick Wins, etc.)
-
-**Deadline:** 16 Octobre 2025
-
-### IMPORTANTS (P1 - Ralentir Progression)
-
-#### 4. Pages Services Manquantes
-**Problème:** Nouvelle structure navigation pointe vers pages inexistantes
-- /services/discovery
-- /services/developpement
-- /services/quick-wins
-- /services/equipe
-
-**Impact:** 404 errors, navigation cassée
-
-**Solution:** Créer 4 pages Services avec template standard
-
-**Deadline:** 20 Octobre 2025
-
-#### 5. Routes Legacy à Nettoyer
-**Problème:** App.tsx contient routes obsolètes (Expertise, Solutions, Portfolio ancien)
-
-**Impact:** Confusion, liens cassés
-
-**Solution:** Supprimer routes + Redirections 301
-
-**Deadline:** 25 Octobre 2025
+**Validation :**
+- [ ] 3 étapes ultra-claires
+- [ ] FAQ répond objections
+- [ ] Garantie ROI affichée
+- [ ] Longueur ~1,500 mots
 
 ---
 
-## 📈 Métriques de Succès
+### Semaine 4 : Page Contact + Lancement
 
-### Baseline Actuel (Estimé)
+**Tâches :**
+- [ ] Créer page /contact
+- [ ] Intégrer Calendly (RDV 30 min)
+- [ ] Formulaire contact alternatif
+- [ ] Finitions : Footer, 404, Meta tags
+- [ ] Mobile 100% responsive (4 pages)
+- [ ] Performance Lighthouse >85
+- [ ] **LANCEMENT MVP** 🚀
+
+**Validation Lancement :**
+- [ ] 4 pages complètes
+- [ ] Navigation plate (pas 3 niveaux)
+- [ ] Message "30 secondes" validé
+- [ ] Preuve avant pitch
+- [ ] 1 CTA principal répété
+- [ ] Mobile parfait
+- [ ] Lighthouse >85
+
+---
+
+## 🎯 APRÈS LANCEMENT (Phase 2-3 Optionnel)
+
+### Phase 2 : Outils Conversion (Si Besoin)
+
+**Semaines 5-8 - Si données MVP confirment besoin :**
+- [ ] Calculateur ROI interactif
+- [ ] Assessment Maturité IA (7 questions)
+- [ ] Chatbot support intelligent
+
+### Phase 3 : Scale (Si Traction)
+
+**Semaines 9-12 - Si objectifs MVP atteints :**
+- [ ] Multilingue DE/FR/EN
+- [ ] Blog + Glossaire (SEO)
+- [ ] Video testimonials (2-3)
+- [ ] Analytics avancé + A/B testing
+
+---
+
+## 📊 MÉTRIQUES DE SUCCÈS
+
+### Baseline Actuel
 ```
-Taux conversion:    ~2-3%
-Bounce rate:        ~55-65%
-Temps sur site:     ~1-2 min
-Pages/session:      ~2-3
-Leads/mois:         ~5-10
+Taux conversion:      ~2-3%
+Bounce rate:          ~55-65%
+Temps sur site:       ~1-2 min
+Pages/session:        ~2-3
+Leads/mois:           ~5-10
 ```
 
-### Objectifs Fin Phase 1 (Semaine 4)
+### Objectifs MVP (4 semaines)
 ```
-Bounce rate:        <50% (-10%)
-Temps sur site:     >2 min (+30%)
-```
-
-### Objectifs Fin Phase 2 (Semaine 12)
-```
-Conversion:         ~4-5% (+50%)
-Pages/session:      >4 (+50%)
-Leads/mois:         ~15-20 (+100%)
+🎯 Taux conversion:   4-6% (+50-100%)
+🎯 Bounce rate:       <45%
+🎯 Temps sur site:    >2.5 min
+🎯 Pages/session:     >3
+🎯 Leads/mois:        15-20 (+100-200%)
 ```
 
-### Objectifs Fin Phase 3 (Semaine 24)
+### Si Objectifs Atteints → Phase 2-3
 ```
-Conversion:         5-8% (x2-3)
-Bounce rate:        <40%
-Temps sur site:     >3 min
-Pages/session:      >4
-Leads/mois:         20-30 (x3-4)
+🚀 Taux conversion:   6-8% (+200-300%)
+🚀 Bounce rate:       <35%
+🚀 Temps sur site:    >4 min
+🚀 Pages/session:     >5
+🚀 Leads/mois:        30-40 (+400-500%)
 ```
 
 ---
 
-## 🎯 Prochaines Actions (Cette Semaine)
+## ❌ PAGES SUPPRIMÉES (Simplification)
 
-### Priorité Immédiate (Faire MAINTENANT)
+### Supprimé de l'Ancien Plan
 
-1. ✅ ~~**Restructurer Navigation.tsx**~~ (Terminé 13 Oct)
-   - ~~Réduire 9 → 6 items~~
-   - ~~Éliminer redondance~~
-   - ~~Tester navigation mobile~~
+**Pages legacy :**
+- ❌ Expertise (3 sous-pages) → Remplacé par 4 exemples homepage
+- ❌ Solutions (3 sous-pages) → Remplacé par 4 exemples homepage
+- ❌ Portfolio → Renommé "Exemples" (plus clair)
+- ❌ À Propos (3 sous-pages) → Intégré dans Process + CTA photo équipe
+- ❌ Resources (Blog, Glossaire) → Phase 2 optionnelle
+- ❌ Pricing (page séparée) → Intégré FAQ + Homepage
 
-2. **Refonte Homepage Index.tsx** (EN COURS - 4-6 heures)
-   - 8 sections optimales
-   - Composants nouveaux (MetricsConfiance, FeaturedCaseStudies, etc.)
-   - Validation design system
+**Navigation legacy :**
+- ❌ Services dropdown complexe (4 pages)
+- ❌ Notre Approche dropdown (4 pages)
+- ❌ Ressources dropdown (3 pages)
 
-3. **Page Pricing.tsx complète** (2-3 heures)
-   - 4 tiers détaillés
-   - FAQ pricing
-   - CTA calculateur ROI
-
-4. **Créer expertise.ts** (2-3 heures)
-   - 3 piliers détaillés
-   - Cas d'usage par pilier
-   - Différenciation claire
-
-### Cette Semaine (Semaine 2)
-
-5. **testimonials.ts** (1-2 heures)
-6. **Début pages Services** (4 pages, 6-8 heures)
-7. **Review & corrections**
+**Raisons :**
+- Redondance Expertise/Solutions/Portfolio
+- Navigation trop complexe (3 niveaux)
+- PME s'en fichent de notre histoire
+- Focus conversion, pas contenu encyclopédique
 
 ---
 
-## 📅 Planning 4 Prochaines Semaines
+## 🎯 DIFFÉRENCE AVANT/APRÈS
 
-### Semaine 2 (11-17 Oct) - EN COURS ⏳
-```
-✅ Lun-Mar : Documentation transformation + Navigation refonte
-⏳ Mer-Jeu : Homepage refonte (8 sections)
-⏹️ Ven     : Pricing page
-⏹️ Sam-Dim : testimonials.ts + expertise.ts
-```
+### Architecture Site
 
-### Semaine 3 (18-24 Oct)
-```
-Lun-Mer : 4 pages Services détaillées
-Jeu-Ven : Pages Notre Approche (2/4)
-Sam-Dim : Review + corrections
-```
+| **Critère** | **AVANT** | **APRÈS MVP** |
+|-------------|-----------|---------------|
+| Pages principales | 14+ | **4** |
+| Items menu | 9+ | **4** |
+| Niveaux navigation | 3 | **1** |
+| Timeline | 24 semaines | **4 semaines** |
+| Message clair en | 3-5 min | **30 secondes** |
+| Conversion | 3 clics | **2-3 clics** |
 
-### Semaine 4 (25-31 Oct)
-```
-Lun-Mar : Notre Approche (2/4 restantes)
-Mer-Jeu : Projets.tsx avec filtres
-Ven     : integrations.ts + pricingPackages.ts + Routes cleanup
-Sam-Dim : Review Phase 1 complète
-```
+### Message & Ton
 
-### Semaine 5 (1-7 Nov) - Début Phase 2
-```
-Lun-Mar : Calculateur ROI fonctionnel
-Mer-Ven : Assessment Maturité IA
-Sam-Dim : Tests + ajustements
-```
+| **Critère** | **AVANT** | **APRÈS MVP** |
+|-------------|-----------|---------------|
+| Hook | Technique | **Émotionnel** |
+| Focus | Features | **Problèmes** |
+| Preuve | En bas | **En haut** |
+| Témoignages | Dispersés | **Homepage** |
+| Pricing | Caché | **Transparent** |
+| Ton | Corporate | **Conversationnel** |
 
----
+### Résultats Attendus
 
-## 🔗 Ressources Rapides
-
-### Documentation Projet
-- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan complet 24 semaines
-- [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure menu optimale ✅
-- [PRIORITIES.md](./PRIORITIES.md) - Tableau priorisation P0/P1/P2/P3
-- [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - Guidelines contenu
-
-### Documentation Technique
-- [ARCHITECTURE.md](./ARCHITECTURE.md) - Specs techniques complètes
-- [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md) - Couleurs/Icônes
-- [WORKFLOW.md](./WORKFLOW.md) - Process développement
-
-### Documents Stratégiques
-- Architecture Web Optimale (fourni) - Analyse 25+ sites
-- Plan de Transformation (fourni) - 3 phases détaillées
+| **Métrique** | **AVANT** | **APRÈS MVP** | **Gain** |
+|--------------|-----------|---------------|----------|
+| Taux conversion | 2-3% | 4-6% | **x2** |
+| Bounce rate | 55-65% | <45% | **-25%** |
+| Temps décision | 3-5 min | 30 sec | **x6-10** |
+| Leads/mois | 5-10 | 15-20 | **x2-3** |
 
 ---
 
-## 💬 Notes & Décisions
+## ✅ CHECKLIST LANCEMENT MVP
 
-### Décisions Prises (13 Oct 2025)
+### Architecture
+- [ ] 4 pages créées (Homepage, Exemples, Process, Contact)
+- [ ] Navigation 4 items plate
+- [ ] Aucune page legacy
+- [ ] Mobile parfait
+- [ ] Vitesse >85 Lighthouse
 
-#### ✅ Navigation Restructurée (Commit 34e77bb)
-**Décision:** Menu réduit 9 → 6 items
-**Structure finale:** Services | Projets | Notre Approche | Ressources | Pricing | Contact
+### Contenu
+- [ ] Homepage : Hook + 4 exemples + 2 cas + 3 étapes + CTA
+- [ ] Exemples : 6-8 cas clients avec ROI
+- [ ] Process : 3 étapes + FAQ 7Q + différenciateurs
+- [ ] Contact : Calendly + formulaire
 
-**Justification:** 
-- Patterns leaders internationaux (Zapier 5 items, Boldare 6 items, Netguru 6 items)
-- Élimination totale redondances (Expertise + Solutions fusionnés)
-- Organisation par type d'engagement (Discovery, Dev, Support) > par technologie
-- 2 niveaux max = optimal PME B2B
+### Message
+- [ ] "Règle 30 secondes" validée
+- [ ] Preuve avant pitch
+- [ ] Langage conversationnel (test café)
+- [ ] Gains quantifiés (CHF, %, heures)
+- [ ] 1 CTA principal répété
 
-**Impact attendu:** 
-- -15% bounce rate (parcours plus clair)
-- +20% temps sur site (navigation intuitive)
-- +10% conversion (friction réduite)
-
-#### Pricing Transparent
-**Décision:** Afficher ranges de prix publiquement
-- Discovery: 5-12K€
-- Quick Wins: 8-15K€
-- Custom: 25-75K€
-- Équipe: 7K€/mois
-
-**Raison:** Différenciation marché suisse (0% concurrents montrent prix)
-
-**Status:** À implémenter (Deadline 16 Oct)
-
-### Décisions Prises (11 Oct 2025)
-
-#### Restructuration Documentation
-**Décision:** Créer 5 nouveaux documents pour clarté
-- STATUS.md (ce fichier) - Dashboard état
-- TRANSFORMATION-PLAN.md - Vision 24 semaines
-- NAVIGATION-ARCHITECTURE.md - Structure menu
-- CONTENT-STRATEGY.md - Guidelines rédaction
-- PRIORITIES.md - Priorisation tâches
-
-**Raison:** Éviter duplication, single source of truth
-
-**Status:** ✅ Complété
-
-### Questions En Suspens
-
-1. **Multilingue (Phase 3)** - Quelles langues prioriser ?
-   - Options : FR/DE/EN ou FR/DE seulement ?
-   - Décision : À prendre Semaine 10
-
-2. **Video Testimonials (Phase 3)** - Budget production ?
-   - Besoin : 2-3 vidéos 60-90sec clients
-   - Décision : À valider Semaine 16
+### Technique
+- [ ] TypeScript sans erreurs
+- [ ] SEO meta tags (4 pages)
+- [ ] OpenGraph images
+- [ ] Analytics GA4 actif
+- [ ] RGPD compliant
 
 ---
 
-## 🚀 Comment Utiliser ce Document
+## 🚀 PROCHAINES ACTIONS IMMÉDIATES
 
-### Pour Développeurs
-1. **Vérifier section "⏳ En Cours"** - Quoi en développement
-2. **Consulter "⏹️ À Faire"** - Prochaines tâches prioritaires
-3. **Référencer liens rapides** - Accès docs techniques
+### Cette Semaine (Semaine 1)
 
-### Pour Product Owner
-1. **Vue d'ensemble progression** - Graphiques %
-2. **Métriques succès** - Baseline vs Objectifs
-3. **Décisions prises** - Historique et raisons
+**Lundi :**
+- [ ] Simplifier Navigation.tsx (9→4 items)
+- [ ] Créer Hero section avec hook émotionnel
 
-### Pour Nouvelles Conversations Claude
-1. **Copier section "En Cours"** dans prompt
-2. **Référencer "Prochaines Actions"** pour contexte
-3. **Lier vers docs détaillés** (TRANSFORMATION-PLAN, etc.)
+**Mardi :**
+- [ ] Créer Section 2 (4 exemples concrets)
+- [ ] Créer Section 3 (2 cas clients featured)
+
+**Mercredi :**
+- [ ] Créer Section 4 (3 étapes processus)
+- [ ] Créer Section 5 (CTA final + photo équipe)
+
+**Jeudi :**
+- [ ] Polir homepage
+- [ ] Tester mobile
+- [ ] Valider règle 30 secondes
+
+**Vendredi :**
+- [ ] Review & ajustements
+- [ ] Préparer Semaine 2 (Page Exemples)
 
 ---
 
-**Dernière mise à jour:** 13 Octobre 2025 - 15:35 CET  
-**Prochaine review:** 15 Octobre 2025  
-**Responsable:** Équipe DAINAMICS
+## 📞 CONTACT & SUPPORT
 
-**Dernière action:** ✅ Navigation.tsx restructuré 9→6 items (Commit 34e77bb)
+**Questions sur la transformation :**
+- Lire [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan MVP 4 semaines
+- Lire [Plan Site Optimisé](./DAINAMICS_Plan_Site_Optimise.md) - Structure détaillée
+
+**Besoin de clarifications :**
+- Contact : contact@dainamics.ch
+- Référencer [PRIORITIES.md](./PRIORITIES.md) pour priorisation
 
 ---
 
-*Document vivant - Mis à jour quotidiennement*
+**Version:** 2.0 - NOUVELLE APPROCHE MVP  
+**Dernière mise à jour:** 15 Octobre 2025  
+**Contact:** contact@dainamics.ch
+
+---
+
+*Le plus grand risque n'est pas d'échouer, c'est de passer 6 mois à construire quelque chose que personne ne veut.*
+
+*MVP 4 semaines. Test. Iterate.*
+
+**📚 Voir aussi:**
+- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan MVP complet
+- [PRIORITIES.md](./PRIORITIES.md) - Priorisation P0/P1/P2
+- [CHANGELOG.md](./CHANGELOG.md) - Historique changements
