@@ -1,664 +1,692 @@
-# 📝 DAINAMICS - Stratégie de Contenu
+# 📝 DAINAMICS - Stratégie de Contenu (Approche Storytelling)
 
 **Type:** Planification  
-**Version:** 1.0  
-**Dernière MAJ:** 11 Octobre 2025  
-**Liens Rapides:** [NAVIGATION-ARCHITECTURE](./NAVIGATION-ARCHITECTURE.md) | [TRANSFORMATION-PLAN](./TRANSFORMATION-PLAN.md) | [STATUS](./STATUS.md)
+**Version:** 2.0 - TRANSFORMATION RADICALE  
+**Dernière MAJ:** 15 Octobre 2025  
+**Liens Rapides:** [TRANSFORMATION-PLAN](./TRANSFORMATION-PLAN.md) | [NAVIGATION-ARCHITECTURE](./NAVIGATION-ARCHITECTURE.md) | [Présentation Optimisée](./DAINAMICS_Presentation_Optimisee.md)
 
 ---
 
-## 📋 Table des Matières
+## 🎯 CHANGEMENT DE TON RADICAL
 
-1. [Principes Fondamentaux](#-principes-fondamentaux)
-2. [Tone of Voice](#-tone-of-voice-dainamics)
-3. [Structure Homepage](#-structure-homepage-optimale)
-4. [Guidelines Rédaction](#-guidelines-rédaction)
-5. [Templates Pages](#-templates-pages-types)
-6. [Cas Clients Format](#-format-cas-clients-optimal)
+### Ce qui change FONDAMENTALEMENT
 
----
-
-## 🎯 Objectif de ce Document
-
-Ce document contient **toutes les guidelines de contenu et rédaction** pour le site DAINAMICS.
-
-**Principe clé:** Langage business (pas jargon), toujours quantifier (CHF, %, heures), approche suisse.
-
----
-
-## 🎯 Principes Fondamentaux
-
-### 1. Langage Business > Jargon Technique
-
-**❌ MAUVAIS (trop technique):**
-> "Nous implémentons des architectures microservices cloud-native avec orchestration Kubernetes pour optimiser vos workloads containerisés."
-
-**✅ BON (business-focused):**
-> "Nous construisons des applications qui s'adaptent automatiquement à votre croissance. Quand votre trafic double, vos coûts n'explosent pas."
-
-**Règle:** Commencez par le bénéfice business, la tech vient ensuite si pertinent.
-
----
-
-### 2. Toujours Quantifier (CHF, %, Heures)
-
-**❌ MAUVAIS (vague):**
-> "Nous aidons les PME à gagner du temps avec l'automatisation."
-
-**✅ BON (quantifié):**
-> "Nous aidons les PME suisses à économiser 15-25h/semaine (soit 40-60K CHF/an) en automatisant tâches répétitives."
-
-**Formats acceptés:**
-- **Temps:** heures/semaine, jours/mois
-- **Argent:** CHF (pas €), milliers abrégés (15K CHF)
-- **Pourcentage:** Toujours avec contexte (-40% temps admin = 20h/semaine)
-- **ROI:** Mois de remboursement ("ROI 4 mois")
-
----
-
-### 3. Approche Suisse (nLPD, SwissDec, TVA)
-
-**Références obligatoires contexte suisse:**
-- nLPD (nouvelle loi protection données suisse)
-- SwissDec (si RH/paie)
-- TVA suisse 8.1% (mentionner si prix)
-- Hébergement Suisse disponible
-- Conformité bancaire suisse si applicable
-
-**Ton:** Professional mais accessible, pas corporate froid
-
----
-
-### 4. "IA" Pas "AI" (Français)
-
-**Règle stricte:**
-- ✅ Intelligence Artificielle → **IA**
-- ❌ Artificial Intelligence → **AI** (sauf citations anglais)
-
-**Exception:** Citations textuelles anglais ou noms produits (OpenAI, Scale AI)
-
----
-
-### 5. Proof > Pitch
-
-**Hiérarchie information:**
-1. **Problème client** (relatabilité)
-2. **Résultat obtenu** (proof quantifié)
-3. **Solution utilisée** (comment)
-4. **Appel action** (CTA)
-
-**❌ MAUVAIS ordre:**
-> "Nous sommes experts IA. Nous utilisons les derniers LLMs. Contactez-nous."
-
-**✅ BON ordre:**
-> "Votre équipe perd 20h/semaine en emails répétitifs ? LEXAIA a économisé 35K CHF/an avec notre chatbot IA. Calculez vos économies."
-
----
-
-## 🎤 Tone of Voice DAINAMICS
-
-### Personnalité de Marque
-
-**DAINAMICS est:**
-- **Pragmatique** → Résultats avant buzzwords
-- **Transparent** → Prix clairs, processus ouverts
-- **Accessible** → Pas de jargon inutile
-- **Suisse** → Proximité, fiabilité, qualité
-
-**DAINAMICS n'est PAS:**
-- Corporate froid
-- Startup hype excessive
-- Consultant opaque
-- Vendor pushy
-
----
-
-### Exemples Tone
-
-**Homepage Hero:**
-❌ "Transformez votre business avec l'IA de demain"  
-✅ "IA & Automatisation pragmatique pour PME suisses"
-
-**CTA Buttons:**
-❌ "Découvrez nos solutions innovantes"  
-✅ "Calculer mon ROI automation"
-
-**Services:**
-❌ "Nous déployons des solutions d'intelligence artificielle avancées"  
-✅ "Nous automatisons vos tâches répétitives en 2-4 semaines"
-
-**About Us:**
-❌ "Leader de la transformation digitale"  
-✅ "45 PME suisses nous font confiance depuis 8 ans"
-
----
-
-### Vocabulaire Recommandé
-
-**Utiliser ✅:**
-- PME suisse (pas "entreprise")
-- Automatisation (pas "automation" sauf Quick Wins marketing)
-- Économiser 15K CHF/an (pas "générer des économies")
-- Gagner 20h/semaine (pas "optimiser le temps")
-- Pragmatique (notre mot-clé)
-- ROI mesurable
-- Quick Win (acceptable anglicisme)
-
-**Éviter ❌:**
-- Transformation digitale (overused)
-- Révolutionnaire (hype)
-- Disruptif (buzzword)
-- Synergies (corporate speak)
-- Optimisation holistique (vague)
-- Solutions innovantes (vide de sens)
-
----
-
-## 🏠 Structure Homepage Optimale
-
-### Section 1 : Hero (Au-Dessus du Pli)
-
-**Contenu:**
-- **Titre (6-8 mots):** "IA & Automatisation pragmatique pour PME suisses"
-- **Sous-titre (2-3 phrases):** "Nous aidons les PME romandes et alémaniques à réduire coûts et gagner temps avec IA et automatisation. Projets Quick Wins dès 2 semaines, sans jargon technique."
-- **CTA primaire:** "Évaluation gratuite 30min" (bouton prominent)
-- **CTA secondaire:** "Voir nos projets" (texte link moins visible)
-- **Élément visuel:** Image/illustration projet IA concret (pas abstract)
-
-**Longueur:** 1 écran (100vh)
-
----
-
-### Section 2 : Métriques Confiance (Immédiate Après Hero)
-
-**Contenu:**
-- 4 chiffres clés en grid :
-  - "**45+** PME suisses accompagnées"
-  - "**8 ans** d'expertise IA/Automation"
-  - "**99%** satisfaction client (NPS)"
-  - "**Dès 15K CHF** projet Quick Win moyen"
-
-**Pourquoi ici:** Établit crédibilité immédiate (Pattern observé : Netguru, Monterail)
-
----
-
-### Section 3 : Cas Clients Featured (Proof Avant Pitch)
-
-**Contenu:**
-- **1-2 cas clients hero** (pas 4-5, dilue impact)
-- Format card avec :
-  - Logo client
-  - Industrie + taille entreprise
-  - Défi en 1 phrase
-  - Solution en 1 phrase
-  - **Outcome bold:** "**-40% temps administratif** = **60K CHF/an économisés**"
-  - Photo/screenshot projet si possible
-  - CTA : "Lire le cas complet"
-
-**Exemples:**
-> **LEXAIA** (Services Juridiques, 25 employés)
-> 
-> **Défi:** 150+ demandes clients/semaine saturant équipe support
-> 
-> **Solution:** Chatbot IA multilingue FR/DE/IT avec base de connaissance
-> 
-> **Résultat:** **-70% charge support** = **20h/semaine libérées** = **35K CHF/an économisés**
-
----
-
-### Section 4 : Logos Clients (Social Proof)
-
-**Contenu:**
-- 8-12 logos clients PME suisses
-- Texte : "Ils nous font confiance"
-- Si manque logos : "Industries servies: Manufacturing, Services Professionnels, Retail, Construction"
-
-**Recherche:** 84% augmentation conversion avec testimonials + logos combinés
-
----
-
-### Section 5 : Services Overview (Pas Détails)
-
-**Contenu:**
-- 4 services en grid avec icônes
-- Format : Icône + Titre + 1 phrase + Prix indicatif + Link "En savoir plus"
-
-**Exemple:**
+**AVANT (Ton Corporate/Technique) :**
 ```
-🔍 Discovery & Stratégie IA
-Évaluation opportunités IA + roadmap
-Dès 5K CHF | En savoir plus →
+❌ "DAINAMICS est une agence spécialisée en Intelligence 
+    Artificielle, Automatisation et Développement sur-mesure."
 
-⚡ Quick Wins  
-Projets 2-4 semaines, ROI rapide
-8-15K CHF | En savoir plus →
+❌ "Nous implémentons des solutions d'IA générative avec 
+    RAG et fine-tuning pour optimiser vos workflows."
 
-🤖 IA & Automation Custom
-Solutions sur-mesure métier
-25-75K CHF | En savoir plus →
+❌ "Notre expertise couvre React, TypeScript, Supabase, 
+    Framer Motion..."
+```
 
-👥 Extension d'équipe
-Développeurs IA/ML expérimentés  
-7K CHF/mois | En savoir plus →
+**APRÈS (Ton Conversationnel/Émotionnel) :**
+```
+✅ "Vous Perdez 15 Heures Par Semaine à Faire des Tâches 
+    Qu'un Robot Pourrait Faire"
+
+✅ "C'est le quotidien de milliers de dirigeants de PME 
+    européennes."
+
+✅ "Pendant ce temps : Vos concurrents automatisent, vos 
+    équipes s'épuisent, vous refusez des opportunités."
 ```
 
 ---
 
-### Section 6 : Différenciateur Suisse (Local Trust)
+## 🎯 LES 7 PRINCIPES DU NOUVEAU TON
 
-**Contenu:**
-- Titre : "Pourquoi PME suisses choisissent DAINAMICS"
-- 3 différenciateurs avec icônes :
-  - **Proximité:** "Bureaux Genève + Lausanne, interventions sur site"
-  - **Transparence:** "Prix clairs, pas de surprise. Quick Wins à prix fixe."
-  - **Pragmatisme:** "Pas de buzzwords. ROI mesurable dès 2-4 semaines."
+### 1. PROBLÈME AVANT SOLUTION
+
+**❌ AVANT :**
+```
+"DAINAMICS offre des services d'automatisation..."
+```
+
+**✅ APRÈS :**
+```
+"Vous passez 15h par semaine à facturer manuellement.
+Pendant ce temps, votre concurrent a automatisé et 
+a récupéré 15h pour développer son business."
+```
+
+**Règle :** Commencez TOUJOURS par le pain point. La solution vient après.
 
 ---
 
-### Section 7 : Témoignage Unique (Humanisation)
+### 2. LANGAGE HUMAIN (Comme au Café)
 
-**Contenu:**
-- 1 seul témoignage (pas carrousel)
-- Format : Grande citation + Photo client + Nom + Titre + Entreprise
-- Métrique intégrée
+**❌ AVANT (Corporate) :**
+```
+"Nous accompagnons les organisations dans leur 
+transformation digitale en implémentant des solutions..."
+```
 
-**Exemple:**
-> "DAINAMICS a réduit notre temps de reporting de 12h à 2h/semaine. Investissement remboursé en 4 mois."
+**✅ APRÈS (Humain) :**
+```
+"On automatise vos tâches chiantes en 2-4 semaines.
+Vous récupérez 15h par semaine. Point."
+```
+
+**Règle :** Écrivez comme vous parlez à un ami. Phrases courtes. Pas de jargon.
+
+---
+
+### 3. STORYTELLING > FEATURES
+
+**❌ AVANT (Liste Features) :**
+```
+Nos Services :
+• Intelligence Artificielle
+• Automatisation de processus
+• Développement sur-mesure
+• Extension d'équipe
+```
+
+**✅ APRÈS (Storytelling) :**
+```
+"Marc, directeur d'une PME immobilière, facturait 
+80 locataires manuellement. 12h par mois perdues.
+
+Maintenant ? Zéro minute. Tout est automatique.
+
+Investissement remboursé en 3 mois. Depuis 2 ans, 
+Marc a récupéré 288h. Il a embauché, développé, grandi."
+```
+
+**Règle :** Racontez des histoires, pas des listes.
+
+---
+
+### 4. QUANTIFIER TOUJOURS
+
+**❌ AVANT (Vague) :**
+```
+"Nous aidons les PME à gagner du temps"
+```
+
+**✅ APRÈS (Précis) :**
+```
+"Nous aidons les PME suisses à économiser 15-25h/semaine.
+Si votre temps vaut 50€/h, c'est 39K€-65K€ par an.
+
+Investissement projet : 12K€
+ROI : 280% première année
+Breakeven : 3-4 mois
+```
+
+**Règle :** Chiffres concrets. CHF, %, heures. Pas de "beaucoup", "significatif", "important".
+
+---
+
+### 5. PREUVE AVANT PITCH
+
+**❌ AVANT (Nous d'abord) :**
+```
+1. Qui sommes-nous
+2. Notre expertise
+3. Nos services
+4. Nos clients (tout en bas)
+```
+
+**✅ APRÈS (Preuve d'abord) :**
+```
+1. Votre problème (15h perdues)
+2. Ces 3 PME l'ont résolu (témoignages)
+3. Comment on peut vous aider
+4. Réservez 30 minutes gratuites
+```
+
+**Règle :** Témoignages clients AVANT de parler de vous.
+
+---
+
+### 6. UN SEUL CHEMIN
+
+**❌ AVANT (CTAs multiples) :**
+```
+• Découvrir nos services
+• Voir notre portfolio
+• Télécharger notre brochure
+• Demander un devis
+• Réserver une démo
+• S'inscrire à la newsletter
+```
+
+**✅ APRÈS (CTA unique répété) :**
+```
+[Réserver 30 min gratuites]
+        ↓
+Répété 3x sur homepage
+Répété sur CHAQUE page
+AUCUN autre CTA
+```
+
+**Règle :** Un seul appel à l'action. Répété. Clarifié. Amplifié.
+
+---
+
+### 7. PHRASES COURTES. LISIBILITÉ.
+
+**❌ AVANT (Phrases longues) :**
+```
+"DAINAMICS est une société spécialisée dans l'intelligence 
+artificielle, l'automatisation de processus métier et le 
+développement d'applications sur-mesure qui accompagne les 
+PME européennes dans leur transformation digitale en mettant 
+en place des solutions innovantes adaptées à leurs besoins 
+spécifiques tout en garantissant un retour sur investissement 
+mesurable dans un délai de 2 à 6 mois."
+```
+
+**✅ APRÈS (Phrases courtes) :**
+```
+"On automatise vos tâches répétitives.
+En 2-4 semaines.
+Vous récupérez 15h par semaine.
+ROI en 3-6 mois. Garanti."
+```
+
+**Règle :** Maximum 20 mots par phrase. Aérer. Respirer.
+
+---
+
+## 📝 FORMULES MAGIQUES À UTILISER
+
+### Hooks Émotionnels (Débuts de Section)
+
+✅ **"Vous Perdez..."** (crée urgence)
+```
+"Vous Perdez 15 Heures Par Semaine à Faire des Tâches 
+Qu'un Robot Pourrait Faire"
+```
+
+✅ **"Pendant ce temps..."** (FOMO)
+```
+"Pendant ce temps :
+- Vos concurrents automatisent
+- Vos équipes s'épuisent
+- Vous refusez des opportunités"
+```
+
+✅ **"C'est le quotidien de..."** (relatabilité)
+```
+"C'est le quotidien de milliers de dirigeants de PME 
+européennes."
+```
+
+✅ **"Et quand vous cherchez de l'aide ?"** (frustration)
+```
+"Et quand vous cherchez de l'aide ?
+Les grandes agences : 200K€, 2 ans.
+Les freelances : disparaissent au milieu.
+Les logiciels : ne font pas exactement ce dont vous avez besoin."
+```
+
+---
+
+### Témoignages Puissants (Structure)
+
+**Format :**
+```
+> "On passait 15h par semaine à [TÂCHE PÉNIBLE].
+> En 3 semaines, DAINAMICS a automatisé tout le processus.
+> Aujourd'hui, c'est zéro minute. 
+> On a récupéré notre investissement en 4 mois."
 > 
-> **Marc Durand**, CEO, Entreprise SA (75 employés)
-
----
-
-### Section 8 : CTA Final (Conversion)
-
-**Contenu:**
-- Titre : "Prêt à automatiser votre PME ?"
-- 2 options CTA :
-  - **Primaire:** "Réserver évaluation gratuite" (bouton calendrier direct)
-  - **Secondaire:** "Calculer votre ROI automation" (lead vers tool)
-- Photo membre équipe DAINAMICS avec phrase : "Discutons de vos défis. - Pierre, Co-fondateur"
-
-**Longueur totale homepage:** 8 sections = environ 4-5 scrolls écran  
-**Temps lecture:** 60-90 secondes (scan rapide)
-
----
-
-## 📝 Guidelines Rédaction
-
-### Longueur Idéale par Type
-
-**Homepage sections:**
-- Hero : 50-100 mots
-- Services overview : 15-20 mots par service
-- Cas clients featured : 80-120 mots par cas
-
-**Pages services:**
-- Total : 800-1500 mots
-- Chaque section : 100-200 mots
-- Processus : 50-80 mots par étape
-
-**Cas clients complets:**
-- Version web : 400-1000 mots
-- Version PDF : 1000-2000 mots
-- Citation testimonial : 20-40 mots
-
-**Blog articles:**
-- Posts courts : 600-1000 mots
-- Posts approfondis : 1500-2500 mots
-- How-to guides : 1000-1500 mots
-
----
-
-### Structure Paragraphes
-
-**Règles:**
-- **Phrases courtes:** Max 20-25 mots
-- **Paragraphes courts:** 3-5 phrases max
-- **Bullets généreuses:** Listes pour scannabilité
-- **Gras stratégique:** Mots-clés et chiffres uniquement
-- **Espace blanc:** Respiration visuelle
-
-**❌ MAUVAIS (trop dense):**
-> Nous sommes une agence spécialisée dans l'intelligence artificielle et l'automatisation qui aide les PME suisses depuis plus de 8 ans à améliorer leur efficacité opérationnelle grâce à des solutions innovantes et sur-mesure qui répondent à leurs besoins spécifiques tout en respectant leur budget et leurs contraintes techniques et organisationnelles existantes dans le cadre de projets courts ou longs selon la complexité et les objectifs définis ensemble lors de la phase de discovery initiale.
-
-**✅ BON (aéré, scannable):**
-> Nous aidons les PME suisses depuis 8 ans.
-> 
-> Notre spécialité : **automatiser ce qui vous fait perdre du temps**.
-> 
-> - Projets Quick Wins dès 2 semaines
-> - ROI mesurable en 3-6 mois
-> - Prix transparents, pas de surprise
-> 
-> 45 PME nous font confiance. Pourquoi pas vous ?
-
----
-
-### Headlines & Subheadlines
-
-**Formules gagnantes:**
-
-**Problem-Solution:**
-> "Votre équipe perd 20h/semaine en emails répétitifs ?"
-
-**Outcome-Focused:**
-> "Économisez 40K CHF/an en automatisant votre facturation"
-
-**Clear Promise:**
-> "ROI mesurable en moins de 6 mois, garanti"
-
-**Avoid:**
-❌ "Solutions innovantes d'IA"  
-❌ "Transformer votre business"  
-❌ "L'avenir de l'automatisation"
-
----
-
-### CTAs (Calls-to-Action)
-
-**Règles:**
-- **Verbe action:** Commencez par verbe impératif
-- **Valeur claire:** Dites ce qu'ils obtiennent
-- **Friction basse:** Temps/effort transparent
-
-**Exemples hiérarchie:**
-
-**CTA Primaire (Haute Conversion):**
-- "Réserver évaluation gratuite 30min"
-- "Calculer mon ROI automation"
-- "Voir exemples Quick Wins"
-
-**CTA Secondaire (Nurture):**
-- "Télécharger guide IA pour PME"
-- "Lire nos cas clients"
-- "Explorer nos services"
-
-**CTA Tertiaire (Education):**
-- "En savoir plus"
-- "Découvrir"
-- "Consulter le glossaire"
-
-**Formules à éviter:**
-❌ "Cliquez ici"  
-❌ "En savoir plus" (trop vague si primaire)  
-❌ "Soumettre" (formulaires)  
-❌ "Continuer" (ambigu)
-
----
-
-## 📄 Templates Pages Types
-
-### Template Page Service
-
-**Structure obligatoire:**
-
-```
-1. HERO SERVICE
-   - Titre service
-   - Tagline (1 phrase)
-   - Badges : Prix range | Durée | ROI
-
-2. QU'EST-CE QUE C'EST ?
-   - Définition claire (2-3 paragraphes)
-   - Pour qui ? (3-5 bullets)
-
-3. QUAND L'UTILISER ?
-   - Situations idéales (4-6 bullets)
-   - Warning si non-applicable
-
-4. EXEMPLES PROJETS
-   - 3 exemples concrets
-   - Format : Titre | Description | Durée | ROI
-
-5. CAS CLIENTS PERTINENTS
-   - 2-3 cas clients similaires
-   - Cards avec logo + outcome
-
-6. PROCESSUS ÉTAPE PAR ÉTAPE
-   - 4-6 étapes
-   - Format : Step # | Titre | Description | Durée
-
-7. PRICING DÉTAILLÉ
-   - Prix de base
-   - Inclus (bullets)
-   - Options (bullets)
-   - FAQ 3-5 questions
-
-8. CTA FINAL
-   - Titre action
-   - Bouton primaire
-   - Note rassurante
+> **— Marc R., Directeur PME Services B2B, Lausanne**
 ```
 
-**Exemple complet:** Voir TRANSFORMATION-PLAN.md Section "Semaine 5-6"
+**Éléments obligatoires :**
+1. Problème quantifié ("15h par semaine")
+2. Timeline courte ("3 semaines")
+3. Résultat dramatique ("zéro minute")
+4. ROI précis ("4 mois")
+5. Nom + Titre + Ville
 
 ---
 
-### Template Cas Client
+### CTAs Efficaces
 
-**Structure obligatoire:**
-
+**❌ MAUVAIS :**
 ```
-[LOGO CLIENT]
-
-INDUSTRY: Services Professionnels
-SIZE: 80 employés
-LOCATION: Genève, Suisse
-
----
-
-CHALLENGE (100-150 mots)
-Décrivez le problème spécifique. Quantifiez si possible.
-"LEXAIA recevait 150+ demandes clients par semaine..."
-
-SOLUTION (150-200 mots)
-Expliquez l'approche sans trop de détails tech.
-"Chatbot IA multilingue FR/DE/IT avec RAG..."
-
-TECHNOLOGIES
-- Claude API
-- RAG (Retrieval Augmented Generation)
-- pgvector
-- React
-
-OUTCOMES (Critical - Bold les métriques)
-- **-70% charge support** = **20h/semaine libérées**
-- **+40% satisfaction client** (réponse < 2 min)
-- **ROI 4 mois** = **35K CHF/an économisés**
-
-TESTIMONIAL
-"Le chatbot traite 80% de nos demandes. Notre équipe 
-se concentre enfin sur les cas complexes."
-
-— Sophie Martin, Directrice Opérations, LEXAIA
-
-[PHOTO SOPHIE]
-
-TIMELINE
-- Semaine 1-2 : Discovery & Design
-- Semaine 3-4 : Développement
-- Semaine 5-6 : Tests & Déploiement
-
----
-
-CTA: "Projet similaire ? Parlons-en"
+• "En savoir plus"
+• "Contactez-nous"
+• "Découvrir"
+• "Demander un devis"
 ```
 
+**✅ BONS :**
+```
+• "Réserver 30 min gratuites"
+• "Calculer mes économies"
+• "Voir les exemples"
+• "Discutons de votre défi"
+```
+
+**Règle :** CTA = Action concrète + Bénéfice clair
+
 ---
 
-### Template Blog Post
+## 📄 TEMPLATES PAR PAGE
 
-**Structure recommandée:**
+### TEMPLATE HOMEPAGE
 
 ```
-TITLE: [Actionnable, SEO-friendly]
-"Comment automatiser votre facturation en 2 semaines (Guide PME)"
+═══════════════════════════════════════════════
 
-META DESCRIPTION (150-160 chars)
-"Guide complet pour PME suisses : automatisez facturation, 
-économisez 15h/semaine. Étapes, outils, ROI calculé."
+SECTION 1 : HERO (Hook émotionnel)
+───────────────────────────────────────────────
+
+TITRE (H1, 52px, bold) :
+[PROBLÈME ÉMOTIONNEL]
+
+Exemple :
+"Vous Perdez 15 Heures Par Semaine 
+à Faire des Tâches Qu'un Robot Pourrait Faire"
+
+SOUS-TITRE (20px, regular) :
+[SOLUTION + RÉSULTAT + GARANTIE]
+
+Exemple :
+"On automatise ces tâches en 2-4 semaines. 
+Vous êtes rentable en 3-6 mois. Garanti."
+
+CTA PRIMAIRE :
+[Réserver 30 min gratuites]
+
+CTA SECONDAIRE (outline) :
+[Calculer mes économies]
+
+───────────────────────────────────────────────
+
+SECTION 2 : COMMENT ON VOUS AIDE (4 exemples)
+───────────────────────────────────────────────
+
+TITRE (H2) :
+"Ce qu'on fait concrètement"
+
+4 CARDS (Grid 2x2) :
+Chaque card :
+├─ ICÔNE emoji (💼 📄 💬 📊)
+├─ TITRE (2-3 mots)
+├─ DESCRIPTION (2-3 phrases, bénéfice)
+├─ EXEMPLE concret (1 phrase, résultat quantifié)
+
+Exemple Card :
+┌────────────────────────────────┐
+│ 💼 Facturation Automatique     │
+│                                │
+│ Vos factures, contrats,        │
+│ relances → 100% automatique    │
+│                                │
+│ PME immobilière :              │
+│ 12h/mois → 0                   │
+└────────────────────────────────┘
+
+CTA sous cards :
+"Lequel de ces problèmes vous coûte le plus cher ?"
+[Discutons-en 30 minutes (gratuit)]
+
+───────────────────────────────────────────────
+
+SECTION 3 : PREUVE (2 cas clients)
+───────────────────────────────────────────────
+
+TITRE (H2) :
+"Ils ont automatisé avec nous"
+
+2 CAS CLIENTS DÉTAILLÉS :
+
+Format :
+┌────────────────────────────────────────┐
+│ CAS 1 : [TYPE PME] ([PAYS])           │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│                                        │
+│ Problème :                             │
+│ [1-2 phrases, quantifié]               │
+│                                        │
+│ Solution :                             │
+│ [1-2 phrases, concrète]                │
+│                                        │
+│ Résultats :                            │
+│ ┌────────────────────────────────────┐│
+│ │ [MÉTRIQUE 1]  [MÉTRIQUE 2]  [ROI] ││
+│ │ -70% charge   +40% satisf.  4 mois││
+│ └────────────────────────────────────┘│
+│                                        │
+│ 💬 "[CITATION DIRECTE PUISSANTE]"     │
+│    - [NOM], [TITRE]                   │
+└────────────────────────────────────────┘
+
+CHIFFRES GLOBAUX (sous les cas) :
+50+ PME | 8 ans | 99% satisfaction | ROI 2-6 mois
+
+───────────────────────────────────────────────
+
+SECTION 4 : PROCESSUS (3 étapes simples)
+───────────────────────────────────────────────
+
+TITRE (H2) :
+"Comment ça marche ?"
+
+3 ÉTAPES (avec icônes) :
+
+1 ──────→ 2 ──────→ 3
+ÉVALUER   PROTOTYPER  LIVRER
+
+🔍 30min   ⚡ 1 sem    ✅ 2-4sem
+gratuit
+
+Description sous chaque :
+• Étape 1 : 1-2 phrases
+• Étape 2 : 1-2 phrases
+• Étape 3 : 1-2 phrases
+
+───────────────────────────────────────────────
+
+SECTION 5 : CTA FINAL
+───────────────────────────────────────────────
+
+TITRE (H2, 40px) :
+"Prêt à récupérer 15 heures par semaine ?"
+
+TEXTE (18px) :
+"Réservez 30 minutes. On discute de vos défis.
+On identifie votre premier "Gain Rapide".
+Sans engagement."
+
+CTA PRIMAIRE :
+[Réserver mon appel gratuit]
+
+CTA SECONDAIRE :
+[Calculer mes économies]
+
+PHOTO ÉQUIPE + CITATION :
+[Photo Pierre, Co-fondateur]
+"On a aidé 50+ PME européennes. À votre tour ?"
+- Pierre, Co-fondateur DAINAMICS
+  pierre@dainamics.ch
+
+═══════════════════════════════════════════════
+```
+
+**Longueur totale homepage :** ~1,500 mots  
+**Temps lecture :** 2 minutes (scan rapide)
 
 ---
 
-INTRO (100-150 mots)
-- Hook : Problème relatable
-- Promise : Ce que le lecteur apprendra
-- Teaser : Bénéfice principal
+### TEMPLATE PAGE EXEMPLES
 
-SECTION 1: [H2 descriptif]
-Contenu 200-300 mots
-- Bullets scannables
-- Exemple concret
-- Visuel si pertinent
+```
+═══════════════════════════════════════════════
 
-SECTION 2: [H2 descriptif]
-...
+SECTION 1 : HEADER
+───────────────────────────────────────────────
 
-CASE STUDY INSERT (optionnel)
-Mini cas client 100 mots
+TITRE (H1) :
+"Ils ont automatisé avec nous"
 
-SECTION 3: [H2 descriptif]
-...
+SOUS-TITRE :
+"Découvrez comment des PME comme la vôtre ont 
+récupéré 10-20h par semaine et multiplié leur ROI."
 
-CONCLUSION
-- Récap 3 takeaways
-- CTA : "Calculez votre ROI" ou "Télécharger checklist"
+FILTRES SIMPLES :
+[Tous] [Par industrie ▾] [Par problème ▾]
 
----
+───────────────────────────────────────────────
 
-METADATA:
-- Auteur : [Nom]
-- Date : [YYYY-MM-DD]
-- Catégorie : [Automatisation/IA/Développement]
-- Tags : [5-8 keywords]
-- Temps lecture : [X min]
+SECTION 2 : GRILLE CAS CLIENTS (6-8 cards)
+───────────────────────────────────────────────
+
+Format Card (Grid 2 colonnes desktop) :
+┌─────────────────────────────────────────┐
+│ CAS CLIENT : [LOGO ENTREPRISE]         │
+├─────────────────────────────────────────┤
+│ Industrie : 🏢 [SECTEUR]                │
+│ Taille : [X] employés                   │
+│ Pays : 🇨🇭 [PAYS]                       │
+│                                         │
+│ PROBLÈME                                │
+│ [1-2 phrases quantifiées]               │
+│                                         │
+│ SOLUTION                                │
+│ [1-2 phrases concrètes]                 │
+│                                         │
+│ RÉSULTATS                               │
+│ ┌─────────────────────────────────────┐ │
+│ │ [MÉTRIQUE 1] [MÉTRIQUE 2] [ROI]    │ │
+│ └─────────────────────────────────────┘ │
+│                                         │
+│ [Lire le cas complet →]                 │
+└─────────────────────────────────────────┘
+
+───────────────────────────────────────────────
+
+SECTION 3 : CTA
+───────────────────────────────────────────────
+
+TITRE :
+"Votre PME a un défi similaire ?"
+
+TEXTE :
+"Discutons-en 30 minutes. On identifie ensemble 
+votre "Gain Rapide" avec le meilleur ROI."
+
+CTA :
+[Réserver mon appel gratuit]
+
+═══════════════════════════════════════════════
 ```
 
 ---
 
-## 💼 Format Cas Clients Optimal
+### TEMPLATE PAGE COMMENT ÇA MARCHE
 
-### Règles d'Or
+```
+═══════════════════════════════════════════════
 
-**Métriques Bold:**
-Toujours en **gras** avec **unités claires**
+SECTION 1 : HEADER
+───────────────────────────────────────────────
 
-**Format préféré:**
-> **-70% charge support** = **20h/semaine libérées** = **35K CHF/an économisés**
+TITRE (H1) :
+"Comment ça marche ?"
 
-**Pas:**
-> Réduction significative de la charge de travail
+SOUS-TITRE :
+"Notre méthodologie éprouvée pour transformer 
+vos idées en solutions qui génèrent du ROI mesurable.
+
+Simple. Rapide. Transparent."
+
+───────────────────────────────────────────────
+
+SECTION 2 : PROCESSUS 3 ÉTAPES (détaillé)
+───────────────────────────────────────────────
+
+ÉTAPE 1 : ON ÉVALUE (GRATUITEMENT)
+🔍 Durée : 30 minutes | Coût : Gratuit
+
+Ce qu'on fait :
+✓ [Activité 1]
+✓ [Activité 2]
+✓ [Activité 3]
+
+Vous repartez avec :
+• [Livrable 1]
+• [Livrable 2]
+
+[Réserver mon évaluation]
+
+ÉTAPE 2 : ON PROTOTYPE (EN 1 SEMAINE)
+⚡ Durée : 1 semaine | Coût : Inclus
+
+Ce qu'on fait :
+✓ [Activité 1]
+✓ [Activité 2]
+
+Vous obtenez :
+• [Livrable 1]
+• [Livrable 2]
+
+Pas de PowerPoint. Un prototype réel.
+
+ÉTAPE 3 : ON LIVRE (EN 2-4 SEMAINES)
+✅ Durée : 2-4 semaines | Garantie : ROI 2-6 mois
+
+Ce qu'on fait :
+✓ [Activité 1]
+✓ [Activité 2]
+
+Vous obtenez :
+• [Livrable 1]
+• [Livrable 2]
+
+GARANTIE SATISFACTION :
+Si ROI non atteint en 6 mois, on travaille 
+gratuitement jusqu'à résultat.
+
+───────────────────────────────────────────────
+
+SECTION 3 : POURQUOI NOUS (4 différenciateurs)
+───────────────────────────────────────────────
+
+TITRE :
+"Pourquoi nous choisir ?"
+
+4 CARDS (Grid 2x2) :
+💰 ADAPTÉ PME | 🎯 PRAGMATIQUE
+⚡ RAPIDE      | 🗣️ TRANSPARENT
+
+───────────────────────────────────────────────
+
+SECTION 4 : FAQ (7 questions)
+───────────────────────────────────────────────
+
+Format :
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Q1 : [Question directe] ?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Réponse directe, chiffrée si possible]
+
+[Exemple concret si pertinent]
+
+Questions obligatoires :
+Q1 : Combien ça coûte ?
+Q2 : Combien de temps ?
+Q3 : Mon entreprise est-elle trop petite ?
+Q4 : Vous travaillez dans quel secteur ?
+Q5 : C'est quoi la garantie ?
+Q6 : Vous travaillez dans toute l'Europe ?
+Q7 : Et si je ne sais pas par où commencer ?
+
+───────────────────────────────────────────────
+
+SECTION 5 : CTA
+───────────────────────────────────────────────
+
+TITRE :
+"Prêt à démarrer ?"
+
+CTA :
+[Réserver mon appel gratuit]
+
+═══════════════════════════════════════════════
+```
 
 ---
 
-### Types Métriques à Utiliser
+## ✅ CHECKLIST RÉDACTION
 
-**Temps gagné:**
-- Heures/semaine libérées
-- Réduction % temps tâche
-- Jours/mois économisés
+### Avant d'Écrire
+- [ ] J'ai lu la Présentation Optimisée (référence ton)
+- [ ] Je connais le problème du client (15h perdues)
+- [ ] J'ai des chiffres précis (CHF, %, heures)
+- [ ] Je sais quel CTA unique utiliser
 
-**Argent économisé:**
-- CHF/an (pas €)
-- % réduction coûts
-- ROI mois (remboursement)
+### Pendant l'Écriture
+- [ ] Je commence par le problème (pas la solution)
+- [ ] J'utilise "vous" (pas "nous")
+- [ ] Phrases courtes (<20 mots)
+- [ ] Quantifié toujours (pas "beaucoup")
+- [ ] Témoignages avec noms réels
+- [ ] 1 seul CTA répété
 
-**Performance améliorée:**
-- % augmentation productivité
-- Réduction délais (ex: -50% temps traitement)
-- Augmentation satisfaction (+40% NPS)
-
-**Volume traité:**
-- Nombre transactions/jour
-- Capacité augmentée (2x volume sans recrutement)
-
----
-
-### Témoignages Efficaces
-
-**Règles:**
-- **Court:** 20-40 mots maximum
-- **Quantifié:** Inclure métrique
-- **Émotionnel:** Bénéfice humain
-- **Signé:** Nom + Titre + Entreprise + Photo
-
-**❌ MAUVAIS:**
-> "DAINAMICS est une excellente agence. Leur travail est de qualité et leur équipe est professionnelle. Nous sommes très satisfaits de notre collaboration."
-
-**✅ BON:**
-> "Le chatbot traite 80% de nos demandes. Notre équipe se concentre enfin sur les cas complexes. Investissement remboursé en 4 mois."
-> 
-> — Sophie Martin, Directrice Opérations, LEXAIA
+### Après l'Écriture
+- [ ] Règle 30 secondes : Message clair ?
+- [ ] Preuve avant pitch : Témoignages d'abord ?
+- [ ] Langage humain : Compréhensible au café ?
+- [ ] Storytelling : Histoires, pas listes ?
+- [ ] Mobile lisible : Phrases courtes ?
 
 ---
 
-## ✅ Checklist Avant Publication
+## 🎯 MOTS À ÉVITER / REMPLACER
 
-### Contenu
+### Éviter le Jargon
 
-- [ ] Titre clair et actionnable
-- [ ] Toutes métriques quantifiées (CHF, %, heures)
-- [ ] "IA" utilisé (pas "AI") dans textes français
-- [ ] Noms corrects : LEXAIA, ENKI-REALTY
-- [ ] Pas d'emojis dans texte
-- [ ] Pas de jargon non-expliqué
-- [ ] CTAs clairs avec verbe action
-- [ ] Proof avant pitch
+| ❌ ÉVITER | ✅ UTILISER |
+|-----------|-------------|
+| Solutions innovantes | Automatisation qui marche |
+| Transformation digitale | Gagner du temps |
+| Accompagnement | On vous aide |
+| Implémentation | Installation |
+| Architecture microservices | Application qui grandit avec vous |
+| Intelligence Artificielle | Robot qui fait le boulot |
+| Orchestration | Gestion automatique |
+| Workflow | Processus |
+| Pipeline | Système |
+| Framework | Outil |
 
-### SEO
+### Éviter le Corporate
 
-- [ ] Meta title <60 caractères
-- [ ] Meta description 150-160 caractères
-- [ ] H1 unique par page
-- [ ] H2-H6 hiérarchie logique
-- [ ] Alt text images descriptifs
-- [ ] URLs claires (kebab-case)
-
-### Légal
-
-- [ ] Prix mentionnés HT + TVA 8.1% si applicable
-- [ ] Mentions nLPD si données collectées
-- [ ] Garanties clairement énoncées
-- [ ] Terms & Conditions linkés si formulaire
-
----
-
-## 🎯 Conclusion
-
-### Principes Récapitulatifs
-
-1. **Business d'abord, tech ensuite**
-2. **Quantifier TOUJOURS** (CHF, %, heures)
-3. **Proof > Pitch** (résultats avant capacités)
-4. **Pragmatique, transparent, accessible**
-5. **Approche suisse** (nLPD, TVA, proximité)
-
-### Votre Différenciation Contenu
-
-**Ce que font vos concurrents suisses:**
-- Jargon technique
-- Prix cachés
-- Promesses vagues
-- Navigation complexe
-
-**Ce que fait DAINAMICS:**
-- Langage business clair
-- Prix transparents
-- ROI quantifié
-- Parcours simplifié
-
-**Résultat:** Vous êtes la seule agence suisse que les PME comprennent immédiatement.
+| ❌ ÉVITER | ✅ UTILISER |
+|-----------|-------------|
+| Nous sommes ravis de... | On... |
+| Découvrez notre... | Voici... |
+| Notre expertise permet... | On sait faire... |
+| Nous accompagnons... | On aide... |
+| Notre méthodologie éprouvée... | Notre processus simple... |
+| Optimiser vos processus... | Vous faire gagner du temps... |
 
 ---
 
-**Version:** 1.0  
-**Dernière mise à jour:** 11 Octobre 2025  
+## 🎯 CONCLUSION
+
+### Les 3 Règles d'Or
+
+1. **PROBLÈME AVANT SOLUTION**
+   - Commence toujours par le pain point
+   - "Vous perdez 15h..." avant "On automatise..."
+
+2. **PREUVE AVANT PITCH**
+   - Témoignages clients d'abord
+   - Vos capacités après
+
+3. **UN SEUL CTA**
+   - "Réserver 30 min gratuites"
+   - Répété 3x, amplifié, clarifié
+
+### Test Final : La Règle du Café
+
+**Lisez votre texte à voix haute.**
+
+Si vous ne diriez PAS ça à un ami au café,  
+**réécrivez.**
+
+---
+
+**Version:** 2.0 - TRANSFORMATION RADICALE  
+**Dernière mise à jour:** 15 Octobre 2025  
 **Contact:** contact@dainamics.ch
 
 ---
 
+*"Écrivez comme vous parlez. Soyez humain. Soyez vous."*
+
 **📚 Voir aussi:**
-- [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Structure menu
-- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Plan 24 semaines
-- [STATUS.md](./STATUS.md) - État projet
-- [DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md) - Design System
+- [Présentation Optimisée](./DAINAMICS_Presentation_Optimisee.md) - Référence ton
+- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md) - Structure 4 pages
+- [NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md) - Architecture
