@@ -3,7 +3,7 @@
 > **Site web officiel de DAINAMICS** - Agence IA, Automatisation & Développement pour PME suisses
 
 **Objectif :** Transformer site complexe en machine de conversion simple et efficace  
-**Approche :** 4 pages, 4 semaines, conversion x2-3  
+**Approche :** Navigation 6 items, 4 pages MVP core, 4 semaines, conversion x2-3  
 **Status :** 🟡 Semaine 1/4 en cours (Homepage)
 
 [![GitHub](https://img.shields.io/badge/GitHub-dainabase-blue)](https://github.com/dainabase/Dainamics-Web-Site)
@@ -21,10 +21,10 @@
 Site actuel : **Navigation complexe, message technique, conversion 2-3%**
 
 ### La solution
-**MVP ultra-simple : 4 pages, message émotionnel, conversion 4-6% en 4 semaines**
+**MVP ultra-simple : Navigation 6 items optimale, 4 pages MVP core, message émotionnel, conversion 4-6% en 4 semaines**
 
 ### Le résultat attendu
-**x2-3 leads qualifiés avec 1/3 du contenu** 🚀
+**x2-3 leads qualifiés avec architecture optimale** 🚀
 
 ---
 
@@ -36,8 +36,9 @@ Site actuel : **Navigation complexe, message technique, conversion 2-3%**
 > — Analyse Zapier, Boldare, Netguru, Anthropic, Swisscom
 
 **Les données :**
-- **Navigation 6 items** = Sweet spot (pas 9+)
-- **4 pages principales** = 90% du trafic
+- **Navigation 6 items** = Sweet spot optimal (pas 4, pas 9+)
+- **2 niveaux max** = Clarté navigation (pas 3+)
+- **4 pages MVP core** = 90% du trafic initial
 - **Message 30 secondes** = Test clé conversion
 - **Preuve avant pitch** = Pattern dominant gagnants
 
@@ -52,8 +53,9 @@ Site actuel : **Navigation complexe, message technique, conversion 2-3%**
 
 **Notre MVP DAINAMICS :**
 ```
-✅ 4 pages principales
-✅ Navigation 4 items, 1 niveau
+✅ Navigation 6 items optimale
+✅ 2 niveaux maximum
+✅ 4 pages MVP core prioritaires
 ✅ Pricing transparent (ranges visibles)
 ✅ Message émotionnel : "Vous perdez 15h/semaine..."
 ✅ Conversion cible : 4-6%
@@ -63,10 +65,33 @@ Site actuel : **Navigation complexe, message technique, conversion 2-3%**
 
 ---
 
-## 🏗️ ARCHITECTURE MVP (4 PAGES)
+## 🏗️ ARCHITECTURE NAVIGATION + PAGES MVP
+
+### Navigation 6 Items (Optimale B2B Tech)
 
 ```
-SITE DAINAMICS
+NAVIGATION PRINCIPALE
+│
+├─ 1. SERVICES (hub page)
+├─ 2. PROJETS (anciennement Portfolio)
+├─ 3. NOTRE APPROCHE (processus + méthodologie)
+├─ 4. RESSOURCES (blog + cas d'usage + glossaire)
+├─ 5. PRICING (transparence différenciateur)
+└─ 6. CONTACT (conversion)
+```
+
+**Justification 6 items :**
+- Analyse 25+ sites leaders (Zapier 8.5/10, Boldare 9/10, Netguru 8/10)
+- Sweet spot mémorisation (Miller's Law : 5-9)
+- Organisation par engagement (Discovery/Dev) > technologie (IA/Auto)
+- Pricing transparent = unique marché suisse (0% concurrents)
+
+**Navigation Desktop :** `[LOGO] Services Projets Notre Approche Ressources Pricing Contact [FR/DE/EN]`
+
+### Pages Core MVP (4 Prioritaires)
+
+```
+MVP 4 SEMAINES (Focus Initial)
 │
 ├─ 1. HOMEPAGE (/)                              [⭐⭐⭐ 90% conversions]
 │  └─ "Vous Perdez 15 Heures Par Semaine..."
@@ -88,9 +113,7 @@ SITE DAINAMICS
    └─ Calendly + Formulaire, friction minimale
 ```
 
-**Navigation :** `[LOGO] Homepage Exemples Process Contact [FR/DE/EN]`
-
-**Principe :** 1 niveau, pas de dropdown, ultra-clair.
+**Principe :** Navigation expose 6 sections pour clarté, MVP se concentre sur 4 pages principales avec impact maximal.
 
 ---
 
@@ -103,7 +126,7 @@ SITE DAINAMICS
 | **3** | Process | Rassurer | FAQ répond 90% objections | ⏹️ À faire |
 | **4** | Contact + Launch | MVP lancé | Lighthouse >85, 4 pages live | ⏹️ À faire |
 
-**Total :** 4 pages, 16-24 jours dev, conversion x2 minimum
+**Total :** 4 pages core, 16-24 jours dev, conversion x2 minimum
 
 ---
 
@@ -178,12 +201,12 @@ SITE DAINAMICS
 
 4. **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** - Ton storytelling
 5. **[DAINAMICS_Presentation_Optimisee.md](./DAINAMICS_Presentation_Optimisee.md)** - Copywriting final
-6. **[DAINAMICS_Plan_Site_Optimise.md](./DAINAMICS_Plan_Site_Optimise.md)** - Structure 4 pages
+6. **[DAINAMICS_Plan_Site_Optimise.md](./DAINAMICS_Plan_Site_Optimise.md)** - Structure 6 items détaillée
 
 ### 🏗️ Pour l'Architecture
 
 7. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Plan MVP 4 semaines
-8. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure site
+8. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure navigation 6 items
 
 ### 🔄 Pour Nouvelles Conversations
 
@@ -326,8 +349,9 @@ Background: #050510   /* Dark Navy */
 
 | **Règle** | **Description** |
 |-----------|-----------------|
-| ✅ **4 pages menu** | Homepage, Exemples, Process, Contact (jamais 9+) |
-| ✅ **Navigation 1 niveau** | Pas de dropdown, pas de mega-menu |
+| ✅ **6 sections navigation** | Services, Projets, Notre Approche, Ressources, Pricing, Contact |
+| ✅ **Navigation 2 niveaux max** | Pas de mega-menu, pas 3+ niveaux |
+| ✅ **4 pages MVP core** | Homepage, Exemples, Process, Contact (priorité développement) |
 | ✅ **Message 30 secondes** | Test avec 5 personnes obligatoire |
 | ✅ **Problème avant solution** | TOUJOURS commencer par pain point |
 | ✅ **Preuve avant pitch** | Témoignages en haut de page |
@@ -346,9 +370,9 @@ Background: #050510   /* Dark Navy */
 
 | **Critère** | **AVANT (24 sem)** | **APRÈS MVP (4 sem)** | **Gain** |
 |-------------|--------------------|-----------------------|----------|
-| Pages principales | 14+ | **4** | **-70%** |
-| Items menu | 9+ | **4** | **-55%** |
-| Niveaux navigation | 3 | **1** | **-66%** |
+| Pages principales | 14+ | **4 core MVP** | **-70%** |
+| Items navigation | 9+ | **6** | **-33%** |
+| Niveaux navigation | 3 | **2 max** | **-33%** |
 | Message clair en | 3-5 min | **30 sec** | **-83%** |
 | Timeline lancement | 24 semaines | **4 semaines** | **-83%** |
 
@@ -388,8 +412,8 @@ dainamics-web-site/
 │   │   ├── Processus.tsx         # À créer Semaine 3
 │   │   └── Contact.tsx           # À créer Semaine 4
 │   ├── components/
-│   │   ├── Navigation.tsx        # À simplifier (9→4 items)
-│   │   ├── Hero.tsx              # À créer
+│   │   ├── Navigation.tsx        # ✅ Structure 6 items implémentée
+│   │   ├── Hero.tsx              # À créer (nouveau message)
 │   │   ├── CaseStudyCard.tsx     # À créer
 │   │   └── FAQ.tsx               # À créer
 │   └── data/
@@ -400,12 +424,12 @@ dainamics-web-site/
 │       └── faq.ts                # À créer Semaine 3
 │
 ├── docs/                         # Documentation
-│   ├── STATUS.md                 # ⭐ Dashboard temps réel
-│   ├── PRIORITIES.md             # ⭐ Priorisation P0/P1/P2
+│   ├── STATUS.md                 # ⭐ Dashboard temps réel (v3.3)
+│   ├── PRIORITIES.md             # ⭐ Priorisation P0/P1/P2 (v3.1)
 │   ├── INSTRUCTIONS.md           # ⭐ Guide création contenu
 │   ├── TRANSFORMATION-PLAN.md    # Plan MVP 4 semaines
 │   ├── CONTENT-STRATEGY.md       # Ton storytelling
-│   ├── NAVIGATION-ARCHITECTURE.md # Structure 4 pages
+│   ├── NAVIGATION-ARCHITECTURE.md # Structure 6 items (v2.0)
 │   ├── DAINAMICS_Presentation_Optimisee.md    # Copywriting
 │   ├── DAINAMICS_Plan_Site_Optimise.md        # Structure détaillée
 │   └── PROMPT-CONTEXT.md         # Contexte conversations
@@ -467,7 +491,7 @@ dainamics-web-site/
 ### Cette Semaine (Semaine 1)
 
 **Lundi :**
-- [ ] Simplifier `Navigation.tsx` (9→4 items)
+- [x] Navigation 6 items structure (✅ déjà fait)
 - [ ] Créer Hero avec hook émotionnel
 
 **Mardi :**
@@ -501,17 +525,17 @@ dainamics-web-site/
 ## 📈 RÉSUMÉ TRANSFORMATION
 
 **De :** Site complexe, navigation 9+ items, message technique, conversion 2-3%  
-**À :** Site simple, navigation 4 items, message émotionnel, conversion 4-6%
+**À :** Site simple, navigation 6 items, message émotionnel, conversion 4-6%
 
-**Méthode :** 4 pages, 4 semaines, 6 principes directeurs, test 30 secondes
+**Méthode :** Navigation 6 items + 4 pages MVP core, 4 semaines, 6 principes directeurs, test 30 secondes
 
-**Résultat attendu :** x2-3 leads qualifiés avec 1/3 du contenu
+**Résultat attendu :** x2-3 leads qualifiés avec architecture optimale
 
 **Base scientifique :** Analyse 25+ sites leaders (81 KB documentation)
 
 ---
 
-**VERSION:** 5.0 - DESIGN SYSTEM CONSOLIDATED  
+**VERSION:** 5.1 - NAVIGATION 6 ITEMS ALIGNED  
 **DERNIÈRE MAJ:** 16 Octobre 2025  
 **STATUS:** 🟡 Semaine 1/4 - Homepage en cours  
 **REPOSITORY:** https://github.com/dainabase/Dainamics-Web-Site
