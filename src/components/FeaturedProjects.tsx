@@ -44,7 +44,7 @@ const FeaturedProjects: React.FC = () => {
       id: 2,
       title: 'ENKI REALITY',
       subtitle: 'Plateforme Immobilière Agentique',
-      category: 'PropTech | Agents IA autonomes',
+      category: 'PropTech | Agents IA autonomes | Architecture B2B2C',
       description:
         "Plateforme immobilière de nouvelle génération pour le marché chypriote, propulsée par agents IA autonomes. Recherche conversationnelle, CRM intelligent, optimisation fiscale automatisée (Exaia), et pipeline commercial orchestré. Première solution B2B2C véritablement agentique du secteur.",
       stack: [
