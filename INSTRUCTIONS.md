@@ -454,7 +454,8 @@ Boutons : 16px vertical, 32px horizontal
 
 ### Technique (Si besoin)
 7. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure
-8. **ARCHITECTURE.md** - Specs techniques
+8. **[DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)** ⭐ - Design System exhaustif
+9. **ARCHITECTURE.md** - Specs techniques
 
 ---
 
