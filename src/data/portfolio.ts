@@ -136,9 +136,9 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     id: 'enki-realty-automation',
-    title: 'ENKI-REALTY - Plateforme Immobilier IA',
+    title: 'ENKI REALITY - Plateforme Immobilière Agentique',
     client: 'Agence Immobilière Romande',
-    industry: 'Immobilier',
+    industry: 'PropTech',
     category: 'ia',
     complexity: 'advanced',
     description: 'Plateforme complète d\'automatisation immobilière avec IA: estimation prix, matching acheteurs-biens, génération visites virtuelles, et chatbot multilingue 24/7 pour leads qualification.',
@@ -172,7 +172,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Stripe'
     ],
     testimonial: {
-      quote: 'ENKI-REALTY nous a fait passer d\'une agence traditionnelle à un leader tech de l\'immobilier romand. Nos clients adorent l\'expérience digitale.',
+      quote: 'ENKI REALITY nous a fait passer d\'une agence traditionnelle à un leader tech de l\'immobilier romand. Nos clients adorent l\'expérience digitale.',
       author: 'Pierre Fontaine',
       role: 'CEO',
       company: 'Agence Immobilière'
