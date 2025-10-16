@@ -162,10 +162,24 @@ const MetricsConfidence: React.FC = () => {
         >
           {metrics.map((metric, index) => {
             const Icon = metric.icon;
+
+            const [isMobile, setIsMobile] = React.useState(false);
+
+            React.useEffect(() => {
+              const checkMobile = () => {
+                setIsMobile(window.innerWidth < 768);
+              };
+
+              checkMobile();
+              window.addEventListener('resize', checkMobile);
+
+              return () => window.removeEventListener('resize', checkMobile);
+            }, []);
+
             const iconY = useTransform(
               scrollYProgress,
               [0, 1],
-              metric.parallaxRange
+              isMobile ? [0, 0] : metric.parallaxRange
             );
 
             return (
