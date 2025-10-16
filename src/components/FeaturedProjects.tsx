@@ -8,7 +8,7 @@ const FeaturedProjects: React.FC = () => {
       id: 1,
       title: 'LEXAIA',
       subtitle: 'Plateforme Juridique IA',
-      category: 'Automatisation juridique | Architecture microservices',
+      category: 'LegalTech | Automatisation juridique | Architecture microservices',
       description:
         "Plateforme juridique intelligente combinant IA générative, RAG dual (documents privés + base juridique publique), et automatisation de workflows. Architecture microservices complète avec 40+ services orchestrés pour cabinets d'avocats.",
       stack: [
@@ -44,7 +44,7 @@ const FeaturedProjects: React.FC = () => {
       id: 2,
       title: 'ENKI REALITY',
       subtitle: 'Plateforme Immobilière Agentique',
-      category: 'Immobilier Chypre | Agents IA autonomes',
+      category: 'PropTech | Agents IA autonomes',
       description:
         "Plateforme immobilière de nouvelle génération pour le marché chypriote, propulsée par agents IA autonomes. Recherche conversationnelle, CRM intelligent, optimisation fiscale automatisée (Exaia), et pipeline commercial orchestré. Première solution B2B2C véritablement agentique du secteur.",
       stack: [
