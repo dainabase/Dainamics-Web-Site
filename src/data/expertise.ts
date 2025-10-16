@@ -8,7 +8,7 @@
  * - Automatisation (Workflow & Process)
  * - Développement (Web, Mobile, Cloud)
  * 
- * Design System: DESIGN-SYSTEM-MANDATORY.md
+ * Design System: DAINAMICS_Design_System_v2_Complete.md
  * Couleurs: CATEGORY_COLORS obligatoires
  * Icônes: Lucide React v0.263.1 uniquement (vérifiées sur https://lucide.dev)
  */
@@ -107,7 +107,7 @@ export interface ExpertisePillar {
 
 /**
  * Couleurs principales du Design System
- * Source: DESIGN-SYSTEM-MANDATORY.md
+ * Source: DAINAMICS_Design_System_v2_Complete.md
  * ⚠️ NE JAMAIS MODIFIER CES VALEURS
  */
 export const COLORS = {
@@ -123,7 +123,7 @@ export const COLORS = {
 
 /**
  * Mapping couleurs par catégorie
- * Source: DESIGN-SYSTEM-MANDATORY.md
+ * Source: DAINAMICS_Design_System_v2_Complete.md
  * ⚠️ NE JAMAIS MODIFIER CES VALEURS
  */
 export const categoryColors: Record<'ia' | 'automatisation' | 'developpement', string> = {
@@ -134,7 +134,7 @@ export const categoryColors: Record<'ia' | 'automatisation' | 'developpement', s
 
 /**
  * Mapping couleurs par niveau de complexité
- * Source: DESIGN-SYSTEM-MANDATORY.md
+ * Source: DAINAMICS_Design_System_v2_Complete.md
  */
 export const complexityColors: Record<'starter' | 'intermediate' | 'advanced', string> = {
   'starter': COLORS.success,      // Success Green
