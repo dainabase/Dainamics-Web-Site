@@ -372,15 +372,7 @@
     font-size: 4rem;
   }
 
-  .metrics-confidence-section .icon-wrapper {
-    width: 18px;
-    height: 18px;
-  }
-
-  .metrics-confidence-section .icon-wrapper svg {
-    width: 9px;
-    height: 9px;
-  }
+  /* Icons gardent leur taille Tailwind (w-20 h-20 et w-10 h-10) */
 }
 
 /* ===== RESPONSIVE MOBILE (<768px) ===== */
@@ -398,15 +390,7 @@
     font-size: 3.5rem;
   }
 
-  .metrics-confidence-section .icon-wrapper {
-    width: 16px;
-    height: 16px;
-  }
-
-  .metrics-confidence-section .icon-wrapper svg {
-    width: 8px;
-    height: 8px;
-  }
+  /* Icons gardent leur taille Tailwind (w-20 h-20 et w-10 h-10) */
 
   .metrics-confidence-section .metric-labels p:first-child {
     font-size: 1.125rem;
