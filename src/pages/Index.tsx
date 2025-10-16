@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
+import AboutServices from '@/components/AboutServices';
 import DiagnosticQuestionnaireNew from '@/components/DiagnosticQuestionnaireNew';
 import IntelligenceCenter from '@/components/IntelligenceCenter';
 import Services from '@/components/Services';
@@ -47,6 +48,9 @@ const Index = () => {
         {/* Hero section with 3D brain neural network from Sketchfab */}
         <Hero />
         
+        {/* About Services section - 3 pillars (IA, Automatisations, Software) */}
+        <AboutServices />
+        
         {/* Interactive diagnostic questionnaire - updated version */}
         <DiagnosticQuestionnaireNew />
         
@@ -67,3 +71,4 @@ const Index = () => {
 };
 
 export default Index;
+
