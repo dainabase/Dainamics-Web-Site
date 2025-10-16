@@ -1,6 +1,6 @@
 // src/pages/ExpertiseAutomatisation.tsx
 // Automatisation - Page d'Expertise avec ScrollStack Technologies OPTIMISÉ
-// Référence Design System: DESIGN-SYSTEM-MANDATORY.md
+// Référence Design System: DAINAMICS_Design_System_v2_Complete.md
 // Performance: 60fps garanti - ScrollStack élégant pour le stack technique
 
 import { useState, useRef } from 'react';
