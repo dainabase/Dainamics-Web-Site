@@ -288,18 +288,26 @@ export default function Hero() {
           >
             <motion.h1 
               variants={itemVariants}
-              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight leading-tight"
             >
-              <span className="text-gradient-primary glow">Dainamics,</span>
+              <span className="text-dainamics-light">Vous Perdez</span>{' '}
+              <span className="text-gradient-primary glow">15 Heures Par Semaine</span>
               <br />
-              <span className="text-gradient">Superhuman AI Agents</span>
+              <span className="text-dainamics-light/90">à Faire des Tâches Qu'un Robot Pourrait Faire</span>
             </motion.h1>
             
             <motion.p 
               variants={itemVariants}
-              className="text-dainamics-light/80 text-xl md:text-2xl mb-8 max-w-3xl leading-tight"
+              className="text-dainamics-light/80 text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed"
             >
-              Obliterate manual processes. Outperform competitors. Become unstoppable.
+              C'est le quotidien de milliers de dirigeants de PME européennes.
+              <br /><br />
+              <span className="text-dainamics-light/90">
+                Facturation manuelle. Saisie de données. Réponses emails répétitives.
+              </span>
+              <br /><br />
+              <strong className="text-dainamics-light font-semibold">Pendant ce temps :</strong>{' '}
+              <span className="text-dainamics-secondary">Vos concurrents automatisent.</span>
             </motion.p>
             
             <motion.div 
@@ -309,10 +317,10 @@ export default function Hero() {
               <Button 
                 asChild
                 size="lg"
-                className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow font-semibold text-base md:text-lg px-8 power-pulse"
+                className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow font-semibold text-base md:text-lg px-8 py-6 power-pulse"
               >
                 <a href="#diagnostic">
-                  DEPLOY MY AI POWER
+                  Réserver 30 min gratuites
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
@@ -321,10 +329,11 @@ export default function Hero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-dainamics-primary text-dainamics-primary hover:bg-dainamics-primary/10 font-semibold text-base md:text-lg px-8"
+                className="border-dainamics-secondary text-dainamics-secondary hover:bg-dainamics-secondary/10 font-semibold text-base md:text-lg px-8 py-6"
               >
-                <a href="#services">
-                  CRUSH COMPETITORS
+                <a href="#diagnostic">
+                  Calculer mes économies
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
             </motion.div>
@@ -386,7 +395,7 @@ export default function Hero() {
       
       {/* Enhanced scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-        <span className="text-dainamics-light/50 text-sm mb-2">Scroll to dominate</span>
+        <span className="text-dainamics-light/50 text-sm mb-2">Découvrez comment</span>
         <div className="h-16 w-1 rounded-full bg-dainamics-light/10 overflow-hidden">
           <div className="h-1/3 w-full bg-dainamics-primary animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
         </div>
