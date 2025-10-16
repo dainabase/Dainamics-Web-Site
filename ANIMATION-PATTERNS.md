@@ -640,7 +640,7 @@ Avant de créer une nouvelle page, vérifier :
 
 - **Page de référence** : `/solutions/quick-wins` (Commit `ae25053`)
 - **Framer Motion Docs** : https://www.framer.com/motion
-- **Design System** : `DESIGN-SYSTEM-MANDATORY.md`
+- **Design System** : `DAINAMICS_Design_System_v2_Complete.md`
 
 ---
 
