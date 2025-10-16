@@ -32,6 +32,7 @@ const FeaturedProjects: React.FC = () => {
         '15-20h/semaine économisées par avocat',
         'Recherche jurisprudentielle 10x plus rapide',
         'Analyse contrats en 2 minutes',
+        'Réduction 95% erreurs documents juridiques',
       ],
       screenshot: null, // Placeholder à venir
       color: {
