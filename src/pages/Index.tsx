@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import AboutServices from '@/components/AboutServices';
+import MetricsConfidence from '@/components/MetricsConfidence';
 import DiagnosticQuestionnaireNew from '@/components/DiagnosticQuestionnaireNew';
 import IntelligenceCenter from '@/components/IntelligenceCenter';
 import Services from '@/components/Services';
@@ -50,6 +51,9 @@ const Index = () => {
         
         {/* About Services section - 3 pillars (IA, Automatisations, Software) */}
         <AboutServices />
+        
+        {/* Metrics Confidence - 4 key metrics with animated counters */}
+        <MetricsConfidence />
         
         {/* Interactive diagnostic questionnaire - updated version */}
         <DiagnosticQuestionnaireNew />
