@@ -39,6 +39,7 @@ const FeaturedProjects: React.FC = () => {
         primary: '#7B2FFF',
         secondary: '#5E24BF',
         gradient: 'from-[#7B2FFF] to-[#5E24BF]',
+        glow: 'rgba(123, 47, 255, 0.4)',
       },
     },
     {
@@ -76,6 +77,7 @@ const FeaturedProjects: React.FC = () => {
         primary: '#10E4FF',
         secondary: '#0CB4D4',
         gradient: 'from-[#10E4FF] to-[#0CB4D4]',
+        glow: 'rgba(16, 228, 255, 0.4)',
       },
     },
   ];
@@ -139,7 +141,11 @@ const FeaturedProjects: React.FC = () => {
             <motion.div
               key={project.id}
               variants={itemVariants}
-              className="project-card bg-gradient-to-br from-[#0A0A1B] to-[#050510] border border-gray-800 rounded-2xl overflow-hidden hover:border-dainamics-primary transition-all duration-300 hover:shadow-2xl hover:shadow-dainamics-primary/20"
+              className="project-card bg-gradient-to-br from-[#0A0A1B] to-[#050510] border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300"
+              style={{
+                '--hover-border-color': project.color.primary,
+                '--hover-shadow-color': project.color.glow,
+              } as React.CSSProperties}
             >
               {/* Screenshot */}
               <div className="screenshot-wrapper relative h-64 bg-gray-900/50 overflow-hidden">
