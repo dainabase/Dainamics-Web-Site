@@ -2,7 +2,7 @@
 // ScrollStack Component - Cards qui se "stackent" en scrollant
 // Source: https://reactbits.dev/r/ScrollStack-TS-TW
 // Adapté pour DAINAMICS Design System
-// Référence: DESIGN-SYSTEM-MANDATORY.md
+// Référence: DAINAMICS_Design_System_v2_Complete.md
 
 'use client';
 
