@@ -22,32 +22,6 @@ export default function Hero() {
     
     if (!brainVideo || !glowContainer || !pulseEffect || !energyWavesContainer) return;
     
-    // NOUVEAU: Fonction pour calculer position du cerveau
-    function getBrainCenterPosition() {
-      const brainRect = glowContainer.getBoundingClientRect();
-      return {
-        x: brainRect.left + brainRect.width / 2,
-        y: brainRect.top + brainRect.height / 2
-      };
-    }
-    
-    // NOUVEAU: Positionner les ondes statiques au démarrage
-    function positionStaticWaves() {
-      const { x, y } = getBrainCenterPosition();
-      const staticWaves = energyWavesContainer.querySelectorAll('.energy-wave');
-      
-      staticWaves.forEach((wave) => {
-        (wave as HTMLElement).style.left = `${x}px`;
-        (wave as HTMLElement).style.top = `${y}px`;
-      });
-    }
-    
-    // Positionner au chargement
-    positionStaticWaves();
-    
-    // Re-positionner sur resize (cerveau change de position)
-    window.addEventListener('resize', positionStaticWaves);
-    
     // Create a canvas to analyze video content
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -58,10 +32,10 @@ export default function Hero() {
     
     // Variables to track electrical pulse intensity
     let lastBrightness = 0;
-    let pulseThreshold = 0.08; // Slightly lower threshold to detect more pulses
+    let pulseThreshold = 0.08;
     let isPulsing = false;
     let dynamicWaveCount = 0;
-    const maxDynamicWaves = 8; // Limit to prevent performance issues
+    const maxDynamicWaves = 8;
     
     // Function to analyze video content and detect electrical pulses
     function analyzeFrame() {
@@ -124,19 +98,16 @@ export default function Hero() {
     function triggerEnergyWave(intensity: number) {
       if (dynamicWaveCount >= maxDynamicWaves) return;
       
-      // NOUVEAU: Calculer position du cerveau en temps réel
-      const { x, y } = getBrainCenterPosition();
-      
       // Create a new energy wave element
       const waveElement = document.createElement('div');
       waveElement.classList.add('dynamic-energy-wave');
       dynamicWaveCount++;
       
-      // Set size and position avec coordonnées dynamiques
+      // Set size and position - position relative au container
       waveElement.style.cssText = `
         position: absolute;
-        left: ${x}px;
-        top: ${y}px;
+        top: 50%;
+        left: 50%;
         transform: translate(-50%, -50%) scale(1);
         width: 520px;
         height: 520px;
@@ -151,10 +122,10 @@ export default function Hero() {
       // Add to container
       energyWavesContainer.appendChild(waveElement);
       
-      // Animate wave expansion - scale augmenté pour plus de portée
+      // Animate wave expansion
       const keyframes = [
         { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.7 * intensity },
-        { transform: 'translate(-50%, -50%) scale(4)', opacity: 0 }
+        { transform: 'translate(-50%, -50%) scale(2.5)', opacity: 0 }
       ];
       
       const options = {
@@ -184,9 +155,6 @@ export default function Hero() {
     
     // Generate multiple waves of varying sizes for major pulses
     function triggerMultipleWaves(intensity: number) {
-      // NOUVEAU: Calculer position cerveau
-      const { x, y } = getBrainCenterPosition();
-      
       // Generate 3 waves with different sizes and timing
       for (let i = 0; i < 3; i++) {
         setTimeout(() => {
@@ -203,8 +171,8 @@ export default function Hero() {
           
           waveElement.style.cssText = `
             position: absolute;
-            left: ${x}px;
-            top: ${y}px;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%) scale(1);
             width: ${520 * sizeVariation}px;
             height: ${520 * sizeVariation}px;
@@ -218,8 +186,8 @@ export default function Hero() {
           
           energyWavesContainer.appendChild(waveElement);
           
-          // Larger reach for major pulses - scale augmenté
-          const scale = 4 + (i * 0.5);
+          // Larger reach for major pulses
+          const scale = 3.5 + (i * 0.5);
           
           const keyframes = [
             { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.7 * intensity * opacityVariation },
@@ -237,7 +205,7 @@ export default function Hero() {
             waveElement.remove();
             dynamicWaveCount--;
           };
-        }, i * 200); // Stagger the wave generation
+        }, i * 200);
       }
       
       // Trigger an especially strong pulse effect
@@ -278,7 +246,6 @@ export default function Hero() {
     
     return () => {
       brainVideo.removeEventListener('play', analyzeFrame);
-      window.removeEventListener('resize', positionStaticWaves);
     };
   }, []);
   
@@ -305,24 +272,14 @@ export default function Hero() {
   return (
     <section 
       ref={heroRef}
-      className="relative min-h-screen py-24 flex items-center overflow-hidden"
+      className="relative min-h-screen py-24 flex items-center overflow-visible"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 z-0"></div>
       
-      {/* NOUVEAU: Container ondes GLOBAL - position fixed */}
-      <div className="global-energy-waves-container" ref={energyWavesContainerRef}>
-        <div className="energy-wave wave-1"></div>
-        <div className="energy-wave wave-2"></div>
-        <div className="energy-wave wave-3"></div>
-        <div className="energy-wave wave-4"></div>
-        <div className="energy-wave wave-5"></div>
-        {/* Les dynamic waves seront injectées ici par le useEffect */}
-      </div>
-      
       <div className="container mx-auto px-4 md:px-0 z-10">
         <div className="hero-section">
-          {/* Content - Final vertical alignment adjustment */}
+          {/* Content */}
           <motion.div 
             className="hero-content"
             variants={containerVariants}
@@ -385,7 +342,14 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            {/* PLUS de energy-waves-container ici - déplacé au niveau section */}
+            {/* REVERT: Ondes remises DANS brain-animation-wrapper */}
+            <div className="energy-waves-container" ref={energyWavesContainerRef}>
+              <div className="energy-wave wave-1"></div>
+              <div className="energy-wave wave-2"></div>
+              <div className="energy-wave wave-3"></div>
+              <div className="energy-wave wave-4"></div>
+              <div className="energy-wave wave-5"></div>
+            </div>
             
             {/* Enhanced glow container */}
             <div className="glow-container" ref={glowContainerRef}>
@@ -401,7 +365,6 @@ export default function Hero() {
               
               {/* Brain video with mask */}
               <div className="brain-video-container">
-                {/* Brightness filter */}
                 <div className="brightness-filter"></div>
                 <div className="video-mask-overlay"></div>
                 <video 
@@ -472,7 +435,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Add required CSS for the hero layout & new brain effects */}
       <style>
         {`
         .hero-section {
@@ -493,7 +455,6 @@ export default function Hero() {
           margin-top: -20px;
         }
 
-        /* Brain Animation Advanced Styling */
         .brain-animation-wrapper {
           position: relative;
           width: 700px;
@@ -506,25 +467,24 @@ export default function Hero() {
           margin-top: 0;
         }
 
-        /* Global Energy Waves Container - Fixed pleine page */
-        .global-energy-waves-container {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          width: 100vw;
-          height: 100vh;
-          z-index: 1;
+        /* REVERT: Energy Waves Container - position originale */
+        .energy-waves-container {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          height: 100%;
+          z-index: 0;
           pointer-events: none;
-          overflow: visible;
         }
 
-        /* Energy Waves - Position calculée dynamiquement en JS */
+        /* Energy Waves - REVERT valeurs originales */
         .energy-wave,
         .dynamic-energy-wave {
           position: absolute;
-          /* left et top seront calculés en JS selon position cerveau */
+          top: 50%;
+          left: 50%;
           transform: translate(-50%, -50%) scale(0);
           border-radius: 50%;
           border: 2px solid rgba(16,228,255,0);
@@ -540,6 +500,7 @@ export default function Hero() {
         .wave-4 { animation-delay: 4.5s; width: 520px; height: 520px; }
         .wave-5 { animation-delay: 6s; width: 520px; height: 520px; animation: extended-wave-animation 10s infinite; }
 
+        /* REVERT: animations originales */
         @keyframes energy-wave-animation {
           0% {
             transform: translate(-50%, -50%) scale(1);
@@ -548,14 +509,13 @@ export default function Hero() {
             opacity: 0.8;
           }
           100% {
-            transform: translate(-50%, -50%) scale(4);
+            transform: translate(-50%, -50%) scale(2.5);
             border-color: rgba(16,228,255,0);
             box-shadow: 0 0 5px rgba(16,228,255,0);
             opacity: 0;
           }
         }
 
-        /* Extended wave animation pour plus de portée */
         @keyframes extended-wave-animation {
           0% {
             transform: translate(-50%, -50%) scale(1);
@@ -564,14 +524,13 @@ export default function Hero() {
             opacity: 0.7;
           }
           100% {
-            transform: translate(-50%, -50%) scale(5);
+            transform: translate(-50%, -50%) scale(3.5);
             border-color: rgba(16,228,255,0);
             box-shadow: 0 0 5px rgba(16,228,255,0);
             opacity: 0;
           }
         }
 
-        /* Glow Container - Creates the base effect */
         .glow-container {
           position: relative;
           width: 600px;
@@ -585,7 +544,6 @@ export default function Hero() {
           transition: box-shadow 0.5s ease;
         }
 
-        /* Orbital rings that rotate around the brain */
         .orbital-ring {
           position: absolute;
           border-radius: 50%;
@@ -612,7 +570,6 @@ export default function Hero() {
           100% { transform: rotate(360deg); }
         }
 
-        /* Brain video container */
         .brain-video-container {
           position: relative;
           width: 500px;
@@ -623,7 +580,6 @@ export default function Hero() {
           box-shadow: 0 0 40px rgba(16,228,255,0.15) inset;
         }
 
-        /* Brightness filter */
         .brightness-filter {
           position: absolute;
           top: 0;
@@ -635,7 +591,6 @@ export default function Hero() {
           pointer-events: none;
         }
 
-        /* Video element styling */
         .brain-animation {
           position: absolute;
           top: 50%;
@@ -648,7 +603,6 @@ export default function Hero() {
           object-fit: cover;
         }
 
-        /* Video mask overlay to soften the edges */
         .video-mask-overlay {
           position: absolute;
           top: 0;
@@ -665,7 +619,6 @@ export default function Hero() {
           pointer-events: none;
         }
 
-        /* Enhanced pulse effect */
         .pulse-effect {
           position: absolute;
           top: 50%;
@@ -697,7 +650,6 @@ export default function Hero() {
           }
         }
 
-        /* Media queries for responsiveness with adjusted vertical alignment */
         @media (max-width: 1200px) {
           .brain-animation-wrapper {
             width: 600px;
