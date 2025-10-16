@@ -389,13 +389,52 @@ export default function Hero() {
         </div>
       </div>
       
-      {/* Enhanced scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-        <span className="text-dainamics-light/50 text-sm mb-2">Découvrez comment</span>
-        <div className="h-16 w-1 rounded-full bg-dainamics-light/10 overflow-hidden">
-          <div className="h-1/3 w-full bg-dainamics-primary animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
-        </div>
-      </div>
+      {/* Animated scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center cursor-pointer"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.6 }}
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <svg
+            width="32"
+            height="48"
+            viewBox="0 0 32 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="opacity-70 hover:opacity-100 transition-opacity"
+          >
+            <rect
+              x="1"
+              y="1"
+              width="30"
+              height="46"
+              rx="15"
+              stroke="url(#scroll-gradient)"
+              strokeWidth="2"
+            />
+            <motion.circle
+              cx="16"
+              cy="12"
+              r="4"
+              fill="url(#scroll-gradient)"
+              animate={{ y: [0, 20, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <defs>
+              <linearGradient id="scroll-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#10E4FF" />
+                <stop offset="100%" stopColor="#0AFF9D" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </motion.div>
+      </motion.div>
 
       {/* Add required CSS for the hero layout & new brain effects */}
       <style>
