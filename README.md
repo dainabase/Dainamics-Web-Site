@@ -232,7 +232,45 @@ Calendrier:     Calendly (intégration iframe)
 Hosting:        TBD (Vercel/Netlify suggéré)
 ```
 
-**Design System :** Couleurs fixes (Orange #FF5A00 CTA, Indigo #6366F1, Cyan #10E4FF)
+---
+
+## 🎨 DESIGN SYSTEM
+
+### Documentation Exhaustive
+
+**📘 [DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)** ⭐
+
+**Taille :** 61.3 KB | **Lignes :** 2731 | **Version :** 2.0 (Janvier 2025)
+
+**Contenu complet :**
+- ✅ Palette couleurs complète (Primary, Secondary, CTA) + variations opacité
+- ✅ Typographie (Inter, hiérarchie H1-H5, gradients)
+- ✅ Spacing & Layout (sections, grids, containers)
+- ✅ Composants UI (13 composants : Buttons, Forms, Cards, Navigation...)
+- ✅ Animations & Effects (Framer Motion, CSS keyframes, Canvas)
+- ✅ Patterns de design (Glass-morphism, Gradients, Glow effects)
+- ✅ JavaScript/Canvas Effects (Particle system, Data lines)
+- ✅ Responsive Design (Breakpoints, Mobile-first)
+- ✅ Performance & Accessibilité
+
+### Couleurs Principales (Référence Rapide)
+
+```css
+Primary:    #7B2FFF   /* Purple/Indigo - IA */
+Secondary:  #10E4FF   /* Cyan - Automatisation */
+Success:    #0AFF9D   /* Green - Validations */
+CTA:        #FF5A00   /* Orange - Actions critiques */
+Background: #050510   /* Dark Navy */
+```
+
+### État Consolidation
+
+✅ **Design System v2.0** = Source de vérité UNIQUE  
+❌ **Anciens fichiers supprimés :**
+- `DAINAMICS_Design_System_Current.md` (supprimé 16 Oct 2025)
+- `DESIGN-SYSTEM-MANDATORY.md` (supprimé 16 Oct 2025)
+
+**Règle absolue :** Toujours référencer `DAINAMICS_Design_System_v2_Complete.md`
 
 ---
 
@@ -242,18 +280,20 @@ Hosting:        TBD (Vercel/Netlify suggéré)
 
 1. **Lire priorités :** [PRIORITIES.md](./PRIORITIES.md) - Tâches P0 en premier
 2. **Lire instructions :** [INSTRUCTIONS.md](./INSTRUCTIONS.md) - Règles projet
-3. **Créer contenu :** Suivre 6 principes directeurs
-4. **Valider avant commit :** Checklist ci-dessous
+3. **Consulter Design System :** [DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md) - Composants & Patterns
+4. **Créer contenu :** Suivre 6 principes directeurs
+5. **Valider avant commit :** Checklist ci-dessous
 
 ### Workflow
 
 ```bash
 # 1. Consulter PRIORITIES.md (P0 en premier)
 # 2. Lire CONTENT-STRATEGY.md (ton storytelling)
-# 3. Créer page avec contenu émotionnel
-# 4. Tester "30 secondes" (5 personnes)
-# 5. Commit avec message clair
-# 6. Mettre à jour STATUS.md
+# 3. Consulter Design System v2 (composants disponibles)
+# 4. Créer page avec contenu émotionnel
+# 5. Tester "30 secondes" (5 personnes)
+# 6. Commit avec message clair
+# 7. Mettre à jour STATUS.md
 ```
 
 ### Checklist Avant Commit
@@ -266,6 +306,11 @@ Hosting:        TBD (Vercel/Netlify suggéré)
 - [ ] Ton conversationnel (test café) ?
 - [ ] "IA" (pas "AI") en français ?
 
+**Design :**
+- [ ] Couleurs Design System v2 respectées ?
+- [ ] Composants réutilisés (pas recréés) ?
+- [ ] Animations performantes (60fps) ?
+
 **UX :**
 - [ ] 1 CTA principal répété ?
 - [ ] Mobile responsive parfait ?
@@ -273,7 +318,6 @@ Hosting:        TBD (Vercel/Netlify suggéré)
 
 **Technique :**
 - [ ] TypeScript strict (pas any) ?
-- [ ] Design System respecté ?
 - [ ] SEO meta tags présents ?
 
 ---
@@ -290,6 +334,7 @@ Hosting:        TBD (Vercel/Netlify suggéré)
 | ✅ **1 CTA répété** | "Réserver 30 min gratuites" partout |
 | ✅ **Quantifier toujours** | CHF, %, heures - Jamais "beaucoup" |
 | ✅ **Ton conversationnel** | Test café - Diriez-vous ça à un ami ? |
+| ✅ **Design System v2** | SEULE source de vérité pour composants |
 | ✅ **"IA" pas "AI"** | En français |
 | ❌ **Pas d'emojis** | Jamais dans code ou documentation |
 
@@ -365,6 +410,8 @@ dainamics-web-site/
 │   ├── DAINAMICS_Plan_Site_Optimise.md        # Structure détaillée
 │   └── PROMPT-CONTEXT.md         # Contexte conversations
 │
+├── DAINAMICS_Design_System_v2_Complete.md  # ⭐ Design System (SEULE référence)
+│
 └── README.md                     # Ce fichier (vitrine GitHub)
 ```
 
@@ -383,13 +430,17 @@ dainamics-web-site/
 4. **Lire [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** - Ton storytelling
 5. **Parcourir [INSTRUCTIONS.md](./INSTRUCTIONS.md)** - 6 principes + exemples
 
-### Étape 3 : Commencer à Développer (5 min)
+### Étape 3 : Comprendre le Design (10 min)
 
-6. **Consulter [PRIORITIES.md](./PRIORITIES.md)** - P0 en premier
-7. **Choisir une tâche Semaine 1** (Homepage)
-8. **Créer, tester, commit**
+6. **Parcourir [DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)** - Composants disponibles
 
-**Total : 30-40 minutes pour être opérationnel**
+### Étape 4 : Commencer à Développer (5 min)
+
+7. **Consulter [PRIORITIES.md](./PRIORITIES.md)** - P0 en premier
+8. **Choisir une tâche Semaine 1** (Homepage)
+9. **Créer, tester, commit**
+
+**Total : 40-50 minutes pour être opérationnel**
 
 ---
 
@@ -402,6 +453,9 @@ dainamics-web-site/
 **Clarifications techniques :**
 - Référencer [STATUS.md](./STATUS.md)
 - Consulter [PRIORITIES.md](./PRIORITIES.md)
+
+**Questions design :**
+- Consulter [DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)
 
 **Nouvelles conversations Claude :**
 - Copier-coller [PROMPT-CONTEXT.md](./PROMPT-CONTEXT.md)
@@ -457,8 +511,8 @@ dainamics-web-site/
 
 ---
 
-**VERSION:** 4.0 - ULTRA-CLEAR SHOWCASE  
-**DERNIÈRE MAJ:** 15 Octobre 2025  
+**VERSION:** 5.0 - DESIGN SYSTEM CONSOLIDATED  
+**DERNIÈRE MAJ:** 16 Octobre 2025  
 **STATUS:** 🟡 Semaine 1/4 - Homepage en cours  
 **REPOSITORY:** https://github.com/dainabase/Dainamics-Web-Site
 
