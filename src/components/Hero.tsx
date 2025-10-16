@@ -288,40 +288,35 @@ export default function Hero() {
           >
             <motion.h1 
               variants={itemVariants}
-              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight leading-tight"
+              className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 tracking-tight leading-[0.95]"
             >
-              <span className="text-dainamics-light">Vous Perdez</span>{' '}
-              <span className="text-gradient-primary glow">15 Heures Par Semaine</span>
+              <span className="text-dainamics-light">Vous Perdez</span>
               <br />
-              <span className="text-dainamics-light/90">à Faire des Tâches Qu'un Robot Pourrait Faire</span>
+              <span className="text-gradient-primary glow text-6xl md:text-8xl lg:text-9xl">15 Heures</span>
+              <br />
+              <span className="text-dainamics-light">Par Semaine</span>
             </motion.h1>
             
             <motion.p 
               variants={itemVariants}
-              className="text-dainamics-light/80 text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed"
+              className="text-dainamics-light/70 text-2xl md:text-3xl mb-10 font-light tracking-wide"
             >
-              C'est le quotidien de milliers de dirigeants de PME européennes.
-              <br /><br />
-              <span className="text-dainamics-light/90">
-                Facturation manuelle. Saisie de données. Réponses emails répétitives.
-              </span>
-              <br /><br />
-              <strong className="text-dainamics-light font-semibold">Pendant ce temps :</strong>{' '}
-              <span className="text-dainamics-secondary">Vos concurrents automatisent.</span>
+              Facturation. Emails. Saisie.{' '}
+              <span className="text-dainamics-secondary font-medium">On automatise tout ça.</span>
             </motion.p>
             
             <motion.div 
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-6 mt-2"
             >
               <Button 
                 asChild
                 size="lg"
-                className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow font-semibold text-base md:text-lg px-8 py-6 power-pulse"
+                className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow font-bold text-lg md:text-xl px-10 py-7 power-pulse shadow-2xl shadow-dainamics-cta/50"
               >
                 <a href="#diagnostic">
                   Réserver 30 min gratuites
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-3 h-6 w-6" />
                 </a>
               </Button>
               
@@ -329,11 +324,11 @@ export default function Hero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-dainamics-secondary text-dainamics-secondary hover:bg-dainamics-secondary/10 font-semibold text-base md:text-lg px-8 py-6"
+                className="border-2 border-dainamics-secondary text-dainamics-secondary hover:bg-dainamics-secondary/10 font-semibold text-lg md:text-xl px-10 py-7"
               >
                 <a href="#diagnostic">
                   Calculer mes économies
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-3 h-6 w-6" />
                 </a>
               </Button>
             </motion.div>
@@ -408,18 +403,18 @@ export default function Hero() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 60px 0 80px; /* Maintaining reduced top padding */
-          max-width: 1300px;
+          padding: 40px 0 80px;
+          max-width: 1400px;
           margin: 0 auto;
-          gap: 20px;
-          min-height: 80vh;
+          gap: 40px;
+          min-height: 85vh;
         }
 
         .hero-content {
           flex: 1;
-          max-width: 600px;
-          padding-top: 0; /* No top padding */
-          margin-top: -10px; /* Reduced from -20px to -10px for perfect alignment */
+          max-width: 650px;
+          padding-top: 0;
+          margin-top: -20px;
         }
 
         /* Brain Animation Advanced Styling */
@@ -432,7 +427,7 @@ export default function Hero() {
           align-items: center;
           flex: 1;
           margin-right: -50px;
-          margin-top: 0; /* Maintaining alignment with text */
+          margin-top: 0;
         }
 
         /* Energy Waves - NEW ELEMENT */
@@ -654,7 +649,7 @@ export default function Hero() {
           }
           
           .hero-content {
-            margin-top: -5px; /* Reduced from -15px for better alignment */
+            margin-top: -5px;
           }
           
           .ring-1 { width: 510px; height: 510px; }
@@ -669,16 +664,16 @@ export default function Hero() {
         @media (max-width: 992px) {
           .hero-section {
             flex-direction: column;
-            padding: 60px 20px 40px;
+            padding: 40px 20px 40px;
             min-height: auto;
           }
           
           .hero-content {
             padding-right: 0;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             text-align: center;
             padding-top: 0;
-            margin-top: -5px; /* Reduced from -10px for better alignment */
+            margin-top: 0;
           }
           
           .brain-animation-wrapper {
@@ -710,7 +705,20 @@ export default function Hero() {
 
         @media (max-width: 576px) {
           .hero-content {
-            margin-top: 0; /* Maintaining reset for mobile */
+            margin-top: 0;
+          }
+          
+          .hero-content h1 {
+            font-size: 2.5rem !important;
+            line-height: 1 !important;
+          }
+          
+          .hero-content h1 span:nth-child(2) {
+            font-size: 3.5rem !important;
+          }
+          
+          .hero-content p {
+            font-size: 1.125rem !important;
           }
           
           .brain-animation-wrapper {
