@@ -495,10 +495,11 @@ Dainamics-Web-Site/
    - Design System détaillé
    - Animations Framer Motion
 
-4. **[DESIGN-SYSTEM-MANDATORY.md](./DESIGN-SYSTEM-MANDATORY.md)** - Couleurs/Icônes
-   - Palette exacte (CATEGORY_COLORS, COMPLEXITY_COLORS)
-   - Icônes Lucide React v0.263.1
-   - Workflow icônes obligatoire
+4. **[DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)** ⭐ - Design System exhaustif
+   - Palette complète (Primary, Secondary, CTA, Success)
+   - Typographie, Spacing, Composants UI (13 composants)
+   - Animations & Effets, Patterns de design
+   - JavaScript/Canvas Effects, Responsive Design
 
 ### Pour Planifier Sprint
 
@@ -647,7 +648,7 @@ Le `.gitignore` est configuré pour bloquer ces fichiers.
 6. **NAVIGATION-ARCHITECTURE.md** - Structure menu optimale
 7. **CONTENT-STRATEGY.md** - Guidelines contenu et rédaction
 8. **ARCHITECTURE.md** - Specs techniques complètes (81KB)
-9. **DESIGN-SYSTEM-MANDATORY.md** - Couleurs et icônes
+9. **DAINAMICS_Design_System_v2_Complete.md** ⭐ - Design System exhaustif (61.3 KB)
 10. **PROMPT-CONTEXT.md** - Contexte pour conversations IA
 
 ### Pour Chaque Type de Tâche
