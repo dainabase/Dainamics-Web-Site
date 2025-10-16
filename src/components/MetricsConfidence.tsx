@@ -131,7 +131,7 @@ const MetricsConfidence: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="metrics-confidence-section py-24 relative overflow-hidden"
+      className="metrics-confidence-section py-24 relative overflow-hidden bg-dainamics-background"
     >
 
       <div className="container-custom relative z-10">
