@@ -297,11 +297,12 @@ export default function Hero() {
               <span className="text-dainamics-light">Par Semaine</span>
             </motion.h1>
             
-            <motion.p 
+            <motion.p
               variants={itemVariants}
               className="text-dainamics-light/70 text-2xl md:text-3xl mb-10 font-light tracking-wide"
             >
-              Facturation. Emails. Saisie.{' '}
+              Facturation. Emails. Saisie.
+              <br />
               <span className="text-dainamics-secondary font-medium">On automatise tout ça.</span>
             </motion.p>
             
