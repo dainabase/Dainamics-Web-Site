@@ -316,7 +316,7 @@ export default function Hero() {
                 className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow font-bold text-lg md:text-xl px-10 py-7 power-pulse shadow-2xl shadow-dainamics-cta/50"
               >
                 <a href="#diagnostic">
-                  Réserver 30 min gratuites
+                  Parler à un expert
                   <ArrowRight className="ml-3 h-6 w-6" />
                 </a>
               </Button>
