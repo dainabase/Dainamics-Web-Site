@@ -233,7 +233,7 @@ export default function Industries() {
                       size="lg"
                       className="border-dainamics-light/20 text-dainamics-light hover:bg-dainamics-light/5 font-semibold w-full sm:w-auto"
                     >
-                      <a href="/contact">
+                      <a href="/contact" className="flex items-center justify-center">
                         DIAGNOSTIC GRATUIT
                       </a>
                     </Button>
