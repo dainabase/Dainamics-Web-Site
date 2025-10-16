@@ -273,3 +273,90 @@
     padding: 24px;
   }
 }
+
+/* ============================================
+   METRICS CONFIDENCE SECTION
+   ============================================ */
+
+.metrics-confidence-section {
+  position: relative;
+}
+
+.metrics-confidence-section .container-custom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.metrics-confidence-section .metrics-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.metrics-confidence-section .metric-card {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.metrics-confidence-section .metric-card:hover {
+  transform: translateY(-8px);
+}
+
+.metrics-confidence-section .icon-wrapper {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.metrics-confidence-section .metric-card:hover .icon-wrapper {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(123, 47, 255, 0.4);
+}
+
+.metrics-confidence-section .metric-value h3 {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .metrics-confidence-section .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+  }
+
+  .metrics-confidence-section .metric-value h3 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .metrics-confidence-section {
+    padding: 64px 0;
+  }
+
+  .metrics-confidence-section .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .metrics-confidence-section .metric-value h3 {
+    font-size: 3.5rem;
+  }
+
+  .metrics-confidence-section .metric-labels p:first-child {
+    font-size: 1.125rem;
+  }
+
+  .metrics-confidence-section .metric-labels p:last-child {
+    font-size: 0.875rem;
+  }
+}
