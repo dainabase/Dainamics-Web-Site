@@ -437,6 +437,8 @@
 
 .featured-projects-section .project-card:hover {
   transform: translateY(-8px);
+  border-color: var(--hover-border-color) !important;
+  box-shadow: 0 25px 50px -12px var(--hover-shadow-color);
 }
 
 .featured-projects-section .screenshot-wrapper {
