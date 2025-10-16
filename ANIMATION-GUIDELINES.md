@@ -844,7 +844,7 @@ className="py-12 md:py-20 lg:py-32"
 1. **QuickWins.tsx** (869 lignes) - Référence principale
 2. **Hero.tsx** (23 KB) - Animations cerveau
 3. **IntelligenceCenter.tsx** (22 KB) - Particules canvas
-4. **DESIGN-SYSTEM-MANDATORY.md** - Couleurs/icônes
+4. **DAINAMICS_Design_System_v2_Complete.md** - Couleurs/icônes
 
 ### Documentation Externe
 
