@@ -131,10 +131,8 @@ const MetricsConfidence: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="metrics-confidence-section py-24 bg-black relative overflow-hidden"
+      className="metrics-confidence-section py-24 relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-primary/5 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(123,47,255,0.08),transparent_70%)] pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <motion.div
