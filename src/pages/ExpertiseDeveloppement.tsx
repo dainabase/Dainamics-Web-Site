@@ -1,6 +1,6 @@
 // src/pages/ExpertiseDeveloppement.tsx
 // Développement - Page d'Expertise OPTIMISÉE & PROFESSIONNELLE
-// Référence Design System: DESIGN-SYSTEM-MANDATORY.md
+// Référence Design System: DAINAMICS_Design_System_v2_Complete.md
 // Performance: 60fps garanti - Animations simplifiées, sobre comme ExpertiseIA
 
 import { useState, useRef } from 'react';
