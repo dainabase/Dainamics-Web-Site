@@ -1,14 +1,10 @@
 import React from 'react';
 import { Clock, Zap, Star, TrendingUp } from 'lucide-react';
-import { motion } from 'framer-motion';
-import CountUp from 'react-countup';
-import { useInView } from 'react-intersection-observer';
+import { motion, useInView } from 'framer-motion';
 
 const MetricsConfidence: React.FC = () => {
-  const { ref, inView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
+  const ref = React.useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.3 });
 
   const metrics = [
     {
@@ -102,21 +98,14 @@ const MetricsConfidence: React.FC = () => {
 
                 {/* Counter Value */}
                 <div className="metric-value mb-4">
-                  <h3 className="text-7xl font-bold bg-gradient-to-r from-dainamics-primary via-dainamics-secondary to-dainamics-primary bg-clip-text text-transparent leading-tight">
-                    {metric.prefix}
-                    {inView ? (
-                      <CountUp
-                        start={0}
-                        end={metric.value}
-                        duration={metric.duration}
-                        decimals={metric.decimals}
-                        separator=","
-                      />
-                    ) : (
-                      0
-                    )}
-                    {metric.suffix}
-                  </h3>
+                  <motion.h3
+                    className="text-7xl font-bold bg-gradient-to-r from-dainamics-primary via-dainamics-secondary to-dainamics-primary bg-clip-text text-transparent leading-tight"
+                    initial={{ opacity: 0 }}
+                    animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {metric.prefix}{metric.value}{metric.suffix}
+                  </motion.h3>
                 </div>
 
                 {/* Labels */}
