@@ -2,7 +2,7 @@
 
 > **À copier-coller au début de CHAQUE nouvelle conversation Claude**
 
-**Version:** 6.1 - DESIGN SYSTEM UPDATED  
+**Version:** 6.2 - DESIGN SYSTEM V2 UPDATED  
 **Date:** 16 Octobre 2025  
 **Status:** 🟢 Documentation complète → Développement Semaine 1 démarre
 
@@ -30,7 +30,7 @@
 5. ✅ **PRIORITIES.md** → v3.0 (Plan MVP simplifié)
 6. ✅ **INSTRUCTIONS.md** → v4.0 (Guide pratique)
 7. ✅ **README.md** → v4.0 (Vitrine GitHub)
-8. ✅ **PROMPT-CONTEXT.md** → v6.1 (Ce fichier - Design system updated)
+8. ✅ **PROMPT-CONTEXT.md** → v6.2 (Ce fichier - Design system v2 updated)
 
 **Commits récents :**
 - `ed07a5e` - PRIORITIES.md transformé
@@ -163,7 +163,7 @@ Si non → Réécrivez en plus simple
 ### 📘 Technique (Si besoin)
 
 9. **ARCHITECTURE.md** - Specs techniques complètes (81 KB)
-10. **[DAINAMICS_Design_System_Current.md](./DAINAMICS_Design_System_Current.md)** ⭐ - Design system ACTUEL du code (22.9 KB)
+10. **[DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)** ⭐ - Design system exhaustif v2.0 (61 KB)
 
 ---
 
@@ -187,7 +187,7 @@ const COLORS_CURRENT = {
 **⚠️ INTERDIT :** Hardcoder des HEX différents sans consultation  
 **✅ CORRECT :** Utiliser ces couleurs + nuances Tailwind
 
-**Référence complète :** [DAINAMICS_Design_System_Current.md](./DAINAMICS_Design_System_Current.md) (22.9 KB - Extraction depuis code actuel)
+**Référence complète :** [DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md) (61 KB - Documentation exhaustive v2.0)
 
 **Note importante :** Le plan optimisé prévoyait `#6366F1` (Indigo), mais le code actuel utilise `#7B2FFF` (Purple). Ce design system documente l'EXISTANT, pas la stratégie future.
 
@@ -432,7 +432,7 @@ Vos factures, contrats, relances → 100% automatique.
 **Repository :** https://github.com/dainabase/Dainamics-Web-Site  
 **Branch :** main  
 **Référence Code :** `src/pages/Index.tsx` (ancienne homepage)  
-**Référence Design :** [DAINAMICS_Design_System_Current.md](./DAINAMICS_Design_System_Current.md)  
+**Référence Design :** [DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)  
 **Contact :** contact@dainamics.ch
 
 ---
@@ -504,7 +504,7 @@ Vos factures, contrats, relances → 100% automatique.
 
 ---
 
-**VERSION:** 6.1 - DESIGN SYSTEM UPDATED  
+**VERSION:** 6.2 - DESIGN SYSTEM V2 UPDATED  
 **DATE:** 16 Octobre 2025  
 **STATUT:** 🟢 Documentation complète → Développement Semaine 1  
 **PROCHAINE ACTION:** Simplifier Navigation.tsx + Hero Homepage
