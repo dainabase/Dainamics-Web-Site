@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import AboutServices from '@/components/AboutServices';
 import MetricsConfidence from '@/components/MetricsConfidence';
+import FeaturedProjects from '@/components/FeaturedProjects';
 import DiagnosticQuestionnaireNew from '@/components/DiagnosticQuestionnaireNew';
 import IntelligenceCenter from '@/components/IntelligenceCenter';
 import Services from '@/components/Services';
@@ -54,6 +55,9 @@ const Index = () => {
         
         {/* Metrics Confidence - 4 key metrics with animated counters */}
         <MetricsConfidence />
+        
+        {/* Featured Projects - LEXAIA & ENKI REALITY (POSITION 4) */}
+        <FeaturedProjects />
         
         {/* Interactive diagnostic questionnaire - updated version */}
         <DiagnosticQuestionnaireNew />
