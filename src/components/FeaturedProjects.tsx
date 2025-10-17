@@ -105,9 +105,9 @@ const FeaturedProjects: React.FC = () => {
   };
 
   return (
-    <section className="featured-projects-section py-24 bg-[#050510] relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-primary/5 to-transparent pointer-events-none" />
+    <section className="featured-projects-section py-24 bg-dainamics-background relative overflow-hidden">
+      {/* Background gradient - Effet réduit pour cohérence */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-secondary/4 to-transparent pointer-events-none" />
 
       <div className="container-custom relative z-10">
         {/* Titre section */}
