@@ -229,7 +229,8 @@ const MetricsConfidence: React.FC = () => {
                 </div>
 
                 <div className="metric-labels">
-                  <p className="text-xl font-semibold text-white mb-1">
+                  {/* 🎨 MODIFICATION APPLIQUÉE: text-white → text-gradient-primary */}
+                  <p className="text-xl font-semibold text-gradient-primary mb-1">
                     {metric.label}
                   </p>
                   <p className="text-base text-gray-400">{metric.sublabel}</p>
