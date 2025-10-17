@@ -1,10 +1,10 @@
-
 import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import AboutServices from '@/components/AboutServices';
 import MetricsConfidence from '@/components/MetricsConfidence';
 import FeaturedProjects from '@/components/FeaturedProjects';
+import TrustedClients from '@/components/sections/TrustedClients';
 import DiagnosticQuestionnaireNew from '@/components/DiagnosticQuestionnaireNew';
 import IntelligenceCenter from '@/components/IntelligenceCenter';
 import Services from '@/components/Services';
@@ -59,6 +59,9 @@ const Index = () => {
         {/* Featured Projects - LEXAIA & ENKI REALITY (POSITION 4) */}
         <FeaturedProjects />
         
+        {/* Trusted Clients - 9 logos carousel (POSITION 5 - NEW) */}
+        <TrustedClients />
+        
         {/* Interactive diagnostic questionnaire - updated version */}
         <DiagnosticQuestionnaireNew />
         
@@ -79,4 +82,3 @@ const Index = () => {
 };
 
 export default Index;
-
