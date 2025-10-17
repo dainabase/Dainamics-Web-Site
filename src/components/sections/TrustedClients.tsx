@@ -6,6 +6,7 @@ import React from 'react';
 interface Logo {
   name: string;      // Nom complet du client
   filename: string;  // Nom du fichier dans /public/logos-clients/
+  scale?: number;    // Facteur d'échelle optionnel (par défaut: 1)
 }
 
 /**
@@ -23,11 +24,11 @@ const TrustedClients: React.FC = () => {
     { name: 'Roche', filename: 'roche.png' },
     { name: 'Philip Morris International', filename: 'pmi.png' },
     { name: 'InterContinental Hotels Group', filename: 'ihg.png' },
-    { name: 'World Trade Organization', filename: 'wto.png' },
+    { name: 'World Trade Organization', filename: 'wto.png', scale: 2 },
     { name: 'OPI Products', filename: 'opi.png' },
-    { name: 'Tissot', filename: 'tissot.png' },
+    { name: 'Tissot', filename: 'tissot.png', scale: 2 },
     { name: 'Coty Inc', filename: 'coty.png' },
-    { name: 'Novartis', filename: 'novartis.png' },
+    { name: 'Novartis', filename: 'novartis.png', scale: 2 },
   ];
 
   return (
@@ -47,8 +48,8 @@ const TrustedClients: React.FC = () => {
           <div className="logo-track">
             {/* Logos originaux (1er set) */}
             {logos.map((logo, index) => (
-              <div 
-                key={`original-${index}`} 
+              <div
+                key={`original-${index}`}
                 className="logo-item"
                 title={logo.name}
                 role="img"
@@ -59,14 +60,15 @@ const TrustedClients: React.FC = () => {
                   alt={`Logo ${logo.name}`}
                   loading="lazy"
                   draggable="false"
+                  style={logo.scale ? { transform: `scale(${logo.scale})` } : undefined}
                 />
               </div>
             ))}
 
             {/* Logos dupliqués (2ème set pour seamless loop) */}
             {logos.map((logo, index) => (
-              <div 
-                key={`duplicate-${index}`} 
+              <div
+                key={`duplicate-${index}`}
                 className="logo-item"
                 title={logo.name}
                 role="img"
@@ -77,6 +79,7 @@ const TrustedClients: React.FC = () => {
                   alt={`Logo ${logo.name}`}
                   loading="lazy"
                   draggable="false"
+                  style={logo.scale ? { transform: `scale(${logo.scale})` } : undefined}
                 />
               </div>
             ))}
