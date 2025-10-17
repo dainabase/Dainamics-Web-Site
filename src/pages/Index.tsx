@@ -7,6 +7,8 @@ import FeaturedProjects from '@/components/FeaturedProjects';
 import TrustedClients from '@/components/sections/TrustedClients';
 import ServicesOverview from '@/components/sections/ServicesOverview';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
+import TestimonialSection from '@/components/sections/TestimonialSection';
+import FinalCTA from '@/components/sections/FinalCTA';
 import DiagnosticQuestionnaireNew from '@/components/DiagnosticQuestionnaireNew';
 import IntelligenceCenter from '@/components/IntelligenceCenter';
 import Services from '@/components/Services';
@@ -69,6 +71,12 @@ const Index = () => {
 
         {/* Swiss Differentiators - 3 USP (POSITION 7) */}
         <SwissDifferentiators />
+
+        {/* Testimonial - Témoignage unique centré (POSITION 8) */}
+        <TestimonialSection />
+
+        {/* Final CTA - Conversion ultime avant footer (POSITION 9) */}
+        <FinalCTA />
 
         {/* Interactive diagnostic questionnaire - updated version */}
         <DiagnosticQuestionnaireNew />

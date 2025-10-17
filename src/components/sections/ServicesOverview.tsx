@@ -1,12 +1,13 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Target, Zap, Code, RefreshCw } from 'lucide-react';
 
 /**
  * Interface TypeScript pour un service
  */
 interface Service {
   id: string;
-  icon: string;
+  iconComponent: React.ReactNode;
+  iconColor: string;
   title: string;
   description: string;
   benefits: string[];
@@ -33,7 +34,8 @@ const ServicesOverview: React.FC = () => {
   const services: Service[] = [
     {
       id: 'discovery',
-      icon: '🔍',
+      iconComponent: <Target className="w-12 h-12" />,
+      iconColor: '#7B2FFF',
       title: 'Discovery & Stratégie IA',
       description:
         "Vous ne savez pas par où commencer avec l'IA ? Vous avez entendu parler de ChatGPT mais vous ne voyez pas comment l'appliquer à votre métier ? Notre phase Discovery identifie les opportunités concrètes d'automatisation dans VOS processus, évalue le ROI potentiel de chaque scénario, et vous livre une roadmap priorisée actionnable immédiatement.",
@@ -55,7 +57,8 @@ const ServicesOverview: React.FC = () => {
     },
     {
       id: 'quick-wins',
-      icon: '⚡',
+      iconComponent: <Zap className="w-12 h-12" />,
+      iconColor: '#10E4FF',
       title: 'Quick Wins',
       description:
         "Vous avez identifié UN processus qui vous fait perdre un temps fou chaque semaine ? Automatisation reporting, extraction données, qualification leads, gestion emails... Nos Quick Wins ciblent une tâche spécifique, l'automatisent en 2-4 semaines, et vous garantissent un ROI mesurable en moins de 6 mois. Si on ne tient pas la promesse, vous ne payez pas.",
@@ -78,7 +81,8 @@ const ServicesOverview: React.FC = () => {
     },
     {
       id: 'custom',
-      icon: '🏗️',
+      iconComponent: <Code className="w-12 h-12" />,
+      iconColor: '#7B2FFF',
       title: 'Développement Custom',
       description:
         "Votre besoin dépasse un Quick Win et nécessite une solution métier sur-mesure ? Plateforme multi-agents IA, automatisation bout-en-bout multi-systèmes, refonte complète workflow... Nous développons la solution exactement adaptée à votre réalité métier, intégrée à vos outils existants, documentée parfaitement, et scalable pour votre croissance future.",
@@ -100,7 +104,8 @@ const ServicesOverview: React.FC = () => {
     },
     {
       id: 'support',
-      icon: '🛡️',
+      iconComponent: <RefreshCw className="w-12 h-12" />,
+      iconColor: '#0AFF9D',
       title: 'Support & Évolution Continue',
       description:
         "Votre solution IA/automation n'est pas statique : elle évolue avec votre métier. Nouveaux cas d'usage découverts, optimisations performance, adaptations réglementaires, formation nouvelles recrues... Nous assurons le support technique continu, les évolutions itératives mensuelles, et l'optimisation permanente de votre investissement initial. Vous n'êtes jamais abandonné post-lancement.",
@@ -181,7 +186,9 @@ const ServicesOverview: React.FC = () => {
               </div>
 
               {/* Icon */}
-              <div className="service-icon text-6xl mb-6">{service.icon}</div>
+              <div className="service-icon mb-6" style={{ color: service.iconColor }}>
+                {service.iconComponent}
+              </div>
 
               {/* Title */}
               <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>

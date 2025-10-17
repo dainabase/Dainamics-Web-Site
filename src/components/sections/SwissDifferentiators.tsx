@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Sparkles, TrendingUp } from 'lucide-react';
+import { Shield, Eye, TrendingUp, MapPin, AlertCircle, Clock, Check } from 'lucide-react';
 
 /**
  * Interface TypeScript pour un différenciateur
@@ -7,7 +7,7 @@ import { Shield, Sparkles, TrendingUp } from 'lucide-react';
 interface Differentiator {
   id: string;
   icon: React.ReactNode;
-  iconEmoji: string;
+  iconColor: string;
   title: string;
   subtitle: string;
   description: string;
@@ -35,8 +35,8 @@ const SwissDifferentiators: React.FC = () => {
   const differentiators: Differentiator[] = [
     {
       id: 'data-sovereignty',
-      icon: <Shield className="w-12 h-12" />,
-      iconEmoji: '🇨🇭🔐',
+      icon: <Shield className="w-8 h-8" />,
+      iconColor: '#7B2FFF',
       title: 'Vos Données Restent en Suisse',
       subtitle: 'Souveraineté & Sécurité Garanties',
       description:
@@ -59,8 +59,8 @@ const SwissDifferentiators: React.FC = () => {
     },
     {
       id: 'transparency',
-      icon: <Sparkles className="w-12 h-12" />,
-      iconEmoji: '💡✨',
+      icon: <Eye className="w-8 h-8" />,
+      iconColor: '#10E4FF',
       title: 'Prix Clairs, Pas de Surprises',
       subtitle: 'La Transparence Comme Différenciateur',
       description:
@@ -85,8 +85,8 @@ const SwissDifferentiators: React.FC = () => {
     },
     {
       id: 'roi-guaranteed',
-      icon: <TrendingUp className="w-12 h-12" />,
-      iconEmoji: '📈🛡️',
+      icon: <TrendingUp className="w-8 h-8" />,
+      iconColor: '#0AFF9D',
       title: "Business d'Abord, Techno Ensuite",
       subtitle: 'ROI Mesurable ou Remboursé',
       description:
@@ -179,8 +179,8 @@ const SwissDifferentiators: React.FC = () => {
               {/* Icon + Title Column */}
               <div className="diff-header flex items-start gap-6 mb-6">
                 {/* Icon */}
-                <div className="diff-icon-wrapper flex-shrink-0">
-                  <div className="diff-icon text-5xl">{diff.iconEmoji}</div>
+                <div className="diff-icon-wrapper flex-shrink-0" style={{ color: diff.iconColor }}>
+                  {diff.icon}
                 </div>
 
                 {/* Title + Subtitle */}
