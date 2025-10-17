@@ -70,8 +70,11 @@ const AboutServices: React.FC = () => {
   };
 
   return (
-    <section className="about-services-section py-24 bg-[#050510]">
-      <div className="container-custom">
+    <section className="about-services-section py-24 bg-dainamics-background relative">
+      {/* Effet gradient subtil pour profondeur visuelle */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-primary/3 to-transparent pointer-events-none" />
+      
+      <div className="container-custom relative z-10">
         {/* Paragraphe Intro */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
