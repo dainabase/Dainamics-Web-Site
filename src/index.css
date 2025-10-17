@@ -648,9 +648,543 @@
   .logo-track {
     animation: none;
   }
-  
+
   .logo-item,
   .logo-item img {
     transition: none;
+  }
+}
+
+/* GPU acceleration */
+.logo-track {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ============================================== */
+/*        SERVICES OVERVIEW SECTION              */
+/* ============================================== */
+
+.services-overview-section {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Services Grid 2x2 */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Service Card */
+.service-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, transparent 0%, rgba(123, 47, 255, 0.2) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(123, 47, 255, 0.4);
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(123, 47, 255, 0.15);
+}
+
+/* Badge (top-right) */
+.service-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+
+.badge-cyan {
+  background: rgba(16, 228, 255, 0.15);
+  color: #10e4ff;
+  border: 1px solid rgba(16, 228, 255, 0.3);
+}
+
+.badge-orange {
+  background: rgba(255, 90, 0, 0.15);
+  color: #ff5a00;
+  border: 1px solid rgba(255, 90, 0, 0.3);
+}
+
+.badge-violet {
+  background: rgba(123, 47, 255, 0.15);
+  color: #7b2fff;
+  border: 1px solid rgba(123, 47, 255, 0.3);
+}
+
+.badge-green {
+  background: rgba(10, 255, 157, 0.15);
+  color: #0aff9d;
+  border: 1px solid rgba(10, 255, 157, 0.3);
+}
+
+/* Badge animé (pulse) */
+.badge-animated {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 90, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 5px rgba(255, 90, 0, 0.2);
+  }
+}
+
+/* Service Icon */
+.service-icon {
+  display: inline-block;
+  font-size: 4rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Benefits List */
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover .benefit-item {
+  transform: translateX(4px);
+}
+
+.benefit-icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* Service CTA */
+.service-cta {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #7b2fff;
+  transition: all 0.3s ease;
+}
+
+.service-cta:hover {
+  color: #10e4ff;
+}
+
+.service-card:hover .service-cta svg {
+  transform: translateX(4px);
+}
+
+/* ============================================== */
+/*        SWISS DIFFERENTIATORS SECTION          */
+/* ============================================== */
+
+.swiss-differentiators-section {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Differentiators Stack (vertical layout) */
+.differentiators-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Differentiator Card */
+.differentiator-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.differentiator-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(123, 47, 255, 0.3) 50%,
+    rgba(16, 228, 255, 0.3) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.differentiator-card:hover::before {
+  opacity: 1;
+}
+
+.differentiator-card:hover {
+  transform: translateX(8px);
+  border-color: rgba(123, 47, 255, 0.5);
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(123, 47, 255, 0.2);
+}
+
+/* Icon Wrapper */
+.diff-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(123, 47, 255, 0.1);
+  border: 1px solid rgba(123, 47, 255, 0.3);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.differentiator-card:hover .diff-icon-wrapper {
+  background: rgba(123, 47, 255, 0.2);
+  border-color: rgba(123, 47, 255, 0.5);
+  transform: scale(1.05) rotate(-5deg);
+  box-shadow: 0 0 30px rgba(123, 47, 255, 0.3);
+}
+
+.diff-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+/* Impact Number */
+.diff-impact {
+  text-align: right;
+}
+
+.impact-value {
+  font-size: 3.5rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.impact-label {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 140px;
+}
+
+/* Points List */
+.diff-points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.diff-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.differentiator-card:hover .diff-point-item {
+  transform: translateX(6px);
+}
+
+.point-icon {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Callout Boxes */
+.callout-box {
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  border-left: 4px solid;
+}
+
+.callout-warning {
+  background: rgba(255, 90, 0, 0.1);
+  border-left-color: #ff5a00;
+}
+
+.callout-warning::before {
+  content: '⚠️ ';
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.callout-stat {
+  background: rgba(16, 228, 255, 0.1);
+  border-left-color: #10e4ff;
+}
+
+.callout-stat::before {
+  content: '📊 ';
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.callout-info {
+  background: rgba(10, 255, 157, 0.1);
+  border-left-color: #0aff9d;
+}
+
+.callout-info::before {
+  content: '✨ ';
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.callout-content {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Proof Box */
+.proof-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: rgba(123, 47, 255, 0.08);
+  border: 1px solid rgba(123, 47, 255, 0.2);
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.proof-icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+}
+
+.proof-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ============================================== */
+/*        RESPONSIVE - TABLET                    */
+/* ============================================== */
+@media (max-width: 1024px) {
+  .services-grid {
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    padding: 2rem;
+  }
+
+  .service-icon {
+    font-size: 3.5rem;
+  }
+
+  .differentiator-card {
+    padding: 2.5rem;
+  }
+
+  .diff-icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .diff-icon {
+    font-size: 2.5rem;
+  }
+
+  .impact-value {
+    font-size: 3rem;
+  }
+}
+
+/* ============================================== */
+/*        RESPONSIVE - MOBILE                    */
+/* ============================================== */
+@media (max-width: 768px) {
+  .services-overview-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .services-overview-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .services-overview-section > div > p {
+    font-size: 1rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    padding: 1.5rem;
+  }
+
+  .service-badge {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.625rem;
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-card p {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-item {
+    font-size: 0.875rem;
+  }
+
+  .swiss-differentiators-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .swiss-differentiators-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .swiss-differentiators-section > div > div > p {
+    font-size: 1rem;
+  }
+
+  .differentiators-stack {
+    gap: 2rem;
+  }
+
+  .differentiator-card {
+    padding: 1.5rem;
+  }
+
+  .diff-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .diff-icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .diff-icon {
+    font-size: 2rem;
+  }
+
+  .diff-title-block h3 {
+    font-size: 1.5rem;
+  }
+
+  .diff-title-block p {
+    font-size: 1rem;
+  }
+
+  .differentiator-card p {
+    font-size: 0.95rem;
+  }
+
+  .diff-point-item {
+    font-size: 0.9rem;
+  }
+
+  .point-icon {
+    font-size: 1.25rem;
+  }
+
+  .callout-box {
+    padding: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .proof-box {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .diff-impact-mobile .impact-value {
+    font-size: 3rem;
+  }
+
+  .diff-impact-mobile .impact-label {
+    font-size: 0.875rem;
   }
 }
