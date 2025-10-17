@@ -133,6 +133,8 @@ const MetricsConfidence: React.FC = () => {
       ref={sectionRef}
       className="metrics-confidence-section py-24 relative overflow-hidden bg-dainamics-background"
     >
+      {/* Gradient overlay subtil statique - cohérent avec AboutServices */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-secondary/3 to-transparent pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <motion.div
