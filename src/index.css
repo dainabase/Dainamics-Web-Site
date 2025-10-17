@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
@@ -464,5 +463,177 @@
   .featured-projects-section .projects-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+}
+
+/* ============================================== */
+/*        TRUSTED CLIENTS SECTION                */
+/* ============================================== */
+
+.trusted-clients-section {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Carousel wrapper avec fade gradient sur bords */
+.logo-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  
+  /* Fade transparent sur 10% gauche et droite */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* Logo track avec animation infinie */
+.logo-track {
+  display: flex;
+  gap: 6rem; /* 96px entre chaque logo */
+  animation: scroll-logos 50s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Pause animation au hover du carousel */
+.logo-carousel-wrapper:hover .logo-track {
+  animation-play-state: paused;
+}
+
+/* Items individuels (conteneurs de logos) */
+.logo-item {
+  flex-shrink: 0;
+  width: 180px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  
+  /* Grayscale par défaut avec luminosité réduite */
+  filter: grayscale(100%) brightness(0.8) contrast(0.9);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Hover effects - Couleur originale + scale */
+.logo-item:hover {
+  transform: scale(1.15);
+}
+
+.logo-item:hover img {
+  filter: grayscale(0%) brightness(1) contrast(1);
+}
+
+/* Animation keyframes - Scroll horizontal infini */
+@keyframes scroll-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Calcul: 9 logos × (180px width + 96px gap) = 2484px */
+    /* On translate de -50% car logos dupliqués 2× (9×2=18 logos) */
+    transform: translateX(calc(-9 * (180px + 6rem)));
+  }
+}
+
+/* ============================================== */
+/*        RESPONSIVE - TABLET                    */
+/* ============================================== */
+@media (max-width: 1024px) {
+  .logo-track {
+    gap: 5rem; /* 80px au lieu de 96px */
+    animation-duration: 40s; /* Plus rapide sur tablette */
+  }
+
+  .logo-item {
+    width: 160px;
+    height: 70px;
+  }
+
+  /* Recalcul animation pour tablette */
+  @keyframes scroll-logos {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-9 * (160px + 5rem)));
+    }
+  }
+}
+
+/* ============================================== */
+/*        RESPONSIVE - MOBILE                    */
+/* ============================================== */
+@media (max-width: 768px) {
+  .trusted-clients-section {
+    padding-top: 4rem; /* 64px au lieu de 96px */
+    padding-bottom: 4rem;
+  }
+
+  .trusted-clients-section h2 {
+    font-size: 2rem; /* 32px au lieu de 40px */
+    margin-bottom: 3rem; /* 48px au lieu de 64px */
+  }
+
+  .logo-track {
+    gap: 4rem; /* 64px */
+    animation-duration: 30s; /* Encore plus rapide sur mobile */
+  }
+
+  .logo-item {
+    width: 140px;
+    height: 60px;
+  }
+
+  /* Recalcul animation pour mobile */
+  @keyframes scroll-logos {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-9 * (140px + 4rem)));
+    }
+  }
+
+  /* Tagline plus petit sur mobile */
+  .trusted-clients-section p {
+    font-size: 1rem; /* 16px au lieu de 18px */
+    padding: 0 1rem;
+  }
+}
+
+/* ============================================== */
+/*        PERFORMANCE & ANIMATIONS               */
+/* ============================================== */
+
+/* Réduire motion pour utilisateurs sensibles */
+@media (prefers-reduced-motion: reduce) {
+  .logo-track {
+    animation: none;
+  }
+  
+  .logo-item,
+  .logo-item img {
+    transition: none;
   }
 }
