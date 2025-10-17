@@ -498,11 +498,11 @@
   );
 }
 
-/* Logo track avec animation infinie */
+/* Logo track avec animation RALENTIE */
 .logo-track {
   display: flex;
-  gap: 6rem; /* 96px entre chaque logo */
-  animation: scroll-logos 50s linear infinite;
+  gap: 5rem;
+  animation: scroll-logos 60s linear infinite;
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
@@ -513,15 +513,26 @@
   animation-play-state: paused;
 }
 
-/* Items individuels (conteneurs de logos) */
+/* ============================================== */
+/*   SOLUTION OPTIMISÉE - LOGOS PLUS VISIBLES    */
+/* ============================================== */
+
+/* Items individuels avec fond subtil */
 .logo-item {
   flex-shrink: 0;
-  width: 180px;
-  height: 80px;
+  width: 200px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+
+  /* Fond blanc subtil pour contraste */
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 1rem;
+
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
@@ -529,30 +540,34 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  
-  /* Grayscale par défaut avec luminosité réduite */
-  filter: grayscale(100%) brightness(0.8) contrast(0.9);
+
+  /* ✅ GRAYSCALE RÉDUIT + BRIGHTNESS AUGMENTÉ */
+  filter: grayscale(80%) brightness(1.3) contrast(1.15);
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Hover effects - Couleur originale + scale */
+/* Hover effects - Fond glow + couleur complète */
 .logo-item:hover {
-  transform: scale(1.15);
+  transform: scale(1.12);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(123, 47, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(123, 47, 255, 0.15);
 }
 
 .logo-item:hover img {
-  filter: grayscale(0%) brightness(1) contrast(1);
+  filter: grayscale(0%) brightness(1.1) contrast(1.05);
 }
 
-/* Animation keyframes - Scroll horizontal infini */
+/* Animation keyframes - Recalculée pour nouvelles dimensions */
 @keyframes scroll-logos {
   0% {
     transform: translateX(0);
   }
   100% {
-    /* Calcul: 9 logos × (180px width + 96px gap) = 2484px */
-    /* On translate de -50% car logos dupliqués 2× (9×2=18 logos) */
-    transform: translateX(calc(-9 * (180px + 6rem)));
+    /* Calcul: 9 logos × (200px width + 80px gap) = 2520px */
+    transform: translateX(calc(-9 * (200px + 5rem)));
   }
 }
 
@@ -561,22 +576,23 @@
 /* ============================================== */
 @media (max-width: 1024px) {
   .logo-track {
-    gap: 5rem; /* 80px au lieu de 96px */
-    animation-duration: 40s; /* Plus rapide sur tablette */
+    gap: 4rem;
+    animation-duration: 50s;
   }
 
   .logo-item {
-    width: 160px;
-    height: 70px;
+    width: 180px;
+    height: 80px;
+    padding: 0.75rem;
   }
 
-  /* Recalcul animation pour tablette */
+  /* Recalcul animation tablette */
   @keyframes scroll-logos {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-9 * (160px + 5rem)));
+      transform: translateX(calc(-9 * (180px + 4rem)));
     }
   }
 }
@@ -586,38 +602,39 @@
 /* ============================================== */
 @media (max-width: 768px) {
   .trusted-clients-section {
-    padding-top: 4rem; /* 64px au lieu de 96px */
+    padding-top: 4rem;
     padding-bottom: 4rem;
   }
 
   .trusted-clients-section h2 {
-    font-size: 2rem; /* 32px au lieu de 40px */
-    margin-bottom: 3rem; /* 48px au lieu de 64px */
+    font-size: 2rem;
+    margin-bottom: 3rem;
   }
 
   .logo-track {
-    gap: 4rem; /* 64px */
-    animation-duration: 30s; /* Encore plus rapide sur mobile */
+    gap: 3rem;
+    animation-duration: 35s;
   }
 
   .logo-item {
-    width: 140px;
-    height: 60px;
+    width: 160px;
+    height: 70px;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
   }
 
-  /* Recalcul animation pour mobile */
+  /* Recalcul animation mobile */
   @keyframes scroll-logos {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-9 * (140px + 4rem)));
+      transform: translateX(calc(-9 * (160px + 3rem)));
     }
   }
 
-  /* Tagline plus petit sur mobile */
   .trusted-clients-section p {
-    font-size: 1rem; /* 16px au lieu de 18px */
+    font-size: 1rem;
     padding: 0 1rem;
   }
 }
