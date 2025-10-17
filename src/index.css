@@ -216,6 +216,64 @@
   .pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
   }
+
+  /* ============================================== */
+  /* CORRECTION 2: SECTION SPACING - NOUVEAU       */
+  /* ============================================== */
+  
+  /* Augmenter padding bottom pour toutes les sections */
+  section[class*="-section"] {
+    padding-bottom: 8rem !important; /* 128px au lieu de 96px */
+  }
+
+  /* Séparateur gradient subtil entre sections */
+  section[class*="-section"]:not(:last-of-type)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 1200px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(123, 47, 255, 0.1) 25%,
+      rgba(16, 228, 255, 0.1) 50%,
+      rgba(123, 47, 255, 0.1) 75%,
+      transparent 100%
+    );
+  }
+
+  /* ============================================== */
+  /* CORRECTION 3: GRADIENT ANIMATION - NOUVEAU    */
+  /* ============================================== */
+  
+  /* Animation shimmer sur gradients de titre */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .text-gradient-primary,
+  .gradient-text {
+    background-size: 200% auto;
+    animation: shimmer 8s linear infinite;
+  }
+
+  /* Désactiver sur mobile pour performance */
+  @media (max-width: 768px) {
+    .text-gradient-primary,
+    .gradient-text {
+      animation: none;
+      background-size: 100% auto;
+    }
+  }
 }
 
 /* ============================================== */
@@ -378,6 +436,10 @@
   isolation: isolate;
 }
 
+/* ============================================== */
+/* CORRECTION 1: FIX HOVER COLORS - MODIFIÉ      */
+/* ============================================== */
+
 /* Project cards avec hover dynamique per-project */
 .featured-projects-section .project-card {
   position: relative;
@@ -388,7 +450,7 @@
 .featured-projects-section .project-card:hover {
   transform: translateY(-8px);
   border-color: var(--hover-border-color) !important;
-  box-shadow: 0 25px 50px -12px var(--hover-shadow-color);
+  box-shadow: 0 25px 50px -12px var(--hover-shadow-color) !important; /* !important ajouté */
 }
 
 /* Screenshot avec overlay gradient au hover */
