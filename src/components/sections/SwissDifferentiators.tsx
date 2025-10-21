@@ -19,6 +19,7 @@ interface Differentiator {
   impactNumber: {
     value: string;
     label: string;
+    icon: React.ReactNode;
   };
   proofBox?: string;
 }
@@ -55,6 +56,7 @@ const SwissDifferentiators: React.FC = () => {
       impactNumber: {
         value: '100%',
         label: 'Infrastructure Suisse',
+        icon: <MapPin className="w-6 h-6" />,
       },
     },
     {
@@ -79,6 +81,7 @@ const SwissDifferentiators: React.FC = () => {
       impactNumber: {
         value: '0%',
         label: 'Concurrents Suisses affichent leurs prix',
+        icon: <Eye className="w-6 h-6" />,
       },
       proofBox:
         "Pourquoi les autres cachent leurs prix ? Parce qu'ils gonflent de 40-60% en moyenne. Nous, on assume nos tarifs.",
@@ -105,6 +108,7 @@ const SwissDifferentiators: React.FC = () => {
       impactNumber: {
         value: '2-6',
         label: 'mois ROI garanti',
+        icon: <Clock className="w-6 h-6" />,
       },
       proofBox:
         "Les grandes agences vous vendent des \"POC\" à 50K€ qui ne passent jamais en production. Nous, on livre du concret opérationnel, pas des PDF PowerPoint.",
@@ -128,25 +132,6 @@ const SwissDifferentiators: React.FC = () => {
     }
   };
 
-  /**
-   * Retourne l'icône du point selon le contenu
-   */
-  const getPointIcon = (point: string): string => {
-    if (point.includes('Conformité')) return '🏦';
-    if (point.includes('Infrastructure')) return '🔐';
-    if (point.includes('Confidentialité')) return '🛡️';
-    if (point.includes('Souveraineté')) return '📍';
-    if (point.includes('Pricing')) return '💰';
-    if (point.includes('Scope')) return '📋';
-    if (point.includes('Communication')) return '💬';
-    if (point.includes('Métriques')) return '🎯';
-    if (point.includes('Approche')) return '🎯';
-    if (point.includes('Métriques concrètes')) return '⏱️';
-    if (point.includes('Garantie')) return '🛡️';
-    if (point.includes('Reporting')) return '📊';
-    return '✅';
-  };
-
   return (
     <section
       className="swiss-differentiators-section bg-gradient-to-b from-dainamics-background via-dainamics-background to-[#0A0A1B] py-24"
@@ -156,7 +141,7 @@ const SwissDifferentiators: React.FC = () => {
         {/* Header Section */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-3 mb-6">
-            <span className="text-5xl">🇨🇭</span>
+            <Shield className="w-12 h-12 text-[#7B2FFF]" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Pourquoi les PME Suisses{' '}
@@ -195,11 +180,19 @@ const SwissDifferentiators: React.FC = () => {
 
                 {/* Impact Number (desktop) */}
                 <div className="diff-impact hidden lg:flex flex-col items-end">
-                  <div className="impact-value text-5xl font-bold text-gradient-primary">
-                    {diff.impactNumber.value}
-                  </div>
-                  <div className="impact-label text-sm text-gray-400 text-right mt-2 max-w-[140px]">
-                    {diff.impactNumber.label}
+                  <div className="flex items-center gap-4 bg-opacity-10 border border-opacity-30 p-6 rounded-lg" style={{
+                    backgroundColor: `${diff.iconColor}1A`,
+                    borderColor: `${diff.iconColor}4D`
+                  }}>
+                    <div style={{ color: diff.iconColor }}>
+                      {diff.impactNumber.icon}
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold" style={{ color: diff.iconColor }}>
+                        {diff.impactNumber.value}
+                      </div>
+                      <div className="text-sm text-gray-400">{diff.impactNumber.label}</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -213,9 +206,7 @@ const SwissDifferentiators: React.FC = () => {
               <ul className="diff-points-list space-y-3 mb-6">
                 {diff.points.map((point, idx) => (
                   <li key={idx} className="diff-point-item flex items-start gap-3">
-                    <span className="point-icon text-2xl flex-shrink-0">
-                      {getPointIcon(point)}
-                    </span>
+                    <Check className="w-4 h-4 text-[#0AFF9D] flex-shrink-0 mt-1" />
                     <span className="text-gray-300 leading-relaxed">{point}</span>
                   </li>
                 ))}
@@ -232,20 +223,28 @@ const SwissDifferentiators: React.FC = () => {
 
               {/* Proof Box (si existe) */}
               {diff.proofBox && (
-                <div className="proof-box mt-4">
-                  <span className="proof-icon">💡</span>
+                <div className="proof-box mt-4 flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-[#10E4FF] flex-shrink-0 mt-0.5" />
                   <span className="proof-text">{diff.proofBox}</span>
                 </div>
               )}
 
               {/* Impact Number (mobile) */}
               <div className="diff-impact-mobile lg:hidden flex justify-center mt-8">
-                <div className="text-center">
-                  <div className="impact-value text-4xl font-bold text-gradient-primary">
-                    {diff.impactNumber.value}
+                <div className="flex items-center gap-4 bg-opacity-10 border border-opacity-30 p-6 rounded-lg" style={{
+                  backgroundColor: `${diff.iconColor}1A`,
+                  borderColor: `${diff.iconColor}4D`
+                }}>
+                  <div style={{ color: diff.iconColor }}>
+                    {diff.impactNumber.icon}
                   </div>
-                  <div className="impact-label text-sm text-gray-400 mt-2">
-                    {diff.impactNumber.label}
+                  <div className="text-center">
+                    <div className="text-4xl font-bold" style={{ color: diff.iconColor }}>
+                      {diff.impactNumber.value}
+                    </div>
+                    <div className="text-sm text-gray-400 mt-2">
+                      {diff.impactNumber.label}
+                    </div>
                   </div>
                 </div>
               </div>
