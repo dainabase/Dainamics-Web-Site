@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Target, Zap, Code, RefreshCw } from 'lucide-react';
+import { ArrowRight, Target, Zap, Code, RefreshCw, Check } from 'lucide-react';
 
 /**
  * Interface TypeScript pour un service
@@ -70,7 +70,7 @@ const ServicesOverview: React.FC = () => {
         "Support 1 mois post-lancement pour ajustements",
       ],
       badge: {
-        text: '🛡️ GARANTIE ROI',
+        text: 'GARANTIE ROI',
         color: 'orange',
         animated: true,
       },
@@ -137,23 +137,6 @@ const ServicesOverview: React.FC = () => {
     return `${baseClass} ${colorClass} ${animClass}`.trim();
   };
 
-  /**
-   * Retourne l'icône du benefit selon le texte
-   */
-  const getBenefitIcon = (benefit: string): string => {
-    if (benefit.includes('Assessment') || benefit.includes('Scope')) return '🎯';
-    if (benefit.includes('Roadmap') || benefit.includes('Mise en production')) return '⚡';
-    if (benefit.includes('POC') || benefit.includes('ROI')) return '📈';
-    if (benefit.includes('Estimation') || benefit.includes('Formation')) return '🎓';
-    if (benefit.includes('Workshop') || benefit.includes('Support')) return '🛡️';
-    if (benefit.includes('Solution') || benefit.includes('Évolutions')) return '🔄';
-    if (benefit.includes('Intégration')) return '🔗';
-    if (benefit.includes('Documentation')) return '📚';
-    if (benefit.includes('Approche') || benefit.includes('Monitoring')) return '📊';
-    if (benefit.includes('Mises à jour')) return '🔒';
-    return '✅';
-  };
-
   return (
     <section
       className="services-overview-section bg-dainamics-background py-24"
@@ -200,9 +183,7 @@ const ServicesOverview: React.FC = () => {
               <ul className="benefits-list space-y-3 mb-8">
                 {service.benefits.map((benefit, index) => (
                   <li key={index} className="benefit-item flex items-start gap-3">
-                    <span className="benefit-icon text-xl flex-shrink-0">
-                      {getBenefitIcon(benefit)}
-                    </span>
+                    <Check className="w-4 h-4 text-[#0AFF9D] flex-shrink-0 mt-1" />
                     <span className="text-gray-300 text-sm leading-relaxed">
                       {benefit}
                     </span>
