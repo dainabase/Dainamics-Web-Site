@@ -346,3 +346,26 @@ export async function submitDiagnosticToBrevo(
 export function isBrevoConfigured(): boolean {
   return Boolean(BREVO_API_KEY);
 }
+
+export function validateEmail(email: string): { valid: boolean; message?: string } {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return { valid: false, message: 'Format d\'email invalide' };
+  }
+
+  const disposableDomains = [
+    'tempmail.com',
+    'guerrillamail.com',
+    '10minutemail.com',
+    'mailinator.com',
+    'throwaway.email',
+    'temp-mail.org'
+  ];
+
+  const domain = email.split('@')[1]?.toLowerCase();
+  if (disposableDomains.includes(domain)) {
+    return { valid: false, message: 'Veuillez utiliser une adresse email professionnelle' };
+  }
+
+  return { valid: true };
+}
