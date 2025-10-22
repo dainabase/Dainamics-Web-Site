@@ -452,18 +452,12 @@ export default function DiagnosticQuestionnaireNew() {
         challenges_count: selectedChallenges.length
       });
       setCurrentStep(prev => prev + 1);
-      if (sectionRef.current) {
-        sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
     }
   };
 
   const handlePrevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(prev => prev - 1);
-      if (sectionRef.current) {
-        sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
     }
   };
 
@@ -478,9 +472,6 @@ export default function DiagnosticQuestionnaireNew() {
       consent: false
     });
     clearProgress();
-    if (sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
   };
 
   // Check if option is selected
