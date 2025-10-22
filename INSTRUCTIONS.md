@@ -1,563 +1,724 @@
-# 📘 DAINAMICS - Instructions Projet v2.1
+# 📘 DAINAMICS - Guide Création Site MVP
 
-## 🎯 Vue d'ensemble
-
-DAINAMICS est une société suisse spécialisée dans l'IA, l'Automatisation et le Développement sur mesure pour PME. Ce projet vise à créer un site web moderne qui présente nos solutions et génère des leads qualifiés.
-
-**Repository**: https://github.com/dainabase/Dainamics-Web-Site  
-**Phase Actuelle**: Développement Phase 1 - Fondations (Semaine 1-3)  
-**Stack**: React 18+ | TypeScript 5+ | Vite 5+ | Tailwind CSS 3+ | Framer Motion 11+
+**Type:** Instructions Pratiques  
+**Version:** 4.0 - ULTRA-PRACTICAL  
+**Dernière MAJ:** 15 Octobre 2025  
+**Pour:** Créer contenu qui CONVERTIT (pas juste qui existe)
 
 ---
 
-## 🚨 RÈGLES AVANT CHAQUE PROMPT À CLAUDE CODE
+## 🎯 MISSION : SITE QUI CONVERTIT EN 30 SECONDES
 
-### ⚠️ STRUCTURE OBLIGATOIRE - 7 SECTIONS
+### Le Défi
 
-**CHAQUE prompt à Claude Code DOIT contenir ces 7 sections. AUCUNE EXCEPTION.**
+**Votre visiteur :**
+- ⏱️ Scanne votre site en 8 secondes
+- 📱 80% sur mobile
+- 🧠 Cerveau en mode "scan rapide" (pas lecture)
+- 🚪 Prêt à partir au moindre doute
 
-```
-1. CONTEXTE PROJET
-   - État actuel repository
-   - Fichier à créer/modifier
-   - Technologies utilisées
+**Votre objectif :**
+**Capturer attention + Prouver valeur + Déclencher action = 30 secondes**
 
-2. OBJECTIF PRÉCIS
-   - Ce qui doit être fait exactement
-   - Résultat attendu
-
-3. STRUCTURE TECHNIQUE EXACTE
-   - CODE COMPLET (200-500 lignes minimum)
-   - ⚠️ OBLIGATOIRE: "Référencer DESIGN-SYSTEM-MANDATORY.md"
-   - ⚠️ OBLIGATOIRE: "Utiliser CATEGORY_COLORS et COMPLEXITY_COLORS"
-   - ⚠️ OBLIGATOIRE: "Vérifier icônes sur https://lucide.dev"
-   - Interface TypeScript stricte
-   - Exemples complets
-
-4. RÈGLES DE CONTENU
-   - Standards rédactionnels
-   - Gains TOUJOURS quantifiés (CHF, %, heures)
-   - Terminologie correcte (IA pas AI)
-
-5. VALIDATION - 3 CHECKLISTS
-   ✅ Checklist Technique (10-15 critères)
-   ✅ Checklist Contenu (10-15 critères)
-   ✅ Checklist Design System (10 critères minimum)
-
-6. PROCESSUS GIT
-   - Commandes exactes à exécuter
-   - Message commit standardisé
-   - Format confirmation attendu
-
-7. GESTION D'ERREURS
-   - Erreurs possibles + solutions
-   - Procédure si bloqué
-```
-
-### ⚠️ DESIGN SYSTEM - MENTIONS OBLIGATOIRES DANS SECTION 3
-
-**Dans CHAQUE prompt, section 3, vous DEVEZ inclure TEXTUELLEMENT :**
-
-```
-⚠️ DESIGN SYSTEM OBLIGATOIRE:
-
-1. Référencer le document DESIGN-SYSTEM-MANDATORY.md
-2. Utiliser UNIQUEMENT les couleurs suivantes:
-   - CATEGORY_COLORS pour catégories (ia/automatisation/developpement)
-   - COMPLEXITY_COLORS pour badges (starter/intermediate/advanced)
-3. Utiliser UNIQUEMENT des icônes Lucide React v0.263.1
-4. Vérifier CHAQUE icône sur https://lucide.dev AVANT utilisation
-5. JAMAIS de couleurs HEX hardcodées hors Design System
-6. JAMAIS d'icônes inventées ou non-Lucide
-
-Mappings à utiliser EXACTEMENT:
-const CATEGORY_COLORS = {
-  'ia': '#6366F1',
-  'automatisation': '#10E4FF',
-  'developpement': '#FF5A00'
-};
-
-const COMPLEXITY_COLORS = {
-  'starter': '#10B981',
-  'intermediate': '#F59E0B',
-  'advanced': '#EF4444'
-};
-```
-
-### 📋 EXEMPLE DE PROMPT CORRECT
-
-```
-# PROMPT: Créer src/data/expertise.ts
-
-## 1. CONTEXTE PROJET
-- Repository: https://github.com/dainabase/Dainamics-Web-Site
-- Fichier: src/data/expertise.ts (à créer)
-- Technologies: React 18+ TypeScript 5+ Tailwind CSS 3+
-- Référence: solutions.ts (même structure)
-
-## 2. OBJECTIF PRÉCIS
-Créer fichier expertise.ts contenant les 3 piliers DAINAMICS:
-- Intelligence Artificielle
-- Automatisation
-- Développement
-
-## 3. STRUCTURE TECHNIQUE EXACTE
-
-⚠️ DESIGN SYSTEM OBLIGATOIRE:
-1. Référencer DESIGN-SYSTEM-MANDATORY.md
-2. Utiliser CATEGORY_COLORS pour couleurs piliers
-3. Icônes Lucide uniquement (vérifier https://lucide.dev)
-4. Mappings EXACTS:
-   'ia' → '#6366F1'
-   'automatisation' → '#10E4FF'
-   'developpement' → '#FF5A00'
-
-[CODE COMPLET DE 200-500 LIGNES ICI]
-
-## 4. RÈGLES DE CONTENU
-- Gains quantifiés obligatoires
-- "IA" (pas "AI") en français
-- Pas d'emojis
-- Exemples concrets
-
-## 5. VALIDATION
-✅ Checklist Technique (12 critères)
-✅ Checklist Contenu (12 critères)
-✅ Checklist Design System (10 critères)
-
-## 6. PROCESSUS GIT
-git add src/data/expertise.ts
-git commit -m "feat(data): add expertise.ts with 3 pillars"
-git push origin main
-
-## 7. GESTION D'ERREURS
-[Solutions aux erreurs possibles]
-```
-
-### ❌ CE QUI SE PASSE SI VOUS NE SUIVEZ PAS CES RÈGLES
-
-**Si prompt sans 7 sections:**
-- Claude Code risque de créer code incomplet
-- Pas de validation = erreurs non détectées
-- Pas de cohérence avec Design System
-- → REFAIRE LE TRAVAIL = PERTE DE TEMPS
-
-**Si Design System non mentionné en section 3:**
-- Claude Code peut inventer ses propres couleurs
-- Icônes non-Lucide possibles
-- Incohérence visuelle totale du site
-- → FICHIER À REFAIRE COMPLÈTEMENT
-
-**Résultat: 2-3x plus de temps perdu à corriger qu'à bien faire dès le début**
+**Si vous échouez → Bounce (il part)**  
+**Si vous réussissez → Lead (il reste)**
 
 ---
 
-## 🎨 DESIGN SYSTEM - COULEURS EXACTES
+## 🏗️ STRUCTURE SITE (4 PAGES SIMPLES)
 
-### Référence Complète
-
-**Document**: `DESIGN-SYSTEM-MANDATORY.md` (15.5 KB)  
-**Architecture**: `ARCHITECTURE.md` (lignes 100-800)
-
-### Palette à Utiliser (AUCUNE AUTRE COULEUR)
-
-```typescript
-// Couleurs principales - JAMAIS modifier
-const COLORS = {
-  primary: '#6366F1',      // Indigo - Tech/IA
-  cta: '#FF5A00',          // Orange - CTA
-  accent: '#10E4FF',       // Cyan - Automatisation
-  success: '#10B981',      // Green
-  warning: '#F59E0B',      // Yellow
-  error: '#EF4444',        // Red
-  background: '#0A0A0F',   // Dark Navy
-  light: '#F1F5F9'         // Light text
-};
-
-// Mappings OBLIGATOIRES
-const CATEGORY_COLORS = {
-  'ia': '#6366F1',              // Primary
-  'automatisation': '#10E4FF',   // Accent
-  'developpement': '#FF5A00'     // CTA
-};
-
-const COMPLEXITY_COLORS = {
-  'starter': '#10B981',         // Green
-  'intermediate': '#F59E0B',    // Yellow
-  'advanced': '#EF4444'         // Red
-};
+```
+DAINAMICS MVP
+│
+├─ 1. HOMEPAGE (/)                    [⭐⭐⭐ 90% conversions]
+│  └─ "Vous Perdez 15 Heures Par Semaine..."
+│  └─ 5 sections, 1,500 mots max, CTA répété 3x
+│
+├─ 2. EXEMPLES (/exemples)            [Preuve sociale]
+│  └─ "Ils ont automatisé avec nous"
+│  └─ 6-8 cas clients, métriques quantifiées
+│
+├─ 3. COMMENT ÇA MARCHE (/processus)  [Rassurer]
+│  └─ "3 étapes : Évaluer → Prototyper → Livrer"
+│  └─ FAQ 7 questions, garantie ROI
+│
+└─ 4. CONTACT (/contact)              [⭐ Conversion]
+   └─ "Réserver 30 min gratuites"
+   └─ Calendly + formulaire, friction minimale
 ```
 
-### Icônes Lucide React UNIQUEMENT
+**Navigation :** `[LOGO] Homepage Exemples Process Contact [FR/DE/EN]`
 
-**Source**: Lucide React v0.263.1  
-**Vérification OBLIGATOIRE**: https://lucide.dev avant CHAQUE utilisation
-
-**⚠️ Workflow icônes:**
-1. Aller sur https://lucide.dev
-2. Chercher l'icône voulue
-3. Copier nom EXACT en PascalCase
-4. Utiliser dans le code
-5. ❌ JAMAIS inventer un nom d'icône
+**C'EST TOUT. Pas de 14 pages. Pas de Services/Solutions/Expertise séparés.**
 
 ---
 
-## 📚 Documentation (Par ordre de priorité)
+## 🎯 RÈGLE D'OR : 30 SECONDES POUR CONVAINCRE
 
-1. **DESIGN-SYSTEM-MANDATORY.md** ⭐ CRITIQUE (15.5 KB)
-2. **ARCHITECTURE.md** (81 KB, 3397 lignes)
-3. **WORKFLOW.md** (14.7 KB) - Standards prompts
-4. **PROMPT-CONTEXT.md v2.0** (16.4 KB)
-5. **INSTRUCTIONS.md v2.1** (ce document)
-6. **CHANGELOG.md v2.2**
+### Le Test des 30 Secondes
+
+**Posez-vous 4 questions. Si 1 répond "Non" → Refaire la page.**
+
+1. **C'EST POUR MOI ?**
+   - ✅ "PME suisses, 10-200 employés"
+   - ❌ "Nous accompagnons les organisations"
+
+2. **QUEL BÉNÉFICE ?**
+   - ✅ "Économiser 10-15h/semaine, ROI 2-6 mois"
+   - ❌ "Solutions innovantes"
+
+3. **LA PREUVE ?**
+   - ✅ "50+ PME, 99% satisfaction, -70% temps admin"
+   - ❌ "Des années d'expérience"
+
+4. **QUE FAIRE ?**
+   - ✅ "Réserver 30 min gratuites" (1 seul CTA)
+   - ❌ 5 CTAs différents qui confondent
+
+**Validation :** Montrez votre page à 5 personnes. Donnez 30 secondes. Posez les 4 questions.
 
 ---
 
-## ✅ État Actuel
+## 📝 COMMENT ÉCRIRE (Exemples Concrets)
 
-### Terminé ✅
-- solutions.ts (21.2 KB, Commit 6a193bb)
-- Navigation.tsx (11.8 KB, Commit 0314f61)
-- DESIGN-SYSTEM-MANDATORY.md (Commit 95e92a3)
-- Documentation complète
+### 1. COMMENCER PAR LE PROBLÈME (Pas la solution)
 
-### En Cours ⏳
-- portfolio.ts (Claude Code exécute)
-
-### À Créer ⏹️
-- expertise.ts - 3 piliers
-- testimonials.ts - Témoignages
-- Page /solutions
-- Page /portfolio
-- Autres data files
-
-### Commits Récents
+**❌ MAUVAIS (Features-first) :**
 ```
-acb7d6cb - docs(instructions): update v2.0
-712c70a - docs(prompt-context): update v2.0
-95e92a3 - docs(design-system): add mandatory guide
-0314f61 - feat(navigation): complete menu
-6a193bb - feat(data): add solutions.ts
+Titre: "Intelligence Artificielle et Automatisation pour PME"
+
+Nous sommes une agence suisse spécialisée en développement 
+de solutions d'intelligence artificielle sur-mesure. Notre 
+équipe d'experts accompagne les entreprises dans leur 
+transformation digitale...
+```
+**Pourquoi c'est mauvais :** Parle de VOUS, pas du CLIENT. Jargon. Ennuyeux.
+
+---
+
+**✅ BON (Problem-first) :**
+```
+Titre: "Vous Perdez 15 Heures Par Semaine à Faire des 
+       Tâches Qu'un Robot Pourrait Faire"
+
+C'est le quotidien de milliers de dirigeants de PME.
+
+Facturation manuelle. Saisie de données. Réponses emails 
+répétitives. Suivi commandes à la main.
+
+Pendant ce temps :
+• Vos concurrents automatisent
+• Vos équipes s'épuisent
+• Vous refusez des opportunités par manque de temps
+
+Et quand vous cherchez de l'aide ?
+Les grandes agences parlent de projets à 200K€ sur 2 ans.
+Les freelances disparaissent au milieu du projet.
+Les logiciels standards ne font pas ce dont vous avez besoin.
+```
+**Pourquoi c'est bon :** ACCROCHE. Pain point immédiat. Le visiteur se reconnaît. Veut lire la suite.
+
+---
+
+### 2. PROUVER AVANT DE PITCHER
+
+**❌ MAUVAIS (Nous d'abord) :**
+```
+Section 1: À Propos de Nous
+  → Notre histoire, nos valeurs, notre équipe
+
+Section 2: Notre Expertise  
+  → Nos technologies, nos certifications
+
+Section 3: Nos Services
+  → Ce qu'on fait
+
+Section 4: Nos Clients (tout en bas)
+  → Quelques logos
+```
+**Pourquoi c'est mauvais :** Le visiteur doit SCROLLER pour voir la preuve. Il part avant.
+
+---
+
+**✅ BON (Preuve d'abord) :**
+```
+Section 1: HERO
+  → Votre problème (15h perdues)
+
+Section 2: COMMENT ON AIDE
+  → 4 exemples concrets avec résultats
+  → "PME immobilière : 12h/mois → 0"
+
+Section 3: ILS ONT AUTOMATISÉ
+  → 2 cas clients COMPLETS featured
+  → Témoignages avec photos + noms + chiffres
+  → "On a récupéré 20h/semaine. ROI en 4 mois."
+
+Section 4: NOTRE PROCESSUS
+  → 3 étapes simples
+
+Section 5: CTA FINAL
+  → Réserver 30 min
+```
+**Pourquoi c'est bon :** Preuve IMMÉDIATE. Visiteur voit résultats avant de décider. Confiance.
+
+---
+
+### 3. TON CONVERSATIONNEL (Test Café)
+
+**❌ MAUVAIS (Corporate) :**
+```
+"Notre méthodologie agile nous permet d'implémenter des 
+solutions robustes et scalables en assurant une gouvernance 
+IT optimale tout au long du cycle de vie du projet."
+```
+**Test café :** Vous diriez JAMAIS ça à un ami. Pompeux. Vide de sens.
+
+---
+
+**✅ BON (Humain) :**
+```
+"On automatise vos tâches chiantes en 2-4 semaines.
+Vous récupérez 15h par semaine.
+Ça vous coûte 12K€. Ça vous fait économiser 60K€/an.
+ROI en 3 mois. Point."
+```
+**Test café :** Oui, vous diriez ça à un ami. Direct. Clair. Honnête.
+
+---
+
+### 4. QUANTIFIER TOUJOURS (Pas de flou)
+
+**❌ MAUVAIS (Vague) :**
+```
+"Nous aidons les PME à gagner du temps et optimiser 
+leurs processus pour des résultats significatifs."
+```
+**Problème :** "Gagner du temps" = combien ? "Résultats" = quoi ?
+
+---
+
+**✅ BON (Précis) :**
+```
+"On automatise votre facturation.
+Résultat : 15h/mois → 0h/mois.
+Votre comptable gagne 15h. À 50€/h = 750€/mois = 9K€/an.
+Notre projet coûte 12K€. ROI en 16 mois.
+Ensuite, 9K€/an de bénéfice pur pendant des années."
+```
+**Pourquoi c'est bon :** Chiffres concrets. Calcul clair. Le CEO peut décider.
+
+---
+
+### 5. UN SEUL CTA (Répété 3 fois)
+
+**❌ MAUVAIS (CTAs multiples) :**
+```
+Homepage :
+• Découvrir nos services
+• Voir notre portfolio
+• Télécharger notre brochure
+• Demander un devis
+• Réserver une démo
+• S'inscrire newsletter
+• Suivre sur LinkedIn
+```
+**Problème :** Visiteur paralysé. Trop de choix = AUCUN choix.
+
+---
+
+**✅ BON (CTA unique) :**
+```
+Homepage :
+• Hero : [Réserver 30 min gratuites]
+• Section Comment on aide : [Réserver 30 min gratuites]
+• Section CTA Final : [Réserver 30 min gratuites]
+
+Exemples :
+• Fin de page : [Réserver 30 min gratuites]
+
+Process :
+• Fin de page : [Réserver 30 min gratuites]
+
+Contact :
+• Page entière dédiée à ce CTA
+```
+**Pourquoi c'est bon :** 1 seul choix. Clair. Répété. Visiteur sait quoi faire.
+
+---
+
+### 6. STRUCTURE SCANNABLE (F-Pattern)
+
+**Les gens ne LISENT PAS. Ils SCANNENT.**
+
+**❌ MAUVAIS (Pavés texte) :**
+```
+Nous sommes une agence suisse spécialisée dans le développement 
+de solutions d'intelligence artificielle et d'automatisation pour 
+les petites et moyennes entreprises. Notre équipe d'experts 
+accompagne les organisations dans leur transformation digitale en 
+mettant en œuvre des projets innovants qui génèrent de la valeur 
+ajoutée mesurable. Nous travaillons avec des technologies de 
+pointe incluant React, TypeScript, Python, et diverses frameworks 
+d'IA pour créer des solutions robustes et évolutives...
+```
+**Problème :** Visiteur voit bloc texte → Skip → Part.
+
+---
+
+**✅ BON (Scannable) :**
+```
+## On automatise vos tâches chiantes
+
+**Le problème :**
+Vous passez 15h/semaine sur :
+• Facturation manuelle
+• Saisie données répétitives
+• Réponses emails standards
+
+**La solution :**
+On automatise tout ça en 2-4 semaines.
+
+**Le résultat :**
+✅ 15h/semaine récupérées
+✅ ROI en 2-6 mois
+✅ 60K€/an économisés (PME moyenne)
+
+[Réserver 30 min gratuites]
+```
+**Pourquoi c'est bon :** 
+- Titres clairs
+- Listes à puces scannables
+- Nombres qui attirent l'œil
+- CTA visible
+
+---
+
+## 📋 PLAN 4 SEMAINES (Simple)
+
+### Semaine 1 : Homepage ⏳
+
+**Objectif :** Page qui convertit en 30 secondes
+
+**À créer :**
+```
+1. Navigation : 4 items (Homepage | Exemples | Process | Contact)
+2. Hero : "Vous Perdez 15 Heures Par Semaine..."
+3. Comment On Aide : 4 exemples (Grid 2x2)
+4. Preuve : 2 cas clients + chiffres globaux
+5. Processus : 3 étapes visuelles
+6. CTA Final : Photo équipe + Réserver 30 min
 ```
 
----
-
-## 🎯 Objectifs
-
-### Business
-- Leader solutions automatisation PME suisses
-- 15-25 leads qualifiés/mois (6 premiers mois)
-- ROI démontrable (CHF, heures, %)
-- Crédibilité cas clients (LEXAIA, ENKI-REALTY)
-
-### Techniques
-- Lighthouse >90
-- Animations 60fps
-- Mobile-first
-- SEO marché suisse
-- Conformité nLPD, SwissDec, TVA
+**Validation :**
+- [ ] Test 30 secondes avec 5 personnes
+- [ ] 1 CTA répété 3 fois
+- [ ] Métriques quantifiées partout
+- [ ] Mobile parfait
 
 ---
 
-## 📐 Principes
+### Semaine 2 : Exemples
 
-### Contenu
-- Langage business (pas jargon)
-- Toujours quantifier (CHF, %, heures)
-- Approche suisse (nLPD, SwissDec, TVA)
-- ROI démontrable
+**Objectif :** Proof sociale massive
 
-### Style
-- Professionnel mais accessible
-- Phrases courtes
-- Exemples concrets
-- **JAMAIS d'emojis** code/doc
-- "IA" (pas "AI") français
-
-### Design
-- Moderne épuré (Stripe, Linear)
-- Animations Framer Motion
-- Navigation max 3 clics
-- Mobile-first obligatoire
-
----
-
-## 🏗️ Structure Site
-
-### Pages (9)
-1. Homepage - Hero + Piliers + Solutions
-2. Expertise - IA, Automatisation, Dev
-3. Solutions - 15 automatisations
-4. Portfolio - LEXAIA, ENKI-REALTY + 3
-5. Resources - Blog, Glossaire, Use Cases
-6. À Propos - Mission, Équipe
-7. Process - Méthodologie, Garanties
-8. Pricing - 4 tiers
-9. Contact - Form + Chatbot + RDV
-
-### Features (8)
-1. Calculateur ROI
-2. Diagnostic IA
-3. AI Maturity Assessment
-4. Chatbot multilingue (Claude API)
-5. Comparateur solutions
-6. Simulateur pricing
-7. Tech Stack Explorer
-8. Système RDV
-
----
-
-## 🛠️ Stack
-
-### Frontend
-- React 18.3.1 + TypeScript 5.5.3
-- Vite 5.3.4
-- Tailwind CSS 3.4.1
-- Framer Motion 11.3.21
-- Lucide React 0.263.1
-- React Hook Form + Zod
-
-### Backend
-- Supabase (PostgreSQL, Auth, Storage)
-- Brevo/SendGrid (emailing)
-- GA4 + Plausible (analytics)
-- Cal.com (RDV)
-
-### Dev
-- Claude Code (principal)
-- GitHub (version control)
-- Vercel/Netlify (hosting)
-
----
-
-## 📏 Standards Code
-
-### TypeScript Strict
-
-```typescript
-// ✅ BON
-interface Solution {
-  id: string;
-  category: 'ia' | 'automatisation' | 'developpement';
-  complexity: 'starter' | 'intermediate' | 'advanced';
-  icon: string;  // Lucide React
-  roi: { timeframe: string; savings: number };
-}
-
-// ❌ MAUVAIS
-const solution: any = {...}
+**À créer :**
+```
+1. Header + Filtres (Industrie, Problème)
+2. 6-8 cas clients complets
+3. Format : Logo | Problème | Solution | Résultats | Témoignage
+4. CTA : "Votre PME a un défi similaire ?"
 ```
 
-### Conventions
-- Components: PascalCase (`Hero.tsx`)
-- Utils: camelCase (`formatCurrency.ts`)
-- Data: camelCase (`solutions.ts`)
-- CSS: kebab-case Tailwind
+**Validation :**
+- [ ] 6-8 cas rédigés (300 mots chacun)
+- [ ] Métriques bold (-70%, +40%, ROI 4 mois)
+- [ ] Citations avec noms + photos
+- [ ] Filtres fonctionnels
+
+---
+
+### Semaine 3 : Comment ça marche
+
+**Objectif :** Rassurer, répondre objections
+
+**À créer :**
+```
+1. Processus 3 étapes détaillé
+2. Pourquoi Nous : 4 différenciateurs
+3. FAQ : 7 questions accordion
+4. Garantie ROI affichée
+5. CTA : "Prêt à démarrer ?"
+```
+
+**Validation :**
+- [ ] 3 étapes claires (durées, livrables)
+- [ ] FAQ répond 90% objections
+- [ ] Ton conversationnel testé
+- [ ] Accessible (keyboard nav)
+
+---
+
+### Semaine 4 : Contact + Lancement 🚀
+
+**Objectif :** Conversion max + MVP lancé
+
+**À créer :**
+```
+1. Page Contact : Calendly + Formulaire
+2. Footer simplifié
+3. 404 page custom
+4. Meta tags SEO (4 pages)
+5. Tests finaux (mobile, desktop, Lighthouse)
+6. 🚀 LANCEMENT
+```
+
+**Validation :**
+- [ ] Calendly configuré et testé
+- [ ] Formulaire envoie emails
+- [ ] Lighthouse >85
+- [ ] 4 pages mobile parfait
+- [ ] Analytics actif
+
+---
+
+## ✅ CHECKLIST CONTENU (Avant Publication)
+
+### Message
+- [ ] **Test 30 secondes validé ?** (5 personnes externes)
+- [ ] **Problème AVANT solution ?** (Pain point en premier)
+- [ ] **Preuve AVANT pitch ?** (Témoignages haut de page)
+- [ ] **Ton conversationnel ?** (Test café réussi)
+- [ ] **1 CTA répété 3x ?** (Pas 5 CTAs différents)
+
+### Chiffres
+- [ ] **Gains quantifiés ?** (CHF, %, heures - pas "beaucoup")
+- [ ] **Résultats spécifiques ?** (-70% charge, ROI 4 mois)
+- [ ] **Témoignages avec noms ?** (Pas "Client satisfait")
+- [ ] **Métriques bold ?** (Attirent l'œil)
 
 ### Structure
-```
-src/
-├── components/
-│   ├── ui/         # Design System
-│   ├── layout/     # Header, Footer
-│   └── features/   # Features
-├── data/           # solutions.ts ✅, portfolio.ts ⏳
-├── pages/          # Routes
-├── types/          # TypeScript
-└── utils/          # Helpers
-```
+- [ ] **Scannable ?** (Titres, listes, espaces blancs)
+- [ ] **Mobile responsive ?** (80% du trafic)
+- [ ] **Pas de pavés texte ?** (Max 3-4 lignes par paragraphe)
+- [ ] **CTA visible ?** (Bouton orange, contraste)
+
+### Langue
+- [ ] **"IA" pas "AI" ?** (En français)
+- [ ] **Pas de jargon ?** (RAG, OCR, ML → Explications simples)
+- [ ] **Phrases courtes ?** (Max 20 mots/phrase)
+- [ ] **Pas d'emojis ?** (Jamais dans code/doc)
 
 ---
 
-## 🚀 Workflow
+## 🎨 DESIGN RAPPELS (Minimaliste)
 
-### Phase 1 (Semaines 1-3)
+### Couleurs (3 principales)
+```
+Orange (#FF5A00) → CTA "Réserver 30 min"
+Indigo (#6366F1) → IA, Tech
+Cyan (#10E4FF)   → Automatisation
+```
 
-**Semaine 1** ✅
-- [x] Setup + Design System + Layout + Homepage 1-5
+**Règle :** CTA toujours orange. Pas d'autres couleurs CTA.
 
-**Semaine 2** ⏳ EN COURS
-- [x] Homepage complète
-- [x] Navigation.tsx ✅
-- [x] solutions.ts ✅
-- [⏳] portfolio.ts
-- [ ] expertise.ts
-- [ ] Calculateur ROI
-- [ ] Diagnostic IA
+### Typographie
+```
+Titres : Gras, 40-52px
+Corps : Regular, 18px
+CTA : Bold, 18px
+```
 
-**Semaine 3**
-- [ ] Pages Expertise, Solutions, Portfolio
+### Espacement
+```
+Sections : 80-120px vertical
+Cards : 32px padding
+Boutons : 16px vertical, 32px horizontal
+```
 
-### Phase 2 (Semaines 4-5)
-- Case studies, Blog, Glossaire, Use Cases
-
-### Phase 3 (Semaines 6-7)
-- Process, Pricing, About, Contact, Chatbot, SEO, QA
+**Principe :** Beaucoup d'espace blanc. Respire. Scannable.
 
 ---
 
-## ✅ Checklist Avant Commit
-
-### Design System ⭐ CRITIQUE
-- [ ] CATEGORY_COLORS/COMPLEXITY_COLORS utilisés
-- [ ] Icônes Lucide vérifiées lucide.dev
-- [ ] Pas de HEX hardcodé hors Design System
-- [ ] Mappings respectés
-
-### Code
-- [ ] TypeScript sans erreurs (pas `any`)
-- [ ] ESLint OK
-- [ ] Pas de console.log
-- [ ] Pas d'emojis
-
-### Performance
-- [ ] Images optimisées
-- [ ] Animations 60fps
-- [ ] Lighthouse >90
+## 📚 DOCUMENTATION (Par Priorité)
 
 ### Contenu
-- [ ] Gains quantifiés (CHF, %, heures)
-- [ ] "IA" (pas "AI")
-- [ ] LEXAIA, ENKI-REALTY corrects
-- [ ] CTAs clairs
+1. **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** ⭐ - Ton storytelling
+2. **[DAINAMICS_Presentation_Optimisee.md](./DAINAMICS_Presentation_Optimisee.md)** - Copywriting final
+3. **[DAINAMICS_Plan_Site_Optimise.md](./DAINAMICS_Plan_Site_Optimise.md)** - Structure 4 pages
+
+### Stratégie
+4. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Plan MVP
+5. **[PRIORITIES.md](./PRIORITIES.md)** - Priorisation semaines
+6. **[STATUS.md](./STATUS.md)** - Dashboard temps réel
+
+### Technique (Si besoin)
+7. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure
+8. **[DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)** ⭐ - Design System exhaustif
+9. **ARCHITECTURE.md** - Specs techniques
 
 ---
 
-## 📖 Ressources
+## 🚨 ERREURS FRÉQUENTES À ÉVITER
 
-### Documentation
-- **Repository**: https://github.com/dainabase/Dainamics-Web-Site
-- **Design System**: DESIGN-SYSTEM-MANDATORY.md
-- **Architecture**: ARCHITECTURE.md (lignes 100-800)
-- **Prompts**: WORKFLOW.md (7 sections)
-- **Contexte**: PROMPT-CONTEXT.md v2.0
-
-### Externes
-- **Lucide**: https://lucide.dev (v0.263.1)
-- **Tailwind**: https://tailwindcss.com/docs
-- **Framer Motion**: https://www.framer.com/motion
-
----
-
-## 💡 Exemple Complet de Bon Prompt
-
+### ❌ 1. Parler de SOI avant le CLIENT
 ```
-# CRÉER expertise.ts
+"Nous sommes experts en IA..."
+"Notre équipe a 10 ans d'expérience..."
+"Nous utilisons les dernières technologies..."
+```
+**Fix :** Commencez TOUJOURS par problème client.
 
-## 1. CONTEXTE PROJET
-Repository: Dainamics-Web-Site
-Fichier: src/data/expertise.ts (nouveau)
-Stack: React 18+ TypeScript 5+
-Référence: solutions.ts (même structure)
+---
 
-## 2. OBJECTIF
-Créer expertise.ts avec 3 piliers DAINAMICS:
-- Intelligence Artificielle (LLMs, Agents, CV, NLP)
-- Automatisation (RPA, Workflow, Integration)
-- Développement (Web Apps, APIs, Cloud)
+### ❌ 2. Jargon technique sans explication
+```
+"Nos solutions RAG avec embeddings vectoriels..."
+"Architecture microservices containerisée..."
+"Pipeline MLOps avec monitoring real-time..."
+```
+**Fix :** Expliquez simplement ou ne mentionnez pas.
 
-## 3. STRUCTURE TECHNIQUE
+---
 
-⚠️ DESIGN SYSTEM OBLIGATOIRE:
-- Référencer DESIGN-SYSTEM-MANDATORY.md
-- Utiliser CATEGORY_COLORS:
-  'ia' → '#6366F1'
-  'automatisation' → '#10E4FF'
-  'developpement' → '#FF5A00'
-- Icônes Lucide UNIQUEMENT (vérifier lucide.dev)
-- TypeScript strict (pas any)
+### ❌ 3. Gains vagues
+```
+"Résultats significatifs"
+"Optimisation des processus"
+"Amélioration de la productivité"
+```
+**Fix :** Quantifiez. -70%, 15h/semaine, 60K€/an.
 
-[CODE COMPLET 200-500 LIGNES]
-// Interface stricte
-// 3 piliers avec détails
-// Helpers exportés
-// Mappings couleurs
+---
 
-## 4. RÈGLES CONTENU
-- Gains quantifiés obligatoires
-- "IA" pas "AI"
-- Pas d'emojis
-- Exemples concrets PME
+### ❌ 4. CTAs multiples qui confondent
+```
+[Découvrir] [Portfolio] [Devis] [Démo] [Newsletter] [Contact]
+```
+**Fix :** 1 seul CTA : "Réserver 30 min gratuites"
 
-## 5. VALIDATION
+---
 
-✅ Technique (12 critères)
-- TypeScript strict
-- Interfaces complètes
-- Helpers fonctionnels
-- Imports Lucide corrects
+### ❌ 5. Pavés de texte non scannables
+```
+[Grand paragraphe de 15 lignes sans espaces]
+```
+**Fix :** Titres, listes, espaces blancs, 3-4 lignes max.
 
-✅ Contenu (12 critères)
-- 3 piliers complets
-- Exemples concrets
-- Gains quantifiés
-- Terminologie correcte
+---
 
-✅ Design System (10 critères)
-- CATEGORY_COLORS utilisés
-- Icônes Lucide vérifiées
-- Pas de HEX hardcodé
-- Mappings conformes
+### ❌ 6. Features avant bénéfices
+```
+"Notre plateforme utilise React, TypeScript, et Node.js..."
+```
+**Fix :** Bénéfice client : "Vous gagnez 15h/semaine"
 
-## 6. PROCESSUS GIT
-git add src/data/expertise.ts
-git commit -m "feat(data): add expertise.ts with 3 pillars"
-git push origin main
+---
 
-## 7. GESTION ERREURS
-- Si TypeScript erreur → vérifier interfaces
-- Si icône manquante → lucide.dev
-- Si couleur incorrecte → CATEGORY_COLORS
-- Si bloqué → STOP et documenter
+### ❌ 7. Témoignages vagues
+```
+"Excellent service ! Très satisfait."
+```
+**Fix :** Spécifique : "15h/semaine gagnées, ROI en 4 mois" - Marc R., CEO
+
+---
+
+## 🎯 EXEMPLES DE BON CONTENU
+
+### Hero Homepage
+```
+# Vous Perdez 15 Heures Par Semaine 
+  à Faire des Tâches Qu'un Robot Pourrait Faire
+
+C'est le quotidien de milliers de dirigeants PME.
+
+Facturation manuelle. Saisie données. Réponses emails répétitives.
+
+Pendant ce temps : Vos concurrents automatisent.
+
+**On automatise ces tâches en 2-4 semaines.**
+**Vous êtes rentable en 3-6 mois. Garanti.**
+
+[Réserver 30 min gratuites]  [Calculer mes économies]
 ```
 
 ---
 
-## 🆘 Support
+### Cas Client (Format)
+```
+## PME Services Juridiques (Suisse)
 
-### Si Perdu
-1. DESIGN-SYSTEM-MANDATORY.md
-2. ARCHITECTURE.md
-3. WORKFLOW.md
-4. Exemples: solutions.ts, Navigation.tsx
+**Industrie :** Services Professionnels  
+**Taille :** 25 employés  
+**Pays :** 🇨🇭 Suisse
 
-### Si Bloqué
-1. STOP immédiatement
-2. Noter erreur + commande
-3. Demander assistance
+### Le Problème
+150 demandes clients par semaine.
+Chaque demande = 15-30 min à traiter.
+Équipe support saturée.
 
----
+### La Solution
+Assistant IA multilingue (FR/DE/IT) qui répond 
+automatiquement à 80% des questions.
 
-## 🎯 Prochaines Étapes
+### Les Résultats
+**-70%** charge support  
+**+40%** satisfaction client  
+**ROI 4 mois** (35K€/an économisés)
 
-1. Attendre portfolio.ts ⏳
-2. Créer expertise.ts (avec bon prompt 7 sections)
-3. Page /solutions
-4. Page /portfolio
+💬 *"L'assistant traite 80% de nos demandes. 
+Notre équipe se concentre enfin sur les cas complexes. 
+Investissement remboursé en 4 mois."*
 
----
+**— Sophie M., Directrice Opérations**
 
-## 🔒 Règles Absolues NON NÉGOCIABLES
-
-1. ✅ **Prompt 7 sections** - TOUJOURS, sans exception
-2. ✅ **Design System mention section 3** - OBLIGATOIRE textuellement
-3. ✅ **TypeScript strict** - Jamais `any`
-4. ✅ **Icônes Lucide** - Vérifier lucide.dev AVANT
-5. ✅ **Gains quantifiés** - CHF, %, heures
-6. ✅ **"IA" pas "AI"** - En français
-7. ❌ **Pas d'emojis** - Jamais code/doc
-8. ✅ **Mobile-first** - Toujours
-9. ✅ **Commit après chaque tâche** - Immédiat
-10. ✅ **CATEGORY_COLORS/COMPLEXITY_COLORS** - Obligatoires
+[Réserver mon appel gratuit]
+```
 
 ---
 
-**VERSION**: 2.1  
-**DATE**: 11 Octobre 2025  
-**CRITIQUE**: Structure 7 sections + Design System mention = NON NÉGOCIABLE  
+### FAQ (Format)
+```
+## Questions fréquentes
 
-**🚨 NE PAS CRÉER DE PROMPT SANS:**
-1. Les 7 sections complètes
-2. La mention Design System en section 3 avec mappings EXACTS
+### Combien ça coûte vraiment ?
+Nos projets "Gains Rapides" : **8K€ à 15K€**.
 
-**Si vous ne suivez pas ces règles = fichiers à refaire = 2-3x plus de temps perdu**
+Exemple : Un projet à 12K€ qui vous fait économiser 
+15h/semaine (à 50€/h) = 39K€/an d'économies.
+
+ROI : 280% la première année. Breakeven en 3-4 mois.
+
+---
+
+### Combien de temps ça prend ?
+Nos projets "Gains Rapides" se livrent en **2-4 semaines**.
+
+Timeline type :
+• Semaine 1 : Évaluation + Prototype
+• Semaines 2-3 : Développement
+• Semaine 4 : Déploiement + Formation
+
+Vous commencez à gagner du temps dès le jour 1.
+
+---
+
+### C'est quoi la garantie ?
+Si vous n'avez pas récupéré votre investissement 
+en 6 mois, on travaille gratuitement jusqu'à ce 
+que ce soit le cas.
+
+Simple. Clair. Sans petits caractères.
+```
+
+---
+
+## 🔒 RÈGLES ABSOLUES (Non Négociables)
+
+✅ **4 pages menu** (Homepage, Exemples, Process, Contact)  
+✅ **Navigation 1 niveau** (Pas de dropdown, pas de mega-menu)  
+✅ **Message 30 secondes** (Test avec 5 personnes avant publication)  
+✅ **Problème avant solution** (TOUJOURS)  
+✅ **Preuve avant pitch** (Témoignages en haut)  
+✅ **1 CTA répété** ("Réserver 30 min gratuites" partout)  
+✅ **Quantifier toujours** (CHF, %, heures - jamais "beaucoup")  
+✅ **Ton conversationnel** (Test café - diriez-vous ça à un ami ?)  
+✅ **"IA" pas "AI"** (En français)  
+❌ **Jamais d'emojis** (Dans code ou documentation)  
+❌ **Jamais de jargon** (Sans explication simple)  
+❌ **Jamais de pavés** (Max 3-4 lignes par paragraphe)  
+
+---
+
+## 📊 OBJECTIFS MVP (4 Semaines)
+
+### Baseline
+```
+Taux conversion:     2-3%
+Bounce rate:         55-65%
+Temps sur site:      1-2 min
+Leads/mois:          5-10
+```
+
+### Cibles MVP
+```
+🎯 Taux conversion:  4-6%  (+50-100%)
+🎯 Bounce rate:      <45%   (-20%)
+🎯 Temps sur site:   >2.5m  (+50%)
+🎯 Leads/mois:       15-20  (+100-200%)
+```
+
+**Mesure :** Google Analytics 4 + Hotjar (heatmaps)
+
+---
+
+## 🚀 PROCHAINES ACTIONS
+
+### Cette Semaine (Semaine 1)
+
+**Lundi :**
+- [ ] Simplifier Navigation.tsx (4 items)
+- [ ] Créer Hero : "Vous Perdez 15 Heures..."
+
+**Mardi-Mercredi :**
+- [ ] Section Comment On Aide (4 exemples)
+- [ ] Section Preuve (2 cas clients)
+
+**Jeudi :**
+- [ ] Section Processus (3 étapes)
+- [ ] Section CTA Final (photo équipe)
+
+**Vendredi :**
+- [ ] Mobile responsive complet
+- [ ] Test 30 secondes (5 personnes)
+
+---
+
+## 📞 QUESTIONS & SUPPORT
+
+**Questions contenu :**
+- Lire [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)
+- Lire [Présentation Optimisée](./DAINAMICS_Presentation_Optimisee.md)
+
+**Questions structure :**
+- Lire [Plan Site Optimisé](./DAINAMICS_Plan_Site_Optimise.md)
+- Lire [PRIORITIES.md](./PRIORITIES.md)
+
+**Contact :**
+- Email : contact@dainamics.ch
+- GitHub : https://github.com/dainabase/Dainamics-Web-Site
+
+---
+
+**VERSION:** 4.0 - ULTRA-PRACTICAL  
+**DERNIÈRE MAJ:** 15 Octobre 2025  
+**FOCUS:** Créer contenu qui CONVERTIT (pas qui existe)
+
+---
+
+*"Un bon site MVP fait peur par sa simplicité. Si ce n'est pas embarrassant, vous avez lancé trop tard."*  
+— Reid Hoffman, Fondateur LinkedIn
+
+---
+
+**🎯 RAPPEL FINAL : TEST DES 30 SECONDES**
+
+Avant de publier CHAQUE page, montrez-la à 5 personnes pendant 30 secondes.
+
+Posez ces 4 questions :
+1. C'est pour qui ?
+2. Quel bénéfice ?
+3. Quelle preuve ?
+4. Que faire maintenant ?
+
+**Si 1 personne hésite → Refaire la page.**
+
+**Simplicité radicale. Clarté absolue. Conversion maximale.**
+
+---
+
+**📚 Documentation transformation complète :**
+- [TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)
+- [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)
+- [PRIORITIES.md](./PRIORITIES.md)
+- [STATUS.md](./STATUS.md)

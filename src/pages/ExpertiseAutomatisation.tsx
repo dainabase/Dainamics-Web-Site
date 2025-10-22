@@ -1,14 +1,17 @@
 // src/pages/ExpertiseAutomatisation.tsx
-// Automatisation - Page d'Expertise avec Effets Sticky Différents de IA
-// Référence Design System: DESIGN-SYSTEM-MANDATORY.md
+// Automatisation - Page d'Expertise avec ScrollStack Technologies OPTIMISÉ
+// Référence Design System: DAINAMICS_Design_System_v2_Complete.md
+// Performance: 60fps garanti - ScrollStack élégant pour le stack technique
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import ScrollStack, { ScrollStackItem } from '@/components/ui/scroll-stack';
 import { 
   getPillarByCategory,
   categoryColors,
@@ -28,9 +31,7 @@ import {
   ArrowUpRight,
   Timer,
   Gauge,
-  Activity,
-  ChevronLeft,
-  ChevronRight
+  Activity
 } from 'lucide-react';
 
 export default function ExpertiseAutomatisation() {
@@ -52,10 +53,11 @@ export default function ExpertiseAutomatisation() {
     );
   }
 
-  const autoColor = categoryColors['automatisation']; // #10E4FF
+  const autoColor = categoryColors['automatisation']; // #10E4FF (CYAN)
 
   return (
     <div className="min-h-screen bg-dainamics-background text-dainamics-light">
+      <EnhancedGridBackground />
       <Navigation />
       
       {/* Hero Section - Workflow Visual */}
@@ -64,13 +66,13 @@ export default function ExpertiseAutomatisation() {
       {/* Metrics Section - Cards with Stagger */}
       <MetricsSection metrics={pillar.metrics} autoColor={autoColor} />
       
-      {/* Technologies Section - HORIZONTAL SCROLL IN VERTICAL STICKY */}
+      {/* Technologies Section - SCROLLSTACK OPTIMISÉ */}
       <TechnologiesSection 
         technologies={pillar.technologies}
         autoColor={autoColor}
       />
       
-      {/* Capabilities Section - STICKY RIGHT + SCROLLING LEFT (inverse de IA) */}
+      {/* Capabilities Section - STICKY RIGHT + SCROLLING LEFT */}
       <CapabilitiesSection capabilities={pillar.capabilities} autoColor={autoColor} />
       
       {/* Use Cases - Cards Grid with Reveal */}
@@ -135,12 +137,13 @@ function HeroSection({ pillar, autoColor }: { pillar: any; autoColor: string }) 
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
               style={{ 
-                backgroundColor: `${autoColor}15`,
-                border: `1px solid ${autoColor}30`
+                background: `linear-gradient(135deg, ${autoColor}90, ${autoColor}70)`,
+                border: `2px solid ${autoColor}`,
+                boxShadow: `0 4px 20px ${autoColor}40`
               }}
             >
-              <Zap className="w-4 h-4" style={{ color: autoColor }} />
-              <span className="text-sm font-medium" style={{ color: autoColor }}>
+              <Zap className="w-4 h-4 text-white" />
+              <span className="text-sm font-medium text-white">
                 {pillar.name}
               </span>
             </motion.div>
@@ -325,10 +328,11 @@ function MetricsSection({ metrics, autoColor }: { metrics: any; autoColor: strin
               }}
               className="relative p-6 rounded-2xl group cursor-pointer"
               style={{
-                background: `linear-gradient(135deg, ${metric.color}10, transparent)`,
-                border: `1px solid ${metric.color}30`,
+                background: `linear-gradient(135deg, ${metric.color}60, ${metric.color}40)`,
+                border: `2px solid ${metric.color}80`,
                 transformStyle: 'preserve-3d',
-                perspective: '1000px'
+                perspective: '1000px',
+                boxShadow: `0 4px 20px rgba(0,0,0,0.3)`
               }}
             >
               {/* Glow Effect */}
@@ -367,30 +371,17 @@ function MetricsSection({ metrics, autoColor }: { metrics: any; autoColor: strin
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - HORIZONTAL SCROLL IN VERTICAL STICKY
+// TECHNOLOGIES SECTION - SCROLLSTACK OPTIMISÉ
 // ============================================================================
 function TechnologiesSection({ technologies, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 400;
-      scrollContainerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
+  // Helper pour convertir hex en rgba
+  const hexToRgba = (hex: string, alpha: number) => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   };
 
   return (
@@ -412,132 +403,95 @@ function TechnologiesSection({ technologies, autoColor }: any) {
           </p>
         </motion.div>
 
-        {/* Horizontal Scroll Container - STICKY */}
-        <div className="sticky top-32 bg-dainamics-background/80 backdrop-blur-xl rounded-3xl p-8 border border-gray-800">
-          {/* Navigation Arrows */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="text-sm text-gray-500">
-              {technologies.length} technologies
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => scroll('left')}
-                disabled={!canScrollLeft}
-                className="p-2 rounded-lg transition-all disabled:opacity-30"
-                style={{
-                  backgroundColor: canScrollLeft ? `${autoColor}20` : 'transparent',
-                  borderColor: canScrollLeft ? autoColor : '#374151',
-                  border: '1px solid'
-                }}
-              >
-                <ChevronLeft className="w-5 h-5" style={{ color: canScrollLeft ? autoColor : '#6B7280' }} />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                disabled={!canScrollRight}
-                className="p-2 rounded-lg transition-all disabled:opacity-30"
-                style={{
-                  backgroundColor: canScrollRight ? `${autoColor}20` : 'transparent',
-                  borderColor: canScrollRight ? autoColor : '#374151',
-                  border: '1px solid'
-                }}
-              >
-                <ChevronRight className="w-5 h-5" style={{ color: canScrollRight ? autoColor : '#6B7280' }} />
-              </button>
-            </div>
-          </div>
-
-          {/* Scrolling Cards */}
-          <div 
-            ref={scrollContainerRef}
-            onScroll={handleScroll}
-            className="flex gap-6 overflow-x-auto hide-scrollbar pb-4"
-            style={{ scrollSnapType: 'x mandatory' }}
+        {/* ScrollStack Container - PARAMÈTRES OPTIMISÉS */}
+        <div className="relative h-[900px]">
+          <ScrollStack
+            itemDistance={150}
+            itemScale={0.05}
+            itemStackDistance={50}
+            stackPosition="30%"
+            baseScale={0.88}
+            rotationAmount={0}
+            blurAmount={0}
+            useWindowScroll={false}
+            className="h-full"
           >
-            {technologies.map((tech: any, index: number) => (
-              <TechnologyCard 
-                key={tech.name} 
-                tech={tech} 
-                index={index}
-                autoColor={autoColor}
-              />
-            ))}
-          </div>
+            {technologies.map((tech: any, index: number) => {
+              const Icon = iconMapper[tech.icon];
+              return (
+                <ScrollStackItem
+                  key={tech.name}
+                  className="mb-8"
+                  style={{
+                    minHeight: '240px'
+                  }}
+                >
+                  <div 
+                    className="w-full h-full rounded-2xl p-8 shadow-2xl transition-all duration-300"
+                    style={{
+                      background: `linear-gradient(135deg, ${hexToRgba(autoColor, 0.9)}, ${hexToRgba(autoColor, 0.7)})`,
+                      border: `3px solid ${hexToRgba(autoColor, 0.95)}`,
+                      boxShadow: `0 12px 40px ${hexToRgba(autoColor, 0.5)}`
+                    }}
+                  >
+                    {/* Icon */}
+                    {Icon && (
+                      <div 
+                        className="mb-4 p-3 rounded-lg inline-block" 
+                        style={{ 
+                          backgroundColor: hexToRgba(autoColor, 0.3),
+                          border: `2px solid ${autoColor}`
+                        }}
+                      >
+                        <Icon className="w-10 h-10 text-white" />
+                      </div>
+                    )}
+                    
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold mb-2 text-white">
+                      {tech.name}
+                    </h3>
+                    
+                    {/* Category + Proficiency */}
+                    <p className="text-sm text-gray-200 mb-3 font-medium">
+                      {tech.category} • {tech.proficiency}
+                    </p>
+                    
+                    {/* Description */}
+                    <p className="text-gray-100 text-sm leading-relaxed">
+                      {tech.description}
+                    </p>
+                    
+                    {/* Projects badge */}
+                    {tech.usedIn.length > 0 && (
+                      <div 
+                        className="mt-4 text-xs font-semibold px-3 py-1 rounded-full inline-block" 
+                        style={{ 
+                          color: '#0A0A0F',
+                          backgroundColor: autoColor
+                        }}
+                      >
+                        {tech.usedIn.length} projet{tech.usedIn.length > 1 ? 's' : ''}
+                      </div>
+                    )}
+                  </div>
+                </ScrollStackItem>
+              );
+            })}
+          </ScrollStack>
         </div>
+
+        {/* Tech count */}
+        <p className="text-center mt-8 text-sm text-gray-500">
+          {technologies.length} technologies maîtrisées
+        </p>
       </div>
     </section>
   );
 }
 
-function TechnologyCard({ tech, index, autoColor }: any) {
-  const Icon = iconMapper[tech.icon];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -8, scale: 1.05 }}
-      className="flex-shrink-0 w-80 p-6 rounded-xl group cursor-pointer"
-      style={{
-        background: `linear-gradient(135deg, ${autoColor}08, transparent)`,
-        border: `1px solid ${autoColor}25`,
-        scrollSnapAlign: 'start'
-      }}
-    >
-      {/* Icon & Badge */}
-      <div className="flex items-start justify-between mb-4">
-        {Icon && (
-          <motion.div
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.6 }}
-            className="p-3 rounded-lg"
-            style={{ backgroundColor: `${autoColor}15` }}
-          >
-            <Icon className="w-7 h-7" style={{ color: autoColor }} />
-          </motion.div>
-        )}
-        <Badge 
-          variant="outline"
-          style={{ 
-            borderColor: autoColor,
-            color: autoColor,
-            fontSize: '0.65rem'
-          }}
-        >
-          {tech.proficiency}
-        </Badge>
-      </div>
-
-      {/* Name */}
-      <h3 className="text-xl font-bold mb-2 group-hover:translate-x-1 transition-transform">
-        {tech.name}
-      </h3>
-
-      {/* Category */}
-      <div className="text-xs text-gray-500 mb-3 uppercase tracking-wider">
-        {tech.category}
-      </div>
-
-      {/* Description */}
-      <p className="text-sm text-gray-400 mb-4 line-clamp-3">
-        {tech.description}
-      </p>
-
-      {/* Projects */}
-      {tech.usedIn.length > 0 && (
-        <div className="flex items-center gap-2 text-xs" style={{ color: COLORS.success }}>
-          <CheckCircle className="w-3 h-3" />
-          <span>{tech.usedIn.length} projet{tech.usedIn.length > 1 ? 's' : ''}</span>
-        </div>
-      )}
-    </motion.div>
-  );
-}
-
 // ============================================================================
-// CAPABILITIES SECTION - STICKY RIGHT + SCROLLING LEFT (inverse de IA)
+// CAPABILITIES SECTION - STICKY RIGHT
 // ============================================================================
 function CapabilitiesSection({ capabilities, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -584,24 +538,25 @@ function CapabilitiesSection({ capabilities, autoColor }: any) {
               viewport={{ once: true }}
               className="p-8 rounded-2xl"
               style={{
-                background: `linear-gradient(135deg, ${autoColor}15, transparent)`,
-                border: `1px solid ${autoColor}40`
+                background: `linear-gradient(135deg, ${autoColor}70, ${autoColor}50)`,
+                border: `2px solid ${autoColor}90`,
+                boxShadow: `0 4px 20px ${autoColor}30`
               }}
             >
-              <Gauge className="w-10 h-10 mb-4" style={{ color: autoColor }} />
-              <div className="text-4xl font-bold mb-2" style={{ color: autoColor }}>
+              <Gauge className="w-10 h-10 mb-4 text-white" />
+              <div className="text-4xl font-bold mb-2 text-white">
                 {capabilities.length}
               </div>
-              <div className="text-sm text-gray-400 mb-6">
+              <div className="text-sm text-gray-200 mb-6">
                 Services d'automatisation disponibles
               </div>
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-500">Complexité moyenne</span>
+                  <span className="text-gray-300">Complexité moyenne</span>
                   <span className="font-semibold" style={{ color: COLORS.warning }}>Intermediate</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-500">ROI moyen</span>
+                  <span className="text-gray-300">ROI moyen</span>
                   <span className="font-semibold" style={{ color: COLORS.success }}>3-6 mois</span>
                 </div>
               </div>
@@ -615,15 +570,16 @@ function CapabilitiesSection({ capabilities, autoColor }: any) {
               viewport={{ once: true }}
               className="p-8 rounded-2xl"
               style={{
-                background: `radial-gradient(circle at top right, ${autoColor}15, transparent)`,
-                border: `1px solid ${autoColor}30`
+                background: `radial-gradient(circle at top right, ${autoColor}40, transparent)`,
+                border: `2px solid ${autoColor}60`,
+                boxShadow: `0 4px 20px ${autoColor}25`
               }}
             >
               <Activity className="w-8 h-8 mb-4" style={{ color: autoColor }} />
-              <h3 className="text-xl font-bold mb-3">
+              <h3 className="text-xl font-bold mb-3 text-white">
                 Diagnostic Automatisation
               </h3>
-              <p className="text-sm text-gray-400 mb-6">
+              <p className="text-sm text-gray-300 mb-6">
                 Identifiez vos processus à automatiser en priorité
               </p>
               <Link to="/contact">
@@ -665,8 +621,9 @@ function CapabilityCard({ capability, index, autoColor }: any) {
       whileHover={{ scale: 1.02, x: 8 }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
-        background: `linear-gradient(135deg, ${autoColor}10, transparent)`,
-        border: `1px solid ${autoColor}30`
+        background: `linear-gradient(135deg, ${autoColor}50, ${autoColor}30)`,
+        border: `2px solid ${autoColor}70`,
+        boxShadow: `0 4px 20px ${autoColor}25`
       }}
     >
       <div className="flex gap-6">
@@ -675,9 +632,12 @@ function CapabilityCard({ capability, index, autoColor }: any) {
           <motion.div
             whileHover={{ scale: 1.15, rotate: -10 }}
             className="flex-shrink-0 p-4 rounded-xl h-fit"
-            style={{ backgroundColor: `${autoColor}20` }}
+            style={{ 
+              background: `linear-gradient(135deg, ${autoColor}80, ${autoColor}60)`,
+              border: `2px solid ${autoColor}`
+            }}
           >
-            <Icon className="w-8 h-8" style={{ color: autoColor }} />
+            <Icon className="w-8 h-8 text-white" />
           </motion.div>
         )}
 
@@ -685,7 +645,7 @@ function CapabilityCard({ capability, index, autoColor }: any) {
         <div className="flex-grow">
           {/* Title & Badge */}
           <div className="flex items-center gap-3 mb-3">
-            <h3 className="text-2xl font-bold group-hover:translate-x-2 transition-transform">
+            <h3 className="text-2xl font-bold group-hover:translate-x-2 transition-transform text-white">
               {capability.name}
             </h3>
             <Badge 
@@ -701,12 +661,12 @@ function CapabilityCard({ capability, index, autoColor }: any) {
           </div>
 
           {/* Description */}
-          <p className="text-gray-400 mb-4">{capability.description}</p>
+          <p className="text-gray-300 mb-4">{capability.description}</p>
 
           {/* Timeline */}
           <div className="flex items-center gap-2 text-sm mb-6">
             <Clock className="w-4 h-4" style={{ color: autoColor }} />
-            <span className="text-gray-500">Durée: </span>
+            <span className="text-gray-400">Durée: </span>
             <span className="font-semibold" style={{ color: autoColor }}>{capability.timeline}</span>
           </div>
 
@@ -717,9 +677,9 @@ function CapabilityCard({ capability, index, autoColor }: any) {
                 key={idx}
                 className="text-xs px-3 py-1 rounded-full"
                 style={{
-                  backgroundColor: `${autoColor}10`,
+                  backgroundColor: `${autoColor}25`,
                   color: autoColor,
-                  border: `1px solid ${autoColor}30`
+                  border: `1px solid ${autoColor}50`
                 }}
               >
                 {deliverable.split(':')[0]}
@@ -738,7 +698,7 @@ function CapabilityCard({ capability, index, autoColor }: any) {
 }
 
 // ============================================================================
-// USE CASES SECTION - Cards Grid with Reveal
+// USE CASES SECTION - Cards Grid
 // ============================================================================
 function UseCasesSection({ useCases, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -782,7 +742,6 @@ function UseCaseCard({ useCase, index, autoColor }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.3 });
 
-  // Alternate animation direction
   const isEven = index % 2 === 0;
 
   return (
@@ -810,9 +769,10 @@ function UseCaseCard({ useCase, index, autoColor }: any) {
       }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
-        background: `linear-gradient(135deg, ${autoColor}12, transparent)`,
-        border: `1px solid ${autoColor}35`,
-        transformStyle: 'preserve-3d'
+        background: `linear-gradient(135deg, ${autoColor}50, ${autoColor}30)`,
+        border: `2px solid ${autoColor}70`,
+        transformStyle: 'preserve-3d',
+        boxShadow: `0 4px 20px ${autoColor}25`
       }}
     >
       {/* Industry Badge */}
@@ -828,12 +788,12 @@ function UseCaseCard({ useCase, index, autoColor }: any) {
       </Badge>
 
       {/* Title */}
-      <h3 className="text-2xl font-bold mb-4 group-hover:translate-x-2 transition-transform">
+      <h3 className="text-2xl font-bold mb-4 group-hover:translate-x-2 transition-transform text-white">
         {useCase.title}
       </h3>
 
       {/* Description */}
-      <p className="text-gray-400 mb-6 leading-relaxed">
+      <p className="text-gray-300 mb-6 leading-relaxed">
         {useCase.description}
       </p>
 
@@ -878,7 +838,7 @@ function UseCaseCard({ useCase, index, autoColor }: any) {
 }
 
 // ============================================================================
-// QUICK WINS SECTION - STICKY HEADER + SCROLLING CONTENT
+// QUICK WINS SECTION - STICKY HEADER
 // ============================================================================
 function QuickWinsSection({ quickWins, autoColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -887,7 +847,12 @@ function QuickWinsSection({ quickWins, autoColor }: any) {
     <section ref={sectionRef} className="py-32 px-6 relative">
       <div className="max-w-7xl mx-auto">
         {/* STICKY HEADER */}
-        <div className="sticky top-20 z-10 bg-dainamics-background/90 backdrop-blur-xl py-8 mb-12 border-b border-gray-800">
+        <div className="sticky top-20 z-10 py-8 mb-12 border-b border-gray-800"
+          style={{
+            background: `linear-gradient(135deg, ${autoColor}40, transparent)`,
+            borderColor: `${autoColor}60`
+          }}
+        >
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -902,7 +867,7 @@ function QuickWinsSection({ quickWins, autoColor }: any) {
                   Quick <span style={{ color: COLORS.success }}>Wins</span>
                 </h2>
               </div>
-              <p className="text-lg text-gray-400">
+              <p className="text-lg text-gray-300">
                 Automatisations rapides avec ROI immédiat
               </p>
             </div>
@@ -911,7 +876,7 @@ function QuickWinsSection({ quickWins, autoColor }: any) {
                 <div className="text-3xl font-bold" style={{ color: COLORS.success }}>
                   {quickWins.length}
                 </div>
-                <div className="text-sm text-gray-500">Quick Wins</div>
+                <div className="text-sm text-gray-400">Quick Wins</div>
               </div>
             </div>
           </motion.div>
@@ -950,8 +915,9 @@ function QuickWinCard({ win, index, autoColor }: any) {
       whileHover={{ y: -10, scale: 1.05 }}
       className="p-6 rounded-2xl group cursor-pointer relative overflow-hidden"
       style={{
-        background: `linear-gradient(135deg, ${COLORS.success}12, transparent)`,
-        border: `1px solid ${COLORS.success}35`
+        background: `linear-gradient(135deg, ${COLORS.success}50, ${COLORS.success}30)`,
+        border: `2px solid ${COLORS.success}70`,
+        boxShadow: `0 4px 20px ${COLORS.success}25`
       }}
     >
       {/* Quick Win Badge */}
@@ -969,18 +935,18 @@ function QuickWinCard({ win, index, autoColor }: any) {
       </div>
 
       {/* Title */}
-      <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform">
+      <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform text-white">
         {win.title}
       </h3>
 
       {/* Timeframe */}
-      <p className="text-sm text-gray-400 mb-2">
+      <p className="text-sm text-gray-300 mb-2">
         <Clock className="w-4 h-4 inline mr-2" style={{ color: COLORS.success }} />
         {win.timeframe}
       </p>
 
       {/* Investment */}
-      <p className="text-sm text-gray-400 mb-3">
+      <p className="text-sm text-gray-300 mb-3">
         {win.investment}
       </p>
 
@@ -1033,6 +999,12 @@ function CTASection({ autoColor }: { autoColor: string }) {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="relative p-16 rounded-[2rem] overflow-hidden"
+          style={{
+            background: `linear-gradient(135deg, ${autoColor}60, ${autoColor}40)`,
+            border: `3px solid ${autoColor}80`,
+            boxShadow: `0 8px 40px ${autoColor}30`
+          }}
         >
           {/* Icon */}
           <motion.div
@@ -1040,16 +1012,16 @@ function CTASection({ autoColor }: { autoColor: string }) {
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             className="inline-flex mb-8"
           >
-            <Zap className="w-16 h-16" style={{ color: autoColor }} />
+            <Zap className="w-16 h-16 text-white" />
           </motion.div>
 
           {/* Title */}
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Automatisez votre <span style={{ color: autoColor }}>croissance</span>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+            Automatisez votre <span style={{ color: '#0A0A0F' }}>croissance</span>
           </h2>
 
           {/* Description */}
-          <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 mb-12 max-w-3xl mx-auto">
             Libérez le potentiel de votre équipe en automatisant les tâches répétitives. 
             Concentrez-vous sur ce qui compte vraiment.
           </p>
@@ -1061,8 +1033,9 @@ function CTASection({ autoColor }: { autoColor: string }) {
                 size="lg"
                 className="group text-lg px-8 py-6"
                 style={{ 
-                  backgroundColor: autoColor,
-                  color: '#0A0A0F'
+                  backgroundColor: '#0A0A0F',
+                  color: autoColor,
+                  border: `2px solid ${autoColor}`
                 }}
               >
                 Démarrer l'Automatisation
@@ -1075,8 +1048,9 @@ function CTASection({ autoColor }: { autoColor: string }) {
                 variant="outline"
                 className="text-lg px-8 py-6"
                 style={{ 
-                  borderColor: autoColor,
-                  color: autoColor
+                  borderColor: '#0A0A0F',
+                  color: '#0A0A0F',
+                  backgroundColor: `${autoColor}30`
                 }}
               >
                 Explorer les Solutions
@@ -1090,7 +1064,7 @@ function CTASection({ autoColor }: { autoColor: string }) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="mt-16 flex items-center justify-center gap-8 flex-wrap text-sm text-gray-500"
+            className="mt-16 flex items-center justify-center gap-8 flex-wrap text-sm text-gray-200"
           >
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4" style={{ color: COLORS.success }} />

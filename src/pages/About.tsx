@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import AboutVision from '@/components/about/AboutVision';
 import TeamSection from '@/components/about/TeamSection';
 import ValueSection from '@/components/about/ValueSection';
@@ -16,9 +17,10 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-dainamics-background">
+      <EnhancedGridBackground />
       {/* Custom cursor effects */}
       <CursorEffects />
-      
+
       {/* Navigation */}
       <Navigation />
       

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import CommandCenterHero from '@/components/command-center/CommandCenterHero';
 import CommandCenterFeatures from '@/components/command-center/CommandCenterFeatures';
 import CommandCenterRoi from '@/components/command-center/CommandCenterRoi';
@@ -15,9 +16,10 @@ const CommandCenter = () => {
 
   return (
     <div className="min-h-screen bg-dainamics-background">
+      <EnhancedGridBackground />
       {/* Custom cursor effects */}
       <CursorEffects />
-      
+
       {/* Navigation */}
       <Navigation />
       

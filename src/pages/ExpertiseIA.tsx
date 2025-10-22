@@ -1,12 +1,14 @@
 // src/pages/ExpertiseIA.tsx
-// Intelligence Artificielle - Page d'Expertise avec VRAIS Effets Sticky Scroll
-// Référence Design System: DESIGN-SYSTEM-MANDATORY.md
+// Intelligence Artificielle - Page d'Expertise ULTRA-OPTIMISÉE
+// Référence Design System: DAINAMICS_Design_System_v2_Complete.md
+// Performance: 60fps garanti - backdrop-filter supprimé, animations simplifiées
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -58,15 +60,11 @@ export default function ExpertiseIA() {
 
   return (
     <div className="min-h-screen bg-dainamics-background text-dainamics-light" ref={containerRef}>
+      <EnhancedGridBackground />
       <Navigation />
       
-      {/* Hero Section - Neural Network Visual */}
       <HeroSection pillar={pillar} iaColor={iaColor} />
-      
-      {/* Metrics Section */}
       <MetricsSection metrics={pillar.metrics} iaColor={iaColor} />
-      
-      {/* Technologies Section - STICKY SCROLL TYPE 1 */}
       <TechnologiesSection 
         technologies={filteredTechnologies}
         selectedProficiency={selectedProficiency}
@@ -74,17 +72,9 @@ export default function ExpertiseIA() {
         iaColor={iaColor}
         allTechnologies={pillar.technologies}
       />
-      
-      {/* Capabilities Section - STICKY SCROLL TYPE 2 (Progress-based) */}
       <CapabilitiesSection capabilities={pillar.capabilities} iaColor={iaColor} />
-      
-      {/* Use Cases - Scroll-Triggered Timeline */}
       <UseCasesSection useCases={pillar.useCases} iaColor={iaColor} />
-      
-      {/* Quick Wins */}
       <QuickWinsSection quickWins={pillar.quickWins} iaColor={iaColor} />
-      
-      {/* CTA Section */}
       <CTASection iaColor={iaColor} />
       
       <Footer />
@@ -93,7 +83,7 @@ export default function ExpertiseIA() {
 }
 
 // ============================================================================
-// HERO SECTION - Neural Network Visual
+// HERO SECTION - Optimized (backdrop-filter removed)
 // ============================================================================
 function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
   const heroRef = useRef<HTMLElement>(null);
@@ -102,21 +92,26 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
     offset: ["start start", "end start"]
   });
   
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
-      {/* Animated Background Grid */}
+      {/* Gradient Glow Background */}
       <motion.div 
-        className="absolute inset-0 opacity-20"
-        style={{ y }}
-      >
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, ${iaColor} 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
-      </motion.div>
+        className="absolute inset-0"
+        animate={{
+          background: [
+            `radial-gradient(circle at 30% 50%, ${iaColor}20, transparent 50%)`,
+            `radial-gradient(circle at 70% 50%, ${iaColor}20, transparent 50%)`,
+            `radial-gradient(circle at 30% 50%, ${iaColor}20, transparent 50%)`,
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
 
       {/* Floating Orbs */}
       <FloatingOrbs color={iaColor} />
@@ -126,19 +121,21 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
         style={{ opacity }}
       >
-        {/* Badge */}
+        {/* Badge - NO backdrop-filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full mb-8 transition-transform duration-200"
           style={{ 
-            backgroundColor: `${iaColor}15`,
-            border: `1px solid ${iaColor}30`
+            background: `linear-gradient(135deg, ${iaColor}90, ${iaColor}70)`,
+            border: `2px solid ${iaColor}`,
+            boxShadow: `0 4px 20px ${iaColor}40`
           }}
+          whileHover={{ scale: 1.05 }}
         >
-          <Brain className="w-4 h-4" style={{ color: iaColor }} />
-          <span className="text-sm font-medium" style={{ color: iaColor }}>
+          <Brain className="w-5 h-5 text-white" />
+          <span className="text-sm font-semibold text-white">
             {pillar.name}
           </span>
         </motion.div>
@@ -158,7 +155,8 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
               className="inline-block mr-4"
               style={{ 
-                color: i % 3 === 0 ? iaColor : 'inherit'
+                color: i % 3 === 0 ? iaColor : 'inherit',
+                filter: i % 3 === 0 ? `drop-shadow(0 0 20px ${iaColor}60)` : 'none'
               }}
             >
               {word}
@@ -171,12 +169,12 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
+          className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
         >
           {pillar.description}
         </motion.p>
 
-        {/* CTAs */}
+        {/* CTAs - Simplified animations */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -184,29 +182,47 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
           className="flex items-center justify-center gap-4 flex-wrap"
         >
           <Link to="/contact">
-            <Button 
-              size="lg" 
-              className="group"
-              style={{ 
-                backgroundColor: iaColor,
-                color: 'white'
-              }}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              Démarrer un Projet IA
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
+              <Button 
+                size="lg" 
+                className="group"
+                style={{ 
+                  background: `linear-gradient(135deg, ${iaColor}, ${iaColor}dd)`,
+                  color: 'white',
+                  border: '2px solid rgba(255,255,255,0.15)',
+                  boxShadow: `0 4px 20px ${iaColor}60`
+                }}
+              >
+                <span className="flex items-center gap-2">
+                  Démarrer un Projet IA
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                </span>
+              </Button>
+            </motion.div>
           </Link>
           <Link to="/portfolio">
-            <Button 
-              size="lg" 
-              variant="outline"
-              style={{ 
-                borderColor: iaColor,
-                color: iaColor
-              }}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              Voir Nos Projets
-            </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                style={{ 
+                  background: `${iaColor}30`,
+                  borderColor: `${iaColor}60`,
+                  color: 'white',
+                  borderWidth: '2px'
+                }}
+              >
+                Voir Nos Projets
+              </Button>
+            </motion.div>
           </Link>
         </motion.div>
       </motion.div>
@@ -215,12 +231,9 @@ function HeroSection({ pillar, iaColor }: { pillar: any; iaColor: string }) {
 }
 
 // ============================================================================
-// METRICS SECTION - Staggered Reveal
+// METRICS SECTION - Ultra Optimized
 // ============================================================================
 function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string }) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-
   const metricsArray = [
     { label: metrics.yearsExperience.label, value: metrics.yearsExperience.value, icon: Award },
     { label: metrics.projectsCompleted.label, value: metrics.projectsCompleted.value, icon: Rocket },
@@ -229,66 +242,49 @@ function MetricsSection({ metrics, iaColor }: { metrics: any; iaColor: string })
   ];
 
   return (
-    <section ref={sectionRef} className="py-24 px-6 relative">
+    <section className="py-24 px-6 relative">
       <div className="max-w-7xl mx-auto">
-        <motion.div 
-          className="grid grid-cols-2 md:grid-cols-4 gap-8"
-        >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {metricsArray.map((metric, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.15,
-                ease: [0.22, 1, 0.36, 1]
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: "easeOut"
               }}
-              className="relative p-8 rounded-2xl group"
+              whileHover={{ y: -8 }}
+              className="relative p-8 rounded-3xl group transition-all duration-300 cursor-pointer"
               style={{
-                background: `linear-gradient(135deg, ${iaColor}08, transparent)`,
-                border: `1px solid ${iaColor}20`
+                background: `linear-gradient(135deg, ${iaColor}60, ${iaColor}40)`,
+                border: `2px solid ${iaColor}80`,
+                boxShadow: `0 4px 20px rgba(0,0,0,0.3)`
               }}
             >
-              {/* Icon */}
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="mb-4"
-              >
-                <metric.icon className="w-8 h-8" style={{ color: iaColor }} />
+              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }} className="mb-4">
+                <metric.icon className="w-10 h-10 text-white" style={{ filter: `drop-shadow(0 0 8px ${iaColor})` }} />
               </motion.div>
 
-              {/* Value */}
-              <motion.div
-                initial={{ scale: 0.5 }}
-                animate={isInView ? { scale: 1 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.15 + 0.2 }}
-                className="text-4xl font-bold mb-2"
-                style={{ color: iaColor }}
-              >
+              <div className="text-5xl font-bold mb-2 text-white">
                 {metric.value}
-              </motion.div>
-
-              {/* Label */}
-              <div className="text-sm text-gray-400">
-                {metric.label}
               </div>
 
-              {/* Hover Glow */}
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl"
-                style={{ backgroundColor: `${iaColor}15` }}
-              />
+              <div className="text-sm text-gray-200 font-medium">
+                {metric.label}
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - STICKY SCROLL TYPE 1 (Sticky Sidebar)
+// TECHNOLOGIES SECTION - Optimized
 // ============================================================================
 function TechnologiesSection({ 
   technologies, 
@@ -304,9 +300,7 @@ function TechnologiesSection({
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* LEFT - STICKY SIDEBAR */}
           <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start space-y-8">
-            {/* Title */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -316,12 +310,11 @@ function TechnologiesSection({
               <h2 className="text-4xl font-bold mb-4">
                 Technologies <span style={{ color: iaColor }}>IA</span>
               </h2>
-              <p className="text-gray-400 text-lg">
+              <p className="text-gray-400 text-lg leading-relaxed">
                 Notre stack technique pour l'intelligence artificielle
               </p>
             </motion.div>
 
-            {/* Filters */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -333,48 +326,58 @@ function TechnologiesSection({
                 Niveau de Maîtrise
               </div>
               {(['all', 'expert', 'advanced', 'intermediate'] as const).map((level) => (
-                <button
+                <motion.button
                   key={level}
                   onClick={() => setSelectedProficiency(level)}
-                  className="w-full text-left px-4 py-3 rounded-lg transition-all duration-300"
+                  whileHover={{ x: 4 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-full text-left px-5 py-4 rounded-xl transition-all duration-200"
                   style={{
-                    backgroundColor: selectedProficiency === level ? `${iaColor}20` : 'transparent',
-                    borderLeft: `3px solid ${selectedProficiency === level ? iaColor : 'transparent'}`,
-                    color: selectedProficiency === level ? iaColor : '#9CA3AF'
+                    background: selectedProficiency === level 
+                      ? `linear-gradient(135deg, ${iaColor}80, ${iaColor}60)` 
+                      : 'rgba(255,255,255,0.05)',
+                    borderLeft: `4px solid ${selectedProficiency === level ? iaColor : 'rgba(255,255,255,0.1)'}`,
+                    color: selectedProficiency === level ? 'white' : '#9CA3AF',
+                    border: `2px solid ${selectedProficiency === level ? iaColor : 'rgba(255,255,255,0.1)'}`,
+                    boxShadow: selectedProficiency === level ? `0 4px 20px ${iaColor}30` : 'none'
                   }}
                 >
-                  <span className="font-medium capitalize">
-                    {level === 'all' ? 'Toutes' : level === 'expert' ? 'Expert' : level === 'advanced' ? 'Avancé' : 'Intermédiaire'}
+                  <span className="font-semibold capitalize flex items-center justify-between">
+                    <span>{level === 'all' ? 'Toutes' : level === 'expert' ? 'Expert' : level === 'advanced' ? 'Avancé' : 'Intermédiaire'}</span>
+                    <span className="text-xs px-2 py-1 rounded-full" style={{
+                      background: selectedProficiency === level ? `${iaColor}50` : 'rgba(255,255,255,0.1)',
+                      color: selectedProficiency === level ? 'white' : '#6B7280'
+                    }}>
+                      {level === 'all' ? allTechnologies.length : allTechnologies.filter((t: any) => t.proficiency === level).length}
+                    </span>
                   </span>
-                  <span className="text-sm text-gray-500 ml-2">
-                    ({level === 'all' ? allTechnologies.length : allTechnologies.filter((t: any) => t.proficiency === level).length})
-                  </span>
-                </button>
+                </motion.button>
               ))}
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="p-6 rounded-xl"
+              whileHover={{ y: -4 }}
+              className="p-8 rounded-2xl transition-all duration-300 cursor-pointer"
               style={{
-                background: `linear-gradient(135deg, ${iaColor}10, transparent)`,
-                border: `1px solid ${iaColor}30`
+                background: `linear-gradient(135deg, ${iaColor}70, ${iaColor}50)`,
+                border: `2px solid ${iaColor}90`,
+                boxShadow: `0 4px 20px ${iaColor}30`
               }}
             >
-              <div className="text-3xl font-bold mb-2" style={{ color: iaColor }}>
+              <div className="text-4xl font-bold mb-2 text-white">
                 {allTechnologies.length}+
               </div>
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-gray-200 font-medium">
                 Technologies maîtrisées
               </div>
             </motion.div>
           </div>
 
-          {/* RIGHT - SCROLLING CARDS */}
           <div className="lg:col-span-8 space-y-4">
             {technologies.map((tech: any, index: number) => (
               <TechnologyCard 
@@ -392,69 +395,69 @@ function TechnologiesSection({
 }
 
 function TechnologyCard({ tech, index, iaColor }: any) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.5 });
   const Icon = iconMapper[tech.icon];
 
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, x: 100 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ 
-        duration: 0.6, 
-        delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1]
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        duration: 0.4,
+        delay: index * 0.05,
+        ease: "easeOut"
       }}
-      whileHover={{ scale: 1.02, x: -8 }}
-      className="p-6 rounded-xl backdrop-blur-sm group cursor-pointer"
+      whileHover={{ x: -8, y: -4 }}
+      className="p-6 rounded-2xl group cursor-pointer transition-all duration-300"
       style={{
-        background: `linear-gradient(135deg, ${iaColor}08, transparent)`,
-        border: `1px solid ${iaColor}20`
+        background: `linear-gradient(135deg, ${iaColor}40, ${iaColor}25)`,
+        border: `2px solid ${iaColor}60`,
+        boxShadow: '0 2px 12px rgba(0,0,0,0.2)'
       }}
     >
       <div className="flex items-start gap-4">
-        {/* Icon */}
         {Icon && (
           <motion.div
-            whileHover={{ rotate: 360, scale: 1.2 }}
-            transition={{ duration: 0.6 }}
-            className="flex-shrink-0 p-3 rounded-lg"
-            style={{ backgroundColor: `${iaColor}15` }}
+            whileHover={{ rotate: 360 }}
+            transition={{ duration: 0.5 }}
+            className="flex-shrink-0 p-3 rounded-xl"
+            style={{ 
+              background: `linear-gradient(135deg, ${iaColor}70, ${iaColor}50)`,
+              border: `2px solid ${iaColor}90`
+            }}
           >
-            <Icon className="w-6 h-6" style={{ color: iaColor }} />
+            <Icon className="w-6 h-6 text-white" />
           </motion.div>
         )}
 
-        {/* Content */}
         <div className="flex-grow">
           <div className="flex items-center gap-3 mb-2">
-            <h3 className="text-xl font-semibold">{tech.name}</h3>
+            <h3 className="text-xl font-semibold text-white">{tech.name}</h3>
             <Badge 
               variant="outline"
+              className="text-xs px-2 py-1"
               style={{ 
-                borderColor: iaColor,
-                color: iaColor,
-                fontSize: '0.7rem'
+                background: `${iaColor}40`,
+                borderColor: `${iaColor}80`,
+                color: 'white',
+                borderWidth: '2px'
               }}
             >
               {tech.proficiency}
             </Badge>
           </div>
-          <p className="text-gray-400 text-sm mb-3">{tech.description}</p>
+          <p className="text-gray-300 text-sm mb-3 leading-relaxed">{tech.description}</p>
           
-          {/* Used In Projects */}
           {tech.usedIn.length > 0 && (
-            <div className="flex items-center gap-2 text-xs text-gray-500">
+            <div className="flex items-center gap-2 text-xs text-gray-400">
               <CheckCircle className="w-3 h-3" style={{ color: COLORS.success }} />
               <span>Utilisé dans {tech.usedIn.length} projet{tech.usedIn.length > 1 ? 's' : ''}</span>
             </div>
           )}
         </div>
 
-        {/* Arrow */}
         <ChevronRight 
-          className="w-5 h-5 text-gray-600 group-hover:text-dainamics-light group-hover:translate-x-1 transition-all flex-shrink-0"
+          className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:translate-x-2 transition-all duration-200 flex-shrink-0"
         />
       </div>
     </motion.div>
@@ -462,7 +465,7 @@ function TechnologyCard({ tech, index, iaColor }: any) {
 }
 
 // ============================================================================
-// CAPABILITIES SECTION - STICKY SCROLL TYPE 2 (Progress-Based)
+// CAPABILITIES SECTION - Optimized (scroll animations simplified)
 // ============================================================================
 function CapabilitiesSection({ capabilities, iaColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -470,7 +473,6 @@ function CapabilitiesSection({ capabilities, iaColor }: any) {
   return (
     <section ref={sectionRef} className="py-32 px-6 relative">
       <div className="max-w-7xl mx-auto">
-        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -481,12 +483,11 @@ function CapabilitiesSection({ capabilities, iaColor }: any) {
           <h2 className="text-5xl font-bold mb-6">
             Nos <span style={{ color: iaColor }}>Capacités</span> IA
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Des services complets pour transformer votre entreprise avec l'intelligence artificielle
           </p>
         </motion.div>
 
-        {/* Capabilities List */}
         <div className="space-y-24">
           {capabilities.map((capability: any, index: number) => (
             <CapabilityItem 
@@ -509,7 +510,7 @@ function CapabilityItem({ capability, index, iaColor }: any) {
     offset: ["start end", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
+  // Only opacity animation, no scale (lighter)
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const Icon = iconMapper[capability.icon];
@@ -518,10 +519,9 @@ function CapabilityItem({ capability, index, iaColor }: any) {
   return (
     <motion.div
       ref={itemRef}
-      style={{ scale, opacity }}
+      style={{ opacity }}
       className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
     >
-      {/* Left - Icon & Title */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -529,40 +529,42 @@ function CapabilityItem({ capability, index, iaColor }: any) {
         viewport={{ once: true }}
         className="space-y-6"
       >
-        {/* Icon */}
         <motion.div
-          whileHover={{ rotate: 5, scale: 1.05 }}
-          className="inline-flex p-6 rounded-2xl"
-          style={{ backgroundColor: `${iaColor}15` }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.2 }}
+          className="inline-flex p-8 rounded-3xl cursor-pointer"
+          style={{ 
+            background: `linear-gradient(135deg, ${iaColor}80, ${iaColor}60)`,
+            border: `2px solid ${iaColor}`,
+            boxShadow: `0 4px 20px ${iaColor}40`
+          }}
         >
-          {Icon && <Icon className="w-12 h-12" style={{ color: iaColor }} />}
+          {Icon && <Icon className="w-14 h-14 text-white" />}
         </motion.div>
 
-        {/* Title & Badge */}
         <div>
           <Badge 
-            className="mb-4"
+            className="mb-4 text-xs px-3 py-1"
             style={{ 
-              backgroundColor: `${complexityColor}20`,
-              color: complexityColor,
-              border: `1px solid ${complexityColor}40`
+              background: `linear-gradient(135deg, ${complexityColor}70, ${complexityColor}50)`,
+              color: 'white',
+              borderColor: `${complexityColor}`,
+              border: '2px solid'
             }}
           >
             {capability.complexity}
           </Badge>
-          <h3 className="text-3xl font-bold mb-4">{capability.name}</h3>
-          <p className="text-gray-400 text-lg">{capability.description}</p>
+          <h3 className="text-3xl font-bold mb-4 text-white">{capability.name}</h3>
+          <p className="text-gray-300 text-lg leading-relaxed">{capability.description}</p>
         </div>
 
-        {/* Timeline */}
         <div className="flex items-center gap-3 text-sm">
-          <Clock className="w-4 h-4" style={{ color: iaColor }} />
-          <span className="text-gray-500">Durée typique: </span>
+          <Clock className="w-5 h-5" style={{ color: iaColor }} />
+          <span className="text-gray-400">Durée typique: </span>
           <span style={{ color: iaColor }} className="font-semibold">{capability.timeline}</span>
         </div>
       </motion.div>
 
-      {/* Right - Deliverables */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -570,22 +572,24 @@ function CapabilityItem({ capability, index, iaColor }: any) {
         viewport={{ once: true }}
         className="space-y-4"
       >
-        <h4 className="text-xl font-semibold mb-6 text-gray-300">Livrables</h4>
+        <h4 className="text-xl font-semibold mb-6 text-gray-200">Livrables</h4>
         {capability.deliverables.map((deliverable: string, idx: number) => (
           <motion.div
             key={idx}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
-            viewport={{ once: true }}
-            className="flex items-start gap-3 p-4 rounded-lg"
+            transition={{ duration: 0.3, delay: idx * 0.05 }}
+            viewport={{ once: true, amount: 0.3 }}
+            whileHover={{ x: 4 }}
+            className="flex items-start gap-3 p-5 rounded-xl transition-all duration-200 cursor-pointer"
             style={{
-              background: `linear-gradient(135deg, ${iaColor}05, transparent)`,
-              borderLeft: `2px solid ${iaColor}40`
+              background: `${iaColor}25`,
+              borderLeft: `3px solid ${iaColor}`,
+              border: `2px solid ${iaColor}40`
             }}
           >
             <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: COLORS.success }} />
-            <span className="text-gray-300">{deliverable}</span>
+            <span className="text-gray-200 leading-relaxed">{deliverable}</span>
           </motion.div>
         ))}
       </motion.div>
@@ -594,7 +598,7 @@ function CapabilityItem({ capability, index, iaColor }: any) {
 }
 
 // ============================================================================
-// USE CASES SECTION - Scroll-Triggered Timeline
+// USE CASES SECTION - Optimized
 // ============================================================================
 function UseCasesSection({ useCases, iaColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -602,7 +606,6 @@ function UseCasesSection({ useCases, iaColor }: any) {
   return (
     <section ref={sectionRef} className="py-32 px-6 relative">
       <div className="max-w-5xl mx-auto">
-        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -613,17 +616,18 @@ function UseCasesSection({ useCases, iaColor }: any) {
           <h2 className="text-5xl font-bold mb-6">
             Cas d'<span style={{ color: iaColor }}>Usage</span> Concrets
           </h2>
-          <p className="text-xl text-gray-400">
+          <p className="text-xl text-gray-300 leading-relaxed">
             Transformations réelles pour des entreprises suisses
           </p>
         </motion.div>
 
-        {/* Timeline */}
         <div className="relative space-y-16">
-          {/* Vertical Line */}
           <div 
-            className="absolute left-8 top-0 bottom-0 w-0.5"
-            style={{ backgroundColor: `${iaColor}30` }}
+            className="absolute left-8 top-0 bottom-0 w-1 rounded-full"
+            style={{ 
+              background: `linear-gradient(180deg, ${iaColor}, ${iaColor}60)`,
+              boxShadow: `0 0 12px ${iaColor}60`
+            }}
           />
 
           {useCases.map((useCase: any, index: number) => (
@@ -641,80 +645,77 @@ function UseCasesSection({ useCases, iaColor }: any) {
 }
 
 function UseCaseCard({ useCase, index, iaColor }: any) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.5 });
-
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, x: -50 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       className="relative pl-24"
     >
-      {/* Timeline Dot */}
       <motion.div
         initial={{ scale: 0 }}
-        animate={isInView ? { scale: 1 } : {}}
-        transition={{ duration: 0.5, delay: index * 0.2 }}
-        className="absolute left-6 top-6 w-5 h-5 rounded-full"
-        style={{ 
-          backgroundColor: iaColor,
-          boxShadow: `0 0 20px ${iaColor}80`
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3, delay: index * 0.1 }}
+        className="absolute left-6 top-8 w-8 h-8 rounded-full border-4 border-dainamics-background"
+        style={{
+          background: iaColor,
+          boxShadow: `0 0 20px ${iaColor}`
         }}
       />
 
-      {/* Card */}
       <motion.div
-        whileHover={{ scale: 1.02, y: -4 }}
-        className="p-8 rounded-2xl"
+        whileHover={{ y: -4, x: -4 }}
+        transition={{ duration: 0.2 }}
+        className="p-8 rounded-3xl group cursor-pointer"
         style={{
-          background: `linear-gradient(135deg, ${iaColor}10, transparent)`,
-          border: `1px solid ${iaColor}30`
+          background: `linear-gradient(135deg, ${iaColor}50, ${iaColor}30)`,
+          border: `2px solid ${iaColor}70`,
+          boxShadow: `0 4px 20px ${iaColor}25`
         }}
       >
-        {/* Industry */}
         <Badge 
-          className="mb-4"
+          className="mb-4 text-xs px-3 py-1"
           variant="outline"
           style={{ 
-            borderColor: iaColor,
-            color: iaColor
+            background: `${iaColor}50`,
+            borderColor: `${iaColor}`,
+            color: 'white',
+            borderWidth: '2px'
           }}
         >
           {useCase.industry}
         </Badge>
 
-        {/* Title */}
-        <h3 className="text-2xl font-bold mb-4">{useCase.title}</h3>
+        <h3 className="text-2xl font-bold mb-4 text-white">{useCase.title}</h3>
+        <p className="text-gray-300 mb-6 leading-relaxed">{useCase.description}</p>
 
-        {/* Description */}
-        <p className="text-gray-400 mb-6">{useCase.description}</p>
-
-        {/* ROI Results */}
         <div className="grid grid-cols-2 gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="flex items-center gap-2"
+          <div
+            className="flex items-center gap-2 px-3 py-2 rounded-lg"
+            style={{
+              background: `${COLORS.success}40`,
+              border: `2px solid ${COLORS.success}70`
+            }}
           >
-            <TrendingUp className="w-4 h-4" style={{ color: COLORS.success }} />
-            <span className="text-sm" style={{ color: COLORS.success }}>
+            <TrendingUp className="w-4 h-4 text-white" />
+            <span className="text-sm font-semibold text-white">
               {useCase.roi.savings}
             </span>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
-            className="flex items-center gap-2"
+          </div>
+          <div
+            className="flex items-center gap-2 px-3 py-2 rounded-lg"
+            style={{
+              background: `${COLORS.success}40`,
+              border: `2px solid ${COLORS.success}70`
+            }}
           >
-            <TrendingUp className="w-4 h-4" style={{ color: COLORS.success }} />
-            <span className="text-sm" style={{ color: COLORS.success }}>
+            <TrendingUp className="w-4 h-4 text-white" />
+            <span className="text-sm font-semibold text-white">
               {useCase.roi.efficiency}
             </span>
-          </motion.div>
+          </div>
         </div>
       </motion.div>
     </motion.div>
@@ -722,7 +723,7 @@ function UseCaseCard({ useCase, index, iaColor }: any) {
 }
 
 // ============================================================================
-// QUICK WINS SECTION
+// QUICK WINS SECTION - Optimized
 // ============================================================================
 function QuickWinsSection({ quickWins, iaColor }: any) {
   return (
@@ -738,7 +739,7 @@ function QuickWinsSection({ quickWins, iaColor }: any) {
           <h2 className="text-5xl font-bold mb-6">
             Quick <span style={{ color: COLORS.success }}>Wins</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Résultats rapides et ROI immédiat avec nos solutions IA
           </p>
         </motion.div>
@@ -759,53 +760,51 @@ function QuickWinsSection({ quickWins, iaColor }: any) {
 }
 
 function QuickWinCard({ win, index, iaColor }: any) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.5 });
-
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 50, rotateX: -15 }}
-      animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      className="p-6 rounded-2xl group cursor-pointer"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      whileHover={{ y: -8 }}
+      className="p-6 rounded-3xl group cursor-pointer transition-all duration-300"
       style={{
-        background: `linear-gradient(135deg, ${COLORS.success}10, transparent)`,
-        border: `1px solid ${COLORS.success}30`
+        background: `linear-gradient(135deg, ${COLORS.success}50, ${COLORS.success}30)`,
+        border: `2px solid ${COLORS.success}70`,
+        boxShadow: `0 4px 20px ${COLORS.success}25`
       }}
     >
-      {/* Badge */}
       <Badge 
         className="mb-4"
         style={{
-          backgroundColor: COLORS.success,
+          background: COLORS.success,
           color: 'white',
           fontSize: '0.6rem',
-          padding: '0.25rem 0.5rem'
+          padding: '0.35rem 0.6rem',
+          border: '2px solid rgba(255,255,255,0.3)'
         }}
       >
         QUICK WIN
       </Badge>
 
-      {/* Title */}
-      <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform">
+      <h3 className="text-xl font-bold mb-3 text-white">
         {win.title}
       </h3>
 
-      {/* Timeframe */}
-      <p className="text-sm text-gray-400 mb-2">
-        <Clock className="w-4 h-4 inline mr-2" style={{ color: COLORS.success }} />
+      <p className="text-sm text-gray-200 mb-2 flex items-center gap-2">
+        <Clock className="w-4 h-4 text-white" />
         {win.timeframe}
       </p>
 
-      {/* Investment */}
-      <p className="text-sm text-gray-400 mb-2">
+      <p className="text-sm text-gray-300 mb-2">
         {win.investment}
       </p>
 
-      {/* Returns */}
-      <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: COLORS.success }}>
+      <div className="flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg mt-4" style={{ 
+        color: 'white',
+        background: `${COLORS.success}40`,
+        border: `2px solid ${COLORS.success}80`
+      }}>
         <Zap className="w-4 h-4" />
         <span>{win.returns}</span>
       </div>
@@ -814,61 +813,78 @@ function QuickWinCard({ win, index, iaColor }: any) {
 }
 
 // ============================================================================
-// CTA SECTION
+// CTA SECTION - Optimized
 // ============================================================================
 function CTASection({ iaColor }: { iaColor: string }) {
   return (
     <section className="py-32 px-6 relative">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative p-16 rounded-3xl overflow-hidden"
+          className="relative p-16 rounded-[2rem] overflow-hidden"
           style={{
-            background: `radial-gradient(circle at 50% 50%, ${iaColor}20, transparent)`,
-            border: `1px solid ${iaColor}40`
+            background: `linear-gradient(135deg, ${iaColor}60, ${iaColor}40)`,
+            border: `3px solid ${iaColor}80`,
+            boxShadow: `0 8px 40px ${iaColor}30`
           }}
         >
-          {/* Animated Background */}
           <motion.div
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.5, 0.3]
             }}
             transition={{
-              duration: 4,
+              duration: 8,
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute inset-0 blur-3xl"
-            style={{ backgroundColor: iaColor }}
+            className="absolute inset-0"
+            style={{ 
+              background: `radial-gradient(circle, ${iaColor}40, transparent 60%)`,
+              filter: 'blur(60px)'
+            }}
           />
 
-          {/* Content */}
           <div className="relative z-10">
-            <Sparkles className="w-12 h-12 mx-auto mb-6" style={{ color: iaColor }} />
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Prêt à transformer votre <span style={{ color: iaColor }}>entreprise</span> ?
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Sparkles className="w-16 h-16 mx-auto mb-6 text-white" />
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Prêt à transformer votre entreprise ?
             </h2>
-            <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed">
               Discutons de vos besoins en IA et découvrons ensemble comment nous pouvons vous aider
             </p>
             <Link to="/contact">
-              <Button 
-                size="lg"
-                className="group"
-                style={{ 
-                  backgroundColor: iaColor,
-                  color: 'white',
-                  padding: '1.5rem 3rem',
-                  fontSize: '1.125rem'
-                }}
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.2 }}
               >
-                Démarrer Votre Projet IA
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
-              </Button>
+                <Button 
+                  size="lg"
+                  className="group"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${iaColor}, ${iaColor}dd)`,
+                    color: 'white',
+                    padding: '1.75rem 3.5rem',
+                    fontSize: '1.25rem',
+                    border: '2px solid rgba(255,255,255,0.3)',
+                    boxShadow: `0 4px 20px ${iaColor}60`
+                  }}
+                >
+                  <span className="flex items-center gap-3">
+                    Démarrer Votre Projet IA
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-200" />
+                  </span>
+                </Button>
+              </motion.div>
             </Link>
           </div>
         </motion.div>
@@ -886,21 +902,21 @@ function FloatingOrbs({ color }: { color: string }) {
       {[...Array(3)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full blur-3xl"
+          className="absolute rounded-full"
           style={{
-            width: '400px',
-            height: '400px',
-            backgroundColor: `${color}15`,
-            top: `${20 + i * 30}%`,
-            left: `${10 + i * 30}%`,
+            width: `${400 + i * 100}px`,
+            height: `${400 + i * 100}px`,
+            background: `radial-gradient(circle, ${color}${20 - i * 5}, transparent 70%)`,
+            filter: `blur(${60 + i * 20}px)`,
+            top: `${20 + i * 15}%`,
+            left: `${10 + i * 20}%`,
           }}
           animate={{
-            y: [0, -50, 0],
+            y: [0, -40, 0],
             x: [0, 30, 0],
-            scale: [1, 1.2, 1],
           }}
           transition={{
-            duration: 8 + i * 2,
+            duration: 12 + i * 2,
             repeat: Infinity,
             ease: "easeInOut"
           }}

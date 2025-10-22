@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -38,6 +39,7 @@ export default function Expertise() {
 
   return (
     <div className="min-h-screen bg-dainamics-background">
+      <EnhancedGridBackground />
       <Navigation />
 
       {/* Hero Section */}

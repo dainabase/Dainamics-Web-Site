@@ -452,6 +452,76 @@ Dainamics-Web-Site/
 
 ---
 
+## 📚 Ressources Documentation
+
+### Avant de Créer une Page
+
+**OBLIGATOIRE:** Consulter ces documents dans cet ordre :
+
+1. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Où cette page s'intègre-t-elle ?
+   - Structure menu optimale (6 items, 2 niveaux max)
+   - Parcours utilisateur
+   - Hiérarchie information
+
+2. **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** - Comment rédiger le contenu ?
+   - Principes fondamentaux (langage business, quantifier)
+   - Tone of Voice DAINAMICS
+   - Guidelines rédaction (longueurs, structure)
+   - Templates pages types
+
+3. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Cette tâche est-elle priorisée ?
+   - Plan 24 semaines
+   - Phase actuelle
+   - Tâches prioritaires
+
+### Avant de Coder
+
+**OBLIGATOIRE:** Vérifier :
+
+1. **[STATUS.md](./STATUS.md)** - État actuel du projet
+   - Progression globale
+   - Ce qui est terminé/en cours/à faire
+   - Problèmes identifiés
+   - Prochaines actions prioritaires
+
+2. **[PRIORITIES.md](./PRIORITIES.md)** - Priorité de cette tâche (P0/P1/P2/P3)
+   - Tableau priorisation complet
+   - Impact vs Effort
+   - Semaines recommandées
+
+3. **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Specs techniques
+   - Stack technique
+   - Structure complète
+   - Design System détaillé
+   - Animations Framer Motion
+
+4. **[DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)** ⭐ - Design System exhaustif
+   - Palette complète (Primary, Secondary, CTA, Success)
+   - Typographie, Spacing, Composants UI (13 composants)
+   - Animations & Effets, Patterns de design
+   - JavaScript/Canvas Effects, Responsive Design
+
+### Pour Planifier Sprint
+
+**Consulter dans cet ordre:**
+
+1. **[PRIORITIES.md](./PRIORITIES.md)** - Tableau priorisation
+   - Tâches P0 (Critique - Semaines 1-4)
+   - Tâches P1 (Important - Semaines 5-12)
+   - Vue d'ensemble impact/effort
+
+2. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Détails tâches
+   - Phase 1: Quick Wins (Semaines 1-4)
+   - Phase 2: Contenu & Différenciation (Semaines 5-12)
+   - Phase 3: Optimisation & Scale (Semaines 13-24)
+
+3. **[STATUS.md](./STATUS.md)** - Ce qui est en cours
+   - État actuel Phase 1
+   - Blocages éventuels
+   - Métriques de succès
+
+---
+
 ## 🔍 Checklist Avant Chaque Commit
 
 ### Code Quality
@@ -572,8 +642,14 @@ Le `.gitignore` est configuré pour bloquer ces fichiers.
 ### Ordre de Lecture
 1. **README.md** - Vue d'ensemble et quick start
 2. **WORKFLOW.md** - Ce document (processus + standards prompts)
-3. **ARCHITECTURE.md** - Specs techniques complètes (81KB)
-4. **PROMPT-CONTEXT.md** - Contexte pour conversations IA
+3. **STATUS.md** - État actuel du projet
+4. **PRIORITIES.md** - Priorisation P0/P1/P2/P3
+5. **TRANSFORMATION-PLAN.md** - Plan 24 semaines complet
+6. **NAVIGATION-ARCHITECTURE.md** - Structure menu optimale
+7. **CONTENT-STRATEGY.md** - Guidelines contenu et rédaction
+8. **ARCHITECTURE.md** - Specs techniques complètes (81KB)
+9. **DAINAMICS_Design_System_v2_Complete.md** ⭐ - Design System exhaustif (61.3 KB)
+10. **PROMPT-CONTEXT.md** - Contexte pour conversations IA
 
 ### Pour Chaque Type de Tâche
 - **Créer données** → Voir ARCHITECTURE.md section "Data Structures"
@@ -581,6 +657,7 @@ Le `.gitignore` est configuré pour bloquer ces fichiers.
 - **Créer pages** → Voir ARCHITECTURE.md section "Pages Structure"
 - **Animations** → Voir ARCHITECTURE.md section "Framer Motion"
 - **Créer prompts** → Voir cette section "Standards de Prompts"
+- **Planifier** → Voir STATUS.md + PRIORITIES.md + TRANSFORMATION-PLAN.md
 
 ---
 
@@ -612,5 +689,5 @@ Le `.gitignore` est configuré pour bloquer ces fichiers.
 
 ---
 
-*DAINAMICS - Workflow v1.1 - 11 Octobre 2025*  
+*DAINAMICS - Workflow v1.2 - 13 Octobre 2025*  
 *Développement Structuré et Professionnel*

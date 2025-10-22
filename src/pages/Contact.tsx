@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,6 +11,7 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 export default function Contact() {
   return (
     <div className="min-h-screen bg-dainamics-background text-dainamics-light">
+      <EnhancedGridBackground />
       <Navigation />
 
       <section className="pt-32 pb-16 px-4 md:px-8 lg:px-16">

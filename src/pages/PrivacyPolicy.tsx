@@ -4,6 +4,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 
 export default function PrivacyPolicy() {
   const fadeInUpVariants = {
@@ -13,6 +14,7 @@ export default function PrivacyPolicy() {
 
   return (
     <div className="min-h-screen bg-dainamics-background">
+      <EnhancedGridBackground />
       <Navigation />
       
       {/* Header */}

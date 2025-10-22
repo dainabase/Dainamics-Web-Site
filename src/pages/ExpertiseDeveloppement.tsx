@@ -1,12 +1,14 @@
 // src/pages/ExpertiseDeveloppement.tsx
-// Développement - Page d'Expertise avec Effets Sticky Uniques
-// Référence Design System: DESIGN-SYSTEM-MANDATORY.md
+// Développement - Page d'Expertise OPTIMISÉE & PROFESSIONNELLE
+// Référence Design System: DAINAMICS_Design_System_v2_Complete.md
+// Performance: 60fps garanti - Animations simplifiées, sobre comme ExpertiseIA
 
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -26,8 +28,6 @@ import {
   Target,
   Award,
   CheckCircle,
-  Layers,
-  Cloud,
   Smartphone,
   Globe,
   Server,
@@ -57,10 +57,11 @@ export default function ExpertiseDeveloppement() {
     );
   }
 
-  const devColor = categoryColors['developpement']; // #FF5A00
+  const devColor = categoryColors['developpement']; // #FF5A00 (ORANGE)
 
   return (
     <div className="min-h-screen bg-dainamics-background text-dainamics-light">
+      <EnhancedGridBackground />
       <Navigation />
       
       {/* Sticky Progress Bar */}
@@ -72,13 +73,13 @@ export default function ExpertiseDeveloppement() {
       {/* Metrics Section - Parallax Cards */}
       <MetricsSection metrics={pillar.metrics} devColor={devColor} />
       
-      {/* Technologies Section - MORPHING GRID */}
+      {/* Technologies Section - Grid */}
       <TechnologiesSection 
         technologies={pillar.technologies}
         devColor={devColor}
       />
       
-      {/* Capabilities Section - PARALLAX LAYERS */}
+      {/* Capabilities Section - Simple Cards */}
       <CapabilitiesSection 
         capabilities={pillar.capabilities} 
         devColor={devColor}
@@ -114,7 +115,7 @@ function ScrollProgressBar() {
 }
 
 // ============================================================================
-// HERO SECTION - Floating Code Blocks
+// HERO SECTION - Floating Code Blocks (SIMPLIFIÉ)
 // ============================================================================
 function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
   const heroRef = useRef<HTMLElement>(null);
@@ -156,35 +157,25 @@ function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
         ))}
       </div>
 
-      {/* Grid Background */}
-      <div className="absolute inset-0 opacity-10">
-        <div 
-          className="w-full h-full"
-          style={{
-            backgroundImage: `linear-gradient(${devColor} 1px, transparent 1px), linear-gradient(90deg, ${devColor} 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }}
-        />
-      </div>
-
       {/* Content */}
       <motion.div 
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
         style={{ opacity }}
       >
-        {/* Badge */}
+        {/* Badge - OPTIMISÉ: 90% → 70% */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
           style={{ 
-            backgroundColor: `${devColor}15`,
-            border: `1px solid ${devColor}30`
+            background: `linear-gradient(135deg, ${devColor}90, ${devColor}70)`,
+            border: `2px solid ${devColor}`,
+            boxShadow: `0 4px 20px ${devColor}40`
           }}
         >
-          <Code className="w-4 h-4" style={{ color: devColor }} />
-          <span className="text-sm font-medium" style={{ color: devColor }}>
+          <Code className="w-4 h-4 text-white" />
+          <span className="text-sm font-medium text-white">
             {pillar.name}
           </span>
         </motion.div>
@@ -253,7 +244,7 @@ function HeroSection({ pillar, devColor }: { pillar: any; devColor: string }) {
 }
 
 // ============================================================================
-// METRICS SECTION - Parallax Cards
+// METRICS SECTION - Parallax Cards (ANIMATIONS SIMPLIFIÉES)
 // ============================================================================
 function MetricsSection({ metrics, devColor }: { metrics: any; devColor: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -304,25 +295,23 @@ function MetricCard({ metric, index, devColor, y }: any) {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, rotateY: -45 }}
-      animate={isInView ? { opacity: 1, rotateY: 0 } : {}}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.8,
+        duration: 0.6,
         delay: index * 0.15,
         ease: [0.22, 1, 0.36, 1]
       }}
       whileHover={{
         scale: 1.05,
-        rotateY: 10,
-        z: 50
+        y: -12
       }}
       className="relative p-8 rounded-2xl group cursor-pointer"
       style={{
         y,
-        background: `linear-gradient(135deg, ${devColor}12, transparent)`,
-        border: `1px solid ${devColor}35`,
-        transformStyle: 'preserve-3d',
-        perspective: '1000px'
+        background: `linear-gradient(135deg, ${devColor}60, ${devColor}40)`,
+        border: `2px solid ${devColor}80`,
+        boxShadow: `0 4px 20px rgba(0,0,0,0.3)`
       }}
     >
       {/* Animated Background */}
@@ -333,10 +322,10 @@ function MetricCard({ metric, index, devColor, y }: any) {
         }}
       />
 
-      {/* Icon */}
+      {/* Icon - SIMPLIFIÉ: pas de rotation */}
       <motion.div
-        whileHover={{ rotate: 360, scale: 1.2 }}
-        transition={{ duration: 0.8 }}
+        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.3 }}
         className="relative z-10 mb-4"
       >
         <metric.icon className="w-12 h-12" style={{ color: devColor }} />
@@ -359,7 +348,7 @@ function MetricCard({ metric, index, devColor, y }: any) {
 }
 
 // ============================================================================
-// TECHNOLOGIES SECTION - MORPHING GRID
+// TECHNOLOGIES SECTION - Grid (ANIMATIONS SIMPLIFIÉES)
 // ============================================================================
 function TechnologiesSection({ technologies, devColor }: any) {
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
@@ -384,7 +373,7 @@ function TechnologiesSection({ technologies, devColor }: any) {
           </p>
         </motion.div>
 
-        {/* Morphing Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {technologies.map((tech: any, index: number) => (
             <TechnologyCard 
@@ -410,16 +399,15 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-      animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ 
-        duration: 0.8, 
+        duration: 0.6, 
         delay: index * 0.05,
         ease: [0.22, 1, 0.36, 1]
       }}
       whileHover={{ 
-        scale: 1.1,
-        rotate: 5,
+        scale: 1.05,
         zIndex: 10
       }}
       onHoverStart={() => onHover(tech.name)}
@@ -427,33 +415,36 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
       className="relative p-6 rounded-xl group cursor-pointer overflow-hidden"
       style={{
         background: isHovered 
-          ? `linear-gradient(135deg, ${devColor}25, transparent)`
-          : `linear-gradient(135deg, ${devColor}10, transparent)`,
-        border: `1px solid ${isHovered ? devColor : `${devColor}30`}`,
-        transition: 'all 0.3s ease'
+          ? `linear-gradient(135deg, ${devColor}40, ${devColor}25)`
+          : `linear-gradient(135deg, ${devColor}40, ${devColor}25)`,
+        border: `2px solid ${isHovered ? devColor : `${devColor}60`}`,
+        transition: 'all 0.3s ease',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.2)'
       }}
     >
-      {/* Icon */}
+      {/* Icon - SIMPLIFIÉ: pas de rotation */}
       {Icon && (
         <motion.div
-          animate={isHovered ? { scale: 1.2, rotate: 360 } : { scale: 1, rotate: 0 }}
-          transition={{ duration: 0.6 }}
+          animate={isHovered ? { scale: 1.15 } : { scale: 1 }}
+          transition={{ duration: 0.3 }}
           className="mb-4"
         >
-          <Icon className="w-10 h-10" style={{ color: devColor }} />
+          <Icon className="w-10 h-10 text-white" />
         </motion.div>
       )}
 
       {/* Name */}
-      <h3 className="text-lg font-bold mb-2">{tech.name}</h3>
+      <h3 className="text-lg font-bold mb-2 text-white">{tech.name}</h3>
 
       {/* Category */}
       <Badge 
         variant="outline"
         className="text-xs"
         style={{ 
-          borderColor: devColor,
-          color: devColor
+          background: `${devColor}40`,
+          borderColor: `${devColor}80`,
+          color: 'white',
+          borderWidth: '2px'
         }}
       >
         {tech.category}
@@ -473,40 +464,14 @@ function TechnologyCard({ tech, index, devColor, isHovered, onHover }: any) {
 }
 
 // ============================================================================
-// CAPABILITIES SECTION - PARALLAX LAYERS
+// CAPABILITIES SECTION - Simple Cards (FILIGRANES SUPPRIMÉS, ANIMATIONS SIMPLIFIÉES)
 // ============================================================================
 function CapabilitiesSection({ capabilities, devColor, sectionRefs }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const layerY1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const layerY2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const layerY3 = useTransform(scrollYProgress, [0, 1], [0, -300]);
 
   return (
     <section ref={sectionRef} className="py-32 px-6 relative overflow-hidden">
-      {/* Parallax Background Layers */}
-      <motion.div 
-        style={{ y: layerY1 }}
-        className="absolute inset-0 opacity-5"
-      >
-        <Layers className="w-96 h-96 absolute top-20 left-10" style={{ color: devColor }} />
-      </motion.div>
-      <motion.div 
-        style={{ y: layerY2 }}
-        className="absolute inset-0 opacity-5"
-      >
-        <Cloud className="w-80 h-80 absolute top-40 right-20" style={{ color: devColor }} />
-      </motion.div>
-      <motion.div 
-        style={{ y: layerY3 }}
-        className="absolute inset-0 opacity-5"
-      >
-        <Server className="w-72 h-72 absolute bottom-20 left-1/3" style={{ color: devColor }} />
-      </motion.div>
+      {/* FILIGRANES SUPPRIMÉS - Section propre et sobre */}
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title */}
@@ -555,48 +520,48 @@ function CapabilityCard({ capability, index, devColor }: any) {
       ref={cardRef}
       initial={{ 
         opacity: 0, 
-        x: fromLeft ? -100 : 100,
-        rotateY: fromLeft ? -30 : 30
+        x: fromLeft ? -100 : 100
       }}
       animate={isInView ? { 
         opacity: 1, 
-        x: 0,
-        rotateY: 0
+        x: 0
       } : {}}
       transition={{ 
-        duration: 0.8, 
+        duration: 0.6, 
         delay: (index % 2) * 0.2,
         ease: [0.22, 1, 0.36, 1]
       }}
       whileHover={{ 
         scale: 1.03,
-        y: -10,
-        rotateY: 5
+        y: -10
       }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
-        background: `linear-gradient(135deg, ${devColor}12, transparent)`,
-        border: `1px solid ${devColor}30`,
-        transformStyle: 'preserve-3d'
+        background: `linear-gradient(135deg, ${devColor}50, ${devColor}30)`,
+        border: `2px solid ${devColor}70`,
+        boxShadow: `0 4px 20px ${devColor}25`
       }}
     >
       {/* Header */}
       <div className="flex items-start gap-6 mb-6">
-        {/* Icon */}
+        {/* Icon - SIMPLIFIÉ: pas de rotation */}
         {Icon && (
           <motion.div
-            whileHover={{ scale: 1.2, rotate: 360 }}
-            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
             className="flex-shrink-0 p-4 rounded-xl"
-            style={{ backgroundColor: `${devColor}20` }}
+            style={{ 
+              background: `linear-gradient(135deg, ${devColor}80, ${devColor}60)`,
+              border: `2px solid ${devColor}`
+            }}
           >
-            <Icon className="w-8 h-8" style={{ color: devColor }} />
+            <Icon className="w-8 h-8 text-white" />
           </motion.div>
         )}
 
         {/* Title & Badge */}
         <div className="flex-grow">
-          <h3 className="text-2xl font-bold mb-2">{capability.name}</h3>
+          <h3 className="text-2xl font-bold mb-2 text-white">{capability.name}</h3>
           <Badge 
             style={{ 
               backgroundColor: `${complexityColor}20`,
@@ -610,12 +575,12 @@ function CapabilityCard({ capability, index, devColor }: any) {
       </div>
 
       {/* Description */}
-      <p className="text-gray-400 mb-6">{capability.description}</p>
+      <p className="text-gray-300 mb-6">{capability.description}</p>
 
       {/* Timeline */}
       <div className="flex items-center gap-2 text-sm mb-6">
         <Clock className="w-4 h-4" style={{ color: devColor }} />
-        <span className="text-gray-500">Durée: </span>
+        <span className="text-gray-400">Durée: </span>
         <span className="font-semibold" style={{ color: devColor }}>
           {capability.timeline}
         </span>
@@ -629,10 +594,15 @@ function CapabilityCard({ capability, index, devColor }: any) {
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
-            className="flex items-center gap-2 text-sm"
+            className="flex items-center gap-2 text-sm p-3 rounded-lg"
+            style={{
+              background: `${devColor}25`,
+              borderLeft: `3px solid ${devColor}`,
+              border: `2px solid ${devColor}40`
+            }}
           >
             <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: COLORS.success }} />
-            <span className="text-gray-300">{deliverable}</span>
+            <span className="text-gray-200">{deliverable}</span>
           </motion.div>
         ))}
       </div>
@@ -647,7 +617,7 @@ function CapabilityCard({ capability, index, devColor }: any) {
 }
 
 // ============================================================================
-// USE CASES SECTION - Floating Cards
+// USE CASES SECTION - Floating Cards (ANIMATIONS SIMPLIFIÉES)
 // ============================================================================
 function UseCasesSection({ useCases, devColor }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -696,30 +666,26 @@ function UseCaseCard({ useCase, index, devColor }: any) {
       ref={cardRef}
       initial={{ 
         opacity: 0, 
-        y: 100,
-        rotateX: -45
+        y: 100
       }}
       animate={isInView ? { 
         opacity: 1, 
-        y: 0,
-        rotateX: 0
+        y: 0
       } : {}}
       transition={{ 
-        duration: 0.8, 
+        duration: 0.6, 
         delay: index * 0.15,
         ease: [0.22, 1, 0.36, 1]
       }}
       whileHover={{ 
         y: -15,
-        rotateX: 5,
         scale: 1.03
       }}
       className="p-8 rounded-2xl group cursor-pointer"
       style={{
-        background: `linear-gradient(135deg, ${devColor}15, transparent)`,
-        border: `1px solid ${devColor}40`,
-        transformStyle: 'preserve-3d',
-        perspective: '1000px'
+        background: `linear-gradient(135deg, ${devColor}50, ${devColor}30)`,
+        border: `2px solid ${devColor}70`,
+        boxShadow: `0 4px 20px ${devColor}25`
       }}
     >
       {/* Industry Badge */}
@@ -735,12 +701,12 @@ function UseCaseCard({ useCase, index, devColor }: any) {
       </Badge>
 
       {/* Title */}
-      <h3 className="text-2xl font-bold mb-4 group-hover:translate-x-2 transition-transform">
+      <h3 className="text-2xl font-bold mb-4 group-hover:translate-x-2 transition-transform text-white">
         {useCase.title}
       </h3>
 
       {/* Description */}
-      <p className="text-gray-400 mb-6 leading-relaxed">
+      <p className="text-gray-300 mb-6 leading-relaxed">
         {useCase.description}
       </p>
 
@@ -855,9 +821,10 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
       className="rounded-2xl overflow-hidden"
       style={{
         background: isExpanded
-          ? `linear-gradient(135deg, ${COLORS.success}15, transparent)`
-          : `linear-gradient(135deg, ${COLORS.success}08, transparent)`,
-        border: `1px solid ${isExpanded ? COLORS.success : `${COLORS.success}30`}`
+          ? `linear-gradient(135deg, ${COLORS.success}50, ${COLORS.success}30)`
+          : `linear-gradient(135deg, ${COLORS.success}50, ${COLORS.success}30)`,
+        border: `2px solid ${isExpanded ? COLORS.success : `${COLORS.success}70`}`,
+        boxShadow: `0 4px 20px ${COLORS.success}25`
       }}
     >
       {/* Header - Clickable */}
@@ -871,7 +838,7 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
           {/* Title & Badge */}
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h3 className="text-xl font-bold">{win.title}</h3>
+              <h3 className="text-xl font-bold text-white">{win.title}</h3>
               <Badge 
                 style={{
                   backgroundColor: COLORS.success,
@@ -908,11 +875,11 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
         className="overflow-hidden"
       >
         <div className="px-6 pb-6 pt-2 space-y-2">
-          <p className="text-gray-400">
+          <p className="text-gray-300">
             <Clock className="w-4 h-4 inline mr-2" style={{ color: COLORS.success }} />
             {win.timeframe}
           </p>
-          <p className="text-gray-400">
+          <p className="text-gray-300">
             <span className="font-semibold">Investissement:</span> {win.investment}
           </p>
         </div>
@@ -922,29 +889,12 @@ function QuickWinAccordion({ win, index, devColor, isExpanded, onToggle }: any) 
 }
 
 // ============================================================================
-// CTA SECTION
+// CTA SECTION (BACKGROUND RAYÉ SUPPRIMÉ, ICÔNE SIMPLIFIÉE)
 // ============================================================================
 function CTASection({ devColor }: { devColor: string }) {
   return (
     <section className="py-32 px-6 relative overflow-hidden">
-      {/* Animated Code Background */}
-      <div className="absolute inset-0 opacity-5">
-        <motion.div
-          animate={{
-            backgroundPosition: ['0% 0%', '100% 100%']
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="w-full h-full"
-          style={{
-            backgroundImage: `repeating-linear-gradient(45deg, ${devColor} 0, ${devColor} 1px, transparent 0, transparent 50%)`,
-            backgroundSize: '10px 10px'
-          }}
-        />
-      </div>
+      {/* BACKGROUND RAYÉ SUPPRIMÉ - Section propre */}
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <motion.div
@@ -952,29 +902,35 @@ function CTASection({ devColor }: { devColor: string }) {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="relative p-16 rounded-[2rem] overflow-hidden"
+          style={{
+            background: `linear-gradient(135deg, ${devColor}60, ${devColor}40)`,
+            border: `3px solid ${devColor}80`,
+            boxShadow: `0 8px 40px ${devColor}30`
+          }}
         >
-          {/* Icon */}
+          {/* Icon - SIMPLIFIÉ: pulse au lieu de rotation infinie */}
           <motion.div
             className="inline-flex mb-8"
             animate={{ 
-              rotateY: [0, 360],
+              scale: [1, 1.1, 1]
             }}
             transition={{
-              duration: 3,
+              duration: 2,
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
             }}
           >
-            <Terminal className="w-16 h-16" style={{ color: devColor }} />
+            <Terminal className="w-16 h-16 text-white" />
           </motion.div>
 
           {/* Title */}
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Prêt à <span style={{ color: devColor }}>coder</span> l'avenir ?
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+            Prêt à <span style={{ color: '#0A0A0F' }}>coder</span> l'avenir ?
           </h2>
 
           {/* Description */}
-          <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 mb-12 max-w-3xl mx-auto">
             Transformez votre vision en application concrète. 
             Notre équipe de développeurs experts est prête à relever vos défis.
           </p>
@@ -986,8 +942,9 @@ function CTASection({ devColor }: { devColor: string }) {
                 size="lg"
                 className="group text-lg px-8 py-6"
                 style={{ 
-                  backgroundColor: devColor,
-                  color: 'white'
+                  backgroundColor: '#0A0A0F',
+                  color: devColor,
+                  border: `2px solid ${devColor}`
                 }}
               >
                 <Code className="w-5 h-5 mr-2" />
@@ -1001,8 +958,9 @@ function CTASection({ devColor }: { devColor: string }) {
                 variant="outline"
                 className="text-lg px-8 py-6"
                 style={{ 
-                  borderColor: devColor,
-                  color: devColor
+                  borderColor: '#0A0A0F',
+                  color: '#0A0A0F',
+                  backgroundColor: `${devColor}30`
                 }}
               >
                 <GitBranch className="w-5 h-5 mr-2" />
@@ -1022,7 +980,7 @@ function CTASection({ devColor }: { devColor: string }) {
             {[
               { icon: Globe, label: 'Web' },
               { icon: Smartphone, label: 'Mobile' },
-              { icon: Cloud, label: 'Cloud' },
+              { icon: Server, label: 'Cloud' },
               { icon: Package, label: 'API' }
             ].map((item, i) => (
               <motion.div
@@ -1030,8 +988,8 @@ function CTASection({ devColor }: { devColor: string }) {
                 whileHover={{ scale: 1.1, y: -5 }}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg"
                 style={{
-                  backgroundColor: `${devColor}15`,
-                  border: `1px solid ${devColor}30`
+                  backgroundColor: `${devColor}25`,
+                  border: `1px solid ${devColor}50`
                 }}
               >
                 <item.icon className="w-5 h-5" style={{ color: devColor }} />

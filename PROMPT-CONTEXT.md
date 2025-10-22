@@ -1,561 +1,518 @@
-# 📋 PROMPT CONTEXT COMPLET - DAINAMICS Website v2.0
+# 📋 PROMPT CONTEXT - DAINAMICS Website MVP
 
-> **Copiez-collez ce prompt dans une nouvelle conversation avec Claude pour avoir tout le contexte nécessaire**
+> **À copier-coller au début de CHAQUE nouvelle conversation Claude**
 
----
-
-## 🎯 CONTEXTE GÉNÉRAL
-
-### État du Projet
-
-- **Nom**: DAINAMICS Website
-- **Phase**: Développement Phase 1 - Fondations (Semaine 1-3)
-- **Repository**: https://github.com/dainabase/Dainamics-Web-Site
-- **Branch**: main
-- **Date**: 11 Octobre 2025
-- **Stack**: React 18+ | TypeScript 5+ | Vite 5+ | Tailwind CSS 3+ | Framer Motion 11+
-
-### Rôle des Assistants
-
-**Claude Assistant (Chat) = ARCHITECTE**
-- Crée des prompts ULTRA détaillés (7 sections obligatoires)
-- Donne le code complet (200-500 lignes, pas juste des descriptions)
-- Valide le travail de Claude Code
-- Référence OBLIGATOIREMENT le Design System dans chaque prompt
-
-**Claude Code (Terminal) = EXÉCUTANT**
-- Suit les instructions à la lettre
-- Commit + Push après CHAQUE tâche
-- Attend validation avant de continuer
+**Version:** 6.2 - DESIGN SYSTEM V2 UPDATED  
+**Date:** 16 Octobre 2025  
+**Status:** 🟢 Documentation complète → Développement Semaine 1 démarre
 
 ---
 
-## 📚 DOCUMENTATION PRINCIPALE (Hiérarchie)
+## ⚡ EN 30 SECONDES
 
-### 1. DESIGN-SYSTEM-MANDATORY.md ⭐ **NOUVEAU & CRITIQUE**
-**Statut**: 🔒 Document de référence OBLIGATOIRE  
-**Taille**: 15.5 KB  
-**Commit**: 95e92a3
-
-**Contenu critique:**
-- ✅ Palette couleurs EXACTE (#6366F1, #FF5A00, #10E4FF, etc.)
-- ✅ Mapping catégories → couleurs (ia/automatisation/developpement)
-- ✅ Mapping complexité → couleurs (starter/intermediate/advanced)
-- ✅ Icônes Lucide React UNIQUEMENT (avec URL vérification: https://lucide.dev)
-- ✅ Exemples code TypeScript
-- ✅ Checklist validation
-- ✅ Erreurs fréquentes à éviter
-
-**⚠️ RÈGLE ABSOLUE**: TOUS les fichiers de code DOIVENT référencer ce document et utiliser EXACTEMENT ces couleurs/icônes/mappings.
-
-### 2. ARCHITECTURE.md
-**Taille**: 81 KB (3397 lignes)  
-**Sections clés:**
-- Vision & Objectifs (lignes 1-50)
-- Architecture Technique (lignes 50-100)
-- Design System Ultra Détaillé (lignes 100-800)
-- Animations Framer Motion Avancées (lignes 800-1500)
-- Structure des 12+ Pages (lignes 1500-2500)
-- Fonctionnalités Interactives (lignes 2500-3000)
-- Plan d'Implémentation 7 semaines (lignes 3000-3200)
-- Guidelines Techniques (lignes 3200-3397)
-
-### 3. WORKFLOW.md ⭐ **NOUVEAUX STANDARDS**
-**Taille**: 14.7 KB  
-**Standards de Prompts (7 sections obligatoires):**
-1. Contexte Projet
-2. Objectif Précis
-3. Structure Technique Exacte (avec CODE COMPLET 200-500 lignes)
-4. Règles de Contenu
-5. Validation (3 checklists: Technique, Contenu, Design System)
-6. Processus Git (commandes exactes)
-7. Gestion d'Erreurs
-
-**⚠️ Règle**: Chaque prompt à Claude Code DOIT suivre ces 7 sections.
-
-### 4. CHANGELOG.md
-**Version**: 2.2  
-**Historique**: Toutes les versions et changements
-
-### 5. README.md
-**Version**: 2.1  
-**Vue d'ensemble**: Quick start + Stack + Règles critiques
+**Projet :** Site web DAINAMICS - Agence IA/Automatisation pour PME suisses  
+**Objectif :** Transformation radicale → Conversion 2-3% → 4-6% en 4 semaines  
+**Approche :** 4 pages simples, message émotionnel, preuve avant pitch  
+**Repository :** https://github.com/dainabase/Dainamics-Web-Site  
+**Stack :** React 18+ | TypeScript 5+ | Vite 5+ | Tailwind CSS 3+
 
 ---
 
-## ✅ CE QUI A ÉTÉ FAIT (État Actuel)
+## 🚨 OÙ NOUS EN SOMMES EXACTEMENT
 
-### Fichiers Documentation ✅
-- ✅ DESIGN-SYSTEM-MANDATORY.md (v1.0 - Commit 95e92a3)
-- ✅ ARCHITECTURE.md (v2.0 - 81 KB)
-- ✅ WORKFLOW.md (v1.1 - Standards prompts)
-- ✅ CHANGELOG.md (v2.2)
-- ✅ README.md (v2.1)
-- ✅ PROMPT-CONTEXT.md (v2.0 - CE FICHIER)
+### ✅ PHASE DOCUMENTATION TERMINÉE (8/8 fichiers)
 
-### Fichiers Data Créés ✅
-- ✅ **src/data/solutions.ts** (Commit 6a193bb)
-  - 15 scénarios d'automatisation
-  - Interface TypeScript stricte
-  - 7 Quick Wins identifiés
-  - Helpers: getProjectsByCategory, quickWinSolutions, etc.
-  - Design System respecté (couleurs, icônes Lucide)
-  - Taille: 21.2 KB (478 lignes)
+**Fichiers transformés (Ordre chronologique) :**
+1. ✅ **TRANSFORMATION-PLAN.md** → v2.0 (Plan MVP 4 semaines)
+2. ✅ **NAVIGATION-ARCHITECTURE.md** → v2.0 (Structure 4 pages)
+3. ✅ **CONTENT-STRATEGY.md** → v2.0 (Ton storytelling)
+4. ✅ **STATUS.md** → v2.0 (Dashboard temps réel)
+5. ✅ **PRIORITIES.md** → v3.0 (Plan MVP simplifié)
+6. ✅ **INSTRUCTIONS.md** → v4.0 (Guide pratique)
+7. ✅ **README.md** → v4.0 (Vitrine GitHub)
+8. ✅ **PROMPT-CONTEXT.md** → v6.2 (Ce fichier - Design system v2 updated)
 
-### Components Mis à Jour ✅
-- ✅ **src/components/Navigation.tsx** (Commit 0314f61)
-  - Menu complet 8 items principaux + 13 sous-items
-  - Dropdowns desktop (hover) + Accordéons mobile (click)
-  - Badge "Coming Soon" sur 6 pages
-  - Active state avec useLocation
-  - Langue par défaut: FR
-  - CTAs: "Diagnostic Gratuit" + "Contact"
-  - Taille: 11.8 KB (381 lignes)
+**Commits récents :**
+- `ed07a5e` - PRIORITIES.md transformé
+- `af1a14e` - INSTRUCTIONS.md transformé
+- `72d328c` - README.md transformé
 
-### Fichiers à Créer ⏹️
-- ⏳ **src/data/portfolio.ts** (EN COURS par Claude Code)
-- ⏹️ src/data/expertise.ts
-- ⏹️ src/data/testimonials.ts
-- ⏹️ src/data/integrations.ts
-- ⏹️ src/data/pricingPackages.ts
-- ⏹️ src/data/useCases.ts
-- ⏹️ src/data/glossary.ts
+### 🚀 PROCHAINE ÉTAPE : DÉVELOPPEMENT SEMAINE 1
 
-### Commits Récents (3 derniers)
+**Maintenant :** Focus 100% développement Homepage  
+**Fini :** Plus de documentation à transformer  
+**Objectif :** Livrer Homepage MVP (5 sections) d'ici fin semaine
+
+---
+
+## 🏗️ LA TRANSFORMATION RADICALE
+
+### L'Insight (Analyse 25+ Sites Leaders)
+
+> **"Les meilleurs sites convertissent en ÉLIMINANT la complexité, pas en l'ajoutant."**
+
+**AVANT (Approche Complexe) :**
 ```
-95e92a3 - docs(design-system): add mandatory design system reference guide
-0314f61 - feat(navigation): add complete menu structure with dropdowns
-6a193bb - feat(data): add solutions.ts with 15 automation scenarios
+❌ 14+ pages, navigation 9 items, 3 niveaux
+❌ Message technique : "Transformation digitale..."
+❌ 10,000+ mots, pricing caché
+❌ Conversion : 1-2%
 ```
 
+**APRÈS MVP (Approche Simplifiée) :**
+```
+✅ 4 pages, navigation 4 items, 1 niveau
+✅ Message émotionnel : "Vous perdez 15h/semaine..."
+✅ 1,500 mots/page, pricing transparent
+✅ Conversion cible : 4-6%
+```
+
+**Source :** [Architecture Web Optimale](./Architecture%20Web%20Optimale%20pour%20Sociétés%20Tech%20B2B.md) (81 KB - Analyse Zapier 8.5/10, Boldare 9/10, Netguru 8/10)
+
 ---
 
-## 🎨 DESIGN SYSTEM OBLIGATOIRE
+## 🎯 ARCHITECTURE MVP (4 PAGES)
 
-### 📍 Référence Complète
-**Document**: `DESIGN-SYSTEM-MANDATORY.md` (15.5 KB)  
-**Architecture détaillée**: `ARCHITECTURE.md` (lignes 100-800)
+```
+SITE DAINAMICS
+│
+├─ 1. HOMEPAGE (/)                    [⭐⭐⭐ 90% conversions]
+│  └─ "Vous Perdez 15 Heures Par Semaine..."
+│  └─ 5 sections, 1,500 mots max, CTA répété 3x
+│  └─ Semaine 1 : EN COURS 🟡
+│
+├─ 2. EXEMPLES (/exemples)            [Proof sociale]
+│  └─ 6-8 cas clients, métriques quantifiées
+│  └─ Filtres : Industrie + Problème
+│  └─ Semaine 2 : À FAIRE ⏹️
+│
+├─ 3. COMMENT ÇA MARCHE (/processus)  [Rassurer]
+│  └─ 3 étapes, FAQ 7 questions, garantie ROI
+│  └─ Semaine 3 : À FAIRE ⏹️
+│
+└─ 4. CONTACT (/contact)              [⭐ Conversion]
+   └─ Calendly + Formulaire, friction minimale
+   └─ Semaine 4 : À FAIRE ⏹️
+```
 
-### Palette Couleurs EXACTE
+**Navigation :** `[LOGO] Homepage Exemples Process Contact [FR/DE/EN]`
+
+---
+
+## 🎯 6 PRINCIPES DIRECTEURS (Non Négociables)
+
+### 1. 🕐 Message en 30 Secondes
+**Test obligatoire :** 5 personnes doivent comprendre en 30s : Qui, Promesse, Preuve, Action
+
+### 2. ⚠️ Problème Avant Solution
+❌ "Nous sommes experts IA..."  
+✅ "Vous perdez 15h/semaine à faire des tâches qu'un robot pourrait faire"
+
+### 3. 📊 Preuve Avant Pitch
+❌ Services → Portfolio → Témoignages (en bas)  
+✅ Problème → Témoignages (section 3) → Solution → CTA
+
+### 4. 💬 Ton Conversationnel (Test Café)
+**Question :** Diriez-vous ça à un ami au café ?  
+Si non → Réécrivez en plus simple
+
+### 5. 🔢 Quantifier Toujours
+❌ "Résultats significatifs", "Gains importants"  
+✅ "15h/semaine gagnées, ROI 280%, 60K€/an économisés"
+
+### 6. 🎯 Un Seul CTA (Répété 3x)
+❌ 6 CTAs différents (Devis, Contact, Demo, etc.)  
+✅ "Réserver 30 min gratuites" répété 3x Homepage
+
+---
+
+## 📅 PLAN MVP 4 SEMAINES
+
+| **Semaine** | **Page** | **Objectif** | **Status** |
+|-------------|----------|--------------|------------|
+| **1** | Homepage | 5 sections, test 30s | 🟡 EN COURS |
+| **2** | Exemples | 6-8 cas clients | ⏹️ À faire |
+| **3** | Process | FAQ répond 90% objections | ⏹️ À faire |
+| **4** | Contact + Launch | MVP lancé, tests finaux | ⏹️ À faire |
+
+**Détails complets :** [PRIORITIES.md](./PRIORITIES.md) - Plan jour par jour
+
+---
+
+## 📚 DOCUMENTATION (Par Priorité)
+
+### 🚀 Pour Démarrer (Essentiels - Lire dans cet ordre)
+
+1. **[STATUS.md](./STATUS.md)** ⭐ - Où en sommes-nous ? (Dashboard)
+2. **[PRIORITIES.md](./PRIORITIES.md)** ⭐ - Que faire en premier ? (P0/P1/P2)
+3. **[INSTRUCTIONS.md](./INSTRUCTIONS.md)** ⭐ - Comment créer du contenu ? (Guide pratique)
+
+**⏱️ Temps lecture : 15-20 minutes pour être opérationnel**
+
+### 📝 Pour le Contenu (Copywriting)
+
+4. **[CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md)** - Ton storytelling, 6 principes
+5. **[DAINAMICS_Presentation_Optimisee.md](./DAINAMICS_Presentation_Optimisee.md)** - Copywriting final
+6. **[DAINAMICS_Plan_Site_Optimise.md](./DAINAMICS_Plan_Site_Optimise.md)** - Structure 4 pages détaillée
+
+### 🏗️ Pour l'Architecture
+
+7. **[TRANSFORMATION-PLAN.md](./TRANSFORMATION-PLAN.md)** - Plan MVP complet
+8. **[NAVIGATION-ARCHITECTURE.md](./NAVIGATION-ARCHITECTURE.md)** - Structure site
+
+### 📘 Technique (Si besoin)
+
+9. **ARCHITECTURE.md** - Specs techniques complètes (81 KB)
+10. **[DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)** ⭐ - Design system exhaustif v2.0 (61 KB)
+
+---
+
+## 🎨 DESIGN SYSTEM (Rappel Couleurs)
+
+### Couleurs ACTUELLES du Code (État Existant)
+
+**⚠️ Note :** Ces couleurs documentent l'ÉTAT ACTUEL du code dans `Index.tsx` et composants existants.
 
 ```typescript
-// À utiliser dans TOUS les fichiers
-export const COLORS = {
-  primary: '#6366F1',      // Indigo - Tech/IA
-  cta: '#FF5A00',          // Orange - Call-to-Action
-  accent: '#10E4FF',       // Cyan - Automatisation
-  success: '#10B981',      // Green - Success
-  warning: '#F59E0B',      // Yellow - Warnings
-  error: '#EF4444',        // Red - Errors
-  background: '#0A0A0F',   // Dark Navy
-  light: '#F1F5F9',        // Light text
-} as const;
+const COLORS_CURRENT = {
+  background: '#050510',    // Dark Navy - Background principal
+  primary: '#7B2FFF',       // Purple - IA/Tech (état actuel)
+  secondary: '#10E4FF',     // Cyan - Automatisation
+  success: '#0AFF9D',       // Green - Success/validation (état actuel)
+  cta: '#FF5A00',           // Orange - CTA/Actions
+  light: '#FFFFFF'          // White - Texte principal
+};
 ```
 
-### Mappings OBLIGATOIRES
+**⚠️ INTERDIT :** Hardcoder des HEX différents sans consultation  
+**✅ CORRECT :** Utiliser ces couleurs + nuances Tailwind
 
-**Catégories → Couleurs:**
-```typescript
-export const CATEGORY_COLORS = {
-  'ia': '#6366F1',              // Primary Indigo
-  'automatisation': '#10E4FF',   // Accent Cyan
-  'developpement': '#FF5A00'     // CTA Orange
-} as const;
-```
+**Référence complète :** [DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md) (61 KB - Documentation exhaustive v2.0)
 
-**Complexité → Couleurs:**
-```typescript
-export const COMPLEXITY_COLORS = {
-  'starter': '#10B981',         // Success Green
-  'intermediate': '#F59E0B',    // Warning Yellow
-  'advanced': '#EF4444'         // Error Red
-} as const;
-```
-
-### Icônes Lucide React UNIQUEMENT
-
-**Source**: https://lucide.dev  
-**Version**: v0.263.1  
-**Format**: PascalCase
-
-**⚠️ VÉRIFICATION OBLIGATOIRE**: Avant d'utiliser une icône, TOUJOURS vérifier sur https://lucide.dev
-
-**Icônes Recommandées:**
-```typescript
-import { 
-  Brain,           // IA
-  Zap,             // Automatisation
-  Code,            // Développement
-  TrendingUp,      // ROI
-  Clock,           // Temps
-  CheckCircle,     // Success
-  Star,            // Featured
-  FileText,        // Documents
-  Building,        // Entreprise
-  Users,           // Équipe
-  Target,          // Objectifs
-  // ... voir DESIGN-SYSTEM-MANDATORY.md pour liste complète
-} from 'lucide-react';
-```
+**Note importante :** Le plan optimisé prévoyait `#6366F1` (Indigo), mais le code actuel utilise `#7B2FFF` (Purple). Ce design system documente l'EXISTANT, pas la stratégie future.
 
 ---
 
-## 📋 STANDARDS DE PROMPTS (7 Sections Obligatoires)
+## ✅ ÉTAT ACTUEL (Détail Fichiers)
 
-### Structure Template
+### Code Existant ✅
+- ✅ **solutions.ts** (15 automatisations - OK)
+- ✅ **portfolio.ts** (5 projets : LEXAIA, ENKI-REALTY + 3 - OK)
+- ✅ **expertise.ts** (3 piliers - OK)
+- ✅ **Navigation.tsx** (menu 9 items - À SIMPLIFIER → 4 items)
+- ✅ **Index.tsx** (homepage ancienne - À REFONDRE → 5 sections)
 
-Chaque prompt à Claude Code DOIT contenir:
+### En Développement ⏳
+- ⏳ **Semaine 1 Homepage :** 
+  - Simplifier Navigation.tsx (9→4 items)
+  - Refondre Index.tsx (5 sections MVP)
+  - Créer testimonials.ts
+
+### À Créer ⏹️ (Semaines 2-4)
+- ⏹️ **Semaine 2 :** Page Exemples
+- ⏹️ **Semaine 3 :** Page Process + faq.ts
+- ⏹️ **Semaine 4 :** Page Contact + Launch
+
+**Dashboard complet :** [STATUS.md](./STATUS.md)
+
+---
+
+## 🔒 RÈGLES ABSOLUES (Non Négociables)
+
+| **Règle** | **Description** | **Validation** |
+|-----------|-----------------|----------------|
+| ✅ **4 pages menu** | Homepage, Exemples, Process, Contact | Jamais 9+ |
+| ✅ **Navigation 1 niveau** | Pas de dropdown, pas de mega-menu | Ultra-simple |
+| ✅ **Message 30 secondes** | Test avec 5 personnes obligatoire | Avant commit |
+| ✅ **Problème avant solution** | TOUJOURS commencer par pain point | Chaque page |
+| ✅ **Preuve avant pitch** | Témoignages section 3 (pas fin page) | Homepage |
+| ✅ **1 CTA répété 3x** | "Réserver 30 min gratuites" | Homepage |
+| ✅ **Quantifier toujours** | CHF, %, heures - Jamais "beaucoup" | Tous chiffres |
+| ✅ **Ton conversationnel** | Test café - Diriez-vous ça à un ami ? | Tout contenu |
+| ✅ **"IA" pas "AI"** | En français seulement | Partout |
+| ❌ **Pas d'emojis** | Jamais dans code ou documentation | Absolu |
+
+---
+
+## 🚀 WORKFLOW DÉVELOPPEMENT (Standard)
+
+### Process Page par Page
 
 ```
-1. CONTEXTE PROJET
-   - État actuel
-   - Fichier à créer/modifier
-   - Technologies
+1. Consulter PRIORITIES.md
+   └─ Identifier tâche P0 (Semaine en cours)
 
-2. OBJECTIF PRÉCIS
-   - Ce qui doit être fait
-   - Résultat attendu
+2. Lire INSTRUCTIONS.md
+   └─ Revoir 6 principes + exemples formats
 
-3. STRUCTURE TECHNIQUE EXACTE
-   - CODE COMPLET (200-500 lignes)
-   - Interface TypeScript
-   - Exemples complets
-   - ⚠️ Référence Design System
+3. Créer contenu page
+   └─ Problème → Preuve → Solution → CTA
 
-4. RÈGLES DE CONTENU
-   - Standards rédactionnels
-   - Gains quantifiés
-   - Terminologie correcte
+4. Tester règle 30 secondes
+   └─ 5 personnes doivent comprendre
 
-5. VALIDATION (3 Checklists)
-   ✅ Checklist Technique (10-15 critères)
-   ✅ Checklist Contenu (10-15 critères)
-   ✅ Checklist Design System (10 critères)
+5. Commit directement GitHub
+   └─ Message clair : "feat: Homepage Hero section"
 
-6. PROCESSUS GIT
-   - Commandes exactes
-   - Message commit standardisé
-   - Format confirmation
-
-7. GESTION D'ERREURS
-   - Erreurs possibles
-   - Solutions
-   - Procédure si bloqué
+6. Mettre à jour STATUS.md
+   └─ Cocher tâche terminée ✅
 ```
 
-**Exemple Prompt Référence**: Voir le prompt pour portfolio.ts créé aujourd'hui (1500+ lignes).
+### Checklist Avant Commit (Obligatoire)
+
+**Contenu :**
+- [ ] Message clair en 30 secondes ? (Testé 5 personnes)
+- [ ] Problème AVANT solution ?
+- [ ] Preuve AVANT pitch ?
+- [ ] Gains quantifiés (CHF, %, heures) ?
+- [ ] Ton conversationnel (test café) ?
+- [ ] "IA" (pas "AI") en français ?
+
+**UX :**
+- [ ] 1 CTA principal répété ?
+- [ ] Mobile responsive parfait ?
+- [ ] Performance OK (Lighthouse >85) ?
+
+**Technique :**
+- [ ] TypeScript strict (pas any) ?
+- [ ] Design System respecté (COLORS_CURRENT) ?
+- [ ] SEO meta tags présents ?
 
 ---
 
-## 🚀 PROCHAINES ÉTAPES IMMÉDIATES
+## 🎯 PROCHAINES ACTIONS (Semaine 1 - Détaillées)
 
-### Tâche #3: portfolio.ts (EN COURS)
-**Status**: ⏳ Claude Code exécute le prompt  
-**Fichier**: `src/data/portfolio.ts`  
-**Contenu**:
-- Interface PortfolioProject strictement typée
-- 5 projets minimum (LEXAIA, ENKI-REALTY + 3 autres)
-- Métriques quantifiées (CHF, %, heures)
-- Technologies utilisées
-- Témoignages clients
-- Mapping categoryColors et complexityColors
-- Helpers: getProjectsByCategory, getFeaturedProjects, etc.
+### 🟡 Lundi (EN COURS)
+**Objectif :** Navigation + Hero
+- [ ] Simplifier `Navigation.tsx` (9→4 items)
+- [ ] Créer Hero : "Vous Perdez 15 Heures Par Semaine..."
+- [ ] 2 CTAs : "Réserver 30 min" (orange) + "Calculer économies" (outline)
 
-### Après portfolio.ts
-1. **expertise.ts** - 3 piliers (IA, Automatisation, Développement)
-2. **testimonials.ts** - Témoignages clients
-3. **Page /solutions** - Afficher les 15 solutions
-4. **Page /portfolio** - Afficher les projets
+### 🟡 Mardi
+**Objectif :** Section Aide
+- [ ] Section "Comment On Vous Aide" (4 exemples concrets)
+- [ ] Format : Icône + Titre + 1 phrase + Exemple + Métrique
+- [ ] 4 cards : Facturation, Support, Documents, Prédictions
 
----
+### 🟡 Mercredi
+**Objectif :** Preuve
+- [ ] Section "Ils Ont Automatisé" (2 cas clients featured)
+- [ ] Créer `testimonials.ts` (6-8 témoignages)
+- [ ] Métriques : -70% charge, +40% satisfaction, ROI 4 mois
 
-## 📊 PLAN DE DÉVELOPPEMENT (Phase 1)
+### 🟡 Jeudi
+**Objectif :** Process + CTA
+- [ ] Section "Comment Ça Marche" (3 étapes)
+- [ ] Section CTA Final (Photo fondateur + texte)
+- [ ] Test navigation complète
 
-### Phase 1: MVP Foundation (Semaines 1-3)
+### 🟡 Vendredi
+**Objectif :** Polish + Tests
+- [ ] Mobile responsive complet
+- [ ] Test 30 secondes (5 personnes)
+- [ ] Lighthouse >85
+- [ ] ✅ HOMEPAGE MVP TERMINÉE
 
-**Semaine 1** ✅ TERMINÉE
-- [x] Setup projet Vite + TypeScript + Tailwind
-- [x] Créer Design System (Button, Card, Badge, Forms)
-- [x] Développer Layout (Header, Footer)
-- [x] Homepage sections 1-5
-
-**Semaine 2** ⏳ EN COURS
-- [x] Homepage complète
-- [x] Navigation complète avec menu
-- [x] Créer solutions.ts ✅
-- [⏳] Créer portfolio.ts (EN COURS)
-- [ ] Créer expertise.ts
-- [ ] Calculateur ROI interactif
-- [ ] Diagnostic IA questionnaire
-
-**Semaine 3**
-- [ ] Page Expertise complète
-- [ ] Page Solutions + 3 landing pages prioritaires
-- [ ] Page Portfolio (LEXAIA, ENKI-REALTY)
-
-Voir timeline complète dans ARCHITECTURE.md (lignes 3000-3200).
+**Planning détaillé jour par jour :** [PRIORITIES.md](./PRIORITIES.md) lignes 1-100
 
 ---
 
-## 🔧 STACK TECHNIQUE
+## 📊 MÉTRIQUES SUCCÈS MVP
 
-```yaml
-# Frontend
-Framework: React 18.3.1
-Language: TypeScript 5.5.3
-Build Tool: Vite 5.3.4
-Styling: Tailwind CSS 3.4.1
-Animations: Framer Motion 11.3.21
-Icons: Lucide React 0.263.1
-UI Components: shadcn/ui
-Router: React Router DOM 6.x
-
-# State Management
-Global State: Zustand
-Form State: React Hook Form
-Validation: Zod
-
-# Backend & Services
-Database: Supabase (PostgreSQL)
-Authentication: Supabase Auth
-Storage: Supabase Storage
-Email: Brevo / SendGrid
-Analytics: GA4 + Plausible
-
-# Development Tools
-Version Control: Git + GitHub
-IDE: Claude Code (primary)
-Package Manager: npm
-Linting: ESLint + Prettier
-Testing: Vitest + Testing Library
+### Baseline Actuel (À améliorer)
+```
+Taux conversion:    2-3%      ❌ Trop faible
+Bounce rate:        55-65%    ❌ Trop élevé
+Temps sur site:     1-2 min   ❌ Trop court
+Leads qualifiés:    5-10/mois ❌ Insuffisant
 ```
 
----
-
-## 📁 STRUCTURE DU PROJET
-
+### Objectifs MVP (Fin Semaine 4)
 ```
-src/
-├── components/
-│   ├── common/         # Design System (Button, Card, Badge)
-│   ├── layout/         # Header, Footer, Navigation
-│   ├── features/       # ROI Calculator, Diagnostic, etc.
-│   ├── sections/       # Page sections
-│   └── ui/             # shadcn/ui components
-├── data/
-│   ├── solutions.ts ✅    # 15 automatisations
-│   ├── portfolio.ts ⏳    # Projets (EN COURS)
-│   ├── expertise.ts ⏹️    # 3 piliers
-│   ├── testimonials.ts ⏹️
-│   ├── integrations.ts ⏹️
-│   ├── pricingPackages.ts ⏹️
-│   ├── useCases.ts ⏹️
-│   └── glossary.ts ⏹️
-├── pages/              # Route pages
-├── types/              # TypeScript interfaces
-├── hooks/              # Custom React hooks
-├── lib/                # Utils, configs
-└── styles/             # Global CSS
+🎯 Taux conversion:  4-6%      ✅ [x2 minimum]
+🎯 Bounce rate:      <45%      ✅ [-20% minimum]
+🎯 Temps sur site:   >2.5 min  ✅ [+50% minimum]
+🎯 Leads qualifiés:  15-20/mois ✅ [x2-3]
 ```
 
----
-
-## 🎯 POSITIONNEMENT DAINAMICS
-
-### Identité
-
-**PAS seulement**: Une agence d'automatisation suisse  
-**MAIS**: Une agence d'expertise tech complète (IA + Automatisation + Développement)
-
-**Triple Expertise:**
-1. **IA** - LLMs, Agents, Computer Vision, NLP, ML
-2. **Automatisation** - RPA, Workflow, Integration, Process Mining
-3. **Développement** - Web Apps, Mobile Apps, APIs, Cloud
-
-**Différenciation**: Réalisations concrètes (LEXAIA, ENKI-REALTY)  
-**Portée**: Suisse ET International  
-**Cible**: PME 10-150 employés
-
-### Tone of Voice
-
-- ✅ Professionnel mais accessible
-- ✅ Orienté business et ROI concret
-- ✅ Pas de jargon inutile
-- ✅ Focus sur valeur et résultats mesurables
-- ❌ JAMAIS d'emojis dans le code
-- ✅ Toujours "IA" (pas "AI") en français
-
----
-
-## 📝 PROJETS PORTFOLIO
-
-### Projets Confirmés
-
-1. **LEXAIA** - Agent IA Juridique (Featured)
-   - Analyse contrats
-   - Veille juridique
-   - Conformité suisse (CO, nLPD, SwissDec)
-   - ROI: -87% temps analyse, CHF 180k/an économisés
-
-2. **ENKI-REALTY** - Plateforme Immobilier IA (Featured)
-   - Estimation prix ML
-   - Matching intelligent
-   - Chatbot multilingue 24/7
-   - ROI: +156% conversion, <2min temps réponse
-
-3. **+3 autres projets** variés (industries/catégories différentes)
-
-### Format Case Study
-
-Chaque projet doit inclure:
-- ID, title, client, industry
-- Category (ia/automatisation/developpement)
-- Complexity (starter/intermediate/advanced)
-- Description, challenge, solution
-- Results avec 2-3 métriques quantifiées
-- Technologies utilisées (8-12)
-- Testimonial client
-- Featured boolean
-- Year, duration, team
-
----
-
-## ⚠️ RÈGLES CRITIQUES À RESPECTER
-
-### Développement
-
-1. ✅ **Design System OBLIGATOIRE** - Référencer DESIGN-SYSTEM-MANDATORY.md dans CHAQUE prompt
-2. ✅ **Code Complet** - Toujours donner le code complet (200-500 lignes), pas juste des descriptions
-3. ✅ **TypeScript Strict** - Jamais de `any`, toujours typage strict
-4. ✅ **Icônes Lucide** - Vérifier sur https://lucide.dev avant usage
-5. ✅ **Commit + Push** - Après CHAQUE tâche terminée
-6. ✅ **Validation** - Attendre validation avant de continuer
-
-### Contenu
-
-1. ✅ **Gains Quantifiés** - Toujours avec CHF, %, ou heures
-2. ✅ **"IA" pas "AI"** - En français uniquement
-3. ❌ **Pas d'Emojis** - Jamais dans le code ou documentation
-4. ✅ **Noms Corrects** - LEXAIA, ENKI-REALTY (majuscules)
-5. ✅ **Conformité Suisse** - nLPD, SwissDec, TVA
-6. ✅ **Mobile-First** - Toujours designer mobile d'abord
-
-### Standards Prompts
-
-1. ✅ **7 Sections Obligatoires** - Voir WORKFLOW.md
-2. ✅ **Code Complet Fourni** - 200-500 lignes minimum
-3. ✅ **3 Checklists** - Technique + Contenu + Design System
-4. ✅ **Design System Référencé** - Dans section 4
-5. ✅ **Commandes Git Exactes** - Dans section 6
-
----
-
-## 🔗 LIENS UTILES
-
-### Documentation
-
-- **Repository**: https://github.com/dainabase/Dainamics-Web-Site
-- **DESIGN-SYSTEM-MANDATORY.md**: https://github.com/dainabase/Dainamics-Web-Site/blob/main/DESIGN-SYSTEM-MANDATORY.md
-- **ARCHITECTURE.md**: https://github.com/dainabase/Dainamics-Web-Site/blob/main/ARCHITECTURE.md
-- **WORKFLOW.md**: https://github.com/dainabase/Dainamics-Web-Site/blob/main/WORKFLOW.md
-- **Commits**: https://github.com/dainabase/Dainamics-Web-Site/commits/main
-
-### Ressources Externes
-
-- **Lucide Icons**: https://lucide.dev (v0.263.1)
-- **Tailwind CSS**: https://tailwindcss.com/docs
-- **Framer Motion**: https://www.framer.com/motion
-- **React**: https://react.dev
-- **TypeScript**: https://www.typescriptlang.org
-
----
-
-## 💡 EXEMPLES DE DEMANDES
-
-### Pour Créer des Fichiers Data
-
+### Si Succès MVP → Phase 2-3 (Semaines 5-12)
 ```
-"Créer src/data/expertise.ts avec les 3 piliers:
-- IA (LLMs, Agents, Computer Vision, NLP, ML)
-- Automatisation (RPA, Workflow, Integration)
-- Développement (Web Apps, Mobile Apps, APIs)
-Suivre le même format que solutions.ts avec TypeScript strict
-et Design System obligatoire."
+🚀 Taux conversion:  6-8%      [x3-4]
+🚀 Leads qualifiés:  30-40/mois [x4-6]
 ```
 
-### Pour Créer des Pages
-
-```
-"Créer la page /solutions qui affiche les 15 solutions
-de solutions.ts avec:
-- Grid responsive
-- Filtres par catégorie
-- Filtres par industrie
-- Badge Quick Win
-- Modal détail solution
-Design System obligatoire + Framer Motion animations."
-```
-
-### Pour Créer des Components
-
-```
-"Créer le component SolutionCard.tsx pour afficher
-une solution avec:
-- Icône Lucide (dynamique depuis solution.icon)
-- Couleur catégorie (depuis CATEGORY_COLORS)
-- Badge complexité (depuis COMPLEXITY_COLORS)
-- Hover effects Framer Motion
-TypeScript strict + Design System obligatoire."
-```
+**Mesure :** Google Analytics 4 + Hotjar (heatmaps + recordings)
 
 ---
 
-## 🆘 BESOIN D'AIDE ?
+## 💡 EXEMPLES CONCRETS (Formats à Suivre)
 
-### Si Vous Êtes Perdu
+### Hero Homepage (Format Exact)
+```markdown
+# Vous Perdez 15 Heures Par Semaine 
+  à Faire des Tâches Qu'un Robot Pourrait Faire
 
-1. ✅ Consulter **DESIGN-SYSTEM-MANDATORY.md** en priorité
-2. ✅ Vérifier **ARCHITECTURE.md** pour specs complètes
-3. ✅ Regarder **WORKFLOW.md** pour standards prompts
-4. ✅ Examiner **solutions.ts** et **Navigation.tsx** comme exemples
-5. ✅ Vérifier les derniers commits sur GitHub
+C'est le quotidien de milliers de dirigeants de PME européennes.
 
-### Si Claude Code Est Bloqué
+Facturation manuelle. Saisie de données. Réponses emails répétitives.
 
-1. ⚠️ STOP immédiatement
-2. 📝 Noter l'erreur exacte (screenshot ou copie)
-3. 📝 Noter la commande qui a causé l'erreur
-4. 🙋 Demander assistance avec contexte complet
-5. ❌ NE PAS continuer sans validation
+**Pendant ce temps :**
+- Vos concurrents automatisent
+- Vos équipes s'épuisent sur des tâches sans valeur
+- Vous refusez des opportunités par manque de temps
+
+**On automatise ces tâches en 2-4 semaines.**
+**Vous êtes rentable en 3-6 mois. Garanti.**
+
+[Réserver 30 min gratuites]  [Calculer mes économies]
+```
+
+### Cas Client (Format Exact)
+```markdown
+## PME Services Juridiques (Suisse)
+
+**Problème :**  
+150 demandes clients par semaine saturaient l'équipe support.
+Chaque demande = 15-30 min à traiter.
+
+**Solution :**  
+Assistant IA multilingue (FR/DE/IT) avec accès base de connaissance 500+ documents.
+
+**Résultats :**
+- **-70%** charge support
+- **+40%** satisfaction client
+- **ROI 4 mois** (35K€/an économisés)
+
+💬 *"L'assistant traite 80% de nos demandes. Notre équipe se concentre enfin sur les cas complexes. Investissement remboursé en 4 mois."*  
+— Sophie M., Directrice Opérations
+```
+
+### Section 4 Exemples (Format Grid)
+```markdown
+## Ce qu'on fait concrètement
+
+### 💼 Facturation Automatique
+Vos factures, contrats, relances → 100% automatique.
+
+**Exemple :** Une PME immobilière facturait manuellement 80 locataires (12h/mois).  
+**Maintenant ?** Zéro minute. ROI en 3 mois.
+
+[3 autres exemples similaires...]
+```
+
+**Plus d'exemples complets :** [INSTRUCTIONS.md](./INSTRUCTIONS.md) lignes 200-500
 
 ---
 
-## 🎯 PRÊT À COMMENCER ?
+## 🆘 BESOIN D'AIDE ? (Protocole)
 
-**Dis-moi ce que tu veux développer et je crée le prompt ultra-détaillé !**
+### Si Perdu (Orientation)
+1. Lire [STATUS.md](./STATUS.md) - État actuel projet
+2. Lire [PRIORITIES.md](./PRIORITIES.md) - Quoi faire maintenant
+3. Lire [INSTRUCTIONS.md](./INSTRUCTIONS.md) - Comment le faire
 
-Exemples:
-- "Créer expertise.ts"
-- "Créer la page /solutions"
-- "Créer le component SolutionCard"
-- "Implémenter le Calculateur ROI"
-- "Créer testimonials.ts"
+**⏱️ Total : 10-15 minutes**
 
-**Rappel**: Je vais créer un prompt de 1500+ lignes avec:
-- ✅ 7 sections obligatoires
-- ✅ Code complet fourni (200-500 lignes)
-- ✅ Design System référencé explicitement
-- ✅ 3 checklists de validation
-- ✅ Commandes Git exactes
-- ✅ Gestion d'erreurs complète
+### Si Bloqué (Technique)
+1. **STOP** immédiatement - Ne pas forcer
+2. **Noter** erreur + ce qui a été tenté
+3. **Demander** assistance avec contexte précis
 
----
+**⚠️ Important :** Mieux demander que casser
 
-**VERSION**: 2.0  
-**DATE**: 11 Octobre 2025  
-**STATUS**: ✅ Mis à jour avec Design System Mandatory + Standards Prompts  
-**PROCHAINE ÉTAPE**: portfolio.ts validation → expertise.ts
+### Si Doute Contenu (Copywriting)
+1. Consulter [CONTENT-STRATEGY.md](./CONTENT-STRATEGY.md) - Ton & exemples
+2. Appliquer **Test Café** : Diriez-vous ça à un ami ?
+3. Vérifier **6 principes directeurs** respectés
 
 ---
 
-Voilà ! Tu as maintenant TOUT le contexte nécessaire pour développer avec Claude Code. 🚀
+## 🔗 LIENS RAPIDES ESSENTIELS
+
+**Repository :** https://github.com/dainabase/Dainamics-Web-Site  
+**Branch :** main  
+**Référence Code :** `src/pages/Index.tsx` (ancienne homepage)  
+**Référence Design :** [DAINAMICS_Design_System_v2_Complete.md](./DAINAMICS_Design_System_v2_Complete.md)  
+**Contact :** contact@dainamics.ch
+
+---
+
+## 🎯 RÉSUMÉ TRANSFORMATION (Vue d'Ensemble)
+
+### Le Constat
+**Sites concurrents suisses :** Navigation complexe (9+ items), message technique, pricing caché → Conversion 1-2%
+
+### Notre Approche
+**DAINAMICS MVP :** Navigation simple (4 items), message émotionnel, pricing transparent → Conversion 4-6%
+
+### La Méthode
+**4 semaines, 4 pages, 6 principes, test 30 secondes**
+
+### Le Résultat Attendu
+**x2-3 leads qualifiés avec 1/3 du contenu**
+
+### La Base
+**Analyse 25+ sites leaders (Zapier 8.5/10, Boldare 9/10, Netguru 8/10) = 81 KB documentation**
+
+---
+
+## 📈 DIFFÉRENCE AVANT/APRÈS (Tableau Complet)
+
+| **Critère** | **AVANT** | **APRÈS MVP** | **Gain** |
+|-------------|-----------|---------------|----------|
+| **Pages** | 14+ | **4** | **-70%** |
+| **Items menu** | 9+ | **4** | **-55%** |
+| **Niveaux nav** | 3 | **1** | **-66%** |
+| **Message clair en** | 3-5 min | **30 sec** | **-83%** |
+| **Timeline** | 24 sem | **4 sem** | **-83%** |
+| **Conversion** | 2-3% | **4-6%** | **x2** |
+| **Leads/mois** | 5-10 | **15-20** | **x2-3** |
+
+---
+
+## 🎓 CITATIONS INSPIRANTES
+
+> **"Les meilleurs sites convertissent en ÉLIMINANT la complexité, pas en l'ajoutant."**  
+> — Architecture Web Optimale (Analyse 25+ sites)
+
+> **"Un bon MVP fait peur par sa simplicité. Si ce n'est pas embarrassant, vous avez lancé trop tard."**  
+> — Reid Hoffman, Fondateur LinkedIn
+
+> **"Perfection is the enemy of done. Ship MVP, then iterate."**  
+> — Lean Startup Methodology
+
+---
+
+## ✅ CHECKLIST DÉMARRAGE RAPIDE
+
+### Pour Nouvelle Conversation Claude (5 min)
+
+1. **Copier-coller** ce fichier PROMPT-CONTEXT.md au début
+2. **Vérifier** STATUS.md pour état actuel
+3. **Consulter** PRIORITIES.md pour tâche P0
+4. **Commencer** développement immédiatement
+
+### Pour Nouveau Contributeur (30 min)
+
+1. **Lire** README.md (5 min)
+2. **Lire** STATUS.md (5 min)
+3. **Lire** PRIORITIES.md (10 min)
+4. **Lire** INSTRUCTIONS.md (10 min)
+5. **Commencer** tâche P0 Semaine 1
+
+**Total : 30 minutes pour être opérationnel**
+
+---
+
+**VERSION:** 6.2 - DESIGN SYSTEM V2 UPDATED  
+**DATE:** 16 Octobre 2025  
+**STATUT:** 🟢 Documentation complète → Développement Semaine 1  
+**PROCHAINE ACTION:** Simplifier Navigation.tsx + Hero Homepage
+
+---
+
+*"Le plus grand risque n'est pas d'échouer, c'est de passer 6 mois à construire quelque chose que personne ne veut."*
+
+**🚀 MVP 4 semaines. Test. Iterate. Scale.**
+
+**🟢 DOCUMENTATION TERMINÉE - DÉVELOPPEMENT COMMENCE MAINTENANT !**
