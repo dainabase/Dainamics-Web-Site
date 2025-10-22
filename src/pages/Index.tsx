@@ -10,9 +10,6 @@ import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import FinalCTA from '@/components/sections/FinalCTA';
 import DiagnosticQuestionnaireNew from '@/components/DiagnosticQuestionnaireNew';
-import IntelligenceCenter from '@/components/IntelligenceCenter';
-import Services from '@/components/Services';
-import SocialProof from '@/components/SocialProof';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
@@ -48,49 +45,56 @@ const Index = () => {
 
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main content */}
       <main>
-        {/* Hero section with 3D brain neural network from Sketchfab */}
+        {/* ========== SECTION 1: HERO ========== */}
         <Hero />
-        
-        {/* About Services section - 3 pillars (IA, Automatisations, Software) */}
+
+        {/* ========== SECTION 2: ABOUT SERVICES ========== */}
+        {/* 3 pillars (IA, Automatisations, Software) */}
         <AboutServices />
-        
-        {/* Metrics Confidence - 4 key metrics with animated counters */}
+
+        {/* ========== SECTION 3: METRICS CONFIDENCE ========== */}
+        {/* 4 key metrics with animated counters */}
         <MetricsConfidence />
-        
-        {/* Featured Projects - LEXAIA & ENKI REALITY (POSITION 4) */}
+
+        {/* ========== SECTION 4: FEATURED PROJECTS ========== */}
+        {/* LEXAIA & ENKI REALITY */}
         <FeaturedProjects />
 
-        {/* Trusted Clients - 9 logos carousel (POSITION 5) */}
+        {/* ========== SECTION 5: TRUSTED CLIENTS ========== */}
+        {/* 9 logos carousel */}
         <TrustedClients />
 
-        {/* Services Overview - 4 services with substance (POSITION 6) */}
+        {/* ========== SECTION 6: SERVICES OVERVIEW ========== */}
+        {/* 4 services with substance */}
         <ServicesOverview />
 
-        {/* Swiss Differentiators - 3 USP (POSITION 7) */}
+        {/* ========== SECTION 7: SWISS DIFFERENTIATORS ========== */}
+        {/* 3 USP */}
         <SwissDifferentiators />
 
-        {/* Testimonial - Témoignage unique centré (POSITION 8) */}
+        {/* ========== SECTION 8: TESTIMONIAL ========== */}
+        {/* Témoignage unique centré */}
         <TestimonialSection />
 
-        {/* Final CTA - Conversion ultime avant footer (POSITION 9) */}
+        {/* ========== SECTION 9: FINAL CTA ========== */}
+        {/* Conversion ultime - Booking direct */}
         <FinalCTA />
 
-        {/* Interactive diagnostic questionnaire - updated version */}
+        {/* ========== SECTION 10: QUESTIONNAIRE DIAGNOSTIC ========== */}
+        {/*
+          STRATÉGIE CONVERSION :
+          - Après FinalCTA : Offre alternative pour leads tièdes (pas prêts à booker)
+          - Avant Footer : Dernière chance de capturer un lead qualifié
+          - Engagement progressif : Quiz interactif 2 min vs Booking 30 min
+          - Double filet : Leads chauds (booking) + Leads tièdes (quiz)
+        */}
         <DiagnosticQuestionnaireNew />
-        
-        {/* Intelligence Center showcase - renamed in the component */}
-        <IntelligenceCenter />
-        
-        {/* Services section */}
-        <Services />
-        
-        {/* Social proof section */}
-        <SocialProof />
+
       </main>
-      
+
       {/* Footer */}
       <Footer />
     </div>
