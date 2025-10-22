@@ -43,10 +43,9 @@ const SwissDifferentiators: React.FC = () => {
       description:
         "Contrairement aux agences offshore qui stockent vos données sensibles sur AWS US ou serveurs Inde, toute notre infrastructure est hébergée en Suisse. Vos données métier, clients, et processus confidentiels ne quittent jamais le territoire suisse.",
       points: [
-        'Conformité bancaire & santé : Respect strict RGPD et LPD suisse',
-        'Infrastructure 100% locale : Serveurs Suisse (pas AWS US/Inde)',
-        'Confidentialité garantie : NDAs renforcés, accès contrôlés',
-        'Souveraineté digitale : Aucune backdoor légale étrangère',
+        'Données hébergées Suisse : Conformité RGPD stricte + LPD',
+        'Infrastructure souveraine : Pas de dépendance US/Chine',
+        'Support local : Équipe suisse, réponse <4h',
       ],
       calloutBox: {
         type: 'warning',
@@ -68,10 +67,9 @@ const SwissDifferentiators: React.FC = () => {
       description:
         'Nous sommes les SEULS en Suisse à afficher nos prix publiquement. Pas de "contactez-nous pour devis" mystérieux. Pas de frais cachés découverts en fin de projet. Pas de commerciaux qui vous vendent du rêve. Vous savez exactement à quoi vous attendre dès le premier contact.',
       points: [
-        'Pricing transparent : Ranges visibles avant même de nous contacter',
-        'Scope détaillé AVANT signature : Contrat précis, zéro ambiguïté',
-        'Communication directe : Accès fondateurs/CTO, pas de commerciaux',
-        "Métriques succès définies : On sait ce qu'on mesure AVANT de démarrer",
+        'Pricing transparent : Pas de frais cachés, devis fixe',
+        'Timeline réaliste : Livraison promise ou compensation',
+        'Démo fonctionnelle avant paiement + Documentation complète',
       ],
       calloutBox: {
         type: 'stat',
@@ -95,10 +93,9 @@ const SwissDifferentiators: React.FC = () => {
       description:
         'On ne vous vend pas de la "transformation digitale" abstraite ni la dernière hype technologique. On automatise des processus métier PRÉCIS, on mesure le ROI en heures économisées ou revenus générés, et on garantit le retour sur investissement en 2-6 mois. Si on ne livre pas sur nos Quick Wins, vous ne payez pas.',
       points: [
-        'Approche business-first : ROI mesurable avant techno sexy',
-        'Métriques concrètes : Heures économisées, CHF économisés, % erreurs réduits',
-        'Garantie Quick Wins : ROI 2-6 mois ou remboursement intégral',
-        'Reporting mensuel : Vous voyez les gains réels en temps réel',
+        'Estimation ROI précise avant démarrage (ex: 60K€/an)',
+        'Garantie retour investissement 2-6 mois maximum',
+        'Si ROI non atteint : Remboursement ou support gratuit',
       ],
       calloutBox: {
         type: 'info',
