@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import AboutServices from '@/components/AboutServices';
 import MetricsConfidence from '@/components/MetricsConfidence';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import TrustedClients from '@/components/sections/TrustedClients';
@@ -47,43 +46,39 @@ const Index = () => {
       <Navigation />
 
       {/* Main content */}
-      <main>
+      <main className="relative z-10">
         {/* ========== SECTION 1: HERO ========== */}
         <Hero />
 
-        {/* ========== SECTION 2: ABOUT SERVICES ========== */}
-        {/* 3 pillars (IA, Automatisations, Software) */}
-        <AboutServices />
-
-        {/* ========== SECTION 3: METRICS CONFIDENCE ========== */}
+        {/* ========== SECTION 2: METRICS CONFIDENCE ========== */}
         {/* 4 key metrics with animated counters */}
         <MetricsConfidence />
+
+        {/* ========== SECTION 3: TRUSTED CLIENTS ========== */}
+        {/* 9 logos carousel */}
+        <TrustedClients />
 
         {/* ========== SECTION 4: FEATURED PROJECTS ========== */}
         {/* LEXAIA & ENKI REALITY */}
         <FeaturedProjects />
 
-        {/* ========== SECTION 5: TRUSTED CLIENTS ========== */}
-        {/* 9 logos carousel */}
-        <TrustedClients />
-
-        {/* ========== SECTION 6: SERVICES OVERVIEW ========== */}
+        {/* ========== SECTION 5: SERVICES OVERVIEW ========== */}
         {/* 4 services with substance */}
         <ServicesOverview />
 
-        {/* ========== SECTION 7: SWISS DIFFERENTIATORS ========== */}
+        {/* ========== SECTION 6: SWISS DIFFERENTIATORS ========== */}
         {/* 3 USP */}
         <SwissDifferentiators />
 
-        {/* ========== SECTION 8: TESTIMONIAL ========== */}
+        {/* ========== SECTION 7: TESTIMONIAL ========== */}
         {/* Témoignage unique centré */}
         <TestimonialSection />
 
-        {/* ========== SECTION 9: FINAL CTA ========== */}
+        {/* ========== SECTION 8: FINAL CTA ========== */}
         {/* Conversion ultime - Booking direct */}
         <FinalCTA />
 
-        {/* ========== SECTION 10: QUESTIONNAIRE DIAGNOSTIC ========== */}
+        {/* ========== SECTION 9: QUESTIONNAIRE DIAGNOSTIC ========== */}
         {/*
           STRATÉGIE CONVERSION :
           - Après FinalCTA : Offre alternative pour leads tièdes (pas prêts à booker)
