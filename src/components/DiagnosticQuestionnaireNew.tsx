@@ -1,5 +1,5 @@
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ArrowRight, ArrowLeft, Scan, Brain, MessageCircle, FileText, TrendingUp, ClipboardList, Calendar, Clock, Shield, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -283,13 +283,42 @@ export default function DiagnosticQuestionnaireNew() {
     };
   }, [currentStep, startTime]);
 
+  // Mobile detection
+  const [isMobile, setIsMobile] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Scroll throttle for performance
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      setIsScrolling(true);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => setIsScrolling(false), 150);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
   // Generate neural lines for animation
   useEffect(() => {
+    const lineCount = isMobile ? 8 : 40;
     const newNeuralLines: {[key: string]: {angle: number, length: number, delay: number}[]} = {};
-    
+
     businessChallenges.forEach(challenge => {
       const lines = [];
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < lineCount; i++) {
         lines.push({
           angle: Math.random() * 360,
           length: 30 + Math.random() * 40,
@@ -298,9 +327,9 @@ export default function DiagnosticQuestionnaireNew() {
       }
       newNeuralLines[challenge.id] = lines;
     });
-    
+
     setNeuralLines(newNeuralLines);
-  }, []);
+  }, [isMobile]);
 
   // Toggle challenge selection
   const toggleChallenge = (challenge: BusinessChallenge) => {
@@ -669,7 +698,7 @@ export default function DiagnosticQuestionnaireNew() {
                             whileHover={{ y: -5 }}
                           >
                             {/* Neural connection lines animation */}
-                            {selectedChallenges.includes(challenge.id) && (
+                            {!isScrolling && selectedChallenges.includes(challenge.id) && (
                               <div className="absolute inset-0 pointer-events-none overflow-hidden">
                                 {neuralLines[challenge.id]?.map((line, i) => (
                                   <motion.div

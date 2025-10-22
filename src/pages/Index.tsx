@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import AboutServices from '@/components/AboutServices';
@@ -9,10 +9,11 @@ import ServicesOverview from '@/components/sections/ServicesOverview';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import FinalCTA from '@/components/sections/FinalCTA';
-import DiagnosticQuestionnaireNew from '@/components/DiagnosticQuestionnaireNew';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
+
+const DiagnosticQuestionnaireNew = lazy(() => import('@/components/DiagnosticQuestionnaireNew'));
 
 const Index = () => {
   // Scroll to top on initial load
@@ -91,7 +92,16 @@ const Index = () => {
           - Engagement progressif : Quiz interactif 2 min vs Booking 30 min
           - Double filet : Leads chauds (booking) + Leads tièdes (quiz)
         */}
-        <DiagnosticQuestionnaireNew />
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center bg-dainamics-background">
+            <div className="text-center">
+              <div className="w-16 h-16 border-4 border-dainamics-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-gray-400">Chargement du questionnaire...</p>
+            </div>
+          </div>
+        }>
+          <DiagnosticQuestionnaireNew />
+        </Suspense>
 
       </main>
 
