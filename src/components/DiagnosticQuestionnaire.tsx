@@ -7,6 +7,7 @@ import { ArrowRight, ArrowLeft, Check, X, Send, Scan, Zap, Cpu } from 'lucide-re
 import { toast } from '@/components/ui/use-toast';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { getAgentByVulnerability } from '@/data/agents';
+import { submitDiagnosticToBrevo, isBrevoConfigured } from '@/lib/brevo-integration';
 
 // Define types for our data structures
 interface QuestionOption {
@@ -159,9 +160,30 @@ export default function DiagnosticQuestionnaire() {
     
     setIsSubmitting(true);
     
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Prepare diagnostic data for Brevo
+      const diagnosticData = {
+        hoursWasted: hoursWasted,
+        totalHoursWasted: totalHoursWasted,
+        vulnerability: answers[2] as string, // Second question answer
+        maturityLevel: answers[3] as string, // Third question answer
+        aiScore: calculateScore(),
+        recommendedAgent: getRecommendedAgent().name
+      };
+
+      // Check if Brevo is configured
+      if (!isBrevoConfigured()) {
+        console.warn('⚠️ [BREVO] Not configured - skipping email submission');
+        // Fallback: simulate success
+        await new Promise(resolve => setTimeout(resolve, 1500));
+      } else {
+        // Submit to Brevo
+        const result = await submitDiagnosticToBrevo(email, diagnosticData);
+        
+        if (!result.success) {
+          throw new Error(result.error || 'Submission failed');
+        }
+      }
       
       toast({
         title: "Strategic AI Domination Plan Sent!",
@@ -173,6 +195,7 @@ export default function DiagnosticQuestionnaire() {
       setEmail('');
       setIsSubmitting(false);
     } catch (error) {
+      console.error('❌ [DIAGNOSTIC] Error submitting:', error);
       toast({
         title: "Transmission Failed",
         description: "Please try again - your transformation is too important to miss.",
