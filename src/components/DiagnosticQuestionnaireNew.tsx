@@ -51,101 +51,107 @@ function getBusinessChallenges(t: any): ChallengeOption[] {
   return [
     {
       id: 'customer-service',
-      title: t.challenges.options['customer-service'].title,
-      description: t.challenges.options['customer-service'].description,
+      title: t.challenges?.options?.['customer-service']?.title || 'Customer Service Overload',
+      description: t.challenges?.options?.['customer-service']?.description || 'Struggling with too many customer requests',
       icon: <MessageCircle className="h-8 w-8 text-dainamics-primary" />
     },
     {
       id: 'content-marketing',
-      title: t.challenges.options['content-marketing'].title,
-      description: t.challenges.options['content-marketing'].description,
+      title: t.challenges?.options?.['content-marketing']?.title || 'Content Creation Bottleneck',
+      description: t.challenges?.options?.['content-marketing']?.description || 'Spending too much time creating marketing content',
       icon: <FileText className="h-8 w-8 text-dainamics-primary" />
     },
     {
       id: 'lead-generation',
-      title: t.challenges.options['lead-generation'].title,
-      description: t.challenges.options['lead-generation'].description,
+      title: t.challenges?.options?.['lead-generation']?.title || 'Lead Generation Struggle',
+      description: t.challenges?.options?.['lead-generation']?.description || 'Not enough qualified prospects and clients',
       icon: <TrendingUp className="h-8 w-8 text-dainamics-primary" />
     },
     {
       id: 'admin',
-      title: t.challenges.options['admin'].title,
-      description: t.challenges.options['admin'].description,
+      title: t.challenges?.options?.['admin']?.title || 'Administrative Burden',
+      description: t.challenges?.options?.['admin']?.description || 'Overwhelmed by paperwork and manual processes',
       icon: <ClipboardList className="h-8 w-8 text-dainamics-primary" />
     },
     {
       id: 'organization',
-      title: t.challenges.options['organization'].title,
-      description: t.challenges.options['organization'].description,
+      title: t.challenges?.options?.['organization']?.title || 'Personal Productivity Drain',
+      description: t.challenges?.options?.['organization']?.description || 'Wasting time on emails, scheduling and repetitive tasks',
       icon: <Calendar className="h-8 w-8 text-dainamics-primary" />
     }
   ];
 }
 
 function getSpecificQuestions(t: any): Record<BusinessChallenge, Question[]> {
+  const csq = t.specificQuestions?.questions?.['customer-service'];
+  const cmq = t.specificQuestions?.questions?.['content-marketing'];
+  const lgq = t.specificQuestions?.questions?.['lead-generation'];
+  const adq = t.specificQuestions?.questions?.['admin'];
+  const orq = t.specificQuestions?.questions?.['organization'];
+
   return {
     'customer-service': [
       {
         id: 'channels',
-        text: t.specificQuestions.questions['customer-service'].channels,
+        text: csq?.channels || 'Which channels do you manage customer requests on?',
         options: [
-          { value: 'email', label: t.specificQuestions.questions['customer-service'].options.email },
-          { value: 'whatsapp', label: t.specificQuestions.questions['customer-service'].options.whatsapp },
-          { value: 'social', label: t.specificQuestions.questions['customer-service'].options.social },
-          { value: 'phone', label: t.specificQuestions.questions['customer-service'].options.phone },
-          { value: 'chat', label: t.specificQuestions.questions['customer-service'].options.chat }
+          { value: 'email', label: csq?.options?.email || 'Email' },
+          { value: 'whatsapp', label: csq?.options?.whatsapp || 'WhatsApp' },
+          { value: 'social', label: csq?.options?.social || 'Social Media' },
+          { value: 'phone', label: csq?.options?.phone || 'Phone' },
+          { value: 'chat', label: csq?.options?.chat || 'Website Chat' }
         ]
       }
     ],
     'content-marketing': [
       {
         id: 'content-types',
-        text: t.specificQuestions.questions['content-marketing'].contentTypes,
+        text: cmq?.contentTypes || 'What types of content do you need to create regularly?',
         options: [
-          { value: 'blogs', label: t.specificQuestions.questions['content-marketing'].options.blogs },
-          { value: 'social', label: t.specificQuestions.questions['content-marketing'].options.social },
-          { value: 'email', label: t.specificQuestions.questions['content-marketing'].options.email },
-          { value: 'video', label: t.specificQuestions.questions['content-marketing'].options.video },
-          { value: 'product', label: t.specificQuestions.questions['content-marketing'].options.product }
+          { value: 'blogs', label: cmq?.options?.blogs || 'Blog Articles' },
+          { value: 'social', label: cmq?.options?.social || 'Social Media Posts' },
+          { value: 'email', label: cmq?.options?.email || 'Email Campaigns' },
+          { value: 'video', label: cmq?.options?.video || 'Video Scripts' },
+          { value: 'product', label: cmq?.options?.product || 'Product Copy' }
         ]
       }
     ],
     'lead-generation': [
       {
         id: 'lead-aspects',
-        text: t.specificQuestions.questions['lead-generation'].leadAspects,
+        text: lgq?.leadAspects || 'What aspects of lead generation are most difficult for you?',
         options: [
-          { value: 'finding', label: t.specificQuestions.questions['lead-generation'].options.finding },
-          { value: 'qualifying', label: t.specificQuestions.questions['lead-generation'].options.qualifying },
-          { value: 'nurturing', label: t.specificQuestions.questions['lead-generation'].options.nurturing },
-          { value: 'following', label: t.specificQuestions.questions['lead-generation'].options.following },
-          { value: 'closing', label: t.specificQuestions.questions['lead-generation'].options.closing }
+          { value: 'finding', label: lgq?.options?.finding || 'Finding Prospects' },
+          { value: 'qualifying', label: lgq?.options?.qualifying || 'Qualifying Leads' },
+          { value: 'nurturing', label: lgq?.options?.nurturing || 'Lead Nurturing' },
+          { value: 'following', label: lgq?.options?.following || 'Follow-up' },
+          { value: 'closing', label: lgq?.options?.closing || 'Closing Deals' }
         ]
       }
     ],
     'admin': [
       {
         id: 'admin-tasks',
-        text: t.specificQuestions.questions['admin'].adminTasks,
+        text: adq?.adminTasks || 'Which administrative tasks take up most of your time?',
         options: [
-          { value: 'invoices', label: t.specificQuestions.questions['admin'].options.invoices },
-          { value: 'documents', label: t.specificQuestions.questions['admin'].options.documents },
-          { value: 'expenses', label: t.specificQuestions.questions['admin'].options.expenses },
-          { value: 'reporting', label: t.specificQuestions.questions['admin'].options.reporting },
-          { value: 'data', label: t.specificQuestions.questions['admin'].options.data }
+          { value: 'invoices', label: adq?.options?.invoices || 'Invoice Management' },
+          { value: 'documents', label: adq?.options?.documents || 'Document Processing' },
+          { value: 'expenses', label: adq?.options?.expenses || 'Expense Tracking' },
+          { value: 'reporting', label: adq?.options?.reporting || 'Reporting' },
+          { value: 'data', label: adq?.options?.data || 'Data Entry' }
         ]
       }
     ],
     'organization': [
       {
         id: 'productivity-tasks',
-        text: t.specificQuestions.questions['organization'].productivityTasks,
+        text: orq?.productivityTasks || 'Which personal tasks consume most of your workday?',
         options: [
-          { value: 'email', label: t.specificQuestions.questions['organization'].options.email },
-          { value: 'calendar', label: t.specificQuestions.questions['organization'].options.calendar },
-          { value: 'meetings', label: t.specificQuestions.questions['organization'].options.meetings },
-          { value: 'tasks', label: t.specificQuestions.questions['organization'].options.tasks },
-          { value: 'information', label: t.specificQuestions.questions['organization'].options.information }
+          { value: 'email', label: orq?.options?.email || 'Email Management' },
+          { value: 'calendar', label: orq?.options?.calendar || 'Calendar & Scheduling' },
+          { value: 'meetings', label: orq?.options?.meetings || 'Meeting Preparation' },
+          { value: 'tasks', label: orq?.options?.tasks || 'Task Management' },
+          { value: 'information', label: orq?.options?.information || 'Information Overload' }
         ]
       }
     ]
@@ -155,34 +161,74 @@ function getSpecificQuestions(t: any): Record<BusinessChallenge, Question[]> {
 function getAgentRecommendations(t: any): Record<BusinessChallenge, AgentRecommendation> {
   return {
     'customer-service': {
-      name: t.results.agents['customer-service'].name,
-      tagline: t.results.agents['customer-service'].tagline,
-      features: t.results.agents['customer-service'].features,
-      metrics: t.results.agents['customer-service'].metrics
+      name: t.results?.agents?.['customer-service']?.name || 'OmniResponse X',
+      tagline: t.results?.agents?.['customer-service']?.tagline || 'Instant answers. Autonomous resolution. Maximum satisfaction.',
+      features: t.results?.agents?.['customer-service']?.features || [
+        'Handles customer inquiries 24/7 across all communication channels',
+        'Resolves up to 80% of common requests without human intervention',
+        'Learns from each interaction to continuously improve responses'
+      ],
+      metrics: t.results?.agents?.['customer-service']?.metrics || [
+        { label: 'Response Time', value: '-70%' },
+        { label: 'Customer Satisfaction', value: '+35%' },
+        { label: 'Support Capacity', value: '5x' }
+      ]
     },
     'content-marketing': {
-      name: t.results.agents['content-marketing'].name,
-      tagline: t.results.agents['content-marketing'].tagline,
-      features: t.results.agents['content-marketing'].features,
-      metrics: t.results.agents['content-marketing'].metrics
+      name: t.results?.agents?.['content-marketing']?.name || 'ContentForge Prime',
+      tagline: t.results?.agents?.['content-marketing']?.tagline || 'Massive production. Optimal conversion. Digital domination.',
+      features: t.results?.agents?.['content-marketing']?.features || [
+        'Creates high-quality content across multiple formats and platforms',
+        'Maintains your brand voice and optimizes for engagement',
+        'Schedules and publishes content automatically based on optimal timing'
+      ],
+      metrics: t.results?.agents?.['content-marketing']?.metrics || [
+        { label: 'Content Creation Time', value: '-72%' },
+        { label: 'Publication Frequency', value: '3.5x' },
+        { label: 'Engagement', value: '+45%' }
+      ]
     },
     'lead-generation': {
-      name: t.results.agents['lead-generation'].name,
-      tagline: t.results.agents['lead-generation'].tagline,
-      features: t.results.agents['lead-generation'].features,
-      metrics: t.results.agents['lead-generation'].metrics
+      name: t.results?.agents?.['lead-generation']?.name || 'AcquisitionNova',
+      tagline: t.results?.agents?.['lead-generation']?.tagline || 'Precise detection. Strategic engagement. Automatic closing.',
+      features: t.results?.agents?.['lead-generation']?.features || [
+        'Identifies and qualifies high-value prospects using behavioral data',
+        'Creates personalized outreach sequences for maximum conversion',
+        'Tracks and analyzes the entire sales pipeline with predictive insights'
+      ],
+      metrics: t.results?.agents?.['lead-generation']?.metrics || [
+        { label: 'Lead Volume', value: '+225%' },
+        { label: 'Conversion Rate', value: '+40%' },
+        { label: 'Sales Cycle', value: '-35%' }
+      ]
     },
     'admin': {
-      name: t.results.agents['admin'].name,
-      tagline: t.results.agents['admin'].tagline,
-      features: t.results.agents['admin'].features,
-      metrics: t.results.agents['admin'].metrics
+      name: t.results?.agents?.['admin']?.name || 'OperaCore Quantum',
+      tagline: t.results?.agents?.['admin']?.tagline || 'Total automation. Zero paperwork. Complete accuracy.',
+      features: t.results?.agents?.['admin']?.features || [
+        'Processes documents, invoices, and forms with superhuman accuracy',
+        'Integrates with your existing systems to eliminate manual data entry',
+        'Produces reports and analytics automatically based on your requirements'
+      ],
+      metrics: t.results?.agents?.['admin']?.metrics || [
+        { label: 'Processing Time', value: '-85%' },
+        { label: 'Error Rate', value: '-95%' },
+        { label: 'Administrative Costs', value: '-60%' }
+      ]
     },
     'organization': {
-      name: t.results.agents['organization'].name,
-      tagline: t.results.agents['organization'].tagline,
-      features: t.results.agents['organization'].features,
-      metrics: t.results.agents['organization'].metrics
+      name: t.results?.agents?.['organization']?.name || 'CommandMatrix Elite',
+      tagline: t.results?.agents?.['organization']?.tagline || 'Email mastery. Calendar optimization. Time liberation.',
+      features: t.results?.agents?.['organization']?.features || [
+        'Manages your inbox, prioritizing and categorizing messages automatically',
+        'Optimizes your schedule for peak productivity and work-life balance',
+        'Eliminates repetitive tasks through intelligent automation workflows'
+      ],
+      metrics: t.results?.agents?.['organization']?.metrics || [
+        { label: 'Email Time', value: '-60%' },
+        { label: 'Meeting Efficiency', value: '+45%' },
+        { label: 'Focus Time', value: '+3hrs/day' }
+      ]
     }
   };
 }
