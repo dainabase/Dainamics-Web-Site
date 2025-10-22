@@ -452,14 +452,18 @@ export default function DiagnosticQuestionnaireNew() {
         challenges_count: selectedChallenges.length
       });
       setCurrentStep(prev => prev + 1);
-      window.scrollTo(0, 0);
+      if (sectionRef.current) {
+        sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   };
 
   const handlePrevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(prev => prev - 1);
-      window.scrollTo(0, 0);
+      if (sectionRef.current) {
+        sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   };
 
@@ -474,7 +478,9 @@ export default function DiagnosticQuestionnaireNew() {
       consent: false
     });
     clearProgress();
-    window.scrollTo(0, 0);
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   // Check if option is selected
@@ -825,7 +831,7 @@ export default function DiagnosticQuestionnaireNew() {
                                 {businessChallenges.find(c => c.id === challenge)?.icon}
                               </div>
                               <h4 className="text-lg font-semibold bg-gradient-to-r from-dainamics-secondary to-dainamics-primary bg-clip-text text-transparent">
-                                About your {businessChallenges.find(c => c.id === challenge)?.title.toLowerCase()} challenges:
+                                À propos de vos défis {businessChallenges.find(c => c.id === challenge)?.title.toLowerCase()} :
                               </h4>
                             </div>
                             
@@ -859,7 +865,7 @@ export default function DiagnosticQuestionnaireNew() {
                                   ))}
                                 </div>
                                 {specificAnswers[`${challenge}-${question.id}`]?.length === 0 && (
-                                  <p className="text-xs text-dainamics-cta/90">Please select at least one option</p>
+                                  <p className="text-xs text-dainamics-cta/90">Veuillez sélectionner au moins une option</p>
                                 )}
                               </div>
                             ))}
@@ -988,7 +994,7 @@ export default function DiagnosticQuestionnaireNew() {
                             className="border-dainamics-border text-dainamics-light/70 hover:bg-dainamics-primary/10 hover:text-dainamics-light hover:border-dainamics-primary/50"
                           >
                             <ArrowLeft className="mr-2 h-4 w-4" />
-                            Back
+                            {t.navigation.back}
                           </Button>
                           
                           <Button
@@ -1002,11 +1008,11 @@ export default function DiagnosticQuestionnaireNew() {
                             {isSubmitting ? (
                               <>
                                 <span className="animate-spin mr-2 h-4 w-4 border-2 border-current border-t-transparent rounded-full"></span>
-                                Processing...
+                                {t.contact.processing}
                               </>
                             ) : (
                               <>
-                                {isSubmitting ? t.contact.processing : t.contact.getRecommendation}
+                                {t.contact.getRecommendation}
                                 <ArrowRight className="ml-2 h-4 w-4" />
                               </>
                             )}
