@@ -8,21 +8,21 @@ const AboutServices: React.FC = () => {
       icon: Brain,
       title: 'Intelligence Artificielle',
       description:
-        "Agents IA conversationnels, analyse prédictive, traitement automatique de données. Nous intégrons l'IA là où elle apporte une vraie valeur ajoutée.",
+        "Agents IA conversationnels, analyse prédictive, traitement automatique de données. Exemple : Support client 24/7 ou extraction automatique de factures.",
       iconColor: 'text-dainamics-primary', // Violet
     },
     {
       icon: Zap,
       title: 'Automatisations',
       description:
-        "Workflows automatisés, intégrations API, synchronisation de données. Éliminez les tâches répétitives et concentrez-vous sur l'essentiel.",
+        "Workflows automatisés, intégrations API, synchronisation de données. Exemple : Synchronisation CRM-comptabilité ou validation automatique de documents.",
       iconColor: 'text-dainamics-secondary', // Cyan (accent)
     },
     {
       icon: Code,
       title: 'Développement Software',
       description:
-        'Applications web, plateformes métier, dashboards sur mesure. Du prototype au produit final, nous construisons exactement ce dont vous avez besoin.',
+        'Applications web, plateformes métier, dashboards sur mesure. Exemple : Portail client personnalisé ou tableau de bord KPI temps réel.',
       iconColor: 'text-dainamics-primary', // Violet
     },
   ];
@@ -70,7 +70,7 @@ const AboutServices: React.FC = () => {
   };
 
   return (
-    <section className="about-services-section py-24 bg-dainamics-background relative">
+    <section className="about-services-section py-16 bg-dainamics-background relative">
       {/* Effet gradient subtil pour profondeur visuelle */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-primary/3 to-transparent pointer-events-none" />
       
