@@ -400,13 +400,21 @@ export const translations = {
 };
 
 export function getTranslations(lang: Language = 'fr') {
-  return translations[lang] || translations.fr;
+  const result = translations[lang] || translations.fr;
+  console.log('🔧 getTranslations called with:', lang, 'Has intro.title:', result.intro?.title?.substring(0, 30));
+  return result;
 }
 
 export function detectLanguage(): Language {
   const browserLang = navigator.language.split('-')[0].toLowerCase();
+  console.log('🌐 Browser language detected:', browserLang);
+
   if (browserLang === 'fr' || browserLang === 'de') {
+    console.log('✅ Using language:', browserLang);
     return browserLang as Language;
   }
-  return 'en';
+
+  // Force French by default instead of English
+  console.log('⚠️ Language not FR/DE, forcing FR instead of EN');
+  return 'fr';
 }

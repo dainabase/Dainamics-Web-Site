@@ -235,12 +235,20 @@ function getAgentRecommendations(t: any): Record<BusinessChallenge, AgentRecomme
 
 // Main component
 export default function DiagnosticQuestionnaireNew() {
-  const [language] = useState<Language>(() => detectLanguage());
+  // Force French by default - detectLanguage() now returns 'fr' as fallback
+  const [language] = useState<Language>('fr');
   const t = getTranslations(language);
 
   const businessChallenges = getBusinessChallenges(t);
   const specificQuestions = getSpecificQuestions(t);
   const agentRecommendations = getAgentRecommendations(t);
+
+  // Debug: Log translations loaded
+  useEffect(() => {
+    console.log('🌐 Language set to:', language);
+    console.log('📝 Translations loaded, intro.title:', t.intro?.title);
+    console.log('🎯 First challenge:', businessChallenges[0]?.title);
+  }, [language, t, businessChallenges]);
 
   const { progress, setProgress, clearProgress } = useQuestionnaireProgress();
 
