@@ -23,7 +23,26 @@ export interface BrevoResponse {
 }
 
 export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoResponse> {
+  console.log('🚀 [BREVO] Début de la soumission');
+  console.log('📧 [BREVO] Email:', data.email);
+  console.log('👤 [BREVO] Nom:', data.name);
+  console.log('🏢 [BREVO] Entreprise:', data.company);
+  console.log('🎯 [BREVO] Challenges:', data.challenges);
+
+  // Vérification clé API
+  if (!BREVO_API_KEY || BREVO_API_KEY === '') {
+    console.error('❌ [BREVO] ERREUR CRITIQUE: Clé API manquante !');
+    console.error('💡 [BREVO] Vérifiez que le fichier .env contient VITE_BREVO_API_KEY');
+    return {
+      success: false,
+      message: 'Configuration Brevo manquante (clé API)'
+    };
+  }
+
+  console.log('✅ [BREVO] Clé API détectée:', BREVO_API_KEY.substring(0, 20) + '...');
+
   try {
+    // 1. CRÉATION/MISE À JOUR CONTACT
     const contactPayload = {
       email: data.email,
       attributes: {
@@ -38,6 +57,9 @@ export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoRespo
       updateEnabled: true
     };
 
+    console.log('📤 [BREVO] Envoi création contact...');
+    console.log('📦 [BREVO] Payload contact:', JSON.stringify(contactPayload, null, 2));
+
     const contactResponse = await fetch(`${BREVO_API_URL}/contacts`, {
       method: 'POST',
       headers: {
@@ -48,11 +70,26 @@ export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoRespo
       body: JSON.stringify(contactPayload)
     });
 
-    if (!contactResponse.ok && contactResponse.status !== 400) {
-      const errorData = await contactResponse.json();
-      throw new Error(`Erreur création contact: ${JSON.stringify(errorData)}`);
+    console.log('📥 [BREVO] Réponse création contact - Status:', contactResponse.status);
+
+    const contactResponseText = await contactResponse.text();
+    console.log('📄 [BREVO] Réponse brute contact:', contactResponseText);
+
+    // Status 201 = créé, 204 = mis à jour, 400 = existe déjà (acceptable)
+    if (!contactResponse.ok && contactResponse.status !== 400 && contactResponse.status !== 204) {
+      console.error('❌ [BREVO] Échec création contact');
+      let errorData;
+      try {
+        errorData = JSON.parse(contactResponseText);
+      } catch {
+        errorData = { message: contactResponseText };
+      }
+      throw new Error(`Erreur création contact (${contactResponse.status}): ${JSON.stringify(errorData)}`);
     }
 
+    console.log('✅ [BREVO] Contact créé/mis à jour avec succès');
+
+    // 2. ENVOI EMAIL TRANSACTIONNEL
     const emailPayload = {
       to: [{ email: data.email, name: data.name }],
       templateId: EMAIL_TEMPLATE_ID,
@@ -64,6 +101,9 @@ export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoRespo
       }
     };
 
+    console.log('📤 [BREVO] Envoi email transactionnel...');
+    console.log('📦 [BREVO] Payload email:', JSON.stringify(emailPayload, null, 2));
+
     const emailResponse = await fetch(`${BREVO_API_URL}/smtp/email`, {
       method: 'POST',
       headers: {
@@ -74,12 +114,25 @@ export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoRespo
       body: JSON.stringify(emailPayload)
     });
 
+    console.log('📥 [BREVO] Réponse envoi email - Status:', emailResponse.status);
+
+    const emailResponseText = await emailResponse.text();
+    console.log('📄 [BREVO] Réponse brute email:', emailResponseText);
+
     if (!emailResponse.ok) {
-      const errorData = await emailResponse.json();
-      throw new Error(`Erreur envoi email: ${JSON.stringify(errorData)}`);
+      console.error('❌ [BREVO] Échec envoi email');
+      let errorData;
+      try {
+        errorData = JSON.parse(emailResponseText);
+      } catch {
+        errorData = { message: emailResponseText };
+      }
+      throw new Error(`Erreur envoi email (${emailResponse.status}): ${JSON.stringify(errorData)}`);
     }
 
-    const emailData = await emailResponse.json();
+    const emailData = JSON.parse(emailResponseText);
+    console.log('✅ [BREVO] Email envoyé avec succès');
+    console.log('📬 [BREVO] Message ID:', emailData.messageId);
 
     return {
       success: true,
@@ -88,7 +141,10 @@ export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoRespo
     };
 
   } catch (error) {
-    console.error('Erreur Brevo:', error);
+    console.error('❌❌❌ [BREVO] ERREUR FATALE:', error);
+    console.error('🔍 [BREVO] Détails erreur:', error instanceof Error ? error.message : String(error));
+    console.error('📋 [BREVO] Stack trace:', error instanceof Error ? error.stack : 'N/A');
+
     return {
       success: false,
       message: error instanceof Error ? error.message : 'Erreur inconnue lors de l\'envoi'
