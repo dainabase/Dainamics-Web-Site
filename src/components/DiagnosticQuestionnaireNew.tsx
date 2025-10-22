@@ -47,187 +47,154 @@ interface AgentRecommendation {
   metrics: { label: string; value: string }[];
 }
 
-// Challenge options
-const businessChallenges: ChallengeOption[] = [
-  {
-    id: 'customer-service',
-    title: 'Customer Service Overload',
-    description: 'Struggling with too many customer requests',
-    icon: <MessageCircle className="h-8 w-8 text-dainamics-primary" />
-  },
-  {
-    id: 'content-marketing',
-    title: 'Content Creation Bottleneck',
-    description: 'Spending too much time creating marketing content',
-    icon: <FileText className="h-8 w-8 text-dainamics-primary" />
-  },
-  {
-    id: 'lead-generation',
-    title: 'Lead Generation Struggle',
-    description: 'Not enough qualified prospects and clients',
-    icon: <TrendingUp className="h-8 w-8 text-dainamics-primary" />
-  },
-  {
-    id: 'admin',
-    title: 'Administrative Burden',
-    description: 'Overwhelmed by paperwork and manual processes',
-    icon: <ClipboardList className="h-8 w-8 text-dainamics-primary" />
-  },
-  {
-    id: 'organization',
-    title: 'Personal Productivity Drain',
-    description: 'Wasting time on emails, scheduling and repetitive tasks',
-    icon: <Calendar className="h-8 w-8 text-dainamics-primary" />
-  }
-];
+function getBusinessChallenges(t: any): ChallengeOption[] {
+  return [
+    {
+      id: 'customer-service',
+      title: t.challenges.options['customer-service'].title,
+      description: t.challenges.options['customer-service'].description,
+      icon: <MessageCircle className="h-8 w-8 text-dainamics-primary" />
+    },
+    {
+      id: 'content-marketing',
+      title: t.challenges.options['content-marketing'].title,
+      description: t.challenges.options['content-marketing'].description,
+      icon: <FileText className="h-8 w-8 text-dainamics-primary" />
+    },
+    {
+      id: 'lead-generation',
+      title: t.challenges.options['lead-generation'].title,
+      description: t.challenges.options['lead-generation'].description,
+      icon: <TrendingUp className="h-8 w-8 text-dainamics-primary" />
+    },
+    {
+      id: 'admin',
+      title: t.challenges.options['admin'].title,
+      description: t.challenges.options['admin'].description,
+      icon: <ClipboardList className="h-8 w-8 text-dainamics-primary" />
+    },
+    {
+      id: 'organization',
+      title: t.challenges.options['organization'].title,
+      description: t.challenges.options['organization'].description,
+      icon: <Calendar className="h-8 w-8 text-dainamics-primary" />
+    }
+  ];
+}
 
-// Questions for specific challenges
-const specificQuestions: Record<BusinessChallenge, Question[]> = {
-  'customer-service': [
-    {
-      id: 'channels',
-      text: 'Which channels do you manage customer requests on?',
-      options: [
-        { value: 'email', label: 'Email' },
-        { value: 'whatsapp', label: 'WhatsApp' },
-        { value: 'social', label: 'Social Media' },
-        { value: 'phone', label: 'Phone' },
-        { value: 'chat', label: 'Website Chat' }
-      ]
-    }
-  ],
-  'content-marketing': [
-    {
-      id: 'content-types',
-      text: 'What types of content do you need to create regularly?',
-      options: [
-        { value: 'blogs', label: 'Blog Articles' },
-        { value: 'social', label: 'Social Media Posts' },
-        { value: 'email', label: 'Email Campaigns' },
-        { value: 'video', label: 'Video Scripts' },
-        { value: 'product', label: 'Product Copy' }
-      ]
-    }
-  ],
-  'lead-generation': [
-    {
-      id: 'lead-aspects',
-      text: 'What aspects of lead generation are most difficult for you?',
-      options: [
-        { value: 'finding', label: 'Finding Prospects' },
-        { value: 'qualifying', label: 'Qualifying Leads' },
-        { value: 'nurturing', label: 'Lead Nurturing' },
-        { value: 'following', label: 'Follow-up' },
-        { value: 'closing', label: 'Closing Deals' }
-      ]
-    }
-  ],
-  'admin': [
-    {
-      id: 'admin-tasks',
-      text: 'Which administrative tasks take up most of your time?',
-      options: [
-        { value: 'invoices', label: 'Invoice Management' },
-        { value: 'documents', label: 'Document Processing' },
-        { value: 'expenses', label: 'Expense Tracking' },
-        { value: 'reporting', label: 'Reporting' },
-        { value: 'data', label: 'Data Entry' }
-      ]
-    }
-  ],
-  'organization': [
-    {
-      id: 'productivity-tasks',
-      text: 'Which personal tasks consume most of your workday?',
-      options: [
-        { value: 'email', label: 'Email Management' },
-        { value: 'calendar', label: 'Calendar & Scheduling' },
-        { value: 'meetings', label: 'Meeting Preparation' },
-        { value: 'tasks', label: 'Task Management' },
-        { value: 'information', label: 'Information Overload' }
-      ]
-    }
-  ]
-};
+function getSpecificQuestions(t: any): Record<BusinessChallenge, Question[]> {
+  return {
+    'customer-service': [
+      {
+        id: 'channels',
+        text: t.specificQuestions.questions['customer-service'].channels,
+        options: [
+          { value: 'email', label: t.specificQuestions.questions['customer-service'].options.email },
+          { value: 'whatsapp', label: t.specificQuestions.questions['customer-service'].options.whatsapp },
+          { value: 'social', label: t.specificQuestions.questions['customer-service'].options.social },
+          { value: 'phone', label: t.specificQuestions.questions['customer-service'].options.phone },
+          { value: 'chat', label: t.specificQuestions.questions['customer-service'].options.chat }
+        ]
+      }
+    ],
+    'content-marketing': [
+      {
+        id: 'content-types',
+        text: t.specificQuestions.questions['content-marketing'].contentTypes,
+        options: [
+          { value: 'blogs', label: t.specificQuestions.questions['content-marketing'].options.blogs },
+          { value: 'social', label: t.specificQuestions.questions['content-marketing'].options.social },
+          { value: 'email', label: t.specificQuestions.questions['content-marketing'].options.email },
+          { value: 'video', label: t.specificQuestions.questions['content-marketing'].options.video },
+          { value: 'product', label: t.specificQuestions.questions['content-marketing'].options.product }
+        ]
+      }
+    ],
+    'lead-generation': [
+      {
+        id: 'lead-aspects',
+        text: t.specificQuestions.questions['lead-generation'].leadAspects,
+        options: [
+          { value: 'finding', label: t.specificQuestions.questions['lead-generation'].options.finding },
+          { value: 'qualifying', label: t.specificQuestions.questions['lead-generation'].options.qualifying },
+          { value: 'nurturing', label: t.specificQuestions.questions['lead-generation'].options.nurturing },
+          { value: 'following', label: t.specificQuestions.questions['lead-generation'].options.following },
+          { value: 'closing', label: t.specificQuestions.questions['lead-generation'].options.closing }
+        ]
+      }
+    ],
+    'admin': [
+      {
+        id: 'admin-tasks',
+        text: t.specificQuestions.questions['admin'].adminTasks,
+        options: [
+          { value: 'invoices', label: t.specificQuestions.questions['admin'].options.invoices },
+          { value: 'documents', label: t.specificQuestions.questions['admin'].options.documents },
+          { value: 'expenses', label: t.specificQuestions.questions['admin'].options.expenses },
+          { value: 'reporting', label: t.specificQuestions.questions['admin'].options.reporting },
+          { value: 'data', label: t.specificQuestions.questions['admin'].options.data }
+        ]
+      }
+    ],
+    'organization': [
+      {
+        id: 'productivity-tasks',
+        text: t.specificQuestions.questions['organization'].productivityTasks,
+        options: [
+          { value: 'email', label: t.specificQuestions.questions['organization'].options.email },
+          { value: 'calendar', label: t.specificQuestions.questions['organization'].options.calendar },
+          { value: 'meetings', label: t.specificQuestions.questions['organization'].options.meetings },
+          { value: 'tasks', label: t.specificQuestions.questions['organization'].options.tasks },
+          { value: 'information', label: t.specificQuestions.questions['organization'].options.information }
+        ]
+      }
+    ]
+  };
+}
 
-// Agent recommendations mapping
-const agentRecommendations: Record<BusinessChallenge, AgentRecommendation> = {
-  'customer-service': {
-    name: 'OmniResponse X',
-    tagline: 'Instant answers. Autonomous resolution. Maximum satisfaction.',
-    features: [
-      'Handles customer inquiries 24/7 across all communication channels',
-      'Resolves up to 80% of common requests without human intervention',
-      'Learns from each interaction to continuously improve responses'
-    ],
-    metrics: [
-      { label: 'Response Time', value: '-70%' },
-      { label: 'Customer Satisfaction', value: '+35%' },
-      { label: 'Support Capacity', value: '5x' }
-    ]
-  },
-  'content-marketing': {
-    name: 'ContentForge Prime',
-    tagline: 'Massive production. Optimal conversion. Digital domination.',
-    features: [
-      'Creates high-quality content across multiple formats and platforms',
-      'Maintains your brand voice and optimizes for engagement',
-      'Schedules and publishes content automatically based on optimal timing'
-    ],
-    metrics: [
-      { label: 'Content Creation Time', value: '-72%' },
-      { label: 'Publication Frequency', value: '3.5x' },
-      { label: 'Engagement', value: '+45%' }
-    ]
-  },
-  'lead-generation': {
-    name: 'AcquisitionNova',
-    tagline: 'Precise detection. Strategic engagement. Automatic closing.',
-    features: [
-      'Identifies and qualifies high-value prospects using behavioral data',
-      'Creates personalized outreach sequences for maximum conversion',
-      'Tracks and analyzes the entire sales pipeline with predictive insights'
-    ],
-    metrics: [
-      { label: 'Lead Volume', value: '+225%' },
-      { label: 'Conversion Rate', value: '+40%' },
-      { label: 'Sales Cycle', value: '-35%' }
-    ]
-  },
-  'admin': {
-    name: 'OperaCore Quantum',
-    tagline: 'Total automation. Zero paperwork. Complete accuracy.',
-    features: [
-      'Processes documents, invoices, and forms with superhuman accuracy',
-      'Integrates with your existing systems to eliminate manual data entry',
-      'Produces reports and analytics automatically based on your requirements'
-    ],
-    metrics: [
-      { label: 'Processing Time', value: '-85%' },
-      { label: 'Error Rate', value: '-95%' },
-      { label: 'Administrative Costs', value: '-60%' }
-    ]
-  },
-  'organization': {
-    name: 'CommandMatrix Elite',
-    tagline: 'Email mastery. Calendar optimization. Time liberation.',
-    features: [
-      'Manages your inbox, prioritizing and categorizing messages automatically',
-      'Optimizes your schedule for peak productivity and work-life balance',
-      'Eliminates repetitive tasks through intelligent automation workflows'
-    ],
-    metrics: [
-      { label: 'Email Time', value: '-60%' },
-      { label: 'Meeting Efficiency', value: '+45%' },
-      { label: 'Focus Time', value: '+3hrs/day' }
-    ]
-  }
-};
+function getAgentRecommendations(t: any): Record<BusinessChallenge, AgentRecommendation> {
+  return {
+    'customer-service': {
+      name: t.results.agents['customer-service'].name,
+      tagline: t.results.agents['customer-service'].tagline,
+      features: t.results.agents['customer-service'].features,
+      metrics: t.results.agents['customer-service'].metrics
+    },
+    'content-marketing': {
+      name: t.results.agents['content-marketing'].name,
+      tagline: t.results.agents['content-marketing'].tagline,
+      features: t.results.agents['content-marketing'].features,
+      metrics: t.results.agents['content-marketing'].metrics
+    },
+    'lead-generation': {
+      name: t.results.agents['lead-generation'].name,
+      tagline: t.results.agents['lead-generation'].tagline,
+      features: t.results.agents['lead-generation'].features,
+      metrics: t.results.agents['lead-generation'].metrics
+    },
+    'admin': {
+      name: t.results.agents['admin'].name,
+      tagline: t.results.agents['admin'].tagline,
+      features: t.results.agents['admin'].features,
+      metrics: t.results.agents['admin'].metrics
+    },
+    'organization': {
+      name: t.results.agents['organization'].name,
+      tagline: t.results.agents['organization'].tagline,
+      features: t.results.agents['organization'].features,
+      metrics: t.results.agents['organization'].metrics
+    }
+  };
+}
 
 // Main component
 export default function DiagnosticQuestionnaireNew() {
   const [language] = useState<Language>(() => detectLanguage());
   const t = getTranslations(language);
+
+  const businessChallenges = getBusinessChallenges(t);
+  const specificQuestions = getSpecificQuestions(t);
+  const agentRecommendations = getAgentRecommendations(t);
 
   const { progress, setProgress, clearProgress } = useQuestionnaireProgress();
 
@@ -475,11 +442,11 @@ export default function DiagnosticQuestionnaireNew() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-dainamics-primary/5 rounded-full blur-3xl -z-10"></div>
           
           <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-wide bg-gradient-to-r from-dainamics-primary to-dainamics-secondary bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(123,47,255,0.3)]">
-            Is your business still trapped in outdated methods?
+            {t.intro.title}
           </h2>
-          
+
           <p className="text-dainamics-light/80 max-w-2xl mx-auto text-lg md:text-xl mb-10">
-            Discover which obsolete tasks you could eliminate with our superhuman AI agents
+            {t.intro.subtitle}
           </p>
           
           {currentStep === 0 && !showScanAnimation && (
@@ -492,7 +459,7 @@ export default function DiagnosticQuestionnaireNew() {
               <span className="w-12 h-12 flex items-center justify-center bg-white/10 rounded-full">
                 <Brain className="w-6 h-6 text-white group-hover:text-dainamics-secondary transition-colors duration-300" />
               </span>
-              <span className="font-bold">Begin Neural Business Scan</span>
+              <span className="font-bold">{t.intro.startButton}</span>
             </motion.button>
           )}
         </div>
@@ -526,12 +493,12 @@ export default function DiagnosticQuestionnaireNew() {
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-r from-dainamics-primary to-dainamics-secondary rounded-full animate-pulse-glow opacity-60"></div>
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-dainamics-light">Neural Business Analysis</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-dainamics-light">{t.scanner.title}</h3>
                 </div>
                 
                 <div className="flex items-center">
                   <div className="w-2 h-2 rounded-full bg-dainamics-secondary animate-pulse mr-2"></div>
-                  <span className="text-dainamics-secondary text-sm">Status: Active</span>
+                  <span className="text-dainamics-secondary text-sm">{t.scanner.status}</span>
                 </div>
               </div>
 
@@ -545,8 +512,8 @@ export default function DiagnosticQuestionnaireNew() {
                       <Scan className="h-10 w-10 text-dainamics-primary animate-pulse" />
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-gradient-primary">Initializing Neural Scan</h3>
-                  <p className="text-dainamics-light/70 mb-6">Calibrating business analysis algorithms...</p>
+                  <h3 className="text-2xl font-bold mb-4 text-gradient-primary">{t.scanner.initializing}</h3>
+                  <p className="text-dainamics-light/70 mb-6">{t.scanner.calibrating}</p>
                   <div className="w-full max-w-md h-2 bg-dainamics-background rounded-full overflow-hidden">
                     <motion.div 
                       initial={{ width: "0%" }}
@@ -556,7 +523,7 @@ export default function DiagnosticQuestionnaireNew() {
                     />
                   </div>
                   <div className="mt-6 text-sm text-dainamics-light/50 font-mono">
-                    <span className="typing-effect">Analyzing business patterns... Detecting inefficiencies... Preparing neural interface...</span>
+                    <span className="typing-effect">{t.scanner.analyzing}</span>
                   </div>
                 </div>
               ) : (
@@ -584,7 +551,7 @@ export default function DiagnosticQuestionnaireNew() {
                         )}>
                           {currentStep > 1 && <Check className="w-3 h-3" />}
                         </div>
-                        <span className="text-xs">Business DNA</span>
+                        <span className="text-xs">{t.progress.step1}</span>
                       </div>
                       
                       <div className={cn(
@@ -599,7 +566,7 @@ export default function DiagnosticQuestionnaireNew() {
                         )}>
                           {currentStep > 2 && <Check className="w-3 h-3" />}
                         </div>
-                        <span className="text-xs">Deep Analysis</span>
+                        <span className="text-xs">{t.progress.step2}</span>
                       </div>
                       
                       <div className={cn(
@@ -614,7 +581,7 @@ export default function DiagnosticQuestionnaireNew() {
                         )}>
                           {currentStep > 3 && <Check className="w-3 h-3" />}
                         </div>
-                        <span className="text-xs">Neural Match</span>
+                        <span className="text-xs">{t.progress.step3}</span>
                       </div>
                     </div>
                   </div>
@@ -629,9 +596,9 @@ export default function DiagnosticQuestionnaireNew() {
                     >
                       <div className="text-center mb-6">
                         <h3 className="text-xl md:text-2xl font-bold text-dainamics-light mb-2">
-                          Which business inefficiencies are draining your resources?
+                          {t.challenges.title}
                         </h3>
-                        <p className="text-dainamics-light/70">Select all that apply for neural analysis</p>
+                        <p className="text-dainamics-light/70">{t.challenges.subtitle}</p>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
@@ -728,7 +695,7 @@ export default function DiagnosticQuestionnaireNew() {
 
                       <div className="flex justify-between items-center mt-8">
                         <div className="text-dainamics-light/70 text-sm">
-                          {selectedChallenges.length} areas selected
+                          {selectedChallenges.length} {t.challenges.areasSelected}
                         </div>
                         <Button
                           onClick={handleNextStep}
@@ -738,7 +705,7 @@ export default function DiagnosticQuestionnaireNew() {
                             !isStepValid() && "opacity-50 cursor-not-allowed"
                           )}
                         >
-                          Analyze Selected Areas
+                          {t.challenges.analyzeButton}
                           <ArrowRight className="ml-2 h-4 w-4" />
                           <span className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
                         </Button>
@@ -756,9 +723,9 @@ export default function DiagnosticQuestionnaireNew() {
                     >
                       <div className="text-center mb-6">
                         <h3 className="text-xl md:text-2xl font-bold text-dainamics-light mb-2">
-                          Tell us more about your specific challenges
+                          {t.specificQuestions.title}
                         </h3>
-                        <p className="text-dainamics-light/70">Your answers will help us recommend the perfect AI solutions</p>
+                        <p className="text-dainamics-light/70">{t.specificQuestions.subtitle}</p>
                       </div>
 
                       <div className="space-y-8">
@@ -825,9 +792,9 @@ export default function DiagnosticQuestionnaireNew() {
                           className="border-dainamics-border text-dainamics-light/70 hover:bg-dainamics-primary/10 hover:text-dainamics-light hover:border-dainamics-primary/50"
                         >
                           <ArrowLeft className="mr-2 h-4 w-4" />
-                          Back
+                          {t.navigation.back}
                         </Button>
-                        
+
                         <Button
                           onClick={handleNextStep}
                           disabled={!isStepValid()}
@@ -836,7 +803,7 @@ export default function DiagnosticQuestionnaireNew() {
                             !isStepValid() && "opacity-50 cursor-not-allowed"
                           )}
                         >
-                          Continue
+                          {t.navigation.continue}
                           <ArrowRight className="ml-2 h-4 w-4" />
                           <span className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
                         </Button>
@@ -857,21 +824,21 @@ export default function DiagnosticQuestionnaireNew() {
                           <Check className="h-8 w-8 text-dainamics-primary" />
                         </div>
                         <h3 className="text-xl md:text-2xl font-bold text-dainamics-light mb-2">
-                          Your Personalized AI Recommendation is Ready!
+                          {t.contact.title}
                         </h3>
-                        <p className="text-dainamics-light/70">Enter your details to receive your custom AI transformation plan</p>
+                        <p className="text-dainamics-light/70">{t.contact.subtitle}</p>
                       </div>
 
                       <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto glass-morphism rounded-xl p-6">
                         <div className="space-y-4">
                           <div className="space-y-2">
-                            <Label htmlFor="email" className="text-dainamics-light">Work Email*</Label>
+                            <Label htmlFor="email" className="text-dainamics-light">{t.contact.emailLabel}</Label>
                             <div className="relative">
                               <Input
                                 id="email"
                                 name="email"
                                 type="email"
-                                placeholder="your@email.com"
+                                placeholder={t.contact.emailPlaceholder}
                                 value={formData.email}
                                 onChange={handleInputChange}
                                 className="bg-dainamics-card-alt/50 border-dainamics-border/50 text-dainamics-light focus:border-dainamics-primary focus:ring-1 focus:ring-dainamics-primary"
@@ -882,13 +849,13 @@ export default function DiagnosticQuestionnaireNew() {
                           </div>
                           
                           <div className="space-y-2">
-                            <Label htmlFor="name" className="text-dainamics-light">Full Name*</Label>
+                            <Label htmlFor="name" className="text-dainamics-light">{t.contact.nameLabel}</Label>
                             <div className="relative">
                               <Input
                                 id="name"
                                 name="name"
                                 type="text"
-                                placeholder="John Smith"
+                                placeholder={t.contact.namePlaceholder}
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 className="bg-dainamics-card-alt/50 border-dainamics-border/50 text-dainamics-light focus:border-dainamics-primary focus:ring-1 focus:ring-dainamics-primary"
@@ -899,13 +866,13 @@ export default function DiagnosticQuestionnaireNew() {
                           </div>
                           
                           <div className="space-y-2">
-                            <Label htmlFor="company" className="text-dainamics-light">Company Name</Label>
+                            <Label htmlFor="company" className="text-dainamics-light">{t.contact.companyLabel}</Label>
                             <div className="relative">
                               <Input
                                 id="company"
                                 name="company"
                                 type="text"
-                                placeholder="Your Company"
+                                placeholder={t.contact.companyPlaceholder}
                                 value={formData.company}
                                 onChange={handleInputChange}
                                 className="bg-dainamics-card-alt/50 border-dainamics-border/50 text-dainamics-light focus:border-dainamics-primary focus:ring-1 focus:ring-dainamics-primary"
@@ -925,7 +892,7 @@ export default function DiagnosticQuestionnaireNew() {
                               required
                             />
                             <Label htmlFor="consent" className="text-sm text-dainamics-light/70">
-                              I agree to receive my AI recommendation and future updates from Dainamics
+                              {t.contact.consentLabel}
                             </Label>
                           </div>
                         </div>
@@ -956,7 +923,7 @@ export default function DiagnosticQuestionnaireNew() {
                               </>
                             ) : (
                               <>
-                                Get My AI Recommendation
+                                {isSubmitting ? t.contact.processing : t.contact.getRecommendation}
                                 <ArrowRight className="ml-2 h-4 w-4" />
                               </>
                             )}
@@ -970,7 +937,7 @@ export default function DiagnosticQuestionnaireNew() {
                           <span className="w-4 h-4 rounded-full border border-dainamics-light/30 flex items-center justify-center">
                             <Check className="w-2 h-2 text-dainamics-light/30" />
                           </span>
-                          Your data is encrypted and secure
+                          {t.contact.dataSecure}
                         </p>
                       </div>
                     </motion.div>
@@ -990,10 +957,10 @@ export default function DiagnosticQuestionnaireNew() {
                           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-dainamics-primary to-dainamics-secondary opacity-30 animate-pulse"></div>
                         </div>
                         <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-dainamics-primary to-dainamics-secondary bg-clip-text text-transparent mb-2">
-                          Your AI Transformation Plan
+                          {t.results.title}
                         </h3>
                         <p className="text-dainamics-light/70 mb-6">
-                          Based on your challenges, here are the Superhuman AI Agents that will revolutionize your business:
+                          {t.results.subtitle}
                         </p>
                       </div>
 
@@ -1041,13 +1008,13 @@ export default function DiagnosticQuestionnaireNew() {
                                   </div>
                                 </div>
                                 <div className="bg-dainamics-primary/20 px-3 py-1 rounded text-sm font-semibold text-dainamics-primary">
-                                  RECOMMENDED
+                                  {t.results.recommended}
                                 </div>
                               </div>
 
                               <div className="space-y-6">
                                 <div>
-                                  <h5 className="text-sm uppercase text-dainamics-light/50 tracking-wider mb-3">Key Features</h5>
+                                  <h5 className="text-sm uppercase text-dainamics-light/50 tracking-wider mb-3">{t.results.keyFeatures}</h5>
                                   <ul className="space-y-3">
                                     {agent.features.map((feature, i) => (
                                       <motion.li 
@@ -1067,7 +1034,7 @@ export default function DiagnosticQuestionnaireNew() {
                                 </div>
 
                                 <div>
-                                  <h5 className="text-sm uppercase text-dainamics-light/50 tracking-wider mb-3">Impact Metrics</h5>
+                                  <h5 className="text-sm uppercase text-dainamics-light/50 tracking-wider mb-3">{t.results.impactMetrics}</h5>
                                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                     {agent.metrics.map((metric, i) => (
                                       <motion.div 
@@ -1096,7 +1063,7 @@ export default function DiagnosticQuestionnaireNew() {
                         transition={{ delay: 0.5 }}
                       >
                         <p className="text-dainamics-light">
-                          We've sent your complete AI diagnosis to <span className="font-bold text-dainamics-success">{formData.email}</span>
+                          {t.results.emailSent} <span className="font-bold text-dainamics-success">{formData.email}</span>
                         </p>
                       </motion.div>
 
@@ -1109,7 +1076,7 @@ export default function DiagnosticQuestionnaireNew() {
                         <Button 
                           className="bg-gradient-to-r from-dainamics-primary to-dainamics-secondary hover:opacity-90 text-white btn-glow"
                         >
-                          Deploy Your AI Agents
+                          {t.results.deployButton}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                         
@@ -1117,7 +1084,7 @@ export default function DiagnosticQuestionnaireNew() {
                           variant="outline"
                           className="border-dainamics-primary text-dainamics-light hover:bg-dainamics-primary/10"
                         >
-                          Schedule a Demo
+                          {t.results.scheduleDemo}
                         </Button>
                         
                         <Button 
@@ -1125,7 +1092,7 @@ export default function DiagnosticQuestionnaireNew() {
                           onClick={handleReset}
                           className="text-dainamics-light/70 hover:text-dainamics-light hover:bg-dainamics-light/5"
                         >
-                          Restart Diagnosis
+                          {t.results.restartDiagnosis}
                         </Button>
                       </motion.div>
                     </motion.div>
