@@ -1,12 +1,23 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ArrowRight, ArrowLeft, Scan, Brain, MessageCircle, FileText, TrendingUp, ClipboardList, Calendar } from 'lucide-react';
+import { Check, ArrowRight, ArrowLeft, Scan, Brain, MessageCircle, FileText, TrendingUp, ClipboardList, Calendar, Clock, Shield, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
+import { submitToBrevo, validateEmail } from '@/lib/brevo-integration';
+import { getTranslations, detectLanguage, type Language } from '@/i18n/questionnaire';
+import { useQuestionnaireProgress } from '@/hooks/useLocalStorage';
+import {
+  trackQuestionnaireStart,
+  trackStepCompleted,
+  trackStepAbandoned,
+  trackQuestionnaireCompleted,
+  trackEmailValidationError,
+  trackBrevoError
+} from '@/lib/analytics';
 
 // Define data types
 type BusinessChallenge = 'customer-service' | 'content-marketing' | 'lead-generation' | 'admin' | 'organization';
@@ -215,21 +226,41 @@ const agentRecommendations: Record<BusinessChallenge, AgentRecommendation> = {
 
 // Main component
 export default function DiagnosticQuestionnaireNew() {
-  // State
-  const [currentStep, setCurrentStep] = useState(0); // 0 for intro, 1-3 for steps, 4 for results
-  const [selectedChallenges, setSelectedChallenges] = useState<BusinessChallenge[]>([]);
-  const [specificAnswers, setSpecificAnswers] = useState<Record<string, string[]>>({});
-  const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    company: '',
-    consent: false
-  });
+  const [language] = useState<Language>(() => detectLanguage());
+  const t = getTranslations(language);
+
+  const { progress, setProgress, clearProgress } = useQuestionnaireProgress();
+
+  const [currentStep, setCurrentStep] = useState(progress.currentStep);
+  const [selectedChallenges, setSelectedChallenges] = useState<BusinessChallenge[]>(progress.selectedChallenges as BusinessChallenge[]);
+  const [specificAnswers, setSpecificAnswers] = useState<Record<string, string[]>>(progress.specificAnswers);
+  const [formData, setFormData] = useState(progress.formData);
+  const [startTime] = useState(progress.startTime);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailError, setEmailError] = useState<string>('');
   const [showScanAnimation, setShowScanAnimation] = useState(false);
   const [neuralLines, setNeuralLines] = useState<{[key: string]: {angle: number, length: number, delay: number}[]}>({});
-  
+
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setProgress({
+      currentStep,
+      selectedChallenges,
+      specificAnswers,
+      formData,
+      startTime
+    });
+  }, [currentStep, selectedChallenges, specificAnswers, formData, startTime, setProgress]);
+
+  useEffect(() => {
+    return () => {
+      if (currentStep > 0 && currentStep < 4) {
+        const timeSpent = Date.now() - startTime;
+        trackStepAbandoned(currentStep, getStepName(currentStep), timeSpent);
+      }
+    };
+  }, [currentStep, startTime]);
 
   // Generate neural lines for animation
   useEffect(() => {
@@ -290,47 +321,91 @@ export default function DiagnosticQuestionnaireNew() {
     }));
   };
 
-  // Start questionnaire
   const startQuestionnaire = () => {
+    trackQuestionnaireStart();
     setShowScanAnimation(true);
     setTimeout(() => {
       setShowScanAnimation(false);
       setCurrentStep(1);
+      trackStepCompleted(0, 'Introduction', { action: 'scan_started' });
     }, 3000);
   };
 
-  // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  function getStepName(step: number): string {
+    const stepNames = ['Introduction', 'Business DNA', 'Deep Analysis', 'Neural Match', 'Results'];
+    return stepNames[step] || 'Unknown';
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const emailValidation = validateEmail(formData.email);
+    if (!emailValidation.valid) {
+      setEmailError(emailValidation.message || 'Email invalide');
+      trackEmailValidationError(emailValidation.message || 'Invalid format');
+      return;
+    }
+
+    setEmailError('');
     setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setCurrentStep(4);
-      
-      toast({
-        title: "AI Transformation Plan Ready!",
-        description: "We've sent your complete diagnosis to your email.",
-        variant: "default",
+    try {
+      const result = await submitToBrevo({
+        email: formData.email,
+        name: formData.name,
+        company: formData.company,
+        challenges: selectedChallenges,
+        specificAnswers
       });
-      
-      // Scroll to results
-      if (sectionRef.current) {
-        sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+
+      if (result.success) {
+        const timeSpent = Date.now() - startTime;
+        trackQuestionnaireCompleted(selectedChallenges, timeSpent);
+
+        setCurrentStep(4);
+
+        toast({
+          title: t.results.title,
+          description: t.results.subtitle,
+          variant: "default",
+        });
+
+        clearProgress();
+
+        if (sectionRef.current) {
+          sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        trackBrevoError(result.message);
+        toast({
+          title: "Erreur",
+          description: result.message || "Une erreur est survenue. Veuillez réessayer.",
+          variant: "destructive",
+        });
       }
-    }, 2500);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
+      trackBrevoError(errorMessage);
+      toast({
+        title: "Erreur de connexion",
+        description: "Impossible d'envoyer votre diagnostic. Vérifiez votre connexion internet.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  // Handle navigation to next step
   const handleNextStep = () => {
     if (currentStep < 3) {
+      trackStepCompleted(currentStep, getStepName(currentStep), {
+        challenges_count: selectedChallenges.length
+      });
       setCurrentStep(prev => prev + 1);
       window.scrollTo(0, 0);
     }
   };
 
-  // Handle navigation to previous step
   const handlePrevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(prev => prev - 1);
@@ -338,7 +413,6 @@ export default function DiagnosticQuestionnaireNew() {
     }
   };
 
-  // Reset the questionnaire
   const handleReset = () => {
     setCurrentStep(0);
     setSelectedChallenges([]);
@@ -349,6 +423,7 @@ export default function DiagnosticQuestionnaireNew() {
       company: '',
       consent: false
     });
+    clearProgress();
     window.scrollTo(0, 0);
   };
 
