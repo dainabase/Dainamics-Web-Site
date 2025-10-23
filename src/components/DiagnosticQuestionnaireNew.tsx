@@ -248,7 +248,7 @@ export default function DiagnosticQuestionnaireNew() {
     console.log('🌐 Language set to:', language);
     console.log('📝 Translations loaded, intro.title:', t.intro?.title);
     console.log('🎯 First challenge:', businessChallenges[0]?.title);
-  }, [language, t, businessChallenges]);
+  }, [language]);
 
   const { progress, setProgress, clearProgress } = useQuestionnaireProgress();
 
@@ -263,16 +263,6 @@ export default function DiagnosticQuestionnaireNew() {
   const [neuralLines, setNeuralLines] = useState<{[key: string]: {angle: number, length: number, delay: number}[]}>({});
 
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setProgress({
-      currentStep,
-      selectedChallenges,
-      specificAnswers,
-      formData,
-      startTime
-    });
-  }, [currentStep, selectedChallenges, specificAnswers, formData, startTime, setProgress]);
 
   useEffect(() => {
     return () => {
