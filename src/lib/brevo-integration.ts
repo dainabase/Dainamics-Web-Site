@@ -34,7 +34,8 @@ function generateRecommendationsText(challenges: string[]): string {
   
   return challenges
     .map(c => recommendations[c] || 'Solution IA personnalisée')
-    .join('<br>• ');
+    .map((rec, index) => index === 0 ? `• ${rec}` : `<br>• ${rec}`)
+    .join('');
 }
 
 // Interface pour les données du questionnaire
@@ -171,28 +172,28 @@ export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoRespo
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vos Résultats DAINAMICS</title>
 </head>
-<body style="margin: 0; padding: 0; font-family: 'Inter', Arial, sans-serif; background-color: #050510;">
-  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+<body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background-color: #050510;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #050510;">
     <tr>
-      <td align="center" style="padding: 20px 0;">
-        <table role="presentation" style="width: 600px; max-width: 100%; border-collapse: collapse; background-color: #0A0A1B; border: 1px solid #1a1a2e; border-radius: 12px;">
+      <td align="center" style="padding: 40px 20px;">
+        <table role="presentation" style="width: 600px; max-width: 100%; border-collapse: collapse; background-color: #0A0A1B; border: 1px solid #1a1a2e; border-radius: 12px; overflow: hidden;">
           
-          <!-- Header -->
+          <!-- Header with Gradient -->
           <tr>
-            <td style="padding: 30px; text-align: center; background: linear-gradient(135deg, #7B2FFF 0%, #10E4FF 100%); border-radius: 12px 12px 0 0;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">
+            <td style="padding: 40px 30px; text-align: center; background: linear-gradient(135deg, #7B2FFF 0%, #10E4FF 100%);">
+              <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 700; letter-spacing: -0.5px;">
                 🧠 Vos Résultats d'Analyse IA
               </h1>
             </td>
           </tr>
           
-          <!-- Greeting -->
+          <!-- Greeting Section -->
           <tr>
-            <td style="padding: 30px 30px 20px 30px;">
-              <p style="margin: 0; color: #ffffff; font-size: 18px; line-height: 1.6;">
-                Bonjour <strong style="color: #10E4FF;">${firstName}</strong>,
+            <td style="padding: 40px 30px 30px 30px;">
+              <p style="margin: 0; color: #ffffff; font-size: 20px; line-height: 1.5; font-weight: 600;">
+                Bonjour <span style="color: #10E4FF;">${firstName}</span>,
               </p>
-              <p style="margin: 15px 0 0 0; color: #b8b8c8; font-size: 16px; line-height: 1.6;">
+              <p style="margin: 20px 0 0 0; color: #b8b8c8; font-size: 16px; line-height: 1.6;">
                 Merci d'avoir complété notre questionnaire diagnostic. Voici votre analyse personnalisée pour <strong style="color: #ffffff;">${data.company || 'votre entreprise'}</strong>.
               </p>
             </td>
@@ -200,14 +201,14 @@ export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoRespo
           
           <!-- Challenges Section -->
           <tr>
-            <td style="padding: 20px 30px;">
-              <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #0d0d1f; border: 1px solid #7B2FFF; border-radius: 8px;">
+            <td style="padding: 0 30px 30px 30px;">
+              <table role="presentation" style="width: 100%; border-collapse: collapse; background: linear-gradient(135deg, #0d0d1f 0%, #1a0a2e 100%); border: 2px solid #7B2FFF; border-radius: 12px; overflow: hidden;">
                 <tr>
-                  <td style="padding: 20px;">
-                    <h2 style="margin: 0 0 15px 0; color: #7B2FFF; font-size: 20px; font-weight: bold;">
+                  <td style="padding: 30px;">
+                    <h2 style="margin: 0 0 20px 0; color: #7B2FFF; font-size: 22px; font-weight: 700; display: flex; align-items: center;">
                       🎯 Vos Défis Identifiés
                     </h2>
-                    <div style="color: #e0e0e8; font-size: 15px; line-height: 1.8;">
+                    <div style="color: #e0e0e8; font-size: 16px; line-height: 1.9;">
                       ${challengesHTML}
                     </div>
                   </td>
@@ -218,14 +219,14 @@ export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoRespo
           
           <!-- Recommendations Section -->
           <tr>
-            <td style="padding: 20px 30px;">
-              <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #0d0d1f; border: 1px solid #10E4FF; border-radius: 8px;">
+            <td style="padding: 0 30px 30px 30px;">
+              <table role="presentation" style="width: 100%; border-collapse: collapse; background: linear-gradient(135deg, #0d0d1f 0%, #0a1f2e 100%); border: 2px solid #10E4FF; border-radius: 12px; overflow: hidden;">
                 <tr>
-                  <td style="padding: 20px;">
-                    <h2 style="margin: 0 0 15px 0; color: #10E4FF; font-size: 20px; font-weight: bold;">
+                  <td style="padding: 30px;">
+                    <h2 style="margin: 0 0 20px 0; color: #10E4FF; font-size: 22px; font-weight: 700;">
                       🚀 Nos Recommandations Personnalisées
                     </h2>
-                    <div style="color: #e0e0e8; font-size: 15px; line-height: 1.8;">
+                    <div style="color: #e0e0e8; font-size: 16px; line-height: 1.9;">
                       ${recommendationsHTML}
                     </div>
                   </td>
@@ -234,26 +235,92 @@ export async function submitToBrevo(data: QuestionnaireData): Promise<BrevoRespo
             </td>
           </tr>
           
+          <!-- Impact Section -->
+          <tr>
+            <td style="padding: 0 30px 40px 30px;">
+              <table role="presentation" style="width: 100%; border-collapse: collapse; background: linear-gradient(135deg, #1a0a2e 0%, #0a2e1a 100%); border: 2px solid #0AFF9D; border-radius: 12px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 30px;">
+                    <h2 style="margin: 0 0 20px 0; color: #0AFF9D; font-size: 22px; font-weight: 700;">
+                      💰 Impact Estimé sur Votre Entreprise
+                    </h2>
+                    <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                      <tr>
+                        <td style="padding: 15px; text-align: center; background-color: rgba(10, 255, 157, 0.1); border-radius: 8px;">
+                          <div style="color: #0AFF9D; font-size: 32px; font-weight: 700; margin-bottom: 5px;">-60%</div>
+                          <div style="color: #b8b8c8; font-size: 14px;">Temps Tâches Répétitives</div>
+                        </td>
+                        <td style="width: 20px;"></td>
+                        <td style="padding: 15px; text-align: center; background-color: rgba(16, 228, 255, 0.1); border-radius: 8px;">
+                          <div style="color: #10E4FF; font-size: 32px; font-weight: 700; margin-bottom: 5px;">+40%</div>
+                          <div style="color: #b8b8c8; font-size: 14px;">Productivité Équipe</div>
+                        </td>
+                        <td style="width: 20px;"></td>
+                        <td style="padding: 15px; text-align: center; background-color: rgba(123, 47, 255, 0.1); border-radius: 8px;">
+                          <div style="color: #7B2FFF; font-size: 32px; font-weight: 700; margin-bottom: 5px;">ROI 6M</div>
+                          <div style="color: #b8b8c8; font-size: 14px;">Retour Investissement</div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
           <!-- CTA Button -->
           <tr>
-            <td style="padding: 30px; text-align: center;">
-              <a href="https://dainamics.ch/#contact" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #7B2FFF 0%, #FF5A00 100%); color: #ffffff; text-decoration: none; border-radius: 50px; font-size: 16px; font-weight: bold; box-shadow: 0 4px 15px rgba(123, 47, 255, 0.4);">
-                📞 Réserver un Appel Stratégique
-              </a>
-              <p style="margin: 15px 0 0 0; color: #b8b8c8; font-size: 13px;">
-                Échangeons sur vos défis et trouvons la solution adaptée
+            <td style="padding: 0 30px 40px 30px; text-align: center;">
+              <table role="presentation" style="margin: 0 auto; border-collapse: collapse;">
+                <tr>
+                  <td style="border-radius: 50px; background: linear-gradient(135deg, #7B2FFF 0%, #FF5A00 100%); box-shadow: 0 8px 30px rgba(123, 47, 255, 0.4);">
+                    <a href="https://dainamics.ch/#contact" style="display: inline-block; padding: 18px 45px; color: #ffffff; text-decoration: none; font-size: 18px; font-weight: 700; letter-spacing: 0.5px;">
+                      📞 Réserver un Appel Stratégique
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin: 20px 0 0 0; color: #b8b8c8; font-size: 14px; line-height: 1.5;">
+                Échangeons sur vos défis et co-construisons<br>la solution adaptée à votre entreprise
               </p>
+            </td>
+          </tr>
+          
+          <!-- Testimonial -->
+          <tr>
+            <td style="padding: 0 30px 40px 30px;">
+              <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #0d0d1f; border-left: 4px solid #10E4FF; border-radius: 8px; padding: 25px;">
+                <tr>
+                  <td>
+                    <p style="margin: 0 0 15px 0; color: #e0e0e8; font-size: 15px; line-height: 1.7; font-style: italic;">
+                      "Grâce à DAINAMICS, nous avons automatisé 70% de notre support client. Notre équipe se concentre enfin sur des tâches à valeur ajoutée."
+                    </p>
+                    <p style="margin: 0; color: #10E4FF; font-size: 14px; font-weight: 600;">
+                      — Sarah M., Directrice Opérations, PME Suisse
+                    </p>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
           
           <!-- Footer -->
           <tr>
-            <td style="padding: 20px 30px; border-top: 1px solid #1a1a2e; text-align: center;">
-              <p style="margin: 0; color: #6b6b7b; font-size: 13px; line-height: 1.6;">
-                <strong style="color: #ffffff;">DAINAMICS by HMF Corporation SA</strong><br>
-                Route du Jura 49, 1700 Fribourg, Switzerland<br>
-                <a href="https://dainamics.ch" style="color: #10E4FF; text-decoration: none;">dainamics.ch</a> | 
-                <a href="mailto:contact@dainamics.ch" style="color: #10E4FF; text-decoration: none;">contact@dainamics.ch</a>
+            <td style="padding: 30px; border-top: 1px solid #1a1a2e; text-align: center; background-color: #050510;">
+              <p style="margin: 0 0 10px 0; color: #ffffff; font-size: 16px; font-weight: 600;">
+                DAINAMICS by HMF Corporation SA
+              </p>
+              <p style="margin: 0 0 15px 0; color: #6b6b7b; font-size: 13px; line-height: 1.6;">
+                Route du Jura 49, 1700 Fribourg, Switzerland
+              </p>
+              <p style="margin: 0; color: #6b6b7b; font-size: 13px;">
+                <a href="https://dainamics.ch" style="color: #10E4FF; text-decoration: none; margin: 0 10px;">🌐 dainamics.ch</a>
+                <span style="color: #1a1a2e;">|</span>
+                <a href="mailto:contact@dainamics.ch" style="color: #10E4FF; text-decoration: none; margin: 0 10px;">✉️ contact@dainamics.ch</a>
+              </p>
+              <p style="margin: 20px 0 0 0; color: #6b6b7b; font-size: 11px;">
+                Vous recevez cet email suite à votre demande d'analyse diagnostic.<br>
+                <a href="#" style="color: #7B2FFF; text-decoration: none;">Se désabonner</a>
               </p>
             </td>
           </tr>
