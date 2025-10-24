@@ -22,7 +22,7 @@ const HorizontalScrollEngagement: React.FC = () => {
 
   const x = useTransform(scrollYProgress, [0, 1], ["2%", "-75%"]);
 
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [1, 0, 0, 1]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.25, 1], [1, 0, 0]);
 
   const engagementLevels: EngagementLevel[] = [
     {
