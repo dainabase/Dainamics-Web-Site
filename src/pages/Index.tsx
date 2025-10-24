@@ -6,7 +6,7 @@ import MetricsConfidence from '@/components/MetricsConfidence';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import TrustedClients from '@/components/sections/TrustedClients';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
-import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
+import SwissDifferentiatorsReveal from '@/components/sections/SwissDifferentiatorsReveal';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import FinalCTA from '@/components/sections/FinalCTA';
 import Footer from '@/components/Footer';
@@ -73,8 +73,8 @@ const Index = () => {
         <HorizontalScrollEngagement />
 
         {/* ========== SECTION 6: SWISS DIFFERENTIATORS ========== */}
-        {/* 3 USP */}
-        <SwissDifferentiators />
+        {/* 3 USP avec Reveal Cards Effect */}
+        <SwissDifferentiatorsReveal />
 
         {/* ========== SECTION 7: TESTIMONIAL ========== */}
         {/* Témoignage unique centré */}
