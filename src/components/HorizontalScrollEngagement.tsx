@@ -22,6 +22,8 @@ const HorizontalScrollEngagement: React.FC = () => {
 
   const x = useTransform(scrollYProgress, [0, 1], ["2%", "-75%"]);
 
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [1, 0.3, 0.3, 1]);
+
   const engagementLevels: EngagementLevel[] = [
     {
       badge: 'Idéal pour démarrer',
@@ -90,7 +92,10 @@ const HorizontalScrollEngagement: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#7B2FFF]/2 to-transparent pointer-events-none" />
 
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="absolute left-0 top-1/4 z-20 max-w-2xl pl-8 md:pl-16 lg:pl-24">
+        <motion.div
+          className="absolute left-0 top-1/4 z-10 max-w-2xl pl-8 md:pl-16 lg:pl-24"
+          style={{ opacity: titleOpacity }}
+        >
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -107,11 +112,11 @@ const HorizontalScrollEngagement: React.FC = () => {
               Quatre niveaux d'engagement pour accompagner votre transformation digitale, de l'exploration stratégique au partenariat long terme
             </p>
           </motion.div>
-        </div>
+        </motion.div>
 
         <motion.div
           style={{ x }}
-          className="flex gap-8 pl-8 md:pl-[45rem]"
+          className="flex gap-8 pl-8 md:pl-[45rem] relative z-30"
         >
           {engagementLevels.map((level, index) => (
             <EngagementCard key={index} level={level} index={index} />
