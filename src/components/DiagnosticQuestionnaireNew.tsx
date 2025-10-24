@@ -1,11 +1,9 @@
-
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ArrowRight, ArrowLeft, Scan, Brain, MessageCircle, FileText, TrendingUp, ClipboardList, Calendar, Clock, Shield, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { toast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 import { submitToBrevo, validateEmail } from '@/lib/brevo-integration';
 import { getTranslations, detectLanguage, type Language } from '@/i18n/questionnaire';
@@ -18,6 +16,23 @@ import {
   trackEmailValidationError,
   trackBrevoError
 } from '@/lib/analytics';
+
+// Toast component inline (simple implementation)
+const toast = ({ title, description, variant }: { title: string; description: string; variant?: string }) => {
+  const toastElement = document.createElement('div');
+  toastElement.className = `fixed bottom-4 right-4 z-50 p-4 rounded-lg shadow-lg ${
+    variant === 'destructive' ? 'bg-red-600' : 'bg-green-600'
+  } text-white max-w-md animate-slide-in-up`;
+  toastElement.innerHTML = `
+    <div class="font-semibold">${title}</div>
+    <div class="text-sm opacity-90">${description}</div>
+  `;
+  document.body.appendChild(toastElement);
+  setTimeout(() => {
+    toastElement.classList.add('animate-fade-out');
+    setTimeout(() => document.body.removeChild(toastElement), 300);
+  }, 5000);
+};
 
 // Define data types
 type BusinessChallenge = 'customer-service' | 'content-marketing' | 'lead-generation' | 'admin' | 'organization';
@@ -51,33 +66,33 @@ function getBusinessChallenges(t: any): ChallengeOption[] {
   return [
     {
       id: 'customer-service',
-      title: t.challenges?.options?.['customer-service']?.title || 'Customer Service Overload',
-      description: t.challenges?.options?.['customer-service']?.description || 'Struggling with too many customer requests',
-      icon: <MessageCircle className="h-8 w-8 text-dainamics-primary" />
+      title: t.challenges?.options?.['customer-service']?.title || 'Service Client Surchargé',
+      description: t.challenges?.options?.['customer-service']?.description || 'Débordé par les demandes clients',
+      icon: <MessageCircle className="h-8 w-8 text-primary" />
     },
     {
       id: 'content-marketing',
-      title: t.challenges?.options?.['content-marketing']?.title || 'Content Creation Bottleneck',
-      description: t.challenges?.options?.['content-marketing']?.description || 'Spending too much time creating marketing content',
-      icon: <FileText className="h-8 w-8 text-dainamics-primary" />
+      title: t.challenges?.options?.['content-marketing']?.title || 'Création de Contenu',
+      description: t.challenges?.options?.['content-marketing']?.description || 'Trop de temps sur le marketing',
+      icon: <FileText className="h-8 w-8 text-primary" />
     },
     {
       id: 'lead-generation',
-      title: t.challenges?.options?.['lead-generation']?.title || 'Lead Generation Struggle',
-      description: t.challenges?.options?.['lead-generation']?.description || 'Not enough qualified prospects and clients',
-      icon: <TrendingUp className="h-8 w-8 text-dainamics-primary" />
+      title: t.challenges?.options?.['lead-generation']?.title || 'Génération de Leads',
+      description: t.challenges?.options?.['lead-generation']?.description || 'Pas assez de prospects qualifiés',
+      icon: <TrendingUp className="h-8 w-8 text-primary" />
     },
     {
       id: 'admin',
-      title: t.challenges?.options?.['admin']?.title || 'Administrative Burden',
-      description: t.challenges?.options?.['admin']?.description || 'Overwhelmed by paperwork and manual processes',
-      icon: <ClipboardList className="h-8 w-8 text-dainamics-primary" />
+      title: t.challenges?.options?.['admin']?.title || 'Charge Administrative',
+      description: t.challenges?.options?.['admin']?.description || 'Submergé par la paperasse',
+      icon: <ClipboardList className="h-8 w-8 text-primary" />
     },
     {
       id: 'organization',
-      title: t.challenges?.options?.['organization']?.title || 'Personal Productivity Drain',
-      description: t.challenges?.options?.['organization']?.description || 'Wasting time on emails, scheduling and repetitive tasks',
-      icon: <Calendar className="h-8 w-8 text-dainamics-primary" />
+      title: t.challenges?.options?.['organization']?.title || 'Productivité Personnelle',
+      description: t.challenges?.options?.['organization']?.description || 'Perte de temps sur les tâches répétitives',
+      icon: <Calendar className="h-8 w-8 text-primary" />
     }
   ];
 }
@@ -93,65 +108,65 @@ function getSpecificQuestions(t: any): Record<BusinessChallenge, Question[]> {
     'customer-service': [
       {
         id: 'channels',
-        text: csq?.channels || 'Which channels do you manage customer requests on?',
+        text: csq?.channels || 'Sur quels canaux gérez-vous les demandes clients ?',
         options: [
           { value: 'email', label: csq?.options?.email || 'Email' },
           { value: 'whatsapp', label: csq?.options?.whatsapp || 'WhatsApp' },
-          { value: 'social', label: csq?.options?.social || 'Social Media' },
-          { value: 'phone', label: csq?.options?.phone || 'Phone' },
-          { value: 'chat', label: csq?.options?.chat || 'Website Chat' }
+          { value: 'social', label: csq?.options?.social || 'Réseaux Sociaux' },
+          { value: 'phone', label: csq?.options?.phone || 'Téléphone' },
+          { value: 'chat', label: csq?.options?.chat || 'Chat Site Web' }
         ]
       }
     ],
     'content-marketing': [
       {
         id: 'content-types',
-        text: cmq?.contentTypes || 'What types of content do you need to create regularly?',
+        text: cmq?.contentTypes || 'Quels types de contenu créez-vous régulièrement ?',
         options: [
-          { value: 'blogs', label: cmq?.options?.blogs || 'Blog Articles' },
-          { value: 'social', label: cmq?.options?.social || 'Social Media Posts' },
-          { value: 'email', label: cmq?.options?.email || 'Email Campaigns' },
-          { value: 'video', label: cmq?.options?.video || 'Video Scripts' },
-          { value: 'product', label: cmq?.options?.product || 'Product Copy' }
+          { value: 'blogs', label: cmq?.options?.blogs || 'Articles de Blog' },
+          { value: 'social', label: cmq?.options?.social || 'Posts Réseaux Sociaux' },
+          { value: 'email', label: cmq?.options?.email || 'Campagnes Email' },
+          { value: 'video', label: cmq?.options?.video || 'Scripts Vidéo' },
+          { value: 'product', label: cmq?.options?.product || 'Descriptions Produit' }
         ]
       }
     ],
     'lead-generation': [
       {
         id: 'lead-aspects',
-        text: lgq?.leadAspects || 'What aspects of lead generation are most difficult for you?',
+        text: lgq?.leadAspects || 'Quels aspects de la génération de leads sont difficiles ?',
         options: [
-          { value: 'finding', label: lgq?.options?.finding || 'Finding Prospects' },
-          { value: 'qualifying', label: lgq?.options?.qualifying || 'Qualifying Leads' },
-          { value: 'nurturing', label: lgq?.options?.nurturing || 'Lead Nurturing' },
-          { value: 'following', label: lgq?.options?.following || 'Follow-up' },
-          { value: 'closing', label: lgq?.options?.closing || 'Closing Deals' }
+          { value: 'finding', label: lgq?.options?.finding || 'Trouver des Prospects' },
+          { value: 'qualifying', label: lgq?.options?.qualifying || 'Qualifier les Leads' },
+          { value: 'nurturing', label: lgq?.options?.nurturing || 'Nurturing' },
+          { value: 'following', label: lgq?.options?.following || 'Suivi' },
+          { value: 'closing', label: lgq?.options?.closing || 'Closing' }
         ]
       }
     ],
     'admin': [
       {
         id: 'admin-tasks',
-        text: adq?.adminTasks || 'Which administrative tasks take up most of your time?',
+        text: adq?.adminTasks || 'Quelles tâches administratives prennent le plus de temps ?',
         options: [
-          { value: 'invoices', label: adq?.options?.invoices || 'Invoice Management' },
-          { value: 'documents', label: adq?.options?.documents || 'Document Processing' },
-          { value: 'expenses', label: adq?.options?.expenses || 'Expense Tracking' },
+          { value: 'invoices', label: adq?.options?.invoices || 'Gestion des Factures' },
+          { value: 'documents', label: adq?.options?.documents || 'Traitement Documents' },
+          { value: 'expenses', label: adq?.options?.expenses || 'Suivi Dépenses' },
           { value: 'reporting', label: adq?.options?.reporting || 'Reporting' },
-          { value: 'data', label: adq?.options?.data || 'Data Entry' }
+          { value: 'data', label: adq?.options?.data || 'Saisie de Données' }
         ]
       }
     ],
     'organization': [
       {
         id: 'productivity-tasks',
-        text: orq?.productivityTasks || 'Which personal tasks consume most of your workday?',
+        text: orq?.productivityTasks || 'Quelles tâches personnelles consomment votre journée ?',
         options: [
-          { value: 'email', label: orq?.options?.email || 'Email Management' },
-          { value: 'calendar', label: orq?.options?.calendar || 'Calendar & Scheduling' },
-          { value: 'meetings', label: orq?.options?.meetings || 'Meeting Preparation' },
-          { value: 'tasks', label: orq?.options?.tasks || 'Task Management' },
-          { value: 'information', label: orq?.options?.information || 'Information Overload' }
+          { value: 'email', label: orq?.options?.email || 'Gestion Emails' },
+          { value: 'calendar', label: orq?.options?.calendar || 'Calendrier & Planning' },
+          { value: 'meetings', label: orq?.options?.meetings || 'Préparation Réunions' },
+          { value: 'tasks', label: orq?.options?.tasks || 'Gestion des Tâches' },
+          { value: 'information', label: orq?.options?.information || 'Surcharge Information' }
         ]
       }
     ]
@@ -162,72 +177,72 @@ function getAgentRecommendations(t: any): Record<BusinessChallenge, AgentRecomme
   return {
     'customer-service': {
       name: t.results?.agents?.['customer-service']?.name || 'OmniResponse X',
-      tagline: t.results?.agents?.['customer-service']?.tagline || 'Instant answers. Autonomous resolution. Maximum satisfaction.',
+      tagline: t.results?.agents?.['customer-service']?.tagline || 'Réponses instantanées. Résolution autonome.',
       features: t.results?.agents?.['customer-service']?.features || [
-        'Handles customer inquiries 24/7 across all communication channels',
-        'Resolves up to 80% of common requests without human intervention',
-        'Learns from each interaction to continuously improve responses'
+        'Gère les demandes clients 24/7 sur tous les canaux',
+        'Résout jusqu\'à 80% des requêtes sans intervention humaine',
+        'Apprend de chaque interaction pour s\'améliorer'
       ],
       metrics: t.results?.agents?.['customer-service']?.metrics || [
-        { label: 'Response Time', value: '-70%' },
-        { label: 'Customer Satisfaction', value: '+35%' },
-        { label: 'Support Capacity', value: '5x' }
+        { label: 'Temps Réponse', value: '-70%' },
+        { label: 'Satisfaction Client', value: '+35%' },
+        { label: 'Capacité Support', value: '5x' }
       ]
     },
     'content-marketing': {
       name: t.results?.agents?.['content-marketing']?.name || 'ContentForge Prime',
-      tagline: t.results?.agents?.['content-marketing']?.tagline || 'Massive production. Optimal conversion. Digital domination.',
+      tagline: t.results?.agents?.['content-marketing']?.tagline || 'Production massive. Conversion optimale.',
       features: t.results?.agents?.['content-marketing']?.features || [
-        'Creates high-quality content across multiple formats and platforms',
-        'Maintains your brand voice and optimizes for engagement',
-        'Schedules and publishes content automatically based on optimal timing'
+        'Crée du contenu de qualité sur tous les formats',
+        'Maintient votre voix de marque et optimise l\'engagement',
+        'Planifie et publie automatiquement au meilleur moment'
       ],
       metrics: t.results?.agents?.['content-marketing']?.metrics || [
-        { label: 'Content Creation Time', value: '-72%' },
-        { label: 'Publication Frequency', value: '3.5x' },
+        { label: 'Temps Création', value: '-72%' },
+        { label: 'Fréquence Publication', value: '3.5x' },
         { label: 'Engagement', value: '+45%' }
       ]
     },
     'lead-generation': {
       name: t.results?.agents?.['lead-generation']?.name || 'AcquisitionNova',
-      tagline: t.results?.agents?.['lead-generation']?.tagline || 'Precise detection. Strategic engagement. Automatic closing.',
+      tagline: t.results?.agents?.['lead-generation']?.tagline || 'Détection précise. Engagement stratégique.',
       features: t.results?.agents?.['lead-generation']?.features || [
-        'Identifies and qualifies high-value prospects using behavioral data',
-        'Creates personalized outreach sequences for maximum conversion',
-        'Tracks and analyzes the entire sales pipeline with predictive insights'
+        'Identifie et qualifie les prospects à haute valeur',
+        'Crée des séquences personnalisées pour maximiser la conversion',
+        'Analyse tout le pipeline avec des insights prédictifs'
       ],
       metrics: t.results?.agents?.['lead-generation']?.metrics || [
-        { label: 'Lead Volume', value: '+225%' },
-        { label: 'Conversion Rate', value: '+40%' },
-        { label: 'Sales Cycle', value: '-35%' }
+        { label: 'Volume Leads', value: '+225%' },
+        { label: 'Taux Conversion', value: '+40%' },
+        { label: 'Cycle Vente', value: '-35%' }
       ]
     },
     'admin': {
       name: t.results?.agents?.['admin']?.name || 'OperaCore Quantum',
-      tagline: t.results?.agents?.['admin']?.tagline || 'Total automation. Zero paperwork. Complete accuracy.',
+      tagline: t.results?.agents?.['admin']?.tagline || 'Automatisation totale. Zéro paperasse.',
       features: t.results?.agents?.['admin']?.features || [
-        'Processes documents, invoices, and forms with superhuman accuracy',
-        'Integrates with your existing systems to eliminate manual data entry',
-        'Produces reports and analytics automatically based on your requirements'
+        'Traite documents et factures avec une précision parfaite',
+        'S\'intègre à vos systèmes existants',
+        'Produit des rapports automatiquement'
       ],
       metrics: t.results?.agents?.['admin']?.metrics || [
-        { label: 'Processing Time', value: '-85%' },
-        { label: 'Error Rate', value: '-95%' },
-        { label: 'Administrative Costs', value: '-60%' }
+        { label: 'Temps Traitement', value: '-85%' },
+        { label: 'Taux Erreur', value: '-95%' },
+        { label: 'Coûts Admin', value: '-60%' }
       ]
     },
     'organization': {
       name: t.results?.agents?.['organization']?.name || 'CommandMatrix Elite',
-      tagline: t.results?.agents?.['organization']?.tagline || 'Email mastery. Calendar optimization. Time liberation.',
+      tagline: t.results?.agents?.['organization']?.tagline || 'Maîtrise email. Optimisation calendrier.',
       features: t.results?.agents?.['organization']?.features || [
-        'Manages your inbox, prioritizing and categorizing messages automatically',
-        'Optimizes your schedule for peak productivity and work-life balance',
-        'Eliminates repetitive tasks through intelligent automation workflows'
+        'Gère votre boîte mail et priorise automatiquement',
+        'Optimise votre planning pour une productivité maximale',
+        'Élimine les tâches répétitives par automatisation'
       ],
       metrics: t.results?.agents?.['organization']?.metrics || [
-        { label: 'Email Time', value: '-60%' },
-        { label: 'Meeting Efficiency', value: '+45%' },
-        { label: 'Focus Time', value: '+3hrs/day' }
+        { label: 'Temps Email', value: '-60%' },
+        { label: 'Efficacité Réunions', value: '+45%' },
+        { label: 'Temps Focus', value: '+3h/jour' }
       ]
     }
   };
@@ -235,20 +250,13 @@ function getAgentRecommendations(t: any): Record<BusinessChallenge, AgentRecomme
 
 // Main component
 export default function DiagnosticQuestionnaireNew() {
-  // Force French by default - detectLanguage() now returns 'fr' as fallback
+  // Force French by default
   const [language] = useState<Language>('fr');
   const t = getTranslations(language);
 
   const businessChallenges = getBusinessChallenges(t);
   const specificQuestions = getSpecificQuestions(t);
   const agentRecommendations = getAgentRecommendations(t);
-
-  // Debug: Log translations loaded
-  useEffect(() => {
-    console.log('🌐 Language set to:', language);
-    console.log('📝 Translations loaded, intro.title:', t.intro?.title);
-    console.log('🎯 First challenge:', businessChallenges[0]?.title);
-  }, [language]);
 
   const { progress, setProgress, clearProgress } = useQuestionnaireProgress();
 
@@ -260,7 +268,7 @@ export default function DiagnosticQuestionnaireNew() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState<string>('');
   const [showScanAnimation, setShowScanAnimation] = useState(false);
-  const [neuralLines, setNeuralLines] = useState<{[key: string]: {angle: number, length: number, delay: number}[]}>({});
+  const [neuralLines, setNeuralLines] = useState<{[key: string]: {angle: number; length: number; delay: number}[]}>({});
 
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -301,18 +309,18 @@ export default function DiagnosticQuestionnaireNew() {
     };
   }, []);
 
-  // Generate neural lines for animation
+  // Generate OPTIMIZED neural lines for animation (8 lines instead of 40)
   useEffect(() => {
-    const lineCount = isMobile ? 8 : 40;
+    const lineCount = isMobile ? 4 : 8; // Reduced from 8/40 to 4/8
     const newNeuralLines: {[key: string]: {angle: number, length: number, delay: number}[]} = {};
 
     businessChallenges.forEach(challenge => {
       const lines = [];
       for (let i = 0; i < lineCount; i++) {
         lines.push({
-          angle: Math.random() * 360,
-          length: 30 + Math.random() * 40,
-          delay: Math.random() * 0.5
+          angle: (360 / lineCount) * i + Math.random() * 20, // More evenly distributed
+          length: 40 + Math.random() * 30,
+          delay: i * 0.1 // Sequential delay for smoother animation
         });
       }
       newNeuralLines[challenge.id] = lines;
@@ -499,681 +507,677 @@ export default function DiagnosticQuestionnaireNew() {
   return (
     <section id="diagnostic" className="py-20 relative overflow-hidden" ref={sectionRef}>
       {/* Particle Background Effect */}
-      <div className="absolute inset-0 bg-[#050510]">
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-950 to-gray-900">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-60 h-60 rounded-full bg-dainamics-primary/10 blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-dainamics-secondary/10 blur-3xl"></div>
+          <div className="absolute top-1/4 left-1/4 w-60 h-60 rounded-full bg-primary/10 blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-secondary/10 blur-3xl"></div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Questionnaire Header */}
         <div className="questionnaire-header text-center mb-16 relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-dainamics-primary/5 rounded-full blur-3xl -z-10"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
           
-          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-wide bg-gradient-to-r from-dainamics-primary to-dainamics-secondary bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(123,47,255,0.3)]">
-            {t.intro.title}
+          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-wide text-gradient-primary drop-shadow-[0_0_10px_rgba(123,47,255,0.3)]">
+            {t.intro.title || "Diagnostic IA Instantané"}
           </h2>
 
-          <p className="text-dainamics-light/80 max-w-2xl mx-auto text-lg md:text-xl mb-10">
-            {t.intro.subtitle}
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl mb-10">
+            {t.intro.subtitle || "Analysez votre entreprise en 3 minutes et découvrez votre agent IA idéal"}
           </p>
           
           {currentStep === 0 && !showScanAnimation && (
             <motion.button
               onClick={startQuestionnaire}
-              className="group bg-gradient-to-r from-dainamics-cta to-[#FF8A00] hover:from-dainamics-primary hover:to-dainamics-secondary text-white rounded-full pl-2 pr-6 py-2 flex items-center gap-3 mx-auto shadow-lg hover:shadow-dainamics-primary/30 transition-all duration-300 hover:-translate-y-1"
+              className="group bg-gradient-to-r from-orange-600 to-orange-500 hover:from-primary hover:to-secondary text-white rounded-full pl-2 pr-6 py-2 flex items-center gap-3 mx-auto shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-1"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              style={{ willChange: 'transform' }}
             >
               <span className="w-12 h-12 flex items-center justify-center bg-white/10 rounded-full">
-                <Brain className="w-6 h-6 text-white group-hover:text-dainamics-secondary transition-colors duration-300" />
+                <Brain className="w-6 h-6 text-white group-hover:text-secondary transition-colors duration-300" />
               </span>
-              <span className="font-bold">{t.intro.startButton}</span>
+              <span className="font-bold">{t.intro.startButton || "Lancer le scan"}</span>
             </motion.button>
           )}
         </div>
 
-        {/* Neural Scanner Container */}
-        {(currentStep > 0 || showScanAnimation) && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="neural-scanner-container bg-[#050510] border border-dainamics-border rounded-xl shadow-2xl shadow-dainamics-primary/20 overflow-hidden"
-          >
-            {/* Neural Network Background */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-dainamics-primary/10 blur-xl"></div>
-              <div className="absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-dainamics-secondary/10 blur-xl"></div>
-              <div className="grid grid-cols-6 gap-8 opacity-5">
-                {Array(24).fill(0).map((_, i) => (
-                  <div key={i} className="w-4 h-4 rounded-full bg-white"></div>
-                ))}
-              </div>
-            </div>
-
-            {/* Scanner Interface */}
-            <div className="relative z-10 p-6 md:p-10">
-              {/* Scanner Header */}
-              <div className="flex flex-col sm:flex-row items-center sm:justify-between pb-6 mb-8 border-b border-dainamics-border/40">
-                <div className="flex items-center mb-4 sm:mb-0">
-                  <div className="relative mr-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-dainamics-primary to-dainamics-secondary rounded-full flex items-center justify-center">
-                      <Brain className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-dainamics-primary to-dainamics-secondary rounded-full animate-pulse-glow opacity-60"></div>
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-dainamics-light">{t.scanner.title}</h3>
-                </div>
-                
-                <div className="flex items-center">
-                  <div className="w-2 h-2 rounded-full bg-dainamics-secondary animate-pulse mr-2"></div>
-                  <span className="text-dainamics-secondary text-sm">{t.scanner.status}</span>
+        {/* Neural Scanner Container with AnimatePresence */}
+        <AnimatePresence mode="wait">
+          {(currentStep > 0 || showScanAnimation) && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="neural-scanner-container bg-gray-950/90 backdrop-blur-xl border border-gray-800 rounded-xl shadow-2xl shadow-primary/20 overflow-hidden"
+              style={{ willChange: 'transform, opacity' }}
+            >
+              {/* Neural Network Background with GPU acceleration */}
+              <div className="absolute inset-0 pointer-events-none" style={{ transform: 'translateZ(0)' }}>
+                <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-primary/10 blur-xl"></div>
+                <div className="absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-secondary/10 blur-xl"></div>
+                <div className="grid grid-cols-6 gap-8 opacity-5">
+                  {Array(24).fill(0).map((_, i) => (
+                    <div key={i} className="w-4 h-4 rounded-full bg-white"></div>
+                  ))}
                 </div>
               </div>
 
-              {/* Loading Animation */}
-              {showScanAnimation ? (
-                <div className="py-20 flex flex-col items-center justify-center">
-                  <div className="relative w-32 h-32 mb-8">
-                    <div className="absolute inset-0 rounded-full border-4 border-dainamics-primary/30 border-t-dainamics-primary animate-spin"></div>
-                    <div className="absolute inset-4 rounded-full border-4 border-dainamics-secondary/30 border-b-dainamics-secondary animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Scan className="h-10 w-10 text-dainamics-primary animate-pulse" />
+              {/* Scanner Interface */}
+              <div className="relative z-10 p-6 md:p-10">
+                {/* Scanner Header */}
+                <div className="flex flex-col sm:flex-row items-center sm:justify-between pb-6 mb-8 border-b border-gray-800/50">
+                  <div className="flex items-center mb-4 sm:mb-0">
+                    <div className="relative mr-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                        <Brain className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse opacity-60"></div>
                     </div>
+                    <h3 className="text-xl md:text-2xl font-bold text-white">{t.scanner?.title || "Neural Scanner AI"}</h3>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-gradient-primary">{t.scanner.initializing}</h3>
-                  <p className="text-dainamics-light/70 mb-6">{t.scanner.calibrating}</p>
-                  <div className="w-full max-w-md h-2 bg-dainamics-background rounded-full overflow-hidden">
-                    <motion.div 
-                      initial={{ width: "0%" }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: 2.8 }}
-                      className="h-full bg-gradient-to-r from-dainamics-primary to-dainamics-secondary"
-                    />
-                  </div>
-                  <div className="mt-6 text-sm text-dainamics-light/50 font-mono">
-                    <span className="typing-effect">{t.scanner.analyzing}</span>
+                  
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 rounded-full bg-secondary animate-pulse mr-2"></div>
+                    <span className="text-secondary text-sm">{t.scanner?.status || "Analyse en cours"}</span>
                   </div>
                 </div>
-              ) : (
-                <>
-                  {/* Progress Tracker */}
-                  <div className="mb-8">
-                    <div className="h-1 bg-dainamics-border/50 rounded-full mb-6 overflow-hidden">
-                      <motion.div
-                        initial={{ width: "0%" }}
-                        animate={{ width: `${progressPercentage()}%` }}
-                        transition={{ duration: 0.5 }}
-                        className="h-full bg-gradient-to-r from-dainamics-primary to-dainamics-secondary"
-                      />
-                    </div>
-                    <div className="flex justify-between">
-                      <div className={cn(
-                        "flex flex-col items-center",
-                        currentStep >= 1 ? "text-dainamics-light" : "text-dainamics-light/40"
-                      )}>
-                        <div className={cn(
-                          "w-6 h-6 rounded-full flex items-center justify-center mb-2",
-                          currentStep >= 1 
-                            ? "bg-dainamics-primary border-2 border-dainamics-secondary shadow-lg shadow-dainamics-primary/30" 
-                            : "border-2 border-dainamics-border/50"
-                        )}>
-                          {currentStep > 1 && <Check className="w-3 h-3" />}
-                        </div>
-                        <span className="text-xs">{t.progress.step1}</span>
-                      </div>
-                      
-                      <div className={cn(
-                        "flex flex-col items-center",
-                        currentStep >= 2 ? "text-dainamics-light" : "text-dainamics-light/40"
-                      )}>
-                        <div className={cn(
-                          "w-6 h-6 rounded-full flex items-center justify-center mb-2",
-                          currentStep >= 2 
-                            ? "bg-dainamics-primary border-2 border-dainamics-secondary shadow-lg shadow-dainamics-primary/30" 
-                            : "border-2 border-dainamics-border/50"
-                        )}>
-                          {currentStep > 2 && <Check className="w-3 h-3" />}
-                        </div>
-                        <span className="text-xs">{t.progress.step2}</span>
-                      </div>
-                      
-                      <div className={cn(
-                        "flex flex-col items-center",
-                        currentStep >= 3 ? "text-dainamics-light" : "text-dainamics-light/40"
-                      )}>
-                        <div className={cn(
-                          "w-6 h-6 rounded-full flex items-center justify-center mb-2",
-                          currentStep >= 3 
-                            ? "bg-dainamics-primary border-2 border-dainamics-secondary shadow-lg shadow-dainamics-primary/30" 
-                            : "border-2 border-dainamics-border/50"
-                        )}>
-                          {currentStep > 3 && <Check className="w-3 h-3" />}
-                        </div>
-                        <span className="text-xs">{t.progress.step3}</span>
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* Step 1: Challenge Selection */}
-                  {currentStep === 1 && (
+                <AnimatePresence mode="wait">
+                  {/* Loading Animation */}
+                  {showScanAnimation ? (
                     <motion.div
+                      key="scanning"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="space-y-6"
+                      className="py-20 flex flex-col items-center justify-center"
                     >
-                      <div className="text-center mb-6">
-                        <h3 className="text-xl md:text-2xl font-bold text-dainamics-light mb-2">
-                          {t.challenges.title}
-                        </h3>
-                        <p className="text-dainamics-light/70">{t.challenges.subtitle}</p>
+                      <div className="relative w-32 h-32 mb-8">
+                        <div className="absolute inset-0 rounded-full border-4 border-primary/30 border-t-primary animate-spin" style={{ willChange: 'transform' }}></div>
+                        <div className="absolute inset-4 rounded-full border-4 border-secondary/30 border-b-secondary animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s', willChange: 'transform' }}></div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Scan className="h-10 w-10 text-primary animate-pulse" />
+                        </div>
                       </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-                        {businessChallenges.map((challenge) => (
+                      <h3 className="text-2xl font-bold mb-4 text-gradient-primary">{t.scanner?.initializing || "Initialisation..."}</h3>
+                      <p className="text-gray-400 mb-6">{t.scanner?.calibrating || "Calibrage des paramètres IA"}</p>
+                      <div className="w-full max-w-md h-2 bg-gray-900 rounded-full overflow-hidden">
+                        <motion.div 
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{ duration: 2.8 }}
+                          className="h-full bg-gradient-to-r from-primary to-secondary"
+                        />
+                      </div>
+                      <div className="mt-6 text-sm text-gray-500 font-mono">
+                        <span className="typing-effect">{t.scanner?.analyzing || "Analyse de votre profil business..."}</span>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <>
+                      {/* Progress Tracker */}
+                      <div className="mb-8">
+                        <div className="h-1 bg-gray-800 rounded-full mb-6 overflow-hidden">
                           <motion.div
-                            key={challenge.id}
-                            className={cn(
-                              "p-6 rounded-xl cursor-pointer border-2 transition-all duration-300 relative overflow-hidden",
-                              selectedChallenges.includes(challenge.id)
-                                ? "border-dainamics-primary bg-dainamics-primary/10 shadow-lg shadow-dainamics-primary/20"
-                                : "border-dainamics-border/30 bg-dainamics-card/30 hover:bg-dainamics-primary/5"
-                            )}
-                            onClick={() => toggleChallenge(challenge.id)}
-                            whileHover={{ y: -5 }}
-                          >
-                            {/* Neural connection lines animation */}
-                            {!isScrolling && selectedChallenges.includes(challenge.id) && (
-                              <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                                {neuralLines[challenge.id]?.map((line, i) => (
-                                  <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, scaleX: 0 }}
-                                    animate={{ opacity: 0.7, scaleX: 1 }}
-                                    transition={{ delay: line.delay, duration: 0.5 }}
-                                    style={{ 
-                                      position: 'absolute',
-                                      top: '50%',
-                                      left: '50%',
-                                      width: line.length,
-                                      height: 1,
-                                      background: 'linear-gradient(90deg, #7B2FFF, #10E4FF)',
-                                      transformOrigin: 'left center',
-                                      transform: `rotate(${line.angle}deg)`
-                                    }}
-                                  />
-                                ))}
-                                {neuralLines[challenge.id]?.map((line, i) => (
-                                  <motion.div
-                                    key={`pulse-${i}`}
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    animate={{ 
-                                      opacity: [0, 1, 0],
-                                      scale: [0, 1, 2] 
-                                    }}
-                                    transition={{ 
-                                      delay: line.delay + 0.5,
-                                      duration: 2,
-                                      repeat: Infinity,
-                                      repeatDelay: 3
-                                    }}
-                                    style={{ 
-                                      position: 'absolute',
-                                      top: '50%',
-                                      left: '50%',
-                                      width: 6,
-                                      height: 6,
-                                      borderRadius: '50%',
-                                      background: '#10E4FF',
-                                      transform: `translateX(${Math.cos(line.angle * Math.PI / 180) * line.length}px) translateY(${Math.sin(line.angle * Math.PI / 180) * line.length}px) translate(-50%, -50%)`,
-                                    }}
-                                  />
-                                ))}
-                              </div>
-                            )}
-
-                            <div className="flex flex-col items-center text-center">
-                              <div className={cn(
-                                "w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-300",
-                                selectedChallenges.includes(challenge.id)
-                                  ? "bg-dainamics-primary/30 shadow-lg shadow-dainamics-primary/20"
-                                  : "bg-dainamics-card"
-                              )}>
-                                {challenge.icon}
-                              </div>
-                              <h4 className="font-bold text-dainamics-light mb-2">{challenge.title}</h4>
-                              <p className="text-sm text-dainamics-light/70">{challenge.description}</p>
-
-                              <div className="absolute top-3 right-3">
-                                <div className={cn(
-                                  "w-5 h-5 rounded-full border-2 flex items-center justify-center",
-                                  selectedChallenges.includes(challenge.id)
-                                    ? "border-dainamics-secondary bg-dainamics-primary"
-                                    : "border-dainamics-light/30"
-                                )}>
-                                  {selectedChallenges.includes(challenge.id) && (
-                                    <Check className="h-3 w-3 text-white" />
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-
-                      <div className="flex justify-between items-center mt-8">
-                        <div className="text-dainamics-light/70 text-sm">
-                          {selectedChallenges.length} {t.challenges.areasSelected}
-                        </div>
-                        <Button
-                          onClick={handleNextStep}
-                          disabled={!isStepValid()}
-                          className={cn(
-                            "relative overflow-hidden bg-gradient-to-r from-dainamics-cta to-[#FF8A00] hover:from-dainamics-cta hover:to-dainamics-cta text-white border-0",
-                            !isStepValid() && "opacity-50 cursor-not-allowed"
-                          )}
-                        >
-                          {t.challenges.analyzeButton}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                          <span className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
-                        </Button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Step 2: Specific Questions */}
-                  {currentStep === 2 && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="space-y-6"
-                    >
-                      <div className="text-center mb-6">
-                        <h3 className="text-xl md:text-2xl font-bold text-dainamics-light mb-2">
-                          {t.specificQuestions.title}
-                        </h3>
-                        <p className="text-dainamics-light/70">{t.specificQuestions.subtitle}</p>
-                      </div>
-
-                      <div className="space-y-8">
-                        {selectedChallenges.map((challenge) => (
-                          <motion.div 
-                            key={challenge} 
-                            className="space-y-4 border-b border-dainamics-border/30 pb-6 mb-6 last:border-0"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ width: "0%" }}
+                            animate={{ width: `${progressPercentage()}%` }}
                             transition={{ duration: 0.5 }}
-                          >
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-full bg-dainamics-secondary/20 flex items-center justify-center">
-                                {businessChallenges.find(c => c.id === challenge)?.icon}
-                              </div>
-                              <h4 className="text-lg font-semibold bg-gradient-to-r from-dainamics-secondary to-dainamics-primary bg-clip-text text-transparent">
-                                À propos de vos défis {businessChallenges.find(c => c.id === challenge)?.title.toLowerCase()} :
-                              </h4>
+                            className="h-full bg-gradient-to-r from-primary to-secondary"
+                          />
+                        </div>
+                        <div className="flex justify-between">
+                          <div className={cn(
+                            "flex flex-col items-center",
+                            currentStep >= 1 ? "text-white" : "text-gray-600"
+                          )}>
+                            <div className={cn(
+                              "w-6 h-6 rounded-full flex items-center justify-center mb-2",
+                              currentStep >= 1 
+                                ? "bg-primary border-2 border-secondary shadow-lg shadow-primary/30" 
+                                : "border-2 border-gray-800"
+                            )}>
+                              {currentStep > 1 && <Check className="w-3 h-3" />}
                             </div>
-                            
-                            {specificQuestions[challenge].map((question) => (
-                              <div key={question.id} className="space-y-3 ml-4 pl-6 border-l-2 border-dainamics-border/20">
-                                <p className="text-dainamics-light">{question.text}</p>
-                                <div className="flex flex-wrap gap-3">
-                                  {question.options.map((option) => (
-                                    <motion.button
-                                      key={option.value}
-                                      className={cn(
-                                        "px-4 py-2 rounded-full text-sm transition-all relative overflow-hidden",
-                                        isOptionSelected(challenge, question.id, option.value)
-                                          ? "bg-dainamics-primary/30 border border-dainamics-primary text-dainamics-light"
-                                          : "bg-dainamics-card-alt/50 border border-dainamics-border/50 text-dainamics-light/70 hover:bg-dainamics-primary/10"
-                                      )}
-                                      onClick={() => toggleSpecificAnswer(challenge, question.id, option.value)}
-                                      whileHover={{ y: -2 }}
-                                      whileTap={{ scale: 0.97 }}
-                                    >
-                                      {option.label}
-                                      {isOptionSelected(challenge, question.id, option.value) && (
-                                        <motion.span 
-                                          className="absolute inset-0 bg-dainamics-primary/10"
-                                          initial={{ scale: 0, opacity: 0 }}
-                                          animate={{ scale: 1, opacity: 1 }}
-                                          transition={{ duration: 0.3 }}
+                            <span className="text-xs">{t.progress?.step1 || "Défis"}</span>
+                          </div>
+                          
+                          <div className={cn(
+                            "flex flex-col items-center",
+                            currentStep >= 2 ? "text-white" : "text-gray-600"
+                          )}>
+                            <div className={cn(
+                              "w-6 h-6 rounded-full flex items-center justify-center mb-2",
+                              currentStep >= 2 
+                                ? "bg-primary border-2 border-secondary shadow-lg shadow-primary/30" 
+                                : "border-2 border-gray-800"
+                            )}>
+                              {currentStep > 2 && <Check className="w-3 h-3" />}
+                            </div>
+                            <span className="text-xs">{t.progress?.step2 || "Analyse"}</span>
+                          </div>
+                          
+                          <div className={cn(
+                            "flex flex-col items-center",
+                            currentStep >= 3 ? "text-white" : "text-gray-600"
+                          )}>
+                            <div className={cn(
+                              "w-6 h-6 rounded-full flex items-center justify-center mb-2",
+                              currentStep >= 3 
+                                ? "bg-primary border-2 border-secondary shadow-lg shadow-primary/30" 
+                                : "border-2 border-gray-800"
+                            )}>
+                              {currentStep > 3 && <Check className="w-3 h-3" />}
+                            </div>
+                            <span className="text-xs">{t.progress?.step3 || "Contact"}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <AnimatePresence mode="wait">
+                        {/* Step 1: Challenge Selection */}
+                        {currentStep === 1 && (
+                          <motion.div
+                            key="step1"
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -50 }}
+                            className="space-y-6"
+                          >
+                            <div className="text-center mb-6">
+                              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                                {t.challenges?.title || "Vos principaux défis"}
+                              </h3>
+                              <p className="text-gray-400">{t.challenges?.subtitle || "Sélectionnez tous ceux qui s'appliquent"}</p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+                              {businessChallenges.map((challenge) => (
+                                <motion.div
+                                  key={challenge.id}
+                                  className={cn(
+                                    "p-6 rounded-xl cursor-pointer border-2 transition-all duration-300 relative overflow-hidden",
+                                    selectedChallenges.includes(challenge.id)
+                                      ? "border-primary bg-primary/10 shadow-lg shadow-primary/20"
+                                      : "border-gray-800 bg-gray-900/50 hover:bg-primary/5"
+                                  )}
+                                  onClick={() => toggleChallenge(challenge.id)}
+                                  whileHover={{ y: -5 }}
+                                  style={{ willChange: 'transform' }}
+                                >
+                                  {/* OPTIMIZED Neural connection lines animation */}
+                                  {!isScrolling && selectedChallenges.includes(challenge.id) && (
+                                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                                      {neuralLines[challenge.id]?.map((line, i) => (
+                                        <motion.div
+                                          key={i}
+                                          initial={{ opacity: 0, scaleX: 0 }}
+                                          animate={{ opacity: 0.4, scaleX: 1 }}
+                                          transition={{ delay: line.delay, duration: 0.5 }}
+                                          style={{ 
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: '50%',
+                                            width: line.length,
+                                            height: 1,
+                                            background: 'linear-gradient(90deg, var(--primary), var(--secondary))',
+                                            transformOrigin: 'left center',
+                                            transform: `rotate(${line.angle}deg) translateZ(0)`,
+                                            willChange: 'transform, opacity'
+                                          }}
                                         />
-                                      )}
-                                    </motion.button>
-                                  ))}
-                                </div>
-                                {specificAnswers[`${challenge}-${question.id}`]?.length === 0 && (
-                                  <p className="text-xs text-dainamics-cta/90">Veuillez sélectionner au moins une option</p>
-                                )}
+                                      ))}
+                                    </div>
+                                  )}
+
+                                  <div className="flex flex-col items-center text-center relative z-10">
+                                    <div className={cn(
+                                      "w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-300",
+                                      selectedChallenges.includes(challenge.id)
+                                        ? "bg-primary/30 shadow-lg shadow-primary/20"
+                                        : "bg-gray-800"
+                                    )}>
+                                      {challenge.icon}
+                                    </div>
+                                    <h4 className="font-bold text-white mb-2">{challenge.title}</h4>
+                                    <p className="text-sm text-gray-400">{challenge.description}</p>
+
+                                    <div className="absolute top-3 right-3">
+                                      <div className={cn(
+                                        "w-5 h-5 rounded-full border-2 flex items-center justify-center",
+                                        selectedChallenges.includes(challenge.id)
+                                          ? "border-secondary bg-primary"
+                                          : "border-gray-600"
+                                      )}>
+                                        {selectedChallenges.includes(challenge.id) && (
+                                          <Check className="h-3 w-3 text-white" />
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              ))}
+                            </div>
+
+                            <div className="flex justify-between items-center mt-8">
+                              <div className="text-gray-400 text-sm">
+                                {selectedChallenges.length} {t.challenges?.areasSelected || "défis sélectionnés"}
                               </div>
-                            ))}
-                          </motion.div>
-                        ))}
-                      </div>
-
-                      <div className="flex justify-between pt-4">
-                        <Button
-                          type="button"
-                          variant="outline"
-                          onClick={handlePrevStep}
-                          className="border-dainamics-border text-dainamics-light/70 hover:bg-dainamics-primary/10 hover:text-dainamics-light hover:border-dainamics-primary/50"
-                        >
-                          <ArrowLeft className="mr-2 h-4 w-4" />
-                          {t.navigation.back}
-                        </Button>
-
-                        <Button
-                          onClick={handleNextStep}
-                          disabled={!isStepValid()}
-                          className={cn(
-                            "relative overflow-hidden bg-gradient-to-r from-dainamics-cta to-[#FF8A00] hover:from-dainamics-cta hover:to-dainamics-cta text-white border-0",
-                            !isStepValid() && "opacity-50 cursor-not-allowed"
-                          )}
-                        >
-                          {t.navigation.continue}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                          <span className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
-                        </Button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Step 3: Contact Information */}
-                  {currentStep === 3 && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="space-y-6"
-                    >
-                      <div className="text-center mb-6">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-dainamics-primary/20 mb-4">
-                          <Check className="h-8 w-8 text-dainamics-primary" />
-                        </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-dainamics-light mb-2">
-                          {t.contact.title}
-                        </h3>
-                        <p className="text-dainamics-light/70">{t.contact.subtitle}</p>
-                      </div>
-
-                      <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto glass-morphism rounded-xl p-6">
-                        <div className="space-y-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="email" className="text-dainamics-light">{t.contact.emailLabel}</Label>
-                            <div className="relative">
-                              <Input
-                                id="email"
-                                name="email"
-                                type="email"
-                                placeholder={t.contact.emailPlaceholder}
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                className="bg-dainamics-card-alt/50 border-dainamics-border/50 text-dainamics-light focus:border-dainamics-primary focus:ring-1 focus:ring-dainamics-primary"
-                                required
-                              />
-                              <div className="absolute inset-0 rounded-md pointer-events-none border border-dainamics-primary/30 opacity-0 focus-within:opacity-100 transition-opacity"></div>
-                            </div>
-                          </div>
-                          
-                          <div className="space-y-2">
-                            <Label htmlFor="name" className="text-dainamics-light">{t.contact.nameLabel}</Label>
-                            <div className="relative">
-                              <Input
-                                id="name"
-                                name="name"
-                                type="text"
-                                placeholder={t.contact.namePlaceholder}
-                                value={formData.name}
-                                onChange={handleInputChange}
-                                className="bg-dainamics-card-alt/50 border-dainamics-border/50 text-dainamics-light focus:border-dainamics-primary focus:ring-1 focus:ring-dainamics-primary"
-                                required
-                              />
-                              <div className="absolute inset-0 rounded-md pointer-events-none border border-dainamics-primary/30 opacity-0 focus-within:opacity-100 transition-opacity"></div>
-                            </div>
-                          </div>
-                          
-                          <div className="space-y-2">
-                            <Label htmlFor="company" className="text-dainamics-light">{t.contact.companyLabel}</Label>
-                            <div className="relative">
-                              <Input
-                                id="company"
-                                name="company"
-                                type="text"
-                                placeholder={t.contact.companyPlaceholder}
-                                value={formData.company}
-                                onChange={handleInputChange}
-                                className="bg-dainamics-card-alt/50 border-dainamics-border/50 text-dainamics-light focus:border-dainamics-primary focus:ring-1 focus:ring-dainamics-primary"
-                              />
-                              <div className="absolute inset-0 rounded-md pointer-events-none border border-dainamics-primary/30 opacity-0 focus-within:opacity-100 transition-opacity"></div>
-                            </div>
-                          </div>
-                          
-                          <div className="flex items-start space-x-3 pt-2">
-                            <input
-                              id="consent"
-                              name="consent"
-                              type="checkbox"
-                              checked={formData.consent}
-                              onChange={handleInputChange}
-                              className="mt-1 rounded border-dainamics-border/50 bg-dainamics-card text-dainamics-primary focus:ring-dainamics-primary"
-                              required
-                            />
-                            <Label htmlFor="consent" className="text-sm text-dainamics-light/70">
-                              {t.contact.consentLabel}
-                            </Label>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-between pt-4">
-                          <Button
-                            type="button"
-                            variant="outline"
-                            onClick={handlePrevStep}
-                            className="border-dainamics-border text-dainamics-light/70 hover:bg-dainamics-primary/10 hover:text-dainamics-light hover:border-dainamics-primary/50"
-                          >
-                            <ArrowLeft className="mr-2 h-4 w-4" />
-                            {t.navigation.back}
-                          </Button>
-                          
-                          <Button
-                            type="submit"
-                            disabled={!isStepValid() || isSubmitting}
-                            className={cn(
-                              "relative overflow-hidden bg-gradient-to-r from-dainamics-primary to-dainamics-secondary hover:from-dainamics-primary hover:to-dainamics-primary text-white border-0",
-                              (!isStepValid() || isSubmitting) && "opacity-50 cursor-not-allowed"
-                            )}
-                          >
-                            {isSubmitting ? (
-                              <>
-                                <span className="animate-spin mr-2 h-4 w-4 border-2 border-current border-t-transparent rounded-full"></span>
-                                {t.contact.processing}
-                              </>
-                            ) : (
-                              <>
-                                {t.contact.getRecommendation}
+                              <Button
+                                onClick={handleNextStep}
+                                disabled={!isStepValid()}
+                                className={cn(
+                                  "relative overflow-hidden bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-600 hover:to-orange-600 text-white border-0",
+                                  !isStepValid() && "opacity-50 cursor-not-allowed"
+                                )}
+                              >
+                                {t.challenges?.analyzeButton || "Analyser"}
                                 <ArrowRight className="ml-2 h-4 w-4" />
-                              </>
-                            )}
-                            <span className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
-                          </Button>
-                        </div>
-                      </form>
-                      
-                      <div className="text-center text-sm text-dainamics-light/50 pt-4">
-                        <p className="flex items-center justify-center gap-2">
-                          <span className="w-4 h-4 rounded-full border border-dainamics-light/30 flex items-center justify-center">
-                            <Check className="w-2 h-2 text-dainamics-light/30" />
-                          </span>
-                          {t.contact.dataSecure}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
+                                <span className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
+                              </Button>
+                            </div>
+                          </motion.div>
+                        )}
 
-                  {/* Step 4: Results Display */}
-                  {currentStep === 4 && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="space-y-8"
-                    >
-                      <div className="text-center mb-8">
-                        <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-dainamics-primary to-dainamics-secondary mb-4">
-                          <Brain className="h-10 w-10 text-white" />
-                          <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-dainamics-primary to-dainamics-secondary opacity-30 animate-pulse"></div>
-                        </div>
-                        <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-dainamics-primary to-dainamics-secondary bg-clip-text text-transparent mb-2">
-                          {t.results.title}
-                        </h3>
-                        <p className="text-dainamics-light/70 mb-6">
-                          {t.results.subtitle}
-                        </p>
-                      </div>
+                        {/* Step 2: Specific Questions */}
+                        {currentStep === 2 && (
+                          <motion.div
+                            key="step2"
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -50 }}
+                            className="space-y-6"
+                          >
+                            <div className="text-center mb-6">
+                              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                                {t.specificQuestions?.title || "Analyse approfondie"}
+                              </h3>
+                              <p className="text-gray-400">{t.specificQuestions?.subtitle || "Quelques détails pour personnaliser votre solution"}</p>
+                            </div>
 
-                      <div className="space-y-6">
-                        {selectedChallenges.map((challenge, index) => {
-                          const agent = agentRecommendations[challenge];
-                          return (
+                            <div className="space-y-8">
+                              {selectedChallenges.map((challenge, index) => (
+                                <motion.div 
+                                  key={challenge} 
+                                  className="space-y-4 border-b border-gray-800/50 pb-6 mb-6 last:border-0"
+                                  initial={{ opacity: 0, y: 20 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
+                                      {businessChallenges.find(c => c.id === challenge)?.icon}
+                                    </div>
+                                    <h4 className="text-lg font-semibold text-gradient-secondary">
+                                      {businessChallenges.find(c => c.id === challenge)?.title}
+                                    </h4>
+                                  </div>
+                                  
+                                  {specificQuestions[challenge].map((question) => (
+                                    <div key={question.id} className="space-y-3 ml-4 pl-6 border-l-2 border-gray-800/30">
+                                      <p className="text-white">{question.text}</p>
+                                      <div className="flex flex-wrap gap-3">
+                                        {question.options.map((option) => (
+                                          <motion.button
+                                            key={option.value}
+                                            className={cn(
+                                              "px-4 py-2 rounded-full text-sm transition-all relative overflow-hidden",
+                                              isOptionSelected(challenge, question.id, option.value)
+                                                ? "bg-primary/30 border border-primary text-white"
+                                                : "bg-gray-800/50 border border-gray-700 text-gray-300 hover:bg-primary/10"
+                                            )}
+                                            onClick={() => toggleSpecificAnswer(challenge, question.id, option.value)}
+                                            whileHover={{ y: -2 }}
+                                            whileTap={{ scale: 0.97 }}
+                                          >
+                                            {option.label}
+                                            {isOptionSelected(challenge, question.id, option.value) && (
+                                              <motion.span 
+                                                className="absolute inset-0 bg-primary/10"
+                                                initial={{ scale: 0, opacity: 0 }}
+                                                animate={{ scale: 1, opacity: 1 }}
+                                                transition={{ duration: 0.3 }}
+                                              />
+                                            )}
+                                          </motion.button>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </motion.div>
+                              ))}
+                            </div>
+
+                            <div className="flex justify-between pt-4">
+                              <Button
+                                type="button"
+                                variant="outline"
+                                onClick={handlePrevStep}
+                                className="border-gray-700 text-gray-300 hover:bg-primary/10 hover:text-white hover:border-primary/50"
+                              >
+                                <ArrowLeft className="mr-2 h-4 w-4" />
+                                {t.navigation?.back || "Retour"}
+                              </Button>
+
+                              <Button
+                                onClick={handleNextStep}
+                                disabled={!isStepValid()}
+                                className={cn(
+                                  "relative overflow-hidden bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-600 hover:to-orange-600 text-white border-0",
+                                  !isStepValid() && "opacity-50 cursor-not-allowed"
+                                )}
+                              >
+                                {t.navigation?.continue || "Continuer"}
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                                <span className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
+                              </Button>
+                            </div>
+                          </motion.div>
+                        )}
+
+                        {/* Step 3: Contact Information */}
+                        {currentStep === 3 && (
+                          <motion.div
+                            key="step3"
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -50 }}
+                            className="space-y-6"
+                          >
+                            <div className="text-center mb-6">
+                              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-4">
+                                <Check className="h-8 w-8 text-primary" />
+                              </div>
+                              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                                {t.contact?.title || "Recevez votre recommandation"}
+                              </h3>
+                              <p className="text-gray-400">{t.contact?.subtitle || "Résultats personnalisés dans votre boîte mail"}</p>
+                            </div>
+
+                            <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto bg-gray-900/50 backdrop-blur rounded-xl p-6">
+                              <div className="space-y-4">
+                                <div className="space-y-2">
+                                  <Label htmlFor="email" className="text-white">{t.contact?.emailLabel || "Email professionnel"}</Label>
+                                  <div className="relative">
+                                    <Input
+                                      id="email"
+                                      name="email"
+                                      type="email"
+                                      placeholder={t.contact?.emailPlaceholder || "nom@entreprise.com"}
+                                      value={formData.email}
+                                      onChange={handleInputChange}
+                                      className="bg-gray-800/50 border-gray-700 text-white focus:border-primary focus:ring-1 focus:ring-primary"
+                                      required
+                                      aria-label="Email"
+                                    />
+                                    {emailError && (
+                                      <p className="text-red-500 text-xs mt-1">{emailError}</p>
+                                    )}
+                                  </div>
+                                </div>
+                                
+                                <div className="space-y-2">
+                                  <Label htmlFor="name" className="text-white">{t.contact?.nameLabel || "Votre nom"}</Label>
+                                  <div className="relative">
+                                    <Input
+                                      id="name"
+                                      name="name"
+                                      type="text"
+                                      placeholder={t.contact?.namePlaceholder || "Jean Dupont"}
+                                      value={formData.name}
+                                      onChange={handleInputChange}
+                                      className="bg-gray-800/50 border-gray-700 text-white focus:border-primary focus:ring-1 focus:ring-primary"
+                                      required
+                                      aria-label="Nom"
+                                    />
+                                  </div>
+                                </div>
+                                
+                                <div className="space-y-2">
+                                  <Label htmlFor="company" className="text-white">{t.contact?.companyLabel || "Entreprise (optionnel)"}</Label>
+                                  <div className="relative">
+                                    <Input
+                                      id="company"
+                                      name="company"
+                                      type="text"
+                                      placeholder={t.contact?.companyPlaceholder || "Nom de votre société"}
+                                      value={formData.company}
+                                      onChange={handleInputChange}
+                                      className="bg-gray-800/50 border-gray-700 text-white focus:border-primary focus:ring-1 focus:ring-primary"
+                                      aria-label="Entreprise"
+                                    />
+                                  </div>
+                                </div>
+                                
+                                <div className="flex items-start space-x-3 pt-2">
+                                  <input
+                                    id="consent"
+                                    name="consent"
+                                    type="checkbox"
+                                    checked={formData.consent}
+                                    onChange={handleInputChange}
+                                    className="mt-1 rounded border-gray-700 bg-gray-800 text-primary focus:ring-primary"
+                                    required
+                                    aria-label="Consentement"
+                                  />
+                                  <Label htmlFor="consent" className="text-sm text-gray-400">
+                                    {t.contact?.consentLabel || "J'accepte de recevoir des recommandations personnalisées par email"}
+                                  </Label>
+                                </div>
+                              </div>
+
+                              <div className="flex justify-between pt-4">
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  onClick={handlePrevStep}
+                                  className="border-gray-700 text-gray-300 hover:bg-primary/10 hover:text-white hover:border-primary/50"
+                                >
+                                  <ArrowLeft className="mr-2 h-4 w-4" />
+                                  {t.navigation?.back || "Retour"}
+                                </Button>
+                                
+                                <Button
+                                  type="submit"
+                                  disabled={!isStepValid() || isSubmitting}
+                                  className={cn(
+                                    "relative overflow-hidden bg-gradient-to-r from-primary to-secondary hover:from-primary hover:to-primary text-white border-0",
+                                    (!isStepValid() || isSubmitting) && "opacity-50 cursor-not-allowed"
+                                  )}
+                                >
+                                  {isSubmitting ? (
+                                    <>
+                                      <span className="animate-spin mr-2 h-4 w-4 border-2 border-current border-t-transparent rounded-full"></span>
+                                      {t.contact?.processing || "Traitement..."}
+                                    </>
+                                  ) : (
+                                    <>
+                                      {t.contact?.getRecommendation || "Obtenir ma recommandation"}
+                                      <ArrowRight className="ml-2 h-4 w-4" />
+                                    </>
+                                  )}
+                                  <span className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
+                                </Button>
+                              </div>
+                            </form>
+                            
+                            <div className="text-center text-sm text-gray-500 pt-4">
+                              <p className="flex items-center justify-center gap-2">
+                                <span className="w-4 h-4 rounded-full border border-gray-600 flex items-center justify-center">
+                                  <Shield className="w-2 h-2 text-gray-600" />
+                                </span>
+                                {t.contact?.dataSecure || "Vos données sont sécurisées et confidentielles"}
+                              </p>
+                            </div>
+                          </motion.div>
+                        )}
+
+                        {/* Step 4: Results Display */}
+                        {currentStep === 4 && (
+                          <motion.div
+                            key="step4"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            className="space-y-8"
+                          >
+                            <div className="text-center mb-8">
+                              <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-primary to-secondary mb-4">
+                                <Brain className="h-10 w-10 text-white" />
+                                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary to-secondary opacity-30 animate-pulse"></div>
+                              </div>
+                              <h3 className="text-2xl md:text-3xl font-bold text-gradient-primary mb-2">
+                                {t.results?.title || "Votre agent IA recommandé"}
+                              </h3>
+                              <p className="text-gray-400 mb-6">
+                                {t.results?.subtitle || "Solution personnalisée basée sur vos défis"}
+                              </p>
+                            </div>
+
+                            <div className="space-y-6">
+                              {selectedChallenges.map((challenge, index) => {
+                                const agent = agentRecommendations[challenge];
+                                return (
+                                  <motion.div 
+                                    key={challenge}
+                                    className="bg-gray-900/70 p-6 rounded-xl border-l-4 border-primary relative overflow-hidden"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.2, duration: 0.5 }}
+                                    style={{ willChange: 'transform, opacity' }}
+                                  >
+                                    {/* Neural background effect */}
+                                    <div className="absolute inset-0 -z-10" style={{ transform: 'translateZ(0)' }}>
+                                      <div className="absolute top-0 left-0 w-full h-full">
+                                        <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-xl"></div>
+                                        <div className="absolute bottom-1/3 right-1/4 w-32 h-32 bg-secondary/5 rounded-full blur-xl"></div>
+                                      </div>
+                                    </div>
+
+                                    <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4">
+                                      <div className="flex items-center">
+                                        <div className="w-12 h-12 mr-4 flex items-center justify-center bg-primary/20 rounded-lg">
+                                          {businessChallenges.find(c => c.id === challenge)?.icon}
+                                        </div>
+                                        <div>
+                                          <motion.h4 
+                                            className="text-xl font-bold text-white"
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: index * 0.2 + 0.2 }}
+                                          >
+                                            {agent.name}
+                                          </motion.h4>
+                                          <motion.p 
+                                            className="text-secondary text-sm"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ delay: index * 0.2 + 0.3 }}
+                                          >
+                                            {agent.tagline}
+                                          </motion.p>
+                                        </div>
+                                      </div>
+                                      <div className="bg-primary/20 px-3 py-1 rounded text-sm font-semibold text-primary">
+                                        {t.results?.recommended || "Recommandé"}
+                                      </div>
+                                    </div>
+
+                                    <div className="space-y-6">
+                                      <div>
+                                        <h5 className="text-sm uppercase text-gray-500 tracking-wider mb-3">{t.results?.keyFeatures || "Fonctionnalités clés"}</h5>
+                                        <ul className="space-y-3">
+                                          {agent.features.map((feature, i) => (
+                                            <motion.li 
+                                              key={i} 
+                                              className="flex items-start"
+                                              initial={{ opacity: 0, x: -10 }}
+                                              animate={{ opacity: 1, x: 0 }}
+                                              transition={{ delay: index * 0.2 + 0.4 + (i * 0.1) }}
+                                            >
+                                              <div className="bg-primary/20 p-1 rounded-full mr-3 mt-0.5">
+                                                <Check className="h-3 w-3 text-primary" />
+                                              </div>
+                                              <span className="text-gray-300">{feature}</span>
+                                            </motion.li>
+                                          ))}
+                                        </ul>
+                                      </div>
+
+                                      <div>
+                                        <h5 className="text-sm uppercase text-gray-500 tracking-wider mb-3">{t.results?.impactMetrics || "Métriques d'impact"}</h5>
+                                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                          {agent.metrics.map((metric, i) => (
+                                            <motion.div 
+                                              key={i} 
+                                              className="bg-secondary/10 rounded-lg p-4 text-center"
+                                              initial={{ opacity: 0, scale: 0.9 }}
+                                              animate={{ opacity: 1, scale: 1 }}
+                                              transition={{ delay: index * 0.2 + 0.7 + (i * 0.1) }}
+                                            >
+                                              <div className="text-2xl font-bold text-secondary mb-1">{metric.value}</div>
+                                              <div className="text-xs text-gray-400">{metric.label}</div>
+                                            </motion.div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </motion.div>
+                                );
+                              })}
+                            </div>
+
                             <motion.div 
-                              key={challenge}
-                              className="bg-dainamics-card-alt/70 p-6 rounded-xl border-l-4 border-dainamics-primary relative overflow-hidden"
+                              className="bg-gray-900 border border-green-600/30 rounded-lg p-4 text-center"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 0.5 }}
+                            >
+                              <p className="text-white">
+                                {t.results?.emailSent || "Résultats envoyés à"} <span className="font-bold text-green-500">{formData.email}</span>
+                              </p>
+                            </motion.div>
+
+                            <motion.div 
+                              className="flex flex-col md:flex-row justify-center gap-4 pt-4"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: index * 0.2, duration: 0.5 }}
+                              transition={{ delay: 0.8 }}
                             >
-                              {/* Neural background effect */}
-                              <div className="absolute inset-0 -z-10">
-                                <div className="absolute top-0 left-0 w-full h-full">
-                                  <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-dainamics-primary/5 rounded-full blur-xl"></div>
-                                  <div className="absolute bottom-1/3 right-1/4 w-32 h-32 bg-dainamics-secondary/5 rounded-full blur-xl"></div>
-                                </div>
-                              </div>
-
-                              <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4">
-                                <div className="flex items-center">
-                                  <div className="w-12 h-12 mr-4 flex items-center justify-center bg-dainamics-primary/20 rounded-lg">
-                                    {businessChallenges.find(c => c.id === challenge)?.icon}
-                                  </div>
-                                  <div>
-                                    <motion.h4 
-                                      className="text-xl font-bold text-dainamics-light"
-                                      initial={{ opacity: 0, y: 10 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      transition={{ delay: index * 0.2 + 0.2 }}
-                                    >
-                                      {agent.name}
-                                    </motion.h4>
-                                    <motion.p 
-                                      className="text-dainamics-secondary text-sm"
-                                      initial={{ opacity: 0 }}
-                                      animate={{ opacity: 1 }}
-                                      transition={{ delay: index * 0.2 + 0.3 }}
-                                    >
-                                      {agent.tagline}
-                                    </motion.p>
-                                  </div>
-                                </div>
-                                <div className="bg-dainamics-primary/20 px-3 py-1 rounded text-sm font-semibold text-dainamics-primary">
-                                  {t.results.recommended}
-                                </div>
-                              </div>
-
-                              <div className="space-y-6">
-                                <div>
-                                  <h5 className="text-sm uppercase text-dainamics-light/50 tracking-wider mb-3">{t.results.keyFeatures}</h5>
-                                  <ul className="space-y-3">
-                                    {agent.features.map((feature, i) => (
-                                      <motion.li 
-                                        key={i} 
-                                        className="flex items-start"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: index * 0.2 + 0.4 + (i * 0.1) }}
-                                      >
-                                        <div className="bg-dainamics-primary/20 p-1 rounded-full mr-3 mt-0.5">
-                                          <Check className="h-3 w-3 text-dainamics-primary" />
-                                        </div>
-                                        <span className="text-dainamics-light/80">{feature}</span>
-                                      </motion.li>
-                                    ))}
-                                  </ul>
-                                </div>
-
-                                <div>
-                                  <h5 className="text-sm uppercase text-dainamics-light/50 tracking-wider mb-3">{t.results.impactMetrics}</h5>
-                                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                    {agent.metrics.map((metric, i) => (
-                                      <motion.div 
-                                        key={i} 
-                                        className="bg-dainamics-secondary/10 rounded-lg p-4 text-center"
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ delay: index * 0.2 + 0.7 + (i * 0.1) }}
-                                      >
-                                        <div className="text-2xl font-bold text-dainamics-secondary mb-1">{metric.value}</div>
-                                        <div className="text-xs text-dainamics-light/70">{metric.label}</div>
-                                      </motion.div>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
+                              <Button 
+                                className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white"
+                              >
+                                {t.results?.deployButton || "Déployer votre agent IA"}
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                              </Button>
+                              
+                              <Button 
+                                variant="outline"
+                                className="border-primary text-white hover:bg-primary/10"
+                              >
+                                {t.results?.scheduleDemo || "Planifier une démo"}
+                              </Button>
+                              
+                              <Button 
+                                variant="ghost"
+                                onClick={handleReset}
+                                className="text-gray-400 hover:text-white hover:bg-gray-800"
+                              >
+                                {t.results?.restartDiagnosis || "Refaire le diagnostic"}
+                              </Button>
                             </motion.div>
-                          );
-                        })}
-                      </div>
-
-                      <motion.div 
-                        className="bg-dainamics-card-alt border border-dainamics-success/30 rounded-lg p-4 text-center"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                      >
-                        <p className="text-dainamics-light">
-                          {t.results.emailSent} <span className="font-bold text-dainamics-success">{formData.email}</span>
-                        </p>
-                      </motion.div>
-
-                      <motion.div 
-                        className="flex flex-col md:flex-row justify-center gap-4 pt-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8 }}
-                      >
-                        <Button 
-                          className="bg-gradient-to-r from-dainamics-primary to-dainamics-secondary hover:opacity-90 text-white btn-glow"
-                        >
-                          {t.results.deployButton}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                        
-                        <Button 
-                          variant="outline"
-                          className="border-dainamics-primary text-dainamics-light hover:bg-dainamics-primary/10"
-                        >
-                          {t.results.scheduleDemo}
-                        </Button>
-                        
-                        <Button 
-                          variant="ghost"
-                          onClick={handleReset}
-                          className="text-dainamics-light/70 hover:text-dainamics-light hover:bg-dainamics-light/5"
-                        >
-                          {t.results.restartDiagnosis}
-                        </Button>
-                      </motion.div>
-                    </motion.div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </>
                   )}
-                </>
-              )}
-            </div>
-          </motion.div>
-        )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
 }
-
