@@ -5,7 +5,7 @@ import AboutServices from '@/components/AboutServices';
 import MetricsConfidence from '@/components/MetricsConfidence';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import TrustedClients from '@/components/sections/TrustedClients';
-import ServicesOverview from '@/components/sections/ServicesOverview';
+import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import FinalCTA from '@/components/sections/FinalCTA';
@@ -69,8 +69,8 @@ const Index = () => {
         <FeaturedProjects />
 
         {/* ========== SECTION 5: SERVICES OVERVIEW ========== */}
-        {/* 4 services with substance */}
-        <ServicesOverview />
+        {/* 4 services with horizontal scroll effect */}
+        <HorizontalScrollEngagement />
 
         {/* ========== SECTION 6: SWISS DIFFERENTIATORS ========== */}
         {/* 3 USP */}
