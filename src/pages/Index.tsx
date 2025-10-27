@@ -6,6 +6,7 @@ import MetricsConfidence from '@/components/MetricsConfidence';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import TrustedClients from '@/components/sections/TrustedClients';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
+import ProblemsWeSolve from '@/components/sections/ProblemsWeSolve';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import FinalCTA from '@/components/sections/FinalCTA';
@@ -68,23 +69,27 @@ const Index = () => {
         {/* LEXAIA & ENKI REALITY */}
         <FeaturedProjects />
 
-        {/* ========== SECTION 5: SERVICES OVERVIEW ========== */}
+        {/* ========== SECTION 5: PROBLEMS WE SOLVE ========== */}
+        {/* 3 problématiques PME avec Bento Grid et Flip Cards */}
+        <ProblemsWeSolve />
+
+        {/* ========== SECTION 6: SERVICES OVERVIEW ========== */}
         {/* 4 services with horizontal scroll effect */}
         <HorizontalScrollEngagement />
 
-        {/* ========== SECTION 6: SWISS DIFFERENTIATORS ========== */}
+        {/* ========== SECTION 7: SWISS DIFFERENTIATORS ========== */}
         {/* 3 USP */}
         <SwissDifferentiators />
 
-        {/* ========== SECTION 7: TESTIMONIAL ========== */}
+        {/* ========== SECTION 8: TESTIMONIAL ========== */}
         {/* Témoignage unique centré */}
         <TestimonialSection />
 
-        {/* ========== SECTION 8: FINAL CTA ========== */}
+        {/* ========== SECTION 9: FINAL CTA ========== */}
         {/* Conversion ultime - Booking direct */}
         <FinalCTA />
 
-        {/* ========== SECTION 9: QUESTIONNAIRE DIAGNOSTIC ========== */}
+        {/* ========== SECTION 10: QUESTIONNAIRE DIAGNOSTIC ========== */}
         {/*
           STRATÉGIE CONVERSION :
           - Après FinalCTA : Offre alternative pour leads tièdes (pas prêts à booker)
