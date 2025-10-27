@@ -109,13 +109,11 @@ const FinanceCard: React.FC = () => {
         >
           <div className="h-full p-6 md:p-8 rounded-2xl bg-dainamics-card border border-dainamics-border shadow-2xl flex flex-col group-hover:border-dainamics-primary/50 transition-colors duration-300">
             <div className="flex items-start justify-between mb-4 md:mb-6">
-              <motion.div
-                animate={{ rotate: [0, -10, 10, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                className="text-5xl md:text-6xl"
-              >
-                💰
-              </motion.div>
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-dainamics-cta/20 flex items-center justify-center">
+                <svg className="w-6 h-6 md:w-8 md:h-8 text-dainamics-cta" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
 
               <span className="px-2 md:px-3 py-0.5 md:py-1 text-xs font-semibold bg-dainamics-cta/10 text-dainamics-cta rounded-full border border-dainamics-cta/20">
                 Critique
@@ -268,12 +266,11 @@ const SalesCard: React.FC = () => {
     >
       <div className="h-full p-4 md:p-6 rounded-2xl bg-dainamics-card border border-dainamics-border hover:border-dainamics-secondary/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-2 flex flex-col">
         <div className="flex items-start justify-between mb-3 md:mb-4">
-          <motion.div
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            className="text-3xl md:text-4xl"
-          >
-            📈
-          </motion.div>
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-dainamics-secondary/20 flex items-center justify-center">
+            <svg className="w-5 h-5 md:w-6 md:h-6 text-dainamics-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+          </div>
 
           <span className="px-2 py-0.5 text-xs font-semibold bg-dainamics-cta/10 text-dainamics-cta rounded-full border border-dainamics-cta/20">
             Urgent
@@ -332,12 +329,11 @@ const SupportCard: React.FC = () => {
     >
       <div className="h-full p-4 md:p-6 rounded-2xl bg-dainamics-card border border-dainamics-border hover:border-dainamics-primary/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-2 flex flex-col">
         <div className="flex items-start justify-between mb-3 md:mb-4">
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="text-3xl md:text-4xl"
-          >
-            💬
-          </motion.div>
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-dainamics-primary/20 flex items-center justify-center">
+            <svg className="w-5 h-5 md:w-6 md:h-6 text-dainamics-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </div>
 
           <span className="px-2 py-0.5 text-xs font-semibold bg-dainamics-primary/10 text-dainamics-primary rounded-full border border-dainamics-primary/20">
             24/7
