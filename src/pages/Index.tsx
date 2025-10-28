@@ -2,9 +2,8 @@ import { useEffect, lazy, Suspense } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import AboutServices from '@/components/AboutServices';
-import MetricsConfidence from '@/components/MetricsConfidence';
+import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
 import FeaturedProjects from '@/components/FeaturedProjects';
-import TrustedClients from '@/components/sections/TrustedClients';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
 import ProblemsWeSolve from '@/components/sections/ProblemsWeSolve';
 import QuickWinsGrid from '@/components/sections/QuickWinsGrid';
@@ -58,13 +57,9 @@ const Index = () => {
         {/* 3 pillars (IA, Automatisations, Software) */}
         <AboutServices />
 
-        {/* ========== SECTION 3: METRICS CONFIDENCE ========== */}
-        {/* 4 key metrics with animated counters */}
-        <MetricsConfidence />
-
-        {/* ========== SECTION 3: TRUSTED CLIENTS ========== */}
-        {/* 9 logos carousel */}
-        <TrustedClients />
+        {/* ========== SECTION 3: CRÉDIBILITÉ IMMÉDIATE ========== */}
+        {/* Fusion Metrics + Logos - 4 KPIs + 9 logos clients */}
+        <CredibiliteImmediate />
 
         {/* ========== SECTION 4: FEATURED PROJECTS ========== */}
         {/* LEXAIA & ENKI REALITY */}
