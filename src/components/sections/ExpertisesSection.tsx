@@ -12,6 +12,12 @@ const iconMap = {
   CheckCircle2
 };
 
+const patterns = {
+  ia: "data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='%237B2FFF' opacity='0.15'/%3E%3Ccircle cx='10' cy='2' r='1' fill='%237B2FFF' opacity='0.15'/%3E%3Ccircle cx='18' cy='2' r='1' fill='%237B2FFF' opacity='0.15'/%3E%3Ccircle cx='2' cy='10' r='1' fill='%237B2FFF' opacity='0.15'/%3E%3Ccircle cx='10' cy='10' r='1' fill='%237B2FFF' opacity='0.15'/%3E%3Ccircle cx='18' cy='10' r='1' fill='%237B2FFF' opacity='0.15'/%3E%3Ccircle cx='2' cy='18' r='1' fill='%237B2FFF' opacity='0.15'/%3E%3Ccircle cx='10' cy='18' r='1' fill='%237B2FFF' opacity='0.15'/%3E%3Ccircle cx='18' cy='18' r='1' fill='%237B2FFF' opacity='0.15'/%3E%3C/svg%3E",
+  automatisations: "data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='20' y2='20' stroke='%2300C8E6' stroke-width='1' opacity='0.15'/%3E%3Cline x1='5' y1='0' x2='25' y2='20' stroke='%2300C8E6' stroke-width='1' opacity='0.15'/%3E%3Cline x1='-5' y1='0' x2='15' y2='20' stroke='%2300C8E6' stroke-width='1' opacity='0.15'/%3E%3C/svg%3E",
+  software: "data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,10 L5,5 L10,10 L5,15 Z' fill='%2300E68A' opacity='0.15'/%3E%3Cpath d='M10,10 L15,5 L20,10 L15,15 Z' fill='%2300E68A' opacity='0.15'/%3E%3C/svg%3E"
+};
+
 interface ROI {
   mainValue: string;
   period: string;
@@ -45,9 +51,10 @@ const expertises: Expertise[] = [
     title: 'Intelligence Artificielle',
     tagline: 'Économisez 15h/Semaine • ROI 250-400%',
     capabilities: [
-      'Chatbots 24/7 → -40% tickets support',
-      'OCR 90+ langues → -95% erreurs saisie',
-      'Agents autonomes → Recherche 10× plus rapide'
+      'Assistants virtuels 24/7 → -40% tickets support',
+      'Lecture automatique documents → -95% erreurs saisie',
+      'Agents intelligents → Recherche 10× plus rapide',
+      'Prédictions sur-mesure → Décisions basées données'
     ],
     roi: {
       mainValue: '250-400%',
@@ -56,7 +63,7 @@ const expertises: Expertise[] = [
       icon: 'TrendingUp'
     },
     cta: {
-      text: 'Voir Cas Clients IA',
+      text: 'Découvrir les Projets',
       link: '/projets#ia'
     }
   },
@@ -68,9 +75,9 @@ const expertises: Expertise[] = [
     title: 'Automatisations Business',
     tagline: 'Zéro Erreur Manuelle • Gain Temps 70%',
     capabilities: [
-      'RPA multi-systèmes → -80% temps admin',
-      'Workflows n8n → Intégration 500+ apps',
-      'Email auto → 4200% ROI (étude validée)'
+      'Connexion automatique entre vos logiciels → -80% temps admin',
+      'Automatisation sans code → Connexion à 500+ applications métier',
+      'Emails et marketing automatisés → 4200% ROI (étude validée)'
     ],
     roi: {
       mainValue: '200-300%',
@@ -79,7 +86,7 @@ const expertises: Expertise[] = [
       icon: 'TrendingUp'
     },
     cta: {
-      text: 'Voir Cas Clients Auto',
+      text: 'Découvrir les Projets',
       link: '/projets#automatisations'
     }
   },
@@ -91,18 +98,17 @@ const expertises: Expertise[] = [
     title: 'Développement Software',
     tagline: 'Livraison 2 Semaines • Coût -50%',
     capabilities: [
-      'Prototypes validés → Livraison 14 jours',
-      'Stack moderne → Next.js, React, TypeScript',
-      'Architecture scalable → Microservices prêts croissance'
+      'Prototypes validés en 2 semaines → Lancement rapide',
+      'Architecture moderne et évolutive → Croissance sans limite technique'
     ],
     roi: {
-      mainValue: '40-60%',
-      period: 'Réduction Coûts vs Interne',
-      breakdown: 'Prototype: 2 sem • Production: 6-8 sem',
+      mainValue: '3× Plus Rapide',
+      period: 'vs Développement Traditionnel',
+      breakdown: 'Prototype: 2 sem • MVP: 6-8 sem',
       icon: 'Zap'
     },
     cta: {
-      text: 'Voir Cas Clients Software',
+      text: 'Découvrir les Projets',
       link: '/projets#software'
     }
   }
@@ -141,7 +147,7 @@ const ExpertisesSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:max-w-[850px] md:mx-auto xl:max-w-none xl:grid-cols-3 gap-6 lg:gap-8 mb-20">
           {expertises.map((expertise, index) => {
             const IconComponent = iconMap[expertise.icon];
             const ROIIconComponent = iconMap[expertise.roi.icon];
@@ -152,14 +158,17 @@ const ExpertisesSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group relative"
               >
-                <div className="relative h-full p-8 rounded-2xl bg-[#0A0A1A] border border-white/10 transition-all duration-700 hover:border-white/20 hover:shadow-2xl">
+                <div className="relative h-full p-6 md:p-8 rounded-2xl bg-[#0A0A1A] border border-white/10 transition-all duration-700 hover:border-white/20 hover:shadow-2xl">
                   <div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-lg"
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-60 blur-lg -z-10"
                     style={{
-                      background: `radial-gradient(circle at 50% 0%, ${expertise.colorAdjusted}20, transparent 70%)`
+                      background: `radial-gradient(circle at 50% 0%, ${expertise.colorAdjusted}25, transparent 70%)`,
+                      transitionProperty: 'opacity',
+                      transitionDuration: '900ms',
+                      transitionTimingFunction: 'ease-in-out'
                     }}
                   />
 
@@ -167,7 +176,11 @@ const ExpertisesSection = () => {
                     <div
                       className="w-16 h-16 rounded-xl flex items-center justify-center mb-6"
                       style={{
-                        background: `linear-gradient(135deg, ${expertise.colorAdjusted}20, transparent)`,
+                        background: `
+                          linear-gradient(135deg, ${expertise.colorAdjusted}20, transparent),
+                          url("${patterns[expertise.id as keyof typeof patterns]}")
+                        `,
+                        backgroundSize: '100%, 20px 20px',
                         border: `1px solid ${expertise.colorAdjusted}40`
                       }}
                     >
@@ -187,7 +200,7 @@ const ExpertisesSection = () => {
                       {expertise.tagline}
                     </p>
 
-                    <ul className="space-y-2.5 mb-8">
+                    <ul className="space-y-2 md:space-y-2.5 mb-6 md:mb-8">
                       {expertise.capabilities.map((capability, idx) => (
                         <li key={idx} className="flex items-start gap-2.5">
                           <CheckCircle2
@@ -220,10 +233,10 @@ const ExpertisesSection = () => {
                           style={{ color: expertise.colorAdjusted }}
                         />
                       </div>
-                      <p className="text-base text-white/90 font-medium mb-1">
+                      <p className="text-lg text-white/95 font-semibold mb-1">
                         {expertise.roi.period}
                       </p>
-                      <p className="text-sm text-white/60">
+                      <p className="text-sm text-white/70">
                         {expertise.roi.breakdown}
                       </p>
                     </div>
@@ -280,7 +293,7 @@ const ExpertisesSection = () => {
               size="lg"
               className="bg-gradient-to-r from-[#7B2FFF] to-[#00C8E6] hover:opacity-90 transition-opacity text-white font-medium group"
             >
-              <a href="#diagnostic" className="flex items-center gap-2">
+              <a href="/diagnostic" className="flex items-center gap-2">
                 Diagnostic Gratuit 2 min
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
@@ -292,7 +305,7 @@ const ExpertisesSection = () => {
               variant="outline"
               className="border-white/20 hover:bg-white/5 text-white group"
             >
-              <a href="#projets" className="flex items-center gap-2">
+              <a href="/projets" className="flex items-center gap-2">
                 <BookOpen className="w-5 h-5" />
                 Explorer Cas Clients
               </a>
