@@ -1,377 +1,302 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Brain, Cog, Code, TrendingUp, Zap, CheckCircle2, ArrowRight, BookOpen } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const iconMap = {
+  Brain,
+  Cog,
+  Code,
+  TrendingUp,
+  Zap,
+  CheckCircle2
+};
+
+interface ROI {
+  mainValue: string;
+  period: string;
+  breakdown: string;
+  icon: keyof typeof iconMap;
+}
+
+interface CTA {
+  text: string;
+  link: string;
+}
 
 interface Expertise {
   id: string;
-  icon: string;
+  icon: keyof typeof iconMap;
+  color: string;
+  colorAdjusted: string;
   title: string;
   tagline: string;
-  capacities: {
-    title: string;
-    description: string;
-  }[];
-  examples: string[];
-  roi: {
-    value: string;
-    details: string;
-  };
-  ctaText: string;
-  ctaLink: string;
-  color: {
-    primary: string;
-    gradient: string;
-    glow: string;
-  };
+  capabilities: string[];
+  roi: ROI;
+  cta: CTA;
 }
 
-const ExpertisesSection: React.FC = () => {
-  const expertises: Expertise[] = [
-    {
-      id: 'ia',
-      icon: '🧠',
-      title: 'Intelligence Artificielle',
-      tagline: 'Intelligence qui Comprend, Prédit, Décide',
-      capacities: [
-        {
-          title: 'Comprend',
-          description: 'Langage naturel, emails, documents, images',
-        },
-        {
-          title: 'Prédit',
-          description: 'Demandes clients, pannes machines, ventes futures',
-        },
-        {
-          title: 'Décide',
-          description: 'Recommande actions, optimise ressources, détecte anomalies',
-        },
-      ],
-      examples: [
-        'Chatbots intelligents 24/7',
-        'Analyse prédictive ventes',
-        'OCR factures intelligent',
-        'Génération contenu marketing',
-      ],
-      roi: {
-        value: '250-400%',
-        details: 'ROI première année (Source : Étude 20 Automatisations PME)',
-      },
-      ctaText: 'Voir Exemples IA',
-      ctaLink: '#exemples-ia',
-      color: {
-        primary: '#7B2FFF',
-        gradient: 'from-[#7B2FFF] to-[#5E24BF]',
-        glow: 'rgba(123, 47, 255, 0.4)',
-      },
+const expertises: Expertise[] = [
+  {
+    id: 'ia',
+    icon: 'Brain',
+    color: '#7B2FFF',
+    colorAdjusted: '#7B2FFF',
+    title: 'Intelligence Artificielle',
+    tagline: 'Économisez 15h/Semaine • ROI 250-400%',
+    capabilities: [
+      'Chatbots 24/7 → -40% tickets support',
+      'OCR 90+ langues → -95% erreurs saisie',
+      'Agents autonomes → Recherche 10× plus rapide'
+    ],
+    roi: {
+      mainValue: '250-400%',
+      period: 'ROI Première Année',
+      breakdown: '6 mois: 150-200% • 12 mois: 250-400%',
+      icon: 'TrendingUp'
     },
-    {
-      id: 'automatisations',
-      icon: '⚙️',
-      title: 'Automatisations',
-      tagline: 'Robots Logiciels 24/7 Sans Erreur',
-      capacities: [
-        {
-          title: 'Exécute 24/7',
-          description: 'Travaille nuit, weekend, jours fériés',
-        },
-        {
-          title: 'Zéro erreur',
-          description: 'Précision 100%, pas de fatigue',
-        },
-        {
-          title: 'Évolutif',
-          description: "De 10 à 10'000 tâches sans embauche",
-        },
-      ],
-      examples: [
-        'RPA (copie données entre systèmes)',
-        'Workflows métier (validations auto)',
-        'Intégrations API (sync CRM↔ERP)',
-        'ETL données (consolidation temps réel)',
-      ],
-      roi: {
-        value: '200-300%',
-        details: 'ROI première année (Source : Étude 20 Automatisations PME)',
-      },
-      ctaText: 'Voir Exemples Auto',
-      ctaLink: '#exemples-automatisations',
-      color: {
-        primary: '#10E4FF',
-        gradient: 'from-[#10E4FF] to-[#0CB4D4]',
-        glow: 'rgba(16, 228, 255, 0.4)',
-      },
+    cta: {
+      text: 'Voir Cas Clients IA',
+      link: '/projets#ia'
+    }
+  },
+  {
+    id: 'automatisations',
+    icon: 'Cog',
+    color: '#00C8E6',
+    colorAdjusted: '#00C8E6',
+    title: 'Automatisations Business',
+    tagline: 'Zéro Erreur Manuelle • Gain Temps 70%',
+    capabilities: [
+      'RPA multi-systèmes → -80% temps admin',
+      'Workflows n8n → Intégration 500+ apps',
+      'Email auto → 4200% ROI (étude validée)'
+    ],
+    roi: {
+      mainValue: '200-300%',
+      period: 'ROI Première Année',
+      breakdown: '6 mois: 120-180% • 12 mois: 200-300%',
+      icon: 'TrendingUp'
     },
-    {
-      id: 'software',
-      icon: '💻',
-      title: 'Développement Software',
-      tagline: 'Applications sur Mesure pour Votre Métier',
-      capacities: [
-        {
-          title: 'Votre métier',
-          description: 'Conçu pour vos processus uniques',
-        },
-        {
-          title: 'Vos règles',
-          description: 'Logique métier dans le code',
-        },
-        {
-          title: 'Évolutif',
-          description: 'Grandit avec votre entreprise',
-        },
-      ],
-      examples: [
-        'Portails web métier (ex: LEXAIA)',
-        'Applications mobiles terrain',
-        'Dashboards temps réel personnalisés',
-        'Systèmes gestion sur mesure',
-      ],
-      roi: {
-        value: 'Variable',
-        details: 'Souvent 40-60% coûts vs développement interne',
-      },
-      ctaText: 'Voir Projets Réalisés',
-      ctaLink: '#projets',
-      color: {
-        primary: '#0AFF9D',
-        gradient: 'from-[#0AFF9D] to-[#06D989]',
-        glow: 'rgba(10, 255, 157, 0.4)',
-      },
+    cta: {
+      text: 'Voir Cas Clients Auto',
+      link: '/projets#automatisations'
+    }
+  },
+  {
+    id: 'software',
+    icon: 'Code',
+    color: '#00E68A',
+    colorAdjusted: '#00E68A',
+    title: 'Développement Software',
+    tagline: 'Livraison 2 Semaines • Coût -50%',
+    capabilities: [
+      'Prototypes validés → Livraison 14 jours',
+      'Stack moderne → Next.js, React, TypeScript',
+      'Architecture scalable → Microservices prêts croissance'
+    ],
+    roi: {
+      mainValue: '40-60%',
+      period: 'Réduction Coûts vs Interne',
+      breakdown: 'Prototype: 2 sem • Production: 6-8 sem',
+      icon: 'Zap'
     },
-  ];
+    cta: {
+      text: 'Voir Cas Clients Software',
+      link: '/projets#software'
+    }
+  }
+];
 
-  const sectors = [
-    { label: 'Finance', color: '#7B2FFF' },
-    { label: 'RH', color: '#10E4FF' },
-    { label: 'Marketing', color: '#0AFF9D' },
-    { label: 'Ventes', color: '#FF5A00' },
-    { label: 'Support', color: '#7B2FFF' },
-    { label: 'Production', color: '#10E4FF' },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  };
-
+const ExpertisesSection = () => {
   return (
-    <section
-      role="region"
-      aria-labelledby="expertises-heading"
-      className="expertises-section py-24 bg-dainamics-background relative overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-secondary/4 to-transparent pointer-events-none" />
+    <section className="relative py-24 bg-[#050510] overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(123,47,255,0.05),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(0,200,230,0.05),transparent_50%)]" />
 
-      <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2
-            id="expertises-heading"
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight"
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold mb-3"
           >
-            3 Expertises.{' '}
-            <span className="bg-gradient-to-r from-dainamics-primary via-dainamics-secondary to-dainamics-success bg-clip-text text-transparent">
+            <span className="text-white">3 Expertises. </span>
+            <span className="bg-gradient-to-r from-[#7B2FFF] via-[#00C8E6] to-[#00E68A] bg-clip-text text-transparent">
               Infinies Possibilités.
             </span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-4xl mx-auto">
-            IA · Automatisations · Développement Software sur Mesure
-          </p>
-        </motion.div>
+          </motion.h2>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          role="list"
-        >
-          {expertises.map((expertise) => (
-            <motion.div
-              key={expertise.id}
-              variants={itemVariants}
-              className="expertise-card group relative"
-              role="listitem"
-            >
-              <div
-                className="card-elevated h-full flex flex-col p-8 transition-all duration-500 hover:scale-[1.02]"
-                style={{
-                  '--expertise-color': expertise.color.primary,
-                  '--expertise-glow': expertise.color.glow,
-                } as React.CSSProperties}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-lg text-white/70 max-w-3xl mx-auto"
+          >
+            De l'IA générative aux automatisations métier en passant par le développement sur-mesure,
+            nous transformons vos processus en avantages compétitifs mesurables.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-20">
+          {expertises.map((expertise, index) => {
+            const IconComponent = iconMap[expertise.icon];
+            const ROIIconComponent = iconMap[expertise.roi.icon];
+
+            return (
+              <motion.div
+                key={expertise.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                className="group relative"
               >
-                <div className="mb-6">
+                <div className="relative h-full p-8 rounded-2xl bg-[#0A0A1A] border border-white/10 transition-all duration-700 hover:border-white/20 hover:shadow-2xl">
                   <div
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${expertise.color.gradient} opacity-20 flex items-center justify-center text-4xl mb-4`}
-                  >
-                    {expertise.icon}
-                  </div>
-                  <h3
-                    id={`expertise-${expertise.id}`}
-                    className="text-2xl font-bold text-white mb-2"
-                  >
-                    {expertise.title}
-                  </h3>
-                  <p
-                    className="text-base font-semibold"
-                    style={{ color: expertise.color.primary }}
-                  >
-                    {expertise.tagline}
-                  </p>
-                </div>
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-lg"
+                    style={{
+                      background: `radial-gradient(circle at 50% 0%, ${expertise.colorAdjusted}20, transparent 70%)`
+                    }}
+                  />
 
-                <div
-                  className="h-px w-full mb-6 bg-gradient-to-r from-transparent to-transparent"
-                  style={{
-                    backgroundImage: `linear-gradient(to right, transparent, ${expertise.color.primary}40, transparent)`,
-                  }}
-                />
-
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">
-                    3 Capacités Clés
-                  </h4>
-                  <ul className="space-y-3">
-                    {expertise.capacities.map((capacity, idx) => (
-                      <li key={idx}>
-                        <span
-                          className="font-semibold"
-                          style={{ color: expertise.color.primary }}
-                        >
-                          {capacity.title}
-                        </span>
-                        <span className="text-sm text-gray-400">
-                          {' '}
-                          : {capacity.description}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">
-                    Exemples Concrets
-                  </h4>
-                  <ul className="space-y-2">
-                    {expertise.examples.map((example, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <span
-                          className="text-lg leading-none mt-0.5"
-                          style={{ color: expertise.color.primary }}
-                        >
-                          •
-                        </span>
-                        <span className="text-sm text-gray-300">{example}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mb-6 p-4 rounded-lg bg-gray-900/50 border border-gray-800">
-                  <div className="text-center">
+                  <div className="relative z-10 flex flex-col h-full">
                     <div
-                      className="text-3xl font-bold mb-1"
-                      style={{ color: expertise.color.primary }}
+                      className="w-16 h-16 rounded-xl flex items-center justify-center mb-6"
+                      style={{
+                        background: `linear-gradient(135deg, ${expertise.colorAdjusted}20, transparent)`,
+                        border: `1px solid ${expertise.colorAdjusted}40`
+                      }}
                     >
-                      {expertise.roi.value}
+                      <IconComponent
+                        className="w-8 h-8"
+                        style={{ color: expertise.colorAdjusted }}
+                      />
                     </div>
-                    <div className="text-xs text-gray-500">
-                      {expertise.roi.details}
+
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      {expertise.title}
+                    </h3>
+                    <p
+                      className="text-sm font-medium mb-6"
+                      style={{ color: expertise.colorAdjusted }}
+                    >
+                      {expertise.tagline}
+                    </p>
+
+                    <ul className="space-y-2.5 mb-8">
+                      {expertise.capabilities.map((capability, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5">
+                          <CheckCircle2
+                            className="w-4 h-4 mt-0.5 flex-shrink-0"
+                            style={{ color: expertise.colorAdjusted }}
+                          />
+                          <span className="text-sm text-white/90 leading-relaxed">
+                            {capability}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div
+                      className="p-6 rounded-xl border-2 mb-6 mt-auto"
+                      style={{
+                        background: `linear-gradient(135deg, ${expertise.colorAdjusted}15, transparent)`,
+                        borderColor: `${expertise.colorAdjusted}30`
+                      }}
+                    >
+                      <div className="flex items-baseline gap-2 mb-2">
+                        <span
+                          className="text-5xl font-bold"
+                          style={{ color: expertise.colorAdjusted }}
+                        >
+                          {expertise.roi.mainValue}
+                        </span>
+                        <ROIIconComponent
+                          className="w-6 h-6"
+                          style={{ color: expertise.colorAdjusted }}
+                        />
+                      </div>
+                      <p className="text-base text-white/90 font-medium mb-1">
+                        {expertise.roi.period}
+                      </p>
+                      <p className="text-sm text-white/60">
+                        {expertise.roi.breakdown}
+                      </p>
                     </div>
+
+                    <Button
+                      asChild
+                      className="w-full group/btn transition-all duration-300"
+                      style={{
+                        backgroundColor: expertise.colorAdjusted,
+                        color: '#FFFFFF'
+                      }}
+                    >
+                      <a href={expertise.cta.link} className="flex items-center justify-center gap-2">
+                        {expertise.cta.text}
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </a>
+                    </Button>
                   </div>
                 </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
-                <a
-                  href={expertise.ctaLink}
-                  className="mt-auto block w-full py-3 px-6 rounded-lg font-semibold text-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                  style={{
-                    background: `linear-gradient(135deg, ${expertise.color.primary}, ${expertise.color.primary}cc)`,
-                  }}
-                >
-                  {expertise.ctaText} →
-                </a>
-              </div>
-
-              <div
-                className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 rounded-2xl"
-                style={{
-                  background: `radial-gradient(circle, ${expertise.color.glow}, transparent 70%)`,
-                }}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+        <div className="relative h-px mb-16">
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, #7B2FFF 50%, transparent 100%)',
+              opacity: 0.3
+            }}
+          />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-dainamics-card to-dainamics-background border border-dainamics-border"
+          transition={{ duration: 0.6 }}
+          className="text-center"
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-center text-white mb-4">
-            25+ Types d'Automatisations Possibles.{' '}
-            <span className="bg-gradient-to-r from-dainamics-primary to-dainamics-secondary bg-clip-text text-transparent">
-              Tous Secteurs.
-            </span>
+          <h3 className="text-3xl font-bold text-white mb-4">
+            Quelle Expertise Pour Votre Projet ?
           </h3>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
-            {sectors.map((sector, idx) => (
-              <span
-                key={idx}
-                className="px-4 py-2 rounded-full text-sm font-semibold text-white"
-                style={{ backgroundColor: sector.color }}
-              >
-                {sector.label}
-              </span>
-            ))}
-          </div>
-
-          <p className="text-center text-gray-400 max-w-3xl mx-auto mb-6 leading-relaxed">
-            Nos 3 expertises combinées créent des solutions uniques pour chaque
-            client. Que vous soyez dans la finance, l'industrie, les services ou le
-            commerce, nous analysons{' '}
-            <strong className="text-white">VOS</strong> processus et créons l'outil
-            sur mesure qui multiplie votre efficacité.
+          <p className="text-lg text-white/70 max-w-2xl mx-auto mb-8">
+            Pas sûr de votre besoin ? Notre diagnostic gratuit identifie les gains
+            potentiels en 2 minutes.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#solutions"
-              className="px-8 py-3 rounded-lg bg-gradient-to-r from-dainamics-primary to-dainamics-secondary text-white font-semibold text-center hover:scale-105 transition-all"
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-[#7B2FFF] to-[#00C8E6] hover:opacity-90 transition-opacity text-white font-medium group"
             >
-              Voir Toutes les Solutions →
-            </a>
-            <a
-              href="#diagnostic"
-              className="px-8 py-3 rounded-lg border-2 border-dainamics-primary text-dainamics-primary font-semibold text-center hover:bg-dainamics-primary hover:text-white transition-all"
+              <a href="#diagnostic" className="flex items-center gap-2">
+                Diagnostic Gratuit 2 min
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </Button>
+
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/20 hover:bg-white/5 text-white group"
             >
-              Diagnostic Gratuit 2 min →
-            </a>
+              <a href="#projets" className="flex items-center gap-2">
+                <BookOpen className="w-5 h-5" />
+                Explorer Cas Clients
+              </a>
+            </Button>
           </div>
         </motion.div>
       </div>
