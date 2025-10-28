@@ -118,7 +118,7 @@ const FeaturedProjects: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
             Projets{' '}
             <span className="bg-gradient-to-r from-dainamics-primary to-dainamics-secondary bg-clip-text text-transparent">
               Réalisés
@@ -135,7 +135,7 @@ const FeaturedProjects: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="projects-grid grid grid-cols-1 lg:grid-cols-2 gap-8"
+          className="projects-grid grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
         >
           {projects.map((project) => (
             <motion.div
@@ -156,16 +156,32 @@ const FeaturedProjects: React.FC = () => {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="flex items-center justify-center h-full">
-                    <p className="text-gray-500 text-lg">
-                      {project.title} Interface - Screenshot à venir
-                    </p>
+                  <div className="relative flex items-center justify-center h-full bg-gradient-to-br from-gray-900 to-gray-800">
+                    <div className="absolute inset-0 opacity-10">
+                      <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <pattern id={`grid-${project.id}`} width="40" height="40" patternUnits="userSpaceOnUse">
+                          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                        </pattern>
+                        <rect width="100%" height="100%" fill={`url(#grid-${project.id})`} />
+                      </svg>
+                    </div>
+
+                    <div className="relative text-center z-10">
+                      <div
+                        className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${project.color.gradient} opacity-20 flex items-center justify-center`}
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-white/10" />
+                      </div>
+                      <p className="text-gray-400 font-semibold text-lg">{project.title}</p>
+                      <p className="text-gray-600 text-sm mt-1">Interface en production</p>
+                    </div>
                   </div>
                 )}
                 {/* Overlay gradient */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-t ${project.color.gradient} opacity-10`}
+                  className={`absolute inset-0 bg-gradient-to-t ${project.color.gradient} opacity-20`}
                 />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050510]/80" />
               </div>
 
               {/* Contenu */}
@@ -185,7 +201,7 @@ const FeaturedProjects: React.FC = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-base text-gray-300 mb-6 leading-relaxed">
+                <p className="text-base text-gray-300 mb-8 leading-relaxed">
                   {project.description}
                 </p>
 
@@ -198,7 +214,7 @@ const FeaturedProjects: React.FC = () => {
                     {project.stack.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 text-xs font-medium rounded-full bg-gray-800 text-gray-300 border border-gray-700"
+                        className="px-3 py-1.5 text-sm font-medium rounded-full bg-gray-800 text-gray-300 border border-gray-700"
                       >
                         {tech}
                       </span>
@@ -213,9 +229,9 @@ const FeaturedProjects: React.FC = () => {
                   </h4>
                   <ul className="space-y-2">
                     {project.results.map((result, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
+                      <li key={idx} className="flex items-center gap-2">
                         <Check
-                          className="w-5 h-5 flex-shrink-0 mt-0.5"
+                          className="w-5 h-5 flex-shrink-0"
                           style={{ color: project.color.primary }}
                           strokeWidth={2.5}
                         />
@@ -226,15 +242,15 @@ const FeaturedProjects: React.FC = () => {
                 </div>
 
                 {/* Impact */}
-                <div className="mb-6">
+                <div className="mb-8">
                   <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">
                     Impact Métier
                   </h4>
                   <ul className="space-y-2">
                     {project.impact.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
+                      <li key={idx} className="flex items-center gap-2">
                         <Check
-                          className="w-5 h-5 flex-shrink-0 mt-0.5 text-dainamics-success"
+                          className="w-5 h-5 flex-shrink-0 text-dainamics-success"
                           strokeWidth={2.5}
                         />
                         <span className="text-sm text-gray-300">{item}</span>
@@ -246,13 +262,13 @@ const FeaturedProjects: React.FC = () => {
                 {/* CTA */}
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
                   style={{
                     background: `linear-gradient(135deg, ${project.color.primary}, ${project.color.secondary})`,
                   }}
                 >
                   Discuter d'un projet similaire
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
             </motion.div>
