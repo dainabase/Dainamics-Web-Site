@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import AboutServices from '@/components/AboutServices';
 import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
 import FeaturedProjects from '@/components/FeaturedProjects';
+import FeaturedProjectsEnhanced from '@/components/sections/FeaturedProjectsEnhanced';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
 import ProblemsWeSolve from '@/components/sections/ProblemsWeSolve';
 import QuickWinsGrid from '@/components/sections/QuickWinsGrid';
@@ -64,6 +65,10 @@ const Index = () => {
         {/* ========== SECTION 4: FEATURED PROJECTS ========== */}
         {/* LEXAIA & ENKI REALITY */}
         <FeaturedProjects />
+
+        {/* ========== SECTION 4B: FEATURED PROJECTS ENHANCED (COMPARAISON) ========== */}
+        {/* Version enrichie avec badges, metrics, separators */}
+        <FeaturedProjectsEnhanced />
 
         {/* ========== SECTION 5: PROBLEMS WE SOLVE ========== */}
         {/* 3 problématiques PME avec Bento Grid et Flip Cards */}
