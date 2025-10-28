@@ -5,6 +5,7 @@ import AboutServices from '@/components/AboutServices';
 import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import ExpertisesSection from '@/components/sections/ExpertisesSection';
+import ProcessusSection from '@/components/sections/ProcessusSection';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
 import ProblemsWeSolve from '@/components/sections/ProblemsWeSolve';
 import QuickWinsGrid from '@/components/sections/QuickWinsGrid';
@@ -69,6 +70,10 @@ const Index = () => {
         {/* ========== SECTION 4B: NOS 3 EXPERTISES ========== */}
         {/* IA · Automatisations · Software */}
         <ExpertisesSection />
+
+        {/* ========== SECTION 4C: PROCESSUS TRANSPARENT ========== */}
+        {/* De l'Idée au ROI en 8 Semaines - Timeline + Garantie */}
+        <ProcessusSection />
 
         {/* ========== SECTION 5: PROBLEMS WE SOLVE ========== */}
         {/* 3 problématiques PME avec Bento Grid et Flip Cards */}
