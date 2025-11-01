@@ -5,7 +5,7 @@ import AboutServices from '@/components/AboutServices';
 import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import ExpertisesSection from '@/components/sections/ExpertisesSection';
-import ProcessusSection from '@/components/sections/ProcessusSection';
+import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
 import ProblemsWeSolve from '@/components/sections/ProblemsWeSolve';
 import QuickWinsGrid from '@/components/sections/QuickWinsGrid';
@@ -73,7 +73,7 @@ const Index = () => {
 
         {/* ========== SECTION 4C: PROCESSUS TRANSPARENT ========== */}
         {/* De l'Idée au ROI en 8 Semaines - Timeline + Garantie */}
-        <ProcessusSection />
+        <ProcessusSection_v2 />
 
         {/* ========== SECTION 5: PROBLEMS WE SOLVE ========== */}
         {/* 3 problématiques PME avec Bento Grid et Flip Cards */}
