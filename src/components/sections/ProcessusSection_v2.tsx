@@ -263,11 +263,8 @@ const ProcessusSection_v2 = () => {
                     {step.title}
                   </h3>
 
-                  {/* Pricing + Duration */}
+                  {/* Duration */}
                   <div className="mb-6">
-                    <div className="text-4xl font-bold mb-2" style={{ color: step.color }}>
-                      {step.pricing}
-                    </div>
                     <div className="flex items-center gap-2 text-white/70">
                       <Clock className="w-4 h-4" />
                       <span className="text-sm">{step.duration}</span>
