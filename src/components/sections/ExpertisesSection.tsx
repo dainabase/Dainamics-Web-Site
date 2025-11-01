@@ -53,13 +53,12 @@ const expertises: Expertise[] = [
     capabilities: [
       'Assistants virtuels 24/7 → -40% tickets support',
       'Lecture automatique documents → -95% erreurs saisie',
-      'Agents intelligents → Recherche 10× plus rapide',
       'Prédictions sur-mesure → Décisions basées données'
     ],
     roi: {
       mainValue: '250-400%',
       period: 'ROI Première Année',
-      breakdown: '6 mois: 150-200% • 12 mois: 250-400%',
+      breakdown: '6 mois: 150% • 12 mois: 300%',
       icon: 'TrendingUp'
     },
     cta: {
@@ -75,14 +74,14 @@ const expertises: Expertise[] = [
     title: 'Automatisations Business',
     tagline: 'Zéro Erreur Manuelle • Gain Temps 70%',
     capabilities: [
-      'Connexion automatique entre vos logiciels → -80% temps admin',
-      'Automatisation sans code → Connexion à 500+ applications métier',
-      'Emails et marketing automatisés → 4200% ROI (étude validée)'
+      'Connexion automatique systèmes → -80% temps admin',
+      'Automatisation sans code → 500+ apps connectables',
+      'Emails et marketing automatisés → ROI 4200% validé'
     ],
     roi: {
       mainValue: '200-300%',
       period: 'ROI Première Année',
-      breakdown: '6 mois: 120-180% • 12 mois: 200-300%',
+      breakdown: '6 mois: 120% • 12 mois: 250%',
       icon: 'TrendingUp'
     },
     cta: {
@@ -99,7 +98,8 @@ const expertises: Expertise[] = [
     tagline: 'Livraison 2 Semaines • Coût -50%',
     capabilities: [
       'Prototypes validés en 2 semaines → Lancement rapide',
-      'Architecture moderne et évolutive → Croissance sans limite technique'
+      'Architecture moderne évolutive → Croissance sans limites',
+      'Stack optimisé ROI → -50% coûts développement'
     ],
     roi: {
       mainValue: '3× Plus Rapide',
@@ -215,28 +215,28 @@ const ExpertisesSection = () => {
                     </ul>
 
                     <div
-                      className="p-6 rounded-xl border-2 mb-6 mt-auto"
+                      className="p-6 rounded-xl border-2 mb-6 mt-auto min-h-[180px] flex flex-col justify-between"
                       style={{
                         background: `linear-gradient(135deg, ${expertise.colorAdjusted}15, transparent)`,
                         borderColor: `${expertise.colorAdjusted}30`
                       }}
                     >
-                      <div className="flex items-baseline gap-2 mb-2">
+                      <div className="flex items-baseline gap-2 mb-2 min-h-[72px]">
                         <span
-                          className="text-5xl font-bold"
+                          className="text-5xl font-bold leading-tight"
                           style={{ color: expertise.colorAdjusted }}
                         >
                           {expertise.roi.mainValue}
                         </span>
                         <ROIIconComponent
-                          className="w-6 h-6"
+                          className="w-6 h-6 flex-shrink-0"
                           style={{ color: expertise.colorAdjusted }}
                         />
                       </div>
-                      <p className="text-lg text-white/95 font-semibold mb-1">
+                      <p className="text-lg text-white/95 font-semibold mb-1 min-h-[28px] flex items-center">
                         {expertise.roi.period}
                       </p>
-                      <p className="text-sm text-white/70">
+                      <p className="text-sm text-white/70 min-h-[40px] flex items-center">
                         {expertise.roi.breakdown}
                       </p>
                     </div>
