@@ -102,9 +102,9 @@ const expertises: Expertise[] = [
       'Stack optimisé ROI → -50% coûts développement'
     ],
     roi: {
-      mainValue: '3× Plus Rapide',
-      period: 'vs Développement Traditionnel',
-      breakdown: 'Prototype: 2 sem • MVP: 6-8 sem',
+      mainValue: '200% ROI',
+      period: 'Livraison 3× Plus Rapide',
+      breakdown: 'Standard: 8 mois • Nous: 2-3 mois',
       icon: 'Zap'
     },
     cta: {
