@@ -180,12 +180,6 @@ const CTAFinalSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
-              <Shield className="w-4 h-4 text-[#00E68A]" />
-              <span className="text-sm text-white/90 font-medium">
-                3 Options • 0 Risque • 100% Gratuit
-              </span>
-            </div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="text-white">Prêt à </span>
