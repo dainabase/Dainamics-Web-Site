@@ -7,7 +7,6 @@ import FeaturedProjects from '@/components/FeaturedProjects';
 import ExpertisesSection from '@/components/sections/ExpertisesSection';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
-import ProblemsWeSolve from '@/components/sections/ProblemsWeSolve';
 import QuickWinsGrid from '@/components/sections/QuickWinsGrid';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
 import TestimonialSection from '@/components/sections/TestimonialSection';
@@ -75,9 +74,6 @@ const Index = () => {
         {/* De l'Idée au ROI en 8 Semaines - Timeline + Garantie */}
         <ProcessusSection_v2 />
 
-        {/* ========== SECTION 5: PROBLEMS WE SOLVE ========== */}
-        {/* 3 problématiques PME avec Bento Grid et Flip Cards */}
-        <ProblemsWeSolve />
 
         {/* ========== SECTION 6: SERVICES OVERVIEW ========== */}
         {/* 4 services with horizontal scroll effect */}
