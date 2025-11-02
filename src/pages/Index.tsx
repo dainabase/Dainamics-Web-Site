@@ -8,7 +8,6 @@ import ExpertisesSection from '@/components/sections/ExpertisesSection';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
-import TestimonialSection from '@/components/sections/TestimonialSection';
 import FinalCTA from '@/components/sections/FinalCTA';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
@@ -83,9 +82,6 @@ const Index = () => {
         {/* 3 USP */}
         <SwissDifferentiators />
 
-        {/* ========== SECTION 9: TESTIMONIAL ========== */}
-        {/* Témoignage unique centré */}
-        <TestimonialSection />
 
         {/* ========== SECTION 10: FINAL CTA ========== */}
         {/* Conversion ultime - Booking direct */}
