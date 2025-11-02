@@ -34,7 +34,7 @@ const FeaturedProjects: React.FC = () => {
         'Analyse contrats en 2 minutes',
         'Réduction 95% erreurs documents juridiques',
       ],
-      screenshot: null, // Placeholder à venir
+      screenshot: '/WhatsApp Image 2025-10-28 at 11.42.06 (1).jpeg',
       color: {
         primary: '#7B2FFF',
         secondary: '#5E24BF',
