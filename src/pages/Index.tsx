@@ -8,6 +8,7 @@ import ExpertisesSection from '@/components/sections/ExpertisesSection';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
+import CTAFinalSection from '@/components/sections/CTAFinalSection';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
@@ -81,9 +82,11 @@ const Index = () => {
         {/* 3 USP */}
         <SwissDifferentiators />
 
+        {/* ========== SECTION 9: CTA FINAL (DOUBLE PARCOURS) ========== */}
+        {/* 3 Options: Explorer Solutions | Diagnostic 2 min | Réserver Appel */}
+        <CTAFinalSection />
 
-
-        {/* ========== SECTION 11: QUESTIONNAIRE DIAGNOSTIC ========== */}
+        {/* ========== SECTION 10: QUESTIONNAIRE DIAGNOSTIC ========== */}
         {/*
           STRATÉGIE CONVERSION :
           - Après FinalCTA : Offre alternative pour leads tièdes (pas prêts à booker)
