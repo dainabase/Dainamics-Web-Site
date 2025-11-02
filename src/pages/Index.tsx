@@ -6,7 +6,6 @@ import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import ExpertisesSection from '@/components/sections/ExpertisesSection';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
-import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
 import CTAFinalSection from '@/components/sections/CTAFinalSection';
 import Footer from '@/components/Footer';
@@ -72,10 +71,6 @@ const Index = () => {
         {/* De l'Idée au ROI en 8 Semaines - Timeline + Garantie */}
         <ProcessusSection_v2 />
 
-
-        {/* ========== SECTION 6: SERVICES OVERVIEW ========== */}
-        {/* 4 services with horizontal scroll effect */}
-        <HorizontalScrollEngagement />
 
 
         {/* ========== SECTION 8: SWISS DIFFERENTIATORS ========== */}
