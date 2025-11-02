@@ -8,7 +8,6 @@ import ExpertisesSection from '@/components/sections/ExpertisesSection';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
-import FinalCTA from '@/components/sections/FinalCTA';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
@@ -83,9 +82,6 @@ const Index = () => {
         <SwissDifferentiators />
 
 
-        {/* ========== SECTION 10: FINAL CTA ========== */}
-        {/* Conversion ultime - Booking direct */}
-        <FinalCTA />
 
         {/* ========== SECTION 11: QUESTIONNAIRE DIAGNOSTIC ========== */}
         {/*
