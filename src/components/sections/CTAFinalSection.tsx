@@ -182,11 +182,7 @@ const CTAFinalSection = () => {
           >
 
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-white">Prêt à </span>
-              <span className="bg-gradient-to-r from-[#7B2FFF] via-[#00E68A] to-[#FF5A00] bg-clip-text text-transparent">
-                Transformer
-              </span>
-              <span className="text-white"> Votre Business ?</span>
+              <span className="text-white">Prêt à Transformer Votre Business ?</span>
             </h2>
 
             <p className="text-lg text-white/70 max-w-2xl mx-auto">
@@ -320,8 +316,8 @@ const CTAFinalSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h3 className="text-2xl font-bold text-white mb-2">
-            Questions Avant de Choisir ?
+          <h3 className="text-2xl font-bold mb-2">
+            <span className="text-white">Questions Avant de Choisir ?</span>
           </h3>
           <p className="text-white/70 mb-8 max-w-2xl mx-auto">
             Notre équipe est là pour vous guider. Contactez-nous par email ou téléphone.

@@ -140,9 +140,8 @@ const SwissDifferentiators: React.FC = () => {
           <div className="inline-flex items-center gap-3 mb-6">
             <Shield className="w-12 h-12 text-[#7B2FFF]" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Pourquoi les PME Suisses{' '}
-            <span className="text-gradient-primary">Nous Choisissent</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-white">Pourquoi les PME Suisses Nous Choisissent</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Trois différenciateurs qui font toute la différence face aux agences

@@ -129,11 +129,7 @@ const ProcessusSection_v2 = () => {
           </div>
 
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            <span className="text-white">De l'Idée au </span>
-            <span className="bg-gradient-to-r from-[#7B2FFF] via-[#10E4FF] to-[#0AFF9D] bg-clip-text text-transparent">
-              ROI Mesurable
-            </span>
-            <span className="text-white"> en 8 Semaines</span>
+            <span className="text-white">De l'Idée au ROI Mesurable en 8 Semaines</span>
           </h2>
 
           <p className="text-lg text-white/70 max-w-3xl mx-auto">
@@ -317,8 +313,8 @@ const ProcessusSection_v2 = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center"
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-8">
-            Prêt à Démarrer Votre Transformation ?
+          <h3 className="text-2xl md:text-3xl font-bold mb-8">
+            <span className="text-white">Prêt à Démarrer Votre Transformation ?</span>
           </h3>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

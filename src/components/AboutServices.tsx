@@ -83,10 +83,10 @@ const AboutServices: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="intro-text text-center mb-20 max-w-4xl mx-auto"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Intelligence Artificielle. Automatisations.
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <span className="text-white">Intelligence Artificielle. Automatisations.</span>
             <br />
-            Développement Software.
+            <span className="text-white">Développement Software.</span>
           </h2>
           <p className="text-xl text-gray-300 leading-relaxed">
             Nous construisons les outils technologiques qui propulsent votre

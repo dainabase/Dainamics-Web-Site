@@ -183,11 +183,8 @@ const CredibiliteImmediate: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 id="credibilite-heading" className="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
-            Les Résultats{' '}
-            <span className="bg-gradient-to-r from-dainamics-primary to-dainamics-secondary bg-clip-text text-transparent">
-              Parlent
-            </span>
+          <h2 id="credibilite-heading" className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
+            <span className="text-white">Les Résultats Parlent</span>
           </h2>
           <p className="text-xl text-gray-400">
             Des chiffres concrets, pas de promesses vides
@@ -278,10 +275,9 @@ const CredibiliteImmediate: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-12 text-white"
+            className="text-3xl md:text-4xl font-bold text-center mb-12"
           >
-            Ils Nous Font{' '}
-            <span className="text-gradient-primary">Confiance</span>
+            <span className="text-white">Ils Nous Font Confiance</span>
           </motion.h3>
 
           <div className="logo-carousel-wrapper" role="region" aria-label="Carrousel de logos clients" aria-live="off">

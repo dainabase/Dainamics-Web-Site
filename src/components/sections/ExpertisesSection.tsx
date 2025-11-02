@@ -129,10 +129,7 @@ const ExpertisesSection = () => {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold mb-3"
           >
-            <span className="text-white">3 Expertises. </span>
-            <span className="bg-gradient-to-r from-[#7B2FFF] via-[#00C8E6] to-[#00E68A] bg-clip-text text-transparent">
-              Infinies Possibilités.
-            </span>
+            <span className="text-white">3 Expertises. Infinies Possibilités.</span>
           </motion.h2>
 
           <motion.p
@@ -278,8 +275,8 @@ const ExpertisesSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h3 className="text-3xl font-bold text-white mb-4">
-            Quelle Expertise Pour Votre Projet ?
+          <h3 className="text-3xl font-bold mb-4">
+            <span className="text-white">Quelle Expertise Pour Votre Projet ?</span>
           </h3>
 
           <p className="text-lg text-white/70 max-w-2xl mx-auto mb-8">

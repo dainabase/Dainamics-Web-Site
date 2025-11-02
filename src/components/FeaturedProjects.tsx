@@ -118,11 +118,8 @@ const FeaturedProjects: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-            Projets{' '}
-            <span className="bg-gradient-to-r from-dainamics-primary to-dainamics-secondary bg-clip-text text-transparent">
-              Réalisés
-            </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+            <span className="text-white">Projets Réalisés</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Des architectures IA complexes qui transforment des industries entières
