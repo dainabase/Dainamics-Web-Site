@@ -7,7 +7,6 @@ import FeaturedProjects from '@/components/FeaturedProjects';
 import ExpertisesSection from '@/components/sections/ExpertisesSection';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
 import HorizontalScrollEngagement from '@/components/HorizontalScrollEngagement';
-import QuickWinsGrid from '@/components/sections/QuickWinsGrid';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
 import TestimonialSection from '@/components/sections/TestimonialSection';
 import FinalCTA from '@/components/sections/FinalCTA';
@@ -79,9 +78,6 @@ const Index = () => {
         {/* 4 services with horizontal scroll effect */}
         <HorizontalScrollEngagement />
 
-        {/* ========== SECTION 7: QUICK WINS GRID ========== */}
-        {/* 5 Quick Wins timeline horizontale */}
-        <QuickWinsGrid />
 
         {/* ========== SECTION 8: SWISS DIFFERENTIATORS ========== */}
         {/* 3 USP */}
