@@ -308,50 +308,6 @@ const ProcessusSection_v2 = () => {
           })}
         </div>
 
-        {/* GARANTIE RÉSULTATS */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto mb-16"
-        >
-          <div
-            className="relative p-8 md:p-10 rounded-2xl border-2"
-            style={{
-              backgroundColor: `${COLORS.cta}10`,
-              borderColor: `${COLORS.cta}40`
-            }}
-          >
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-              <div
-                className="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: `${COLORS.cta}20` }}
-              >
-                <Shield className="w-8 h-8" style={{ color: COLORS.cta }} />
-              </div>
-
-              <div className="flex-grow">
-                <h3 className="text-2xl font-bold mb-3" style={{ color: COLORS.cta }}>
-                  Garantie Résultats
-                </h3>
-                <p className="text-white/90 text-lg mb-4">
-                  Si le ROI projeté n'est pas atteint en 6 mois, nous continuons gratuitement jusqu'à l'objectif.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5" style={{ color: COLORS.cta }} />
-                    <span className="text-white/80">100% des clients atteignent ROI projeté</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5" style={{ color: COLORS.cta }} />
-                    <span className="text-white/80">Basé sur 50+ projets livrés depuis 2020</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
 
         {/* FINAL CTA */}
         <motion.div
