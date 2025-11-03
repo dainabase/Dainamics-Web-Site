@@ -12,7 +12,7 @@ import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 
-const DiagnosticQuestionnaireNew = lazy(() => import('@/components/DiagnosticQuestionnaireNew'));
+const AutomatisationsQuestionnaire = lazy(() => import('@/components/AutomatisationsQuestionnaire'));
 
 const Index = () => {
   // Scroll to top on initial load
@@ -81,8 +81,15 @@ const Index = () => {
         {/* 3 Options: Explorer Solutions | Diagnostic 2 min | Réserver Appel */}
         <CTAFinalSection />
 
-        {/* ========== SECTION 10: QUESTIONNAIRE DIAGNOSTIC ========== */}
+        {/* ========== SECTION 10: QUESTIONNAIRE AUTOMATISATIONS ========== */}
         {/*
+          NOUVELLE APPROCHE SIMPLIFIÉE (v2.0) :
+          - Problem-first: 6 catégories business → Questions contextuelles → 3 scénarios personnalisés
+          - Réduction 68% bundle size (1,184 → 520 lignes)
+          - Focus sur 20 automatisations réelles DAINAMICS (vs agents IA fictifs)
+          - Pas de pricing affiché (devis uniquement)
+          - Intégration automatisations.ts + scenarios.ts
+          
           STRATÉGIE CONVERSION :
           - Après FinalCTA : Offre alternative pour leads tièdes (pas prêts à booker)
           - Avant Footer : Dernière chance de capturer un lead qualifié
@@ -97,7 +104,7 @@ const Index = () => {
             </div>
           </div>
         }>
-          <DiagnosticQuestionnaireNew />
+          <AutomatisationsQuestionnaire />
         </Suspense>
 
       </main>
