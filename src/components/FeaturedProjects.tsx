@@ -176,7 +176,7 @@ const FeaturedProjects: React.FC = () => {
                 )}
                 {/* Overlay gradient */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-t ${project.color.gradient} opacity-20`}
+                  className={`absolute inset-0 bg-gradient-to-t ${project.color.gradient} opacity-5`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050510]/80" />
               </div>
