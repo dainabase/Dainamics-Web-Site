@@ -1,8 +1,8 @@
 // ============================================================================
 // DAINAMICS - AutomatisationsQuestionnaire Component
 // ============================================================================
-// Version: 2.0 - Simplified Problem-First Approach
-// Date: 03 Novembre 2025
+// Version: 2.1 - With Brevo Integration v2
+// Date: 04 Novembre 2025
 // Replaces: DiagnosticQuestionnaireNew.tsx (1,184 lines → 520 lines)
 // ============================================================================
 
@@ -25,7 +25,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import { submitToBrevo, validateEmail } from '@/lib/brevo-integration';
+import { submitToBrevoV2, validateEmail } from '@/lib/brevo-integration-v2';
 import { SCENARIOS_BY_CATEGORIE, getScenariosByCategorie, type Scenario } from '@/data/scenarios';
 import type { Categorie } from '@/data/automatisations';
 
@@ -327,7 +327,7 @@ export default function AutomatisationsQuestionnaire() {
       const scenarios = categorieSelectionnee ? getScenariosByCategorie(categorieSelectionnee) : [];
       setScenariosRecommandes(scenarios);
 
-      // Préparer les données pour Brevo
+      // Préparer les données pour Brevo v2 (nouvelle structure)
       const brevoData = {
         email: contact.email,
         attributes: {
@@ -339,17 +339,27 @@ export default function AutomatisationsQuestionnaire() {
           REPONSES_QUESTIONNAIRE: JSON.stringify(reponses)
         },
         listIds: [2], // Liste "Questionnaire Automatisations"
-        updateEnabled: true
+        updateEnabled: true,
+        scenarios: scenarios // NOUVEAU : Passer les scénarios pour l'email
       };
 
-      // Soumettre à Brevo
-      await submitToBrevo(brevoData);
+      // Soumettre à Brevo v2 (avec envoi email automatique)
+      const result = await submitToBrevoV2(brevoData);
 
-      toast({
-        title: 'Analyse complète !',
-        description: 'Découvrez vos 3 scénarios personnalisés ci-dessous',
-        variant: 'default'
-      });
+      if (result.success) {
+        toast({
+          title: 'Email envoyé ! 📧',
+          description: 'Vos 3 scénarios personnalisés ont été envoyés par email',
+          variant: 'default'
+        });
+      } else {
+        console.warn('[Questionnaire] Email non envoyé:', result.message);
+        toast({
+          title: 'Analyse complète !',
+          description: 'Découvrez vos 3 scénarios personnalisés ci-dessous',
+          variant: 'default'
+        });
+      }
 
       setEtape(4);
     } catch (error) {
@@ -562,10 +572,10 @@ export default function AutomatisationsQuestionnaire() {
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Recevez Votre Analyse Personnalisée
+              Recevez Votre Analyse Personnalisée par Email
             </h2>
             <p className="text-slate-300">
-              Nous vous recommanderons 3 scénarios d'automatisation adaptés à votre situation
+              Nous vous enverrons vos 3 scénarios d'automatisation personnalisés directement par email
             </p>
           </motion.div>
 
@@ -676,7 +686,7 @@ export default function AutomatisationsQuestionnaire() {
               disabled={isSubmitting}
               className="gap-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
             >
-              {isSubmitting ? 'Analyse en cours...' : 'Voir Mes Recommandations'}
+              {isSubmitting ? 'Envoi en cours...' : 'Recevoir Mon Analyse par Email'}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </motion.div>
@@ -701,14 +711,14 @@ export default function AutomatisationsQuestionnaire() {
           >
             <div className="inline-flex items-center gap-2 mb-6 px-6 py-3 bg-green-500/10 rounded-full">
               <Check className="w-5 h-5 text-green-400" />
-              <span className="text-green-400 font-medium">Analyse Complète</span>
+              <span className="text-green-400 font-medium">Email Envoyé ! 📧</span>
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
               Vos 3 Scénarios Personnalisés
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Automatisations recommandées pour votre contexte. Prix et faisabilité sur devis uniquement.
+              Votre analyse complète a été envoyée par email. Découvrez également vos scénarios ci-dessous.
             </p>
           </motion.div>
 
@@ -796,10 +806,10 @@ export default function AutomatisationsQuestionnaire() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700">
-                Réserver un Appel Gratuit
+                Réserver un Appel Gratuit (30 min)
               </Button>
               <Button size="lg" variant="outline">
-                Télécharger l'Analyse PDF
+                Consultez Votre Email 📧
               </Button>
             </div>
           </motion.div>
