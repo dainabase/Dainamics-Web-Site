@@ -253,9 +253,11 @@ export default function AutomatisationsQuestionnaire() {
   const [scenariosRecommandes, setScenariosRecommandes] = useState<Scenario[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Scroll to top on step change
+  // Scroll to top only when moving to results (step 4)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (etape === 4) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, [etape]);
 
   // ============================================================================
