@@ -110,7 +110,9 @@ const metrics: Metric[] = [
 
 const ProcessusSection_v2 = () => {
   return (
-    <section className="relative py-20 md:py-32 bg-black overflow-hidden">
+    <section className="relative py-20 md:py-32 bg-[#050510] overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(123,47,255,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(16,228,255,0.08),transparent_50%)]" />
 
       <div className="container mx-auto px-4 relative z-10">
 

@@ -77,8 +77,10 @@ const AboutServices: React.FC = () => {
   };
 
   return (
-    <section className="about-services-section py-16 bg-black relative">
-      
+    <section className="about-services-section py-16 bg-dainamics-background relative">
+      {/* Effet gradient subtil pour profondeur visuelle */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-primary/3 to-transparent pointer-events-none" />
+
       <div className="container-custom relative z-10">
         {/* Paragraphe Intro */}
         <motion.div
@@ -117,7 +119,7 @@ const AboutServices: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover="hover"
-                className="service-card bg-black border border-gray-800 rounded-2xl p-8 hover:border-dainamics-primary transition-all duration-300 flex flex-col"
+                className="service-card bg-gradient-to-br from-[#0A0A1B] to-[#050510] border border-gray-800 rounded-2xl p-8 hover:border-dainamics-primary transition-all duration-300 flex flex-col"
               >
                 {/* Icon avec glow et animation */}
                 <motion.div
