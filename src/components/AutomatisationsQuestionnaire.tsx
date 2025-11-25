@@ -1,7 +1,7 @@
 // ============================================================================
 // DAINAMICS - AutomatisationsQuestionnaire Component
 // ============================================================================
-// Version: 2.3 - Harmonized H2 titles and section spacing
+// Version: 2.4 - Fully harmonized H2 titles (mb-6 leading-tight, no violet gradients)
 // Date: 25 Novembre 2025
 // ============================================================================
 
@@ -392,8 +392,9 @@ export default function AutomatisationsQuestionnaire() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-              Quel est Votre Plus Grand Défi ?
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-white">Quel est Votre</span>{' '}
+              <span className="text-dainamics-secondary">Plus Grand Défi ?</span>
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Découvrez en 2 minutes les automatisations qui transformeront votre entreprise
@@ -410,15 +411,15 @@ export default function AutomatisationsQuestionnaire() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => handleCategorieSelect(cat.id)}
-                  className="group relative p-8 bg-slate-900/50 border border-slate-800 rounded-2xl hover:border-violet-500/50 hover:bg-slate-900/80 transition-all duration-300 text-left"
+                  className="group relative p-8 bg-slate-900/50 border border-slate-800 rounded-2xl hover:border-dainamics-primary/50 hover:bg-slate-900/80 transition-all duration-300 text-left"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 bg-violet-500/10 rounded-xl group-hover:bg-violet-500/20 transition-colors">
-                      <Icon className="w-6 h-6 text-violet-400" />
+                    <div className="p-3 bg-dainamics-primary/10 rounded-xl group-hover:bg-dainamics-primary/20 transition-colors">
+                      <Icon className="w-6 h-6 text-dainamics-primary" />
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-violet-400 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-dainamics-primary transition-colors">
                     {cat.titre}
                   </h3>
                   
@@ -427,7 +428,7 @@ export default function AutomatisationsQuestionnaire() {
                   </p>
 
                   <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight className="w-5 h-5 text-violet-400" />
+                    <ArrowRight className="w-5 h-5 text-dainamics-primary" />
                   </div>
                 </motion.button>
               );
@@ -459,13 +460,14 @@ export default function AutomatisationsQuestionnaire() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-violet-500/10 rounded-full">
-              <Icon className="w-5 h-5 text-violet-400" />
-              <span className="text-violet-400 font-medium">{categorieInfo?.titre}</span>
+            <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-dainamics-primary/10 rounded-full">
+              <Icon className="w-5 h-5 text-dainamics-primary" />
+              <span className="text-dainamics-primary font-medium">{categorieInfo?.titre}</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
-              Précisons Votre Situation
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-white">Précisons</span>{' '}
+              <span className="text-dainamics-secondary">Votre Situation</span>
             </h2>
             <p className="text-slate-300 max-w-2xl mx-auto">
               Ces questions nous aident à recommander les meilleures automatisations pour votre contexte
@@ -496,20 +498,20 @@ export default function AutomatisationsQuestionnaire() {
                         className={cn(
                           "relative p-4 text-left rounded-xl border-2 transition-all duration-200",
                           isSelected
-                            ? "border-violet-500 bg-violet-500/10"
+                            ? "border-dainamics-primary bg-dainamics-primary/10"
                             : "border-slate-700 bg-slate-900/30 hover:border-slate-600"
                         )}
                       >
                         <div className="flex items-center gap-3">
                           <div className={cn(
                             "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors",
-                            isSelected ? "border-violet-500 bg-violet-500" : "border-slate-600"
+                            isSelected ? "border-dainamics-primary bg-dainamics-primary" : "border-slate-600"
                           )}>
                             {isSelected && <Check className="w-3 h-3 text-white" />}
                           </div>
                           <span className={cn(
                             "font-medium",
-                            isSelected ? "text-violet-400" : "text-slate-300"
+                            isSelected ? "text-dainamics-primary" : "text-slate-300"
                           )}>
                             {option}
                           </span>
@@ -540,7 +542,7 @@ export default function AutomatisationsQuestionnaire() {
 
             <Button
               onClick={handleEtape2Suivant}
-              className="gap-2 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700"
+              className="gap-2 bg-dainamics-primary hover:bg-dainamics-primary/90"
             >
               Suivant
               <ArrowRight className="w-4 h-4" />
@@ -567,13 +569,14 @@ export default function AutomatisationsQuestionnaire() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 mb-6 px-6 py-3 bg-green-500/10 rounded-full">
-              <Zap className="w-5 h-5 text-green-400" />
-              <span className="text-green-400 font-medium">Dernière Étape</span>
+            <div className="inline-flex items-center gap-2 mb-6 px-6 py-3 bg-dainamics-success/10 rounded-full">
+              <Zap className="w-5 h-5 text-dainamics-success" />
+              <span className="text-dainamics-success font-medium">Dernière Étape</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
-              Recevez Votre Analyse
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-white">Recevez</span>{' '}
+              <span className="text-dainamics-secondary">Votre Analyse</span>
             </h2>
             <p className="text-slate-300">
               Nous vous enverrons vos 3 scénarios d'automatisation personnalisés directement par email
@@ -685,7 +688,7 @@ export default function AutomatisationsQuestionnaire() {
             <Button
               onClick={handleSoumettreFormulaire}
               disabled={isSubmitting}
-              className="gap-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+              className="gap-2 bg-dainamics-success hover:bg-dainamics-success/90"
             >
               {isSubmitting ? 'Envoi en cours...' : 'Recevoir Mon Analyse par Email'}
               <ArrowRight className="w-4 h-4" />
@@ -713,13 +716,14 @@ export default function AutomatisationsQuestionnaire() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 mb-6 px-6 py-3 bg-green-500/10 rounded-full">
-              <Check className="w-5 h-5 text-green-400" />
-              <span className="text-green-400 font-medium">Email Envoyé !</span>
+            <div className="inline-flex items-center gap-2 mb-6 px-6 py-3 bg-dainamics-success/10 rounded-full">
+              <Check className="w-5 h-5 text-dainamics-success" />
+              <span className="text-dainamics-success font-medium">Email Envoyé !</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-              Vos 3 Scénarios Personnalisés
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-white">Vos 3 Scénarios</span>{' '}
+              <span className="text-dainamics-secondary">Personnalisés</span>
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Votre analyse complète a été envoyée par email. Découvrez également vos scénarios ci-dessous.
@@ -734,11 +738,11 @@ export default function AutomatisationsQuestionnaire() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 hover:border-violet-500/50 transition-all duration-300"
+                className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 hover:border-dainamics-primary/50 transition-all duration-300"
               >
                 <div className="flex items-start gap-6">
                   {/* Numéro */}
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl font-bold">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-dainamics-primary to-dainamics-secondary rounded-xl flex items-center justify-center text-white text-xl font-bold">
                     {index + 1}
                   </div>
 
@@ -754,18 +758,18 @@ export default function AutomatisationsQuestionnaire() {
 
                     {/* Métriques */}
                     <div className="grid md:grid-cols-3 gap-4 mb-6">
-                      <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/20">
-                        <div className="text-green-400 font-semibold mb-1">Gains</div>
+                      <div className="p-4 bg-dainamics-success/10 rounded-lg border border-dainamics-success/20">
+                        <div className="text-dainamics-success font-semibold mb-1">Gains</div>
                         <div className="text-white text-sm">{scenario.gains}</div>
                       </div>
                       
-                      <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                        <div className="text-blue-400 font-semibold mb-1">Durée Projet</div>
+                      <div className="p-4 bg-dainamics-secondary/10 rounded-lg border border-dainamics-secondary/20">
+                        <div className="text-dainamics-secondary font-semibold mb-1">Durée Projet</div>
                         <div className="text-white text-sm">{scenario.duree}</div>
                       </div>
                       
-                      <div className="p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
-                        <div className="text-purple-400 font-semibold mb-1">ROI</div>
+                      <div className="p-4 bg-dainamics-primary/10 rounded-lg border border-dainamics-primary/20">
+                        <div className="text-dainamics-primary font-semibold mb-1">ROI</div>
                         <div className="text-white text-sm">{scenario.roiMois}</div>
                       </div>
                     </div>
@@ -777,7 +781,7 @@ export default function AutomatisationsQuestionnaire() {
                         {scenario.automatisations.map((auto, i) => (
                           <span
                             key={i}
-                            className="px-3 py-1 bg-violet-500/10 text-violet-400 rounded-lg text-sm border border-violet-500/20"
+                            className="px-3 py-1 bg-dainamics-primary/10 text-dainamics-primary rounded-lg text-sm border border-dainamics-primary/20"
                           >
                             {auto}
                           </span>
@@ -786,7 +790,7 @@ export default function AutomatisationsQuestionnaire() {
                     </div>
 
                     {/* CTA */}
-                    <Button className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700">
+                    <Button className="bg-dainamics-primary hover:bg-dainamics-primary/90">
                       Demander un Devis Personnalisé
                     </Button>
                   </div>
@@ -800,7 +804,7 @@ export default function AutomatisationsQuestionnaire() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="mt-16 text-center p-8 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-2xl border border-violet-500/20"
+            className="mt-16 text-center p-8 bg-gradient-to-r from-dainamics-primary/10 to-dainamics-secondary/10 rounded-2xl border border-dainamics-primary/20"
           >
             <h3 className="text-2xl font-bold text-white mb-4">
               Prêt à Transformer Votre Entreprise ?
@@ -809,7 +813,7 @@ export default function AutomatisationsQuestionnaire() {
               Discutons de vos besoins spécifiques et de la faisabilité de ces scénarios pour votre contexte
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700">
+              <Button size="lg" className="bg-dainamics-primary hover:bg-dainamics-primary/90">
                 Réserver un Appel Gratuit (30 min)
               </Button>
               <Button size="lg" variant="outline">
