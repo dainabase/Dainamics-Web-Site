@@ -5,6 +5,7 @@ import AboutServices from '@/components/AboutServices';
 import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
+import PricingSection from '@/components/sections/PricingSection';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
 import CTAFinalSection from '@/components/sections/CTAFinalSection';
 import Footer from '@/components/Footer';
@@ -55,7 +56,7 @@ const Index = () => {
         <AboutServices />
 
         {/* ========== SECTION 3: CRÉDIBILITÉ IMMÉDIATE ========== */}
-        {/* Fusion Metrics + Logos - 4 KPIs + 9 logos clients */}
+        {/* Métriques honnêtes + Logos clients MIX (entreprises + PME) */}
         <CredibiliteImmediate />
 
         {/* ========== SECTION 4: FEATURED PROJECTS ========== */}
@@ -66,29 +67,21 @@ const Index = () => {
         {/* De l'Idée au ROI en 8 Semaines - Timeline + Garantie */}
         <ProcessusSection_v2 />
 
-        {/* ========== SECTION 6: SWISS DIFFERENTIATORS ========== */}
-        {/* 3 USP */}
+        {/* ========== SECTION 6: PRICING TRANSPARENT ========== */}
+        {/* 4 offres : Discovery, Quick Win, Projet Custom, Extension équipe */}
+        {/* Différenciateur marché suisse : seuls à afficher les prix */}
+        <PricingSection />
+
+        {/* ========== SECTION 7: SWISS DIFFERENTIATORS ========== */}
+        {/* 3 USP : Données Suisse, Prix Affichés, ROI Garanti */}
         <SwissDifferentiators />
 
-        {/* ========== SECTION 7: CTA FINAL (DOUBLE PARCOURS) ========== */}
-        {/* 3 Options: Explorer Solutions | Diagnostic 2 min | Réserver Appel */}
+        {/* ========== SECTION 8: CTA FINAL ========== */}
+        {/* 2 options simplifiées : Réserver Appel + Diagnostic */}
         <CTAFinalSection />
 
-        {/* ========== SECTION 8: QUESTIONNAIRE AUTOMATISATIONS ========== */}
-        {/*
-          NOUVELLE APPROCHE SIMPLIFIÉE (v2.0) :
-          - Problem-first: 6 catégories business → Questions contextuelles → 3 scénarios personnalisés
-          - Réduction 68% bundle size (1,184 → 520 lignes)
-          - Focus sur 20 automatisations réelles DAINAMICS (vs agents IA fictifs)
-          - Pas de pricing affiché (devis uniquement)
-          - Intégration automatisations.ts + scenarios.ts
-          
-          STRATÉGIE CONVERSION :
-          - Après FinalCTA : Offre alternative pour leads tièdes (pas prêts à booker)
-          - Avant Footer : Dernière chance de capturer un lead qualifié
-          - Engagement progressif : Quiz interactif 2 min vs Booking 30 min
-          - Double filet : Leads chauds (booking) + Leads tièdes (quiz)
-        */}
+        {/* ========== SECTION 9: QUESTIONNAIRE AUTOMATISATIONS ========== */}
+        {/* Lead magnet interactif pour leads tièdes */}
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center bg-dainamics-background">
             <div className="text-center">
