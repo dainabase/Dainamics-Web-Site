@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Clock, Zap, TrendingUp, CalendarCheck } from 'lucide-react';
+import { Clock, Zap, TrendingUp, CalendarCheck, Shield } from 'lucide-react';
 import { motion, useInView, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 
 interface Metric {
@@ -76,7 +76,7 @@ const CredibiliteImmediate: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Métriques HONNÊTES avec preuves vérifiables
+  // 5 Métriques HONNÊTES avec preuves vérifiables
   const metrics: Metric[] = [
     {
       icon: Clock,
@@ -142,6 +142,22 @@ const CredibiliteImmediate: React.FC = () => {
       },
       parallaxRange: [60, -60],
     },
+    {
+      icon: Shield,
+      value: 100,
+      suffix: '%',
+      label: 'Datacenter',
+      sublabel: 'Suisse',
+      proof: 'Conformité RGPD',
+      duration: 1.5,
+      color: {
+        primary: '#EF4444',
+        secondary: '#DC2626',
+        glow: 'rgba(239, 68, 68, 0.6)',
+        glowHover: 'rgba(239, 68, 68, 0.9)',
+      },
+      parallaxRange: [35, -35],
+    },
   ];
 
   // Logos MIXÉS : alternance projets / entreprises / PME
@@ -200,12 +216,12 @@ const CredibiliteImmediate: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Métriques avec preuves */}
+        {/* 5 Métriques avec preuves - Grid responsive */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="metrics-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+          className="metrics-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 mb-20"
           role="list"
           aria-label="Métriques de performance"
         >
@@ -235,7 +251,7 @@ const CredibiliteImmediate: React.FC = () => {
                 <div className="metric-value mb-4">
                   <motion.h3
                     id={`metric-${index}`}
-                    className="text-6xl md:text-7xl font-bold leading-tight metric-number"
+                    className="text-5xl lg:text-6xl font-bold leading-tight metric-number"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                     transition={{
@@ -255,10 +271,10 @@ const CredibiliteImmediate: React.FC = () => {
                 </div>
 
                 <div className="metric-labels">
-                  <p className="text-xl font-semibold text-gradient-primary mb-1">
+                  <p className="text-lg font-semibold text-gradient-primary mb-1">
                     {metric.label}
                   </p>
-                  <p className="text-base text-gray-400 mb-2">{metric.sublabel}</p>
+                  <p className="text-sm text-gray-400 mb-2">{metric.sublabel}</p>
                   
                   {/* Preuve concrète */}
                   <div 
