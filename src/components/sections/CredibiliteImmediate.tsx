@@ -76,7 +76,7 @@ const CredibiliteImmediate: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Métriques AVEC PREUVES CONCRÈTES
+  // Métriques HONNÊTES avec preuves vérifiables
   const metrics: Metric[] = [
     {
       icon: Clock,
@@ -112,12 +112,11 @@ const CredibiliteImmediate: React.FC = () => {
     },
     {
       icon: TrendingUp,
-      value: 5,
-      prefix: 'x',
-      suffix: '',
+      value: 280,
+      suffix: '%',
       label: 'ROI Moyen',
-      sublabel: 'Constaté',
-      proof: 'Sur 45+ PME',
+      sublabel: 'Première Année',
+      proof: 'Projets Quick Win',
       duration: 1.3,
       color: {
         primary: '#7B2FFF',
@@ -145,7 +144,7 @@ const CredibiliteImmediate: React.FC = () => {
     },
   ];
 
-  // Logos MIX : PME + Grandes entreprises
+  // Logos MIX : PME + Grandes entreprises + Creative Circle Group
   const logos: Logo[] = [
     // Grandes entreprises (crédibilité)
     { name: 'Roche', filename: 'roche.png', type: 'enterprise' },
@@ -154,6 +153,8 @@ const CredibiliteImmediate: React.FC = () => {
     { name: 'Coop', filename: 'coop.png', type: 'enterprise' },
     { name: 'InterContinental Hotels Group', filename: 'ihg.png', type: 'enterprise' },
     { name: 'Philip Morris International', filename: 'pmi.png', type: 'enterprise' },
+    // PME partenaires
+    { name: 'Creative Circle Group', filename: 'creative-circle-group.png', type: 'pme' },
   ];
 
   const containerVariants = {
@@ -195,7 +196,7 @@ const CredibiliteImmediate: React.FC = () => {
             <span className="text-dainamics-secondary">Pas Promis</span>
           </h2>
           <p className="text-xl text-gray-400">
-            Des chiffres issus de nos projets réels, pas de promesses marketing
+            Chiffres issus de nos projets réels, pas de promesses marketing
           </p>
         </motion.div>
 
