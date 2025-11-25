@@ -520,8 +520,8 @@
 /* Items individuels avec fond subtil */
 .logo-item {
   flex-shrink: 0;
-  width: 140px;
-  height: 63px;
+  width: 180px;
+  height: 81px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -566,8 +566,8 @@
     transform: translateX(0);
   }
   100% {
-    /* Calcul: 9 logos × (140px width + 80px gap) = 2520px */
-    transform: translateX(calc(-9 * (140px + 5rem)));
+    /* Calcul: 9 logos × (180px width + 80px gap) = 2520px */
+    transform: translateX(calc(-9 * (180px + 5rem)));
   }
 }
 
@@ -581,8 +581,8 @@
   }
 
   .logo-item {
-    width: 126px;
-    height: 56px;
+    width: 162px;
+    height: 72px;
     padding: 0.75rem;
   }
 
@@ -592,7 +592,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-9 * (126px + 4rem)));
+      transform: translateX(calc(-9 * (162px + 4rem)));
     }
   }
 }
@@ -617,8 +617,8 @@
   }
 
   .logo-item {
-    width: 112px;
-    height: 49px;
+    width: 144px;
+    height: 63px;
     padding: 0.5rem;
     background: rgba(255, 255, 255, 0.06);
   }
@@ -629,7 +629,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-9 * (112px + 3rem)));
+      transform: translateX(calc(-9 * (144px + 3rem)));
     }
   }
 
