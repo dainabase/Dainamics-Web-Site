@@ -1,9 +1,8 @@
 // ============================================================================
 // DAINAMICS - AutomatisationsQuestionnaire Component
 // ============================================================================
-// Version: 2.1 - With Brevo Integration v2
-// Date: 04 Novembre 2025
-// Replaces: DiagnosticQuestionnaireNew.tsx (1,184 lines → 520 lines)
+// Version: 2.2 - With anchor id="diagnostic" for navigation
+// Date: 25 Novembre 2025
 // ============================================================================
 
 import { useState, useEffect } from 'react';
@@ -383,7 +382,10 @@ export default function AutomatisationsQuestionnaire() {
 
   if (etape === 1) {
     return (
-      <section className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <section 
+        id="diagnostic" 
+        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      >
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -446,7 +448,10 @@ export default function AutomatisationsQuestionnaire() {
     const Icon = categorieInfo?.icon || Building;
 
     return (
-      <section className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <section 
+        id="diagnostic" 
+        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      >
         <div className="container mx-auto px-4 max-w-4xl">
           {/* En-tête */}
           <motion.div
@@ -552,7 +557,10 @@ export default function AutomatisationsQuestionnaire() {
 
   if (etape === 3) {
     return (
-      <section className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <section 
+        id="diagnostic" 
+        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      >
         <div className="container mx-auto px-4 max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -694,7 +702,10 @@ export default function AutomatisationsQuestionnaire() {
 
   if (etape === 4) {
     return (
-      <section className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <section 
+        id="diagnostic" 
+        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      >
         <div className="container mx-auto px-4 max-w-6xl">
           {/* En-tête */}
           <motion.div
@@ -704,7 +715,7 @@ export default function AutomatisationsQuestionnaire() {
           >
             <div className="inline-flex items-center gap-2 mb-6 px-6 py-3 bg-green-500/10 rounded-full">
               <Check className="w-5 h-5 text-green-400" />
-              <span className="text-green-400 font-medium">Email Envoyé ! 📧</span>
+              <span className="text-green-400 font-medium">Email Envoyé !</span>
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
@@ -802,7 +813,7 @@ export default function AutomatisationsQuestionnaire() {
                 Réserver un Appel Gratuit (30 min)
               </Button>
               <Button size="lg" variant="outline">
-                Consultez Votre Email 📧
+                Consultez Votre Email
               </Button>
             </div>
           </motion.div>
