@@ -161,7 +161,7 @@ const PricingSection: React.FC = () => {
             </span>
           </div>
 
-          <h2 id="pricing-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <h2 id="pricing-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             <span className="text-white">Nos Tarifs.</span>{' '}
             <span className="text-dainamics-secondary">Sans Surprise.</span>
           </h2>
