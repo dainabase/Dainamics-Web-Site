@@ -44,7 +44,7 @@ const FeaturedProjects: React.FC = () => {
     },
     {
       id: 2,
-      title: 'ENKI REALITY',
+      title: 'ΣNKI REALTY',
       subtitle: 'Plateforme Immobilière Agentique',
       category: 'PropTech | Agents IA autonomes | Architecture B2B2C',
       description:
