@@ -231,12 +231,6 @@ const CredibiliteImmediate: React.FC = () => {
                   '--metric-glow-hover': metric.color.glowHover,
                 } as React.CSSProperties}
               >
-                <motion.div
-                  style={{ y: iconY }}
-                  className="metric-icon-wrapper mb-6 mx-auto w-20 h-20 rounded-2xl flex items-center justify-center transition-all duration-500"
-                >
-                  <Icon className="w-10 h-10 text-white" strokeWidth={2.5} />
-                </motion.div>
 
                 <div className="metric-value mb-4">
                   <motion.h3
