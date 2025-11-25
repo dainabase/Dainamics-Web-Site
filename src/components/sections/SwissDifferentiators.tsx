@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Eye, TrendingUp, MapPin, Clock } from 'lucide-react';
+import { Shield, Eye, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 /**
@@ -18,9 +18,9 @@ interface Differentiator {
 }
 
 /**
- * SwissDifferentiators Section - VERSION CONDENSÉE
- * Présente les 3 USP uniques de DAINAMICS en format compact
- * Position: Après ProcessusSection sur la homepage
+ * SwissDifferentiators Section - VERSION COHÉRENTE
+ * Stats alignées avec PricingSection et réalité vérifiable
+ * Position: Après PricingSection sur la homepage
  */
 const SwissDifferentiators: React.FC = () => {
   const differentiators: Differentiator[] = [
@@ -29,32 +29,32 @@ const SwissDifferentiators: React.FC = () => {
       icon: <Shield className="w-8 h-8" />,
       color: '#7B2FFF',
       title: 'Données en Suisse',
-      subtitle: 'Infrastructure 100% suisse. Pas de Cloud Act US.',
+      subtitle: 'Infrastructure 100% suisse. RGPD compliant. Pas de Cloud Act US.',
       stat: {
         value: '100%',
-        label: 'Hébergement CH'
+        label: 'Datacenter CH'
       }
     },
     {
       id: 'transparency',
       icon: <Eye className="w-8 h-8" />,
       color: '#10E4FF',
-      title: 'Prix Affichés',
-      subtitle: 'Seuls en Suisse à publier nos tarifs.',
+      title: 'Prix Publics',
+      subtitle: 'Tarifs affichés sur notre site. Devis détaillé sous 48h.',
       stat: {
-        value: '0%',
-        label: 'Concurrents le font'
+        value: 'Dès 8K€',
+        label: 'Quick Wins'
       }
     },
     {
       id: 'roi-guaranteed',
       icon: <TrendingUp className="w-8 h-8" />,
       color: '#0AFF9D',
-      title: 'ROI Garanti',
-      subtitle: 'Résultats en 2-6 mois ou remboursé.',
+      title: 'ROI Mesurable',
+      subtitle: 'Objectifs chiffrés dès le départ. Suivi résultats post-livraison.',
       stat: {
-        value: '45+',
-        label: 'PME accompagnées'
+        value: '3-6',
+        label: 'Mois breakeven'
       }
     }
   ];
