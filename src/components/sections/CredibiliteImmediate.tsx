@@ -193,11 +193,10 @@ const CredibiliteImmediate: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="metrics-confidence-section py-24 relative overflow-hidden bg-dainamics-background"
+      className="metrics-confidence-section py-24 md:py-32 relative overflow-hidden bg-black"
       role="region"
       aria-labelledby="credibilite-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-secondary/3 to-transparent pointer-events-none" />
 
       <div className="container-custom relative z-10">
         {/* Header avec preuve */}
@@ -207,7 +206,7 @@ const CredibiliteImmediate: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 id="credibilite-heading" className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
+          <h2 id="credibilite-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
             <span className="text-white">Résultats Mesurés,</span>{' '}
             <span className="text-dainamics-secondary">Pas Promis</span>
           </h2>

@@ -110,9 +110,7 @@ const metrics: Metric[] = [
 
 const ProcessusSection_v2 = () => {
   return (
-    <section className="relative py-20 md:py-32 bg-[#050510] overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(123,47,255,0.08),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(16,228,255,0.08),transparent_50%)]" />
+    <section className="relative py-24 md:py-32 bg-black overflow-hidden">
 
       <div className="container mx-auto px-4 relative z-10">
 
@@ -128,7 +126,7 @@ const ProcessusSection_v2 = () => {
             <span className="text-sm font-semibold text-white/90">Processus Transparent</span>
           </div>
 
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="text-white">De l'Idée au ROI Mesurable en 8 Semaines</span>
           </h2>
 

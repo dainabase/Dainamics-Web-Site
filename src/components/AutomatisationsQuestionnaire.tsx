@@ -1,7 +1,7 @@
 // ============================================================================
 // DAINAMICS - AutomatisationsQuestionnaire Component
 // ============================================================================
-// Version: 2.2 - With anchor id="diagnostic" for navigation
+// Version: 2.3 - Harmonized H2 titles and section spacing
 // Date: 25 Novembre 2025
 // ============================================================================
 
@@ -384,7 +384,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+        className="py-24 md:py-32 bg-black"
       >
         <div className="container mx-auto px-4">
           <motion.div
@@ -392,7 +392,7 @@ export default function AutomatisationsQuestionnaire() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
               Quel est Votre Plus Grand Défi ?
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
@@ -450,7 +450,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+        className="py-24 md:py-32 bg-black"
       >
         <div className="container mx-auto px-4 max-w-4xl">
           {/* En-tête */}
@@ -464,7 +464,7 @@ export default function AutomatisationsQuestionnaire() {
               <span className="text-violet-400 font-medium">{categorieInfo?.titre}</span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
               Précisons Votre Situation
             </h2>
             <p className="text-slate-300 max-w-2xl mx-auto">
@@ -559,7 +559,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+        className="py-24 md:py-32 bg-black"
       >
         <div className="container mx-auto px-4 max-w-2xl">
           <motion.div
@@ -572,8 +572,8 @@ export default function AutomatisationsQuestionnaire() {
               <span className="text-green-400 font-medium">Dernière Étape</span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Recevez Votre Analyse Personnalisée par Email
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
+              Recevez Votre Analyse
             </h2>
             <p className="text-slate-300">
               Nous vous enverrons vos 3 scénarios d'automatisation personnalisés directement par email
@@ -704,7 +704,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+        className="py-24 md:py-32 bg-black"
       >
         <div className="container mx-auto px-4 max-w-6xl">
           {/* En-tête */}
@@ -718,7 +718,7 @@ export default function AutomatisationsQuestionnaire() {
               <span className="text-green-400 font-medium">Email Envoyé !</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
               Vos 3 Scénarios Personnalisés
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">

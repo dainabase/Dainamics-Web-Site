@@ -77,10 +77,8 @@ const AboutServices: React.FC = () => {
   };
 
   return (
-    <section className="about-services-section py-16 bg-dainamics-background relative">
-      {/* Effet gradient subtil pour profondeur visuelle */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-primary/3 to-transparent pointer-events-none" />
-
+    <section className="about-services-section py-24 md:py-32 bg-black relative">
+      
       <div className="container-custom relative z-10">
         {/* Paragraphe Intro */}
         <motion.div
@@ -90,7 +88,7 @@ const AboutServices: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="intro-text text-center mb-20 max-w-4xl mx-auto"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             <span className="text-white">Intelligence Artificielle. Automatisations.</span>
             <br />
             <span className="text-white">Développement Software.</span>
@@ -119,7 +117,7 @@ const AboutServices: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover="hover"
-                className="service-card bg-gradient-to-br from-[#0A0A1B] to-[#050510] border border-gray-800 rounded-2xl p-8 hover:border-dainamics-primary transition-all duration-300 flex flex-col"
+                className="service-card bg-black border border-gray-800 rounded-2xl p-8 hover:border-dainamics-primary transition-all duration-300 flex flex-col"
               >
                 {/* Icon avec glow et animation */}
                 <motion.div

@@ -141,7 +141,7 @@ const PricingSection: React.FC = () => {
 
   return (
     <section
-      className="pricing-section py-24 bg-gradient-to-b from-dainamics-background via-[#0A0A1A] to-dainamics-background"
+      className="pricing-section py-24 md:py-32 bg-black"
       aria-labelledby="pricing-heading"
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -161,7 +161,7 @@ const PricingSection: React.FC = () => {
             </span>
           </div>
 
-          <h2 id="pricing-heading" className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 id="pricing-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             <span className="text-white">Nos Tarifs.</span>{' '}
             <span className="text-dainamics-secondary">Sans Surprise.</span>
           </h2>
