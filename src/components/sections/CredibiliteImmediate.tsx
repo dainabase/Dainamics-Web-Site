@@ -27,38 +27,38 @@ interface Logo {
   type: 'enterprise' | 'pme';
 }
 
-const AnimatedCounter: React.FC&lt;{
+const AnimatedCounter: React.FC<{
   value: number;
   duration: number;
   inView: boolean;
   prefix?: string;
   suffix?: string;
-}&gt; = ({ value, duration, inView, prefix = '', suffix = '' }) =&gt; {
+}> = ({ value, duration, inView, prefix = '', suffix = '' }) => {
   const [displayValue, setDisplayValue] = useState(0);
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, { duration: duration * 1000 });
 
-  useEffect(() =&gt; {
+  useEffect(() => {
     if (inView) {
       motionValue.set(value);
     }
   }, [inView, value, motionValue]);
 
-  useEffect(() =&gt; {
-    const unsubscribe = springValue.on('change', (latest) =&gt; {
+  useEffect(() => {
+    const unsubscribe = springValue.on('change', (latest) => {
       setDisplayValue(Math.round(latest));
     });
     return unsubscribe;
   }, [springValue]);
 
   return (
-    &lt;&gt;
+    <>
       {prefix}{displayValue}{suffix}
-    &lt;/&gt;
+    </>
   );
 };
 
-const CredibiliteImmediate: React.FC = () =&gt; {
+const CredibiliteImmediate: React.FC = () => {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, amount: 0.3 });
 
@@ -69,11 +69,11 @@ const CredibiliteImmediate: React.FC = () =&gt; {
 
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() =&gt; {
-    const checkMobile = () =&gt; setIsMobile(window.innerWidth &lt; 768);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    return () =&gt; window.removeEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Métriques AVEC PREUVES CONCRÈTES
@@ -174,41 +174,41 @@ const CredibiliteImmediate: React.FC = () =&gt; {
   };
 
   return (
-    &lt;section
+    <section
       ref={sectionRef}
       className="metrics-confidence-section py-24 relative overflow-hidden bg-dainamics-background"
       role="region"
       aria-labelledby="credibilite-heading"
-    &gt;
-      &lt;div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-secondary/3 to-transparent pointer-events-none" /&gt;
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-secondary/3 to-transparent pointer-events-none" />
 
-      &lt;div className="container-custom relative z-10"&gt;
+      <div className="container-custom relative z-10">
         {/* Header avec preuve */}
-        &lt;motion.div
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
-        &gt;
-          &lt;h2 id="credibilite-heading" className="text-5xl md:text-6xl font-bold mb-4 leading-tight"&gt;
-            &lt;span className="text-white"&gt;Résultats Mesurés,&lt;/span&gt;{' '}
-            &lt;span className="text-dainamics-secondary"&gt;Pas Promis&lt;/span&gt;
-          &lt;/h2&gt;
-          &lt;p className="text-xl text-gray-400"&gt;
+        >
+          <h2 id="credibilite-heading" className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
+            <span className="text-white">Résultats Mesurés,</span>{' '}
+            <span className="text-dainamics-secondary">Pas Promis</span>
+          </h2>
+          <p className="text-xl text-gray-400">
             Des chiffres issus de nos projets réels, pas de promesses marketing
-          &lt;/p&gt;
-        &lt;/motion.div&gt;
+          </p>
+        </motion.div>
 
         {/* Métriques avec preuves */}
-        &lt;motion.div
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           className="metrics-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
           role="list"
           aria-label="Métriques de performance"
-        &gt;
-          {metrics.map((metric, index) =&gt; {
+        >
+          {metrics.map((metric, index) => {
             const Icon = metric.icon;
             const iconY = useTransform(
               scrollYProgress,
@@ -217,7 +217,7 @@ const CredibiliteImmediate: React.FC = () =&gt; {
             );
 
             return (
-              &lt;motion.div
+              <motion.div
                 key={index}
                 variants={itemVariants}
                 className="metric-card text-center group"
@@ -229,16 +229,16 @@ const CredibiliteImmediate: React.FC = () =&gt; {
                   '--metric-glow': metric.color.glow,
                   '--metric-glow-hover': metric.color.glowHover,
                 } as React.CSSProperties}
-              &gt;
-                &lt;motion.div
+              >
+                <motion.div
                   style={{ y: iconY }}
                   className="metric-icon-wrapper mb-6 mx-auto w-20 h-20 rounded-2xl flex items-center justify-center transition-all duration-500"
-                &gt;
-                  &lt;Icon className="w-10 h-10 text-white" strokeWidth={2.5} /&gt;
-                &lt;/motion.div&gt;
+                >
+                  <Icon className="w-10 h-10 text-white" strokeWidth={2.5} />
+                </motion.div>
 
-                &lt;div className="metric-value mb-4"&gt;
-                  &lt;motion.h3
+                <div className="metric-value mb-4">
+                  <motion.h3
                     id={`metric-${index}`}
                     className="text-6xl md:text-7xl font-bold leading-tight metric-number"
                     initial={{ opacity: 0, scale: 0.5 }}
@@ -248,127 +248,127 @@ const CredibiliteImmediate: React.FC = () =&gt; {
                       delay: index * 0.1,
                       ease: [0.34, 1.56, 0.64, 1],
                     }}
-                  &gt;
-                    &lt;AnimatedCounter
+                  >
+                    <AnimatedCounter
                       value={metric.value}
                       duration={metric.duration}
                       inView={inView}
                       prefix={metric.prefix}
                       suffix={metric.suffix}
-                    /&gt;
-                  &lt;/motion.h3&gt;
-                &lt;/div&gt;
+                    />
+                  </motion.h3>
+                </div>
 
-                &lt;div className="metric-labels"&gt;
-                  &lt;p className="text-xl font-semibold text-gradient-primary mb-1"&gt;
+                <div className="metric-labels">
+                  <p className="text-xl font-semibold text-gradient-primary mb-1">
                     {metric.label}
-                  &lt;/p&gt;
-                  &lt;p className="text-base text-gray-400 mb-2"&gt;{metric.sublabel}&lt;/p&gt;
+                  </p>
+                  <p className="text-base text-gray-400 mb-2">{metric.sublabel}</p>
                   
                   {/* Preuve concrète */}
-                  &lt;div 
+                  <div 
                     className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium mt-2"
                     style={{
                       backgroundColor: `${metric.color.primary}15`,
                       color: metric.color.primary,
                       border: `1px solid ${metric.color.primary}30`
                     }}
-                  &gt;
+                  >
                     {metric.proof}
-                  &lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/motion.div&gt;
+                  </div>
+                </div>
+              </motion.div>
             );
           })}
-        &lt;/motion.div&gt;
+        </motion.div>
 
         {/* Séparateur */}
-        &lt;motion.div
+        <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="h-px w-3/4 mx-auto mb-16 bg-gradient-to-r from-transparent via-dainamics-primary/20 to-transparent"
-        /&gt;
+        />
 
         {/* Section Logos avec message inclusif */}
-        &lt;div className="trusted-clients-section"&gt;
-          &lt;motion.div
+        <div className="trusted-clients-section">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center mb-10"
-          &gt;
-            &lt;h3 className="text-3xl md:text-4xl font-bold mb-4"&gt;
-              &lt;span className="text-white"&gt;De la PME de 15 personnes&lt;/span&gt;
-              &lt;br /&gt;
-              &lt;span className="text-dainamics-secondary"&gt;aux leaders mondiaux&lt;/span&gt;
-            &lt;/h3&gt;
-          &lt;/motion.div&gt;
+          >
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-white">De la PME de 15 personnes</span>
+              <br />
+              <span className="text-dainamics-secondary">aux leaders mondiaux</span>
+            </h3>
+          </motion.div>
 
           {/* Carousel logos */}
-          &lt;div className="logo-carousel-wrapper" role="region" aria-label="Carrousel de logos clients" aria-live="off"&gt;
-            &lt;div className="logo-track"&gt;
-              {logos.map((logo, index) =&gt; (
-                &lt;div
+          <div className="logo-carousel-wrapper" role="region" aria-label="Carrousel de logos clients" aria-live="off">
+            <div className="logo-track">
+              {logos.map((logo, index) => (
+                <div
                   key={`original-${index}`}
                   className="logo-item"
                   title={logo.name}
                   role="img"
                   aria-label={`Logo ${logo.name}`}
                   tabIndex={0}
-                &gt;
-                  &lt;img
+                >
+                  <img
                     src={`/logos-clients/${logo.filename}`}
                     alt={`Logo ${logo.name}`}
                     loading="lazy"
                     draggable="false"
                     style={logo.scale ? { transform: `scale(${logo.scale})` } : undefined}
-                  /&gt;
-                &lt;/div&gt;
+                  />
+                </div>
               ))}
 
-              {logos.map((logo, index) =&gt; (
-                &lt;div
+              {logos.map((logo, index) => (
+                <div
                   key={`duplicate-${index}`}
                   className="logo-item"
                   title={logo.name}
                   role="img"
                   aria-label={`Logo ${logo.name}`}
-                &gt;
-                  &lt;img
+                >
+                  <img
                     src={`/logos-clients/${logo.filename}`}
                     alt={`Logo ${logo.name}`}
                     loading="lazy"
                     draggable="false"
                     style={logo.scale ? { transform: `scale(${logo.scale})` } : undefined}
-                  /&gt;
-                &lt;/div&gt;
+                  />
+                </div>
               ))}
-            &lt;/div&gt;
-          &lt;/div&gt;
+            </div>
+          </div>
 
           {/* Message rassurant pour PME */}
-          &lt;motion.div
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-12 max-w-3xl mx-auto"
-          &gt;
-            &lt;div className="relative p-6 rounded-2xl bg-gradient-to-r from-dainamics-primary/5 via-dainamics-secondary/5 to-dainamics-primary/5 border border-white/10"&gt;
-              &lt;p className="text-center text-gray-300 text-lg leading-relaxed"&gt;
-                &lt;span className="text-dainamics-secondary font-semibold"&gt;Nos projets Quick Wins démarrent à 8K€.&lt;/span&gt;
+          >
+            <div className="relative p-6 rounded-2xl bg-gradient-to-r from-dainamics-primary/5 via-dainamics-secondary/5 to-dainamics-primary/5 border border-white/10">
+              <p className="text-center text-gray-300 text-lg leading-relaxed">
+                <span className="text-dainamics-secondary font-semibold">Nos projets Quick Wins démarrent à 8K€.</span>
                 {' '}Que vous soyez une PME de 15 personnes ou un groupe international, 
                 notre méthodologie s'adapte à votre réalité.
-                {' '}&lt;span className="text-white font-medium"&gt;Même rigueur, même résultats.&lt;/span&gt;
-              &lt;/p&gt;
-            &lt;/div&gt;
-          &lt;/motion.div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/section&gt;
+                {' '}<span className="text-white font-medium">Même rigueur, même résultats.</span>
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 };
 
