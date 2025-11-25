@@ -24,7 +24,7 @@ interface Logo {
   name: string;
   filename: string;
   scale?: number;
-  type: 'enterprise' | 'pme';
+  type: 'enterprise' | 'pme' | 'project';
 }
 
 const AnimatedCounter: React.FC<{
@@ -84,7 +84,7 @@ const CredibiliteImmediate: React.FC = () => {
       suffix: 'h',
       label: 'Économisées',
       sublabel: 'Par Semaine',
-      proof: 'Cas ENKI REALTY',
+      proof: 'Cas ΣNKI REALTY',
       duration: 1.5,
       color: {
         primary: '#0AFF9D',
@@ -144,8 +144,11 @@ const CredibiliteImmediate: React.FC = () => {
     },
   ];
 
-  // Logos MIX : PME + Grandes entreprises + Creative Circle Group
+  // Logos MIX : Projets DAINAMICS + Grandes entreprises + PME partenaires
   const logos: Logo[] = [
+    // Projets DAINAMICS (showcase)
+    { name: 'LEXAIA', filename: 'lexaia.svg', scale: 1.2, type: 'project' },
+    { name: 'ΣNKI REALTY', filename: 'enki-realty.svg', scale: 1.2, type: 'project' },
     // Grandes entreprises (crédibilité)
     { name: 'Roche', filename: 'roche.png', type: 'enterprise' },
     { name: 'Novartis', filename: 'novartis.png', scale: 2, type: 'enterprise' },
@@ -154,7 +157,7 @@ const CredibiliteImmediate: React.FC = () => {
     { name: 'InterContinental Hotels Group', filename: 'ihg.png', type: 'enterprise' },
     { name: 'Philip Morris International', filename: 'pmi.png', type: 'enterprise' },
     // PME partenaires
-    { name: 'Creative Circle Group', filename: 'CCG_Logo_line_100K.webp', type: 'pme' },
+    { name: 'Creative Circle Group', filename: 'creative-circle-group.png', type: 'pme' },
   ];
 
   const containerVariants = {
