@@ -117,36 +117,6 @@ const CTAFinalSection = () => {
           />
         </div>
 
-        {/* Contact alternatif - Compact */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center"
-        >
-          <p className="text-white/50 text-sm mb-4">
-            Préférez-vous nous écrire directement ?
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="mailto:contact@dainamics.ch"
-              className="text-white/70 hover:text-dainamics-secondary transition-colors text-sm"
-            >
-              contact@dainamics.ch
-            </a>
-            <span className="text-white/30">|</span>
-            <a
-              href="https://linkedin.com/company/dainamics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-dainamics-secondary transition-colors text-sm"
-            >
-              LinkedIn
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
