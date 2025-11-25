@@ -154,7 +154,7 @@ const CredibiliteImmediate: React.FC = () => {
     { name: 'InterContinental Hotels Group', filename: 'ihg.png', type: 'enterprise' },
     { name: 'Philip Morris International', filename: 'pmi.png', type: 'enterprise' },
     // PME partenaires
-    { name: 'Creative Circle Group', filename: 'CCG_Logo_line_100K.webp', scale: 1.5, type: 'pme' },
+    { name: 'Creative Circle Group', filename: 'CCG_Logo_line_100K.webp', type: 'pme' },
   ];
 
   const containerVariants = {
