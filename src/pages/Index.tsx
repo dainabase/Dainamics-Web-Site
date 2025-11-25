@@ -6,8 +6,6 @@ import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
 import PricingSection from '@/components/sections/PricingSection';
-import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
-import CTAFinalSection from '@/components/sections/CTAFinalSection';
 import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
@@ -52,15 +50,15 @@ const Index = () => {
         <Hero />
 
         {/* ========== SECTION 2: ABOUT SERVICES ========== */}
-        {/* 3 pillars (IA, Automatisations, Software) */}
+        {/* 3 pilliers (IA, Automatisations, Software) avec CTAs */}
         <AboutServices />
 
         {/* ========== SECTION 3: CRÉDIBILITÉ IMMÉDIATE ========== */}
-        {/* Métriques honnêtes + Logos clients MIX (entreprises + PME) */}
+        {/* 5 métriques honnêtes (dont Datacenter Suisse) + Logos clients */}
         <CredibiliteImmediate />
 
         {/* ========== SECTION 4: FEATURED PROJECTS ========== */}
-        {/* LEXAIA & ENKI REALITY */}
+        {/* LEXAIA & ΣNKI REALTY */}
         <FeaturedProjects />
 
         {/* ========== SECTION 5: PROCESSUS TRANSPARENT ========== */}
@@ -68,20 +66,11 @@ const Index = () => {
         <ProcessusSection_v2 />
 
         {/* ========== SECTION 6: PRICING TRANSPARENT ========== */}
-        {/* 4 offres : Discovery, Quick Win, Projet Custom, Extension équipe */}
-        {/* Différenciateur marché suisse : seuls à afficher les prix */}
+        {/* 4 offres + CTA final intégré + Garantie ROI */}
         <PricingSection />
 
-        {/* ========== SECTION 7: SWISS DIFFERENTIATORS ========== */}
-        {/* 3 USP : Données Suisse, Prix Affichés, ROI Garanti */}
-        <SwissDifferentiators />
-
-        {/* ========== SECTION 8: CTA FINAL ========== */}
-        {/* 2 options simplifiées : Réserver Appel + Diagnostic */}
-        <CTAFinalSection />
-
-        {/* ========== SECTION 9: QUESTIONNAIRE AUTOMATISATIONS ========== */}
-        {/* Lead magnet interactif pour leads tièdes */}
+        {/* ========== SECTION 7: QUESTIONNAIRE DIAGNOSTIC ========== */}
+        {/* Lead magnet interactif - Point d'entrée pour leads tièdes */}
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center bg-dainamics-background">
             <div className="text-center">
