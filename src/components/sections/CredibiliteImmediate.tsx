@@ -363,8 +363,7 @@ const CredibiliteImmediate: React.FC = () => {
           >
             <div className="relative p-6 rounded-2xl bg-gradient-to-r from-dainamics-primary/5 via-dainamics-secondary/5 to-dainamics-primary/5 border border-white/10">
               <p className="text-center text-gray-300 text-lg leading-relaxed">
-                <span className="text-dainamics-secondary font-semibold">Nos projets Quick Wins démarrent à 8K€.</span>
-                {' '}Que vous soyez une PME de 15 personnes ou un groupe international, 
+                Que vous soyez une PME de 15 personnes ou un groupe international,
                 notre méthodologie s'adapte à votre réalité.
                 {' '}<span className="text-white font-medium">Même rigueur, même résultats.</span>
               </p>
