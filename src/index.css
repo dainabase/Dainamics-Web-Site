@@ -520,8 +520,8 @@
 /* Items individuels avec fond subtil */
 .logo-item {
   flex-shrink: 0;
-  width: 200px;
-  height: 90px;
+  width: 400px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -581,8 +581,8 @@
   }
 
   .logo-item {
-    width: 180px;
-    height: 80px;
+    width: 360px;
+    height: 160px;
     padding: 0.75rem;
   }
 
@@ -592,7 +592,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-9 * (180px + 4rem)));
+      transform: translateX(calc(-9 * (360px + 4rem)));
     }
   }
 }
@@ -617,8 +617,8 @@
   }
 
   .logo-item {
-    width: 160px;
-    height: 70px;
+    width: 320px;
+    height: 140px;
     padding: 0.5rem;
     background: rgba(255, 255, 255, 0.06);
   }
@@ -629,7 +629,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-9 * (160px + 3rem)));
+      transform: translateX(calc(-9 * (320px + 3rem)));
     }
   }
 
