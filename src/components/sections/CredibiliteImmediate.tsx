@@ -193,7 +193,7 @@ const CredibiliteImmediate: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="metrics-confidence-section py-24 md:py-32 relative overflow-hidden bg-black"
+      className="metrics-confidence-section py-24 md:py-32 relative overflow-hidden bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
       role="region"
       aria-labelledby="credibilite-heading"
     >

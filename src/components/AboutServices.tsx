@@ -77,8 +77,8 @@ const AboutServices: React.FC = () => {
   };
 
   return (
-    <section className="about-services-section py-24 md:py-32 bg-black relative">
-      
+    <section className="about-services-section py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 relative">
+
       <div className="container-custom relative z-10">
         {/* Paragraphe Intro */}
         <motion.div

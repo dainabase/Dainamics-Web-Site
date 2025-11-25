@@ -105,7 +105,7 @@ const FeaturedProjects: React.FC = () => {
   };
 
   return (
-    <section className="featured-projects-section py-24 md:py-32 bg-black relative overflow-hidden">
+    <section className="featured-projects-section py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 relative overflow-hidden">
 
       <div className="container-custom relative z-10">
         {/* Titre section */}

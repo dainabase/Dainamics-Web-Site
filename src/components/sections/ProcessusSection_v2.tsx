@@ -110,7 +110,7 @@ const metrics: Metric[] = [
 
 const ProcessusSection_v2 = () => {
   return (
-    <section className="relative py-24 md:py-32 bg-black overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 overflow-hidden">
 
       <div className="container mx-auto px-4 relative z-10">
 
