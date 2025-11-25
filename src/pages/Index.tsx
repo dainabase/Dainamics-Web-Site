@@ -34,10 +34,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-dainamics-background">
-      {/* Enhanced Grid Background */}
-      <EnhancedGridBackground />
-
+    <div className="min-h-screen bg-black">
       {/* Custom cursor effects */}
       <CursorEffects />
 
