@@ -4,7 +4,6 @@ import Hero from '@/components/Hero';
 import AboutServices from '@/components/AboutServices';
 import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
 import FeaturedProjects from '@/components/FeaturedProjects';
-import ExpertisesSection from '@/components/sections/ExpertisesSection';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
 import SwissDifferentiators from '@/components/sections/SwissDifferentiators';
 import CTAFinalSection from '@/components/sections/CTAFinalSection';
@@ -63,25 +62,19 @@ const Index = () => {
         {/* LEXAIA & ENKI REALITY */}
         <FeaturedProjects />
 
-        {/* ========== SECTION 4B: NOS 3 EXPERTISES ========== */}
-        {/* IA · Automatisations · Software */}
-        <ExpertisesSection />
-
-        {/* ========== SECTION 4C: PROCESSUS TRANSPARENT ========== */}
+        {/* ========== SECTION 5: PROCESSUS TRANSPARENT ========== */}
         {/* De l'Idée au ROI en 8 Semaines - Timeline + Garantie */}
         <ProcessusSection_v2 />
 
-
-
-        {/* ========== SECTION 8: SWISS DIFFERENTIATORS ========== */}
+        {/* ========== SECTION 6: SWISS DIFFERENTIATORS ========== */}
         {/* 3 USP */}
         <SwissDifferentiators />
 
-        {/* ========== SECTION 9: CTA FINAL (DOUBLE PARCOURS) ========== */}
+        {/* ========== SECTION 7: CTA FINAL (DOUBLE PARCOURS) ========== */}
         {/* 3 Options: Explorer Solutions | Diagnostic 2 min | Réserver Appel */}
         <CTAFinalSection />
 
-        {/* ========== SECTION 10: QUESTIONNAIRE AUTOMATISATIONS ========== */}
+        {/* ========== SECTION 8: QUESTIONNAIRE AUTOMATISATIONS ========== */}
         {/*
           NOUVELLE APPROCHE SIMPLIFIÉE (v2.0) :
           - Problem-first: 6 catégories business → Questions contextuelles → 3 scénarios personnalisés
