@@ -1,27 +1,33 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Lightbulb, Zap, Rocket, Users, Check, ArrowRight, Shield, Clock, RefreshCw } from 'lucide-react';
+import { 
+  Lightbulb, 
+  Zap, 
+  Rocket, 
+  Users, 
+  Check, 
+  ArrowRight,
+  Shield,
+  Clock,
+  TrendingUp
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface PricingTier {
   id: string;
   icon: React.ReactNode;
   name: string;
-  description: string;
-  priceRange: string;
+  price: string;
+  priceDetail: string;
   duration: string;
-  popular?: boolean;
+  description: string;
   features: string[];
   cta: {
     text: string;
-    href: string;
+    link: string;
   };
-}
-
-interface Guarantee {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+  color: string;
+  popular?: boolean;
 }
 
 const PricingSection: React.FC = () => {
@@ -30,88 +36,98 @@ const PricingSection: React.FC = () => {
       id: 'discovery',
       icon: <Lightbulb className="w-7 h-7" />,
       name: 'Discovery',
-      description: 'Audit et roadmap personnalisée',
-      priceRange: '5 - 12K€',
+      price: '5 - 12K€',
+      priceDetail: 'Prix fixe',
       duration: '1-2 semaines',
+      description: 'Audit de vos processus et roadmap IA personnalisée',
       features: [
-        'Audit complet de vos processus',
+        'Audit processus métier',
         'Identification opportunités IA',
-        'Roadmap priorisée par ROI',
-        'Estimation gains détaillée',
-        'Livrable PDF actionnable',
+        'Roadmap priorisée',
+        'Estimation ROI détaillée',
+        'Présentation équipe dirigeante'
       ],
       cta: {
         text: 'En savoir plus',
-        href: '#diagnostic',
+        link: '/services/discovery'
       },
+      color: '#7B2FFF'
     },
     {
       id: 'quickwin',
       icon: <Zap className="w-7 h-7" />,
       name: 'Quick Win',
-      description: 'Une automatisation clé en main',
-      priceRange: '8 - 15K€',
+      price: '8 - 15K€',
+      priceDetail: 'Prix fixe',
       duration: '2-4 semaines',
-      popular: true,
+      description: 'Une automatisation livrée rapidement avec ROI garanti',
       features: [
         '1 automatisation complète',
-        'Intégration à vos outils',
+        'Intégration systèmes existants',
         'Formation équipe (4h)',
         'Documentation technique',
         'Support 1 mois inclus',
-        'ROI garanti 6 mois',
+        'ROI garanti ou remboursé'
       ],
       cta: {
         text: 'Démarrer',
-        href: '#diagnostic',
+        link: '/contact'
       },
+      color: '#10E4FF',
+      popular: true
     },
     {
       id: 'custom',
       icon: <Rocket className="w-7 h-7" />,
       name: 'Projet Custom',
-      description: 'Solution sur-mesure complète',
-      priceRange: '25 - 75K€',
+      price: '25 - 75K€',
+      priceDetail: 'Selon complexité',
       duration: '2-4 mois',
+      description: 'Solution IA/Automation complète sur-mesure',
       features: [
         'Solution complète sur-mesure',
         'Multiples intégrations',
-        'Architecture évolutive',
-        'Tests et validation',
-        'Formation complète',
+        'Architecture scalable',
+        'Formation approfondie',
         'Support 3 mois inclus',
+        'Maintenance évolutive'
       ],
       cta: {
         text: 'Discuter du projet',
-        href: '/contact',
+        link: '/contact'
       },
-    },
-  ];
-
-  const guarantees: Guarantee[] = [
-    {
-      icon: <Shield className="w-5 h-5" />,
-      title: 'Données en Suisse',
-      description: 'Infrastructure 100% hébergée en Suisse',
+      color: '#FF5A00'
     },
     {
-      icon: <RefreshCw className="w-5 h-5" />,
-      title: 'ROI Garanti',
-      description: 'Remboursé si objectifs non atteints',
-    },
-    {
-      icon: <Clock className="w-5 h-5" />,
-      title: 'Délais Tenus',
-      description: 'Livraison dans les temps ou compensation',
-    },
+      id: 'team',
+      icon: <Users className="w-7 h-7" />,
+      name: 'Extension Équipe',
+      price: '7K€',
+      priceDetail: '/mois par dev',
+      duration: 'Min. 3 mois',
+      description: 'Développeurs IA/ML expérimentés intégrés à votre équipe',
+      features: [
+        'Développeurs seniors IA/ML',
+        'Intégration équipe complète',
+        'Méthodologie agile',
+        'Reporting hebdomadaire',
+        'Flexibilité ressources',
+        'Pas de frais de recrutement'
+      ],
+      cta: {
+        text: 'Voir profils',
+        link: '/services/equipe'
+      },
+      color: '#0AFF9D'
+    }
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
+      transition: { staggerChildren: 0.1 }
+    }
   };
 
   const itemVariants = {
@@ -119,131 +135,157 @@ const PricingSection: React.FC = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
+      transition: { duration: 0.5, ease: 'easeOut' }
+    }
   };
 
   return (
-    <section className="pricing-section py-24 bg-dainamics-background relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(123,47,255,0.08),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(16,228,255,0.06),transparent_50%)]" />
-
-      <div className="container mx-auto px-4 relative z-10">
+    <section 
+      className="pricing-section py-24 bg-gradient-to-b from-dainamics-background via-[#0A0A1A] to-dainamics-background"
+      aria-labelledby="pricing-heading"
+    >
+      <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          {/* Badge différenciateur */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dainamics-primary/10 border border-dainamics-primary/30 mb-6">
+            <Shield className="w-4 h-4 text-dainamics-primary" />
+            <span className="text-sm font-medium text-dainamics-primary">
+              Seuls en Suisse à afficher nos prix
+            </span>
+          </div>
+
+          <h2 id="pricing-heading" className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-white">Nos Tarifs.</span>{' '}
             <span className="text-dainamics-secondary">Sans Surprise.</span>
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Nous sommes les seuls en Suisse à afficher nos prix publiquement.
-            Pas de devis mystérieux, pas de frais cachés.
+          
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Pas de "contactez-nous pour un devis mystérieux".
+            <br />
+            Vous savez exactement à quoi vous attendre.
           </p>
         </motion.div>
 
-        {/* Pricing Cards */}
+        {/* Pricing Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
         >
           {tiers.map((tier) => (
             <motion.div
               key={tier.id}
               variants={itemVariants}
-              className={`relative group ${tier.popular ? 'lg:-mt-4 lg:mb-4' : ''}`}
+              className={`relative group h-full`}
             >
-              {/* Popular badge */}
+              {/* Popular Badge */}
               {tier.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-dainamics-cta to-[#FF8040] text-white text-sm font-semibold shadow-lg shadow-dainamics-cta/30">
-                    <Zap className="w-4 h-4" />
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+                  <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#10E4FF] to-[#0AFF9D] text-[#050510] text-xs font-bold">
+                    <Zap className="w-3 h-3" />
                     Populaire
                   </div>
                 </div>
               )}
 
               {/* Card */}
-              <div
-                className={`relative h-full p-8 rounded-2xl transition-all duration-500 ${
-                  tier.popular
-                    ? 'bg-gradient-to-b from-dainamics-card to-[#0D0D20] border-2 border-dainamics-cta/50 shadow-xl shadow-dainamics-cta/10'
-                    : 'bg-dainamics-card border border-dainamics-border hover:border-dainamics-primary/50'
-                }`}
+              <div 
+                className={`
+                  relative h-full p-6 rounded-2xl 
+                  bg-[#0A0A1A] border transition-all duration-300
+                  ${tier.popular 
+                    ? 'border-dainamics-secondary/50 shadow-[0_0_30px_rgba(16,228,255,0.15)]' 
+                    : 'border-white/10 hover:border-white/20'
+                  }
+                `}
               >
                 {/* Glow effect on hover */}
-                <div
-                  className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl -z-10 ${
-                    tier.popular
-                      ? 'bg-dainamics-cta/20'
-                      : 'bg-dainamics-primary/10'
-                  }`}
+                <div 
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"
+                  style={{ background: `radial-gradient(circle at 50% 0%, ${tier.color}20, transparent 70%)` }}
                 />
 
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* Icon */}
-                  <div
-                    className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
-                      tier.popular
-                        ? 'bg-dainamics-cta/20 text-dainamics-cta'
-                        : 'bg-dainamics-primary/20 text-dainamics-primary'
-                    }`}
-                  >
+                {/* Icon */}
+                <div 
+                  className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${tier.color}20, transparent)`,
+                    border: `1px solid ${tier.color}40`
+                  }}
+                >
+                  <div style={{ color: tier.color }}>
                     {tier.icon}
                   </div>
+                </div>
 
-                  {/* Name & Description */}
-                  <h3 className="text-2xl font-bold text-white mb-2">{tier.name}</h3>
-                  <p className="text-gray-400 text-sm mb-6">{tier.description}</p>
+                {/* Name */}
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {tier.name}
+                </h3>
 
-                  {/* Price */}
-                  <div className="mb-2">
-                    <span
-                      className={`text-4xl font-bold ${
-                        tier.popular ? 'text-dainamics-cta' : 'text-dainamics-primary'
-                      }`}
+                {/* Price */}
+                <div className="mb-4">
+                  <div className="flex items-baseline gap-1">
+                    <span 
+                      className="text-3xl font-bold"
+                      style={{ color: tier.color }}
                     >
-                      {tier.priceRange}
+                      {tier.price}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-500 mb-8">{tier.duration}</p>
+                  <div className="text-sm text-gray-500">
+                    {tier.priceDetail}
+                  </div>
+                </div>
 
-                  {/* Features */}
-                  <ul className="space-y-3 mb-8 flex-grow">
-                    {tier.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <Check
-                          className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
-                            tier.popular ? 'text-dainamics-cta' : 'text-dainamics-success'
-                          }`}
-                        />
-                        <span className="text-gray-300 text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Duration */}
+                <div className="flex items-center gap-2 mb-4 text-sm text-gray-400">
+                  <Clock className="w-4 h-4" />
+                  {tier.duration}
+                </div>
 
-                  {/* CTA Button */}
+                {/* Description */}
+                <p className="text-sm text-gray-400 mb-5 min-h-[40px]">
+                  {tier.description}
+                </p>
+
+                {/* Features */}
+                <ul className="space-y-2.5 mb-6">
+                  {tier.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <Check 
+                        className="w-4 h-4 mt-0.5 flex-shrink-0"
+                        style={{ color: tier.color }}
+                      />
+                      <span className="text-sm text-gray-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <div className="mt-auto pt-4">
                   <Button
                     asChild
-                    className={`w-full group/btn transition-all duration-300 ${
-                      tier.popular
-                        ? 'bg-dainamics-cta hover:bg-dainamics-cta/90 text-white'
-                        : 'bg-dainamics-primary hover:bg-dainamics-primary/90 text-white'
-                    }`}
-                    size="lg"
+                    className={`
+                      w-full font-semibold transition-all duration-300
+                      ${tier.popular 
+                        ? 'bg-gradient-to-r from-[#10E4FF] to-[#0AFF9D] text-[#050510] hover:opacity-90' 
+                        : 'bg-white/10 text-white hover:bg-white/20'
+                      }
+                    `}
                   >
-                    <a href={tier.cta.href} className="flex items-center justify-center gap-2">
+                    <a href={tier.cta.link} className="flex items-center justify-center gap-2">
                       {tier.cta.text}
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-4 h-4" />
                     </a>
                   </Button>
                 </div>
@@ -252,80 +294,54 @@ const PricingSection: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Extension d'équipe */}
+        {/* Guarantee Banner */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-3xl mx-auto mb-16"
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-dainamics-primary/10 via-dainamics-secondary/10 to-dainamics-success/10 border border-white/10 p-8"
         >
-          <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-r from-dainamics-card to-[#0D0D20] border border-dainamics-border">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-dainamics-secondary/20 flex items-center justify-center flex-shrink-0">
-                  <Users className="w-6 h-6 text-dainamics-secondary" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-1">Extension d'Équipe</h3>
-                  <p className="text-gray-400 text-sm">
-                    Développeurs IA/ML expérimentés intégrés à votre équipe
-                  </p>
-                </div>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-full bg-dainamics-success/20 flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-8 h-8 text-dainamics-success" />
               </div>
-              <div className="text-center md:text-right">
-                <div className="text-3xl font-bold text-dainamics-secondary">7K€</div>
-                <div className="text-sm text-gray-500">par mois / développeur</div>
-                <div className="text-xs text-gray-600 mt-1">Engagement min. 3 mois</div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-1">
+                  Garantie ROI 2-6 mois
+                </h3>
+                <p className="text-gray-400">
+                  Si le ROI n'est pas atteint sur nos Quick Wins, on continue gratuitement jusqu'à ce qu'il le soit.
+                </p>
               </div>
             </div>
+            
+            <Button
+              asChild
+              size="lg"
+              className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white font-bold px-8 whitespace-nowrap"
+            >
+              <a href="/contact" className="flex items-center gap-2">
+                Réserver 30 min gratuites
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
           </div>
         </motion.div>
 
-        {/* Guarantees */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        {/* Footer note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-wrap justify-center gap-6 md:gap-12 mb-12"
+          className="text-center text-gray-500 text-sm mt-8"
         >
-          {guarantees.map((guarantee, idx) => (
-            <div key={idx} className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-dainamics-success/10 flex items-center justify-center text-dainamics-success">
-                {guarantee.icon}
-              </div>
-              <div>
-                <div className="text-white font-medium text-sm">{guarantee.title}</div>
-                <div className="text-gray-500 text-xs">{guarantee.description}</div>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center"
-        >
-          <p className="text-gray-400 mb-6">
-            Pas sûr de votre besoin ? On en discute gratuitement.
-          </p>
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="border-dainamics-primary/50 text-dainamics-primary hover:bg-dainamics-primary/10 group"
-          >
-            <a href="#diagnostic" className="flex items-center gap-2">
-              Réserver 30 min gratuites
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </Button>
-        </motion.div>
+          Tous les prix sont HT. Projets facturés en CHF ou EUR selon préférence.
+          <br />
+          Pas sûr de votre besoin ? Un appel de 30 min suffit pour y voir clair.
+        </motion.p>
       </div>
     </section>
   );
