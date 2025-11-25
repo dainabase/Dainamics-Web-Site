@@ -1,6 +1,7 @@
 import React from 'react';
-import { Brain, Zap, Code } from 'lucide-react';
+import { Brain, Zap, Code, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const AboutServices: React.FC = () => {
   const services = [
@@ -10,6 +11,8 @@ const AboutServices: React.FC = () => {
       description:
         "Agents IA conversationnels, analyse prédictive, traitement automatique de données. Exemple : Support client 24/7 ou extraction automatique de factures.",
       iconColor: 'text-dainamics-primary', // Violet
+      link: '/services/ia',
+      linkText: 'Découvrir nos solutions IA',
     },
     {
       icon: Zap,
@@ -17,6 +20,8 @@ const AboutServices: React.FC = () => {
       description:
         "Workflows automatisés, intégrations API, synchronisation de données. Exemple : Synchronisation CRM-comptabilité ou validation automatique de documents.",
       iconColor: 'text-dainamics-secondary', // Cyan (accent)
+      link: '/services/automatisation',
+      linkText: 'Explorer les automatisations',
     },
     {
       icon: Code,
@@ -24,6 +29,8 @@ const AboutServices: React.FC = () => {
       description:
         'Applications web, plateformes métier, dashboards sur mesure. Exemple : Portail client personnalisé ou tableau de bord KPI temps réel.',
       iconColor: 'text-dainamics-primary', // Violet
+      link: '/services/developpement',
+      linkText: 'Voir nos développements',
     },
   ];
 
@@ -32,7 +39,7 @@ const AboutServices: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15, // Plus fluide (était 0.2)
+        staggerChildren: 0.15,
       },
     },
   };
@@ -112,7 +119,7 @@ const AboutServices: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover="hover"
-                className="service-card bg-gradient-to-br from-[#0A0A1B] to-[#050510] border border-gray-800 rounded-2xl p-8 hover:border-dainamics-primary transition-all duration-300"
+                className="service-card bg-gradient-to-br from-[#0A0A1B] to-[#050510] border border-gray-800 rounded-2xl p-8 hover:border-dainamics-primary transition-all duration-300 flex flex-col"
               >
                 {/* Icon avec glow et animation */}
                 <motion.div
@@ -139,9 +146,18 @@ const AboutServices: React.FC = () => {
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-400 leading-relaxed text-base">
+                <p className="text-gray-400 leading-relaxed text-base mb-6 flex-grow">
                   {service.description}
                 </p>
+
+                {/* CTA Link */}
+                <Link 
+                  to={service.link}
+                  className="inline-flex items-center gap-2 text-dainamics-secondary hover:text-dainamics-primary transition-colors duration-200 font-medium group"
+                >
+                  <span>{service.linkText}</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                </Link>
               </motion.div>
             );
           })}
