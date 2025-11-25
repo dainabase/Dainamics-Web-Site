@@ -302,9 +302,7 @@ const CredibiliteImmediate: React.FC = () => {
             className="text-center mb-10"
           >
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-white">De la PME de 15 personnes</span>
-              <br />
-              <span className="text-dainamics-secondary">aux leaders mondiaux</span>
+              <span className="text-white">De la PME aux groupes internationaux</span>
             </h3>
           </motion.div>
 
