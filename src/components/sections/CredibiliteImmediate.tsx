@@ -206,7 +206,7 @@ const CredibiliteImmediate: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 id="credibilite-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+          <h2 id="credibilite-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             <span className="text-white">Résultats Mesurés,</span>{' '}
             <span className="text-dainamics-secondary">Pas Promis</span>
           </h2>
