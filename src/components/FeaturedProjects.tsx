@@ -105,9 +105,7 @@ const FeaturedProjects: React.FC = () => {
   };
 
   return (
-    <section className="featured-projects-section py-24 bg-dainamics-background relative overflow-hidden">
-      {/* Background gradient - Effet réduit pour cohérence */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-secondary/4 to-transparent pointer-events-none" />
+    <section className="featured-projects-section py-24 bg-black relative overflow-hidden">
 
       <div className="container-custom relative z-10">
         {/* Titre section */}
@@ -138,7 +136,7 @@ const FeaturedProjects: React.FC = () => {
             <motion.div
               key={project.id}
               variants={itemVariants}
-              className="project-card bg-gradient-to-br from-[#0A0A1B] to-[#050510] border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300"
+              className="project-card bg-black border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300"
               style={{
                 '--hover-border-color': project.color.primary,
                 '--hover-shadow-color': project.color.glow,

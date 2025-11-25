@@ -193,11 +193,10 @@ const CredibiliteImmediate: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="metrics-confidence-section py-24 relative overflow-hidden bg-dainamics-background"
+      className="metrics-confidence-section py-24 relative overflow-hidden bg-black"
       role="region"
       aria-labelledby="credibilite-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dainamics-secondary/3 to-transparent pointer-events-none" />
 
       <div className="container-custom relative z-10">
         {/* Header avec preuve */}

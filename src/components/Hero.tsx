@@ -37,9 +37,8 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen py-24 flex items-center overflow-visible"
+      className="relative min-h-screen py-24 flex items-center overflow-visible bg-black"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 z-0"></div>
 
       <div className="container mx-auto px-4 md:px-0 z-10">
         <div className="hero-section">

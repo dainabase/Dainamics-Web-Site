@@ -140,8 +140,8 @@ const PricingSection: React.FC = () => {
   };
 
   return (
-    <section 
-      className="pricing-section py-24 bg-gradient-to-b from-dainamics-background via-[#0A0A1A] to-dainamics-background"
+    <section
+      className="pricing-section py-24 bg-black"
       aria-labelledby="pricing-heading"
     >
       <div className="container mx-auto px-4 md:px-6">

@@ -384,7 +384,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+        className="py-20 md:py-32 bg-black"
       >
         <div className="container mx-auto px-4">
           <motion.div
@@ -450,7 +450,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+        className="py-20 md:py-32 bg-black"
       >
         <div className="container mx-auto px-4 max-w-4xl">
           {/* En-tête */}
@@ -559,7 +559,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+        className="py-20 md:py-32 bg-black"
       >
         <div className="container mx-auto px-4 max-w-2xl">
           <motion.div
@@ -704,7 +704,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+        className="py-20 md:py-32 bg-black"
       >
         <div className="container mx-auto px-4 max-w-6xl">
           {/* En-tête */}
