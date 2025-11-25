@@ -144,20 +144,17 @@ const CredibiliteImmediate: React.FC = () => {
     },
   ];
 
-  // Logos MIX : Projets DAINAMICS + Grandes entreprises + PME partenaires
+  // Logos MIXÉS : alternance projets / entreprises / PME
   const logos: Logo[] = [
-    // Projets DAINAMICS (showcase)
-    { name: 'LEXAIA', filename: 'lexaia.svg', scale: 1.2, type: 'project' },
-    { name: 'ΣNKI REALTY', filename: 'enki-realty.svg', scale: 1.2, type: 'project' },
-    // Grandes entreprises (crédibilité)
     { name: 'Roche', filename: 'roche.png', type: 'enterprise' },
+    { name: 'LEXAIA', filename: 'lexaia.svg', scale: 1.2, type: 'project' },
     { name: 'Novartis', filename: 'novartis.png', scale: 2, type: 'enterprise' },
+    { name: 'Creative Circle Group', filename: 'creative-circle-group.png', type: 'pme' },
     { name: 'Tissot', filename: 'tissot.png', scale: 2, type: 'enterprise' },
+    { name: 'ΣNKI REALTY', filename: 'enki-realty.svg', scale: 1.2, type: 'project' },
     { name: 'Coop', filename: 'coop.png', type: 'enterprise' },
     { name: 'InterContinental Hotels Group', filename: 'ihg.png', type: 'enterprise' },
     { name: 'Philip Morris International', filename: 'pmi.png', type: 'enterprise' },
-    // PME partenaires
-    { name: 'Creative Circle Group', filename: 'creative-circle-group.png', type: 'pme' },
   ];
 
   const containerVariants = {
