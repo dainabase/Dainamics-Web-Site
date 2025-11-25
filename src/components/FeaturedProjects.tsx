@@ -48,7 +48,7 @@ const FeaturedProjects: React.FC = () => {
       subtitle: 'Plateforme Immobilière Agentique',
       category: 'PropTech | Agents IA autonomes | Architecture B2B2C',
       description:
-        "Plateforme immobilière de nouvelle génération pour le marché chypriote, propulsée par agents IA autonomes. Recherche conversationnelle, CRM intelligent, optimisation fiscale automatisée (Exaia), et pipeline commercial orchestré. Première solution B2B2C véritablement agentique du secteur.",
+        "Plateforme immobilière de nouvelle génération pour le marché chypriote, propulsée par agents IA autonomes. Recherche conversationnelle, CRM intelligent, optimisation fiscale automatisée (LEXAIA), et pipeline commercial orchestré. Première solution B2B2C véritablement agentique du secteur.",
       stack: [
         'Next.js 14',
         'TypeScript',
