@@ -149,7 +149,7 @@ const CredibiliteImmediate: React.FC = () => {
     { name: 'Roche', filename: 'roche.png', type: 'enterprise' },
     { name: 'LEXAIA', filename: 'lexaia.svg', scale: 1.2, type: 'project' },
     { name: 'Novartis', filename: 'novartis.png', scale: 2, type: 'enterprise' },
-    { name: 'Creative Circle Group', filename: 'creative-circle-group.png', type: 'pme' },
+    { name: 'Creative Circle Group', filename: 'CCG_Logo_line_100K.webp', type: 'pme' },
     { name: 'Tissot', filename: 'tissot.png', scale: 2, type: 'enterprise' },
     { name: 'ΣNKI REALTY', filename: 'enki-realty.svg', scale: 1.2, type: 'project' },
     { name: 'Coop', filename: 'coop.png', type: 'enterprise' },
