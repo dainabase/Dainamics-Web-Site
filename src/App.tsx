@@ -25,9 +25,12 @@ import ServicesDeveloppement from "@/pages/services/Developpement";
 import Dashboards from "@/pages/solutions/Dashboards";
 import PortailsClients from "@/pages/solutions/PortailsClients";
 import ApplicationsMobiles from "@/pages/solutions/ApplicationsMobiles";
+import ApplicationsWeb from "@/pages/solutions/ApplicationsWeb";
 
 // Realisations Pages
 import InMotionDigitalSignage from "@/pages/realisations/InMotionDigitalSignage";
+import LexaiaLegalAI from "@/pages/realisations/LexaiaLegalAI";
+import EnkiRealtyPlatform from "@/pages/realisations/EnkiRealtyPlatform";
 
 // Problemes Pages
 import AutomatiserFacturation from "@/pages/problemes/AutomatiserFacturation";
@@ -70,6 +73,8 @@ function App() {
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/realisations" element={<Realisations />} />
         <Route path="/realisations/inmotion-digital-signage" element={<InMotionDigitalSignage />} />
+        <Route path="/realisations/lexaia-legal-ai" element={<LexaiaLegalAI />} />
+        <Route path="/realisations/enki-realty-platform" element={<EnkiRealtyPlatform />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
 
@@ -88,6 +93,7 @@ function App() {
         <Route path="/solutions/dashboards" element={<Dashboards />} />
         <Route path="/solutions/portails-clients" element={<PortailsClients />} />
         <Route path="/solutions/applications-mobiles" element={<ApplicationsMobiles />} />
+        <Route path="/solutions/applications-web" element={<ApplicationsWeb />} />
 
         {/* Portfolio */}
         <Route path="/portfolio" element={<Portfolio />} />
