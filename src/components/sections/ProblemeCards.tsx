@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Briefcase, MessageSquare, FileText, BarChart3, Cog, ArrowRight, LucideIcon } from 'lucide-react';
+import { Briefcase, MessageSquare, FileText, BarChart3, Cog, LayoutGrid, Users, Smartphone, ArrowRight, LucideIcon } from 'lucide-react';
 
 interface ProblemeCard {
   icon: LucideIcon;
@@ -37,14 +37,35 @@ const problemes: ProblemeCard[] = [
     title: "Stocks Imprévisibles",
     painPoint: "40K€/an en stock dormant",
     link: "/optimiser-stocks-predictions",
-    color: "#FF5A00"
+    color: "#7B2FFF"
   },
   {
     icon: Cog,
     title: "Processus Manuels",
     painPoint: "Erreurs répétées",
     link: "/digitaliser-processus-metier",
-    color: "#7B2FFF"
+    color: "#10E4FF"
+  },
+  {
+    icon: LayoutGrid,
+    title: "Excel Ne Suffit Plus",
+    painPoint: "10 fichiers qui ne se parlent pas",
+    link: "/solutions/dashboards",
+    color: "#FF5A00"
+  },
+  {
+    icon: Users,
+    title: "Clients Frustrés",
+    painPoint: "Ils appellent pour des infos basiques",
+    link: "/solutions/portails-clients",
+    color: "#FF5A00"
+  },
+  {
+    icon: Smartphone,
+    title: "Équipe Déconnectée",
+    painPoint: "Pas d'accès mobile, tout sur papier",
+    link: "/solutions/applications-mobiles",
+    color: "#FF5A00"
   }
 ];
 
@@ -72,36 +93,36 @@ export const ProblemeCards = () => {
         {/* Titre */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight px-4">
-            Lequel de ces problèmes vous coûte le plus cher ?
+            Quel défi freine votre croissance ?
           </h2>
           <p className="text-white/60 text-base sm:text-lg md:text-xl max-w-2xl mx-auto px-4">
             Cliquez sur votre défi principal. On vous montre comment le résoudre.
           </p>
         </div>
 
-        {/* Grid des cards - Première ligne : 3 cards */}
+        {/* Grid des cards - Première ligne : 4 cards */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {problemes.slice(0, 3).map((probleme, index) => (
+          {problemes.slice(0, 4).map((probleme, index) => (
             <ProblemeCardItem key={index} probleme={probleme} />
           ))}
         </motion.div>
 
-        {/* Deuxième ligne : 2 cards centrées */}
+        {/* Deuxième ligne : 4 cards */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {problemes.slice(3, 5).map((probleme, index) => (
-            <ProblemeCardItem key={index + 3} probleme={probleme} />
+          {problemes.slice(4, 8).map((probleme, index) => (
+            <ProblemeCardItem key={index + 4} probleme={probleme} />
           ))}
         </motion.div>
       </div>
