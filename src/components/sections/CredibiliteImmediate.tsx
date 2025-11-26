@@ -207,8 +207,9 @@ const CredibiliteImmediate: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 id="credibilite-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="text-white">Résultats Mesurés,</span>{' '}
-            <span className="text-dainamics-secondary">Pas Promis</span>
+            <span className="text-white">Résultats Mesurés.</span>
+            <br />
+            <span className="text-white">Pas Promis.</span>
           </h2>
           <p className="text-xl text-gray-400">
             Chiffres issus de nos projets réels, pas de promesses marketing

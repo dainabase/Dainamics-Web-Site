@@ -127,7 +127,9 @@ const ProcessusSection_v2 = () => {
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="text-white">De l'Idée au ROI Mesurable en 8 Semaines</span>
+            <span className="text-white">De l'Idée au ROI Mesurable.</span>
+            <br />
+            <span className="text-white">En 8 Semaines.</span>
           </h2>
 
           <p className="text-lg text-white/70 max-w-3xl mx-auto">

@@ -117,7 +117,7 @@ const FeaturedProjects: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="text-white">Projets Réalisés</span>
+            <span className="text-white">Projets Réalisés.</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Des architectures IA complexes qui transforment des industries entières

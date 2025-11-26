@@ -393,8 +393,7 @@ export default function AutomatisationsQuestionnaire() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">Quel est Votre</span>{' '}
-              <span className="text-dainamics-secondary">Plus Grand Défi ?</span>
+              <span className="text-white">Quel est Votre Plus Grand Défi ?</span>
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Découvrez en 2 minutes les automatisations qui transformeront votre entreprise
