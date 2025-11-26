@@ -74,7 +74,7 @@ function App() {
         <Route path="/realisations" element={<Realisations />} />
         <Route path="/realisations/inmotion-digital-signage" element={<InMotionDigitalSignage />} />
         <Route path="/realisations/lexaia-legal-ai" element={<LexaiaLegalAI />} />
-        <Route path="/realisations/enki-realty-platform" element={<EnkiRealtyPlatform />} />
+        <Route path="/realisations/enki-realty-automation" element={<EnkiRealtyPlatform />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
 

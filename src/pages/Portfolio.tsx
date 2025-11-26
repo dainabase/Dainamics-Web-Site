@@ -676,12 +676,23 @@ function ProjectModal({ project, isOpen, onClose }: any) {
                   </div>
                 )}
 
-                <div className="pt-6 border-t border-white/10">
-                  <Link to="/contact">
+                <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row gap-4">
+                  <Link to={`/realisations/${project.id}`}>
                     <Button
                       size="lg"
                       className="w-full md:w-auto px-8 py-6 text-lg font-semibold"
-                      style={{ backgroundColor: COLORS.cta, color: 'white' }}
+                      style={{ backgroundColor: categoryColor, color: 'white' }}
+                    >
+                      <Eye className="w-5 h-5 mr-2" />
+                      Voir le Détail Complet
+                    </Button>
+                  </Link>
+                  <Link to="/contact">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="w-full md:w-auto px-8 py-6 text-lg font-semibold border-2"
+                      style={{ borderColor: COLORS.cta, color: COLORS.cta }}
                     >
                       <Rocket className="w-5 h-5 mr-2" />
                       Lancer un Projet Similaire

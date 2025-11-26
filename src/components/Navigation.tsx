@@ -30,9 +30,10 @@ const servicesPiliers: ServiceItem[] = [
 ];
 
 const servicesSolutions: ServiceItem[] = [
+  { label: 'Applications Web', href: '/solutions/applications-web', isNew: true },
+  { label: 'Applications Mobiles', href: '/solutions/applications-mobiles', isNew: true },
   { label: 'Dashboards Sur Mesure', href: '/solutions/dashboards', isNew: true },
   { label: 'Portails Clients', href: '/solutions/portails-clients', isNew: true },
-  { label: 'Applications Mobiles', href: '/solutions/applications-mobiles', isNew: true },
 ];
 
 // Problèmes réorganisés: Automatisation + Développement
