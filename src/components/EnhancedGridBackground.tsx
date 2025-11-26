@@ -1,6 +1,6 @@
 // src/components/EnhancedGridBackground.tsx
-// Simplified Enhanced Grid Background - No dots, single grid
-// Maximum depth effect with parallax
+// Clean Background with lighting effects - NO GRID
+// Smooth gradient background with glow effects
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -27,22 +27,7 @@ export default function EnhancedGridBackground() {
         }}
       />
 
-      {/* Single Grid Layer with Parallax - NO DOTS */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ y }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(99, 102, 241, 0.2) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(99, 102, 241, 0.2) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }}
-        />
-      </motion.div>
+      {/* Smooth animated gradient - NO GRID */}
 
       {/* Vignette effect - Darkens edges for depth */}
       <div
