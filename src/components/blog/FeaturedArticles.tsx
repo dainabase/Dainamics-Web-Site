@@ -216,7 +216,7 @@ const FeaturedArticles: React.FC = () => {
                   to={article.slug}
                   className="group block h-full"
                 >
-                  <div className="h-full p-6 rounded-2xl bg-[#0A0A1A] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col">
+                  <div className="h-full p-6 rounded-2xl bg-dainamics-card border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col">
                     {/* Category Badge */}
                     <div 
                       className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full w-fit mb-4"
