@@ -21,6 +21,9 @@ import ExpertiseDeveloppement from "@/pages/ExpertiseDeveloppement";
 // Services Pages
 import ServicesDeveloppement from "@/pages/services/Developpement";
 
+// Realisations Pages
+import KunzDigitalSignage from "@/pages/realisations/KunzDigitalSignage";
+
 // Problemes Pages
 import AutomatiserFacturation from "@/pages/problemes/AutomatiserFacturation";
 import ReduireChargeSupport from "@/pages/problemes/ReduireChargeSupport";
@@ -61,6 +64,7 @@ function App() {
         {/* Navigation Principale */}
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/realisations" element={<Realisations />} />
+        <Route path="/realisations/kunz-digital-signage" element={<KunzDigitalSignage />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
 
