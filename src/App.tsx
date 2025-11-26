@@ -24,6 +24,7 @@ import ServicesDeveloppement from "@/pages/services/Developpement";
 // Solutions Pages
 import Dashboards from "@/pages/solutions/Dashboards";
 import PortailsClients from "@/pages/solutions/PortailsClients";
+import ApplicationsMobiles from "@/pages/solutions/ApplicationsMobiles";
 
 // Realisations Pages
 import KunzDigitalSignage from "@/pages/realisations/KunzDigitalSignage";
@@ -86,6 +87,7 @@ function App() {
         <Route path="/solutions/industries" element={<Industries />} />
         <Route path="/solutions/dashboards" element={<Dashboards />} />
         <Route path="/solutions/portails-clients" element={<PortailsClients />} />
+        <Route path="/solutions/applications-mobiles" element={<ApplicationsMobiles />} />
 
         {/* Portfolio */}
         <Route path="/portfolio" element={<Portfolio />} />
