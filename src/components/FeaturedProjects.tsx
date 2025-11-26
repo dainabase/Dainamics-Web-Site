@@ -1,6 +1,7 @@
 import React from 'react';
-import { Check, ExternalLink } from 'lucide-react';
+import { Check, ExternalLink, Eye } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const FeaturedProjects: React.FC = () => {
   const projects = [
@@ -8,6 +9,7 @@ const FeaturedProjects: React.FC = () => {
       id: 1,
       title: 'LEXAIA',
       subtitle: 'Plateforme Juridique IA',
+      detailUrl: '/realisations/lexaia-legal-ai',
       category: 'LegalTech | Automatisation juridique | Architecture microservices',
       description:
         "Plateforme juridique intelligente combinant IA générative, RAG dual (documents privés + base juridique publique), et automatisation de workflows. Architecture microservices complète avec 40+ services orchestrés pour cabinets d'avocats.",
@@ -46,6 +48,7 @@ const FeaturedProjects: React.FC = () => {
       id: 2,
       title: 'ΣNKI REALTY',
       subtitle: 'Plateforme Immobilière Agentique',
+      detailUrl: '/realisations/enki-realty-automation',
       category: 'PropTech | Agents IA autonomes | Architecture B2B2C',
       description:
         "Plateforme immobilière de nouvelle génération pour le marché chypriote, propulsée par agents IA autonomes. Recherche conversationnelle, CRM intelligent, optimisation fiscale automatisée (LEXAIA), et pipeline commercial orchestré. Première solution B2B2C véritablement agentique du secteur.",
@@ -84,6 +87,7 @@ const FeaturedProjects: React.FC = () => {
       id: 3,
       title: 'InMotion Digital Signage',
       subtitle: 'Vitrines Intelligentes avec Détection IA',
+      detailUrl: '/realisations/inmotion-digital-signage',
       category: 'RetailTech | IoT | Plateforme Sur Mesure',
       description:
         "Système de signalisation numérique interactive pour retail de luxe. 9 vitrines autonomes avec détection de présence par IA (ML Kit). Intégration invisible derrière verre sans tain (spy mirror chrome 30%). Plateforme enterprise-grade avec gestion centralisée à distance.",
@@ -292,17 +296,32 @@ const FeaturedProjects: React.FC = () => {
                   </ul>
                 </div>
 
-                {/* CTA */}
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl group w-full sm:w-auto justify-center"
-                  style={{
-                    background: `linear-gradient(135deg, ${project.color.primary}, ${project.color.secondary})`,
-                  }}
-                >
-                  <span className="whitespace-nowrap">Discuter d'un projet similaire</span>
-                  <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 flex-shrink-0" />
-                </a>
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to={project.detailUrl}
+                    className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl group flex-1 justify-center border-2"
+                    style={{
+                      background: `linear-gradient(135deg, ${project.color.primary}, ${project.color.secondary})`,
+                      borderColor: project.color.primary,
+                    }}
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span className="whitespace-nowrap">Voir le détail</span>
+                  </Link>
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 group flex-1 justify-center border-2"
+                    style={{
+                      color: project.color.primary,
+                      borderColor: project.color.primary,
+                      background: 'transparent',
+                    }}
+                  >
+                    <span className="whitespace-nowrap">Projet similaire</span>
+                    <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 flex-shrink-0" />
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}
