@@ -6,6 +6,8 @@ import AIArchitectures from "@/pages/AIArchitectures";
 import About from "@/pages/About";
 import Portfolio from "@/pages/Portfolio";
 import Solutions from "@/pages/Solutions";
+import SolutionsNew from "@/pages/Solutions_NEW";
+import Realisations from "@/pages/Realisations";
 import Contact from "@/pages/Contact";
 import Pricing from "@/pages/Pricing";
 import Blog from "@/pages/Blog";
@@ -19,6 +21,13 @@ import Expertise from "@/pages/Expertise";
 import ExpertiseIA from "@/pages/ExpertiseIA";
 import ExpertiseAutomatisation from "@/pages/ExpertiseAutomatisation";
 import ExpertiseDeveloppement from "@/pages/ExpertiseDeveloppement";
+
+// Problemes Pages
+import AutomatiserFacturation from "@/pages/problemes/AutomatiserFacturation";
+import ReduireChargeSupport from "@/pages/problemes/ReduireChargeSupport";
+import TraiterDocuments from "@/pages/problemes/TraiterDocuments";
+import OptimiserStocks from "@/pages/problemes/OptimiserStocks";
+import DigitaliserProcessus from "@/pages/problemes/DigitaliserProcessus";
 
 // Solutions Pages
 import QuickWins from "@/pages/QuickWins";
@@ -42,19 +51,29 @@ function App() {
         {/* Main Pages */}
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
-        
+
+        {/* Problemes Routes - NEW */}
+        <Route path="/automatiser-facturation" element={<AutomatiserFacturation />} />
+        <Route path="/reduire-charge-support" element={<ReduireChargeSupport />} />
+        <Route path="/traiter-documents-automatiquement" element={<TraiterDocuments />} />
+        <Route path="/optimiser-stocks-predictions" element={<OptimiserStocks />} />
+        <Route path="/digitaliser-processus-metier" element={<DigitaliserProcessus />} />
+
+        {/* New Navigation Routes */}
+        <Route path="/solutions" element={<SolutionsNew />} />
+        <Route path="/realisations" element={<Realisations />} />
+
         {/* Expertise Routes */}
         <Route path="/expertise" element={<Expertise />} />
         <Route path="/expertise/ia" element={<ExpertiseIA />} />
         <Route path="/expertise/automatisation" element={<ExpertiseAutomatisation />} />
         <Route path="/expertise/developpement" element={<ExpertiseDeveloppement />} />
-        
-        {/* Solutions Routes */}
-        <Route path="/solutions" element={<Solutions />} />
+
+        {/* Legacy Solutions Routes */}
+        <Route path="/solutions-old" element={<Solutions />} />
         <Route path="/solutions/quick-wins" element={<QuickWins />} />
         <Route path="/solutions/industries" element={<Industries />} />
-        <Route path="/solutions/*" element={<Solutions />} />
-        
+
         {/* Portfolio */}
         <Route path="/portfolio" element={<Portfolio />} />
         

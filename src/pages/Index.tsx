@@ -1,6 +1,7 @@
 import { useEffect, lazy, Suspense } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
+import ProblemeCards from '@/components/sections/ProblemeCards';
 import AboutServices from '@/components/AboutServices';
 import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
 import FeaturedProjects from '@/components/FeaturedProjects';
@@ -49,27 +50,31 @@ const Index = () => {
         {/* ========== SECTION 1: HERO ========== */}
         <Hero />
 
-        {/* ========== SECTION 2: ABOUT SERVICES ========== */}
+        {/* ========== SECTION 2: PROBLEME CARDS ========== */}
+        {/* 5 problèmes cliquables centrés sur les pain points */}
+        <ProblemeCards />
+
+        {/* ========== SECTION 3: ABOUT SERVICES ========== */}
         {/* 3 pilliers (IA, Automatisations, Software) avec CTAs */}
         <AboutServices />
 
-        {/* ========== SECTION 3: CRÉDIBILITÉ IMMÉDIATE ========== */}
+        {/* ========== SECTION 4: CRÉDIBILITÉ IMMÉDIATE ========== */}
         {/* 5 métriques honnêtes (dont Datacenter Suisse) + Logos clients */}
         <CredibiliteImmediate />
 
-        {/* ========== SECTION 4: FEATURED PROJECTS ========== */}
+        {/* ========== SECTION 5: FEATURED PROJECTS ========== */}
         {/* LEXAIA & ΣNKI REALTY */}
         <FeaturedProjects />
 
-        {/* ========== SECTION 5: PROCESSUS TRANSPARENT ========== */}
+        {/* ========== SECTION 6: PROCESSUS TRANSPARENT ========== */}
         {/* De l'Idée au ROI en 8 Semaines - Timeline + Garantie */}
         <ProcessusSection_v2 />
 
-        {/* ========== SECTION 6: PRICING TRANSPARENT ========== */}
+        {/* ========== SECTION 7: PRICING TRANSPARENT ========== */}
         {/* 4 offres + CTA final intégré + Garantie ROI */}
         <PricingSection />
 
-        {/* ========== SECTION 7: QUESTIONNAIRE DIAGNOSTIC ========== */}
+        {/* ========== SECTION 8: QUESTIONNAIRE DIAGNOSTIC ========== */}
         {/* Lead magnet interactif - Point d'entrée pour leads tièdes */}
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center bg-dainamics-background">

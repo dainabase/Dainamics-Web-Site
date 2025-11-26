@@ -1,45 +1,32 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 
-// Structure du menu simplifié - 6 pages uniques (pas de dropdowns)
 interface NavItem {
   name: string;
   link: string;
 }
 
-// ✅ VRAIE SIMPLIFICATION - 6 PAGES UNIQUES
-// Pas de dropdowns = vraiment simple pour PME
-// Navigation interne via sections/ancres dans chaque page
+interface ProblemeItem {
+  label: string;
+  href: string;
+}
+
+const problemesItems: ProblemeItem[] = [
+  { label: 'Facturation manuelle', href: '/automatiser-facturation' },
+  { label: 'Support client saturé', href: '/reduire-charge-support' },
+  { label: 'Documents à traiter', href: '/traiter-documents-automatiquement' },
+  { label: 'Stocks imprévisibles', href: '/optimiser-stocks-predictions' },
+  { label: 'Processus manuels', href: '/digitaliser-processus-metier' },
+];
+
 const navItems: NavItem[] = [
-  { 
-    name: 'Services', 
-    link: '/services' // 1 page avec 4 sections internes (Discovery, Dev, Quick Wins, Équipe)
-  },
-  { 
-    name: 'Projets', 
-    link: '/projets' // Anciennement "Portfolio"
-  },
-  {
-    name: 'Notre Approche',
-    link: '/approche' // 1 page avec 4 sections (Processus, IA, Standards, Équipe)
-  },
-  {
-    name: 'Ressources',
-    link: '/ressources' // 1 hub page (Blog, Cas d'Usage, Glossaire)
-  },
-  { 
-    name: 'Pricing', 
-    link: '/pricing' 
-  },
-  { 
-    name: 'Contact', 
-    link: '/contact' 
-  },
+  { name: 'Solutions', link: '/solutions' },
+  { name: 'Réalisations', link: '/realisations' },
+  { name: 'Contact', link: '/contact' },
 ];
 
 const languages = ['FR', 'EN', 'DE', 'IT'];
@@ -48,8 +35,10 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
+  const [problemesOpen, setProblemesOpen] = useState(false);
+  const [problemesOpenMobile, setProblemesOpenMobile] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('FR');
-  
+
   const location = useLocation();
 
   useEffect(() => {
@@ -61,7 +50,6 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fermer menu mobile quand route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
@@ -81,12 +69,55 @@ export function Navigation() {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="text-dainamics-light font-bold text-xl sm:text-2xl flex items-center space-x-2 flex-shrink-0">
-          <span className="text-gradient-primary glow">Dainamics</span>
+          <span className="text-gradient-primary glow">DAINAMICS</span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
           <div className="flex space-x-4 xl:space-x-6">
+            {/* Dropdown Problèmes */}
+            <div
+              className="relative"
+              onMouseEnter={() => setProblemesOpen(true)}
+              onMouseLeave={() => setProblemesOpen(false)}
+            >
+              <button className={cn(
+                "flex items-center gap-1 text-dainamics-light/80 hover:text-dainamics-light font-medium transition-colors duration-200 relative text-sm xl:text-base whitespace-nowrap py-2",
+                problemesOpen && "text-dainamics-light"
+              )}>
+                Problèmes
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 transition-transform duration-200",
+                    problemesOpen && "rotate-180"
+                  )}
+                />
+              </button>
+
+              <AnimatePresence>
+                {problemesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-64 bg-[#050510]/95 backdrop-blur-md border border-[#7B2FFF]/30 rounded-xl p-2 shadow-2xl"
+                  >
+                    {problemesItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        className="block px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Autres liens */}
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -104,14 +135,14 @@ export function Navigation() {
           <div className="flex items-center space-x-4">
             {/* Language Selector */}
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
                 className="flex items-center text-dainamics-light/80 hover:text-dainamics-light"
               >
                 <Globe className="w-4 h-4 mr-1" />
-                <span>{currentLanguage}</span>
+                <span className="text-sm">{currentLanguage}</span>
               </button>
-              
+
               <AnimatePresence>
                 {languageMenuOpen && (
                   <motion.div
@@ -128,7 +159,7 @@ export function Navigation() {
                           setLanguageMenuOpen(false);
                         }}
                         className={cn(
-                          "block w-full text-left px-4 py-2 hover:bg-dainamics-primary/10 transition-colors",
+                          "block w-full text-left px-4 py-2 hover:bg-dainamics-primary/10 transition-colors text-sm",
                           currentLanguage === lang ? "text-dainamics-primary" : "text-dainamics-light/80"
                         )}
                       >
@@ -140,29 +171,23 @@ export function Navigation() {
               </AnimatePresence>
             </div>
 
-            {/* CTA Buttons */}
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="border-dainamics-primary text-dainamics-primary hover:bg-dainamics-primary/10 hidden xl:inline-flex"
-            >
-              <Link to="/contact">Contact</Link>
-            </Button>
-
+            {/* CTA */}
             <Button
               asChild
               size="sm"
-              className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow text-xs xl:text-sm whitespace-nowrap px-3 xl:px-4"
+              className="bg-[#FF5A00] hover:bg-[#FF5A00]/90 text-white text-xs xl:text-sm whitespace-nowrap px-3 xl:px-4 flex items-center gap-2"
             >
-              <a href="#diagnostic">Évaluation Gratuite</a>
+              <Link to="/contact">
+                <Phone className="w-4 h-4" />
+                Appel Gratuit
+              </Link>
             </Button>
           </div>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-dainamics-light focus:outline-none"
+          className="lg:hidden text-dainamics-light focus:outline-none p-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -180,6 +205,42 @@ export function Navigation() {
           >
             <div className="container mx-auto py-4">
               <div className="flex flex-col space-y-2">
+                {/* Accordéon Problèmes */}
+                <div>
+                  <button
+                    onClick={() => setProblemesOpenMobile(!problemesOpenMobile)}
+                    className="flex items-center justify-between w-full text-dainamics-light py-3 px-4 font-medium"
+                  >
+                    Problèmes
+                    <ChevronDown className={cn(
+                      "w-4 h-4 transition-transform duration-200",
+                      problemesOpenMobile && "rotate-180"
+                    )} />
+                  </button>
+                  <AnimatePresence>
+                    {problemesOpenMobile && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="pl-4 space-y-2 mt-2"
+                      >
+                        {problemesItems.map((item) => (
+                          <Link
+                            key={item.href}
+                            to={item.href}
+                            className="block text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 rounded-lg hover:bg-white/5 transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Autres liens */}
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
@@ -188,13 +249,14 @@ export function Navigation() {
                       "text-dainamics-light/80 hover:text-dainamics-light font-medium py-3 px-4 rounded-lg transition-colors",
                       isActive(item.link) && "text-dainamics-primary bg-dainamics-primary/5"
                     )}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
                 ))}
-                
+
                 <div className="flex items-center mt-4 px-4 space-x-2">
-                  <span className="text-dainamics-light/80">Langue:</span>
+                  <span className="text-dainamics-light/80 text-sm">Langue:</span>
                   <div className="flex space-x-2">
                     {languages.map((lang) => (
                       <button
@@ -202,8 +264,8 @@ export function Navigation() {
                         onClick={() => setCurrentLanguage(lang)}
                         className={cn(
                           "px-2 py-1 rounded text-sm",
-                          currentLanguage === lang 
-                            ? "bg-dainamics-primary/20 text-dainamics-primary" 
+                          currentLanguage === lang
+                            ? "bg-dainamics-primary/20 text-dainamics-primary"
                             : "text-dainamics-light/80"
                         )}
                       >
@@ -212,23 +274,19 @@ export function Navigation() {
                     ))}
                   </div>
                 </div>
-                
-                <div className="flex flex-col space-y-2 mt-4 px-4">
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="border-dainamics-primary text-dainamics-primary hover:bg-dainamics-primary/10 w-full"
-                  >
-                    <Link to="/contact">Contact</Link>
-                  </Button>
 
+                {/* CTA Mobile */}
+                <div className="mt-4 px-4">
                   <Button
                     asChild
                     size="lg"
-                    className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow w-full"
+                    className="bg-[#FF5A00] hover:bg-[#FF5A00]/90 text-white w-full flex items-center justify-center gap-2"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
-                    <a href="#diagnostic">Évaluation Gratuite</a>
+                    <Link to="/contact">
+                      <Phone className="w-4 h-4" />
+                      Appel Gratuit
+                    </Link>
                   </Button>
                 </div>
               </div>
