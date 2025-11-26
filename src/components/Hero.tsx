@@ -37,7 +37,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen py-24 flex items-center overflow-visible"
+      className="relative min-h-screen py-20 sm:py-24 flex items-center overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 z-0"></div>
 
@@ -170,11 +170,11 @@ export default function Hero() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 40px 0 80px;
+          padding: 20px 0 60px;
           max-width: 1400px;
           margin: 0 auto;
           gap: 40px;
-          min-height: 85vh;
+          min-height: 70vh;
         }
 
         .hero-content {
@@ -253,13 +253,14 @@ export default function Hero() {
         @media (max-width: 992px) {
           .hero-section {
             flex-direction: column;
-            padding: 40px 20px 40px;
+            padding: 20px 0 40px;
             min-height: auto;
+            gap: 20px;
           }
 
           .hero-content {
             padding-right: 0;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             text-align: center;
             padding-top: 0;
             margin-top: 0;
@@ -268,36 +269,39 @@ export default function Hero() {
           .loading-placeholder,
           .mobile-placeholder,
           .brain-animation-wrapper-mobile {
-            width: 500px;
-            height: 500px;
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            display: none;
           }
 
           .mobile-glow {
-            width: 340px;
-            height: 340px;
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
           }
         }
 
         @media (max-width: 640px) {
           .hero-section {
-            padding: 20px 0 40px;
+            padding: 10px 0 30px;
+            min-height: auto;
           }
 
           .hero-content {
             margin-top: 0;
             padding: 0;
+            margin-bottom: 0;
           }
 
           .loading-placeholder,
           .mobile-placeholder,
           .brain-animation-wrapper-mobile {
-            width: 340px;
-            height: 340px;
+            display: none;
           }
 
           .mobile-glow {
-            width: 260px;
-            height: 260px;
+            display: none;
           }
         }
         `}
