@@ -1,32 +1,111 @@
-
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Search, Sparkles, BookOpen, TrendingUp } from 'lucide-react';
 
 const BlogHeader: React.FC = () => {
+  const stats = [
+    { icon: BookOpen, label: 'Articles', value: '50+' },
+    { icon: TrendingUp, label: 'Lectures/mois', value: '12K' },
+    { icon: Sparkles, label: 'Guides IA', value: '15' },
+  ];
+
   return (
-    <section className="relative w-full py-24 overflow-hidden bg-gradient-to-br from-dainamics-primary to-dainamics-secondary">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white animate-fade-in">
-            The Superhuman Business Intelligence Hub
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-100 mb-10 animate-fade-in">
-            Insights, strategies, and case studies to help you transform your business with AI
-          </p>
-          
-          <div className="relative mt-8 animate-fade-in">
-            <input
-              type="text"
-              placeholder="Search articles..."
-              className="w-full py-4 px-6 rounded-full text-gray-800 bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-dainamics-primary"
-            />
-            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-dainamics-primary hover:bg-dainamics-primary/90 text-white p-3 rounded-full">
-              🔍
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none">
-        <div className="w-full h-full bg-[url('/placeholder.svg')] bg-contain bg-no-repeat bg-right-top"></div>
+    <section className="relative w-full pt-32 pb-20 overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-dainamics-primary/20 via-dainamics-background to-dainamics-secondary/10" />
+      
+      {/* Decorative orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-dainamics-primary/30 rounded-full blur-[128px]" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-dainamics-secondary/20 rounded-full blur-[128px]" />
+
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dainamics-primary/10 border border-dainamics-primary/30 mb-6"
+          >
+            <Sparkles className="w-4 h-4 text-dainamics-primary" />
+            <span className="text-sm font-medium text-dainamics-primary">
+              Ressources IA &amp; Automatisation
+            </span>
+          </motion.div>
+
+          {/* Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+          >
+            <span className="text-white">Hub Intelligence</span>
+            <br />
+            <span className="bg-gradient-to-r from-dainamics-primary via-dainamics-secondary to-dainamics-success bg-clip-text text-transparent">
+              Artificielle
+            </span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto"
+          >
+            Stratégies, cas pratiques et guides pour transformer votre entreprise
+            avec l'IA et l'automatisation.
+          </motion.p>
+
+          {/* Search bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="relative max-w-xl mx-auto mb-12"
+          >
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-dainamics-primary to-dainamics-secondary rounded-full opacity-30 group-hover:opacity-50 blur transition duration-300" />
+              <div className="relative flex items-center">
+                <Search className="absolute left-5 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Rechercher un article..."
+                  className="w-full py-4 pl-14 pr-6 rounded-full text-white bg-[#0A0A1A] border border-white/10 focus:outline-none focus:border-dainamics-primary/50 transition-colors placeholder:text-gray-500"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-wrap justify-center gap-8 md:gap-12"
+          >
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div key={index} className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                    <Icon className="w-5 h-5 text-dainamics-secondary" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-xl font-bold text-white">{stat.value}</div>
+                    <div className="text-sm text-gray-500">{stat.label}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
