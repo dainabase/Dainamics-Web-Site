@@ -122,6 +122,45 @@ const FeaturedProjects: React.FC = () => {
         glow: 'rgba(212, 175, 55, 0.4)',
       },
     },
+    {
+      id: 4,
+      title: 'DATAVSN',
+      subtitle: 'Ciblage Publicitaire IA & Analytics Retail',
+      detailUrl: '/realisations/datavsn-retail-analytics',
+      category: 'RetailTech / AdTech | Reconnaissance IA | Analytics 24/7',
+      description:
+        "Système intelligent combinant affichage dynamique (écrans, hologrammes 3D, totems) avec reconnaissance d'audience IA. Analyse temps réel âge, sexe, émotions, temps d'attention pour ciblage publicitaire automatique. Dashboard analytics my.datavsn.ch pour retailers.",
+      stack: [
+        'TensorFlow Lite',
+        'OpenCV',
+        'Python',
+        'NVIDIA Jetson',
+        'FastAPI',
+        'Next.js 14',
+        'PostgreSQL',
+        'TimescaleDB',
+      ],
+      results: [
+        '8+ catégories ciblage démographique temps réel',
+        'Détection < 1 sec (âge, sexe, émotions)',
+        'Affichage multi-supports (écrans, hologrammes, totems)',
+        'Dashboard analytics 24/7 (OTS, conversion, attention)',
+        '100% conforme RGPD/LPD (traitement local)',
+      ],
+      impact: [
+        'Visibilité messages publicitaires mesurable',
+        'Ciblage automatique audience temps réel',
+        'ROI campagnes affichage optimisé',
+        'Analytics "Google-like" pour points de vente physiques',
+      ],
+      screenshot: '',
+      color: {
+        primary: '#6366F1',
+        secondary: '#4F46E5',
+        gradient: 'from-[#6366F1] to-[#4F46E5]',
+        glow: 'rgba(99, 102, 241, 0.4)',
+      },
+    },
   ];
 
   const containerVariants = {
