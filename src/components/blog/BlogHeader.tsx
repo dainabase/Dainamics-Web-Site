@@ -1,14 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, Sparkles, BookOpen, TrendingUp } from 'lucide-react';
+import { Search, Sparkles } from 'lucide-react';
 
 const BlogHeader: React.FC = () => {
-  const stats = [
-    { icon: BookOpen, label: 'Articles', value: '50+' },
-    { icon: TrendingUp, label: 'Lectures/mois', value: '12K' },
-    { icon: Sparkles, label: 'Guides IA', value: '15' },
-  ];
-
   return (
     <section className="relative w-full pt-32 pb-20 overflow-hidden">
       {/* Background gradient */}
@@ -81,29 +75,6 @@ const BlogHeader: React.FC = () => {
                 />
               </div>
             </div>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap justify-center gap-8 md:gap-12"
-          >
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-dainamics-secondary" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-xl font-bold text-white">{stat.value}</div>
-                    <div className="text-sm text-gray-500">{stat.label}</div>
-                  </div>
-                </div>
-              );
-            })}
           </motion.div>
         </motion.div>
       </div>
