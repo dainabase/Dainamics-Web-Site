@@ -27,7 +27,7 @@ import PortailsClients from "@/pages/solutions/PortailsClients";
 import ApplicationsMobiles from "@/pages/solutions/ApplicationsMobiles";
 
 // Realisations Pages
-import KunzDigitalSignage from "@/pages/realisations/KunzDigitalSignage";
+import InMotionDigitalSignage from "@/pages/realisations/InMotionDigitalSignage";
 
 // Problemes Pages
 import AutomatiserFacturation from "@/pages/problemes/AutomatiserFacturation";
@@ -69,7 +69,7 @@ function App() {
         {/* Navigation Principale */}
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/realisations" element={<Realisations />} />
-        <Route path="/realisations/kunz-digital-signage" element={<KunzDigitalSignage />} />
+        <Route path="/realisations/inmotion-digital-signage" element={<InMotionDigitalSignage />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
 

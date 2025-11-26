@@ -82,7 +82,7 @@ const FeaturedProjects: React.FC = () => {
     },
     {
       id: 3,
-      title: 'KUNZ Digital Signage',
+      title: 'InMotion Digital Signage',
       subtitle: 'Vitrines Intelligentes avec Détection IA',
       category: 'RetailTech | IoT | Plateforme Sur Mesure',
       description:

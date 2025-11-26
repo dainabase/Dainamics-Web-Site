@@ -455,10 +455,10 @@ const Dashboards = () => {
               >
                 <p className="text-sm text-gray-400 mb-2">Projet réalisé</p>
                 <Link
-                  to="/realisations/kunz-digital-signage"
+                  to="/realisations/inmotion-digital-signage"
                   className="text-[#D4AF37] hover:text-[#B8941F] transition-colors font-semibold inline-flex items-center gap-2"
                 >
-                  KUNZ Digital Signage - Dashboard de gestion de parc d'écrans
+                  InMotion Digital Signage - Dashboard de gestion de parc d'écrans
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>

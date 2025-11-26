@@ -14,10 +14,10 @@ import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 
-const KunzDigitalSignage = () => {
+const InMotionDigitalSignage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "KUNZ Digital Signage - Vitrines Intelligentes | DAINAMICS";
+    document.title = "InMotion Digital Signage - Vitrines Intelligentes | DAINAMICS";
   }, []);
 
   const fadeInUp = {
@@ -78,7 +78,7 @@ const KunzDigitalSignage = () => {
                   variants={fadeInUp}
                   className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 leading-tight"
                 >
-                  <span className="text-white">KUNZ</span>
+                  <span className="text-white">InMotion</span>
                   <br />
                   <span className="text-[#D4AF37]">Digital Signage</span>
                 </motion.h1>
@@ -742,4 +742,4 @@ const KunzDigitalSignage = () => {
   );
 };
 
-export default KunzDigitalSignage;
+export default InMotionDigitalSignage;

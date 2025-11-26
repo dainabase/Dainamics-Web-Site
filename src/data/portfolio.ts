@@ -329,8 +329,8 @@ export const portfolioProjects: PortfolioProject[] = [
     team: ['IA Engineer', 'Frontend Dev', 'Backend Dev', 'UX Designer']
   },
   {
-    id: 'kunz-digital-signage',
-    title: 'KUNZ Digital Signage - Vitrines Intelligentes',
+    id: 'inmotion-digital-signage',
+    title: 'InMotion Digital Signage - Vitrines Intelligentes',
     client: 'HMF Corporation SA - HYPERVISUAL',
     industry: 'RetailTech',
     category: 'developpement',
