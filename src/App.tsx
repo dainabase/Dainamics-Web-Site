@@ -21,6 +21,9 @@ import ExpertiseDeveloppement from "@/pages/ExpertiseDeveloppement";
 // Services Pages
 import ServicesDeveloppement from "@/pages/services/Developpement";
 
+// Solutions Pages
+import Dashboards from "@/pages/solutions/Dashboards";
+
 // Realisations Pages
 import KunzDigitalSignage from "@/pages/realisations/KunzDigitalSignage";
 
@@ -80,6 +83,7 @@ function App() {
         {/* Solutions Sub-Routes */}
         <Route path="/solutions/quick-wins" element={<QuickWins />} />
         <Route path="/solutions/industries" element={<Industries />} />
+        <Route path="/solutions/dashboards" element={<Dashboards />} />
 
         {/* Portfolio */}
         <Route path="/portfolio" element={<Portfolio />} />
