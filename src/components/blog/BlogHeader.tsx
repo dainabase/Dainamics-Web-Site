@@ -71,7 +71,7 @@ const BlogHeader: React.FC = () => {
                 <input
                   type="text"
                   placeholder="Rechercher un article..."
-                  className="w-full py-4 pl-14 pr-6 rounded-full text-white bg-[#0A0A1A] border border-white/10 focus:outline-none focus:border-dainamics-primary/50 transition-colors placeholder:text-gray-500"
+                  className="w-full py-4 pl-14 pr-6 rounded-full text-white bg-dainamics-card border border-white/10 focus:outline-none focus:border-dainamics-primary/50 transition-colors placeholder:text-gray-500"
                 />
               </div>
             </div>
