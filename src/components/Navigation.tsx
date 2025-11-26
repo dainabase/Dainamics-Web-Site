@@ -15,6 +15,17 @@ interface ProblemeItem {
   href: string;
 }
 
+interface ServiceItem {
+  label: string;
+  href: string;
+}
+
+const servicesItems: ServiceItem[] = [
+  { label: 'Développement Software', href: '/services/developpement' },
+  { label: 'Intelligence Artificielle', href: '/expertise/ia' },
+  { label: 'Automatisation', href: '/expertise/automatisation' },
+];
+
 const problemesItems: ProblemeItem[] = [
   { label: 'Facturation manuelle', href: '/automatiser-facturation' },
   { label: 'Support client saturé', href: '/reduire-charge-support' },
@@ -35,6 +46,8 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [servicesOpenMobile, setServicesOpenMobile] = useState(false);
   const [problemesOpen, setProblemesOpen] = useState(false);
   const [problemesOpenMobile, setProblemesOpenMobile] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('FR');
@@ -75,6 +88,48 @@ export function Navigation() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
           <div className="flex items-center space-x-4 xl:space-x-6">
+            {/* Dropdown Services */}
+            <div
+              className="relative flex items-center"
+              onMouseEnter={() => setServicesOpen(true)}
+              onMouseLeave={() => setServicesOpen(false)}
+            >
+              <button className={cn(
+                "flex items-center gap-1 text-dainamics-light/80 hover:text-dainamics-light font-medium transition-colors duration-200 text-sm xl:text-base whitespace-nowrap",
+                servicesOpen && "text-dainamics-light"
+              )}>
+                Services
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 transition-transform duration-200",
+                    servicesOpen && "rotate-180"
+                  )}
+                />
+              </button>
+
+              <AnimatePresence>
+                {servicesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-64 bg-[#050510]/95 backdrop-blur-md border border-[#FF5A00]/30 rounded-xl p-2 shadow-2xl"
+                  >
+                    {servicesItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        className="block px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {/* Dropdown Problèmes */}
             <div
               className="relative flex items-center"
@@ -205,6 +260,41 @@ export function Navigation() {
           >
             <div className="container mx-auto py-4">
               <div className="flex flex-col space-y-2">
+                {/* Accordéon Services */}
+                <div>
+                  <button
+                    onClick={() => setServicesOpenMobile(!servicesOpenMobile)}
+                    className="flex items-center justify-between w-full text-dainamics-light py-3 px-4 font-medium"
+                  >
+                    Services
+                    <ChevronDown className={cn(
+                      "w-4 h-4 transition-transform duration-200",
+                      servicesOpenMobile && "rotate-180"
+                    )} />
+                  </button>
+                  <AnimatePresence>
+                    {servicesOpenMobile && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="pl-4 space-y-2 mt-2"
+                      >
+                        {servicesItems.map((item) => (
+                          <Link
+                            key={item.href}
+                            to={item.href}
+                            className="block text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 rounded-lg hover:bg-white/5 transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 {/* Accordéon Problèmes */}
                 <div>
                   <button
