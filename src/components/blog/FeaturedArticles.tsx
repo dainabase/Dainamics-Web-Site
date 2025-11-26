@@ -1,80 +1,283 @@
-
 import React from 'react';
+import { motion } from 'framer-motion';
+import { 
+  Clock, 
+  ArrowRight, 
+  Brain, 
+  Zap, 
+  BarChart3, 
+  MessageSquare,
+  FileText,
+  Rocket
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+interface Article {
+  title: string;
+  excerpt: string;
+  category: string;
+  categoryIcon: React.ElementType;
+  categoryColor: string;
+  image?: string;
+  date: string;
+  readTime: string;
+  slug: string;
+  featured?: boolean;
+}
 
 const FeaturedArticles: React.FC = () => {
-  const featuredArticles = [
+  const articles: Article[] = [
     {
-      title: "How Superhuman AI Agents Are Transforming Customer Service",
-      excerpt: "Learn how businesses are achieving 70% faster response times and 85% higher customer satisfaction with AI agents.",
-      category: "AI Strategy",
-      image: "/placeholder.svg",
-      date: "May 10, 2025",
-      readTime: "8 min read"
+      title: "Comment l'IA Transforme le Service Client en 2025",
+      excerpt: "Découvrez comment les PME suisses obtiennent 70% de réponses plus rapides et 85% de satisfaction client grâce aux agents IA.",
+      category: "Stratégie IA",
+      categoryIcon: Brain,
+      categoryColor: "#7B2FFF",
+      date: "15 Nov 2025",
+      readTime: "8 min",
+      slug: "/blog/ia-service-client-2025",
+      featured: true
     },
     {
-      title: "Case Study: Financial Services Firm Increases Lead Conversion by 37%",
-      excerpt: "Discover how AcquisitionNova transformed the sales pipeline for a leading financial services company.",
-      category: "Implementation Cases",
-      image: "/placeholder.svg",
-      date: "May 8, 2025",
-      readTime: "12 min read"
+      title: "Cas d'étude : +37% de Conversion pour une Fiduciaire",
+      excerpt: "Comment l'automatisation des processus a transformé le pipeline commercial d'un cabinet comptable genevois.",
+      category: "Cas Clients",
+      categoryIcon: BarChart3,
+      categoryColor: "#0AFF9D",
+      date: "12 Nov 2025",
+      readTime: "12 min",
+      slug: "/blog/case-study-fiduciaire"
     },
     {
-      title: "The Future of Executive Decision-Making with AI Assistance",
-      excerpt: "Explore how CommandMatrix Elite is helping executives make better decisions with less cognitive load.",
-      category: "Technology Insights",
-      image: "/placeholder.svg",
-      date: "May 5, 2025",
-      readTime: "10 min read"
+      title: "Guide : Automatiser sa Facturation en 2 Semaines",
+      excerpt: "Étape par étape, comment passer de 12h/mois de facturation manuelle à 0 avec les bons outils.",
+      category: "Automatisation",
+      categoryIcon: Zap,
+      categoryColor: "#10E4FF",
+      date: "8 Nov 2025",
+      readTime: "10 min",
+      slug: "/blog/automatiser-facturation"
+    },
+    {
+      title: "ChatGPT en Entreprise : Risques et Opportunités",
+      excerpt: "Ce que les dirigeants de PME doivent savoir sur l'utilisation de l'IA générative au travail.",
+      category: "IA Pratique",
+      categoryIcon: MessageSquare,
+      categoryColor: "#7B2FFF",
+      date: "5 Nov 2025",
+      readTime: "6 min",
+      slug: "/blog/chatgpt-entreprise"
+    },
+    {
+      title: "Les 5 Erreurs à Éviter en Projet IA",
+      excerpt: "Retour d'expérience : les pièges classiques et comment les contourner pour réussir votre transformation.",
+      category: "Guide",
+      categoryIcon: FileText,
+      categoryColor: "#FF5A00",
+      date: "1 Nov 2025",
+      readTime: "9 min",
+      slug: "/blog/erreurs-projet-ia"
+    },
+    {
+      title: "ROI de l'Automatisation : Calculez votre Potentiel",
+      excerpt: "Méthodologie pratique pour estimer le retour sur investissement de vos futurs projets d'automatisation.",
+      category: "Business",
+      categoryIcon: Rocket,
+      categoryColor: "#FF5A00",
+      date: "28 Oct 2025",
+      readTime: "7 min",
+      slug: "/blog/roi-automatisation"
     }
   ];
 
+  const featuredArticle = articles.find(a => a.featured);
+  const regularArticles = articles.filter(a => !a.featured);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut' }
+    }
+  };
+
   return (
-    <section className="py-24 bg-dainamics-background">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-16">Featured Articles</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredArticles.map((article, index) => (
-            <div 
-              key={index} 
-              className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow"
+    <section className="py-20 md:py-28 bg-dainamics-background">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Articles à la Une
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl">
+            Les dernières publications sur l'IA, l'automatisation et la transformation digitale des PME.
+          </p>
+        </motion.div>
+
+        {/* Bento Grid Layout */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        >
+          {/* Featured Article - Large Card */}
+          {featuredArticle && (
+            <motion.div
+              variants={itemVariants}
+              className="lg:col-span-2 lg:row-span-2"
             >
-              <div className="aspect-video overflow-hidden">
-                <img 
-                  src={article.image} 
-                  alt={article.title}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center mb-4">
-                  <span className="inline-block bg-dainamics-primary/10 text-dainamics-primary text-sm px-3 py-1 rounded-full">
-                    {article.category}
-                  </span>
+              <Link
+                to={featuredArticle.slug}
+                className="group block h-full"
+              >
+                <div className="relative h-full min-h-[400px] lg:min-h-full rounded-2xl overflow-hidden bg-gradient-to-br from-dainamics-primary/20 to-dainamics-secondary/10 border border-white/10 hover:border-dainamics-primary/50 transition-all duration-300">
+                  {/* Background pattern */}
+                  <div className="absolute inset-0 opacity-50">
+                    <div className="absolute top-10 right-10 w-64 h-64 bg-dainamics-primary/30 rounded-full blur-[100px]" />
+                    <div className="absolute bottom-10 left-10 w-48 h-48 bg-dainamics-secondary/30 rounded-full blur-[80px]" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative h-full p-8 lg:p-10 flex flex-col justify-end">
+                    {/* Category Badge */}
+                    <div 
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full w-fit mb-6"
+                      style={{ 
+                        backgroundColor: `${featuredArticle.categoryColor}20`,
+                        border: `1px solid ${featuredArticle.categoryColor}40`
+                      }}
+                    >
+                      <featuredArticle.categoryIcon 
+                        className="w-4 h-4" 
+                        style={{ color: featuredArticle.categoryColor }} 
+                      />
+                      <span 
+                        className="text-sm font-medium"
+                        style={{ color: featuredArticle.categoryColor }}
+                      >
+                        {featuredArticle.category}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-dainamics-secondary transition-colors">
+                      {featuredArticle.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-gray-400 mb-6 text-lg leading-relaxed max-w-2xl">
+                      {featuredArticle.excerpt}
+                    </p>
+
+                    {/* Meta */}
+                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <span>{featuredArticle.date}</span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        {featuredArticle.readTime}
+                      </span>
+                      <span className="flex items-center gap-1 text-dainamics-secondary group-hover:translate-x-1 transition-transform">
+                        Lire l'article
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-dainamics-primary transition-colors">
-                  {article.title}
-                </h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">{article.excerpt}</p>
-                <div className="flex items-center text-sm text-gray-500">
-                  <span>{article.date}</span>
-                  <span className="mx-2">•</span>
-                  <span>{article.readTime}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="mt-12 text-center">
-          <button className="inline-flex items-center text-dainamics-primary hover:text-dainamics-secondary font-semibold transition-colors">
-            View all featured articles
-            <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </button>
-        </div>
+              </Link>
+            </motion.div>
+          )}
+
+          {/* Regular Articles - Small Cards */}
+          {regularArticles.slice(0, 4).map((article, index) => {
+            const Icon = article.categoryIcon;
+            return (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+              >
+                <Link
+                  to={article.slug}
+                  className="group block h-full"
+                >
+                  <div className="h-full p-6 rounded-2xl bg-[#0A0A1A] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col">
+                    {/* Category Badge */}
+                    <div 
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full w-fit mb-4"
+                      style={{ 
+                        backgroundColor: `${article.categoryColor}15`,
+                        border: `1px solid ${article.categoryColor}30`
+                      }}
+                    >
+                      <Icon 
+                        className="w-3.5 h-3.5" 
+                        style={{ color: article.categoryColor }} 
+                      />
+                      <span 
+                        className="text-xs font-medium"
+                        style={{ color: article.categoryColor }}
+                      >
+                        {article.category}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-white mb-3 group-hover:text-dainamics-secondary transition-colors line-clamp-2 flex-grow">
+                      {article.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-gray-500 text-sm mb-4 line-clamp-2">
+                      {article.excerpt}
+                    </p>
+
+                    {/* Meta */}
+                    <div className="flex items-center justify-between text-xs text-gray-500 mt-auto">
+                      <span>{article.date}</span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {article.readTime}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* View All Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12 text-center"
+        >
+          <Link
+            to="/blog/tous-les-articles"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 font-medium"
+          >
+            Voir tous les articles
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
