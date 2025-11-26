@@ -221,7 +221,7 @@ const CredibiliteImmediate: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="metrics-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 mb-20"
+          className="metrics-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 mb-24"
           role="list"
           aria-label="Métriques de performance"
         >
@@ -299,7 +299,7 @@ const CredibiliteImmediate: React.FC = () => {
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="h-px w-3/4 mx-auto mb-16 bg-gradient-to-r from-transparent via-dainamics-primary/20 to-transparent"
+          className="h-px w-3/4 mx-auto mb-20 bg-gradient-to-r from-transparent via-dainamics-primary/20 to-transparent"
         />
 
         {/* Section Logos avec message inclusif */}
@@ -309,7 +309,7 @@ const CredibiliteImmediate: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mb-10"
+            className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="text-white">De la PME aux Groupes Internationaux.</span>
