@@ -183,7 +183,7 @@ export default function Footer() {
         {/* Bottom links */}
         <div className="pt-8 border-t border-dainamics-light/10 flex flex-col md:flex-row justify-between items-center">
           <div className="text-dainamics-light/50 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} Dainamics. All rights reserved.
+            © {new Date().getFullYear()} DAINAMICS by HMF Corporation SA. All rights reserved.
           </div>
           
           <div className="flex flex-wrap justify-center gap-6">

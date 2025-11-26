@@ -55,14 +55,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'contact@dainamics.ch',
-    href: 'mailto:contact@dainamics.ch'
+    value: 'info@dainamics.ch',
+    href: 'mailto:info@dainamics.ch'
   },
   {
     icon: Phone,
     label: 'Téléphone',
-    value: '+41 22 123 45 67',
-    href: 'tel:+41221234567'
+    value: '+41 26 561 40 45',
+    href: 'tel:+41265614045'
   },
   {
     icon: Linkedin,
@@ -72,8 +72,8 @@ const contactInfo = [
   },
   {
     icon: MapPin,
-    label: 'Bureaux',
-    value: 'Genève & Lausanne, Suisse',
+    label: 'Adresse',
+    value: 'Avenue de Beauregard 1, 1700 Fribourg',
     href: null
   }
 ];
@@ -462,7 +462,7 @@ const Contact = () => {
               variants={fadeInUp}
             >
               <p className="text-white/40">
-                <span className="text-white/60">Bureaux :</span> Suisse (Genève, Lausanne) • <span className="text-white/60">Intervention :</span> Toute l'Europe
+                <span className="text-white/60">DAINAMICS by HMF Corporation SA</span> • Avenue de Beauregard 1, 1700 Fribourg, Switzerland • <span className="text-white/60">Intervention :</span> Toute l'Europe
               </p>
             </motion.div>
           </div>
