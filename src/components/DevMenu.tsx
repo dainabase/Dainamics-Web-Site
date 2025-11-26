@@ -12,7 +12,7 @@ export default function DevMenu() {
 
   const orphanPages = [
     // ORPHELINES - Existent mais pas liées dans navigation principale
-    { path: '/portfolio', label: 'Portfolio', status: 'orphan', note: 'Doublon /realisations' },
+    { path: '/portfolio', label: 'Portfolio', status: 'orphan', note: 'Doublon /realisations → À supprimer' },
     { path: '/solutions/quick-wins', label: 'Quick Wins', status: 'orphan', note: 'Non lié dans nav' },
     { path: '/solutions/industries', label: 'Industries', status: 'orphan', note: 'Non lié dans nav' },
     
@@ -23,17 +23,9 @@ export default function DevMenu() {
     { path: '/realisations/datavsn-retail-analytics', label: 'DataVSN Retail', status: 'subpage', note: 'Lié depuis /realisations' },
   ];
 
-  const brokenLinks = [
-    { path: '/careers', label: 'Careers' },
-    { path: '/agents', label: 'AI Agents' },
-    { path: '/command-center', label: 'Command Center' },
-    { path: '/architectures', label: 'AI Architectures' },
-    { path: '/enterprise', label: 'Enterprise' },
-    { path: '/documentation', label: 'Documentation' },
-    { path: '/case-studies', label: 'Case Studies' },
-    { path: '/webinars', label: 'Webinars' },
-    { path: '/faq', label: 'FAQ' },
-    { path: '/sitemap', label: 'Sitemap' },
+  const pagesToCreate = [
+    { path: '/faq', label: 'FAQ', note: 'Lié dans Footer → À créer' },
+    { path: '/sitemap', label: 'Sitemap', note: 'Lié dans Footer → À créer (SEO)' },
   ];
 
   const getStatusColor = (status: string) => {
@@ -82,7 +74,7 @@ export default function DevMenu() {
                 Pages Orphelines
               </h3>
               <p className="text-white/50 text-xs mt-1">
-                {orphanPages.length} orphelines + {brokenLinks.length} liens cassés
+                {orphanPages.length} orphelines + {pagesToCreate.length} à créer
               </p>
             </div>
 
@@ -93,6 +85,9 @@ export default function DevMenu() {
               </span>
               <span className="flex items-center gap-1 text-blue-400">
                 <Link2Off className="w-3 h-3" /> Sous-page
+              </span>
+              <span className="flex items-center gap-1 text-green-400">
+                <AlertTriangle className="w-3 h-3" /> À créer
               </span>
             </div>
 
@@ -124,24 +119,27 @@ export default function DevMenu() {
               </div>
             </div>
 
-            {/* Liens cassés Footer */}
+            {/* Pages à créer */}
             <div className="p-2 border-t border-white/10">
-              <h4 className="text-red-400/60 text-xs uppercase tracking-wider px-2 py-2 flex items-center gap-2">
-                <X className="w-3 h-3" />
-                Liens Cassés Footer ({brokenLinks.length})
+              <h4 className="text-green-400/60 text-xs uppercase tracking-wider px-2 py-2 flex items-center gap-2">
+                <AlertTriangle className="w-3 h-3" />
+                Pages à Créer ({pagesToCreate.length})
               </h4>
               <div className="space-y-1">
-                {brokenLinks.map((page) => (
+                {pagesToCreate.map((page) => (
                   <div
                     key={page.path}
-                    className="block p-2 rounded-lg border bg-red-500/10 border-red-500/30 text-red-400/70"
+                    className="block p-2 rounded-lg border bg-green-500/10 border-green-500/30 text-green-400/70"
                   >
                     <div className="flex items-center gap-2">
-                      <X className="w-3 h-3" />
-                      <span className="font-medium text-sm line-through">{page.label}</span>
+                      <AlertTriangle className="w-3 h-3" />
+                      <span className="font-medium text-sm">{page.label}</span>
                     </div>
                     <div className="text-[10px] opacity-60 mt-1 pl-5">
-                      {page.path} → 404
+                      {page.path}
+                    </div>
+                    <div className="text-[10px] opacity-40 mt-0.5 pl-5 italic">
+                      {page.note}
                     </div>
                   </div>
                 ))}
