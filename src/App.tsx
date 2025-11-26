@@ -1,12 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "@/pages/Index";
-import SuperhumanAgents from "@/pages/SuperhumanAgents";
-import CommandCenter from "@/pages/CommandCenter";
-import AIArchitectures from "@/pages/AIArchitectures";
 import About from "@/pages/About";
 import Portfolio from "@/pages/Portfolio";
 import Solutions from "@/pages/Solutions";
-import SolutionsNew from "@/pages/Solutions_NEW";
 import Realisations from "@/pages/Realisations";
 import Contact from "@/pages/Contact";
 import Pricing from "@/pages/Pricing";
@@ -52,16 +48,18 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
 
-        {/* Problemes Routes - NEW */}
+        {/* Problemes Routes */}
         <Route path="/automatiser-facturation" element={<AutomatiserFacturation />} />
         <Route path="/reduire-charge-support" element={<ReduireChargeSupport />} />
         <Route path="/traiter-documents-automatiquement" element={<TraiterDocuments />} />
         <Route path="/optimiser-stocks-predictions" element={<OptimiserStocks />} />
         <Route path="/digitaliser-processus-metier" element={<DigitaliserProcessus />} />
 
-        {/* New Navigation Routes */}
-        <Route path="/solutions" element={<SolutionsNew />} />
+        {/* Navigation Principale */}
+        <Route path="/solutions" element={<Solutions />} />
         <Route path="/realisations" element={<Realisations />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* Expertise Routes */}
         <Route path="/expertise" element={<Expertise />} />
@@ -69,34 +67,26 @@ function App() {
         <Route path="/expertise/automatisation" element={<ExpertiseAutomatisation />} />
         <Route path="/expertise/developpement" element={<ExpertiseDeveloppement />} />
 
-        {/* Legacy Solutions Routes */}
-        <Route path="/solutions-old" element={<Solutions />} />
+        {/* Solutions Sub-Routes */}
         <Route path="/solutions/quick-wins" element={<QuickWins />} />
         <Route path="/solutions/industries" element={<Industries />} />
 
         {/* Portfolio */}
         <Route path="/portfolio" element={<Portfolio />} />
-        
+
         {/* Resources Routes */}
         <Route path="/blog" element={<Blog />} />
         <Route path="/glossary" element={<Glossary />} />
         <Route path="/use-cases" element={<UseCases />} />
-        
-        {/* Business Pages */}
+
+        {/* Process */}
         <Route path="/process" element={<Process />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/contact" element={<Contact />} />
-        
-        {/* Legacy Routes (if needed) */}
-        <Route path="/agents" element={<SuperhumanAgents />} />
-        <Route path="/command-center" element={<CommandCenter />} />
-        <Route path="/architectures" element={<AIArchitectures />} />
-        
+
         {/* Legal Pages */}
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/cookies" element={<CookiesPolicy />} />
-        
+
         {/* 404 Not Found */}
         <Route path="*" element={<NotFound />} />
       </Routes>
