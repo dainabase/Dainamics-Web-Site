@@ -27,8 +27,8 @@ const AboutServices: React.FC = () => {
       icon: Code,
       title: 'Développement Software',
       description:
-        'Applications web, plateformes métier, dashboards sur mesure. Exemple : Portail client personnalisé ou tableau de bord KPI temps réel.',
-      iconColor: 'text-dainamics-primary', // Violet
+        'Applications web et mobiles sur mesure, dashboards analytiques, plateformes métier. Projets phares : LEXAIA (40+ microservices, architecture cloud), ENKI REALTY (plateforme B2B2C complète).',
+      iconColor: 'text-[#FF5A00]', // Orange
       link: '/services/developpement',
       linkText: 'Voir nos développements',
     },
