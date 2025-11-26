@@ -11,15 +11,7 @@ export default function DevMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const orphanPages = [
-    // CRITIQUES - Devraient être dans la nav
-    { path: '/pricing', label: 'Pricing', status: 'critical', note: 'Devrait être dans Nav principale' },
-    { path: '/process', label: 'Process', status: 'critical', note: 'Devrait être dans Notre Approche' },
-    { path: '/glossary', label: 'Glossaire', status: 'critical', note: 'Devrait être dans Ressources' },
-    { path: '/use-cases', label: 'Cas d\'Usage', status: 'critical', note: 'Devrait être dans Ressources' },
-    
-    // ORPHELINES - Existent mais pas liées
-    { path: '/expertise', label: 'Expertise (index)', status: 'orphan', note: 'Doublon avec Services' },
-    { path: '/expertise/developpement', label: 'Expertise Développement', status: 'orphan', note: 'Doublon /services/developpement' },
+    // ORPHELINES - Existent mais pas liées dans navigation principale
     { path: '/portfolio', label: 'Portfolio', status: 'orphan', note: 'Doublon /realisations' },
     { path: '/solutions/quick-wins', label: 'Quick Wins', status: 'orphan', note: 'Non lié dans nav' },
     { path: '/solutions/industries', label: 'Industries', status: 'orphan', note: 'Non lié dans nav' },
@@ -90,15 +82,12 @@ export default function DevMenu() {
                 Pages Orphelines
               </h3>
               <p className="text-white/50 text-xs mt-1">
-                13 orphelines + 10 liens cassés
+                {orphanPages.length} orphelines + {brokenLinks.length} liens cassés
               </p>
             </div>
 
             {/* Légende */}
             <div className="px-4 py-2 border-b border-white/10 flex flex-wrap gap-2 text-xs">
-              <span className="flex items-center gap-1 text-orange-400">
-                <AlertTriangle className="w-3 h-3" /> Critique
-              </span>
               <span className="flex items-center gap-1 text-yellow-400">
                 <Eye className="w-3 h-3" /> Orpheline
               </span>
