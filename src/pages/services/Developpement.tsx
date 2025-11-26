@@ -36,9 +36,9 @@ const ServicesDeveloppement = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dainamics-background text-white">
-      <CursorEffects />
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 text-white">
       <EnhancedGridBackground />
+      <CursorEffects />
       <Navigation />
 
       <main className="relative z-10">
