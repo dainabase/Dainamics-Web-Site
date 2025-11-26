@@ -193,25 +193,25 @@ const CredibiliteImmediate: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="metrics-confidence-section py-24 md:py-32 relative overflow-hidden bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
+      className="metrics-confidence-section py-16 sm:py-20 md:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
       role="region"
       aria-labelledby="credibilite-heading"
     >
 
-      <div className="container-custom relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         {/* Header avec preuve */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <h2 id="credibilite-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h2 id="credibilite-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             <span className="text-white">Résultats Mesurés.</span>
             <br />
             <span className="text-white">Pas Promis.</span>
           </h2>
-          <p className="text-xl text-gray-400">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 px-4">
             Chiffres issus de nos projets réels, pas de promesses marketing
           </p>
         </motion.div>
@@ -221,7 +221,7 @@ const CredibiliteImmediate: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="metrics-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 mb-24"
+          className="metrics-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-16 sm:mb-20 md:mb-24"
           role="list"
           aria-label="Métriques de performance"
         >
@@ -251,7 +251,7 @@ const CredibiliteImmediate: React.FC = () => {
                 <div className="metric-value mb-4">
                   <motion.h3
                     id={`metric-${index}`}
-                    className="text-5xl lg:text-6xl font-bold leading-tight metric-number"
+                    className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight metric-number"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                     transition={{
@@ -271,7 +271,7 @@ const CredibiliteImmediate: React.FC = () => {
                 </div>
 
                 <div className="metric-labels">
-                  <p className="text-lg font-semibold text-gradient-primary mb-1">
+                  <p className="text-base sm:text-lg font-semibold text-gradient-primary mb-1">
                     {metric.label}
                   </p>
                   <p className="text-sm text-gray-400 mb-2">{metric.sublabel}</p>
@@ -299,7 +299,7 @@ const CredibiliteImmediate: React.FC = () => {
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="h-px w-3/4 mx-auto mb-20 bg-gradient-to-r from-transparent via-dainamics-primary/20 to-transparent"
+          className="h-px w-3/4 mx-auto mb-12 sm:mb-16 md:mb-20 bg-gradient-to-r from-transparent via-dainamics-primary/20 to-transparent"
         />
 
         {/* Section Logos avec message inclusif */}
@@ -309,9 +309,9 @@ const CredibiliteImmediate: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-12 md:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
               <span className="text-white">De la PME aux Groupes Internationaux.</span>
             </h2>
           </motion.div>
@@ -364,10 +364,10 @@ const CredibiliteImmediate: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-12 max-w-3xl mx-auto"
+            className="mt-8 sm:mt-10 md:mt-12 max-w-3xl mx-auto px-4"
           >
-            <div className="relative p-6 rounded-2xl bg-gradient-to-r from-dainamics-primary/5 via-dainamics-secondary/5 to-dainamics-primary/5 border border-white/10">
-              <p className="text-center text-gray-300 text-lg leading-relaxed">
+            <div className="relative p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-dainamics-primary/5 via-dainamics-secondary/5 to-dainamics-primary/5 border border-white/10">
+              <p className="text-center text-gray-300 text-base sm:text-lg leading-relaxed">
                 Que vous soyez une PME de 15 personnes ou un groupe international,
                 notre méthodologie s'adapte à votre réalité.
                 {' '}<span className="text-white font-medium">Même rigueur, même résultats.</span>

@@ -74,25 +74,25 @@ export function Navigation() {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-16 py-4 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 lg:px-16 py-3 md:py-4 transition-all duration-300',
         scrolled ? 'bg-dainamics-background/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-dainamics-light font-bold text-2xl flex items-center space-x-2">
+        <Link to="/" className="text-dainamics-light font-bold text-xl sm:text-2xl flex items-center space-x-2 flex-shrink-0">
           <span className="text-gradient-primary glow">Dainamics</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center space-x-8">
-          <div className="flex space-x-6">
+        <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
+          <div className="flex space-x-4 xl:space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.link}
                 className={cn(
-                  "text-dainamics-light/80 hover:text-dainamics-light font-medium transition-colors duration-200 relative after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-dainamics-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left",
+                  "text-dainamics-light/80 hover:text-dainamics-light font-medium transition-colors duration-200 relative after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-dainamics-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left text-sm xl:text-base whitespace-nowrap",
                   isActive(item.link) && "text-dainamics-primary"
                 )}
               >
@@ -144,14 +144,16 @@ export function Navigation() {
             <Button
               asChild
               variant="outline"
-              className="border-dainamics-primary text-dainamics-primary hover:bg-dainamics-primary/10"
+              size="sm"
+              className="border-dainamics-primary text-dainamics-primary hover:bg-dainamics-primary/10 hidden xl:inline-flex"
             >
               <Link to="/contact">Contact</Link>
             </Button>
-            
-            <Button 
+
+            <Button
               asChild
-              className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow"
+              size="sm"
+              className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow text-xs xl:text-sm whitespace-nowrap px-3 xl:px-4"
             >
               <a href="#diagnostic">Évaluation Gratuite</a>
             </Button>
@@ -215,13 +217,15 @@ export function Navigation() {
                   <Button
                     asChild
                     variant="outline"
+                    size="lg"
                     className="border-dainamics-primary text-dainamics-primary hover:bg-dainamics-primary/10 w-full"
                   >
                     <Link to="/contact">Contact</Link>
                   </Button>
-                  
-                  <Button 
+
+                  <Button
                     asChild
+                    size="lg"
                     className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white btn-glow w-full"
                   >
                     <a href="#diagnostic">Évaluation Gratuite</a>

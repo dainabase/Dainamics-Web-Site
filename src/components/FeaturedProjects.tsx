@@ -105,21 +105,21 @@ const FeaturedProjects: React.FC = () => {
   };
 
   return (
-    <section className="featured-projects-section py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 relative overflow-hidden">
+    <section className="featured-projects-section py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 relative overflow-hidden">
 
-      <div className="container-custom relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         {/* Titre section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             <span className="text-white">Projets Réalisés.</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4">
             Des architectures IA complexes qui transforment des industries entières
           </p>
         </motion.div>
@@ -130,7 +130,7 @@ const FeaturedProjects: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="projects-grid grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+          className="projects-grid grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12"
         >
           {projects.map((project) => (
             <motion.div
@@ -143,7 +143,7 @@ const FeaturedProjects: React.FC = () => {
               } as React.CSSProperties}
             >
               {/* Screenshot */}
-              <div className="screenshot-wrapper relative h-64 bg-gray-900/50 overflow-hidden">
+              <div className="screenshot-wrapper relative h-48 sm:h-56 md:h-64 bg-gray-900/50 overflow-hidden">
                 {project.screenshot ? (
                   <img
                     src={project.screenshot}
@@ -180,36 +180,36 @@ const FeaturedProjects: React.FC = () => {
               </div>
 
               {/* Contenu */}
-              <div className="p-8">
+              <div className="p-5 sm:p-6 md:p-8">
                 {/* Header */}
-                <div className="mb-6">
-                  <h3 className="text-3xl font-bold text-white mb-2">
+                <div className="mb-4 sm:mb-6">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                     {project.title}
                   </h3>
                   <p
-                    className="text-lg font-semibold mb-1"
+                    className="text-base sm:text-lg font-semibold mb-1"
                     style={{ color: project.color.primary }}
                   >
                     {project.subtitle}
                   </p>
-                  <p className="text-sm text-gray-400">{project.category}</p>
+                  <p className="text-xs sm:text-sm text-gray-400">{project.category}</p>
                 </div>
 
                 {/* Description */}
-                <p className="text-base text-gray-300 mb-8 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8 leading-relaxed">
                   {project.description}
                 </p>
 
                 {/* Stack technique */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">
+                <div className="mb-5 sm:mb-6">
+                  <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
                     Stack Technique
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {project.stack.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1.5 text-sm font-medium rounded-full bg-gray-800 text-gray-300 border border-gray-700"
+                        className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-full bg-gray-800 text-gray-300 border border-gray-700"
                       >
                         {tech}
                       </span>
@@ -218,37 +218,37 @@ const FeaturedProjects: React.FC = () => {
                 </div>
 
                 {/* Résultats */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">
+                <div className="mb-5 sm:mb-6">
+                  <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
                     Résultats Techniques
                   </h4>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5 sm:space-y-2">
                     {project.results.map((result, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
+                      <li key={idx} className="flex items-start gap-2">
                         <Check
-                          className="w-5 h-5 flex-shrink-0"
+                          className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5"
                           style={{ color: project.color.primary }}
                           strokeWidth={2.5}
                         />
-                        <span className="text-sm text-gray-300">{result}</span>
+                        <span className="text-xs sm:text-sm text-gray-300">{result}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 {/* Impact */}
-                <div className="mb-8">
-                  <h4 className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">
+                <div className="mb-6 sm:mb-8">
+                  <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
                     Impact Métier
                   </h4>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5 sm:space-y-2">
                     {project.impact.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
+                      <li key={idx} className="flex items-start gap-2">
                         <Check
-                          className="w-5 h-5 flex-shrink-0 text-dainamics-success"
+                          className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5 text-dainamics-success"
                           strokeWidth={2.5}
                         />
-                        <span className="text-sm text-gray-300">{item}</span>
+                        <span className="text-xs sm:text-sm text-gray-300">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -257,13 +257,13 @@ const FeaturedProjects: React.FC = () => {
                 {/* CTA */}
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
+                  className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl group w-full sm:w-auto justify-center"
                   style={{
                     background: `linear-gradient(135deg, ${project.color.primary}, ${project.color.secondary})`,
                   }}
                 >
-                  Discuter d'un projet similaire
-                  <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <span className="whitespace-nowrap">Discuter d'un projet similaire</span>
+                  <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 flex-shrink-0" />
                 </a>
               </div>
             </motion.div>

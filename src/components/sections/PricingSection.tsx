@@ -118,36 +118,36 @@ const PricingSection: React.FC = () => {
 
   return (
     <section
-      className="pricing-section py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
+      className="pricing-section py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
       aria-labelledby="pricing-heading"
     >
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
           {/* Badge différenciateur */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dainamics-primary/10 border border-dainamics-primary/30 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-dainamics-primary/10 border border-dainamics-primary/30 mb-4 sm:mb-6">
             <Shield className="w-4 h-4 text-dainamics-primary" />
-            <span className="text-sm font-medium text-dainamics-primary">
+            <span className="text-xs sm:text-sm font-medium text-dainamics-primary">
               Seuls en Suisse à afficher nos prix
             </span>
           </div>
 
-          <h2 id="pricing-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h2 id="pricing-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4">
             <span className="text-white">Nos Tarifs.</span>
             <br />
             <span className="text-white">Sans Surprise.</span>
           </h2>
-          
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto px-4">
             Pas de "contactez-nous pour un devis mystérieux".
-            <br />
-            Vous savez exactement à quoi vous attendre.
+            <br className="hidden sm:block" />
+            <span className="sm:inline"> </span>Vous savez exactement à quoi vous attendre.
           </p>
         </motion.div>
 
@@ -157,7 +157,7 @@ const PricingSection: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-14 md:mb-16"
         >
           {tiers.map((tier) => (
             <motion.div
@@ -193,9 +193,9 @@ const PricingSection: React.FC = () => {
                 />
 
                 {/* Icon */}
-                <div 
-                  className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
-                  style={{ 
+                <div
+                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-4 sm:mb-5"
+                  style={{
                     background: `linear-gradient(135deg, ${tier.color}20, transparent)`,
                     border: `1px solid ${tier.color}40`
                   }}
@@ -206,21 +206,21 @@ const PricingSection: React.FC = () => {
                 </div>
 
                 {/* Name */}
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
                   {tier.name}
                 </h3>
 
                 {/* Price */}
                 <div className="mb-4">
-                  <div className="flex items-baseline gap-1">
-                    <span 
-                      className="text-3xl font-bold"
+                  <div className="flex items-baseline gap-1 justify-center">
+                    <span
+                      className="text-2xl sm:text-3xl font-bold"
                       style={{ color: tier.color }}
                     >
                       {tier.price}
                     </span>
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs sm:text-sm text-gray-500">
                     {tier.priceDetail}
                   </div>
                 </div>
@@ -232,19 +232,19 @@ const PricingSection: React.FC = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-gray-400 mb-5 min-h-[40px]">
+                <p className="text-xs sm:text-sm text-gray-400 mb-4 sm:mb-5 min-h-[40px] text-center">
                   {tier.description}
                 </p>
 
                 {/* Features */}
-                <ul className="space-y-2.5 mb-6">
+                <ul className="space-y-2 sm:space-y-2.5 mb-5 sm:mb-6">
                   {tier.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5">
-                      <Check 
+                    <li key={idx} className="flex items-start gap-2">
+                      <Check
                         className="w-4 h-4 mt-0.5 flex-shrink-0"
                         style={{ color: tier.color }}
                       />
-                      <span className="text-sm text-gray-300">{feature}</span>
+                      <span className="text-xs sm:text-sm text-gray-300">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -278,31 +278,31 @@ const PricingSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-dainamics-primary/10 via-dainamics-secondary/10 to-dainamics-success/10 border border-white/10 p-8"
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-dainamics-primary/10 via-dainamics-secondary/10 to-dainamics-success/10 border border-white/10 p-6 sm:p-8"
         >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-dainamics-success/20 flex items-center justify-center flex-shrink-0">
-                <TrendingUp className="w-8 h-8 text-dainamics-success" />
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left w-full md:w-auto">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-dainamics-success/20 flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-7 h-7 sm:w-8 sm:h-8 text-dainamics-success" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-1">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
                   Garantie ROI 2-6 mois
                 </h3>
-                <p className="text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   Si le ROI n'est pas atteint sur nos Quick Wins, on continue gratuitement jusqu'à ce qu'il le soit.
                 </p>
               </div>
             </div>
-            
+
             <Button
               asChild
               size="lg"
-              className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white font-bold px-8 whitespace-nowrap"
+              className="bg-dainamics-cta hover:bg-dainamics-cta/90 text-white font-bold px-6 sm:px-8 py-5 sm:py-6 whitespace-nowrap w-full sm:w-auto text-sm sm:text-base"
             >
-              <a href="/contact" className="flex items-center gap-2">
+              <a href="/contact" className="flex items-center justify-center gap-2">
                 Réserver 30 min gratuites
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
             </Button>
           </div>
@@ -314,7 +314,7 @@ const PricingSection: React.FC = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center text-gray-500 text-sm mt-8"
+          className="text-center text-gray-500 text-xs sm:text-sm mt-6 sm:mt-8 px-4"
         >
           Tous les prix sont HT. Projets facturés en CHF ou EUR selon préférence.
           <br />

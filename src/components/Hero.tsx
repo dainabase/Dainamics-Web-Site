@@ -41,7 +41,7 @@ export default function Hero() {
     >
       <div className="absolute inset-0 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 z-0"></div>
 
-      <div className="container mx-auto px-4 md:px-0 z-10">
+      <div className="container mx-auto px-4 md:px-6 z-10">
         <div className="hero-section">
           <motion.div
             className="hero-content"
@@ -51,18 +51,18 @@ export default function Hero() {
           >
             <motion.h1
               variants={isMobile ? undefined : fadeInUp}
-              className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 tracking-tight leading-[0.95]"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 md:mb-8 tracking-tight leading-[1.1] md:leading-[0.95]"
             >
               <span className="text-dainamics-light">Vous Perdez</span>
               <br />
-              <span className="text-gradient-primary glow text-6xl md:text-8xl lg:text-9xl">15 Heures</span>
+              <span className="text-gradient-primary glow text-5xl sm:text-6xl md:text-8xl lg:text-9xl">15 Heures</span>
               <br />
               <span className="text-dainamics-light">Par Semaine</span>
             </motion.h1>
 
             <motion.p
               variants={isMobile ? undefined : fadeInUp}
-              className="text-dainamics-light/70 text-2xl md:text-3xl mb-10 font-light tracking-wide"
+              className="text-dainamics-light/70 text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 md:mb-10 font-light tracking-wide"
             >
               Facturation. Emails. Saisie.
               <br />
@@ -71,16 +71,16 @@ export default function Hero() {
 
             <motion.div
               variants={isMobile ? undefined : fadeInUp}
-              className="flex flex-col sm:flex-row gap-6 mt-2"
+              className="flex flex-col sm:flex-row gap-4 mt-2"
             >
               <Button
                 asChild
                 size="lg"
-                className="bg-dainamics-cta text-white font-bold text-lg md:text-xl px-10 py-7 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(123,47,255,0.6)] active:scale-95"
+                className="bg-dainamics-cta text-white font-bold text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(123,47,255,0.6)] active:scale-95 w-full sm:w-auto"
               >
-                <a href="#diagnostic">
-                  Parler à un expert
-                  <ArrowRight className="ml-3 h-6 w-6" />
+                <a href="#diagnostic" className="flex items-center justify-center">
+                  <span className="whitespace-nowrap">Parler à un expert</span>
+                  <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
                 </a>
               </Button>
 
@@ -88,11 +88,11 @@ export default function Hero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-2 border-dainamics-secondary text-dainamics-secondary hover:bg-dainamics-secondary/10 font-semibold text-lg md:text-xl px-10 py-7 transition-all duration-300 hover:scale-105 active:scale-95"
+                className="border-2 border-dainamics-secondary text-dainamics-secondary hover:bg-dainamics-secondary/10 font-semibold text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
               >
-                <a href="#diagnostic">
-                  Calculer mes économies
-                  <ArrowRight className="ml-3 h-6 w-6" />
+                <a href="#diagnostic" className="flex items-center justify-center">
+                  <span className="whitespace-nowrap">Calculer mes économies</span>
+                  <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
                 </a>
               </Button>
             </motion.div>
@@ -182,6 +182,7 @@ export default function Hero() {
           max-width: 650px;
           padding-top: 0;
           margin-top: -20px;
+          width: 100%;
         }
 
         .loading-placeholder,
@@ -277,22 +278,14 @@ export default function Hero() {
           }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 640px) {
+          .hero-section {
+            padding: 20px 0 40px;
+          }
+
           .hero-content {
             margin-top: 0;
-          }
-
-          .hero-content h1 {
-            font-size: 2.5rem !important;
-            line-height: 1 !important;
-          }
-
-          .hero-content h1 span:nth-child(2) {
-            font-size: 3.5rem !important;
-          }
-
-          .hero-content p {
-            font-size: 1.125rem !important;
+            padding: 0;
           }
 
           .loading-placeholder,

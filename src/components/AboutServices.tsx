@@ -77,23 +77,23 @@ const AboutServices: React.FC = () => {
   };
 
   return (
-    <section className="about-services-section py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 relative">
+    <section className="about-services-section py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 relative">
 
-      <div className="container-custom relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         {/* Paragraphe Intro */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="intro-text text-center mb-20 max-w-4xl mx-auto"
+          className="intro-text text-center mb-12 sm:mb-16 md:mb-20 max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             <span className="text-white">Intelligence Artificielle. Automatisations.</span>
             <br />
             <span className="text-white">Développement Software.</span>
           </h2>
-          <p className="text-xl text-gray-300 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed px-4">
             Nous construisons les outils technologiques qui propulsent votre
             entreprise.
             <br />
@@ -108,7 +108,7 @@ const AboutServices: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="services-grid grid grid-cols-1 md:grid-cols-3 gap-12"
+          className="services-grid grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12"
         >
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -117,12 +117,12 @@ const AboutServices: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover="hover"
-                className="service-card bg-black border border-gray-800 rounded-2xl p-8 hover:border-dainamics-primary transition-all duration-300 flex flex-col"
+                className="service-card bg-black border border-gray-800 rounded-2xl p-6 sm:p-8 hover:border-dainamics-primary transition-all duration-300 flex flex-col"
               >
                 {/* Icon avec glow et animation */}
                 <motion.div
                   variants={cardVariants}
-                  className="icon-wrapper mb-6 w-20 h-20 rounded-2xl flex items-center justify-center bg-gradient-to-br from-dainamics-primary/10 to-dainamics-secondary/5 backdrop-blur-sm"
+                  className="icon-wrapper mb-4 sm:mb-6 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center bg-gradient-to-br from-dainamics-primary/10 to-dainamics-secondary/5 backdrop-blur-sm"
                   style={{
                     boxShadow: '0 0 30px 5px rgba(123, 47, 255, 0.15)',
                     display: 'flex',
@@ -132,19 +132,19 @@ const AboutServices: React.FC = () => {
                 >
                   <motion.div variants={iconVariants}>
                     <Icon
-                      className={`w-10 h-10 ${service.iconColor}`}
+                      className={`w-8 h-8 sm:w-10 sm:h-10 ${service.iconColor}`}
                       strokeWidth={2}
                     />
                   </motion.div>
                 </motion.div>
 
                 {/* Titre */}
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-400 leading-relaxed text-base mb-6 flex-grow">
+                <p className="text-gray-400 leading-relaxed text-sm sm:text-base mb-4 sm:mb-6 flex-grow">
                   {service.description}
                 </p>
 

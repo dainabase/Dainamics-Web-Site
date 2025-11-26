@@ -77,7 +77,7 @@ const processSteps: ProcessStep[] = [
 
 const ProcessusSection_v2 = () => {
   return (
-    <section className="relative py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 overflow-hidden">
+    <section className="relative py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 overflow-hidden">
 
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-30">
@@ -85,7 +85,7 @@ const ProcessusSection_v2 = () => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-dainamics-secondary/20 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
 
         {/* HEADER */}
         <motion.div
@@ -93,14 +93,14 @@ const ProcessusSection_v2 = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-4 sm:mb-6">
             <Sparkles className="w-4 h-4 text-dainamics-primary" />
-            <span className="text-sm font-semibold text-white/90">Processus Transparent</span>
+            <span className="text-xs sm:text-sm font-semibold text-white/90">Processus Transparent</span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4">
             <span className="text-white">De l'Idée au ROI Mesurable.</span>
             <br />
             <span className="bg-gradient-to-r from-dainamics-primary via-dainamics-secondary to-dainamics-success bg-clip-text text-transparent">
@@ -108,13 +108,13 @@ const ProcessusSection_v2 = () => {
             </span>
           </h2>
 
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4">
             Méthode validée par 50+ PME suisses. Résultats garantis, engagement transparent, zéro surprise.
           </p>
         </motion.div>
 
         {/* KEY METRICS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-16 sm:mb-20 md:mb-24 max-w-5xl mx-auto">
           {[
             { icon: Clock, value: '8 Semaines', label: 'Temps Moyen Livraison', color: COLORS.etape1 },
             { icon: TrendingUp, value: '250-400%', label: 'ROI Première Année', color: COLORS.etape2 },
@@ -133,15 +133,15 @@ const ProcessusSection_v2 = () => {
                 <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl"
                      style={{ background: `radial-gradient(circle at center, ${metric.color}40, transparent)` }}
                 />
-                <div className="relative bg-[#0A0A1A] border border-white/10 rounded-2xl p-8 text-center hover:border-white/20 transition-all duration-300">
+                <div className="relative bg-[#0A0A1A] border border-white/10 rounded-2xl p-6 sm:p-8 text-center hover:border-white/20 transition-all duration-300">
                   <IconComponent
-                    className="w-10 h-10 mx-auto mb-4"
+                    className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 sm:mb-4"
                     style={{ color: metric.color }}
                   />
-                  <div className="text-4xl font-bold mb-2" style={{ color: metric.color }}>
+                  <div className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: metric.color }}>
                     {metric.value}
                   </div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-xs sm:text-sm text-gray-400">
                     {metric.label}
                   </div>
                 </div>
@@ -188,7 +188,7 @@ const ProcessusSection_v2 = () => {
                   />
 
                   {/* Card */}
-                  <div className="relative h-full bg-[#0A0A1A] border border-white/10 rounded-3xl p-8 hover:border-white/20 transition-all duration-300 flex flex-col">
+                  <div className="relative h-full bg-[#0A0A1A] border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-white/20 transition-all duration-300 flex flex-col">
 
                     {/* Number Badge */}
                     <motion.div
@@ -196,7 +196,7 @@ const ProcessusSection_v2 = () => {
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.2, type: "spring", stiffness: 200 }}
-                      className="w-16 h-16 rounded-2xl flex items-center justify-center font-bold text-2xl mb-6 mx-auto"
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center font-bold text-xl sm:text-2xl mb-5 sm:mb-6 mx-auto"
                       style={{
                         background: `linear-gradient(135deg, ${step.color}, ${step.color}80)`,
                         color: '#FFFFFF',
@@ -207,31 +207,31 @@ const ProcessusSection_v2 = () => {
                     </motion.div>
 
                     {/* Icon */}
-                    <div className="mb-6 flex justify-center">
+                    <div className="mb-5 sm:mb-6 flex justify-center">
                       <div
-                        className="w-20 h-20 rounded-2xl flex items-center justify-center"
+                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center"
                         style={{
                           background: `linear-gradient(135deg, ${step.color}20, transparent)`,
                           border: `1px solid ${step.color}30`
                         }}
                       >
-                        <IconComponent className="w-10 h-10" style={{ color: step.color }} />
+                        <IconComponent className="w-8 h-8 sm:w-10 sm:h-10" style={{ color: step.color }} />
                       </div>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-2xl font-bold text-white mb-3 text-center">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 text-center">
                       {step.title}
                     </h3>
 
                     {/* Duration */}
                     <div className="flex items-center justify-center gap-2 text-gray-400 mb-4">
                       <Clock className="w-4 h-4" />
-                      <span className="text-sm font-medium">{step.duration}</span>
+                      <span className="text-xs sm:text-sm font-medium">{step.duration}</span>
                     </div>
 
                     {/* Description */}
-                    <p className="text-center text-gray-400 text-sm mb-6 leading-relaxed">
+                    <p className="text-center text-gray-400 text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed px-2">
                       {step.description}
                     </p>
 
@@ -239,7 +239,7 @@ const ProcessusSection_v2 = () => {
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
 
                     {/* Bullets */}
-                    <ul className="space-y-3 mb-8 flex-grow">
+                    <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
                       {step.bullets.map((bullet, bulletIndex) => (
                         <motion.li
                           key={bulletIndex}
@@ -247,13 +247,13 @@ const ProcessusSection_v2 = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.4, delay: index * 0.15 + bulletIndex * 0.1 }}
-                          className="flex items-start gap-3"
+                          className="flex items-start gap-2 sm:gap-3"
                         >
                           <CheckCircle2
-                            className="w-5 h-5 flex-shrink-0 mt-0.5"
+                            className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5"
                             style={{ color: step.color }}
                           />
-                          <span className="text-sm text-gray-300 leading-relaxed">
+                          <span className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                             {bullet}
                           </span>
                         </motion.li>
@@ -263,7 +263,7 @@ const ProcessusSection_v2 = () => {
                     {/* CTA */}
                     <Button
                       asChild
-                      className="w-full group/btn transition-all duration-300 border-2"
+                      className="w-full group/btn transition-all duration-300 border-2 text-sm sm:text-base"
                       style={{
                         backgroundColor: step.number === 1 ? step.color : 'transparent',
                         borderColor: step.color,
@@ -271,8 +271,8 @@ const ProcessusSection_v2 = () => {
                       }}
                     >
                       <a href={step.ctaLink} className="flex items-center justify-center gap-2">
-                        {step.ctaText}
-                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                        <span className="whitespace-nowrap">{step.ctaText}</span>
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform flex-shrink-0" />
                       </a>
                     </Button>
                   </div>
@@ -288,26 +288,26 @@ const ProcessusSection_v2 = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-20"
+          className="text-center mt-12 sm:mt-16 md:mt-20"
         >
-          <h3 className="text-3xl md:text-4xl font-bold mb-8">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 px-4">
             <span className="text-white">Prêt à Démarrer Votre Transformation ?</span>
           </h3>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
             <Button
               asChild
               size="lg"
-              className="text-lg px-10 py-6 group/btn transition-all duration-300 border-0"
+              className="text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 group/btn transition-all duration-300 border-0 w-full sm:w-auto"
               style={{
                 background: `linear-gradient(135deg, ${COLORS.etape1}, ${COLORS.etape2})`,
                 color: '#FFFFFF',
                 boxShadow: `0 10px 40px ${COLORS.etape1}40`
               }}
             >
-              <a href="#contact" className="flex items-center gap-2">
-                Réserver Évaluation Gratuite
-                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+              <a href="#contact" className="flex items-center justify-center gap-2">
+                <span className="whitespace-nowrap">Réserver Évaluation Gratuite</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:translate-x-1 transition-transform flex-shrink-0" />
               </a>
             </Button>
 
@@ -315,15 +315,15 @@ const ProcessusSection_v2 = () => {
               asChild
               size="lg"
               variant="outline"
-              className="text-lg px-10 py-6 border-2 hover:bg-white/5"
+              className="text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 border-2 hover:bg-white/5 w-full sm:w-auto"
               style={{
                 borderColor: COLORS.etape2,
                 color: COLORS.etape2
               }}
             >
-              <a href="/portfolio" className="flex items-center gap-2">
-                Voir Projets Réalisés
-                <ArrowRight className="w-5 h-5" />
+              <a href="/portfolio" className="flex items-center justify-center gap-2">
+                <span className="whitespace-nowrap">Voir Projets Réalisés</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
               </a>
             </Button>
           </div>
