@@ -5,6 +5,26 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 
+// Investment Level Indicator Component
+const InvestmentLevel = ({ level, label }: { level: 1 | 2 | 3 | 4; label: string }) => {
+  const dollars = '$'.repeat(level);
+  const emptyDollars = '$'.repeat(4 - level);
+  const colors = {
+    1: 'text-green-400',
+    2: 'text-yellow-400',
+    3: 'text-orange-400',
+    4: 'text-red-400'
+  };
+
+  return (
+    <span className="inline-flex items-center gap-2 font-mono">
+      <span className={colors[level]}>{dollars}</span>
+      <span className="text-white/20">{emptyDollars}</span>
+      <span className="text-white/70 text-sm">({label})</span>
+    </span>
+  );
+};
+
 // Types
 interface FAQItem {
   id: string;
@@ -22,17 +42,17 @@ const faqData: FAQItem[] = [
     question: "Combien ça coûte concrètement d'intégrer l'IA dans ma PME, et quel retour sur investissement puis-je espérer ?",
     answer: `Le coût d'intégration de l'IA varie considérablement selon le type de projet :
 
-• Chatbot IA pour support client : 8 000 - 15 000 CHF (ROI en 3-6 mois)
-• Automatisation intelligente de documents : 10 000 - 25 000 CHF (ROI en 2-4 mois)
-• Assistant IA sur mesure : 15 000 - 40 000 CHF (ROI en 4-8 mois)
-• Plateforme IA complète : 40 000 - 150 000 CHF (ROI en 6-12 mois)
+• Chatbot IA pour support client : $ à $$ (ROI typique 3-6 mois)
+• Automatisation intelligente de documents : $$ (ROI typique 2-4 mois)
+• Assistant IA sur mesure : $$ à $$$ (ROI typique 4-8 mois)
+• Plateforme IA complète : $$$ à $$$$ (ROI typique 6-12 mois)
 
 En termes de retour sur investissement, nos clients PME constatent en moyenne :
 • 40-70% de réduction du temps passé sur les tâches répétitives
-• 15-25 heures économisées par semaine et par équipe
-• ROI moyen de 280% sur la première année
+• Gain de temps considérable chaque semaine
+• ROI positif constaté dès les premiers mois
 
-Le secret ? Commencer petit avec un projet "Quick Win" qui prouve la valeur rapidement, puis étendre progressivement. Chez DAINAMICS, notre offre Discovery (5-12K CHF) permet justement d'identifier le projet IA à plus fort impact pour votre entreprise avant tout investissement majeur.`
+Le secret ? Commencer petit avec un projet "Quick Win" qui prouve la valeur rapidement, puis étendre progressivement. Chez DAINAMICS, notre offre Discovery permet justement d'identifier le projet IA à plus fort impact pour votre entreprise avant tout investissement majeur.`
   },
   {
     id: 'ia-2',
@@ -229,7 +249,7 @@ Erreur #6 : Sous-estimer la maintenance
 Erreur #7 : Choisir le prestataire le moins cher
 → Un projet mal fait coûte 3x plus cher à corriger qu'à bien faire
 
-Notre conseil : Faites un audit préalable avec un expert. Notre offre Discovery (5-12K CHF) identifie précisément où l'IA apportera le plus de valeur dans VOTRE contexte, et établit une feuille de route réaliste.`
+Notre conseil : Faites un audit préalable avec un expert. Notre offre Discovery identifie précisément où l'IA apportera le plus de valeur dans VOTRE contexte, et établit une feuille de route réaliste.`
   },
   {
     id: 'ia-9',
@@ -281,7 +301,7 @@ Chez DAINAMICS, nous cochons toutes ces cases — et nous vous encourageons à p
 • Vous avez au moins UN processus répétitif clairement identifié
 • Vos données existent quelque part (même dans Excel)
 • Au moins une personne peut consacrer 2-3h/semaine au projet
-• Vous avez un budget minimum de 8-10K CHF pour un premier projet
+• Vous avez un budget dédié pour un premier projet
 
 ⚠️ Vous devez d'abord préparer si :
 • Vos données sont éparpillées sans aucune structure
@@ -343,22 +363,18 @@ Notre conseil : Commencez par le processus qui génère le plus de frustration d
     answer: `L'automatisation est l'investissement tech au ROI le plus rapide pour une PME. Voici les chiffres :
 
 Coûts typiques :
-• Automatisation simple (1-2 outils) : 2 000 - 5 000 CHF, ROI 2-3 mois
-• Workflow multi-étapes : 5 000 - 12 000 CHF, ROI 3-4 mois
-• Automatisation complexe (5+ systèmes) : 12 000 - 25 000 CHF, ROI 4-6 mois
-• Transformation processus complet : 25 000 - 50 000 CHF, ROI 6-9 mois
+• Automatisation simple (1-2 outils) : $ (ROI 2-3 mois)
+• Workflow multi-étapes : $ à $$ (ROI 3-4 mois)
+• Automatisation complexe (5+ systèmes) : $$ (ROI 4-6 mois)
+• Transformation processus complet : $$ à $$$ (ROI 6-9 mois)
 
 Exemple concret — Client DAINAMICS :
 PME de services, 25 employés
 • Problème : 20h/semaine passées sur facturation + relances manuelles
 • Solution : Automatisation complète avec Bexio + Make
-• Investissement : 8 500 CHF
-• Résultat : 20h → 2h/semaine = 18h économisées
-• ROI : Amorti en 7 semaines (coût horaire moyen 65 CHF)
-
-Formule ROI rapide :
-Heures économisées/mois × Coût horaire × 12 = Économie annuelle
-Investissement ÷ (Économie annuelle ÷ 12) = Mois avant ROI
+• Investissement : $
+• Résultat : 20h → 2h/semaine = gain de temps substantiel
+• ROI : Amorti en quelques semaines
 
 En moyenne, nos clients récupèrent leur investissement en 3-4 mois.`
   },
@@ -561,7 +577,7 @@ Nos garanties DAINAMICS :
 ✅ SLA maintenance : Intervention sous 4h ouvrées
 
 Statistique rassurante :
-Sur nos projets en production, le taux de disponibilité moyen est de 99.7% — soit moins de 1 jour d'interruption par an, généralement résolu en moins d'une heure.`
+Sur nos projets en production, le taux de disponibilité moyen est supérieur à 99% — soit moins de 1 jour d'interruption par an, généralement résolu en moins d'une heure.`
   },
   {
     id: 'auto-9',
@@ -647,7 +663,13 @@ Notre recommandation DAINAMICS :
 • Début / Budget serré → Make
 • Simplicité maximale → Zapier
 • Écosystème Microsoft → Power Automate
-• Données sensibles Suisse → n8n self-hosted`
+• Données sensibles Suisse → n8n self-hosted
+
+Légende investissement :
+$ = Accessible / Quick Win
+$$ = Investissement modéré
+$$$ = Projet structurant
+$$$$ = Projet d'envergure`
   },
 
   // PARTIE 3 : DÉVELOPPEMENT SOFTWARE
@@ -661,7 +683,7 @@ Choisissez un SaaS existant si :
 ✅ Votre besoin est standard (CRM basique, comptabilité, emailing)
 ✅ Le SaaS couvre >80% de vos besoins
 ✅ Vous avez <20 employés
-✅ Budget limité (<10K CHF)
+✅ Budget limité
 ✅ Besoin immédiat (pas le temps de développer)
 
 Choisissez le sur-mesure si :
@@ -673,8 +695,8 @@ Choisissez le sur-mesure si :
 ✅ Les données sensibles doivent rester en Suisse
 
 Calcul économique sur 5 ans :
-SaaS : 0 CHF initial + 12 000 CHF/an = 60 000 CHF total (location)
-Sur-mesure : 50 000 CHF initial + 8 000 CHF/an maintenance = 82 000 CHF total (propriétaire)
+SaaS : Pas d'investissement initial + coûts récurrents annuels (location)
+Sur-mesure : Investissement initial + maintenance annuelle réduite (propriétaire)
 
 Notre conseil :
 Commencez par des SaaS. Quand vous atteignez leurs limites (et vous le sentirez), passez au sur-mesure pour les processus critiques.
@@ -687,31 +709,27 @@ Chez DAINAMICS, nous développons souvent des solutions qui CONNECTENT vos SaaS 
     question: "Combien coûte réellement le développement d'une application sur mesure pour mon entreprise ?",
     answer: `Transparence totale — voici nos fourchettes réelles :
 
-Applications simples (20 000 - 50 000 CHF)
+Applications simples : $$ (délai 2-3 mois)
 • Dashboard de visualisation de données
 • Portail client basique (consultation, documents)
 • Application interne mono-fonction
-• Délai : 2-3 mois
 
-Applications intermédiaires (50 000 - 120 000 CHF)
+Applications intermédiaires : $$$ (délai 4-6 mois)
 • CRM métier sur mesure
 • Portail client avec self-service
 • Application de gestion (devis, commandes, facturation)
 • Intégrations avec 3-5 systèmes
-• Délai : 4-6 mois
 
-Applications complexes (120 000 - 250 000 CHF)
+Applications complexes : $$$ à $$$$ (délai 6-12 mois)
 • Plateforme B2B/B2C complète
 • Application avec IA intégrée
 • Multi-tenant (plusieurs entreprises clientes)
 • App mobile native en plus du web
-• Délai : 6-12 mois
 
-Plateformes avancées (250 000 - 500 000+ CHF)
+Plateformes avancées : $$$$ (délai 12-24 mois)
 • Marketplace
 • Solution SaaS commercialisable
 • Système ERP sur mesure
-• Délai : 12-24 mois
 
 Ce qui fait varier le prix :
 • Nombre d'écrans/fonctionnalités
@@ -731,17 +749,17 @@ Notre engagement : Devis détaillé gratuit sous 48h après un appel de cadrage.
 MVP (Minimum Viable Product) : 2-4 mois
 • Fonctionnalités essentielles uniquement
 • Objectif : valider le concept avec de vrais utilisateurs
-• Budget typique : 25 000 - 50 000 CHF
+• Budget typique : $ à $$
 
 V1 Production : 4-6 mois
 • Application complète mais périmètre maîtrisé
 • Prête pour utilisation quotidienne
-• Budget typique : 50 000 - 100 000 CHF
+• Budget typique : $$ à $$$
 
 Plateforme complète : 6-12 mois
 • Toutes fonctionnalités prévues
 • Intégrations multiples
-• Budget typique : 100 000 - 200 000 CHF
+• Budget typique : $$$ à $$$$
 
 Notre processus en phases :
 Mois 1 : Cadrage, UX, architecture
@@ -766,7 +784,7 @@ Notre conseil : Visez un MVP en 3 mois. Une application utilisée à 70% vaut mi
     answer: `Chaque option a ses avantages. Voici notre analyse objective :
 
 FREELANCES
-✅ Coût journalier plus bas (400-800 CHF/jour)
+✅ Coût journalier plus accessible
 ✅ Flexibilité, pas d'engagement long
 ❌ Risque de disponibilité (autres clients)
 ❌ Pas de backup si le freelance disparaît
@@ -778,7 +796,7 @@ AGENCE (comme DAINAMICS)
 ✅ Continuité garantie (pas de dépendance à une personne)
 ✅ Méthodologie éprouvée
 ✅ Responsabilité contractuelle claire
-❌ Coût journalier plus élevé (800-1500 CHF/jour)
+❌ Investissement plus conséquent
 Idéal pour : Projets structurants, besoin de fiabilité
 
 ÉQUIPE INTERNE
@@ -824,14 +842,14 @@ Types de maintenance :
 • Mise à jour des dépendances
 
 Budget annuel typique :
-• Application simple (50K) : 5 000 - 10 000 CHF/an (10-20%)
-• Application intermédiaire (100K) : 15 000 - 25 000 CHF/an (15-25%)
-• Application complexe (200K+) : 30 000 - 50 000 CHF/an (15-25%)
+• Application simple : $ (10-20% du projet initial)
+• Application intermédiaire : $$ (15-25% du projet initial)
+• Application complexe : $$$ (15-25% du projet initial)
 
 Nos formules DAINAMICS :
-• Pack Essentiel (500 CHF/mois) : Monitoring, mises à jour sécurité, support email
-• Pack Business (1 200 CHF/mois) : + 8h de développement/mois, support prioritaire
-• Pack Premium (2 500 CHF/mois) : + 20h de développement/mois, SLA 4h
+• Pack Essentiel : Support de base inclus (monitoring, mises à jour sécurité, support email)
+• Pack Business : Support prioritaire + évolutions (8h de développement/mois inclus)
+• Pack Premium : Accompagnement dédié (20h de développement/mois, SLA 4h)
 
 Conseil : Budgétez 15-20% du coût initial par an dès le départ. C'est un investissement, pas une dépense — une application maintenue dure 10+ ans.`
   },
@@ -878,9 +896,9 @@ Signaux qu'il est temps de quitter Excel :
 • "Mais c'est Jean-Pierre qui gère ça, lui seul sait comment ça marche"
 
 Budget typique migration Excel → Application :
-• Petit périmètre : 15 000 - 30 000 CHF
-• Périmètre moyen : 30 000 - 60 000 CHF
-• Périmètre large : 60 000 - 120 000 CHF`
+• Petit périmètre : $ à $$
+• Périmètre moyen : $$ à $$$
+• Périmètre large : $$$ à $$$$`
   },
   {
     id: 'dev-7',
@@ -1021,7 +1039,7 @@ Notre engagement : Applications conçues pour 5-10 ans de croissance, pas juste 
 Signaux POSITIFS (vous êtes prêt) :
 ✅ Vous avez un processus métier clair que vous voulez digitaliser
 ✅ Vous avez essayé des SaaS et ils ne correspondent pas
-✅ Vous avez un budget de 25K+ CHF disponible
+✅ Vous avez un budget dédié disponible
 ✅ Un sponsor interne peut consacrer 4-8h/semaine au projet
 ✅ Vous savez décrire le "succès" du projet (KPIs)
 ✅ Vos équipes sont prêtes à changer leurs habitudes
@@ -1181,8 +1199,35 @@ export default function FAQ() {
         </div>
       </section>
 
+      {/* Investment Legend */}
+      <section className="pb-8 border-b border-white/10">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="max-w-3xl mx-auto bg-white/[0.02] border border-white/10 rounded-xl p-6">
+            <h3 className="text-white font-semibold mb-4 text-center">Niveau d'investissement :</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-green-400 font-mono text-2xl">$</span>
+                <span className="text-white/70 text-sm text-center">Accessible</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-yellow-400 font-mono text-2xl">$$</span>
+                <span className="text-white/70 text-sm text-center">Modéré</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-orange-400 font-mono text-2xl">$$$</span>
+                <span className="text-white/70 text-sm text-center">Structurant</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-red-400 font-mono text-2xl">$$$$</span>
+                <span className="text-white/70 text-sm text-center">Majeur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Category Filters */}
-      <section className="pb-8">
+      <section className="pb-8 pt-8">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((cat) => {
