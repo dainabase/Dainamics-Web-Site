@@ -31,6 +31,7 @@ import ApplicationsWeb from "@/pages/solutions/ApplicationsWeb";
 import InMotionDigitalSignage from "@/pages/realisations/InMotionDigitalSignage";
 import LexaiaLegalAI from "@/pages/realisations/LexaiaLegalAI";
 import EnkiRealtyPlatform from "@/pages/realisations/EnkiRealtyPlatform";
+import DatavsnRetailAnalytics from "@/pages/realisations/DatavsnRetailAnalytics";
 
 // Problemes Pages
 import AutomatiserFacturation from "@/pages/problemes/AutomatiserFacturation";
@@ -75,6 +76,7 @@ function App() {
         <Route path="/realisations/inmotion-digital-signage" element={<InMotionDigitalSignage />} />
         <Route path="/realisations/lexaia-legal-ai" element={<LexaiaLegalAI />} />
         <Route path="/realisations/enki-realty-automation" element={<EnkiRealtyPlatform />} />
+        <Route path="/realisations/datavsn-retail-analytics" element={<DatavsnRetailAnalytics />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
 

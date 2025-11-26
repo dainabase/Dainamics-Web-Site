@@ -378,6 +378,62 @@ export const portfolioProjects: PortfolioProject[] = [
     year: 2024,
     duration: '6-9 semaines',
     team: ['Android Developer', 'Backend Developer', 'ML Engineer', 'DevOps', 'UI/UX Designer']
+  },
+  {
+    id: 'datavsn-retail-analytics',
+    title: 'DATAVSN - Ciblage Publicitaire IA & Analytics Retail',
+    client: 'DATAVSN SA',
+    industry: 'RetailTech / AdTech',
+    category: 'ia',
+    complexity: 'advanced',
+    description: 'Système intelligent combinant affichage dynamique (écrans, hologrammes 3D, totems) avec reconnaissance d\'audience IA. Analyse temps réel âge, sexe, émotions, temps d\'attention pour ciblage publicitaire automatique. Dashboard analytics 24/7 pour retailers.',
+    challenge: 'Les retailers n\'avaient aucune visibilité sur l\'efficacité de leurs affichages publicitaires. Communication non ciblée = gaspillage budget. Impossible de connaître le profil démographique des visiteurs. Pas d\'équivalent "Google Analytics" pour les points de vente physiques. ROI des campagnes d\'affichage impossible à mesurer.',
+    solution: 'Plateforme complète intégrant : hardware (Databox + caméra IA), logiciel embarqué (détection temps réel 100% anonyme), ciblage intelligent (8+ catégories démographiques), affichage multi-supports (écrans, hologrammes 3D, totems, vitrines), dashboard analytics my.datavsn.ch (métriques temps réel 24/7). Conformité totale RGPD/LPD avec certifications Swiss Made Software et Swiss Hosting.',
+    results: {
+      metric1: {
+        label: 'Catégories ciblage',
+        value: '8+',
+        icon: 'Target'
+      },
+      metric2: {
+        label: 'Temps réponse',
+        value: '< 1 sec',
+        icon: 'Zap'
+      },
+      metric3: {
+        label: 'Conformité RGPD',
+        value: '100%',
+        icon: 'CircleCheck'
+      }
+    },
+    technologies: [
+      'TensorFlow Lite',
+      'OpenCV',
+      'Python',
+      'NVIDIA Jetson',
+      'FastAPI',
+      'PostgreSQL',
+      'TimescaleDB',
+      'Redis',
+      'Next.js 14',
+      'React 18',
+      'TypeScript',
+      'Recharts',
+      'Docker',
+      'MQTT',
+      'Swiss Hosting'
+    ],
+    testimonial: {
+      quote: 'DATAVSN c\'est comme Google Analytics pour notre point de vente. On connaît enfin le profil de nos visiteurs et nos publicités s\'adaptent automatiquement. Le ROI de nos campagnes a explosé.',
+      author: 'Direction Innovation',
+      role: 'Responsable Projet',
+      company: 'DATAVSN'
+    },
+    featured: true,
+    year: 2024,
+    duration: '4-6 mois',
+    team: ['IA Engineer', 'Backend Developer', 'Frontend Developer', 'Data Analyst', 'Hardware Integrator'],
+    link: '/realisations/datavsn-retail-analytics'
   }
 ];
 
