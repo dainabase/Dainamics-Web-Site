@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Brain, Zap, Code, Search, MessageCircle, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import CursorEffects from '@/components/CursorEffects';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 
 // Investment Level Indicator Component
 const InvestmentLevel = ({ level, label }: { level: 1 | 2 | 3 | 4; label: string }) => {
@@ -1139,6 +1143,11 @@ export default function FAQ() {
   const [searchQuery, setSearchQuery] = useState('');
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
+  // Scroll to top on initial load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Filtrer les FAQ
   const filteredFAQ = faqData.filter(item => {
     const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
@@ -1161,9 +1170,14 @@ export default function FAQ() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0A0A0F]">
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90">
+      <EnhancedGridBackground />
+      <CursorEffects />
+      <Navigation />
+
+      <main className="min-h-screen">
+        {/* Hero Section */}
+        <section className="pt-32 pb-16 relative overflow-hidden">
         {/* Background effects */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#6366F1]/20 rounded-full blur-[150px] -z-10" />
         
@@ -1317,6 +1331,9 @@ export default function FAQ() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+
+      <Footer />
+    </div>
   );
 }
