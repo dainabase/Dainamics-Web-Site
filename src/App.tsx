@@ -5,18 +5,15 @@ import Portfolio from "@/pages/Portfolio";
 import Solutions from "@/pages/Solutions";
 import Realisations from "@/pages/Realisations";
 import Contact from "@/pages/Contact";
-import Pricing from "@/pages/Pricing";
 import Blog from "@/pages/Blog";
 import TermsOfService from "@/pages/TermsOfService";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import CookiesPolicy from "@/pages/CookiesPolicy";
 import NotFound from "@/pages/NotFound";
 
-// Expertise Pages
-import Expertise from "@/pages/Expertise";
+// Expertise Pages (IA et Automatisation seulement)
 import ExpertiseIA from "@/pages/ExpertiseIA";
 import ExpertiseAutomatisation from "@/pages/ExpertiseAutomatisation";
-import ExpertiseDeveloppement from "@/pages/ExpertiseDeveloppement";
 
 // Services Pages
 import ServicesDeveloppement from "@/pages/services/Developpement";
@@ -43,13 +40,6 @@ import DigitaliserProcessus from "@/pages/problemes/DigitaliserProcessus";
 // Solutions Pages
 import QuickWins from "@/pages/QuickWins";
 import Industries from "@/pages/Industries";
-
-// Resource Pages
-import Glossary from "@/pages/Glossary";
-import UseCases from "@/pages/UseCases";
-
-// Process Page
-import Process from "@/pages/Process";
 
 import { Toaster } from "@/components/ui/toaster";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -85,14 +75,11 @@ function App() {
         <Route path="/realisations/lexaia-legal-ai" element={<LexaiaLegalAI />} />
         <Route path="/realisations/enki-realty-automation" element={<EnkiRealtyPlatform />} />
         <Route path="/realisations/datavsn-retail-analytics" element={<DatavsnRetailAnalytics />} />
-        <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
 
-        {/* Expertise Routes */}
-        <Route path="/expertise" element={<Expertise />} />
+        {/* Expertise Routes (IA et Automatisation uniquement) */}
         <Route path="/expertise/ia" element={<ExpertiseIA />} />
         <Route path="/expertise/automatisation" element={<ExpertiseAutomatisation />} />
-        <Route path="/expertise/developpement" element={<ExpertiseDeveloppement />} />
 
         {/* Services Routes */}
         <Route path="/services/developpement" element={<ServicesDeveloppement />} />
@@ -110,11 +97,6 @@ function App() {
 
         {/* Resources Routes */}
         <Route path="/blog" element={<Blog />} />
-        <Route path="/glossary" element={<Glossary />} />
-        <Route path="/use-cases" element={<UseCases />} />
-
-        {/* Process */}
-        <Route path="/process" element={<Process />} />
 
         {/* Legal Pages */}
         <Route path="/terms" element={<TermsOfService />} />
