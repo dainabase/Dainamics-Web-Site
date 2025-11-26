@@ -80,6 +80,44 @@ const FeaturedProjects: React.FC = () => {
         glow: 'rgba(16, 228, 255, 0.4)',
       },
     },
+    {
+      id: 3,
+      title: 'KUNZ Digital Signage',
+      subtitle: 'Vitrines Intelligentes avec Détection IA',
+      category: 'RetailTech | IoT | Plateforme Sur Mesure',
+      description:
+        "Système de signalisation numérique interactive pour retail de luxe. 9 vitrines autonomes avec détection de présence par IA (ML Kit). Intégration invisible derrière verre sans tain (spy mirror chrome 30%). Plateforme enterprise-grade avec gestion centralisée à distance.",
+      stack: [
+        'Kotlin Android',
+        'Google ML Kit',
+        'CameraX API',
+        'Node.js 20',
+        'React 18',
+        'PostgreSQL',
+        'Socket.IO',
+        'TypeScript',
+      ],
+      results: [
+        '9 vitrines connectées avec détection IA',
+        'Détection >85% précision derrière verre sans tain',
+        'Architecture offline-first garantie',
+        'Synchronisation temps réel (WebSockets)',
+        'Dashboard gestion centralisée',
+      ],
+      impact: [
+        '-70% coûts opérationnels',
+        '99.9% uptime système',
+        'Déploiement contenu <5min',
+        'Gestion 100% à distance (zéro déplacement)',
+      ],
+      screenshot: '',
+      color: {
+        primary: '#D4AF37',
+        secondary: '#B8941F',
+        gradient: 'from-[#D4AF37] to-[#B8941F]',
+        glow: 'rgba(212, 175, 55, 0.4)',
+      },
+    },
   ];
 
   const containerVariants = {
