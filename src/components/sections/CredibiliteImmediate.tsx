@@ -311,9 +311,9 @@ const CredibiliteImmediate: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center mb-10"
           >
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="text-white">De la PME aux Groupes Internationaux.</span>
-            </h3>
+            </h2>
           </motion.div>
 
           {/* Carousel logos */}
