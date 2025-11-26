@@ -1,9 +1,9 @@
 // src/data/portfolio.ts
 
-import { 
-  Brain, 
-  Building, 
-  TrendingUp, 
+import {
+  Brain,
+  Building,
+  TrendingUp,
   Award,
   Code,
   Zap,
@@ -14,7 +14,9 @@ import {
   Clock,
   DollarSign,
   CircleCheck,  // CORRECTION: CheckCircle → CircleCheck (icône correcte dans Lucide React v0.263.1)
-  Star
+  Star,
+  Monitor,
+  Activity
 } from 'lucide-react';
 
 /**
@@ -325,6 +327,57 @@ export const portfolioProjects: PortfolioProject[] = [
     year: 2024,
     duration: '3 mois',
     team: ['IA Engineer', 'Frontend Dev', 'Backend Dev', 'UX Designer']
+  },
+  {
+    id: 'kunz-digital-signage',
+    title: 'KUNZ Digital Signage - Vitrines Intelligentes',
+    client: 'HMF Corporation SA - HYPERVISUAL',
+    industry: 'RetailTech',
+    category: 'developpement',
+    complexity: 'advanced',
+    description: 'Système de signalisation numérique interactive pour retail de luxe. 9 vitrines autonomes avec détection de présence par IA (ML Kit). Intégration invisible derrière verre sans tain (spy mirror chrome 30%).',
+    challenge: 'Vitrines statiques échouaient à capter l\'attention. Gestion complexe de 9 systèmes indépendants nécessitant interventions sur site. Contrainte technique majeure: détection derrière verre sans tain (spy mirror chrome 30%). Besoin d\'une solution enterprise-grade avec gestion centralisée à distance.',
+    solution: 'Plateforme enterprise complète: 1) Application Android avec détection faciale ML Kit (>85% précision derrière verre sans tain). 2) Backend Node.js avec synchronisation temps réel (Socket.IO). 3) Dashboard React pour gestion centralisée à distance. 4) Architecture offline-first garantissant fonctionnement sans internet. 5) Système de mise à jour OTA (Over-The-Air) pour déploiement contenu instantané. 6) Analytics détaillés (taux d\'engagement, heures de pointe, performances détection).',
+    results: {
+      metric1: {
+        label: 'Vitrines connectées',
+        value: '9',
+        icon: 'Monitor'
+      },
+      metric2: {
+        label: 'Coûts opérationnels',
+        value: '-70%',
+        icon: 'TrendingUp'
+      },
+      metric3: {
+        label: 'Uptime système',
+        value: '99.9%',
+        icon: 'Activity'
+      }
+    },
+    technologies: [
+      'Kotlin Android',
+      'Google ML Kit',
+      'CameraX API',
+      'Node.js 20',
+      'Express',
+      'PostgreSQL 16',
+      'Socket.IO',
+      'React 18',
+      'TypeScript',
+      'Tailwind CSS',
+      'JWT Auth'
+    ],
+    testimonial: {
+      quote: 'Une transformation majeure de nos vitrines. La détection IA fonctionne parfaitement même derrière le verre sans tain. Gestion 100% à distance, zéro intervention technique.',
+      author: 'Direction HYPERVISUAL',
+      role: 'Responsable Technique',
+      company: 'HMF Corporation SA'
+    },
+    featured: true,
+    year: 2024,
+    duration: '6-9 semaines',
+    team: ['Android Developer', 'Backend Developer', 'ML Engineer', 'DevOps', 'UI/UX Designer']
   }
 ];
 
