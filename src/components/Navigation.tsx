@@ -13,6 +13,7 @@ interface NavItem {
 interface ProblemeItem {
   label: string;
   href: string;
+  isNew?: boolean;
 }
 
 interface ServiceItem {
@@ -34,12 +35,19 @@ const servicesSolutions: ServiceItem[] = [
   { label: 'Applications Mobiles', href: '/solutions/applications-mobiles', isNew: true },
 ];
 
-const problemesItems: ProblemeItem[] = [
+// Problèmes réorganisés: Automatisation + Développement
+const problemesAutomatisation: ProblemeItem[] = [
   { label: 'Facturation manuelle', href: '/automatiser-facturation' },
   { label: 'Support client saturé', href: '/reduire-charge-support' },
   { label: 'Documents à traiter', href: '/traiter-documents-automatiquement' },
   { label: 'Stocks imprévisibles', href: '/optimiser-stocks-predictions' },
   { label: 'Processus manuels', href: '/digitaliser-processus-metier' },
+];
+
+const problemesDeveloppement: ProblemeItem[] = [
+  { label: 'Excel ne suffit plus', href: '/solutions/dashboards', isNew: true },
+  { label: 'Clients frustrés', href: '/solutions/portails-clients', isNew: true },
+  { label: 'Équipe déconnectée', href: '/solutions/applications-mobiles', isNew: true },
 ];
 
 const navItems: NavItem[] = [
@@ -190,17 +198,43 @@ export function Navigation() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-64 bg-[#050510]/95 backdrop-blur-md border border-[#7B2FFF]/30 rounded-xl p-2 shadow-2xl"
+                    className="absolute top-full left-0 mt-2 w-72 bg-[#050510]/95 backdrop-blur-md border border-[#7B2FFF]/30 rounded-xl p-2 shadow-2xl"
                   >
-                    {problemesItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        to={item.href}
-                        className="block px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+                    {/* Problèmes Automatisation */}
+                    <div className="mb-2">
+                      <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Automatisation</span>
+                      {problemesAutomatisation.map((item) => (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          className="block px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                    
+                    {/* Séparateur */}
+                    <div className="border-t border-white/10 my-2" />
+                    
+                    {/* Problèmes Développement */}
+                    <div>
+                      <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Développement</span>
+                      {problemesDeveloppement.map((item) => (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          className="flex items-center justify-between px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                        >
+                          <span>{item.label}</span>
+                          {item.isNew && (
+                            <span className="text-[10px] bg-[#FF5A00] text-white px-1.5 py-0.5 rounded-full font-medium">
+                              NEW
+                            </span>
+                          )}
+                        </Link>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -370,9 +404,11 @@ export function Navigation() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="pl-4 space-y-2 mt-2"
+                        className="pl-4 space-y-1 mt-2"
                       >
-                        {problemesItems.map((item) => (
+                        {/* Automatisation */}
+                        <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Automatisation</span>
+                        {problemesAutomatisation.map((item) => (
                           <Link
                             key={item.href}
                             to={item.href}
@@ -380,6 +416,27 @@ export function Navigation() {
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {item.label}
+                          </Link>
+                        ))}
+                        
+                        {/* Séparateur mobile */}
+                        <div className="border-t border-white/10 my-2 mx-4" />
+                        
+                        {/* Développement */}
+                        <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Développement</span>
+                        {problemesDeveloppement.map((item) => (
+                          <Link
+                            key={item.href}
+                            to={item.href}
+                            className="flex items-center justify-between text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 rounded-lg hover:bg-white/5 transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <span>{item.label}</span>
+                            {item.isNew && (
+                              <span className="text-[10px] bg-[#FF5A00] text-white px-1.5 py-0.5 rounded-full font-medium">
+                                NEW
+                              </span>
+                            )}
                           </Link>
                         ))}
                       </motion.div>
