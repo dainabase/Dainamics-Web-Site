@@ -1,11 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Lightbulb, 
-  Zap, 
-  Rocket, 
-  Users, 
-  Check, 
+import {
+  Lightbulb,
+  Zap,
+  Rocket,
+  Check,
   ArrowRight,
   Shield,
   Clock,
@@ -98,28 +97,6 @@ const PricingSection: React.FC = () => {
       },
       color: '#FF5A00'
     },
-    {
-      id: 'team',
-      icon: <Users className="w-7 h-7" />,
-      name: 'Extension Équipe',
-      price: '7K€',
-      priceDetail: '/mois par dev',
-      duration: 'Min. 3 mois',
-      description: 'Développeurs IA/ML expérimentés intégrés à votre équipe',
-      features: [
-        'Développeurs seniors IA/ML',
-        'Intégration équipe complète',
-        'Méthodologie agile',
-        'Reporting hebdomadaire',
-        'Flexibilité ressources',
-        'Pas de frais de recrutement'
-      ],
-      cta: {
-        text: 'Voir profils',
-        link: '/services/equipe'
-      },
-      color: '#0AFF9D'
-    }
   ];
 
   const containerVariants = {
@@ -180,7 +157,7 @@ const PricingSection: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
         >
           {tiers.map((tier) => (
             <motion.div
