@@ -54,10 +54,18 @@ import Process from "@/pages/Process";
 import { Toaster } from "@/components/ui/toaster";
 import ScrollToTop from "@/components/ScrollToTop";
 
+// DEV ONLY - Menu pour voir les pages orphelines
+import DevMenu from "@/components/DevMenu";
+
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      
+      {/* DEV MENU - Bouton flottant pour accéder aux pages orphelines */}
+      {/* TODO: Supprimer avant mise en production */}
+      <DevMenu />
+      
       <Routes>
         {/* Main Pages */}
         <Route path="/" element={<Index />} />
