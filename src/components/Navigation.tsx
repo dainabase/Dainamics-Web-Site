@@ -74,15 +74,15 @@ export function Navigation() {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
-          <div className="flex space-x-4 xl:space-x-6">
+          <div className="flex items-center space-x-4 xl:space-x-6">
             {/* Dropdown Problèmes */}
             <div
-              className="relative"
+              className="relative flex items-center"
               onMouseEnter={() => setProblemesOpen(true)}
               onMouseLeave={() => setProblemesOpen(false)}
             >
               <button className={cn(
-                "flex items-center gap-1 text-dainamics-light/80 hover:text-dainamics-light font-medium transition-colors duration-200 relative text-sm xl:text-base whitespace-nowrap py-2",
+                "flex items-center gap-1 text-dainamics-light/80 hover:text-dainamics-light font-medium transition-colors duration-200 text-sm xl:text-base whitespace-nowrap",
                 problemesOpen && "text-dainamics-light"
               )}>
                 Problèmes
