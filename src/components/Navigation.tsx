@@ -18,12 +18,20 @@ interface ProblemeItem {
 interface ServiceItem {
   label: string;
   href: string;
+  isNew?: boolean;
 }
 
-const servicesItems: ServiceItem[] = [
+// Services réorganisés: Piliers principaux + Solutions concrètes
+const servicesPiliers: ServiceItem[] = [
   { label: 'Développement Software', href: '/services/developpement' },
   { label: 'Intelligence Artificielle', href: '/expertise/ia' },
   { label: 'Automatisation', href: '/expertise/automatisation' },
+];
+
+const servicesSolutions: ServiceItem[] = [
+  { label: 'Dashboards Sur Mesure', href: '/solutions/dashboards', isNew: true },
+  { label: 'Portails Clients', href: '/solutions/portails-clients', isNew: true },
+  { label: 'Applications Mobiles', href: '/solutions/applications-mobiles', isNew: true },
 ];
 
 const problemesItems: ProblemeItem[] = [
@@ -114,17 +122,43 @@ export function Navigation() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-64 bg-[#050510]/95 backdrop-blur-md border border-[#FF5A00]/30 rounded-xl p-2 shadow-2xl"
+                    className="absolute top-full left-0 mt-2 w-72 bg-[#050510]/95 backdrop-blur-md border border-[#FF5A00]/30 rounded-xl p-2 shadow-2xl"
                   >
-                    {servicesItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        to={item.href}
-                        className="block px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+                    {/* Piliers principaux */}
+                    <div className="mb-2">
+                      <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Nos Piliers</span>
+                      {servicesPiliers.map((item) => (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          className="block px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                    
+                    {/* Séparateur */}
+                    <div className="border-t border-white/10 my-2" />
+                    
+                    {/* Solutions concrètes */}
+                    <div>
+                      <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Solutions</span>
+                      {servicesSolutions.map((item) => (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          className="flex items-center justify-between px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                        >
+                          <span>{item.label}</span>
+                          {item.isNew && (
+                            <span className="text-[10px] bg-[#FF5A00] text-white px-1.5 py-0.5 rounded-full font-medium">
+                              NEW
+                            </span>
+                          )}
+                        </Link>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -278,9 +312,11 @@ export function Navigation() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="pl-4 space-y-2 mt-2"
+                        className="pl-4 space-y-1 mt-2"
                       >
-                        {servicesItems.map((item) => (
+                        {/* Piliers */}
+                        <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Nos Piliers</span>
+                        {servicesPiliers.map((item) => (
                           <Link
                             key={item.href}
                             to={item.href}
@@ -288,6 +324,27 @@ export function Navigation() {
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {item.label}
+                          </Link>
+                        ))}
+                        
+                        {/* Séparateur mobile */}
+                        <div className="border-t border-white/10 my-2 mx-4" />
+                        
+                        {/* Solutions */}
+                        <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Solutions</span>
+                        {servicesSolutions.map((item) => (
+                          <Link
+                            key={item.href}
+                            to={item.href}
+                            className="flex items-center justify-between text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 rounded-lg hover:bg-white/5 transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <span>{item.label}</span>
+                            {item.isNew && (
+                              <span className="text-[10px] bg-[#FF5A00] text-white px-1.5 py-0.5 rounded-full font-medium">
+                                NEW
+                              </span>
+                            )}
                           </Link>
                         ))}
                       </motion.div>
