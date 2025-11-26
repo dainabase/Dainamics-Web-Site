@@ -11,6 +11,8 @@ import {
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import CursorEffects from '@/components/CursorEffects';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import {
   realisations,
   problemFilters,
@@ -145,7 +147,9 @@ const Realisations = () => {
   }, [problemFilter, industryFilter]);
 
   return (
-    <div className="min-h-screen bg-[#050510]">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90">
+      <EnhancedGridBackground />
+      <CursorEffects />
       <Navigation />
 
       <main>

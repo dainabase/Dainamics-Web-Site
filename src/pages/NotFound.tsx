@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import EnhancedGridBackground from "@/components/EnhancedGridBackground";
+import CursorEffects from "@/components/CursorEffects";
 
 const NotFound = () => {
   const location = useLocation();
@@ -18,8 +19,9 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-dainamics-background flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 flex flex-col">
       <EnhancedGridBackground />
+      <CursorEffects />
       <Navigation />
       
       <div className="flex-grow flex items-center justify-center px-4 py-32">

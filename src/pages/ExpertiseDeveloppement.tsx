@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
+import CursorEffects from '@/components/CursorEffects';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -60,8 +61,9 @@ export default function ExpertiseDeveloppement() {
   const devColor = categoryColors['developpement']; // #FF5A00 (ORANGE)
 
   return (
-    <div className="min-h-screen bg-dainamics-background text-dainamics-light">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 text-dainamics-light">
       <EnhancedGridBackground />
+      <CursorEffects />
       <Navigation />
       
       {/* Sticky Progress Bar */}

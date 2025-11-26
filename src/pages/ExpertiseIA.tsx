@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
+import CursorEffects from '@/components/CursorEffects';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -59,8 +60,9 @@ export default function ExpertiseIA() {
     : pillar.technologies.filter(tech => tech.proficiency === selectedProficiency);
 
   return (
-    <div className="min-h-screen bg-dainamics-background text-dainamics-light" ref={containerRef}>
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 text-dainamics-light" ref={containerRef}>
       <EnhancedGridBackground />
+      <CursorEffects />
       <Navigation />
       
       <HeroSection pillar={pillar} iaColor={iaColor} />

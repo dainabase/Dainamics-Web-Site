@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
+import CursorEffects from '@/components/CursorEffects';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -51,8 +52,9 @@ const pricingPlans = [
 
 export default function Pricing() {
   return (
-    <div className="min-h-screen bg-dainamics-background text-dainamics-light">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 text-dainamics-light">
       <EnhancedGridBackground />
+      <CursorEffects />
       <Navigation />
 
       <section className="pt-32 pb-16 px-4 md:px-8 lg:px-16">

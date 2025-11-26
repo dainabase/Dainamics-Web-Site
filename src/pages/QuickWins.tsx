@@ -5,6 +5,7 @@ import { ArrowRight, Zap, TrendingUp, Clock, CheckCircle2, Target, Rocket, Spark
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
+import CursorEffects from '@/components/CursorEffects';
 import { quickWinSolutions } from '@/data/solutions';
 
 export default function QuickWins() {
@@ -98,8 +99,9 @@ export default function QuickWins() {
   };
 
   return (
-    <div className="min-h-screen bg-dainamics-background">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90">
       <EnhancedGridBackground />
+      <CursorEffects />
       <Navigation />
 
       <main className="relative z-10">

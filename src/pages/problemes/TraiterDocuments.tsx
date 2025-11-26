@@ -1,6 +1,8 @@
 import { Scan, Brain, AlertTriangle, Database } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import CursorEffects from '@/components/CursorEffects';
+import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { ProblemeHero } from '@/components/problemes/ProblemeHero';
 import { ProblemePointsDouleur } from '@/components/problemes/ProblemePointsDouleur';
 import { ProblemeSolution } from '@/components/problemes/ProblemeSolution';
@@ -60,7 +62,9 @@ const casClient = {
 
 const TraiterDocuments = () => {
   return (
-    <div className="min-h-screen bg-[#050510]">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90">
+      <EnhancedGridBackground />
+      <CursorEffects />
       <Navigation />
 
       <main>
