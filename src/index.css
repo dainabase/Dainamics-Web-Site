@@ -520,8 +520,8 @@
 /* Items individuels avec fond subtil */
 .logo-item {
   flex-shrink: 0;
-  width: 240px;
-  height: 108px;
+  width: 280px;
+  height: 126px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -581,8 +581,8 @@
   }
 
   .logo-item {
-    width: 216px;
-    height: 97px;
+    width: 240px;
+    height: 108px;
     padding: 0.75rem;
   }
 
@@ -617,8 +617,8 @@
   }
 
   .logo-item {
-    width: 192px;
-    height: 86px;
+    width: 220px;
+    height: 99px;
     padding: 0.5rem;
     background: rgba(255, 255, 255, 0.06);
   }
