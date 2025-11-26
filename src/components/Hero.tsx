@@ -57,20 +57,18 @@ export default function Hero() {
               variants={isMobile ? undefined : fadeInUp}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 md:mb-8 tracking-tight leading-tight"
             >
-              <span className="text-dainamics-light">Vous Perdez</span>
+              <span className="text-dainamics-light">Vos Outils Actuels</span>
               <br />
-              <span className="text-gradient-primary glow text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">15 Heures</span>
-              <br />
-              <span className="text-dainamics-light">Par Semaine</span>
+              <span className="text-gradient-primary glow text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">Vous Freinent</span>
             </motion.h1>
 
             <motion.p
               variants={isMobile ? undefined : fadeInUp}
               className="text-dainamics-light/70 text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 md:mb-10 font-light tracking-wide"
             >
-              Facturation. Emails. Saisie.
+              Processus manuels. Logiciels inadaptés. Données éparpillées.
               <br />
-              <span className="text-dainamics-secondary font-medium">On automatise tout ça.</span>
+              <span className="text-dainamics-secondary font-medium">On construit les solutions qui vous font gagner.</span>
             </motion.p>
 
             <motion.div
