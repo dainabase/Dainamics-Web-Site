@@ -1,659 +1,406 @@
-import { useState, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import {
+  Zap,
+  Code2,
+  Users,
+  ArrowRight,
+  MessageSquare,
+  Lightbulb,
+  Rocket,
+  Wallet,
+  Clock,
+  Target,
+  Globe,
+  Check
+} from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import EnhancedGridBackground from '@/components/EnhancedGridBackground';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import {
-  solutions,
-  quickWinSolutions,
-  solutionsByCategory,
-  solutionsStats,
-  type Solution
-} from '@/data/solutions';
-import { iconMapper } from '@/utils/iconMapper';
-import {
-  ArrowRight,
-  Sparkles,
-  Filter,
-  X,
-  CheckCircle,
-  TrendingUp,
-  Clock,
-  DollarSign,
-  Zap,
-  ChevronDown,
-  Rocket
-} from 'lucide-react';
 
-const COLORS = {
-  primary: '#6366F1',
-  cta: '#FF5A00',
-  accent: '#10E4FF',
-  success: '#10B981'
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-const CATEGORY_COLORS = {
-  'ia': '#6366F1',
-  'automatisation': '#10E4FF',
-  'developpement': '#FF5A00'
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
 };
 
-const COMPLEXITY_COLORS = {
-  'starter': '#10B981',
-  'intermediate': '#F59E0B',
-  'advanced': '#EF4444'
-};
+const formules = [
+  {
+    icon: Zap,
+    title: "Quick Win",
+    tagline: "Un problème. Une solution. Vite fait.",
+    price: "8 000€ - 15 000€",
+    duration: "2-4 semaines",
+    roi: "ROI 3-6 mois",
+    color: "#0AFF9D",
+    features: [
+      "Chatbot support client",
+      "Automatisation facturation",
+      "Extraction documents",
+      "Dashboards analytics"
+    ],
+    ideal: "Résoudre UN problème précis rapidement",
+    cta: "Voir les Quick Wins",
+    link: "/contact"
+  },
+  {
+    icon: Code2,
+    title: "Projet Custom",
+    tagline: "Votre outil. Sur mesure. Exactement.",
+    price: "25 000€ - 75 000€",
+    duration: "2-6 mois",
+    roi: "Transformation durable",
+    color: "#7B2FFF",
+    popular: true,
+    features: [
+      "Plateforme métier complète",
+      "CRM sur-mesure",
+      "Application mobile",
+      "Intégrations complexes"
+    ],
+    ideal: "Digitaliser entièrement un processus",
+    cta: "Découvrir",
+    link: "/contact"
+  },
+  {
+    icon: Users,
+    title: "Équipe Dédiée",
+    tagline: "Vos projets. Nos experts.",
+    price: "7 000€/mois",
+    duration: "Flexible",
+    roi: "Scalable",
+    color: "#10E4FF",
+    features: [
+      "Développeurs seniors",
+      "Chef de projet dédié",
+      "Méthodologie agile",
+      "Montée en charge rapide"
+    ],
+    ideal: "Projets multiples ou continus",
+    cta: "En savoir plus",
+    link: "/contact"
+  }
+];
 
-export default function Solutions() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedComplexity, setSelectedComplexity] = useState<string | null>(null);
-  const [selectedSolution, setSelectedSolution] = useState<Solution | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const etapes = [
+  {
+    num: "01",
+    icon: MessageSquare,
+    title: "Analyser",
+    duration: "30 min gratuit",
+    description: "On comprend vos défis, vos contraintes, vos objectifs. Sans jargon.",
+    color: "#7B2FFF"
+  },
+  {
+    num: "02",
+    icon: Lightbulb,
+    title: "Prototyper",
+    duration: "1 semaine",
+    description: "On vous montre concrètement à quoi ressemblera la solution.",
+    color: "#10E4FF"
+  },
+  {
+    num: "03",
+    icon: Rocket,
+    title: "Livrer",
+    duration: "2-4 semaines",
+    description: "On déploie, on forme vos équipes, on reste disponibles.",
+    color: "#0AFF9D"
+  }
+];
 
-  const filteredSolutions = solutions.filter(solution => {
-    const categoryMatch = !selectedCategory || solution.category === selectedCategory;
-    const complexityMatch = !selectedComplexity || solution.complexity === selectedComplexity;
-    return categoryMatch && complexityMatch;
-  });
+const avantages = [
+  {
+    icon: Wallet,
+    title: "Adapté PME",
+    description: "Solutions proportionnées à vos besoins et votre budget. Pas de projet usine à gaz."
+  },
+  {
+    icon: Clock,
+    title: "Rapide",
+    description: "Livraison Quick Wins en 2-4 semaines. Vous voyez les résultats vite."
+  },
+  {
+    icon: Target,
+    title: "Pragmatique",
+    description: "ROI d'abord. Pas de buzzwords. On mesure les gains concrètement."
+  },
+  {
+    icon: Globe,
+    title: "Multilingue",
+    description: "FR, DE, EN, IT. On travaille avec toute l'Europe."
+  }
+];
 
-  const openSolutionModal = (solution: Solution) => {
-    setSelectedSolution(solution);
-    setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedSolution(null);
-    document.body.style.overflow = 'unset';
-  };
-
+const Solutions = () => {
   return (
-    <div className="min-h-screen bg-dainamics-background text-dainamics-light overflow-hidden">
+    <div className="min-h-screen bg-[#050510]">
       <Navigation />
-      <EnhancedGridBackground />
 
-      <HeroSection />
-      <StatsSection />
-      <FiltersSection
-        selectedCategory={selectedCategory}
-        selectedComplexity={selectedComplexity}
-        onCategoryChange={setSelectedCategory}
-        onComplexityChange={setSelectedComplexity}
-      />
+      <main>
+        <section className="pt-32 pb-20 md:pt-40 md:pb-32">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="max-w-4xl mx-auto text-center"
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+            >
+              <motion.h1
+                className="text-4xl md:text-6xl font-bold text-white mb-6"
+                variants={fadeInUp}
+              >
+                Des solutions adaptées à{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7B2FFF] to-[#10E4FF]">
+                  votre réalité
+                </span>
+              </motion.h1>
+              <motion.p
+                className="text-xl text-white/60 max-w-2xl mx-auto"
+                variants={fadeInUp}
+              >
+                Pas de projet usine à gaz. On dimensionne l'intervention
+                à votre problème et votre budget. Du Quick Win en 2 semaines
+                à la transformation complète.
+              </motion.p>
+            </motion.div>
+          </div>
+        </section>
 
-      {!selectedCategory && !selectedComplexity && (
-        <QuickWinsSection onSolutionClick={openSolutionModal} />
-      )}
+        <section className="py-20 md:py-32">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              {formules.map((formule, index) => {
+                const Icon = formule.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className={`relative bg-white/[0.03] border rounded-2xl p-8 transition-all duration-300 hover:bg-white/[0.06] hover:-translate-y-2 ${
+                      formule.popular
+                        ? 'border-[#7B2FFF]/50 shadow-lg shadow-[#7B2FFF]/20'
+                        : 'border-white/10 hover:border-white/20'
+                    }`}
+                  >
+                    {formule.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#7B2FFF] rounded-full text-sm font-medium text-white">
+                        Populaire
+                      </div>
+                    )}
 
-      <SolutionsGrid
-        solutions={filteredSolutions}
-        onSolutionClick={openSolutionModal}
-      />
+                    <div
+                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
+                      style={{ backgroundColor: `${formule.color}20` }}
+                    >
+                      <Icon className="w-7 h-7" style={{ color: formule.color }} />
+                    </div>
 
-      <CTASection />
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      {formule.title}
+                    </h3>
+                    <p className="text-white/50 mb-6">
+                      "{formule.tagline}"
+                    </p>
 
-      <SolutionModal
-        solution={selectedSolution}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-      />
+                    <div className="mb-6">
+                      <div className="text-3xl font-bold text-white mb-1">
+                        {formule.price}
+                      </div>
+                      <div className="flex items-center gap-4 text-sm text-white/40">
+                        <span>{formule.duration}</span>
+                        <span>•</span>
+                        <span>{formule.roi}</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 mb-6">
+                      {formule.features.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <Check className="w-4 h-4 text-[#0AFF9D] flex-shrink-0" />
+                          <span className="text-white/70 text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="text-sm text-white/40 mb-6 pb-6 border-b border-white/10">
+                      <span className="text-white/60">Idéal pour :</span> {formule.ideal}
+                    </div>
+
+                    <Link
+                      to={formule.link}
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-lg font-medium transition-all duration-300"
+                      style={{
+                        backgroundColor: formule.popular ? '#FF5A00' : 'transparent',
+                        border: formule.popular ? 'none' : '1px solid rgba(255,255,255,0.2)',
+                        color: 'white'
+                      }}
+                    >
+                      {formule.cta}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-20 md:py-32 bg-white/[0.02]">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center mb-16"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                3 étapes. Pas de surprise.
+              </h2>
+              <p className="text-white/60 text-lg max-w-xl mx-auto">
+                Un processus simple et transparent, du premier appel à la mise en production.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto relative"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <div className="hidden md:block absolute top-24 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-[#7B2FFF] via-[#10E4FF] to-[#0AFF9D] opacity-30" />
+
+              {etapes.map((etape, index) => {
+                const Icon = etape.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="relative text-center"
+                  >
+                    <div className="relative inline-block mb-6">
+                      <div
+                        className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto"
+                        style={{ backgroundColor: `${etape.color}15` }}
+                      >
+                        <Icon className="w-10 h-10" style={{ color: etape.color }} />
+                      </div>
+                      <div
+                        className="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                        style={{ backgroundColor: etape.color }}
+                      >
+                        {etape.num}
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      {etape.title}
+                    </h3>
+                    <div
+                      className="text-sm font-medium mb-3"
+                      style={{ color: etape.color }}
+                    >
+                      {etape.duration}
+                    </div>
+                    <p className="text-white/50">
+                      {etape.description}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-20 md:py-32">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center mb-16"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Pourquoi DAINAMICS ?
+              </h2>
+            </motion.div>
+
+            <motion.div
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              {avantages.map((avantage, index) => {
+                const Icon = avantage.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="bg-white/[0.03] border border-white/10 rounded-xl p-6 text-center hover:bg-white/[0.05] transition-colors"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-[#7B2FFF]/20 flex items-center justify-center mx-auto mb-4">
+                      <Icon className="w-6 h-6 text-[#7B2FFF]" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2">
+                      {avantage.title}
+                    </h3>
+                    <p className="text-white/50 text-sm">
+                      {avantage.description}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-20 md:py-32">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="max-w-3xl mx-auto text-center bg-gradient-to-br from-[#7B2FFF]/20 to-[#10E4FF]/10 border border-white/10 rounded-3xl p-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Pas sûr de quelle formule vous convient ?
+              </h2>
+              <p className="text-white/60 text-lg mb-8 max-w-xl mx-auto">
+                On en discute 30 min. On vous conseille honnêtement.
+                Parfois un Quick Win suffit. Parfois il faut plus. On vous le dira.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#FF5A00] text-white font-semibold rounded-lg hover:bg-[#FF5A00]/90 transition-colors"
+              >
+                Réserver mon appel gratuit
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>
   );
-}
+};
 
-function HeroSection() {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-24">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center max-w-5xl mx-auto relative z-10"
-      >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-6"
-        >
-          <Badge className="px-4 py-2 text-sm font-medium" style={{
-            backgroundColor: `${COLORS.accent}20`,
-            color: COLORS.accent,
-            border: `1px solid ${COLORS.accent}`
-          }}>
-            <Sparkles className="w-4 h-4 mr-2 inline" />
-            15+ Scénarios d'Automatisation
-          </Badge>
-        </motion.div>
-
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-          Solutions Qui <br/>
-          <span style={{ color: COLORS.accent }}>Transforment</span> Votre Business
-        </h1>
-
-        <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-          Découvrez comment l'IA et l'automatisation peuvent résoudre vos défis business concrets.
-          De la gestion client au pilotage d'entreprise, trouvez votre scénario.
-        </p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <Link to="/contact">
-            <Button
-              size="lg"
-              className="px-8 py-6 text-lg font-semibold"
-              style={{
-                backgroundColor: COLORS.cta,
-                color: 'white'
-              }}
-            >
-              <Rocket className="w-5 h-5 mr-2" />
-              Discuter de Mon Projet
-            </Button>
-          </Link>
-          <Button
-            size="lg"
-            variant="outline"
-            className="px-8 py-6 text-lg"
-            onClick={() => {
-              document.getElementById('solutions-grid')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            style={{
-              borderColor: COLORS.accent,
-              color: COLORS.accent
-            }}
-          >
-            <Filter className="w-5 h-5 mr-2" />
-            Explorer les Solutions
-          </Button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="mt-20"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-sm text-gray-500">Scroll pour découvrir</span>
-            <ChevronDown className="w-6 h-6 text-gray-500" />
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-}
-
-function StatsSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.5 });
-
-  const statsData = [
-    { label: 'Solutions Disponibles', value: solutionsStats.total, suffix: '', icon: Zap },
-    { label: 'Quick Wins (< 6 mois)', value: solutionsStats.quickWins, suffix: '', icon: Sparkles },
-    { label: 'Secteurs Couverts', value: solutionsStats.industries, suffix: '+', icon: TrendingUp },
-    { label: 'ROI Moyen', value: '300', suffix: '%', icon: DollarSign }
-  ];
-
-  return (
-    <section ref={sectionRef} className="py-16 px-6 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {statsData.map((stat, idx) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="relative p-6 rounded-xl"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(10px)'
-                }}
-              >
-                <Icon className="w-8 h-8 mb-3" style={{ color: COLORS.accent }} />
-                <div className="text-4xl font-bold mb-2">
-                  {stat.value}<span style={{ color: COLORS.accent }}>{stat.suffix}</span>
-                </div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FiltersSection({ selectedCategory, selectedComplexity, onCategoryChange, onComplexityChange }: any) {
-  const categories = [
-    { id: null, label: 'Toutes les Solutions', color: '#FFFFFF' },
-    { id: 'ia', label: 'Intelligence Artificielle', color: CATEGORY_COLORS.ia },
-    { id: 'automatisation', label: 'Automatisation', color: CATEGORY_COLORS.automatisation },
-    { id: 'developpement', label: 'Développement', color: CATEGORY_COLORS.developpement }
-  ];
-
-  const complexities = [
-    { id: null, label: 'Toutes Complexités', color: '#FFFFFF' },
-    { id: 'starter', label: 'Starter (2-4 sem)', color: COMPLEXITY_COLORS.starter },
-    { id: 'intermediate', label: 'Intermédiaire (1-2 mois)', color: COMPLEXITY_COLORS.intermediate },
-    { id: 'advanced', label: 'Avancé (3+ mois)', color: COMPLEXITY_COLORS.advanced }
-  ];
-
-  return (
-    <section className="py-12 px-6 relative z-10">
-      <div className="max-w-7xl mx-auto space-y-6">
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-semibold mb-2">Filtrer par Catégorie</h3>
-        </div>
-        <div className="flex items-center justify-center gap-3 flex-wrap">
-          {categories.map((cat) => (
-            <motion.button
-              key={cat.id || 'all'}
-              onClick={() => onCategoryChange(cat.id)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-5 py-2.5 rounded-lg font-medium transition-all text-sm"
-              style={{
-                backgroundColor: selectedCategory === cat.id
-                  ? `${cat.color}20`
-                  : 'rgba(255,255,255,0.05)',
-                border: `1px solid ${selectedCategory === cat.id ? cat.color : 'rgba(255,255,255,0.1)'}`,
-                color: selectedCategory === cat.id ? cat.color : '#9CA3AF'
-              }}
-            >
-              {cat.label}
-            </motion.button>
-          ))}
-        </div>
-
-        <div className="text-center mb-8 mt-12">
-          <h3 className="text-2xl font-semibold mb-2">Filtrer par Complexité</h3>
-        </div>
-        <div className="flex items-center justify-center gap-3 flex-wrap">
-          {complexities.map((comp) => (
-            <motion.button
-              key={comp.id || 'all'}
-              onClick={() => onComplexityChange(comp.id)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-5 py-2.5 rounded-lg font-medium transition-all text-sm"
-              style={{
-                backgroundColor: selectedComplexity === comp.id
-                  ? `${comp.color}20`
-                  : 'rgba(255,255,255,0.05)',
-                border: `1px solid ${selectedComplexity === comp.id ? comp.color : 'rgba(255,255,255,0.1)'}`,
-                color: selectedComplexity === comp.id ? comp.color : '#9CA3AF'
-              }}
-            >
-              {comp.label}
-            </motion.button>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function QuickWinsSection({ onSolutionClick }: any) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-
-  return (
-    <section ref={sectionRef} className="py-20 px-6 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Quick Wins <span style={{ color: COLORS.success }}>Rapides</span>
-          </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Solutions à impact immédiat avec ROI en moins de 6 mois
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {quickWinSolutions.map((solution, idx) => {
-            const Icon = iconMapper[solution.icon] || Sparkles;
-            const categoryColor = CATEGORY_COLORS[solution.category];
-
-            return (
-              <motion.div
-                key={solution.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                onClick={() => onSolutionClick(solution)}
-                className="p-6 rounded-xl cursor-pointer transition-all hover:scale-105"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: `1px solid ${categoryColor}30`,
-                  backdropFilter: 'blur(10px)'
-                }}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <Icon className="w-10 h-10" style={{ color: categoryColor }} />
-                  <Badge
-                    className="text-xs px-2 py-1"
-                    style={{
-                      backgroundColor: `${COLORS.success}20`,
-                      color: COLORS.success,
-                      border: `1px solid ${COLORS.success}`
-                    }}
-                  >
-                    <Zap className="w-3 h-3 mr-1 inline" />
-                    Quick Win
-                  </Badge>
-                </div>
-
-                <h3 className="text-xl font-semibold mb-3">{solution.title}</h3>
-                <p className="text-sm text-gray-400 mb-4">{solution.tagline}</p>
-
-                <div className="flex items-center gap-2 text-sm" style={{ color: categoryColor }}>
-                  <span>En savoir plus</span>
-                  <ArrowRight className="w-4 h-4" />
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SolutionsGrid({ solutions, onSolutionClick }: any) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-
-  return (
-    <section id="solutions-grid" ref={sectionRef} className="py-20 px-6 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Toutes les <span style={{ color: COLORS.accent }}>Solutions</span>
-          </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            {solutions.length} solution{solutions.length > 1 ? 's' : ''} trouvée{solutions.length > 1 ? 's' : ''}
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {solutions.map((solution: Solution, idx: number) => {
-            const Icon = iconMapper[solution.icon] || Sparkles;
-            const categoryColor = CATEGORY_COLORS[solution.category];
-            const complexityColor = COMPLEXITY_COLORS[solution.complexity];
-
-            return (
-              <motion.div
-                key={solution.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: idx * 0.05, duration: 0.5 }}
-                onClick={() => onSolutionClick(solution)}
-                className="p-6 rounded-xl cursor-pointer transition-all hover:scale-105"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: `1px solid ${categoryColor}30`,
-                  backdropFilter: 'blur(10px)'
-                }}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <Icon className="w-10 h-10" style={{ color: categoryColor }} />
-                  <div className="flex flex-col gap-2">
-                    {solution.outcomes.quickWin && (
-                      <Badge
-                        className="text-xs px-2 py-1"
-                        style={{
-                          backgroundColor: `${COLORS.success}20`,
-                          color: COLORS.success,
-                          border: `1px solid ${COLORS.success}`
-                        }}
-                      >
-                        Quick Win
-                      </Badge>
-                    )}
-                    <Badge
-                      className="text-xs px-2 py-1"
-                      style={{
-                        backgroundColor: `${complexityColor}20`,
-                        color: complexityColor,
-                        border: `1px solid ${complexityColor}`
-                      }}
-                    >
-                      {solution.complexity}
-                    </Badge>
-                  </div>
-                </div>
-
-                <h3 className="text-xl font-semibold mb-3">{solution.title}</h3>
-                <p className="text-sm text-gray-400 mb-4">{solution.tagline}</p>
-
-                {solution.outcomes.timeGained && (
-                  <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
-                    <Clock className="w-4 h-4" />
-                    <span>{solution.outcomes.timeGained}</span>
-                  </div>
-                )}
-
-                {solution.outcomes.moneySaved && (
-                  <div className="flex items-center gap-2 text-sm text-gray-400 mb-4">
-                    <DollarSign className="w-4 h-4" />
-                    <span>{solution.outcomes.moneySaved}</span>
-                  </div>
-                )}
-
-                <div className="flex items-center gap-2 text-sm mt-4" style={{ color: categoryColor }}>
-                  <span>Voir les détails</span>
-                  <ArrowRight className="w-4 h-4" />
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CTASection() {
-  return (
-    <section className="py-20 px-6 relative z-10">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto p-12 rounded-2xl text-center"
-        style={{
-          background: `linear-gradient(135deg, ${COLORS.primary}20, ${COLORS.accent}20)`,
-          border: `1px solid ${COLORS.accent}30`,
-          backdropFilter: 'blur(10px)'
-        }}
-      >
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          Prêt à Transformer <span style={{ color: COLORS.accent }}>Votre Entreprise</span>?
-        </h2>
-        <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-          Discutons de votre projet et identifions ensemble les solutions les plus adaptées à vos besoins.
-        </p>
-        <Link to="/contact">
-          <Button
-            size="lg"
-            className="px-8 py-6 text-lg font-semibold"
-            style={{
-              backgroundColor: COLORS.cta,
-              color: 'white'
-            }}
-          >
-            <Rocket className="w-5 h-5 mr-2" />
-            Démarrer Mon Projet
-          </Button>
-        </Link>
-      </motion.div>
-    </section>
-  );
-}
-
-function SolutionModal({ solution, isOpen, onClose }: any) {
-  if (!solution) return null;
-
-  const categoryColor = CATEGORY_COLORS[solution.category];
-  const Icon = iconMapper[solution.icon] || Sparkles;
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
-          />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed inset-4 md:inset-8 lg:inset-16 z-50 overflow-y-auto rounded-2xl"
-            style={{
-              background: 'rgba(10, 10, 15, 0.95)',
-              border: `1px solid ${categoryColor}50`,
-              backdropFilter: 'blur(20px)'
-            }}
-          >
-            <div className="p-6 md:p-10">
-              <div className="flex justify-between items-start mb-8">
-                <div className="flex items-center gap-4">
-                  <Icon className="w-12 h-12" style={{ color: categoryColor }} />
-                  <div>
-                    <h2 className="text-3xl md:text-4xl font-bold">{solution.title}</h2>
-                    <p className="text-lg text-gray-400 mt-2">{solution.tagline}</p>
-                  </div>
-                </div>
-                <button
-                  onClick={onClose}
-                  className="p-2 rounded-lg hover:bg-white/10 transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-
-              <div className="flex flex-wrap gap-3 mb-8">
-                <Badge style={{ backgroundColor: `${categoryColor}20`, color: categoryColor, border: `1px solid ${categoryColor}` }}>
-                  {solution.category}
-                </Badge>
-                <Badge style={{ backgroundColor: `${COMPLEXITY_COLORS[solution.complexity]}20`, color: COMPLEXITY_COLORS[solution.complexity], border: `1px solid ${COMPLEXITY_COLORS[solution.complexity]}` }}>
-                  {solution.complexity}
-                </Badge>
-                {solution.outcomes.quickWin && (
-                  <Badge style={{ backgroundColor: `${COLORS.success}20`, color: COLORS.success, border: `1px solid ${COLORS.success}` }}>
-                    <Zap className="w-3 h-3 mr-1 inline" />
-                    Quick Win
-                  </Badge>
-                )}
-              </div>
-
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-2xl font-semibold mb-4" style={{ color: categoryColor }}>Le Scénario</h3>
-                  <p className="text-gray-300 leading-relaxed text-lg">{solution.scenario}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-semibold mb-4" style={{ color: categoryColor }}>Ce Qui Est Possible</h3>
-                  <ul className="space-y-3">
-                    {solution.whatsPossible.map((item: string, idx: number) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0" style={{ color: COLORS.success }} />
-                        <span className="text-gray-300">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-semibold mb-4" style={{ color: categoryColor }}>Résultats Attendus</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {solution.outcomes.timeGained && (
-                      <div className="p-4 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)' }}>
-                        <Clock className="w-6 h-6 mb-2" style={{ color: COLORS.accent }} />
-                        <div className="text-sm text-gray-400">Temps Gagné</div>
-                        <div className="text-xl font-semibold">{solution.outcomes.timeGained}</div>
-                      </div>
-                    )}
-                    {solution.outcomes.moneySaved && (
-                      <div className="p-4 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)' }}>
-                        <DollarSign className="w-6 h-6 mb-2" style={{ color: COLORS.success }} />
-                        <div className="text-sm text-gray-400">Économies</div>
-                        <div className="text-xl font-semibold">{solution.outcomes.moneySaved}</div>
-                      </div>
-                    )}
-                    {solution.outcomes.improvement && (
-                      <div className="p-4 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)' }}>
-                        <TrendingUp className="w-6 h-6 mb-2" style={{ color: COLORS.primary }} />
-                        <div className="text-sm text-gray-400">Amélioration</div>
-                        <div className="text-xl font-semibold">{solution.outcomes.improvement}</div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-semibold mb-4" style={{ color: categoryColor }}>Secteurs d'Application</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {solution.industries.map((industry: string, idx: number) => (
-                      <Badge key={idx} className="px-3 py-1" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#FFF' }}>
-                        {industry}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-6 border-t border-white/10">
-                  <Link to="/contact">
-                    <Button
-                      size="lg"
-                      className="w-full md:w-auto px-8 py-6 text-lg font-semibold"
-                      style={{ backgroundColor: COLORS.cta, color: 'white' }}
-                    >
-                      <Rocket className="w-5 h-5 mr-2" />
-                      Implémenter Cette Solution
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-}
+export default Solutions;
