@@ -23,6 +23,7 @@ import ServicesDeveloppement from "@/pages/services/Developpement";
 
 // Solutions Pages
 import Dashboards from "@/pages/solutions/Dashboards";
+import PortailsClients from "@/pages/solutions/PortailsClients";
 
 // Realisations Pages
 import KunzDigitalSignage from "@/pages/realisations/KunzDigitalSignage";
@@ -84,6 +85,7 @@ function App() {
         <Route path="/solutions/quick-wins" element={<QuickWins />} />
         <Route path="/solutions/industries" element={<Industries />} />
         <Route path="/solutions/dashboards" element={<Dashboards />} />
+        <Route path="/solutions/portails-clients" element={<PortailsClients />} />
 
         {/* Portfolio */}
         <Route path="/portfolio" element={<Portfolio />} />
