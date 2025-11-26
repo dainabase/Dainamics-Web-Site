@@ -6,6 +6,7 @@ import Solutions from "@/pages/Solutions";
 import Realisations from "@/pages/Realisations";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
+import FAQ from "@/pages/FAQ";
 import TermsOfService from "@/pages/TermsOfService";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import CookiesPolicy from "@/pages/CookiesPolicy";
@@ -97,6 +98,7 @@ function App() {
 
         {/* Resources Routes */}
         <Route path="/blog" element={<Blog />} />
+        <Route path="/faq" element={<FAQ />} />
 
         {/* Legal Pages */}
         <Route path="/terms" element={<TermsOfService />} />
