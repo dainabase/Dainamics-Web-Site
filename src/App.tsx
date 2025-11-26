@@ -6,6 +6,8 @@ import Solutions from "@/pages/Solutions";
 import Realisations from "@/pages/Realisations";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
+import BlogArticle from "@/pages/BlogArticle";
+import AllArticles from "@/pages/AllArticles";
 import FAQ from "@/pages/FAQ";
 import TermsOfService from "@/pages/TermsOfService";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
@@ -98,6 +100,8 @@ function App() {
 
         {/* Resources Routes */}
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/tous-les-articles" element={<AllArticles />} />
+        <Route path="/blog/:slug" element={<BlogArticle />} />
         <Route path="/faq" element={<FAQ />} />
 
         {/* Legal Pages */}
