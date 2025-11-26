@@ -18,6 +18,9 @@ import ExpertiseIA from "@/pages/ExpertiseIA";
 import ExpertiseAutomatisation from "@/pages/ExpertiseAutomatisation";
 import ExpertiseDeveloppement from "@/pages/ExpertiseDeveloppement";
 
+// Services Pages
+import ServicesDeveloppement from "@/pages/services/Developpement";
+
 // Problemes Pages
 import AutomatiserFacturation from "@/pages/problemes/AutomatiserFacturation";
 import ReduireChargeSupport from "@/pages/problemes/ReduireChargeSupport";
@@ -66,6 +69,9 @@ function App() {
         <Route path="/expertise/ia" element={<ExpertiseIA />} />
         <Route path="/expertise/automatisation" element={<ExpertiseAutomatisation />} />
         <Route path="/expertise/developpement" element={<ExpertiseDeveloppement />} />
+
+        {/* Services Routes */}
+        <Route path="/services/developpement" element={<ServicesDeveloppement />} />
 
         {/* Solutions Sub-Routes */}
         <Route path="/solutions/quick-wins" element={<QuickWins />} />
