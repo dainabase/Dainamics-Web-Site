@@ -93,7 +93,7 @@ const CategoryGrid: React.FC = () => {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-dainamics-background to-[#0A0A1A]">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-dainamics-background to-dainamics-card">
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header */}
         <motion.div
@@ -130,7 +130,7 @@ const CategoryGrid: React.FC = () => {
                   to={category.slug}
                   className="group block h-full"
                 >
-                  <div className="h-full p-6 rounded-2xl bg-[#0A0A1A] border border-white/10 hover:border-white/20 transition-all duration-300 hover:translate-y-[-2px]">
+                  <div className="h-full p-6 rounded-2xl bg-dainamics-card border border-white/10 hover:border-white/20 transition-all duration-300 hover:translate-y-[-2px]">
                     {/* Icon */}
                     <div 
                       className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
@@ -208,7 +208,7 @@ const CategoryGrid: React.FC = () => {
                     <input
                       type="email"
                       placeholder="Votre email professionnel"
-                      className="w-full py-4 pl-12 pr-4 rounded-xl bg-[#0A0A1A] border border-white/10 text-white placeholder:text-gray-500 focus:outline-none focus:border-dainamics-primary/50 transition-colors"
+                      className="w-full py-4 pl-12 pr-4 rounded-xl bg-dainamics-card border border-white/10 text-white placeholder:text-gray-500 focus:outline-none focus:border-dainamics-primary/50 transition-colors"
                     />
                   </div>
                   <Button
