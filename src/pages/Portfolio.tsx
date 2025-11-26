@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
+import CursorEffects from '@/components/CursorEffects';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -64,9 +65,10 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-dainamics-background text-dainamics-light overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 text-dainamics-light overflow-hidden">
       <Navigation />
       <EnhancedGridBackground />
+      <CursorEffects />
 
       <HeroSection stats={stats} />
       <StatsSection stats={stats} />

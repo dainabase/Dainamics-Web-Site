@@ -16,7 +16,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-dainamics-background">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90">
       <EnhancedGridBackground />
       {/* Custom cursor effects */}
       <CursorEffects />

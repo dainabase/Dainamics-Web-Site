@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
+import CursorEffects from '@/components/CursorEffects';
 import { Button } from '@/components/ui/button';
 import { Construction, Home, ArrowRight } from 'lucide-react';
 
@@ -13,8 +14,9 @@ interface ComingSoonProps {
 
 export default function ComingSoon({ pageName, description }: ComingSoonProps) {
   return (
-    <div className="min-h-screen bg-dainamics-background flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 flex flex-col">
       <EnhancedGridBackground />
+      <CursorEffects />
       <Navigation />
       
       <main className="flex-grow flex items-center justify-center px-4 pt-32 pb-16">
