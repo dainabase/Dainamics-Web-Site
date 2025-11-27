@@ -227,7 +227,7 @@
   }
 
   /* 🔴 CORRECTION 1 APPLIQUÉE: Exclure MetricsConfidence et AboutServices des séparateurs */
-  section[class*="-section"]:not(:last-of-type):not(.metrics-confidence-section):not(.about-services-section)::after {
+  section[class*="-section"]:not(:last-of-type):not(.metrics-confidence-section):not(.about-services-section):not(.trusted-clients-section)::after {
     content: '';
     position: absolute;
     bottom: 0;
