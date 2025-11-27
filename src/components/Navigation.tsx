@@ -94,12 +94,14 @@ export function Navigation() {
     <nav
       className={cn(
         'fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 lg:px-16 py-3 md:py-4 transition-all duration-300',
-        scrolled ? 'bg-dainamics-background/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        scrolled 
+          ? 'nav-bg-adaptive shadow-lg' 
+          : 'bg-transparent'
       )}
     >
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-dainamics-light font-bold text-xl sm:text-2xl flex items-center space-x-2 flex-shrink-0">
+        <Link to="/" className="text-adaptive font-bold text-xl sm:text-2xl flex items-center space-x-2 flex-shrink-0">
           <span className="text-gradient-primary glow">DAINAMICS</span>
         </Link>
 
@@ -113,8 +115,8 @@ export function Navigation() {
               onMouseLeave={() => setServicesOpen(false)}
             >
               <button className={cn(
-                "flex items-center gap-1 text-dainamics-light/80 hover:text-dainamics-light font-medium transition-colors duration-200 text-sm xl:text-base whitespace-nowrap",
-                servicesOpen && "text-dainamics-light"
+                "flex items-center gap-1 text-adaptive-secondary hover:text-adaptive font-medium transition-colors duration-200 text-sm xl:text-base whitespace-nowrap",
+                servicesOpen && "text-adaptive"
               )}>
                 Services
                 <ChevronDown
@@ -132,16 +134,16 @@ export function Navigation() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-72 bg-[#050510]/95 backdrop-blur-md border border-[#FF5A00]/30 rounded-xl p-2 shadow-2xl"
+                    className="absolute top-full left-0 mt-2 w-72 glass-adaptive rounded-xl p-2 shadow-2xl border-dainamics-cta/30"
                   >
                     {/* Piliers principaux */}
                     <div className="mb-2">
-                      <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Nos Piliers</span>
+                      <span className="block px-4 py-1 text-xs text-adaptive-muted uppercase tracking-wider">Nos Piliers</span>
                       {servicesPiliers.map((item) => (
                         <Link
                           key={item.href}
                           to={item.href}
-                          className="block px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                          className="block px-4 py-3 text-adaptive-secondary hover:text-adaptive hover-adaptive rounded-lg transition-colors text-sm"
                         >
                           {item.label}
                         </Link>
@@ -149,16 +151,16 @@ export function Navigation() {
                     </div>
                     
                     {/* Séparateur */}
-                    <div className="border-t border-white/10 my-2" />
+                    <div className="border-t border-adaptive my-2" />
                     
                     {/* Solutions concrètes */}
                     <div>
-                      <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Solutions</span>
+                      <span className="block px-4 py-1 text-xs text-adaptive-muted uppercase tracking-wider">Solutions</span>
                       {servicesSolutions.map((item) => (
                         <Link
                           key={item.href}
                           to={item.href}
-                          className="flex items-center justify-between px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                          className="flex items-center justify-between px-4 py-3 text-adaptive-secondary hover:text-adaptive hover-adaptive rounded-lg transition-colors text-sm"
                         >
                           <span>{item.label}</span>
                           {item.isNew && (
@@ -181,8 +183,8 @@ export function Navigation() {
               onMouseLeave={() => setProblemesOpen(false)}
             >
               <button className={cn(
-                "flex items-center gap-1 text-dainamics-light/80 hover:text-dainamics-light font-medium transition-colors duration-200 text-sm xl:text-base whitespace-nowrap",
-                problemesOpen && "text-dainamics-light"
+                "flex items-center gap-1 text-adaptive-secondary hover:text-adaptive font-medium transition-colors duration-200 text-sm xl:text-base whitespace-nowrap",
+                problemesOpen && "text-adaptive"
               )}>
                 Problèmes
                 <ChevronDown
@@ -200,16 +202,16 @@ export function Navigation() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-72 bg-[#050510]/95 backdrop-blur-md border border-[#7B2FFF]/30 rounded-xl p-2 shadow-2xl"
+                    className="absolute top-full left-0 mt-2 w-72 glass-adaptive rounded-xl p-2 shadow-2xl border-dainamics-primary/30"
                   >
                     {/* Problèmes Automatisation */}
                     <div className="mb-2">
-                      <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Automatisation</span>
+                      <span className="block px-4 py-1 text-xs text-adaptive-muted uppercase tracking-wider">Automatisation</span>
                       {problemesAutomatisation.map((item) => (
                         <Link
                           key={item.href}
                           to={item.href}
-                          className="block px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                          className="block px-4 py-3 text-adaptive-secondary hover:text-adaptive hover-adaptive rounded-lg transition-colors text-sm"
                         >
                           {item.label}
                         </Link>
@@ -217,16 +219,16 @@ export function Navigation() {
                     </div>
                     
                     {/* Séparateur */}
-                    <div className="border-t border-white/10 my-2" />
+                    <div className="border-t border-adaptive my-2" />
                     
                     {/* Problèmes Développement */}
                     <div>
-                      <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Développement</span>
+                      <span className="block px-4 py-1 text-xs text-adaptive-muted uppercase tracking-wider">Développement</span>
                       {problemesDeveloppement.map((item) => (
                         <Link
                           key={item.href}
                           to={item.href}
-                          className="flex items-center justify-between px-4 py-3 text-dainamics-light/70 hover:text-dainamics-light hover:bg-white/5 rounded-lg transition-colors text-sm"
+                          className="flex items-center justify-between px-4 py-3 text-adaptive-secondary hover:text-adaptive hover-adaptive rounded-lg transition-colors text-sm"
                         >
                           <span>{item.label}</span>
                           {item.isNew && (
@@ -248,7 +250,7 @@ export function Navigation() {
                 key={item.name}
                 to={item.link}
                 className={cn(
-                  "text-dainamics-light/80 hover:text-dainamics-light font-medium transition-colors duration-200 relative after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-dainamics-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left text-sm xl:text-base whitespace-nowrap",
+                  "text-adaptive-secondary hover:text-adaptive font-medium transition-colors duration-200 relative after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-dainamics-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left text-sm xl:text-base whitespace-nowrap",
                   isActive(item.link) && "text-dainamics-primary"
                 )}
               >
@@ -265,7 +267,7 @@ export function Navigation() {
             <div className="relative">
               <button
                 onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
-                className="flex items-center text-dainamics-light/80 hover:text-dainamics-light"
+                className="flex items-center text-adaptive-secondary hover:text-adaptive"
               >
                 <Globe className="w-4 h-4 mr-1" />
                 <span className="text-sm">{currentLanguage}</span>
@@ -277,7 +279,7 @@ export function Navigation() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 mt-2 w-24 bg-dainamics-background/90 backdrop-blur-md border border-dainamics-primary/20 rounded-md shadow-lg z-50"
+                    className="absolute right-0 mt-2 w-24 glass-adaptive rounded-md shadow-lg z-50"
                   >
                     {languages.map((lang) => (
                       <button
@@ -288,7 +290,7 @@ export function Navigation() {
                         }}
                         className={cn(
                           "block w-full text-left px-4 py-2 hover:bg-dainamics-primary/10 transition-colors text-sm",
-                          currentLanguage === lang ? "text-dainamics-primary" : "text-dainamics-light/80"
+                          currentLanguage === lang ? "text-dainamics-primary" : "text-adaptive-secondary"
                         )}
                       >
                         {lang}
@@ -315,7 +317,7 @@ export function Navigation() {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-dainamics-light focus:outline-none p-2"
+          className="lg:hidden text-adaptive focus:outline-none p-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -329,7 +331,7 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-dainamics-background/95 backdrop-blur-lg border-t border-dainamics-primary/20 mt-4"
+            className="lg:hidden glass-adaptive border-t border-adaptive mt-4"
           >
             <div className="container mx-auto py-4">
               <div className="flex flex-col space-y-2">
@@ -337,7 +339,7 @@ export function Navigation() {
                 <div>
                   <button
                     onClick={() => setServicesOpenMobile(!servicesOpenMobile)}
-                    className="flex items-center justify-between w-full text-dainamics-light py-3 px-4 font-medium"
+                    className="flex items-center justify-between w-full text-adaptive py-3 px-4 font-medium"
                   >
                     Services
                     <ChevronDown className={cn(
@@ -354,12 +356,12 @@ export function Navigation() {
                         className="pl-4 space-y-1 mt-2"
                       >
                         {/* Piliers */}
-                        <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Nos Piliers</span>
+                        <span className="block px-4 py-1 text-xs text-adaptive-muted uppercase tracking-wider">Nos Piliers</span>
                         {servicesPiliers.map((item) => (
                           <Link
                             key={item.href}
                             to={item.href}
-                            className="block text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 rounded-lg hover:bg-white/5 transition-colors"
+                            className="block text-adaptive-secondary hover:text-adaptive py-2 px-4 rounded-lg hover-adaptive transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {item.label}
@@ -367,15 +369,15 @@ export function Navigation() {
                         ))}
                         
                         {/* Séparateur mobile */}
-                        <div className="border-t border-white/10 my-2 mx-4" />
+                        <div className="border-t border-adaptive my-2 mx-4" />
                         
                         {/* Solutions */}
-                        <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Solutions</span>
+                        <span className="block px-4 py-1 text-xs text-adaptive-muted uppercase tracking-wider">Solutions</span>
                         {servicesSolutions.map((item) => (
                           <Link
                             key={item.href}
                             to={item.href}
-                            className="flex items-center justify-between text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 rounded-lg hover:bg-white/5 transition-colors"
+                            className="flex items-center justify-between text-adaptive-secondary hover:text-adaptive py-2 px-4 rounded-lg hover-adaptive transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             <span>{item.label}</span>
@@ -395,7 +397,7 @@ export function Navigation() {
                 <div>
                   <button
                     onClick={() => setProblemesOpenMobile(!problemesOpenMobile)}
-                    className="flex items-center justify-between w-full text-dainamics-light py-3 px-4 font-medium"
+                    className="flex items-center justify-between w-full text-adaptive py-3 px-4 font-medium"
                   >
                     Problèmes
                     <ChevronDown className={cn(
@@ -412,12 +414,12 @@ export function Navigation() {
                         className="pl-4 space-y-1 mt-2"
                       >
                         {/* Automatisation */}
-                        <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Automatisation</span>
+                        <span className="block px-4 py-1 text-xs text-adaptive-muted uppercase tracking-wider">Automatisation</span>
                         {problemesAutomatisation.map((item) => (
                           <Link
                             key={item.href}
                             to={item.href}
-                            className="block text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 rounded-lg hover:bg-white/5 transition-colors"
+                            className="block text-adaptive-secondary hover:text-adaptive py-2 px-4 rounded-lg hover-adaptive transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {item.label}
@@ -425,15 +427,15 @@ export function Navigation() {
                         ))}
                         
                         {/* Séparateur mobile */}
-                        <div className="border-t border-white/10 my-2 mx-4" />
+                        <div className="border-t border-adaptive my-2 mx-4" />
                         
                         {/* Développement */}
-                        <span className="block px-4 py-1 text-xs text-white/40 uppercase tracking-wider">Développement</span>
+                        <span className="block px-4 py-1 text-xs text-adaptive-muted uppercase tracking-wider">Développement</span>
                         {problemesDeveloppement.map((item) => (
                           <Link
                             key={item.href}
                             to={item.href}
-                            className="flex items-center justify-between text-dainamics-light/70 hover:text-dainamics-light py-2 px-4 rounded-lg hover:bg-white/5 transition-colors"
+                            className="flex items-center justify-between text-adaptive-secondary hover:text-adaptive py-2 px-4 rounded-lg hover-adaptive transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             <span>{item.label}</span>
@@ -455,7 +457,7 @@ export function Navigation() {
                     key={item.name}
                     to={item.link}
                     className={cn(
-                      "text-dainamics-light/80 hover:text-dainamics-light font-medium py-3 px-4 rounded-lg transition-colors",
+                      "text-adaptive-secondary hover:text-adaptive font-medium py-3 px-4 rounded-lg transition-colors",
                       isActive(item.link) && "text-dainamics-primary bg-dainamics-primary/5"
                     )}
                     onClick={() => setMobileMenuOpen(false)}
@@ -465,7 +467,7 @@ export function Navigation() {
                 ))}
 
                 <div className="flex items-center mt-4 px-4 space-x-2">
-                  <span className="text-dainamics-light/80 text-sm">Langue:</span>
+                  <span className="text-adaptive-secondary text-sm">Langue:</span>
                   <div className="flex space-x-2">
                     {languages.map((lang) => (
                       <button

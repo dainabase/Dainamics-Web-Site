@@ -53,6 +53,24 @@
     --ring: 240 5.9% 10%;
   }
 
+  /* ============================================== */
+  /*        ADAPTIVE UTILITIES FOR LIGHT/DARK      */
+  /* ============================================== */
+  
+  /* Body adapts to theme */
+  .dark body {
+    @apply bg-[#050510] text-white;
+  }
+  
+  .light body {
+    @apply bg-slate-50 text-gray-900;
+  }
+
+  /* Selection colors */
+  .light *::selection {
+    @apply bg-dainamics-primary/20 text-gray-900;
+  }
+
   * {
     @apply border-border selection:bg-dainamics-primary/30 selection:text-white;
     font-family: 'Inter', sans-serif;
@@ -75,6 +93,93 @@
 }
 
 @layer components {
+  /* ============================================== */
+  /*        THEME-ADAPTIVE UTILITIES               */
+  /* ============================================== */
+  
+  /* Background adaptatifs */
+  .bg-adaptive {
+    @apply bg-[#050510];
+  }
+  .light .bg-adaptive {
+    @apply bg-slate-50;
+  }
+  
+  .bg-adaptive-card {
+    @apply bg-white/[0.03];
+  }
+  .light .bg-adaptive-card {
+    @apply bg-white shadow-sm;
+  }
+  
+  .bg-adaptive-elevated {
+    @apply bg-white/[0.05];
+  }
+  .light .bg-adaptive-elevated {
+    @apply bg-white shadow-md;
+  }
+  
+  /* Textes adaptatifs */
+  .text-adaptive {
+    @apply text-white;
+  }
+  .light .text-adaptive {
+    @apply text-gray-900;
+  }
+  
+  .text-adaptive-secondary {
+    @apply text-white/70;
+  }
+  .light .text-adaptive-secondary {
+    @apply text-gray-600;
+  }
+  
+  .text-adaptive-muted {
+    @apply text-white/50;
+  }
+  .light .text-adaptive-muted {
+    @apply text-gray-500;
+  }
+  
+  /* Bordures adaptatives */
+  .border-adaptive {
+    @apply border-white/10;
+  }
+  .light .border-adaptive {
+    @apply border-gray-200;
+  }
+  
+  .border-adaptive-strong {
+    @apply border-white/20;
+  }
+  .light .border-adaptive-strong {
+    @apply border-gray-300;
+  }
+  
+  /* Glass/Blur adaptatifs */
+  .glass-adaptive {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10;
+  }
+  .light .glass-adaptive {
+    @apply backdrop-blur-lg bg-white/80 border border-gray-200 shadow-lg;
+  }
+  
+  /* Navigation background */
+  .nav-bg-adaptive {
+    @apply bg-[#050510]/90 backdrop-blur-md;
+  }
+  .light .nav-bg-adaptive {
+    @apply bg-white/90 backdrop-blur-md shadow-sm;
+  }
+  
+  /* Hover states adaptatifs */
+  .hover-adaptive {
+    @apply hover:bg-white/10;
+  }
+  .light .hover-adaptive {
+    @apply hover:bg-gray-100;
+  }
+
   /* Container Custom */
   .container-custom {
     @apply container mx-auto px-4 sm:px-6 lg:px-8;
