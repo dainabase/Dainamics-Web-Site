@@ -12,20 +12,6 @@ export default function EnhancedGridBackground() {
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-      {/* Radial gradient overlay - Spotlight effect from center */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `
-            radial-gradient(
-              circle at 50% 30%,
-              rgba(99, 102, 241, 0.15) 0%,
-              rgba(99, 102, 241, 0.05) 25%,
-              transparent 50%
-            )
-          `
-        }}
-      />
 
       {/* Smooth animated gradient - NO GRID */}
 
@@ -45,20 +31,6 @@ export default function EnhancedGridBackground() {
         }}
       />
 
-      {/* Top glow accent */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px]"
-        style={{
-          background: `
-            radial-gradient(
-              ellipse at center,
-              rgba(99, 102, 241, 0.1) 0%,
-              transparent 60%
-            )
-          `,
-          filter: 'blur(60px)'
-        }}
-      />
 
       {/* Bottom accent glow */}
       <div
