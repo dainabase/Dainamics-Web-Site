@@ -61,37 +61,58 @@ const PinterestIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Fonction utilitaire pour ouvrir l'email de manière fiable
+// Fonction utilitaire pour ouvrir l'email - optimisée pour Mac/Safari
 const openEmailClient = (subject: string, body: string): boolean => {
   const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   
-  // Méthode 1: window.location.href (la plus fiable pour mailto)
+  // Méthode 1: Créer un lien et simuler un clic (fonctionne sur Safari/Mac)
   try {
-    window.location.href = mailtoUrl;
+    const link = document.createElement('a');
+    link.href = mailtoUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    
+    // Ajouter au DOM (nécessaire pour Safari)
+    link.style.position = 'absolute';
+    link.style.left = '-9999px';
+    link.style.top = '-9999px';
+    document.body.appendChild(link);
+    
+    // Cliquer sur le lien
+    link.click();
+    
+    // Nettoyer après un court délai
+    setTimeout(() => {
+      if (link.parentNode) {
+        link.parentNode.removeChild(link);
+      }
+    }, 100);
+    
     return true;
   } catch (e) {
-    console.error('Email method 1 failed:', e);
+    console.error('Email method 1 (link click) failed:', e);
   }
   
   // Méthode 2: window.open (fallback)
   try {
-    const newWindow = window.open(mailtoUrl, '_self');
-    if (newWindow) return true;
+    const newWindow = window.open(mailtoUrl, '_blank');
+    if (newWindow) {
+      // Fermer la fenêtre après un court délai si elle s'est ouverte
+      setTimeout(() => {
+        try { newWindow.close(); } catch (e) { /* ignore */ }
+      }, 1000);
+      return true;
+    }
   } catch (e) {
-    console.error('Email method 2 failed:', e);
+    console.error('Email method 2 (window.open) failed:', e);
   }
   
-  // Méthode 3: Créer un lien et cliquer (dernier recours)
+  // Méthode 3: location.href (dernier recours)
   try {
-    const link = document.createElement('a');
-    link.href = mailtoUrl;
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    setTimeout(() => document.body.removeChild(link), 100);
+    window.location.href = mailtoUrl;
     return true;
   } catch (e) {
-    console.error('Email method 3 failed:', e);
+    console.error('Email method 3 (location.href) failed:', e);
   }
   
   return false;
@@ -222,7 +243,7 @@ const ShareButtons = ({
       color: 'bg-gradient-to-br from-orange-500 to-red-500',
       hoverColor: 'hover:from-orange-600 hover:to-red-600',
       action: () => {
-        const subject = `Article intéressant : ${title}`;
+        const subject = `Article interessant : ${title}`;
         const body = `Bonjour,
 
 Je souhaitais partager cet article avec vous :
@@ -234,8 +255,8 @@ ${excerpt ? `"${excerpt.substring(0, 200)}${excerpt.length > 200 ? '...' : ''}"`
 Lire l'article complet : ${shareUrl}
 
 ---
-Partagé depuis le blog DAINAMICS
-Intelligence Artificielle & Automatisation pour PME
+Partage depuis le blog DAINAMICS
+Intelligence Artificielle et Automatisation pour PME
 https://dainamics.ch`;
 
         const success = openEmailClient(subject, body);
@@ -316,125 +337,288 @@ https://dainamics.ch`;
   }, [title, excerpt, shareUrl, showShareNotif]);
 
   const handlePrint = useCallback(() => {
-    // Ajouter les styles d'impression dynamiquement
-    const printStyles = document.createElement('style');
-    printStyles.id = 'print-styles';
-    printStyles.textContent = `
-      @media print {
-        /* Cacher les éléments non essentiels */
-        header, footer, nav, .share-buttons, .floating-share,
-        .modal, button, .sidebar, .comments, .related-posts,
-        .newsletter, .social-links, .breadcrumb, .back-button,
-        [data-hide-print="true"] {
-          display: none !important;
+    // Fermer le modal avant d'imprimer
+    setShowModal(false);
+    
+    // Attendre que le modal soit fermé
+    setTimeout(() => {
+      // Créer une feuille de style d'impression
+      const printStylesheet = document.createElement('style');
+      printStylesheet.id = 'dainamics-print-styles';
+      printStylesheet.setAttribute('media', 'print');
+      printStylesheet.textContent = `
+        /* ========== RESET COMPLET POUR IMPRESSION ========== */
+        
+        /* Masquer TOUT par défaut */
+        body * {
+          visibility: hidden !important;
         }
         
-        /* Optimiser le contenu principal */
-        body {
+        /* Afficher seulement le contenu de l'article */
+        .article-content,
+        .article-content * {
+          visibility: visible !important;
+        }
+        
+        /* Masquer absolument tout ce qui n'est pas le contenu */
+        header,
+        footer,
+        nav,
+        aside,
+        .fixed,
+        .sticky,
+        .modal,
+        [role="dialog"],
+        [aria-modal="true"],
+        button,
+        .share-buttons,
+        .floating-share,
+        [data-hide-print="true"],
+        .backdrop-blur-sm,
+        .backdrop-blur-xl,
+        .bg-black\\/80,
+        .z-50,
+        .z-40,
+        #dainamics-print-styles + div,
+        [class*="ShareModal"],
+        [class*="share"],
+        [class*="Share"] {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+          position: absolute !important;
+          left: -9999px !important;
+          width: 0 !important;
+          height: 0 !important;
+          overflow: hidden !important;
+        }
+        
+        /* Forcer le body à être visible et propre */
+        html, body {
+          visibility: visible !important;
           background: white !important;
           color: black !important;
           font-size: 12pt !important;
-          line-height: 1.5 !important;
+          line-height: 1.6 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          width: 100% !important;
+          height: auto !important;
+          overflow: visible !important;
         }
         
-        article, .article-content, main {
+        /* Conteneur principal de l'article */
+        .article-content {
+          display: block !important;
+          visibility: visible !important;
+          position: relative !important;
+          left: 0 !important;
+          top: 0 !important;
           width: 100% !important;
           max-width: 100% !important;
-          margin: 0 !important;
+          margin: 0 auto !important;
           padding: 20px !important;
           background: white !important;
           color: black !important;
+          font-size: 12pt !important;
+          line-height: 1.6 !important;
         }
         
-        h1, h2, h3, h4, h5, h6 {
+        /* Styles du contenu */
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
           color: black !important;
+          background: none !important;
+          border-color: #333 !important;
           page-break-after: avoid !important;
+          margin-top: 1.5em !important;
+          margin-bottom: 0.5em !important;
         }
         
-        h1 { font-size: 24pt !important; }
-        h2 { font-size: 18pt !important; }
-        h3 { font-size: 14pt !important; }
+        .article-content h1 { font-size: 22pt !important; }
+        .article-content h2 { font-size: 18pt !important; border-bottom: 1px solid #ccc !important; padding-bottom: 5px !important; }
+        .article-content h3 { font-size: 14pt !important; }
+        .article-content h4 { font-size: 12pt !important; }
         
-        p, li {
-          orphans: 3;
-          widows: 3;
+        .article-content p,
+        .article-content li,
+        .article-content span,
+        .article-content div {
+          color: black !important;
+          background: none !important;
         }
         
-        img {
-          max-width: 100% !important;
-          page-break-inside: avoid !important;
+        .article-content p {
+          margin-bottom: 1em !important;
+          orphans: 3 !important;
+          widows: 3 !important;
         }
         
-        a {
+        .article-content ul,
+        .article-content ol {
+          margin: 1em 0 !important;
+          padding-left: 2em !important;
+        }
+        
+        .article-content li {
+          margin-bottom: 0.5em !important;
+        }
+        
+        .article-content a {
           color: black !important;
           text-decoration: underline !important;
         }
         
-        /* Afficher les URLs des liens */
-        a[href]:after {
-          content: " (" attr(href) ")";
-          font-size: 10pt;
-          color: #666;
+        .article-content a[href^="http"]:after {
+          content: " (" attr(href) ")" !important;
+          font-size: 9pt !important;
+          color: #666 !important;
         }
         
-        a[href^="#"]:after,
-        a[href^="javascript"]:after {
-          content: "";
+        .article-content a[href^="#"]:after,
+        .article-content a[href^="javascript"]:after,
+        .article-content a[href^="mailto"]:after {
+          content: "" !important;
         }
         
-        /* Code blocks */
-        pre, code {
-          background: #f5f5f5 !important;
-          border: 1px solid #ddd !important;
+        .article-content strong,
+        .article-content b {
           color: black !important;
+          font-weight: bold !important;
+        }
+        
+        .article-content em,
+        .article-content i {
+          color: black !important;
+          font-style: italic !important;
+        }
+        
+        .article-content code {
+          background: #f5f5f5 !important;
+          color: black !important;
+          padding: 2px 5px !important;
+          border: 1px solid #ddd !important;
+          border-radius: 3px !important;
+          font-family: monospace !important;
+          font-size: 10pt !important;
+        }
+        
+        .article-content pre {
+          background: #f9f9f9 !important;
+          color: black !important;
+          border: 1px solid #ddd !important;
+          padding: 15px !important;
+          margin: 1em 0 !important;
+          overflow-x: auto !important;
+          page-break-inside: avoid !important;
+          white-space: pre-wrap !important;
+          word-wrap: break-word !important;
+        }
+        
+        .article-content pre code {
+          background: none !important;
+          border: none !important;
+          padding: 0 !important;
+        }
+        
+        .article-content blockquote {
+          border-left: 3px solid #333 !important;
+          background: #f9f9f9 !important;
+          margin: 1em 0 !important;
+          padding: 10px 20px !important;
+          color: #333 !important;
+          font-style: italic !important;
           page-break-inside: avoid !important;
         }
         
-        /* Tables */
-        table {
+        .article-content table {
+          width: 100% !important;
           border-collapse: collapse !important;
+          margin: 1em 0 !important;
+          page-break-inside: avoid !important;
         }
         
-        th, td {
-          border: 1px solid black !important;
+        .article-content th,
+        .article-content td {
+          border: 1px solid #333 !important;
           padding: 8px !important;
+          text-align: left !important;
+          color: black !important;
+          background: white !important;
         }
         
-        /* Footer avec URL */
-        @page {
-          margin: 2cm;
+        .article-content th {
+          background: #f0f0f0 !important;
+          font-weight: bold !important;
         }
         
-        /* Ajouter le lien de l'article en bas */
+        .article-content img {
+          max-width: 100% !important;
+          height: auto !important;
+          page-break-inside: avoid !important;
+          margin: 1em 0 !important;
+        }
+        
+        .article-content hr {
+          border: none !important;
+          border-top: 1px solid #ccc !important;
+          margin: 2em 0 !important;
+        }
+        
+        /* Pied de page avec source */
         .article-content::after {
-          content: "Source: ${shareUrl}";
-          display: block;
-          margin-top: 30px;
-          padding-top: 15px;
-          border-top: 1px solid #ccc;
-          font-size: 10pt;
-          color: #666;
+          content: "Source: ${shareUrl}" !important;
+          display: block !important;
+          visibility: visible !important;
+          margin-top: 30px !important;
+          padding-top: 15px !important;
+          border-top: 1px solid #ccc !important;
+          font-size: 10pt !important;
+          color: #666 !important;
         }
+        
+        /* Configuration de la page */
+        @page {
+          size: A4 !important;
+          margin: 2cm !important;
+        }
+        
+        /* Éviter les coupures de page indésirables */
+        h1, h2, h3, h4, h5, h6 {
+          page-break-after: avoid !important;
+        }
+        
+        p, li, blockquote, pre, table, img {
+          page-break-inside: avoid !important;
+        }
+      `;
+      
+      // Supprimer les anciens styles d'impression s'ils existent
+      const existingStyles = document.getElementById('dainamics-print-styles');
+      if (existingStyles) {
+        existingStyles.remove();
       }
-    `;
-    
-    // Supprimer les anciens styles s'ils existent
-    const existingStyles = document.getElementById('print-styles');
-    if (existingStyles) {
-      existingStyles.remove();
-    }
-    
-    document.head.appendChild(printStyles);
-    
-    // Lancer l'impression
-    setTimeout(() => {
-      window.print();
-      // Nettoyer après impression
+      
+      // Ajouter les nouveaux styles
+      document.head.appendChild(printStylesheet);
+      
+      // Lancer l'impression
       setTimeout(() => {
-        const styles = document.getElementById('print-styles');
-        if (styles) styles.remove();
-      }, 1000);
-    }, 100);
+        window.print();
+        
+        // Nettoyer les styles après l'impression
+        setTimeout(() => {
+          const styles = document.getElementById('dainamics-print-styles');
+          if (styles) {
+            styles.remove();
+          }
+        }, 1000);
+      }, 100);
+    }, 300);
   }, [shareUrl]);
 
   // Generate QR Code URL
@@ -692,6 +876,7 @@ const ShareModal = ({
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={onClose}
+          data-hide-print="true"
         >
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
@@ -701,6 +886,7 @@ const ShareModal = ({
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-md bg-dainamics-background border border-white/10 rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+            data-hide-print="true"
           >
             {/* Header */}
             <div className="sticky top-0 z-10 flex items-center justify-between p-6 border-b border-white/10 bg-dainamics-background/95 backdrop-blur-sm">
@@ -761,7 +947,7 @@ const ShareModal = ({
                       <div className="mt-3 p-4 bg-white/5 rounded-xl border border-white/10 text-sm">
                         <div className="mb-3 pb-3 border-b border-white/10">
                           <p className="text-gray-500 text-xs mb-1">Objet :</p>
-                          <p className="text-white">Article intéressant : {title}</p>
+                          <p className="text-white">Article interessant : {title}</p>
                         </div>
                         <div className="space-y-2 text-gray-400">
                           <p>Bonjour,</p>
@@ -774,7 +960,7 @@ const ShareModal = ({
                           )}
                           <p className="text-dainamics-secondary underline">{url}</p>
                           <p className="text-gray-500 text-xs mt-4 pt-3 border-t border-white/10">
-                            Partagé depuis le blog DAINAMICS
+                            Partage depuis le blog DAINAMICS
                           </p>
                         </div>
                       </div>
@@ -868,7 +1054,7 @@ const ShareModal = ({
             {/* Footer */}
             <div className="sticky bottom-0 px-6 py-4 bg-white/[0.02] border-t border-white/10 backdrop-blur-sm">
               <p className="text-xs text-gray-500 text-center">
-                Partagé depuis le blog DAINAMICS • IA & Automatisation pour PME
+                Partage depuis le blog DAINAMICS - IA et Automatisation pour PME
               </p>
             </div>
           </motion.div>
