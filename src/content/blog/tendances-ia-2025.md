@@ -1,3 +1,14 @@
+---
+title: "10 Tendances IA 2025 : Ce Qui Change Pour les PME"
+date: "2025-11-15"
+author: "Équipe DAINAMICS"
+category: "actualites"
+tags: ["tendances", "ia", "2025", "strategie", "pme"]
+excerpt: "2025 marque l'ère de l'IA agentique. Découvrez les 10 tendances majeures et leur impact concret pour les PME suisses."
+featured: true
+readTime: 12
+---
+
 ## 2025 : l'année de l'IA agentique
 
 Si 2023 était l'année de la découverte (ChatGPT) et 2024 celle de l'expérimentation, 2025 marque définitivement l'entrée dans l'ère de l'IA agentique : des systèmes capables d'exécuter des tâches complexes de manière autonome, sur des durées prolongées.
