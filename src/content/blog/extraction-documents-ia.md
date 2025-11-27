@@ -1,3 +1,14 @@
+---
+title: "Extraction Automatique de Documents : Guide Complet"
+date: "2025-11-09"
+author: "Équipe DAINAMICS"
+category: "guides"
+tags: ["extraction", "documents", "ocr", "ia", "automatisation"]
+excerpt: "Comment l'IA extrait automatiquement les données de vos factures, contrats et bons de commande. Technologies, outils et ROI."
+readTime: 13
+featured: false
+---
+
 ## Le problème : des montagnes de documents à traiter
 
 Factures fournisseurs, bons de commande, contrats, bulletins de livraison, formulaires... Chaque PME traite des centaines voire des milliers de documents par mois. Et dans la plupart des cas, quelqu'un doit les lire, extraire les informations pertinentes, et les saisir dans un système.
