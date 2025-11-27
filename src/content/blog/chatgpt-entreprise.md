@@ -1,3 +1,14 @@
+---
+title: "ChatGPT en Entreprise : Guide Complet d'Utilisation"
+date: "2025-11-10"
+author: "Équipe DAINAMICS"
+category: "guides"
+tags: ["chatgpt", "ia-generative", "productivite", "guide"]
+excerpt: "Comment utiliser ChatGPT de manière professionnelle : usages productifs, erreurs à éviter, et mise en place en entreprise."
+readTime: 12
+featured: false
+---
+
 ## ChatGPT en entreprise : au-delà du gadget
 
 Deux ans après son lancement, ChatGPT est passé du statut de curiosité technologique à celui d'outil de productivité quotidien. Mais entre l'enthousiasme des early adopters et la méfiance des plus prudents, comment utiliser ChatGPT de manière réellement productive en entreprise ?
