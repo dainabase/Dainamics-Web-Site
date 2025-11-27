@@ -12,14 +12,15 @@ import {
   MessageSquare,
   FileText,
   Rocket,
-  Users
+  Users,
+  Star
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import {
   getFeaturedArticles,
   getRecentArticles,
   getCategoryById,
-  BlogArticle
+  BlogArticleMeta
 } from '@/data/blog';
 import BlogHeroImage from './BlogHeroImage';
 
@@ -37,14 +38,29 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const FeaturedArticles: React.FC = () => {
-  const featuredArticles = getFeaturedArticles();
-  const recentArticles = getRecentArticles(6);
+  // Get the 3 most recent articles (already displayed in LatestArticles)
+  const latestArticleSlugs = getRecentArticles(3).map(a => a.slug);
+  
+  // Get featured articles, excluding those already shown in LatestArticles
+  const featuredArticles = getFeaturedArticles().filter(
+    a => !latestArticleSlugs.includes(a.slug)
+  );
+  
+  // Get more recent articles to fill the grid, also excluding latest
+  const recentArticles = getRecentArticles(12).filter(
+    a => !latestArticleSlugs.includes(a.slug)
+  );
 
-  const articles = featuredArticles.length > 0
-    ? [...featuredArticles, ...recentArticles.filter(a => !featuredArticles.find(f => f.slug === a.slug))].slice(0, 6)
-    : recentArticles;
+  // Combine featured first, then fill with recent (avoiding duplicates)
+  const articles = [
+    ...featuredArticles,
+    ...recentArticles.filter(a => !featuredArticles.find(f => f.slug === a.slug))
+  ].slice(0, 6);
 
-  const featuredArticle = articles[0];
+  // If we don't have enough articles, don't render
+  if (articles.length < 2) return null;
+
+  const mainFeatured = articles[0];
   const regularArticles = articles.slice(1, 5);
 
   const formatDate = (dateString: string) => {
@@ -83,11 +99,17 @@ const FeaturedArticles: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
+          <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-[#7B2FFF]/10 border border-[#7B2FFF]/30 rounded-full">
+              <Star className="w-4 h-4 text-[#7B2FFF]" />
+              <span className="text-[#7B2FFF] font-semibold text-sm">Sélection</span>
+            </div>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Articles à la Une
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl">
-            Les dernières publications sur l'IA, l'automatisation et la transformation digitale des PME.
+            Notre sélection d'articles incontournables sur l'IA, l'automatisation et la transformation digitale.
           </p>
         </motion.div>
 
@@ -100,22 +122,22 @@ const FeaturedArticles: React.FC = () => {
           className="grid grid-cols-1 lg:grid-cols-3 gap-6"
         >
           {/* Featured Article - Large Card with Image */}
-          {featuredArticle && (
+          {mainFeatured && (
             <motion.div
               variants={itemVariants}
               className="lg:col-span-2 lg:row-span-2"
             >
               <Link
-                to={`/blog/${featuredArticle.slug}`}
+                to={`/blog/${mainFeatured.slug}`}
                 className="group block h-full"
               >
                 <div className="relative h-full min-h-[500px] lg:min-h-full rounded-2xl overflow-hidden border border-white/10 hover:border-dainamics-primary/50 transition-all duration-300">
                   {/* Background Image */}
                   <div className="absolute inset-0">
                     <BlogHeroImage
-                      title={featuredArticle.title}
-                      categoryId={featuredArticle.categoryId}
-                      categoryColor={getCategoryById(featuredArticle.categoryId)?.color}
+                      title={mainFeatured.title}
+                      categoryId={mainFeatured.categoryId}
+                      categoryColor={getCategoryById(mainFeatured.categoryId)?.color}
                       className="w-full h-full"
                       aspectRatio="hero"
                     />
@@ -123,11 +145,19 @@ const FeaturedArticles: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-dainamics-background via-dainamics-background/60 to-transparent" />
                   </div>
 
+                  {/* Featured Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#7B2FFF]/20 backdrop-blur-sm border border-[#7B2FFF]/40 rounded-full">
+                      <Star className="w-3 h-3 text-[#7B2FFF]" fill="#7B2FFF" />
+                      <span className="text-xs font-medium text-[#7B2FFF]">À la Une</span>
+                    </div>
+                  </div>
+
                   {/* Content */}
                   <div className="relative h-full p-8 lg:p-10 flex flex-col justify-end">
                     {/* Category Badge */}
                     {(() => {
-                      const category = getCategoryById(featuredArticle.categoryId);
+                      const category = getCategoryById(mainFeatured.categoryId);
                       const Icon = category ? iconMap[category.icon] || Brain : Brain;
                       return category ? (
                         <div
@@ -153,20 +183,20 @@ const FeaturedArticles: React.FC = () => {
 
                     {/* Title */}
                     <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-4 group-hover:text-dainamics-secondary transition-colors leading-tight">
-                      {featuredArticle.title}
+                      {mainFeatured.title}
                     </h3>
 
                     {/* Excerpt */}
                     <p className="text-gray-300 mb-6 text-lg leading-relaxed max-w-2xl">
-                      {featuredArticle.excerpt}
+                      {mainFeatured.excerpt}
                     </p>
 
                     {/* Meta */}
                     <div className="flex items-center gap-4 text-sm text-gray-400">
-                      <span>{formatDate(featuredArticle.publishedAt)}</span>
+                      <span>{formatDate(mainFeatured.publishedAt)}</span>
                       <span className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
-                        {featuredArticle.readTime} min
+                        {mainFeatured.readTime} min
                       </span>
                       <span className="flex items-center gap-1 text-dainamics-secondary group-hover:translate-x-1 transition-transform">
                         Lire l'article
