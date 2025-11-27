@@ -1,3 +1,14 @@
+---
+title: "Réglementation IA Suisse : Ce que les PME Doivent Savoir"
+date: "2025-02-15"
+author: "Jean-Marie"
+category: "conformite"
+tags: ["suisse", "lpd", "reglementation", "finma", "legal", "pme"]
+excerpt: "La Suisse a choisi une approche sectorielle sans loi horizontale sur l'IA. Décryptage des implications et guide pratique pour les PME suisses."
+featured: false
+readTime: 8
+---
+
 ## Le choix suisse : innovation plutôt que régulation horizontale
 
 Le 12 février 2025, le Conseil fédéral suisse a confirmé sa position : **pas de loi horizontale sur l'IA** à l'image de l'EU AI Act. La Suisse privilégie une approche sectorielle, adaptant les réglementations existantes plutôt que d'en créer une nouvelle spécifique à l'IA.
