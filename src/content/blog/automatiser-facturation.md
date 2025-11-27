@@ -1,3 +1,14 @@
+---
+title: "Automatiser la Facturation PME : Guide Complet"
+date: "2025-11-08"
+author: "Équipe DAINAMICS"
+category: "automatisation"
+tags: ["facturation", "automatisation", "pme", "bexio", "make"]
+excerpt: "Arrêtez de perdre des heures à facturer. Découvrez comment automatiser votre facturation de bout en bout et récupérer 15h/mois."
+featured: false
+readTime: 12
+---
+
 ## Le cauchemar de la facturation manuelle
 
 Chaque mois, c'est le même scénario : votre équipe administrative passe des heures à créer des factures une par une, à vérifier les montants, à les envoyer, puis à relancer les clients en retard. Ce temps précieux pourrait être consacré à des tâches à plus forte valeur ajoutée.
