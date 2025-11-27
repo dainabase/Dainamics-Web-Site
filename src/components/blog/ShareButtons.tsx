@@ -61,6 +61,42 @@ const PinterestIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+// Fonction utilitaire pour ouvrir l'email de manière fiable
+const openEmailClient = (subject: string, body: string): boolean => {
+  const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  
+  // Méthode 1: window.location.href (la plus fiable pour mailto)
+  try {
+    window.location.href = mailtoUrl;
+    return true;
+  } catch (e) {
+    console.error('Email method 1 failed:', e);
+  }
+  
+  // Méthode 2: window.open (fallback)
+  try {
+    const newWindow = window.open(mailtoUrl, '_self');
+    if (newWindow) return true;
+  } catch (e) {
+    console.error('Email method 2 failed:', e);
+  }
+  
+  // Méthode 3: Créer un lien et cliquer (dernier recours)
+  try {
+    const link = document.createElement('a');
+    link.href = mailtoUrl;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(() => document.body.removeChild(link), 100);
+    return true;
+  } catch (e) {
+    console.error('Email method 3 failed:', e);
+  }
+  
+  return false;
+};
+
 const ShareButtons = ({
   title,
   url,
@@ -156,7 +192,6 @@ const ShareButtons = ({
       color: 'bg-[#25D366]',
       hoverColor: 'hover:bg-[#1da851]',
       action: () => {
-        // Détection mobile pour WhatsApp
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         const whatsappUrl = isMobile 
           ? `whatsapp://send?text=${encodedTitle}%20${encodedUrl}`
@@ -192,30 +227,21 @@ const ShareButtons = ({
 
 Je souhaitais partager cet article avec vous :
 
-📄 ${title}
+${title}
 
-${excerpt ? `"${excerpt}"` : ''}
+${excerpt ? `"${excerpt.substring(0, 200)}${excerpt.length > 200 ? '...' : ''}"` : ''}
 
-👉 Lire l'article complet : ${shareUrl}
+Lire l'article complet : ${shareUrl}
 
 ---
 Partagé depuis le blog DAINAMICS
 Intelligence Artificielle & Automatisation pour PME
 https://dainamics.ch`;
 
-        // Utiliser window.open avec mailto pour ne pas quitter la page
-        const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        
-        // Créer un lien invisible et cliquer dessus (meilleure compatibilité)
-        const link = document.createElement('a');
-        link.href = mailtoUrl;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        showShareNotif('Email');
+        const success = openEmailClient(subject, body);
+        if (success) {
+          showShareNotif('Email');
+        }
       }
     },
     {
@@ -280,7 +306,6 @@ https://dainamics.ch`;
         });
         showShareNotif('appareil');
       } catch (err) {
-        // User cancelled or error
         if ((err as Error).name !== 'AbortError') {
           setShowModal(true);
         }
@@ -291,10 +316,128 @@ https://dainamics.ch`;
   }, [title, excerpt, shareUrl, showShareNotif]);
 
   const handlePrint = useCallback(() => {
-    window.print();
-  }, []);
+    // Ajouter les styles d'impression dynamiquement
+    const printStyles = document.createElement('style');
+    printStyles.id = 'print-styles';
+    printStyles.textContent = `
+      @media print {
+        /* Cacher les éléments non essentiels */
+        header, footer, nav, .share-buttons, .floating-share,
+        .modal, button, .sidebar, .comments, .related-posts,
+        .newsletter, .social-links, .breadcrumb, .back-button,
+        [data-hide-print="true"] {
+          display: none !important;
+        }
+        
+        /* Optimiser le contenu principal */
+        body {
+          background: white !important;
+          color: black !important;
+          font-size: 12pt !important;
+          line-height: 1.5 !important;
+        }
+        
+        article, .article-content, main {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          padding: 20px !important;
+          background: white !important;
+          color: black !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+          color: black !important;
+          page-break-after: avoid !important;
+        }
+        
+        h1 { font-size: 24pt !important; }
+        h2 { font-size: 18pt !important; }
+        h3 { font-size: 14pt !important; }
+        
+        p, li {
+          orphans: 3;
+          widows: 3;
+        }
+        
+        img {
+          max-width: 100% !important;
+          page-break-inside: avoid !important;
+        }
+        
+        a {
+          color: black !important;
+          text-decoration: underline !important;
+        }
+        
+        /* Afficher les URLs des liens */
+        a[href]:after {
+          content: " (" attr(href) ")";
+          font-size: 10pt;
+          color: #666;
+        }
+        
+        a[href^="#"]:after,
+        a[href^="javascript"]:after {
+          content: "";
+        }
+        
+        /* Code blocks */
+        pre, code {
+          background: #f5f5f5 !important;
+          border: 1px solid #ddd !important;
+          color: black !important;
+          page-break-inside: avoid !important;
+        }
+        
+        /* Tables */
+        table {
+          border-collapse: collapse !important;
+        }
+        
+        th, td {
+          border: 1px solid black !important;
+          padding: 8px !important;
+        }
+        
+        /* Footer avec URL */
+        @page {
+          margin: 2cm;
+        }
+        
+        /* Ajouter le lien de l'article en bas */
+        .article-content::after {
+          content: "Source: ${shareUrl}";
+          display: block;
+          margin-top: 30px;
+          padding-top: 15px;
+          border-top: 1px solid #ccc;
+          font-size: 10pt;
+          color: #666;
+        }
+      }
+    `;
+    
+    // Supprimer les anciens styles s'ils existent
+    const existingStyles = document.getElementById('print-styles');
+    if (existingStyles) {
+      existingStyles.remove();
+    }
+    
+    document.head.appendChild(printStyles);
+    
+    // Lancer l'impression
+    setTimeout(() => {
+      window.print();
+      // Nettoyer après impression
+      setTimeout(() => {
+        const styles = document.getElementById('print-styles');
+        if (styles) styles.remove();
+      }, 1000);
+    }, 100);
+  }, [shareUrl]);
 
-  // Generate QR Code URL using QR Server API
+  // Generate QR Code URL
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedUrl}&bgcolor=0A0A0F&color=FFFFFF&format=svg`;
 
   // Notification Toast
@@ -314,12 +457,11 @@ https://dainamics.ch`;
     </AnimatePresence>
   );
 
-  // Inline variant - simple row of buttons
+  // Inline variant
   if (variant === 'inline') {
     return (
       <>
         <div className={`flex items-center gap-2 ${className}`}>
-          {/* Primary share button */}
           <button
             onClick={handleNativeShare}
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-dainamics-primary/20 hover:bg-dainamics-primary/30 border border-dainamics-primary/30 text-white transition-all hover:scale-105"
@@ -328,7 +470,6 @@ https://dainamics.ch`;
             {showLabels && <span className="text-sm font-medium">Partager</span>}
           </button>
 
-          {/* Quick share icons */}
           <div className="hidden sm:flex items-center gap-1.5">
             {shareOptions.slice(0, 4).map((option) => (
               <button
@@ -342,7 +483,6 @@ https://dainamics.ch`;
             ))}
           </div>
 
-          {/* Copy link */}
           <button
             onClick={copyToClipboard}
             className={`p-2.5 rounded-xl transition-all hover:scale-110 ${
@@ -355,7 +495,6 @@ https://dainamics.ch`;
             {copied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
           </button>
 
-          {/* Modal */}
           <ShareModal
             isOpen={showModal}
             onClose={() => setShowModal(false)}
@@ -376,7 +515,7 @@ https://dainamics.ch`;
     );
   }
 
-  // Floating variant - fixed sidebar
+  // Floating variant
   if (variant === 'floating') {
     return (
       <>
@@ -389,9 +528,9 @@ https://dainamics.ch`;
               className={`fixed left-4 z-40 transition-all duration-300 ${
                 isAtBottom ? 'bottom-24' : 'top-1/2 -translate-y-1/2'
               } ${className}`}
+              data-hide-print="true"
             >
               <div className="flex flex-col gap-2 p-2 rounded-2xl bg-dainamics-background/90 backdrop-blur-xl border border-white/10 shadow-2xl">
-                {/* Share button */}
                 <button
                   onClick={handleNativeShare}
                   className="p-3 rounded-xl bg-dainamics-primary hover:bg-dainamics-primary/80 text-white transition-all hover:scale-110"
@@ -402,7 +541,6 @@ https://dainamics.ch`;
 
                 <div className="w-full h-px bg-white/10" />
 
-                {/* Social icons */}
                 {shareOptions.slice(0, 5).map((option) => (
                   <button
                     key={option.id}
@@ -416,7 +554,6 @@ https://dainamics.ch`;
 
                 <div className="w-full h-px bg-white/10" />
 
-                {/* Copy link */}
                 <button
                   onClick={copyToClipboard}
                   className={`p-3 rounded-xl transition-all hover:scale-110 ${
@@ -429,7 +566,6 @@ https://dainamics.ch`;
                   {copied ? <Check className="w-5 h-5" /> : <Link2 className="w-5 h-5" />}
                 </button>
 
-                {/* More options */}
                 <button
                   onClick={() => setShowModal(true)}
                   className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
@@ -442,7 +578,6 @@ https://dainamics.ch`;
           )}
         </AnimatePresence>
 
-        {/* Modal */}
         <ShareModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
@@ -463,7 +598,7 @@ https://dainamics.ch`;
     );
   }
 
-  // Modal variant - just the trigger button
+  // Modal variant
   return (
     <>
       <div className={className}>
@@ -495,7 +630,7 @@ https://dainamics.ch`;
   );
 };
 
-// Modal component for all sharing options
+// Modal component
 interface ShareModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -527,7 +662,6 @@ const ShareModal = ({
 }: ShareModalProps) => {
   const [emailPreview, setEmailPreview] = useState(false);
 
-  // Close on escape
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -542,7 +676,6 @@ const ShareModal = ({
     };
   }, [isOpen, onClose]);
 
-  // Reset states when modal closes
   useEffect(() => {
     if (!isOpen) {
       setEmailPreview(false);
@@ -560,10 +693,8 @@ const ShareModal = ({
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={onClose}
         >
-          {/* Backdrop */}
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
-          {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -594,13 +725,13 @@ const ShareModal = ({
                   {shareOptions.map((option) => (
                     <button
                       key={option.id}
-                      onClick={() => {
-                        option.action(title, url, excerpt);
-                      }}
+                      onClick={() => option.action(title, url, excerpt)}
                       className={`flex flex-col items-center gap-2 p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-105`}
                     >
                       <option.icon className="w-5 h-5" />
-                      <span className="text-[10px] font-medium truncate w-full text-center">{option.name.split(' ')[0]}</span>
+                      <span className="text-[10px] font-medium truncate w-full text-center">
+                        {option.name.split(' ')[0]}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -636,7 +767,11 @@ const ShareModal = ({
                           <p>Bonjour,</p>
                           <p>Je souhaitais partager cet article avec vous :</p>
                           <p className="text-dainamics-primary font-medium">"{title}"</p>
-                          {excerpt && <p className="text-gray-500 italic text-xs">"{excerpt.slice(0, 100)}..."</p>}
+                          {excerpt && (
+                            <p className="text-gray-500 italic text-xs">
+                              "{excerpt.slice(0, 100)}..."
+                            </p>
+                          )}
                           <p className="text-dainamics-secondary underline">{url}</p>
                           <p className="text-gray-500 text-xs mt-4 pt-3 border-t border-white/10">
                             Partagé depuis le blog DAINAMICS
@@ -677,7 +812,6 @@ const ShareModal = ({
 
               {/* Additional options */}
               <div className="flex gap-3">
-                {/* QR Code */}
                 <button
                   onClick={() => setShowQR(!showQR)}
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl border transition-all ${
@@ -690,7 +824,6 @@ const ShareModal = ({
                   <span className="text-sm font-medium">QR Code</span>
                 </button>
 
-                {/* Print */}
                 <button
                   onClick={handlePrint}
                   className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all"
