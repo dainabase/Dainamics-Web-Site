@@ -1,15 +1,26 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import { blogArticles, blogCategories, getCategoryById } from '@/data/blog';
 
 const AllArticles = () => {
-  const [search, setSearch] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get('q') || '');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(
+    searchParams.get('category') || null
+  );
+
+  // Update URL when search or category changes
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (search) params.set('q', search);
+    if (selectedCategory) params.set('category', selectedCategory);
+    setSearchParams(params, { replace: true });
+  }, [search, selectedCategory, setSearchParams]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,6 +45,11 @@ const AllArticles = () => {
       month: 'long',
       year: 'numeric'
     });
+  };
+
+  const handleClearFilters = () => {
+    setSearch('');
+    setSelectedCategory(null);
   };
 
   return (
@@ -124,8 +140,9 @@ const AllArticles = () => {
               className="text-center mb-8"
             >
               <p className="text-gray-400">
-                {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''} trouvé
+                {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''} trouve
                 {filteredArticles.length !== 1 ? 's' : ''}
+                {search && <span> pour "{search}"</span>}
               </p>
             </motion.div>
           )}
@@ -194,18 +211,15 @@ const AllArticles = () => {
               <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-white/5 flex items-center justify-center">
                 <Search className="w-10 h-10 text-gray-600" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Aucun article trouvé</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">Aucun article trouve</h3>
               <p className="text-gray-400 mb-6">
                 Essayez de modifier votre recherche ou vos filtres
               </p>
               <button
-                onClick={() => {
-                  setSearch('');
-                  setSelectedCategory(null);
-                }}
+                onClick={handleClearFilters}
                 className="px-6 py-3 rounded-full bg-dainamics-primary text-white hover:bg-dainamics-primary/90 transition-colors"
               >
-                Réinitialiser les filtres
+                Reinitialiser les filtres
               </button>
             </motion.div>
           )}
