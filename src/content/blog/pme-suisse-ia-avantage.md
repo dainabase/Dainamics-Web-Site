@@ -1,3 +1,14 @@
+---
+title: "PME Suisses et IA : Un Avantage Compétitif Unique"
+date: "2025-10-05"
+author: "Équipe DAINAMICS"
+category: "strategie"
+tags: ["pme", "suisse", "competitivite", "avantage", "strategie"]
+excerpt: "Comment les PME suisses peuvent utiliser l'IA comme avantage compétitif. Guide stratégique et ressources de l'écosystème suisse."
+featured: false
+readTime: 10
+---
+
 ## La Suisse : petit pays, grandes ambitions IA
 
 La Suisse occupe une position unique dans l'écosystème mondial de l'intelligence artificielle. Avec l'EPFL et l'ETH Zurich parmi les meilleures écoles techniques mondiales, un tissu économique innovant, et une tradition de précision et de qualité, le pays dispose d'atouts considérables pour l'adoption de l'IA.
