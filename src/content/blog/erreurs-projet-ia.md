@@ -1,3 +1,14 @@
+---
+title: "Les 7 Erreurs Qui Font Échouer 70% des Projets IA"
+date: "2025-11-14"
+author: "Équipe DAINAMICS"
+category: "strategie"
+tags: ["ia", "projet", "erreurs", "bonnes-pratiques", "roi"]
+excerpt: "70% des projets IA échouent. Découvrez les 7 erreurs les plus fréquentes et comment les éviter pour réussir votre transformation."
+readTime: 11
+featured: true
+---
+
 ## La réalité des projets IA : 70% d'échecs
 
 Le chiffre fait mal : selon les études de Gartner et McKinsey, **70 à 85% des projets IA n'atteignent jamais la production** ou échouent à délivrer la valeur promise. Pour les PME, qui n'ont pas le luxe de multiplier les tentatives, chaque projet raté est une double perte : financière et en confiance.
