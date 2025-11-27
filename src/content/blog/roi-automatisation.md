@@ -1,3 +1,14 @@
+---
+title: "Calculer le ROI de l'Automatisation : Guide Complet avec Formules"
+date: "2025-11-10"
+author: "Équipe DAINAMICS"
+category: "automatisation"
+tags: ["roi", "automatisation", "calcul", "investissement", "pme"]
+excerpt: "Apprenez à calculer le retour sur investissement réel de vos projets d'automatisation. Formules, études de cas chiffrées et outils pratiques."
+featured: false
+readTime: 15
+---
+
 ## L'automatisation : un investissement, pas une dépense
 
 Quand on parle d'automatisation, la première question est invariablement : "Combien ça coûte ?" Mais la vraie question devrait être : "Combien ça rapporte ?"
