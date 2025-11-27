@@ -1,10 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search } from 'lucide-react';
+import { Search, Clock, ArrowRight } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
+import BlogHeroImage from '@/components/blog/BlogHeroImage';
 import { blogArticles, blogCategories, getCategoryById } from '@/data/blog';
 
 const AllArticles = () => {
@@ -140,14 +141,14 @@ const AllArticles = () => {
               className="text-center mb-8"
             >
               <p className="text-gray-400">
-                {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''} trouve
+                {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''} trouvé
                 {filteredArticles.length !== 1 ? 's' : ''}
                 {search && <span> pour "{search}"</span>}
               </p>
             </motion.div>
           )}
 
-          {/* Articles Grid */}
+          {/* Articles Grid with Images */}
           {filteredArticles.length > 0 ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -165,36 +166,67 @@ const AllArticles = () => {
                     transition={{ delay: index * 0.05, duration: 0.5 }}
                   >
                     <Link to={`/blog/${article.slug}`} className="group block h-full">
-                      <div className="h-full p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all flex flex-col">
-                        {/* Category */}
-                        {category && (
-                          <div
-                            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full w-fit mb-4"
-                            style={{
-                              backgroundColor: `${category.color}15`,
-                              border: `1px solid ${category.color}30`
-                            }}
-                          >
-                            <span className="text-xs font-medium" style={{ color: category.color }}>
-                              {category.name}
-                            </span>
+                      <div className="h-full rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 hover:bg-white/[0.05] transition-all flex flex-col overflow-hidden">
+                        {/* Image */}
+                        <div className="relative h-44 overflow-hidden">
+                          <BlogHeroImage
+                            title={article.title}
+                            categoryId={article.categoryId}
+                            categoryColor={category?.color}
+                            className="w-full h-full group-hover:scale-105 transition-transform duration-500"
+                            aspectRatio="card"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-dainamics-background/90 via-transparent to-transparent" />
+                          
+                          {/* Category Badge on Image */}
+                          {category && (
+                            <div
+                              className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full backdrop-blur-sm"
+                              style={{
+                                backgroundColor: `${category.color}25`,
+                                border: `1px solid ${category.color}40`
+                              }}
+                            >
+                              <span
+                                className="w-1.5 h-1.5 rounded-full"
+                                style={{ backgroundColor: category.color }}
+                              />
+                              <span
+                                className="text-xs font-medium"
+                                style={{ color: category.color }}
+                              >
+                                {category.name}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-5 flex flex-col flex-grow">
+                          {/* Title */}
+                          <h3 className="text-lg font-bold text-white mb-3 group-hover:text-dainamics-secondary transition-colors line-clamp-2">
+                            {article.title}
+                          </h3>
+
+                          {/* Excerpt */}
+                          <p className="text-gray-500 text-sm mb-4 line-clamp-2 flex-grow">
+                            {article.excerpt}
+                          </p>
+
+                          {/* Meta */}
+                          <div className="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-white/5">
+                            <span>{formatDate(article.publishedAt)}</span>
+                            <div className="flex items-center gap-3">
+                              <span className="flex items-center gap-1">
+                                <Clock className="w-3 h-3" />
+                                {article.readTime} min
+                              </span>
+                              <span className="flex items-center gap-1 text-dainamics-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+                                Lire
+                                <ArrowRight className="w-3 h-3" />
+                              </span>
+                            </div>
                           </div>
-                        )}
-
-                        {/* Title */}
-                        <h3 className="text-lg font-bold text-white mb-3 group-hover:text-dainamics-secondary transition-colors line-clamp-2">
-                          {article.title}
-                        </h3>
-
-                        {/* Excerpt */}
-                        <p className="text-gray-500 text-sm mb-4 line-clamp-3 flex-grow">
-                          {article.excerpt}
-                        </p>
-
-                        {/* Meta */}
-                        <div className="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-white/5">
-                          <span>{formatDate(article.publishedAt)}</span>
-                          <span>{article.readTime} min</span>
                         </div>
                       </div>
                     </Link>
@@ -211,7 +243,7 @@ const AllArticles = () => {
               <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-white/5 flex items-center justify-center">
                 <Search className="w-10 h-10 text-gray-600" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Aucun article trouve</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">Aucun article trouvé</h3>
               <p className="text-gray-400 mb-6">
                 Essayez de modifier votre recherche ou vos filtres
               </p>
@@ -219,7 +251,7 @@ const AllArticles = () => {
                 onClick={handleClearFilters}
                 className="px-6 py-3 rounded-full bg-dainamics-primary text-white hover:bg-dainamics-primary/90 transition-colors"
               >
-                Reinitialiser les filtres
+                Réinitialiser les filtres
               </button>
             </motion.div>
           )}
