@@ -374,6 +374,7 @@ export const portfolioProjects: PortfolioProject[] = [
       role: 'Responsable Technique',
       company: 'HMF Corporation SA'
     },
+    image: 'https://images.pexels.com/photos/1884584/pexels-photo-1884584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
     featured: true,
     year: 2024,
     duration: '6-9 semaines',
@@ -429,6 +430,7 @@ export const portfolioProjects: PortfolioProject[] = [
       role: 'Responsable Projet',
       company: 'DATAVSN'
     },
+    image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
     featured: true,
     year: 2024,
     duration: '4-6 mois',
