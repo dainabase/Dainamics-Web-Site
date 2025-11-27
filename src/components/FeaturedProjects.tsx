@@ -7,7 +7,6 @@ const FeaturedProjects: React.FC = () => {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
 
   const toggleProject = (projectId: number) => {
-    console.log('Toggle project:', projectId, 'Current expanded:', expandedProject);
     setExpandedProject(expandedProject === projectId ? null : projectId);
   };
 
@@ -218,7 +217,7 @@ const FeaturedProjects: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="projects-grid grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12"
+          className="projects-grid grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start"
         >
           {projects.map((project) => (
             <motion.div
@@ -301,7 +300,6 @@ const FeaturedProjects: React.FC = () => {
                 </div>
 
                 {/* Contenu expandable */}
-                {console.log(`Project ${project.id} render - expandedProject:`, expandedProject, 'Should show:', expandedProject === project.id)}
                 <AnimatePresence mode="wait">
                   {expandedProject === project.id && (
                     <motion.div
