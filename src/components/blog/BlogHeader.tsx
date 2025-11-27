@@ -52,7 +52,7 @@ const BlogHeader: React.FC = () => {
       />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl">
           {/* Eyebrow */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
