@@ -8,12 +8,11 @@ import {
   Mail,
   Link2,
   Check,
-  MessageCircle,
-  Send,
   Printer,
   QrCode,
   X,
-  ChevronUp
+  ChevronUp,
+  ExternalLink
 } from 'lucide-react';
 
 interface ShareButtonsProps {
@@ -48,6 +47,20 @@ const TelegramIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+// Reddit icon component
+const RedditIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+  </svg>
+);
+
+// Pinterest icon component  
+const PinterestIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
+  </svg>
+);
+
 const ShareButtons = ({
   title,
   url,
@@ -61,11 +74,17 @@ const ShareButtons = ({
   const [showQR, setShowQR] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(false);
+  const [shareNotification, setShareNotification] = useState<string | null>(null);
 
   const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
   const encodedUrl = encodeURIComponent(shareUrl);
   const encodedTitle = encodeURIComponent(title);
-  const encodedExcerpt = encodeURIComponent(excerpt);
+
+  // Show notification after share
+  const showShareNotif = useCallback((platform: string) => {
+    setShareNotification(`Partagé sur ${platform}`);
+    setTimeout(() => setShareNotification(null), 2000);
+  }, []);
 
   // Track scroll for floating variant
   useEffect(() => {
@@ -95,8 +114,9 @@ const ShareButtons = ({
         window.open(
           `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
           '_blank',
-          'width=600,height=400'
+          'width=600,height=400,noopener,noreferrer'
         );
+        showShareNotif('Twitter');
       }
     },
     {
@@ -109,8 +129,9 @@ const ShareButtons = ({
         window.open(
           `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
           '_blank',
-          'width=600,height=600'
+          'width=600,height=600,noopener,noreferrer'
         );
+        showShareNotif('LinkedIn');
       }
     },
     {
@@ -123,8 +144,9 @@ const ShareButtons = ({
         window.open(
           `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
           '_blank',
-          'width=600,height=400'
+          'width=600,height=400,noopener,noreferrer'
         );
+        showShareNotif('Facebook');
       }
     },
     {
@@ -134,10 +156,13 @@ const ShareButtons = ({
       color: 'bg-[#25D366]',
       hoverColor: 'hover:bg-[#1da851]',
       action: () => {
-        window.open(
-          `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
-          '_blank'
-        );
+        // Détection mobile pour WhatsApp
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const whatsappUrl = isMobile 
+          ? `whatsapp://send?text=${encodedTitle}%20${encodedUrl}`
+          : `https://web.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        showShareNotif('WhatsApp');
       }
     },
     {
@@ -149,22 +174,78 @@ const ShareButtons = ({
       action: () => {
         window.open(
           `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
-          '_blank'
+          '_blank',
+          'noopener,noreferrer'
         );
+        showShareNotif('Telegram');
       }
     },
     {
       id: 'email',
       name: 'Email',
       icon: Mail,
-      color: 'bg-gray-600',
-      hoverColor: 'hover:bg-gray-700',
+      color: 'bg-gradient-to-br from-orange-500 to-red-500',
+      hoverColor: 'hover:from-orange-600 hover:to-red-600',
       action: () => {
-        const subject = encodeURIComponent(`Article intéressant : ${title}`);
-        const body = encodeURIComponent(
-          `Bonjour,\n\nJe souhaitais partager cet article avec vous :\n\n${title}\n\n${excerpt}\n\nLire l'article : ${shareUrl}\n\n---\nPartagé depuis le blog DAINAMICS`
+        const subject = `Article intéressant : ${title}`;
+        const body = `Bonjour,
+
+Je souhaitais partager cet article avec vous :
+
+📄 ${title}
+
+${excerpt ? `"${excerpt}"` : ''}
+
+👉 Lire l'article complet : ${shareUrl}
+
+---
+Partagé depuis le blog DAINAMICS
+Intelligence Artificielle & Automatisation pour PME
+https://dainamics.ch`;
+
+        // Utiliser window.open avec mailto pour ne pas quitter la page
+        const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        // Créer un lien invisible et cliquer dessus (meilleure compatibilité)
+        const link = document.createElement('a');
+        link.href = mailtoUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showShareNotif('Email');
+      }
+    },
+    {
+      id: 'reddit',
+      name: 'Reddit',
+      icon: RedditIcon,
+      color: 'bg-[#FF4500]',
+      hoverColor: 'hover:bg-[#cc3700]',
+      action: () => {
+        window.open(
+          `https://reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`,
+          '_blank',
+          'width=600,height=600,noopener,noreferrer'
         );
-        window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        showShareNotif('Reddit');
+      }
+    },
+    {
+      id: 'pinterest',
+      name: 'Pinterest',
+      icon: PinterestIcon,
+      color: 'bg-[#E60023]',
+      hoverColor: 'hover:bg-[#ad001a]',
+      action: () => {
+        window.open(
+          `https://pinterest.com/pin/create/button/?url=${encodedUrl}&description=${encodedTitle}`,
+          '_blank',
+          'width=600,height=600,noopener,noreferrer'
+        );
+        showShareNotif('Pinterest');
       }
     }
   ];
@@ -178,6 +259,8 @@ const ShareButtons = ({
       // Fallback for older browsers
       const textArea = document.createElement('textarea');
       textArea.value = shareUrl;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
       document.body.appendChild(textArea);
       textArea.select();
       document.execCommand('copy');
@@ -195,6 +278,7 @@ const ShareButtons = ({
           text: excerpt,
           url: shareUrl
         });
+        showShareNotif('appareil');
       } catch (err) {
         // User cancelled or error
         if ((err as Error).name !== 'AbortError') {
@@ -204,7 +288,7 @@ const ShareButtons = ({
     } else {
       setShowModal(true);
     }
-  }, [title, excerpt, shareUrl]);
+  }, [title, excerpt, shareUrl, showShareNotif]);
 
   const handlePrint = useCallback(() => {
     window.print();
@@ -213,62 +297,82 @@ const ShareButtons = ({
   // Generate QR Code URL using QR Server API
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedUrl}&bgcolor=0A0A0F&color=FFFFFF&format=svg`;
 
+  // Notification Toast
+  const NotificationToast = () => (
+    <AnimatePresence>
+      {shareNotification && (
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.9 }}
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 bg-green-500 text-white rounded-full shadow-lg flex items-center gap-2"
+        >
+          <Check className="w-4 h-4" />
+          <span className="font-medium">{shareNotification}</span>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+
   // Inline variant - simple row of buttons
   if (variant === 'inline') {
     return (
-      <div className={`flex items-center gap-2 ${className}`}>
-        {/* Primary share button */}
-        <button
-          onClick={handleNativeShare}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-dainamics-primary/20 hover:bg-dainamics-primary/30 border border-dainamics-primary/30 text-white transition-all hover:scale-105"
-        >
-          <Share2 className="w-4 h-4" />
-          {showLabels && <span className="text-sm font-medium">Partager</span>}
-        </button>
+      <>
+        <div className={`flex items-center gap-2 ${className}`}>
+          {/* Primary share button */}
+          <button
+            onClick={handleNativeShare}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-dainamics-primary/20 hover:bg-dainamics-primary/30 border border-dainamics-primary/30 text-white transition-all hover:scale-105"
+          >
+            <Share2 className="w-4 h-4" />
+            {showLabels && <span className="text-sm font-medium">Partager</span>}
+          </button>
 
-        {/* Quick share icons */}
-        <div className="hidden sm:flex items-center gap-1.5">
-          {shareOptions.slice(0, 4).map((option) => (
-            <button
-              key={option.id}
-              onClick={() => option.action(title, shareUrl, excerpt)}
-              className={`p-2.5 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
-              title={option.name}
-            >
-              <option.icon className="w-4 h-4" />
-            </button>
-          ))}
+          {/* Quick share icons */}
+          <div className="hidden sm:flex items-center gap-1.5">
+            {shareOptions.slice(0, 4).map((option) => (
+              <button
+                key={option.id}
+                onClick={() => option.action(title, shareUrl, excerpt)}
+                className={`p-2.5 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
+                title={option.name}
+              >
+                <option.icon className="w-4 h-4" />
+              </button>
+            ))}
+          </div>
+
+          {/* Copy link */}
+          <button
+            onClick={copyToClipboard}
+            className={`p-2.5 rounded-xl transition-all hover:scale-110 ${
+              copied 
+                ? 'bg-green-500 text-white' 
+                : 'bg-white/10 hover:bg-white/20 text-gray-400 hover:text-white'
+            }`}
+            title={copied ? 'Lien copié !' : 'Copier le lien'}
+          >
+            {copied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
+          </button>
+
+          {/* Modal */}
+          <ShareModal
+            isOpen={showModal}
+            onClose={() => setShowModal(false)}
+            title={title}
+            url={shareUrl}
+            excerpt={excerpt}
+            shareOptions={shareOptions}
+            copyToClipboard={copyToClipboard}
+            copied={copied}
+            handlePrint={handlePrint}
+            qrCodeUrl={qrCodeUrl}
+            showQR={showQR}
+            setShowQR={setShowQR}
+          />
         </div>
-
-        {/* Copy link */}
-        <button
-          onClick={copyToClipboard}
-          className={`p-2.5 rounded-xl transition-all hover:scale-110 ${
-            copied 
-              ? 'bg-green-500 text-white' 
-              : 'bg-white/10 hover:bg-white/20 text-gray-400 hover:text-white'
-          }`}
-          title={copied ? 'Lien copié !' : 'Copier le lien'}
-        >
-          {copied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
-        </button>
-
-        {/* Modal */}
-        <ShareModal
-          isOpen={showModal}
-          onClose={() => setShowModal(false)}
-          title={title}
-          url={shareUrl}
-          excerpt={excerpt}
-          shareOptions={shareOptions}
-          copyToClipboard={copyToClipboard}
-          copied={copied}
-          handlePrint={handlePrint}
-          qrCodeUrl={qrCodeUrl}
-          showQR={showQR}
-          setShowQR={setShowQR}
-        />
-      </div>
+        <NotificationToast />
+      </>
     );
   }
 
@@ -353,36 +457,41 @@ const ShareButtons = ({
           showQR={showQR}
           setShowQR={setShowQR}
         />
+        
+        <NotificationToast />
       </>
     );
   }
 
   // Modal variant - just the trigger button
   return (
-    <div className={className}>
-      <button
-        onClick={handleNativeShare}
-        className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white transition-all"
-      >
-        <Share2 className="w-4 h-4" />
-        {showLabels && <span className="text-sm">Partager</span>}
-      </button>
+    <>
+      <div className={className}>
+        <button
+          onClick={handleNativeShare}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white transition-all"
+        >
+          <Share2 className="w-4 h-4" />
+          {showLabels && <span className="text-sm">Partager</span>}
+        </button>
 
-      <ShareModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        title={title}
-        url={shareUrl}
-        excerpt={excerpt}
-        shareOptions={shareOptions}
-        copyToClipboard={copyToClipboard}
-        copied={copied}
-        handlePrint={handlePrint}
-        qrCodeUrl={qrCodeUrl}
-        showQR={showQR}
-        setShowQR={setShowQR}
-      />
-    </div>
+        <ShareModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          title={title}
+          url={shareUrl}
+          excerpt={excerpt}
+          shareOptions={shareOptions}
+          copyToClipboard={copyToClipboard}
+          copied={copied}
+          handlePrint={handlePrint}
+          qrCodeUrl={qrCodeUrl}
+          showQR={showQR}
+          setShowQR={setShowQR}
+        />
+      </div>
+      <NotificationToast />
+    </>
   );
 };
 
@@ -416,6 +525,8 @@ const ShareModal = ({
   showQR,
   setShowQR
 }: ShareModalProps) => {
+  const [emailPreview, setEmailPreview] = useState(false);
+
   // Close on escape
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -430,6 +541,14 @@ const ShareModal = ({
       document.body.style.overflow = '';
     };
   }, [isOpen, onClose]);
+
+  // Reset states when modal closes
+  useEffect(() => {
+    if (!isOpen) {
+      setEmailPreview(false);
+      setShowQR(false);
+    }
+  }, [isOpen, setShowQR]);
 
   return (
     <AnimatePresence>
@@ -450,10 +569,10 @@ const ShareModal = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md bg-dainamics-background border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-md bg-dainamics-background border border-white/10 rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-white/10">
+            <div className="sticky top-0 z-10 flex items-center justify-between p-6 border-b border-white/10 bg-dainamics-background/95 backdrop-blur-sm">
               <div>
                 <h3 className="text-xl font-bold text-white">Partager l'article</h3>
                 <p className="text-sm text-gray-400 mt-1 line-clamp-1">{title}</p>
@@ -471,40 +590,81 @@ const ShareModal = ({
               {/* Social share grid */}
               <div>
                 <p className="text-sm font-medium text-gray-400 mb-3">Réseaux sociaux</p>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-4 gap-3">
                   {shareOptions.map((option) => (
                     <button
                       key={option.id}
                       onClick={() => {
                         option.action(title, url, excerpt);
-                        onClose();
                       }}
-                      className={`flex flex-col items-center gap-2 p-4 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-105`}
+                      className={`flex flex-col items-center gap-2 p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-105`}
                     >
-                      <option.icon className="w-6 h-6" />
-                      <span className="text-xs font-medium">{option.name}</span>
+                      <option.icon className="w-5 h-5" />
+                      <span className="text-[10px] font-medium truncate w-full text-center">{option.name.split(' ')[0]}</span>
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Email Preview Toggle */}
+              <div>
+                <button
+                  onClick={() => setEmailPreview(!emailPreview)}
+                  className="w-full flex items-center justify-between px-4 py-3 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-gray-400 hover:text-white transition-all"
+                >
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5" />
+                    <span className="text-sm font-medium">Aperçu de l'email</span>
+                  </div>
+                  <ExternalLink className={`w-4 h-4 transition-transform ${emailPreview ? 'rotate-180' : ''}`} />
+                </button>
+                
+                <AnimatePresence>
+                  {emailPreview && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-3 p-4 bg-white/5 rounded-xl border border-white/10 text-sm">
+                        <div className="mb-3 pb-3 border-b border-white/10">
+                          <p className="text-gray-500 text-xs mb-1">Objet :</p>
+                          <p className="text-white">Article intéressant : {title}</p>
+                        </div>
+                        <div className="space-y-2 text-gray-400">
+                          <p>Bonjour,</p>
+                          <p>Je souhaitais partager cet article avec vous :</p>
+                          <p className="text-dainamics-primary font-medium">"{title}"</p>
+                          {excerpt && <p className="text-gray-500 italic text-xs">"{excerpt.slice(0, 100)}..."</p>}
+                          <p className="text-dainamics-secondary underline">{url}</p>
+                          <p className="text-gray-500 text-xs mt-4 pt-3 border-t border-white/10">
+                            Partagé depuis le blog DAINAMICS
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Copy link */}
               <div>
                 <p className="text-sm font-medium text-gray-400 mb-3">Copier le lien</p>
                 <div className="flex gap-2">
-                  <div className="flex-1 px-4 py-3 bg-white/5 rounded-xl border border-white/10 text-gray-400 text-sm truncate">
+                  <div className="flex-1 px-4 py-3 bg-white/5 rounded-xl border border-white/10 text-gray-400 text-sm truncate font-mono">
                     {url}
                   </div>
                   <button
                     onClick={copyToClipboard}
-                    className={`px-4 py-3 rounded-xl font-medium transition-all ${
+                    className={`px-4 py-3 rounded-xl font-medium transition-all min-w-[100px] ${
                       copied
                         ? 'bg-green-500 text-white'
                         : 'bg-dainamics-primary hover:bg-dainamics-primary/80 text-white'
                     }`}
                   >
                     {copied ? (
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-center justify-center gap-2">
                         <Check className="w-4 h-4" />
                         Copié
                       </span>
@@ -559,6 +719,13 @@ const ShareModal = ({
                       <p className="text-sm text-gray-600 mt-3 text-center">
                         Scannez pour accéder à l'article
                       </p>
+                      <a 
+                        href={qrCodeUrl.replace('svg', 'png')} 
+                        download={`qr-${title.slice(0, 30).replace(/\s/g, '-')}.png`}
+                        className="mt-3 text-xs text-dainamics-primary hover:underline"
+                      >
+                        Télécharger le QR Code
+                      </a>
                     </div>
                   </motion.div>
                 )}
@@ -566,9 +733,9 @@ const ShareModal = ({
             </div>
 
             {/* Footer */}
-            <div className="px-6 py-4 bg-white/[0.02] border-t border-white/10">
+            <div className="sticky bottom-0 px-6 py-4 bg-white/[0.02] border-t border-white/10 backdrop-blur-sm">
               <p className="text-xs text-gray-500 text-center">
-                Partagé depuis le blog DAINAMICS • IA & Automatisation
+                Partagé depuis le blog DAINAMICS • IA & Automatisation pour PME
               </p>
             </div>
           </motion.div>
