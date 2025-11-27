@@ -21,6 +21,7 @@ import {
   getCategoryById,
   BlogArticle
 } from '@/data/blog';
+import BlogHeroImage from './BlogHeroImage';
 
 const iconMap: Record<string, React.ElementType> = {
   'Brain': Brain,
@@ -98,7 +99,7 @@ const FeaturedArticles: React.FC = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 lg:grid-cols-3 gap-6"
         >
-          {/* Featured Article - Large Card */}
+          {/* Featured Article - Large Card with Image */}
           {featuredArticle && (
             <motion.div
               variants={itemVariants}
@@ -108,11 +109,18 @@ const FeaturedArticles: React.FC = () => {
                 to={`/blog/${featuredArticle.slug}`}
                 className="group block h-full"
               >
-                <div className="relative h-full min-h-[400px] lg:min-h-full rounded-2xl overflow-hidden bg-gradient-to-br from-dainamics-primary/20 to-dainamics-secondary/10 border border-white/10 hover:border-dainamics-primary/50 transition-all duration-300">
-                  {/* Background pattern */}
-                  <div className="absolute inset-0 opacity-50">
-                    <div className="absolute top-10 right-10 w-64 h-64 bg-dainamics-primary/30 rounded-full blur-[100px]" />
-                    <div className="absolute bottom-10 left-10 w-48 h-48 bg-dainamics-secondary/30 rounded-full blur-[80px]" />
+                <div className="relative h-full min-h-[500px] lg:min-h-full rounded-2xl overflow-hidden border border-white/10 hover:border-dainamics-primary/50 transition-all duration-300">
+                  {/* Background Image */}
+                  <div className="absolute inset-0">
+                    <BlogHeroImage
+                      title={featuredArticle.title}
+                      categoryId={featuredArticle.categoryId}
+                      categoryColor={getCategoryById(featuredArticle.categoryId)?.color}
+                      className="w-full h-full"
+                      aspectRatio="hero"
+                    />
+                    {/* Gradient overlay for readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-dainamics-background via-dainamics-background/60 to-transparent" />
                   </div>
 
                   {/* Content */}
@@ -123,10 +131,10 @@ const FeaturedArticles: React.FC = () => {
                       const Icon = category ? iconMap[category.icon] || Brain : Brain;
                       return category ? (
                         <div
-                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full w-fit mb-6"
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full w-fit mb-6 backdrop-blur-sm"
                           style={{
-                            backgroundColor: `${category.color}20`,
-                            border: `1px solid ${category.color}40`
+                            backgroundColor: `${category.color}30`,
+                            border: `1px solid ${category.color}50`
                           }}
                         >
                           <Icon
@@ -144,17 +152,17 @@ const FeaturedArticles: React.FC = () => {
                     })()}
 
                     {/* Title */}
-                    <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-dainamics-secondary transition-colors">
+                    <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-4 group-hover:text-dainamics-secondary transition-colors leading-tight">
                       {featuredArticle.title}
                     </h3>
 
                     {/* Excerpt */}
-                    <p className="text-gray-400 mb-6 text-lg leading-relaxed max-w-2xl">
+                    <p className="text-gray-300 mb-6 text-lg leading-relaxed max-w-2xl">
                       {featuredArticle.excerpt}
                     </p>
 
                     {/* Meta */}
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                    <div className="flex items-center gap-4 text-sm text-gray-400">
                       <span>{formatDate(featuredArticle.publishedAt)}</span>
                       <span className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
@@ -171,7 +179,7 @@ const FeaturedArticles: React.FC = () => {
             </motion.div>
           )}
 
-          {/* Regular Articles - Small Cards */}
+          {/* Regular Articles - Small Cards with Images */}
           {regularArticles.map((article, index) => {
             const category = getCategoryById(article.categoryId);
             const Icon = category ? iconMap[category.icon] || Brain : Brain;
@@ -184,46 +192,56 @@ const FeaturedArticles: React.FC = () => {
                   to={`/blog/${article.slug}`}
                   className="group block h-full"
                 >
-                  <div className="h-full p-6 rounded-2xl bg-dainamics-card border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col">
-                    {/* Category Badge */}
-                    {category && (
-                      <div
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full w-fit mb-4"
-                        style={{
-                          backgroundColor: `${category.color}15`,
-                          border: `1px solid ${category.color}30`
-                        }}
-                      >
-                        <Icon
-                          className="w-3.5 h-3.5"
-                          style={{ color: category.color }}
-                        />
-                        <span
-                          className="text-xs font-medium"
-                          style={{ color: category.color }}
+                  <div className="h-full rounded-2xl bg-dainamics-card border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col overflow-hidden">
+                    {/* Image */}
+                    <div className="relative h-36 overflow-hidden">
+                      <BlogHeroImage
+                        title={article.title}
+                        categoryId={article.categoryId}
+                        categoryColor={category?.color}
+                        className="w-full h-full group-hover:scale-105 transition-transform duration-500"
+                        aspectRatio="card"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-dainamics-card to-transparent" />
+                      
+                      {/* Category Badge on Image */}
+                      {category && (
+                        <div
+                          className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full backdrop-blur-sm"
+                          style={{
+                            backgroundColor: `${category.color}25`,
+                            border: `1px solid ${category.color}40`
+                          }}
                         >
-                          {category.name}
+                          <Icon
+                            className="w-3 h-3"
+                            style={{ color: category.color }}
+                          />
+                          <span
+                            className="text-xs font-medium"
+                            style={{ color: category.color }}
+                          >
+                            {category.name}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-5 flex flex-col flex-grow">
+                      {/* Title */}
+                      <h3 className="text-lg font-bold text-white mb-3 group-hover:text-dainamics-secondary transition-colors line-clamp-2 flex-grow">
+                        {article.title}
+                      </h3>
+
+                      {/* Meta */}
+                      <div className="flex items-center justify-between text-xs text-gray-500 pt-3 border-t border-white/5">
+                        <span>{formatDate(article.publishedAt)}</span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {article.readTime} min
                         </span>
                       </div>
-                    )}
-
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-white mb-3 group-hover:text-dainamics-secondary transition-colors line-clamp-2 flex-grow">
-                      {article.title}
-                    </h3>
-
-                    {/* Excerpt */}
-                    <p className="text-gray-500 text-sm mb-4 line-clamp-2">
-                      {article.excerpt}
-                    </p>
-
-                    {/* Meta */}
-                    <div className="flex items-center justify-between text-xs text-gray-500 mt-auto">
-                      <span>{formatDate(article.publishedAt)}</span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {article.readTime} min
-                      </span>
                     </div>
                   </div>
                 </Link>
