@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Brain, 
@@ -7,73 +7,38 @@ import {
   Compass, 
   Trophy,
   Zap,
+  FileText,
   ArrowRight,
   Mail,
   Bell
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { blogCategories, getArticlesByCategory } from '@/data/blog';
 
-interface Category {
-  name: string;
-  description: string;
-  articleCount: number;
-  icon: React.ElementType;
-  color: string;
-  slug: string;
-}
+// Icon mapping based on category icon string
+const iconMap: Record<string, React.ElementType> = {
+  Brain: Brain,
+  Zap: Zap,
+  BarChart3: BarChart3,
+  Lightbulb: Lightbulb,
+  Compass: Compass,
+  Trophy: Trophy,
+  FileText: FileText
+};
 
 const CategoryGrid: React.FC = () => {
-  const categories: Category[] = [
-    {
-      name: "Stratégie IA",
-      description: "Frameworks et approches pour maximiser l'impact de l'IA",
-      articleCount: 24,
-      icon: Brain,
-      color: "#7B2FFF",
-      slug: "/blog/categorie/strategie-ia"
-    },
-    {
-      name: "Cas Clients",
-      description: "Exemples concrets de déploiements IA réussis en PME",
-      articleCount: 18,
-      icon: BarChart3,
-      color: "#0AFF9D",
-      slug: "/blog/categorie/cas-clients"
-    },
-    {
-      name: "Automatisation",
-      description: "Guides pratiques pour automatiser vos processus métier",
-      articleCount: 31,
-      icon: Zap,
-      color: "#10E4FF",
-      slug: "/blog/categorie/automatisation"
-    },
-    {
-      name: "Tendances",
-      description: "Les évolutions à venir en IA et technologies business",
-      articleCount: 16,
-      icon: Compass,
-      color: "#FF5A00",
-      slug: "/blog/categorie/tendances"
-    },
-    {
-      name: "Guides Pratiques",
-      description: "Tutoriels étape par étape pour implémenter l'IA",
-      articleCount: 22,
-      icon: Lightbulb,
-      color: "#F59E0B",
-      slug: "/blog/categorie/guides"
-    },
-    {
-      name: "Compétitivité",
-      description: "Comment surpasser vos concurrents grâce à l'IA",
-      articleCount: 14,
-      icon: Trophy,
-      color: "#EF4444",
-      slug: "/blog/categorie/competitivite"
-    }
-  ];
+  // Calculate article counts dynamically from blog data
+  const categoriesWithCounts = useMemo(() => {
+    return blogCategories.map(category => ({
+      name: category.name,
+      description: category.description,
+      articleCount: getArticlesByCategory(category.id).length,
+      icon: iconMap[category.icon] || Brain,
+      color: category.color,
+      slug: `/blog/categorie/${category.slug}`
+    }));
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -104,10 +69,10 @@ const CategoryGrid: React.FC = () => {
           className="mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Explorer par Catégorie
+            Explorer par Categorie
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl">
-            Trouvez les ressources adaptées à vos besoins spécifiques.
+            Trouvez les ressources adaptees a vos besoins specifiques.
           </p>
         </motion.div>
 
@@ -119,7 +84,7 @@ const CategoryGrid: React.FC = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-16"
         >
-          {categories.map((category, index) => {
+          {categoriesWithCounts.map((category, index) => {
             const Icon = category.icon;
             return (
               <motion.div
@@ -158,7 +123,7 @@ const CategoryGrid: React.FC = () => {
                     {/* Article Count */}
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-400">
-                        {category.articleCount} articles
+                        {category.articleCount} article{category.articleCount > 1 ? 's' : ''}
                       </span>
                       <ArrowRight 
                         className="w-4 h-4 text-gray-500 group-hover:text-dainamics-secondary group-hover:translate-x-1 transition-all"
@@ -192,7 +157,7 @@ const CategoryGrid: React.FC = () => {
                   <span className="text-sm font-medium text-dainamics-primary">Newsletter</span>
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                  Restez à la Pointe de l'IA
+                  Restez a la Pointe de l'IA
                 </h3>
                 <p className="text-gray-400 max-w-xl">
                   Recevez chaque semaine nos meilleurs articles sur l'IA et l'automatisation.
@@ -218,7 +183,7 @@ const CategoryGrid: React.FC = () => {
                   </Button>
                 </div>
                 <p className="text-xs text-gray-500 mt-3 text-center sm:text-left">
-                  Désinscription en un clic. Vos données restent en Suisse.
+                  Desinscription en un clic. Vos donnees restent en Suisse.
                 </p>
               </div>
             </div>
