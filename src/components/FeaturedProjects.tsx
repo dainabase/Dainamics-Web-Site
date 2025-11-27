@@ -159,7 +159,7 @@ const FeaturedProjects: React.FC = () => {
         'ROI campagnes affichage optimisé',
         'Analytics "Google-like" pour points de vente physiques',
       ],
-      screenshot: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
+      screenshot: '/Capture d\'écran 2025-11-27 à 16.48.05.png',
       color: {
         primary: '#6366F1',
         secondary: '#4F46E5',
