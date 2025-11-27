@@ -1,9 +1,15 @@
-import React from 'react';
-import { Check, ExternalLink, Eye } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { Check, ExternalLink, Eye, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const FeaturedProjects: React.FC = () => {
+  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+
+  const toggleProject = (projectId: number) => {
+    setExpandedProject(expandedProject === projectId ? null : projectId);
+  };
+
   const projects = [
     {
       id: 1,
@@ -262,24 +268,51 @@ const FeaturedProjects: React.FC = () => {
 
               {/* Contenu */}
               <div className="p-5 sm:p-6 md:p-8">
-                {/* Header */}
-                <div className="mb-4 sm:mb-6">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                    {project.title}
-                  </h3>
-                  <p
-                    className="text-base sm:text-lg font-semibold mb-1"
-                    style={{ color: project.color.primary }}
-                  >
-                    {project.subtitle}
-                  </p>
-                  <p className="text-xs sm:text-sm text-gray-400">{project.category}</p>
+                {/* Header - Toujours visible */}
+                <div
+                  className="cursor-pointer"
+                  onClick={() => toggleProject(project.id)}
+                >
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <div className="flex-1">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                        {project.title}
+                      </h3>
+                      <p
+                        className="text-base sm:text-lg font-semibold mb-1"
+                        style={{ color: project.color.primary }}
+                      >
+                        {project.subtitle}
+                      </p>
+                      <p className="text-xs sm:text-sm text-gray-400">{project.category}</p>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: expandedProject === project.id ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex-shrink-0"
+                    >
+                      <ChevronDown
+                        className="w-6 h-6 text-gray-400 hover:text-white transition-colors"
+                        style={{ color: expandedProject === project.id ? project.color.primary : undefined }}
+                      />
+                    </motion.div>
+                  </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-                  {project.description}
-                </p>
+                {/* Contenu expandable */}
+                <AnimatePresence>
+                  {expandedProject === project.id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      {/* Description */}
+                      <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+                        {project.description}
+                      </p>
 
                 {/* Stack technique */}
                 <div className="mb-5 sm:mb-6">
@@ -335,32 +368,35 @@ const FeaturedProjects: React.FC = () => {
                   </ul>
                 </div>
 
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Link
-                    to={project.detailUrl}
-                    className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl group flex-1 justify-center border-2"
-                    style={{
-                      background: `linear-gradient(135deg, ${project.color.primary}, ${project.color.secondary})`,
-                      borderColor: project.color.primary,
-                    }}
-                  >
-                    <Eye className="w-4 h-4" />
-                    <span className="whitespace-nowrap">Voir le détail</span>
-                  </Link>
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 group flex-1 justify-center border-2"
-                    style={{
-                      color: project.color.primary,
-                      borderColor: project.color.primary,
-                      background: 'transparent',
-                    }}
-                  >
-                    <span className="whitespace-nowrap">Projet similaire</span>
-                    <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 flex-shrink-0" />
-                  </a>
-                </div>
+                      {/* CTAs */}
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Link
+                          to={project.detailUrl}
+                          className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl group flex-1 justify-center border-2"
+                          style={{
+                            background: `linear-gradient(135deg, ${project.color.primary}, ${project.color.secondary})`,
+                            borderColor: project.color.primary,
+                          }}
+                        >
+                          <Eye className="w-4 h-4" />
+                          <span className="whitespace-nowrap">Voir le détail</span>
+                        </Link>
+                        <a
+                          href="#contact"
+                          className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 group flex-1 justify-center border-2"
+                          style={{
+                            color: project.color.primary,
+                            borderColor: project.color.primary,
+                            background: 'transparent',
+                          }}
+                        >
+                          <span className="whitespace-nowrap">Projet similaire</span>
+                          <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 flex-shrink-0" />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           ))}
