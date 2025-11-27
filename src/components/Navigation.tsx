@@ -4,6 +4,7 @@ import { Menu, X, Globe, ChevronDown, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 interface NavItem {
   name: string;
@@ -257,6 +258,9 @@ export function Navigation() {
           </div>
 
           <div className="flex items-center space-x-4">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+            
             {/* Language Selector */}
             <div className="relative">
               <button

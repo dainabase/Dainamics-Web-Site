@@ -18,6 +18,22 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Anti-flash script : applique le thème AVANT le rendu React -->
+    <script>
+      (function() {
+        const theme = localStorage.getItem('dainamics-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // Défaut = dark si rien n'est stocké
+        let resolved = 'dark';
+        if (theme === 'light') {
+          resolved = 'light';
+        } else if (theme === 'system') {
+          resolved = prefersDark ? 'dark' : 'light';
+        }
+        document.documentElement.classList.add(resolved);
+      })();
+    </script>
   </head>
 
   <body>

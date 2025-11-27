@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "@/pages/Index";
 import About from "@/pages/About";
 import Portfolio from "@/pages/Portfolio";
@@ -53,12 +54,13 @@ import DevMenu from "@/components/DevMenu";
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      
-      {/* DEV MENU - Bouton flottant pour acceder aux pages orphelines */}
-      {/* TODO: Supprimer avant mise en production */}
-      <DevMenu />
+    <ThemeProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        
+        {/* DEV MENU - Bouton flottant pour acceder aux pages orphelines */}
+        {/* TODO: Supprimer avant mise en production */}
+        <DevMenu />
       
       <Routes>
         {/* Main Pages */}
@@ -118,6 +120,7 @@ function App() {
       </Routes>
       <Toaster />
     </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
