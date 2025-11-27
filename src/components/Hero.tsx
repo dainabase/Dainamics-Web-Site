@@ -37,7 +37,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full bg-dainamics-background overflow-hidden"
+      className="relative w-full bg-dainamics-background"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 z-0"></div>

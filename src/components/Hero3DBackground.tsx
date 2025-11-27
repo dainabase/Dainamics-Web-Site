@@ -265,6 +265,7 @@ export default function Hero3DBackground() {
           flex: 1;
           margin-right: -50px;
           margin-top: 0;
+          overflow: visible;
         }
 
         .energy-waves-container {
@@ -274,7 +275,7 @@ export default function Hero3DBackground() {
           transform: translate(-50%, -50%);
           width: 100%;
           height: 100%;
-          z-index: 0;
+          z-index: 50;
           pointer-events: none;
         }
 
