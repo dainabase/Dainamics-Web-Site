@@ -1,3 +1,14 @@
+---
+title: "IA pour le Service Client en 2025 : Guide Complet"
+date: "2025-11-22"
+author: "Équipe DAINAMICS"
+category: "guides"
+tags: ["service-client", "chatbot", "ia", "automatisation", "support"]
+excerpt: "Chatbots, assistants email, base de connaissances IA : comment transformer votre service client avec l'intelligence artificielle."
+readTime: 12
+featured: false
+---
+
 ## Le service client en 2025 : nouvelles attentes, nouvelles solutions
 
 Les attentes des clients ont radicalement évolué. En 2025, ils s'attendent à :
