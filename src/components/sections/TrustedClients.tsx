@@ -63,13 +63,11 @@ const TrustedClients: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mb-10 sm:mb-12 md:mb-16 max-w-3xl mx-auto px-4"
         >
-          <div className="relative p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-dainamics-primary/5 via-dainamics-secondary/5 to-dainamics-primary/5 border border-white/10">
-            <p className="text-center text-gray-300 text-base sm:text-lg leading-relaxed">
-              Que vous soyez une PME de 15 personnes ou un groupe international,
-              notre méthodologie s'adapte à votre réalité.
-              {' '}<span className="text-white font-medium">Même rigueur, même résultats.</span>
-            </p>
-          </div>
+          <p className="text-center text-gray-300 text-base sm:text-lg leading-relaxed">
+            Que vous soyez une PME de 15 personnes ou un groupe international,
+            notre méthodologie s'adapte à votre réalité.
+            {' '}<span className="text-white font-medium">Même rigueur, même résultats.</span>
+          </p>
         </motion.div>
 
         {/* Carrousel infini */}
