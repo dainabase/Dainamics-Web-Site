@@ -1,3 +1,14 @@
+---
+title: "Llama 4 : L'IA d'Entreprise Sur Votre Propre Matériel"
+date: "2025-11-23"
+author: "Équipe DAINAMICS"
+category: "intelligence-artificielle"
+tags: ["llama", "open-source", "ia", "souverainete", "meta"]
+excerpt: "Llama 4 de Meta permet de faire tourner une IA rivale de GPT-4 sur vos propres serveurs. Analyse des avantages pour les PME suisses."
+featured: false
+readTime: 10
+---
+
 ## Meta révolutionne l'IA d'entreprise avec Llama 4
 
 Le 5 avril 2025, Meta a publié **Llama 4**, une famille de modèles d'IA qui change la donne pour les entreprises. Pour la première fois, un modèle **rivalisant avec GPT-4o** peut fonctionner **sur votre propre matériel**, sans envoyer vos données à des serveurs externes.
