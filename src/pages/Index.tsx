@@ -55,17 +55,17 @@ const Index = () => {
         {/* 5 métriques honnêtes (dont Datacenter Suisse) */}
         <MetricsSection />
 
-        {/* ========== SECTION 3: LOGOS CLIENTS ========== */}
+        {/* ========== SECTION 3: ABOUT SERVICES ========== */}
+        {/* 3 pilliers (IA, Automatisations, Software) avec CTAs */}
+        <AboutServices />
+
+        {/* ========== SECTION 4: LOGOS CLIENTS ========== */}
         {/* Logos clients avec message PME */}
         <TrustedClients />
 
-        {/* ========== SECTION 4: PROBLEME CARDS ========== */}
+        {/* ========== SECTION 5: PROBLEME CARDS ========== */}
         {/* 5 problèmes cliquables centrés sur les pain points */}
         <ProblemeCards />
-
-        {/* ========== SECTION 5: ABOUT SERVICES ========== */}
-        {/* 3 pilliers (IA, Automatisations, Software) avec CTAs */}
-        <AboutServices />
 
         {/* ========== SECTION 6: FEATURED PROJECTS ========== */}
         {/* LEXAIA & ΣNKI REALTY */}
