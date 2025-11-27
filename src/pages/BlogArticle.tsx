@@ -212,54 +212,55 @@ const BlogArticle = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="relative h-[40vh] md:h-[50vh] min-h-[300px] md:min-h-[400px] overflow-hidden"
+        className="relative h-[35vh] md:h-[45vh] min-h-[280px] md:min-h-[350px] overflow-hidden"
       >
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-dainamics-background via-dainamics-background/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-dainamics-background/50 to-transparent" />
-        
-        {/* Breadcrumb over hero */}
-        <div className="absolute bottom-0 left-0 right-0 pb-8">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <nav className="flex items-center gap-2 text-sm text-gray-300">
-              <Link to="/blog" className="hover:text-white transition-colors">
-                Blog
-              </Link>
-              <ChevronRight className="w-4 h-4" />
-              {category && (
-                <>
-                  <Link 
-                    to={`/blog/categorie/${category.slug}`}
-                    className="hover:text-white transition-colors"
-                    style={{ color: category.color }}
-                  >
-                    {category.name}
-                  </Link>
-                  <ChevronRight className="w-4 h-4" />
-                </>
-              )}
-              <span className="text-white/60 truncate max-w-[200px]">
-                {article.title}
-              </span>
-            </nav>
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-dainamics-background via-dainamics-background/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-dainamics-background/40 to-transparent" />
       </motion.div>
 
       <main className="relative pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Article Header - Overlapping hero */}
+          {/* Breadcrumb - Now outside hero, above the card */}
+          <motion.nav
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex items-center gap-2 text-sm text-gray-400 mb-4 -mt-16 relative z-20"
+          >
+            <Link to="/blog" className="hover:text-white transition-colors">
+              Blog
+            </Link>
+            <ChevronRight className="w-4 h-4" />
+            {category && (
+              <>
+                <Link 
+                  to={`/blog/categorie/${category.slug}`}
+                  className="hover:text-white transition-colors"
+                  style={{ color: category.color }}
+                >
+                  {category.name}
+                </Link>
+                <ChevronRight className="w-4 h-4" />
+              </>
+            )}
+            <span className="text-white/60 truncate max-w-[200px] sm:max-w-[300px]">
+              {article.title}
+            </span>
+          </motion.nav>
+
+          {/* Article Header Card */}
           <motion.header
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="max-w-4xl mx-auto -mt-20 md:-mt-32 relative z-10 mb-12"
+            className="max-w-4xl mx-auto relative z-10 mb-12"
           >
-            <div className="bg-dainamics-background/80 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl">
+            <div className="bg-dainamics-background/90 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl">
               {/* Category Badge */}
               {category && (
                 <Link 
