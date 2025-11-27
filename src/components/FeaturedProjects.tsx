@@ -315,59 +315,59 @@ const FeaturedProjects: React.FC = () => {
                         {project.description}
                       </p>
 
-                {/* Stack technique */}
-                <div className="mb-5 sm:mb-6">
-                  <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
-                    Stack Technique
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {project.stack.map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-full bg-gray-800 text-gray-300 border border-gray-700"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                      {/* Stack technique */}
+                      <div className="mb-5 sm:mb-6">
+                        <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
+                          Stack Technique
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                          {project.stack.map((tech, idx) => (
+                            <span
+                              key={idx}
+                              className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-full bg-gray-800 text-gray-300 border border-gray-700"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
 
-                {/* Résultats */}
-                <div className="mb-5 sm:mb-6">
-                  <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
-                    Résultats Techniques
-                  </h4>
-                  <ul className="space-y-1.5 sm:space-y-2">
-                    {project.results.map((result, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <Check
-                          className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5"
-                          style={{ color: project.color.primary }}
-                          strokeWidth={2.5}
-                        />
-                        <span className="text-xs sm:text-sm text-gray-300">{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                      {/* Résultats */}
+                      <div className="mb-5 sm:mb-6">
+                        <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
+                          Résultats Techniques
+                        </h4>
+                        <ul className="space-y-1.5 sm:space-y-2">
+                          {project.results.map((result, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <Check
+                                className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5"
+                                style={{ color: project.color.primary }}
+                                strokeWidth={2.5}
+                              />
+                              <span className="text-xs sm:text-sm text-gray-300">{result}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                {/* Impact */}
-                <div className="mb-6 sm:mb-8">
-                  <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
-                    Impact Métier
-                  </h4>
-                  <ul className="space-y-1.5 sm:space-y-2">
-                    {project.impact.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <Check
-                          className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5 text-dainamics-success"
-                          strokeWidth={2.5}
-                        />
-                        <span className="text-xs sm:text-sm text-gray-300">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                      {/* Impact */}
+                      <div className="mb-6 sm:mb-8">
+                        <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
+                          Impact Métier
+                        </h4>
+                        <ul className="space-y-1.5 sm:space-y-2">
+                          {project.impact.map((item, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <Check
+                                className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5 text-dainamics-success"
+                                strokeWidth={2.5}
+                              />
+                              <span className="text-xs sm:text-sm text-gray-300">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
                       {/* CTAs */}
                       <div className="flex flex-col sm:flex-row gap-3">
