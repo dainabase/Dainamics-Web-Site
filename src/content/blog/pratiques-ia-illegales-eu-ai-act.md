@@ -1,3 +1,14 @@
+---
+title: "7 Pratiques IA Maintenant Illégales dans l'UE"
+date: "2025-02-05"
+author: "Équipe DAINAMICS"
+category: "conformite"
+tags: ["eu-ai-act", "conformite", "rgpd", "reglementation", "legal"]
+excerpt: "L'EU AI Act est entré en vigueur le 2 février 2025. Découvrez les 7 pratiques IA désormais interdites et comment vérifier votre conformité."
+featured: true
+readTime: 9
+---
+
 ## L'EU AI Act entre en vigueur : ce qui change au 2 février 2025
 
 Le 2 février 2025 marque un tournant majeur pour les entreprises européennes. Les premières interdictions de l'EU AI Act sont désormais effectives, rendant certaines pratiques d'IA **immédiatement illégales**. Pour les PME suisses travaillant avec des clients européens, ces règles s'appliquent également.
