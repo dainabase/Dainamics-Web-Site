@@ -1,3 +1,14 @@
+---
+title: "Cas d'étude : +37% de Conversion pour une Fiduciaire"
+date: "2025-11-12"
+author: "Équipe DAINAMICS"
+category: "cas-clients"
+tags: ["fiduciaire", "automatisation", "crm", "conversion"]
+excerpt: "Comment l'automatisation des processus a transformé le pipeline commercial d'un cabinet comptable genevois."
+readTime: 12
+featured: true
+---
+
 ## Contexte : une fiduciaire genevoise en croissance
 
 Müller & Associés est une fiduciaire genevoise de 12 collaborateurs, spécialisée dans l'accompagnement des PME et startups. Comme beaucoup de cabinets de taille moyenne, elle fait face à un paradoxe : une demande croissante de services et des équipes déjà au maximum de leur capacité.
