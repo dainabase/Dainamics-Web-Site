@@ -7,6 +7,7 @@ const FeaturedProjects: React.FC = () => {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
 
   const toggleProject = (projectId: number) => {
+    console.log('Toggle project:', projectId, 'Current expanded:', expandedProject);
     setExpandedProject(expandedProject === projectId ? null : projectId);
   };
 
@@ -300,6 +301,7 @@ const FeaturedProjects: React.FC = () => {
                 </div>
 
                 {/* Contenu expandable */}
+                {console.log(`Project ${project.id} render - expandedProject:`, expandedProject, 'Should show:', expandedProject === project.id)}
                 <AnimatePresence mode="wait">
                   {expandedProject === project.id && (
                     <motion.div
