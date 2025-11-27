@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import CursorEffects from '@/components/CursorEffects';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import BlogHeader from '@/components/blog/BlogHeader';
+import LatestArticles from '@/components/blog/LatestArticles';
 import FeaturedArticles from '@/components/blog/FeaturedArticles';
 import CategoryGrid from '@/components/blog/CategoryGrid';
 
@@ -25,13 +26,16 @@ const Blog = () => {
       
       {/* Main content */}
       <main>
-        {/* Blog Header */}
+        {/* Blog Header with search */}
         <BlogHeader />
         
-        {/* Featured Articles */}
+        {/* Latest Articles - Most recent 3, prominently displayed */}
+        <LatestArticles />
+        
+        {/* Featured Articles - Curated selection */}
         <FeaturedArticles />
         
-        {/* Category Grid */}
+        {/* Category Grid - Browse by topic */}
         <CategoryGrid />
       </main>
       
