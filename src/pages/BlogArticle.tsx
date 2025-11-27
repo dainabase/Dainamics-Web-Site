@@ -167,6 +167,9 @@ const BlogArticle = () => {
     ? `${window.location.origin}/blog/${slug}` 
     : '';
 
+  // Get category color with fallback
+  const categoryColor = category?.color || '#7B2FFF';
+
   if (loading) {
     return (
       <div className="min-h-screen bg-dainamics-background flex items-center justify-center">
@@ -190,10 +193,13 @@ const BlogArticle = () => {
     <div className="min-h-screen bg-dainamics-background">
       <EnhancedGridBackground />
       
-      {/* Progress Bar */}
+      {/* Progress Bar - Uses category color */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-dainamics-primary via-dainamics-secondary to-dainamics-cta z-50 origin-left"
-        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-1 z-50 origin-left"
+        style={{ 
+          scaleX,
+          background: `linear-gradient(to right, ${categoryColor}, ${categoryColor}80, ${categoryColor}40)`
+        }}
       />
       
       <Navigation />
@@ -217,7 +223,7 @@ const BlogArticle = () => {
         <BlogHeroImage 
           title={article.title}
           categoryId={article.categoryId}
-          categoryColor={category?.color}
+          categoryColor={categoryColor}
           className="w-full h-full"
           aspectRatio="hero"
         />
@@ -243,7 +249,7 @@ const BlogArticle = () => {
                 <Link 
                   to={`/blog/categorie/${category.slug}`}
                   className="hover:text-white transition-colors"
-                  style={{ color: category.color }}
+                  style={{ color: categoryColor }}
                 >
                   {category.name}
                 </Link>
@@ -255,41 +261,49 @@ const BlogArticle = () => {
             </span>
           </motion.nav>
 
-          {/* Article Header Card */}
+          {/* Article Header Card - LEFT ALIGNED */}
           <motion.header
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="max-w-4xl mx-auto relative z-10 mb-12"
           >
-            <div className="bg-dainamics-background/90 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl">
-              {/* Category Badge */}
+            <div 
+              className="bg-dainamics-background/90 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl relative overflow-hidden"
+            >
+              {/* Category color accent line on left */}
+              <div 
+                className="absolute left-0 top-0 bottom-0 w-1 rounded-l-3xl"
+                style={{ backgroundColor: categoryColor }}
+              />
+              
+              {/* Category Badge - LEFT ALIGNED */}
               {category && (
                 <Link 
                   to={`/blog/categorie/${category.slug}`}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 hover:scale-105 transition-transform"
                   style={{
-                    backgroundColor: `${category.color}20`,
-                    border: `1px solid ${category.color}40`
+                    backgroundColor: `${categoryColor}20`,
+                    border: `1px solid ${categoryColor}40`
                   }}
                 >
                   <span 
                     className="w-2 h-2 rounded-full"
-                    style={{ backgroundColor: category.color }}
+                    style={{ backgroundColor: categoryColor }}
                   />
-                  <span style={{ color: category.color }} className="text-sm font-medium">
+                  <span style={{ color: categoryColor }} className="text-sm font-medium">
                     {category.name}
                   </span>
                 </Link>
               )}
 
-              {/* Title */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15] tracking-tight">
+              {/* Title - LEFT ALIGNED */}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15] tracking-tight text-left">
                 {article.title}
               </h1>
 
-              {/* Excerpt */}
-              <p className="text-base md:text-lg text-gray-400 mb-8 leading-relaxed">
+              {/* Excerpt - LEFT ALIGNED */}
+              <p className="text-base md:text-lg text-gray-400 mb-8 leading-relaxed text-left">
                 {article.excerpt}
               </p>
 
@@ -298,7 +312,12 @@ const BlogArticle = () => {
                 <div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-400">
                   {author && (
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-dainamics-primary to-dainamics-secondary flex items-center justify-center ring-2 ring-white/10">
+                      <div 
+                        className="w-10 h-10 rounded-full flex items-center justify-center ring-2 ring-white/10"
+                        style={{ 
+                          background: `linear-gradient(135deg, ${categoryColor}, ${categoryColor}80)` 
+                        }}
+                      >
                         <span className="text-white font-bold text-sm">
                           {author.name.charAt(0)}
                         </span>
@@ -310,15 +329,15 @@ const BlogArticle = () => {
                     </div>
                   )}
                   <div className="hidden sm:flex items-center gap-2 text-sm">
-                    <Calendar className="w-4 h-4" />
+                    <Calendar className="w-4 h-4" style={{ color: categoryColor }} />
                     <span>{formatDate(article.publishedAt)}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <Clock className="w-4 h-4" />
+                    <Clock className="w-4 h-4" style={{ color: categoryColor }} />
                     <span>{article.readTime} min</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <BookOpen className="w-4 h-4" />
+                    <BookOpen className="w-4 h-4" style={{ color: categoryColor }} />
                     <span>{tocItems.length} sections</span>
                   </div>
                 </div>
@@ -355,9 +374,12 @@ const BlogArticle = () => {
               exit={{ opacity: 0, y: -10 }}
               className="lg:hidden max-w-4xl mx-auto mb-8"
             >
-              <div className="bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/10 p-4">
+              <div 
+                className="bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/10 p-4"
+                style={{ borderLeftColor: categoryColor, borderLeftWidth: '3px' }}
+              >
                 <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                  <List className="w-4 h-4" />
+                  <List className="w-4 h-4" style={{ color: categoryColor }} />
                   Table des matières
                 </h3>
                 <nav className="space-y-1">
@@ -367,10 +389,14 @@ const BlogArticle = () => {
                       onClick={() => scrollToSection(item.id)}
                       className={`block w-full text-left text-sm py-2 px-3 rounded-lg transition-colors ${
                         activeSection === item.id
-                          ? 'bg-dainamics-primary/20 text-dainamics-primary'
+                          ? 'text-white'
                           : 'text-gray-400 hover:text-white hover:bg-white/5'
                       }`}
-                      style={{ paddingLeft: `${(item.level - 1) * 12 + 12}px` }}
+                      style={{ 
+                        paddingLeft: `${(item.level - 1) * 12 + 12}px`,
+                        backgroundColor: activeSection === item.id ? `${categoryColor}20` : undefined,
+                        color: activeSection === item.id ? categoryColor : undefined
+                      }}
                     >
                       {item.text}
                     </button>
@@ -388,9 +414,12 @@ const BlogArticle = () => {
               {tocItems.length > 0 && (
                 <aside className="hidden lg:block w-64 flex-shrink-0">
                   <div className="sticky top-24">
-                    <div className="bg-white/[0.02] backdrop-blur-sm rounded-2xl border border-white/10 p-5">
+                    <div 
+                      className="bg-white/[0.02] backdrop-blur-sm rounded-2xl border border-white/10 p-5"
+                      style={{ borderTopColor: categoryColor, borderTopWidth: '3px' }}
+                    >
                       <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-                        <List className="w-4 h-4 text-dainamics-primary" />
+                        <List className="w-4 h-4" style={{ color: categoryColor }} />
                         Dans cet article
                       </h3>
                       <nav className="space-y-1 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
@@ -400,10 +429,14 @@ const BlogArticle = () => {
                             onClick={() => scrollToSection(item.id)}
                             className={`block w-full text-left text-sm py-2 px-3 rounded-lg transition-all duration-200 ${
                               activeSection === item.id
-                                ? 'bg-dainamics-primary/20 text-white border-l-2 border-dainamics-primary'
+                                ? 'text-white'
                                 : 'text-gray-500 hover:text-white hover:bg-white/5'
                             }`}
-                            style={{ paddingLeft: `${(item.level - 1) * 8 + 12}px` }}
+                            style={{ 
+                              paddingLeft: `${(item.level - 1) * 8 + 12}px`,
+                              backgroundColor: activeSection === item.id ? `${categoryColor}20` : undefined,
+                              borderLeft: activeSection === item.id ? `2px solid ${categoryColor}` : '2px solid transparent'
+                            }}
                           >
                             <span className="line-clamp-2">{item.text}</span>
                           </button>
@@ -424,20 +457,33 @@ const BlogArticle = () => {
                 <div
                   className="article-content"
                   dangerouslySetInnerHTML={{ __html: parsedContent }}
+                  style={{ '--category-color': categoryColor } as React.CSSProperties}
                 />
 
                 {/* Tags */}
                 {article.tags.length > 0 && (
                   <div className="mt-16 pt-8 border-t border-white/10">
                     <div className="flex items-center gap-2 mb-4">
-                      <Tag className="w-4 h-4 text-dainamics-primary" />
+                      <Tag className="w-4 h-4" style={{ color: categoryColor }} />
                       <span className="text-gray-400 text-sm font-medium">Tags</span>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {article.tags.map(tag => (
                         <span
                           key={tag}
-                          className="px-4 py-2 bg-white/5 hover:bg-dainamics-primary/20 rounded-full text-sm text-gray-300 hover:text-white border border-white/10 hover:border-dainamics-primary/40 transition-all cursor-pointer"
+                          className="px-4 py-2 rounded-full text-sm text-gray-300 hover:text-white border transition-all cursor-pointer"
+                          style={{
+                            backgroundColor: 'rgba(255,255,255,0.05)',
+                            borderColor: 'rgba(255,255,255,0.1)'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = `${categoryColor}20`;
+                            e.currentTarget.style.borderColor = `${categoryColor}40`;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
+                          }}
                         >
                           #{tag}
                         </span>
@@ -451,12 +497,15 @@ const BlogArticle = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="mt-12 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-dainamics-primary/10 via-transparent to-dainamics-secondary/5 border border-white/10"
+                  className="mt-12 p-6 md:p-8 rounded-2xl border border-white/10"
+                  style={{
+                    background: `linear-gradient(135deg, ${categoryColor}10, transparent, ${categoryColor}05)`
+                  }}
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <Share2 className="w-5 h-5 text-dainamics-primary" />
+                        <Share2 className="w-5 h-5" style={{ color: categoryColor }} />
                         <h3 className="text-lg font-semibold text-white">
                           Cet article vous a été utile ?
                         </h3>
@@ -477,15 +526,25 @@ const BlogArticle = () => {
 
                 {/* Author Box */}
                 {author && (
-                  <div className="mt-12 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-dainamics-primary/10 to-dainamics-secondary/5 border border-white/10">
+                  <div 
+                    className="mt-12 p-6 md:p-8 rounded-2xl border border-white/10"
+                    style={{
+                      background: `linear-gradient(135deg, ${categoryColor}10, transparent, ${categoryColor}05)`
+                    }}
+                  >
                     <div className="flex flex-col sm:flex-row gap-6">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-dainamics-primary to-dainamics-secondary flex items-center justify-center flex-shrink-0 ring-4 ring-white/10">
+                      <div 
+                        className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 ring-4 ring-white/10"
+                        style={{ 
+                          background: `linear-gradient(135deg, ${categoryColor}, ${categoryColor}80)` 
+                        }}
+                      >
                         <span className="text-white font-bold text-xl">
                           {author.name.charAt(0)}
                         </span>
                       </div>
                       <div>
-                        <p className="text-xs text-dainamics-secondary uppercase tracking-wider mb-1 font-medium">À propos de l'auteur</p>
+                        <p className="text-xs uppercase tracking-wider mb-1 font-medium" style={{ color: categoryColor }}>À propos de l'auteur</p>
                         <h3 className="text-xl font-bold text-white mb-2">{author.name}</h3>
                         <p className="text-gray-400 leading-relaxed">{author.bio}</p>
                       </div>
@@ -504,13 +563,21 @@ const BlogArticle = () => {
             className="max-w-4xl mx-auto mt-20"
           >
             <div className="relative p-8 md:p-12 rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-dainamics-primary/30 via-dainamics-secondary/20 to-dainamics-cta/30" />
+              <div 
+                className="absolute inset-0"
+                style={{
+                  background: `linear-gradient(135deg, ${categoryColor}30, transparent, ${categoryColor}20)`
+                }}
+              />
               <div className="absolute inset-0 bg-dainamics-background/60 backdrop-blur-sm" />
               <div className="absolute inset-0 border border-white/10 rounded-3xl" />
               
               <div className="relative z-10 text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white/80 text-sm mb-6">
-                  <span className="w-2 h-2 rounded-full bg-dainamics-cta animate-pulse" />
+                <div 
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white/80 text-sm mb-6"
+                  style={{ backgroundColor: `${categoryColor}20` }}
+                >
+                  <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: categoryColor }} />
                   Consultation gratuite
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
@@ -544,7 +611,8 @@ const BlogArticle = () => {
                 </h2>
                 <Link 
                   to={`/blog/categorie/${category?.slug}`}
-                  className="text-dainamics-secondary hover:text-white transition-colors text-sm flex items-center gap-1 group"
+                  className="hover:text-white transition-colors text-sm flex items-center gap-1 group"
+                  style={{ color: categoryColor }}
                 >
                   Voir tous
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -554,6 +622,7 @@ const BlogArticle = () => {
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedArticles.map((related, index) => {
                   const relatedCategory = getCategoryById(related.categoryId);
+                  const relatedColor = relatedCategory?.color || '#7B2FFF';
                   return (
                     <motion.div
                       key={related.slug}
@@ -565,13 +634,16 @@ const BlogArticle = () => {
                         to={`/blog/${related.slug}`}
                         className="group block h-full"
                       >
-                        <div className="h-full rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden flex flex-col">
+                        <div 
+                          className="h-full rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden flex flex-col"
+                          style={{ borderTopColor: relatedColor, borderTopWidth: '3px' }}
+                        >
                           {/* Card Image - Using BlogHeroImage */}
                           <div className="relative h-40 overflow-hidden">
                             <BlogHeroImage 
                               title={related.title}
                               categoryId={related.categoryId}
-                              categoryColor={relatedCategory?.color}
+                              categoryColor={relatedColor}
                               className="w-full h-full group-hover:scale-105 transition-transform duration-500"
                               aspectRatio="card"
                             />
@@ -580,17 +652,17 @@ const BlogArticle = () => {
                               <div
                                 className="absolute bottom-3 left-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-sm"
                                 style={{
-                                  backgroundColor: `${relatedCategory.color}20`,
-                                  border: `1px solid ${relatedCategory.color}40`
+                                  backgroundColor: `${relatedColor}20`,
+                                  border: `1px solid ${relatedColor}40`
                                 }}
                               >
                                 <span
                                   className="w-1.5 h-1.5 rounded-full"
-                                  style={{ backgroundColor: relatedCategory.color }}
+                                  style={{ backgroundColor: relatedColor }}
                                 />
                                 <span
                                   className="text-xs font-medium"
-                                  style={{ color: relatedCategory.color }}
+                                  style={{ color: relatedColor }}
                                 >
                                   {relatedCategory.name}
                                 </span>
@@ -638,7 +710,7 @@ const BlogArticle = () => {
         </div>
       </main>
 
-      {/* Back to Top Button */}
+      {/* Back to Top Button - Uses category color */}
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ 
@@ -647,13 +719,17 @@ const BlogArticle = () => {
           pointerEvents: showBackToTop ? 'auto' : 'none'
         }}
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 p-4 bg-dainamics-primary hover:bg-dainamics-primary/80 text-white rounded-full shadow-lg shadow-dainamics-primary/25 transition-all hover:scale-110 z-40"
+        className="fixed bottom-8 right-8 p-4 text-white rounded-full shadow-lg transition-all hover:scale-110 z-40"
+        style={{ 
+          backgroundColor: categoryColor,
+          boxShadow: `0 10px 25px ${categoryColor}40`
+        }}
         title="Retour en haut"
       >
         <ArrowUp className="w-5 h-5" />
       </motion.button>
 
-      {/* Article Styles */}
+      {/* Article Styles - Using CSS variable for category color */}
       <style>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 4px;
@@ -693,7 +769,7 @@ const BlogArticle = () => {
           margin-top: 3rem;
           margin-bottom: 1rem;
           padding-bottom: 0.75rem;
-          border-bottom: 2px solid rgba(123, 47, 255, 0.3);
+          border-bottom: 2px solid var(--category-color, rgba(123, 47, 255, 0.3));
           line-height: 1.3;
           scroll-margin-top: 100px;
         }
@@ -713,14 +789,14 @@ const BlogArticle = () => {
         }
         
         .article-content a {
-          color: #10E4FF;
+          color: var(--category-color, #10E4FF);
           text-decoration: none;
-          border-bottom: 1px solid rgba(16, 228, 255, 0.3);
+          border-bottom: 1px solid color-mix(in srgb, var(--category-color, #10E4FF) 30%, transparent);
           transition: all 0.2s;
         }
         
         .article-content a:hover {
-          border-bottom-color: #10E4FF;
+          border-bottom-color: var(--category-color, #10E4FF);
           color: white;
         }
         
@@ -746,22 +822,22 @@ const BlogArticle = () => {
         }
         
         .article-content ul li::marker {
-          color: #7B2FFF;
+          color: var(--category-color, #7B2FFF);
         }
         
         .article-content ol li::marker {
-          color: #7B2FFF;
+          color: var(--category-color, #7B2FFF);
           font-weight: 600;
         }
         
         .article-content code {
-          background: rgba(123, 47, 255, 0.15);
-          color: #10E4FF;
+          background: color-mix(in srgb, var(--category-color, #7B2FFF) 15%, transparent);
+          color: var(--category-color, #10E4FF);
           padding: 0.2rem 0.5rem;
           border-radius: 0.375rem;
           font-family: 'JetBrains Mono', 'Fira Code', monospace;
           font-size: 0.875em;
-          border: 1px solid rgba(123, 47, 255, 0.2);
+          border: 1px solid color-mix(in srgb, var(--category-color, #7B2FFF) 20%, transparent);
         }
         
         .article-content pre {
@@ -783,8 +859,8 @@ const BlogArticle = () => {
         }
         
         .article-content blockquote {
-          border-left: 4px solid #7B2FFF;
-          background: linear-gradient(to right, rgba(123, 47, 255, 0.1), transparent);
+          border-left: 4px solid var(--category-color, #7B2FFF);
+          background: linear-gradient(to right, color-mix(in srgb, var(--category-color, #7B2FFF) 10%, transparent), transparent);
           margin: 2rem 0;
           padding: 1.5rem 2rem;
           border-radius: 0 1rem 1rem 0;
@@ -797,7 +873,7 @@ const BlogArticle = () => {
         }
         
         .article-content blockquote strong {
-          color: #10E4FF;
+          color: var(--category-color, #10E4FF);
         }
         
         .article-content table {
@@ -811,7 +887,7 @@ const BlogArticle = () => {
         }
         
         .article-content thead {
-          background: rgba(123, 47, 255, 0.2);
+          background: color-mix(in srgb, var(--category-color, #7B2FFF) 20%, transparent);
         }
         
         .article-content th {
@@ -819,7 +895,7 @@ const BlogArticle = () => {
           padding: 1rem 1.25rem;
           color: white;
           font-weight: 600;
-          border-bottom: 2px solid rgba(123, 47, 255, 0.3);
+          border-bottom: 2px solid color-mix(in srgb, var(--category-color, #7B2FFF) 30%, transparent);
         }
         
         .article-content td {
@@ -839,7 +915,7 @@ const BlogArticle = () => {
         .article-content hr {
           border: none;
           height: 2px;
-          background: linear-gradient(to right, transparent, rgba(123, 47, 255, 0.5), transparent);
+          background: linear-gradient(to right, transparent, var(--category-color, rgba(123, 47, 255, 0.5)), transparent);
           margin: 3rem 0;
         }
         
