@@ -6,18 +6,18 @@ import {
   Calendar, 
   ArrowLeft, 
   Tag, 
-  Share2, 
-  Bookmark,
   ChevronRight,
   ExternalLink,
   List,
   ArrowUp,
-  BookOpen
+  BookOpen,
+  Share2
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EnhancedGridBackground from '@/components/EnhancedGridBackground';
 import BlogHeroImage from '@/components/blog/BlogHeroImage';
+import ShareButtons from '@/components/blog/ShareButtons';
 import {
   getArticleMetaBySlug,
   getCategoryById,
@@ -161,6 +161,11 @@ const BlogArticle = () => {
     });
   };
 
+  // Generate share URL
+  const shareUrl = typeof window !== 'undefined' 
+    ? `${window.location.origin}/blog/${slug}` 
+    : '';
+
   if (loading) {
     return (
       <div className="min-h-screen bg-dainamics-background flex items-center justify-center">
@@ -191,6 +196,15 @@ const BlogArticle = () => {
       />
       
       <Navigation />
+
+      {/* Floating Share Bar - Desktop */}
+      <ShareButtons
+        title={article.title}
+        url={shareUrl}
+        excerpt={article.excerpt}
+        variant="floating"
+        className="hidden lg:block"
+      />
 
       {/* Hero Image Section - Using BlogHeroImage */}
       <motion.div
@@ -308,7 +322,7 @@ const BlogArticle = () => {
                   </div>
                 </div>
                 
-                {/* Actions */}
+                {/* Actions - Mobile share + TOC */}
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => setTocOpen(!tocOpen)}
@@ -317,19 +331,16 @@ const BlogArticle = () => {
                   >
                     <List className="w-4 h-4 text-gray-400" />
                   </button>
-                  <button 
-                    className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
-                    title="Partager"
-                    onClick={() => navigator.share?.({ title: article.title, url: window.location.href })}
-                  >
-                    <Share2 className="w-4 h-4 text-gray-400" />
-                  </button>
-                  <button 
-                    className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
-                    title="Sauvegarder"
-                  >
-                    <Bookmark className="w-4 h-4 text-gray-400" />
-                  </button>
+                  
+                  {/* Share button for mobile/tablet - opens modal */}
+                  <div className="lg:hidden">
+                    <ShareButtons
+                      title={article.title}
+                      url={shareUrl}
+                      excerpt={article.excerpt}
+                      variant="modal"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -433,6 +444,35 @@ const BlogArticle = () => {
                     </div>
                   </div>
                 )}
+
+                {/* Share Section - End of Article */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="mt-12 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-dainamics-primary/10 via-transparent to-dainamics-secondary/5 border border-white/10"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <Share2 className="w-5 h-5 text-dainamics-primary" />
+                        <h3 className="text-lg font-semibold text-white">
+                          Cet article vous a été utile ?
+                        </h3>
+                      </div>
+                      <p className="text-gray-400 text-sm">
+                        Partagez-le avec votre réseau pour aider d'autres professionnels
+                      </p>
+                    </div>
+                    <ShareButtons
+                      title={article.title}
+                      url={shareUrl}
+                      excerpt={article.excerpt}
+                      variant="inline"
+                      showLabels
+                    />
+                  </div>
+                </motion.div>
 
                 {/* Author Box */}
                 {author && (
@@ -844,6 +884,40 @@ const BlogArticle = () => {
           
           .article-content blockquote {
             padding: 1rem 1.25rem;
+          }
+        }
+        
+        /* Print styles */
+        @media print {
+          .article-content {
+            color: black;
+            font-size: 12pt;
+          }
+          
+          .article-content h1,
+          .article-content h2,
+          .article-content h3 {
+            color: black;
+          }
+          
+          .article-content a {
+            color: black;
+            text-decoration: underline;
+          }
+          
+          .article-content code {
+            background: #f3f4f6;
+            color: #1f2937;
+          }
+          
+          .article-content pre {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+          }
+          
+          .article-content blockquote {
+            border-left-color: #6366f1;
+            background: #f3f4f6;
           }
         }
       `}</style>
