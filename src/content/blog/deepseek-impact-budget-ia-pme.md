@@ -1,3 +1,14 @@
+---
+title: "DeepSeek : Ce Que Ça Change Pour Votre Budget IA"
+date: "2025-11-20"
+author: "Équipe DAINAMICS"
+category: "actualites"
+tags: ["deepseek", "ia", "open-source", "budget", "actualite"]
+excerpt: "DeepSeek a prouvé que l'IA de pointe peut coûter 20x moins cher. Voici ce que cela signifie concrètement pour les PME suisses."
+readTime: 8
+featured: true
+---
+
 ## Le séisme DeepSeek : ce qui a changé en janvier 2025
 
 Le 20 janvier 2025, une startup chinoise a provoqué un tremblement de terre dans l'industrie de l'IA. DeepSeek a publié son modèle R1, un système d'intelligence artificielle atteignant des performances comparables à GPT-4 et Claude 3.5... pour **6 millions de dollars de coûts d'entraînement**, contre plus de 100 millions pour ses concurrents américains.
