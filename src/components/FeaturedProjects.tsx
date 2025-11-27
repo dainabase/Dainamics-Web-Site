@@ -120,7 +120,7 @@ const FeaturedProjects: React.FC = () => {
         'Déploiement contenu <5min',
         'Gestion 100% à distance (zéro déplacement)',
       ],
-      screenshot: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80',
+      screenshot: 'https://images.pexels.com/photos/1884584/pexels-photo-1884584.jpeg?auto=compress&cs=tinysrgb&w=800',
       color: {
         primary: '#D4AF37',
         secondary: '#B8941F',
@@ -159,7 +159,7 @@ const FeaturedProjects: React.FC = () => {
         'ROI campagnes affichage optimisé',
         'Analytics "Google-like" pour points de vente physiques',
       ],
-      screenshot: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+      screenshot: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
       color: {
         primary: '#6366F1',
         secondary: '#4F46E5',
