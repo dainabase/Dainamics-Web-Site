@@ -20,6 +20,15 @@ const BlogHeader: React.FC = () => {
     }
   }, [handleSearch]);
 
+  // Categories with their colors from blog.ts
+  const categories = [
+    { label: 'Stratégie IA', slug: 'strategie-ia', color: '#7B2FFF' },
+    { label: 'Automatisation', slug: 'automatisation', color: '#10E4FF' },
+    { label: 'Cas Clients', slug: 'cas-clients', color: '#0AFF9D' },
+    { label: 'Guides Pratiques', slug: 'guides', color: '#F59E0B' },
+    { label: 'Tendances', slug: 'tendances', color: '#FF5A00' }
+  ];
+
   return (
     <section className="relative w-full pt-32 pb-24 overflow-hidden bg-[#050510]">
       {/* Subtle gradient background */}
@@ -95,27 +104,39 @@ const BlogHeader: React.FC = () => {
             </form>
           </motion.div>
 
-          {/* Category links */}
+          {/* Category links with colors */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.4 }}
             className="flex flex-wrap gap-2"
           >
-            {[
-              { label: 'Stratégie IA', slug: 'strategie-ia' },
-              { label: 'Automatisation', slug: 'automatisation' },
-              { label: 'Cas Clients', slug: 'cas-clients' },
-              { label: 'Guides Pratiques', slug: 'guides' },
-              { label: 'Tendances', slug: 'tendances' }
-            ].map((cat) => (
+            {categories.map((cat) => (
               <button
                 key={cat.slug}
                 onClick={() => navigate(`/blog/categorie/${cat.slug}`)}
-                className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm text-gray-400 hover:text-white bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/10 rounded-lg transition-all"
+                className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg transition-all duration-300"
+                style={{
+                  color: cat.color,
+                  backgroundColor: `${cat.color}10`,
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                  borderColor: `${cat.color}30`
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = `${cat.color}20`;
+                  e.currentTarget.style.borderColor = `${cat.color}50`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = `${cat.color}10`;
+                  e.currentTarget.style.borderColor = `${cat.color}30`;
+                }}
               >
                 {cat.label}
-                <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                <ArrowRight 
+                  className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" 
+                  style={{ color: cat.color }}
+                />
               </button>
             ))}
           </motion.div>
