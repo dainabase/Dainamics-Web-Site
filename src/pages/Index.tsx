@@ -3,7 +3,8 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import ProblemeCards from '@/components/sections/ProblemeCards';
 import AboutServices from '@/components/AboutServices';
-import CredibiliteImmediate from '@/components/sections/CredibiliteImmediate';
+import MetricsSection from '@/components/sections/MetricsSection';
+import TrustedClients from '@/components/sections/TrustedClients';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import ProcessusSection_v2 from '@/components/sections/ProcessusSection_v2';
 import PricingSection from '@/components/sections/PricingSection';
@@ -50,27 +51,31 @@ const Index = () => {
         {/* ========== SECTION 1: HERO ========== */}
         <Hero />
 
-        {/* ========== SECTION 2: CRÉDIBILITÉ IMMÉDIATE ========== */}
-        {/* 5 métriques honnêtes (dont Datacenter Suisse) + Logos clients */}
-        <CredibiliteImmediate />
+        {/* ========== SECTION 2: MÉTRIQUES ========== */}
+        {/* 5 métriques honnêtes (dont Datacenter Suisse) */}
+        <MetricsSection />
 
-        {/* ========== SECTION 3: PROBLEME CARDS ========== */}
+        {/* ========== SECTION 3: LOGOS CLIENTS ========== */}
+        {/* Logos clients avec message PME */}
+        <TrustedClients />
+
+        {/* ========== SECTION 4: PROBLEME CARDS ========== */}
         {/* 5 problèmes cliquables centrés sur les pain points */}
         <ProblemeCards />
 
-        {/* ========== SECTION 4: ABOUT SERVICES ========== */}
+        {/* ========== SECTION 5: ABOUT SERVICES ========== */}
         {/* 3 pilliers (IA, Automatisations, Software) avec CTAs */}
         <AboutServices />
 
-        {/* ========== SECTION 5: FEATURED PROJECTS ========== */}
+        {/* ========== SECTION 6: FEATURED PROJECTS ========== */}
         {/* LEXAIA & ΣNKI REALTY */}
         <FeaturedProjects />
 
-        {/* ========== SECTION 6: PROCESSUS TRANSPARENT ========== */}
+        {/* ========== SECTION 7: PROCESSUS TRANSPARENT ========== */}
         {/* De l'Idée au ROI en 8 Semaines - Timeline + Garantie */}
         <ProcessusSection_v2 />
 
-        {/* ========== SECTION 7: PRICING TRANSPARENT ========== */}
+        {/* ========== SECTION 8: PRICING TRANSPARENT ========== */}
         {/* 4 offres + CTA final intégré + Garantie ROI */}
         <PricingSection />
 
