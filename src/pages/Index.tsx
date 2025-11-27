@@ -50,17 +50,17 @@ const Index = () => {
         {/* ========== SECTION 1: HERO ========== */}
         <Hero />
 
-        {/* ========== SECTION 2: PROBLEME CARDS ========== */}
+        {/* ========== SECTION 2: CRÉDIBILITÉ IMMÉDIATE ========== */}
+        {/* 5 métriques honnêtes (dont Datacenter Suisse) + Logos clients */}
+        <CredibiliteImmediate />
+
+        {/* ========== SECTION 3: PROBLEME CARDS ========== */}
         {/* 5 problèmes cliquables centrés sur les pain points */}
         <ProblemeCards />
 
-        {/* ========== SECTION 3: ABOUT SERVICES ========== */}
+        {/* ========== SECTION 4: ABOUT SERVICES ========== */}
         {/* 3 pilliers (IA, Automatisations, Software) avec CTAs */}
         <AboutServices />
-
-        {/* ========== SECTION 4: CRÉDIBILITÉ IMMÉDIATE ========== */}
-        {/* 5 métriques honnêtes (dont Datacenter Suisse) + Logos clients */}
-        <CredibiliteImmediate />
 
         {/* ========== SECTION 5: FEATURED PROJECTS ========== */}
         {/* LEXAIA & ΣNKI REALTY */}
