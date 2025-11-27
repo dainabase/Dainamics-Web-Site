@@ -300,9 +300,10 @@ const FeaturedProjects: React.FC = () => {
                 </div>
 
                 {/* Contenu expandable */}
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                   {expandedProject === project.id && (
                     <motion.div
+                      key={`project-${project.id}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
