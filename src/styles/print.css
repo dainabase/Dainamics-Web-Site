@@ -1,0 +1,464 @@
+/**
+ * DAINAMICS - Styles d'impression pour les articles de blog
+ * 
+ * Optimisé pour :
+ * - Économie d'encre (fond blanc, texte noir)
+ * - Lisibilité sur papier A4
+ * - Affichage des URLs complètes
+ * - En-tête et pied de page professionnels
+ */
+
+@media print {
+  /* ===========================================
+     RESET ET BASE
+     =========================================== */
+  
+  /* Forcer le fond blanc et texte noir */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  
+  html, body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* ===========================================
+     ÉLÉMENTS À MASQUER
+     =========================================== */
+  
+  /* Navigation et header */
+  nav,
+  header:not(.article-header),
+  [class*="Navigation"],
+  [class*="navigation"] {
+    display: none !important;
+  }
+  
+  /* Footer du site */
+  footer,
+  [class*="Footer"],
+  [class*="footer"] {
+    display: none !important;
+  }
+  
+  /* Sidebar et TOC */
+  aside,
+  [class*="sidebar"],
+  [class*="Sidebar"],
+  [class*="toc"],
+  [class*="TOC"] {
+    display: none !important;
+  }
+  
+  /* Boutons et interactions */
+  button,
+  [role="button"],
+  [class*="Button"],
+  [class*="button"],
+  [class*="Share"],
+  [class*="share"] {
+    display: none !important;
+  }
+  
+  /* Éléments flottants */
+  [class*="floating"],
+  [class*="Floating"],
+  [class*="fixed"],
+  [class*="sticky"]:not(.article-header) {
+    display: none !important;
+    position: static !important;
+  }
+  
+  /* Progress bar */
+  [class*="progress"],
+  [class*="Progress"] {
+    display: none !important;
+  }
+  
+  /* CTA sections */
+  [class*="cta"],
+  [class*="CTA"],
+  [class*="Consultation"],
+  [class*="newsletter"] {
+    display: none !important;
+  }
+  
+  /* Articles similaires */
+  [class*="related"],
+  [class*="Related"],
+  [class*="similaire"] {
+    display: none !important;
+  }
+  
+  /* Retour blog link */
+  [class*="back-to"],
+  [class*="BackTo"],
+  a[href="/blog"] {
+    display: none !important;
+  }
+  
+  /* Backgrounds et effets visuels */
+  [class*="Background"],
+  [class*="background"],
+  [class*="backdrop"],
+  [class*="grid-background"],
+  [class*="GridBackground"],
+  [class*="EnhancedGrid"] {
+    display: none !important;
+  }
+  
+  /* Animations */
+  [class*="animate"],
+  [class*="motion"] {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* ===========================================
+     CONTENU PRINCIPAL
+     =========================================== */
+  
+  /* Container principal */
+  main,
+  article,
+  .article-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+  }
+  
+  /* Titres */
+  h1, h2, h3, h4, h5, h6 {
+    color: black !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  
+  h1 {
+    font-size: 24pt !important;
+    margin-bottom: 12pt !important;
+    border-bottom: 2pt solid #6366F1 !important;
+    padding-bottom: 8pt !important;
+  }
+  
+  h2 {
+    font-size: 18pt !important;
+    margin-top: 24pt !important;
+    margin-bottom: 12pt !important;
+    border-bottom: 1pt solid #cccccc !important;
+    padding-bottom: 6pt !important;
+  }
+  
+  h3 {
+    font-size: 14pt !important;
+    margin-top: 18pt !important;
+    margin-bottom: 8pt !important;
+  }
+  
+  /* Paragraphes */
+  p {
+    color: black !important;
+    margin-bottom: 12pt !important;
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+  
+  /* Liens - Afficher l'URL complète */
+  a {
+    color: #0066cc !important;
+    text-decoration: underline !important;
+  }
+  
+  a[href^="http"]:after,
+  a[href^="https"]:after {
+    content: " (" attr(href) ")" !important;
+    font-size: 9pt !important;
+    color: #666666 !important;
+    word-break: break-all !important;
+  }
+  
+  /* Ne pas afficher l'URL pour les liens internes ou emails */
+  a[href^="#"]:after,
+  a[href^="mailto"]:after,
+  a[href^="tel"]:after {
+    content: "" !important;
+  }
+  
+  /* Listes */
+  ul, ol {
+    margin: 12pt 0 12pt 24pt !important;
+    padding: 0 !important;
+  }
+  
+  li {
+    color: black !important;
+    margin-bottom: 6pt !important;
+    page-break-inside: avoid !important;
+  }
+  
+  li::marker {
+    color: #6366F1 !important;
+  }
+  
+  /* Code inline */
+  code {
+    background: #f5f5f5 !important;
+    color: #d63384 !important;
+    padding: 1pt 4pt !important;
+    border-radius: 3pt !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 10pt !important;
+    border: 0.5pt solid #dddddd !important;
+  }
+  
+  /* Blocs de code */
+  pre {
+    background: #f8f9fa !important;
+    color: black !important;
+    border: 1pt solid #dddddd !important;
+    border-radius: 4pt !important;
+    padding: 12pt !important;
+    margin: 12pt 0 !important;
+    overflow-x: visible !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    page-break-inside: avoid !important;
+    font-size: 9pt !important;
+    line-height: 1.4 !important;
+  }
+  
+  pre code {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    color: black !important;
+  }
+  
+  /* Citations */
+  blockquote {
+    border-left: 4pt solid #6366F1 !important;
+    background: #f8f9fa !important;
+    color: #333333 !important;
+    margin: 12pt 0 !important;
+    padding: 12pt 18pt !important;
+    font-style: italic !important;
+    page-break-inside: avoid !important;
+  }
+  
+  blockquote p {
+    margin: 0 !important;
+  }
+  
+  /* Tableaux */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 12pt 0 !important;
+    page-break-inside: avoid !important;
+    font-size: 10pt !important;
+  }
+  
+  th, td {
+    border: 0.5pt solid #cccccc !important;
+    padding: 8pt !important;
+    text-align: left !important;
+    color: black !important;
+  }
+  
+  th {
+    background: #f0f0f0 !important;
+    font-weight: bold !important;
+  }
+  
+  tr:nth-child(even) td {
+    background: #fafafa !important;
+  }
+  
+  /* Images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid !important;
+    page-break-before: auto !important;
+    margin: 12pt 0 !important;
+  }
+  
+  /* Séparateurs */
+  hr {
+    border: none !important;
+    border-top: 1pt solid #cccccc !important;
+    margin: 24pt 0 !important;
+  }
+  
+  /* ===========================================
+     MISE EN PAGE
+     =========================================== */
+  
+  @page {
+    size: A4 portrait;
+    margin: 2cm 2cm 2.5cm 2cm;
+  }
+  
+  @page :first {
+    margin-top: 1.5cm;
+  }
+  
+  /* ===========================================
+     EN-TÊTE D'IMPRESSION
+     =========================================== */
+  
+  /* Header de l'article à conserver et styliser */
+  .article-header,
+  [class*="header-card"] {
+    background: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 0 12pt 0 !important;
+    margin-bottom: 24pt !important;
+    border-bottom: 2pt solid #6366F1 !important;
+  }
+  
+  /* Badge catégorie */
+  [class*="category-badge"],
+  [class*="CategoryBadge"] {
+    display: inline-block !important;
+    background: #f0f0f0 !important;
+    color: #6366F1 !important;
+    padding: 4pt 12pt !important;
+    border-radius: 12pt !important;
+    font-size: 9pt !important;
+    margin-bottom: 8pt !important;
+  }
+  
+  /* Métadonnées article */
+  [class*="article-meta"],
+  [class*="ArticleMeta"] {
+    color: #666666 !important;
+    font-size: 10pt !important;
+    margin-top: 12pt !important;
+    padding-top: 8pt !important;
+    border-top: 0.5pt solid #eeeeee !important;
+  }
+  
+  /* Extrait */
+  [class*="excerpt"],
+  [class*="Excerpt"] {
+    color: #444444 !important;
+    font-size: 11pt !important;
+    font-style: italic !important;
+    margin: 12pt 0 !important;
+  }
+  
+  /* ===========================================
+     ÉLÉMENTS SPÉCIAUX
+     =========================================== */
+  
+  /* Tags */
+  [class*="tags"],
+  [class*="Tags"] {
+    margin-top: 24pt !important;
+    padding-top: 12pt !important;
+    border-top: 0.5pt solid #eeeeee !important;
+  }
+  
+  [class*="tag"],
+  span[class*="tag"] {
+    display: inline-block !important;
+    background: #f5f5f5 !important;
+    color: #666666 !important;
+    padding: 2pt 8pt !important;
+    margin: 2pt !important;
+    border-radius: 8pt !important;
+    font-size: 9pt !important;
+  }
+  
+  /* Box auteur */
+  [class*="author-box"],
+  [class*="AuthorBox"] {
+    background: #f8f9fa !important;
+    border: 1pt solid #eeeeee !important;
+    border-radius: 8pt !important;
+    padding: 12pt !important;
+    margin-top: 24pt !important;
+    page-break-inside: avoid !important;
+  }
+  
+  [class*="author-name"],
+  [class*="AuthorName"] {
+    color: black !important;
+    font-weight: bold !important;
+  }
+  
+  [class*="author-bio"],
+  [class*="AuthorBio"] {
+    color: #444444 !important;
+    font-size: 10pt !important;
+  }
+  
+  /* ===========================================
+     CLASSES UTILITAIRES POUR IMPRESSION
+     =========================================== */
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  .no-print,
+  .screen-only {
+    display: none !important;
+  }
+  
+  .print-break-before {
+    page-break-before: always !important;
+  }
+  
+  .print-break-after {
+    page-break-after: always !important;
+  }
+  
+  .print-no-break {
+    page-break-inside: avoid !important;
+  }
+  
+  /* ===========================================
+     PIED DE PAGE D'IMPRESSION
+     =========================================== */
+  
+  /* Footer d'article à conserver */
+  .article-footer-print {
+    display: block !important;
+    margin-top: 36pt !important;
+    padding-top: 12pt !important;
+    border-top: 1pt solid #cccccc !important;
+    font-size: 9pt !important;
+    color: #666666 !important;
+    text-align: center !important;
+  }
+  
+  /* Numérotation des pages */
+  @page {
+    @bottom-center {
+      content: "Page " counter(page) " sur " counter(pages);
+      font-size: 9pt;
+      color: #666666;
+    }
+  }
+  
+  @page {
+    @bottom-right {
+      content: "DAINAMICS • dainamics.ch";
+      font-size: 8pt;
+      color: #999999;
+    }
+  }
+}
