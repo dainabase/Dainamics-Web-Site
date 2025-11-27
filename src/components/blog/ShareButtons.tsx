@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Share2,
@@ -75,6 +75,7 @@ const ShareButtons = ({
   const [showFloating, setShowFloating] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(false);
   const [shareNotification, setShareNotification] = useState<string | null>(null);
+  const printFrameRef = useRef<HTMLIFrameElement | null>(null);
 
   const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
   const encodedUrl = encodeURIComponent(shareUrl);
@@ -103,22 +104,14 @@ const ShareButtons = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, [variant]);
 
-  // Email handler - Robust method for Safari/Mac
+  // Email handler - Méthode robuste pour tous navigateurs
   const handleEmailShare = useCallback(() => {
-    const cleanTitle = title
-      .replace(/[éèêë]/g, 'e')
-      .replace(/[àâäã]/g, 'a')
-      .replace(/[ùûü]/g, 'u')
-      .replace(/[îïì]/g, 'i')
-      .replace(/[ôöò]/g, 'o')
-      .replace(/[ç]/g, 'c');
-
-    const subject = `Article interessant : ${cleanTitle}`;
+    const subject = `Article interessant : ${title}`;
     const body = `Bonjour,
 
 Je souhaitais partager cet article avec vous :
 
-${title}
+"${title}"
 
 ${excerpt ? excerpt.substring(0, 200) + (excerpt.length > 200 ? '...' : '') : ''}
 
@@ -128,17 +121,468 @@ Lire l'article : ${shareUrl}
 DAINAMICS - Intelligence Artificielle et Automatisation pour PME
 https://dainamics.ch`;
 
-    const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Encoder pour URL mailto
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    const mailtoUrl = `mailto:?subject=${encodedSubject}&body=${encodedBody}`;
 
-    // Create a real anchor element and click it - works on Safari/Mac
+    // Méthode 1: Créer un lien et cliquer dessus (fonctionne sur Safari/Mac)
     const link = document.createElement('a');
     link.href = mailtoUrl;
-    link.style.display = 'none';
+    link.style.cssText = 'position:absolute;left:-9999px;top:-9999px;';
     document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    
+    // Timeout pour permettre au DOM de se mettre à jour
+    setTimeout(() => {
+      link.click();
+      document.body.removeChild(link);
+    }, 100);
 
     showShareNotif('Email');
+  }, [title, excerpt, shareUrl, showShareNotif]);
+
+  // Print handler - Version améliorée avec mise en page professionnelle
+  const handlePrint = useCallback(() => {
+    // Récupérer le contenu de l'article
+    const articleContent = document.querySelector('.article-content');
+    const articleTitle = title;
+    const articleExcerpt = excerpt;
+    const currentDate = new Date().toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+    
+    // QR Code URL
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(shareUrl)}&bgcolor=FFFFFF&color=000000&format=svg`;
+
+    // Créer le contenu HTML pour l'impression
+    const printContent = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${articleTitle} - DAINAMICS</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    @page {
+      size: A4;
+      margin: 15mm 20mm 20mm 20mm;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: white;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    
+    /* Header */
+    .print-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #6366F1;
+    }
+    
+    .print-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .print-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #6366F1 0%, #10E4FF 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .print-logo-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+    
+    .print-logo-text {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.02em;
+    }
+    
+    .print-logo-tagline {
+      font-size: 8pt;
+      color: #666;
+      margin-top: 2px;
+    }
+    
+    .print-qr-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    
+    .print-qr-section img {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .print-qr-label {
+      font-size: 7pt;
+      color: #888;
+      text-align: right;
+    }
+    
+    /* Title Section */
+    .print-title-section {
+      margin-bottom: 32px;
+    }
+    
+    .print-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    
+    .print-excerpt {
+      font-size: 12pt;
+      color: #444;
+      line-height: 1.5;
+      padding: 16px;
+      background: #f8f9fa;
+      border-left: 4px solid #6366F1;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .print-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      font-size: 9pt;
+      color: #666;
+    }
+    
+    .print-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    /* Content */
+    .print-content {
+      column-count: 1;
+    }
+    
+    .print-content h1 {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 28px 0 14px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e5e7eb;
+      page-break-after: avoid;
+    }
+    
+    .print-content h2 {
+      font-size: 14pt;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 24px 0 12px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e5e7eb;
+      page-break-after: avoid;
+    }
+    
+    .print-content h3 {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #333;
+      margin: 20px 0 10px 0;
+      page-break-after: avoid;
+    }
+    
+    .print-content p {
+      margin-bottom: 12px;
+      text-align: justify;
+      orphans: 3;
+      widows: 3;
+    }
+    
+    .print-content a {
+      color: #6366F1;
+      text-decoration: none;
+    }
+    
+    .print-content a::after {
+      content: " (" attr(href) ")";
+      font-size: 8pt;
+      color: #888;
+    }
+    
+    .print-content strong {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    .print-content em {
+      font-style: italic;
+      color: #444;
+    }
+    
+    .print-content ul, .print-content ol {
+      margin: 12px 0 12px 24px;
+      page-break-inside: avoid;
+    }
+    
+    .print-content li {
+      margin-bottom: 6px;
+    }
+    
+    .print-content ul li::marker {
+      color: #6366F1;
+    }
+    
+    .print-content ol li::marker {
+      color: #6366F1;
+      font-weight: 600;
+    }
+    
+    .print-content blockquote {
+      margin: 20px 0;
+      padding: 16px 20px;
+      background: #f8f9fa;
+      border-left: 4px solid #6366F1;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      page-break-inside: avoid;
+    }
+    
+    .print-content blockquote p {
+      margin-bottom: 0;
+    }
+    
+    .print-content code {
+      font-family: 'Fira Code', 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      background: #f1f3f5;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #6366F1;
+    }
+    
+    .print-content pre {
+      margin: 16px 0;
+      padding: 16px;
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 9pt;
+      line-height: 1.5;
+      page-break-inside: avoid;
+    }
+    
+    .print-content pre code {
+      background: none;
+      padding: 0;
+      color: #1a1a1a;
+    }
+    
+    .print-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 10pt;
+      page-break-inside: avoid;
+    }
+    
+    .print-content th {
+      background: #6366F1;
+      color: white;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .print-content td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .print-content tr:nth-child(even) td {
+      background: #f8f9fa;
+    }
+    
+    .print-content hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+      margin: 24px 0;
+    }
+    
+    .print-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    
+    /* Footer */
+    .print-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #6366F1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 9pt;
+      color: #666;
+    }
+    
+    .print-footer-left {
+      max-width: 60%;
+    }
+    
+    .print-footer-company {
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    
+    .print-footer-contact {
+      line-height: 1.6;
+    }
+    
+    .print-footer-right {
+      text-align: right;
+    }
+    
+    .print-footer-url {
+      color: #6366F1;
+      font-weight: 500;
+    }
+    
+    .print-footer-date {
+      margin-top: 4px;
+      font-size: 8pt;
+      color: #888;
+    }
+    
+    /* Page breaks */
+    .page-break {
+      page-break-before: always;
+    }
+    
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-header">
+    <div class="print-logo">
+      <div class="print-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="print-logo-text">DAINAMICS</div>
+        <div class="print-logo-tagline">IA & Automatisation pour PME</div>
+      </div>
+    </div>
+    <div class="print-qr-section">
+      <img src="${qrUrl}" alt="QR Code" />
+      <div class="print-qr-label">Scanner pour<br/>lire en ligne</div>
+    </div>
+  </div>
+  
+  <div class="print-title-section">
+    <h1 class="print-title">${articleTitle}</h1>
+    ${articleExcerpt ? `<div class="print-excerpt">${articleExcerpt}</div>` : ''}
+    <div class="print-meta">
+      <div class="print-meta-item">
+        <span>📅</span>
+        <span>Imprimé le ${currentDate}</span>
+      </div>
+      <div class="print-meta-item">
+        <span>🔗</span>
+        <span>${shareUrl}</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="print-content">
+    ${articleContent?.innerHTML || ''}
+  </div>
+  
+  <div class="print-footer">
+    <div class="print-footer-left">
+      <div class="print-footer-company">DAINAMICS - Intelligence Artificielle & Automatisation</div>
+      <div class="print-footer-contact">
+        Suisse | contact@dainamics.ch | +41 XX XXX XX XX
+      </div>
+    </div>
+    <div class="print-footer-right">
+      <div class="print-footer-url">dainamics.ch/blog</div>
+      <div class="print-footer-date">Document généré le ${currentDate}</div>
+    </div>
+  </div>
+</body>
+</html>`;
+
+    // Créer une iframe cachée pour l'impression
+    let printFrame = printFrameRef.current;
+    if (!printFrame) {
+      printFrame = document.createElement('iframe');
+      printFrame.style.cssText = 'position:fixed;left:-9999px;top:-9999px;width:0;height:0;border:none;';
+      document.body.appendChild(printFrame);
+      printFrameRef.current = printFrame;
+    }
+
+    // Écrire le contenu et imprimer
+    const frameDoc = printFrame.contentWindow?.document;
+    if (frameDoc) {
+      frameDoc.open();
+      frameDoc.write(printContent);
+      frameDoc.close();
+
+      // Attendre le chargement complet avant d'imprimer
+      printFrame.onload = () => {
+        setTimeout(() => {
+          printFrame?.contentWindow?.focus();
+          printFrame?.contentWindow?.print();
+        }, 500);
+      };
+    }
+
+    showShareNotif('Impression');
   }, [title, excerpt, shareUrl, showShareNotif]);
 
   const shareOptions: ShareOption[] = [
@@ -296,10 +740,6 @@ https://dainamics.ch`;
     }
   }, [title, excerpt, shareUrl, showShareNotif]);
 
-  const handlePrint = useCallback(() => {
-    window.print();
-  }, []);
-
   // Generate QR Code URL
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedUrl}&bgcolor=0A0A0F&color=FFFFFF&format=svg`;
 
@@ -368,6 +808,7 @@ https://dainamics.ch`;
             copyToClipboard={copyToClipboard}
             copied={copied}
             handlePrint={handlePrint}
+            handleEmailShare={handleEmailShare}
             qrCodeUrl={qrCodeUrl}
             showQR={showQR}
             setShowQR={setShowQR}
@@ -451,6 +892,7 @@ https://dainamics.ch`;
           copyToClipboard={copyToClipboard}
           copied={copied}
           handlePrint={handlePrint}
+          handleEmailShare={handleEmailShare}
           qrCodeUrl={qrCodeUrl}
           showQR={showQR}
           setShowQR={setShowQR}
@@ -483,6 +925,7 @@ https://dainamics.ch`;
           copyToClipboard={copyToClipboard}
           copied={copied}
           handlePrint={handlePrint}
+          handleEmailShare={handleEmailShare}
           qrCodeUrl={qrCodeUrl}
           showQR={showQR}
           setShowQR={setShowQR}
@@ -504,6 +947,7 @@ interface ShareModalProps {
   copyToClipboard: () => void;
   copied: boolean;
   handlePrint: () => void;
+  handleEmailShare: () => void;
   qrCodeUrl: string;
   showQR: boolean;
   setShowQR: (show: boolean) => void;
@@ -519,6 +963,7 @@ const ShareModal = ({
   copyToClipboard,
   copied,
   handlePrint,
+  handleEmailShare,
   qrCodeUrl,
   showQR,
   setShowQR
@@ -642,6 +1087,12 @@ const ShareModal = ({
                             Partage depuis le blog DAINAMICS
                           </p>
                         </div>
+                        <button
+                          onClick={handleEmailShare}
+                          className="mt-4 w-full py-2.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-medium rounded-lg transition-all"
+                        >
+                          Ouvrir dans mon client email
+                        </button>
                       </div>
                     </motion.div>
                   )}
