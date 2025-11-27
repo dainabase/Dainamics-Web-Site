@@ -17,7 +17,7 @@ export default function Hero3DBackground() {
     if (!brainVideo || !glowContainer || !pulseEffect || !energyWavesContainer) return;
 
     const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
+    const context = canvas.getContext('2d', { willReadFrequently: true });
     if (!context) return;
 
     canvas.width = 64;
