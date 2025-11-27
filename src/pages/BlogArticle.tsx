@@ -70,8 +70,9 @@ const BlogArticle = () => {
               const mdContent = await markdownModules[mdPath]() as string;
               setContent(mdContent);
               
-              // Extract TOC items
-              const headers = mdContent.match(/^#{1,3} .+$/gm) || [];
+              // Extract TOC items (after removing frontmatter)
+              const contentWithoutFrontmatter = mdContent.replace(/^---[\s\S]*?---\n*/m, '');
+              const headers = contentWithoutFrontmatter.match(/^#{1,3} .+$/gm) || [];
               const toc: TOCItem[] = headers.map(header => {
                 const level = (header.match(/^#+/) || [''])[0].length;
                 const text = header.replace(/^#+\s*/, '');
@@ -929,7 +930,8 @@ const BlogArticle = () => {
 
 // Enhanced Markdown Parser
 const parseMarkdown = (content: string): string => {
-  let html = content;
+  // Remove YAML frontmatter (metadata between --- delimiters at start of file)
+  let html = content.replace(/^---[\s\S]*?---\n*/m, '');
 
   // Headers with IDs for anchor links
   html = html.replace(/^### (.*$)/gim, (_, title) => {
