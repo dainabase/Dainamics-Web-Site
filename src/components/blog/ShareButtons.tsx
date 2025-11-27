@@ -11,7 +11,10 @@ import {
   Printer,
   QrCode,
   X,
-  ChevronUp
+  ChevronUp,
+  Eye,
+  Send,
+  ExternalLink
 } from 'lucide-react';
 
 interface ShareButtonsProps {
@@ -31,7 +34,6 @@ interface ShareOption {
   hoverColor: string;
   action: (title: string, url: string, excerpt?: string) => void;
   isEmail?: boolean;
-  mailtoHref?: string;
 }
 
 // WhatsApp icon component
@@ -62,13 +64,64 @@ const PinterestIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+// Gmail icon component
+const GmailIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+  </svg>
+);
+
+// Outlook icon component  
+const OutlookIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M24 7.387v10.478c0 .23-.08.424-.238.576-.158.154-.352.23-.58.23h-8.547v-6.959l1.6 1.178c.108.085.237.127.388.127.152 0 .283-.042.391-.127l6.88-5.09c.062-.045.113-.097.152-.158.038-.06.057-.122.057-.186v-.07c0-.063-.02-.12-.057-.17-.038-.05-.087-.09-.147-.118l-.238-.119a.633.633 0 00-.28-.062h-.094l-.27.117-7.343 5.078-1.095.754-1.094-.754-7.343-5.078-.27-.117h-.094a.633.633 0 00-.28.062l-.237.119c-.06.028-.109.068-.147.117-.038.05-.057.108-.057.17v.071c0 .064.019.125.057.186.039.061.09.113.152.158l6.88 5.09c.108.085.239.127.39.127.152 0 .28-.042.388-.127l1.6-1.178v6.96H.818c-.228 0-.422-.077-.58-.23-.158-.153-.238-.347-.238-.577V7.387L0 7.29v-.42l.818-.39 7.09-3.54 3.91 2.694 3.91-2.693 7.09 3.538.818.39v.42l-.637.098zM8.076 16.611c.67.328 1.437.492 2.3.492.863 0 1.629-.164 2.3-.492.67-.328 1.196-.791 1.578-1.389.382-.597.574-1.29.574-2.078 0-.788-.192-1.481-.574-2.078-.382-.598-.908-1.06-1.579-1.39-.67-.327-1.436-.49-2.299-.49-.863 0-1.63.163-2.3.49-.67.33-1.196.792-1.578 1.39-.382.597-.574 1.29-.574 2.078 0 .788.192 1.481.574 2.078.382.598.908 1.061 1.578 1.39zm.832-4.746c.313-.481.767-.721 1.362-.721.594 0 1.046.24 1.356.721.309.481.464 1.072.464 1.773 0 .702-.155 1.293-.464 1.773-.31.48-.762.72-1.356.72-.595 0-1.049-.24-1.362-.72-.313-.48-.47-1.071-.47-1.773 0-.701.157-1.292.47-1.773z"/>
+  </svg>
+);
+
+// Yahoo icon component
+const YahooIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M10.816 8.193l-3.604 8.24h2.592l.904-2.176h3.136l.912 2.176h2.592l-3.6-8.24h-2.932zm1.472 2.24l.984 2.368h-1.968l.984-2.368zM24 5.457v13.086c0 .904-.732 1.636-1.636 1.636H1.636A1.636 1.636 0 0 1 0 18.543V5.457c0-.904.732-1.636 1.636-1.636h20.728c.904 0 1.636.732 1.636 1.636zM5.552 8.193H2.96l2.016 4.752L2.752 17.6h2.592l1.328-2.88L8 17.6h2.592l-2.224-4.656 2.016-4.752H7.792L6.672 10.4l-1.12-2.208zm11.2 0H14.16l2.016 4.752-2.224 4.656h2.592l1.328-2.88 1.328 2.88h2.592l-2.224-4.656 2.016-4.752h-2.592l-1.12 2.208-1.12-2.208z"/>
+  </svg>
+);
+
+// Generate email content
+const generateEmailContent = (title: string, url: string, excerpt?: string) => {
+  const subject = `Article intéressant : ${title}`;
+  const body = `Bonjour,
+
+Je souhaitais partager cet article avec vous :
+
+${title}
+
+${excerpt || ''}
+
+Lire l'article : ${url}
+
+---
+Partagé depuis le blog DAINAMICS`;
+  
+  return { subject, body };
+};
+
 // Generate mailto URL
 const generateMailtoUrl = (title: string, url: string, excerpt?: string): string => {
-  const subject = encodeURIComponent(`Article intéressant : ${title}`);
-  const body = encodeURIComponent(
-    `Bonjour,\n\nJe souhaitais partager cet article avec vous :\n\n${title}\n\n${excerpt || ''}\n\nLire l'article : ${url}\n\n---\nPartagé depuis le blog DAINAMICS`
-  );
-  return `mailto:?subject=${subject}&body=${body}`;
+  const { subject, body } = generateEmailContent(title, url, excerpt);
+  return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
+
+// Generate webmail URLs
+const generateWebmailUrls = (title: string, url: string, excerpt?: string) => {
+  const { subject, body } = generateEmailContent(title, url, excerpt);
+  const encodedSubject = encodeURIComponent(subject);
+  const encodedBody = encodeURIComponent(body);
+  
+  return {
+    gmail: `https://mail.google.com/mail/?view=cm&fs=1&su=${encodedSubject}&body=${encodedBody}`,
+    outlook: `https://outlook.live.com/mail/0/deeplink/compose?subject=${encodedSubject}&body=${encodedBody}`,
+    yahoo: `https://compose.mail.yahoo.com/?subject=${encodedSubject}&body=${encodedBody}`,
+    mailto: generateMailtoUrl(title, url, excerpt)
+  };
 };
 
 const ShareButtons = ({
@@ -84,11 +137,14 @@ const ShareButtons = ({
   const [showQR, setShowQR] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(false);
+  const [showEmailPreview, setShowEmailPreview] = useState(false);
+  const [showEmailOptions, setShowEmailOptions] = useState(false);
 
   const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
   const encodedUrl = encodeURIComponent(shareUrl);
   const encodedTitle = encodeURIComponent(title);
-  const mailtoUrl = generateMailtoUrl(title, shareUrl, excerpt);
+  const webmailUrls = generateWebmailUrls(title, shareUrl, excerpt);
+  const emailContent = generateEmailContent(title, shareUrl, excerpt);
 
   // Track scroll for floating variant
   useEffect(() => {
@@ -171,7 +227,6 @@ const ShareButtons = ({
       color: 'bg-[#E60023]',
       hoverColor: 'hover:bg-[#ad001a]',
       action: () => {
-        // Pinterest needs an image - we'll use the OG image or a default
         const description = encodeURIComponent(excerpt || title);
         window.open(
           `https://pinterest.com/pin/create/button/?url=${encodedUrl}&description=${description}`,
@@ -210,11 +265,12 @@ const ShareButtons = ({
       id: 'email',
       name: 'Email',
       icon: Mail,
-      color: 'bg-gray-600',
-      hoverColor: 'hover:bg-gray-700',
-      action: () => {},
-      isEmail: true,
-      mailtoHref: mailtoUrl
+      color: 'bg-gradient-to-r from-orange-500 to-red-500',
+      hoverColor: 'hover:from-orange-600 hover:to-red-600',
+      action: () => {
+        setShowEmailOptions(true);
+      },
+      isEmail: true
     }
   ];
 
@@ -232,7 +288,6 @@ const ShareButtons = ({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      // Fallback for older browsers
       const textArea = document.createElement('textarea');
       textArea.value = shareUrl;
       document.body.appendChild(textArea);
@@ -253,7 +308,6 @@ const ShareButtons = ({
           url: shareUrl
         });
       } catch (err) {
-        // User cancelled or error
         if ((err as Error).name !== 'AbortError') {
           setShowModal(true);
         }
@@ -285,31 +339,16 @@ const ShareButtons = ({
 
         {/* Quick share icons - principales plateformes */}
         <div className="hidden sm:flex items-center gap-1.5">
-          {inlineOptions.map((option) => {
-            // For email, use anchor tag
-            if (option.isEmail && option.mailtoHref) {
-              return (
-                <a
-                  key={option.id}
-                  href={option.mailtoHref}
-                  className={`p-2.5 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
-                  title={option.name}
-                >
-                  <option.icon className="w-4 h-4" />
-                </a>
-              );
-            }
-            return (
-              <button
-                key={option.id}
-                onClick={() => option.action(title, shareUrl, excerpt)}
-                className={`p-2.5 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
-                title={option.name}
-              >
-                <option.icon className="w-4 h-4" />
-              </button>
-            );
-          })}
+          {inlineOptions.map((option) => (
+            <button
+              key={option.id}
+              onClick={() => option.action(title, shareUrl, excerpt)}
+              className={`p-2.5 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
+              title={option.name}
+            >
+              <option.icon className="w-4 h-4" />
+            </button>
+          ))}
         </div>
 
         {/* Copy link */}
@@ -339,7 +378,12 @@ const ShareButtons = ({
           qrCodeUrl={qrCodeUrl}
           showQR={showQR}
           setShowQR={setShowQR}
-          mailtoUrl={mailtoUrl}
+          webmailUrls={webmailUrls}
+          emailContent={emailContent}
+          showEmailPreview={showEmailPreview}
+          setShowEmailPreview={setShowEmailPreview}
+          showEmailOptions={showEmailOptions}
+          setShowEmailOptions={setShowEmailOptions}
         />
       </div>
     );
@@ -373,31 +417,23 @@ const ShareButtons = ({
                 <div className="w-full h-px bg-white/10" />
 
                 {/* Social icons - 6 principales */}
-                {floatingOptions.map((option) => {
-                  // For email, use anchor tag
-                  if (option.isEmail && option.mailtoHref) {
-                    return (
-                      <a
-                        key={option.id}
-                        href={option.mailtoHref}
-                        className={`p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
-                        title={option.name}
-                      >
-                        <option.icon className="w-5 h-5" />
-                      </a>
-                    );
-                  }
-                  return (
-                    <button
-                      key={option.id}
-                      onClick={() => option.action(title, shareUrl, excerpt)}
-                      className={`p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
-                      title={option.name}
-                    >
-                      <option.icon className="w-5 h-5" />
-                    </button>
-                  );
-                })}
+                {floatingOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => {
+                      if (option.isEmail) {
+                        setShowModal(true);
+                        setShowEmailOptions(true);
+                      } else {
+                        option.action(title, shareUrl, excerpt);
+                      }
+                    }}
+                    className={`p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
+                    title={option.name}
+                  >
+                    <option.icon className="w-5 h-5" />
+                  </button>
+                ))}
 
                 <div className="w-full h-px bg-white/10" />
 
@@ -430,7 +466,11 @@ const ShareButtons = ({
         {/* Modal */}
         <ShareModal
           isOpen={showModal}
-          onClose={() => setShowModal(false)}
+          onClose={() => {
+            setShowModal(false);
+            setShowEmailOptions(false);
+            setShowEmailPreview(false);
+          }}
           title={title}
           url={shareUrl}
           excerpt={excerpt}
@@ -441,7 +481,12 @@ const ShareButtons = ({
           qrCodeUrl={qrCodeUrl}
           showQR={showQR}
           setShowQR={setShowQR}
-          mailtoUrl={mailtoUrl}
+          webmailUrls={webmailUrls}
+          emailContent={emailContent}
+          showEmailPreview={showEmailPreview}
+          setShowEmailPreview={setShowEmailPreview}
+          showEmailOptions={showEmailOptions}
+          setShowEmailOptions={setShowEmailOptions}
         />
       </>
     );
@@ -460,7 +505,11 @@ const ShareButtons = ({
 
       <ShareModal
         isOpen={showModal}
-        onClose={() => setShowModal(false)}
+        onClose={() => {
+          setShowModal(false);
+          setShowEmailOptions(false);
+          setShowEmailPreview(false);
+        }}
         title={title}
         url={shareUrl}
         excerpt={excerpt}
@@ -471,7 +520,12 @@ const ShareButtons = ({
         qrCodeUrl={qrCodeUrl}
         showQR={showQR}
         setShowQR={setShowQR}
-        mailtoUrl={mailtoUrl}
+        webmailUrls={webmailUrls}
+        emailContent={emailContent}
+        showEmailPreview={showEmailPreview}
+        setShowEmailPreview={setShowEmailPreview}
+        showEmailOptions={showEmailOptions}
+        setShowEmailOptions={setShowEmailOptions}
       />
     </div>
   );
@@ -491,7 +545,20 @@ interface ShareModalProps {
   qrCodeUrl: string;
   showQR: boolean;
   setShowQR: (show: boolean) => void;
-  mailtoUrl: string;
+  webmailUrls: {
+    gmail: string;
+    outlook: string;
+    yahoo: string;
+    mailto: string;
+  };
+  emailContent: {
+    subject: string;
+    body: string;
+  };
+  showEmailPreview: boolean;
+  setShowEmailPreview: (show: boolean) => void;
+  showEmailOptions: boolean;
+  setShowEmailOptions: (show: boolean) => void;
 }
 
 const ShareModal = ({
@@ -507,7 +574,12 @@ const ShareModal = ({
   qrCodeUrl,
   showQR,
   setShowQR,
-  mailtoUrl
+  webmailUrls,
+  emailContent,
+  showEmailPreview,
+  setShowEmailPreview,
+  showEmailOptions,
+  setShowEmailOptions
 }: ShareModalProps) => {
   // Close on escape
   useEffect(() => {
@@ -549,7 +621,9 @@ const ShareModal = ({
             {/* Header */}
             <div className="sticky top-0 z-10 flex items-center justify-between p-6 border-b border-white/10 bg-dainamics-background/95 backdrop-blur-sm">
               <div>
-                <h3 className="text-xl font-bold text-white">Partager l'article</h3>
+                <h3 className="text-xl font-bold text-white">
+                  {showEmailOptions ? 'Partager par Email' : 'Partager l\'article'}
+                </h3>
                 <p className="text-sm text-gray-400 mt-1 line-clamp-1">{title}</p>
               </div>
               <button
@@ -562,124 +636,246 @@ const ShareModal = ({
 
             {/* Content */}
             <div className="p-6 space-y-6">
-              {/* Social share grid - 4 columns pour 8 options */}
-              <div>
-                <p className="text-sm font-medium text-gray-400 mb-3">Réseaux sociaux</p>
-                <div className="grid grid-cols-4 gap-3">
-                  {shareOptions.map((option) => {
-                    // For email, use anchor tag
-                    if (option.isEmail) {
-                      return (
-                        <a
-                          key={option.id}
-                          href={mailtoUrl}
-                          onClick={onClose}
-                          className={`flex flex-col items-center gap-2 p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-105`}
-                        >
-                          <option.icon className="w-5 h-5" />
-                          <span className="text-[10px] font-medium text-center leading-tight">{option.name}</span>
-                        </a>
-                      );
-                    }
-                    return (
-                      <button
-                        key={option.id}
-                        onClick={() => {
-                          option.action(title, url, excerpt);
-                          onClose();
-                        }}
-                        className={`flex flex-col items-center gap-2 p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-105`}
-                      >
-                        <option.icon className="w-5 h-5" />
-                        <span className="text-[10px] font-medium text-center leading-tight">{option.name}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Copy link */}
-              <div>
-                <p className="text-sm font-medium text-gray-400 mb-3">Copier le lien</p>
-                <div className="flex gap-2">
-                  <div className="flex-1 px-4 py-3 bg-white/5 rounded-xl border border-white/10 text-gray-400 text-sm truncate">
-                    {url}
-                  </div>
-                  <button
-                    onClick={copyToClipboard}
-                    className={`px-4 py-3 rounded-xl font-medium transition-all ${
-                      copied
-                        ? 'bg-green-500 text-white'
-                        : 'bg-dainamics-primary hover:bg-dainamics-primary/80 text-white'
-                    }`}
-                  >
-                    {copied ? (
-                      <span className="flex items-center gap-2">
-                        <Check className="w-4 h-4" />
-                        Copié
-                      </span>
-                    ) : (
-                      'Copier'
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {/* Additional options */}
-              <div className="flex gap-3">
-                {/* QR Code */}
-                <button
-                  onClick={() => setShowQR(!showQR)}
-                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl border transition-all ${
-                    showQR
-                      ? 'bg-dainamics-secondary/20 border-dainamics-secondary/40 text-dainamics-secondary'
-                      : 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  <QrCode className="w-5 h-5" />
-                  <span className="text-sm font-medium">QR Code</span>
-                </button>
-
-                {/* Print */}
-                <button
-                  onClick={handlePrint}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all"
-                >
-                  <Printer className="w-5 h-5" />
-                  <span className="text-sm font-medium">Imprimer</span>
-                </button>
-              </div>
-
-              {/* QR Code display */}
+              {/* Email Options Panel */}
               <AnimatePresence>
-                {showQR && (
+                {showEmailOptions && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="overflow-hidden"
+                    className="space-y-4 overflow-hidden"
                   >
-                    <div className="flex flex-col items-center p-6 bg-white rounded-2xl">
-                      <img
-                        src={qrCodeUrl}
-                        alt="QR Code pour partager l'article"
-                        className="w-48 h-48"
-                        style={{ filter: 'invert(1)' }}
-                      />
-                      <p className="text-sm text-gray-600 mt-3 text-center">
-                        Scannez pour accéder à l'article
-                      </p>
-                      <a 
-                        href={qrCodeUrl.replace('svg', 'png')} 
-                        download={`qr-${title.slice(0, 30).replace(/\s/g, '-')}.png`}
-                        className="mt-3 text-xs text-dainamics-primary hover:underline"
-                      >
-                        Télécharger le QR Code
-                      </a>
+                    {/* Preview Button */}
+                    <button
+                      onClick={() => setShowEmailPreview(!showEmailPreview)}
+                      className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border transition-all ${
+                        showEmailPreview
+                          ? 'bg-dainamics-primary/20 border-dainamics-primary/40 text-dainamics-primary'
+                          : 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:bg-white/10'
+                      }`}
+                    >
+                      <Eye className="w-5 h-5" />
+                      <span className="font-medium">Aperçu de l'email</span>
+                    </button>
+
+                    {/* Email Preview */}
+                    <AnimatePresence>
+                      {showEmailPreview && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
+                            <div>
+                              <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Sujet</p>
+                              <p className="text-sm text-white font-medium">{emailContent.subject}</p>
+                            </div>
+                            <div className="border-t border-white/10 pt-3">
+                              <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Message</p>
+                              <pre className="text-sm text-gray-300 whitespace-pre-wrap font-sans">
+                                {emailContent.body}
+                              </pre>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Email Client Options */}
+                    <div>
+                      <p className="text-sm font-medium text-gray-400 mb-3">Choisissez votre client email</p>
+                      <div className="grid grid-cols-2 gap-3">
+                        {/* Gmail */}
+                        <a
+                          href={webmailUrls.gmail}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 p-3 rounded-xl bg-[#EA4335]/10 hover:bg-[#EA4335]/20 border border-[#EA4335]/30 text-white transition-all hover:scale-[1.02]"
+                          onClick={onClose}
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-[#EA4335] flex items-center justify-center">
+                            <GmailIcon className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <span className="font-medium block">Gmail</span>
+                            <span className="text-xs text-gray-400">Ouvrir dans Gmail</span>
+                          </div>
+                        </a>
+
+                        {/* Outlook */}
+                        <a
+                          href={webmailUrls.outlook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 p-3 rounded-xl bg-[#0078D4]/10 hover:bg-[#0078D4]/20 border border-[#0078D4]/30 text-white transition-all hover:scale-[1.02]"
+                          onClick={onClose}
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-[#0078D4] flex items-center justify-center">
+                            <OutlookIcon className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <span className="font-medium block">Outlook</span>
+                            <span className="text-xs text-gray-400">Ouvrir dans Outlook</span>
+                          </div>
+                        </a>
+
+                        {/* Yahoo */}
+                        <a
+                          href={webmailUrls.yahoo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 p-3 rounded-xl bg-[#6001D2]/10 hover:bg-[#6001D2]/20 border border-[#6001D2]/30 text-white transition-all hover:scale-[1.02]"
+                          onClick={onClose}
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-[#6001D2] flex items-center justify-center">
+                            <YahooIcon className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <span className="font-medium block">Yahoo Mail</span>
+                            <span className="text-xs text-gray-400">Ouvrir dans Yahoo</span>
+                          </div>
+                        </a>
+
+                        {/* Local Email Client (mailto) */}
+                        <a
+                          href={webmailUrls.mailto}
+                          className="flex items-center gap-3 p-3 rounded-xl bg-gray-600/10 hover:bg-gray-600/20 border border-gray-600/30 text-white transition-all hover:scale-[1.02]"
+                          onClick={onClose}
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-gray-600 flex items-center justify-center">
+                            <Mail className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <span className="font-medium block">App locale</span>
+                            <span className="text-xs text-gray-400">Mail, Thunderbird...</span>
+                          </div>
+                        </a>
+                      </div>
                     </div>
+
+                    {/* Back button */}
+                    <button
+                      onClick={() => setShowEmailOptions(false)}
+                      className="w-full text-sm text-gray-400 hover:text-white transition-colors py-2"
+                    >
+                      ← Retour aux options de partage
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>
+
+              {/* Social share grid - Only show when not in email options */}
+              {!showEmailOptions && (
+                <>
+                  <div>
+                    <p className="text-sm font-medium text-gray-400 mb-3">Réseaux sociaux</p>
+                    <div className="grid grid-cols-4 gap-3">
+                      {shareOptions.map((option) => (
+                        <button
+                          key={option.id}
+                          onClick={() => {
+                            if (option.isEmail) {
+                              setShowEmailOptions(true);
+                            } else {
+                              option.action(title, url, excerpt);
+                              onClose();
+                            }
+                          }}
+                          className={`flex flex-col items-center gap-2 p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-105`}
+                        >
+                          <option.icon className="w-5 h-5" />
+                          <span className="text-[10px] font-medium text-center leading-tight">{option.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Copy link */}
+                  <div>
+                    <p className="text-sm font-medium text-gray-400 mb-3">Copier le lien</p>
+                    <div className="flex gap-2">
+                      <div className="flex-1 px-4 py-3 bg-white/5 rounded-xl border border-white/10 text-gray-400 text-sm truncate">
+                        {url}
+                      </div>
+                      <button
+                        onClick={copyToClipboard}
+                        className={`px-4 py-3 rounded-xl font-medium transition-all ${
+                          copied
+                            ? 'bg-green-500 text-white'
+                            : 'bg-dainamics-primary hover:bg-dainamics-primary/80 text-white'
+                        }`}
+                      >
+                        {copied ? (
+                          <span className="flex items-center gap-2">
+                            <Check className="w-4 h-4" />
+                            Copié
+                          </span>
+                        ) : (
+                          'Copier'
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Additional options */}
+                  <div className="flex gap-3">
+                    {/* QR Code */}
+                    <button
+                      onClick={() => setShowQR(!showQR)}
+                      className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl border transition-all ${
+                        showQR
+                          ? 'bg-dainamics-secondary/20 border-dainamics-secondary/40 text-dainamics-secondary'
+                          : 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:bg-white/10'
+                      }`}
+                    >
+                      <QrCode className="w-5 h-5" />
+                      <span className="text-sm font-medium">QR Code</span>
+                    </button>
+
+                    {/* Print */}
+                    <button
+                      onClick={handlePrint}
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+                    >
+                      <Printer className="w-5 h-5" />
+                      <span className="text-sm font-medium">Imprimer</span>
+                    </button>
+                  </div>
+
+                  {/* QR Code display */}
+                  <AnimatePresence>
+                    {showQR && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex flex-col items-center p-6 bg-white rounded-2xl">
+                          <img
+                            src={qrCodeUrl}
+                            alt="QR Code pour partager l'article"
+                            className="w-48 h-48"
+                            style={{ filter: 'invert(1)' }}
+                          />
+                          <p className="text-sm text-gray-600 mt-3 text-center">
+                            Scannez pour accéder à l'article
+                          </p>
+                          <a 
+                            href={qrCodeUrl.replace('svg', 'png')} 
+                            download={`qr-${title.slice(0, 30).replace(/\s/g, '-')}.png`}
+                            className="mt-3 text-xs text-dainamics-primary hover:underline"
+                          >
+                            Télécharger le QR Code
+                          </a>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </>
+              )}
             </div>
 
             {/* Footer */}
