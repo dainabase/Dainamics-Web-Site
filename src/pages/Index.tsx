@@ -46,7 +46,7 @@ const Index = () => {
       <Navigation />
 
       {/* Main content */}
-      <main className="relative z-10">
+      <main className="relative">
         {/* ========== SECTION 1: HERO ========== */}
         <Hero />
 

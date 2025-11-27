@@ -38,6 +38,7 @@ export default function Hero() {
     <section
       ref={heroRef}
       className="relative w-full bg-dainamics-background"
+      style={{ zIndex: 1 }}
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 z-0"></div>

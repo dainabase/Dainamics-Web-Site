@@ -88,8 +88,13 @@ const cardVariants = {
 
 export const ProblemeCards = () => {
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 lg:py-32 bg-[#050510] z-10">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8">
+    <section className="relative py-16 sm:py-20 md:py-24 lg:py-32">
+      {/* Gradient background pour laisser passer les ondes en haut */}
+      <div className="absolute inset-0" style={{
+        background: 'linear-gradient(to bottom, transparent 0%, transparent 20%, #050510 40%, #050510 100%)'
+      }}></div>
+
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         {/* Titre */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight px-4">
