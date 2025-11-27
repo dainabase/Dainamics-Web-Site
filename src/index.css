@@ -1260,11 +1260,12 @@
 }
 
 .project-card:hover .screenshot-wrapper {
-  transform: scale(1.02);
+  transform: scale(1.08);
 }
 
 .screenshot-wrapper {
   transition: transform 0.4s ease;
+  transform: scale(1.05);
 }
 
 /* ============================================== */
