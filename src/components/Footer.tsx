@@ -32,7 +32,7 @@ export default function Footer() {
     <footer className="bg-dainamics-background relative">
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-dainamics-primary/50 to-transparent"></div>
-      <div className="absolute top-0 left-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 bg-dainamics-primary/20 rounded-full blur-[100px] z-0 opacity-50"></div>
+      <div className="absolute top-0 left-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 bg-dainamics-primary/20 rounded-full blur-[100px] z-0 opacity-50 pointer-events-none"></div>
       
       <div className="container mx-auto px-4 md:px-8 py-16 md:py-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
