@@ -30,7 +30,7 @@ interface ShareOption {
   icon: React.ComponentType<{ className?: string }>;
   color: string;
   hoverColor: string;
-  action: (title: string, url: string, excerpt?: string) => void;
+  action: () => void;
   mailtoHref?: string;
 }
 
@@ -62,7 +62,23 @@ const PinterestIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Fonction utilitaire pour générer le mailto URL
+// Robust function to open email client - works across all browsers
+const openEmailClient = (mailtoUrl: string): void => {
+  // Create invisible anchor and click it (most reliable method)
+  const link = document.createElement('a');
+  link.href = mailtoUrl;
+  link.style.display = 'none';
+  document.body.appendChild(link);
+  link.click();
+  // Small delay before removing to let browser process
+  setTimeout(() => {
+    if (link.parentNode) {
+      document.body.removeChild(link);
+    }
+  }, 100);
+};
+
+// Utility function to generate mailto URL
 const generateMailtoUrl = (title: string, excerpt: string, shareUrl: string): string => {
   const subject = `Article interessant : ${title}`;
   const body = `Bonjour,
@@ -102,12 +118,12 @@ const ShareButtons = ({
   const encodedUrl = encodeURIComponent(shareUrl);
   const encodedTitle = encodeURIComponent(title);
   
-  // Générer le mailto URL
+  // Generate mailto URL
   const mailtoUrl = generateMailtoUrl(title, excerpt, shareUrl);
 
   // Show notification after share
   const showShareNotif = useCallback((platform: string) => {
-    setShareNotification(`Partagé sur ${platform}`);
+    setShareNotification(`Partage sur ${platform}`);
     setTimeout(() => setShareNotification(null), 2000);
   }, []);
 
@@ -259,11 +275,11 @@ const ShareButtons = ({
     ${articleExcerpt ? `<div class="print-excerpt">${articleExcerpt}</div>` : ''}
     <div class="print-meta">
       <div class="print-meta-item">
-        <span>📅</span>
-        <span>Imprimé le ${currentDate}</span>
+        <span>Date:</span>
+        <span>Imprime le ${currentDate}</span>
       </div>
       <div class="print-meta-item">
-        <span>🔗</span>
+        <span>Lien:</span>
         <span>${shareUrl}</span>
       </div>
     </div>
@@ -280,7 +296,7 @@ const ShareButtons = ({
     </div>
     <div class="print-footer-right">
       <div class="print-footer-url">dainamics.ch/blog</div>
-      <div class="print-footer-date">Document généré le ${currentDate}</div>
+      <div class="print-footer-date">Document genere le ${currentDate}</div>
     </div>
   </div>
 </body>
@@ -310,6 +326,12 @@ const ShareButtons = ({
 
     showShareNotif('Impression');
   }, [title, excerpt, shareUrl, showShareNotif]);
+
+  // Robust email handler using anchor click method
+  const handleEmailShare = useCallback(() => {
+    openEmailClient(mailtoUrl);
+    showShareNotif('Email');
+  }, [mailtoUrl, showShareNotif]);
 
   const shareOptions: ShareOption[] = [
     {
@@ -388,18 +410,6 @@ const ShareButtons = ({
       }
     },
     {
-      id: 'email',
-      name: 'Email',
-      icon: Mail,
-      color: 'bg-gradient-to-br from-orange-500 to-red-500',
-      hoverColor: 'hover:from-orange-600 hover:to-red-600',
-      action: () => {
-        window.open(mailtoUrl, '_blank');
-        showShareNotif('Email');
-      },
-      mailtoHref: mailtoUrl
-    },
-    {
       id: 'reddit',
       name: 'Reddit',
       icon: RedditIcon,
@@ -428,6 +438,15 @@ const ShareButtons = ({
         );
         showShareNotif('Pinterest');
       }
+    },
+    {
+      id: 'email',
+      name: 'Email',
+      icon: Mail,
+      color: 'bg-gradient-to-br from-orange-500 to-red-500',
+      hoverColor: 'hover:from-orange-600 hover:to-red-600',
+      action: handleEmailShare,
+      mailtoHref: mailtoUrl
     }
   ];
 
@@ -488,24 +507,9 @@ const ShareButtons = ({
   );
 
   const ShareButton = ({ option }: { option: ShareOption }) => {
-    if (option.id === 'email' && option.mailtoHref) {
-      return (
-        <a
-          href={option.mailtoHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => showShareNotif('Email')}
-          className={`p-2.5 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110 inline-flex items-center justify-center`}
-          title={option.name}
-        >
-          <option.icon className="w-4 h-4" />
-        </a>
-      );
-    }
-    
     return (
       <button
-        onClick={() => option.action(title, shareUrl, excerpt)}
+        onClick={option.action}
         className={`p-2.5 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
         title={option.name}
       >
@@ -540,7 +544,7 @@ const ShareButtons = ({
                 ? 'bg-green-500 text-white'
                 : 'bg-white/10 hover:bg-white/20 text-gray-400 hover:text-white'
             }`}
-            title={copied ? 'Lien copié !' : 'Copier le lien'}
+            title={copied ? 'Lien copie !' : 'Copier le lien'}
           >
             {copied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
           </button>
@@ -555,6 +559,7 @@ const ShareButtons = ({
             copyToClipboard={copyToClipboard}
             copied={copied}
             handlePrint={handlePrint}
+            handleEmailShare={handleEmailShare}
             mailtoUrl={mailtoUrl}
             qrCodeUrl={qrCodeUrl}
             showQR={showQR}
@@ -567,7 +572,7 @@ const ShareButtons = ({
     );
   }
 
-  // Floating variant
+  // Floating variant - ALL 8 social platforms
   if (variant === 'floating') {
     return (
       <>
@@ -593,34 +598,17 @@ const ShareButtons = ({
 
                 <div className="w-full h-px bg-white/10" />
 
-                {shareOptions.slice(0, 5).map((option) => {
-                  if (option.id === 'email' && option.mailtoHref) {
-                    return (
-                      <a
-                        key={option.id}
-                        href={option.mailtoHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => showShareNotif('Email')}
-                        className={`p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110 inline-flex items-center justify-center`}
-                        title={option.name}
-                      >
-                        <option.icon className="w-5 h-5" />
-                      </a>
-                    );
-                  }
-                  
-                  return (
-                    <button
-                      key={option.id}
-                      onClick={() => option.action(title, shareUrl, excerpt)}
-                      className={`p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
-                      title={option.name}
-                    >
-                      <option.icon className="w-5 h-5" />
-                    </button>
-                  );
-                })}
+                {/* ALL 8 social platforms - no more slice! */}
+                {shareOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={option.action}
+                    className={`p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-110`}
+                    title={option.name}
+                  >
+                    <option.icon className="w-5 h-5" />
+                  </button>
+                ))}
 
                 <div className="w-full h-px bg-white/10" />
 
@@ -631,7 +619,7 @@ const ShareButtons = ({
                       ? 'bg-green-500 text-white'
                       : 'bg-white/10 hover:bg-white/20 text-gray-400'
                   }`}
-                  title={copied ? 'Copié !' : 'Copier le lien'}
+                  title={copied ? 'Copie !' : 'Copier le lien'}
                 >
                   {copied ? <Check className="w-5 h-5" /> : <Link2 className="w-5 h-5" />}
                 </button>
@@ -658,6 +646,7 @@ const ShareButtons = ({
           copyToClipboard={copyToClipboard}
           copied={copied}
           handlePrint={handlePrint}
+          handleEmailShare={handleEmailShare}
           mailtoUrl={mailtoUrl}
           qrCodeUrl={qrCodeUrl}
           showQR={showQR}
@@ -692,6 +681,7 @@ const ShareButtons = ({
           copyToClipboard={copyToClipboard}
           copied={copied}
           handlePrint={handlePrint}
+          handleEmailShare={handleEmailShare}
           mailtoUrl={mailtoUrl}
           qrCodeUrl={qrCodeUrl}
           showQR={showQR}
@@ -715,6 +705,7 @@ interface ShareModalProps {
   copyToClipboard: () => void;
   copied: boolean;
   handlePrint: () => void;
+  handleEmailShare: () => void;
   mailtoUrl: string;
   qrCodeUrl: string;
   showQR: boolean;
@@ -732,6 +723,7 @@ const ShareModal = ({
   copyToClipboard,
   copied,
   handlePrint,
+  handleEmailShare,
   mailtoUrl,
   qrCodeUrl,
   showQR,
@@ -800,40 +792,20 @@ const ShareModal = ({
             <div className="p-6 space-y-6">
               {/* Social share grid */}
               <div>
-                <p className="text-sm font-medium text-gray-400 mb-3">Réseaux sociaux</p>
+                <p className="text-sm font-medium text-gray-400 mb-3">Reseaux sociaux</p>
                 <div className="grid grid-cols-4 gap-3">
-                  {shareOptions.map((option) => {
-                    if (option.id === 'email' && option.mailtoHref) {
-                      return (
-                        <a
-                          key={option.id}
-                          href={option.mailtoHref}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => showShareNotif('Email')}
-                          className={`flex flex-col items-center gap-2 p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-105`}
-                        >
-                          <option.icon className="w-5 h-5" />
-                          <span className="text-[10px] font-medium truncate w-full text-center">
-                            {option.name.split(' ')[0]}
-                          </span>
-                        </a>
-                      );
-                    }
-                    
-                    return (
-                      <button
-                        key={option.id}
-                        onClick={() => option.action(title, url, excerpt)}
-                        className={`flex flex-col items-center gap-2 p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-105`}
-                      >
-                        <option.icon className="w-5 h-5" />
-                        <span className="text-[10px] font-medium truncate w-full text-center">
-                          {option.name.split(' ')[0]}
-                        </span>
-                      </button>
-                    );
-                  })}
+                  {shareOptions.map((option) => (
+                    <button
+                      key={option.id}
+                      onClick={option.action}
+                      className={`flex flex-col items-center gap-2 p-3 rounded-xl ${option.color} ${option.hoverColor} text-white transition-all hover:scale-105`}
+                    >
+                      <option.icon className="w-5 h-5" />
+                      <span className="text-[10px] font-medium truncate w-full text-center">
+                        {option.name.split(' ')[0]}
+                      </span>
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -845,7 +817,7 @@ const ShareModal = ({
                 >
                   <div className="flex items-center gap-3">
                     <Mail className="w-5 h-5" />
-                    <span className="text-sm font-medium">Aperçu de l'email</span>
+                    <span className="text-sm font-medium">Apercu de l'email</span>
                   </div>
                   <ExternalLink className={`w-4 h-4 transition-transform ${emailPreview ? 'rotate-180' : ''}`} />
                 </button>
@@ -877,15 +849,12 @@ const ShareModal = ({
                             Partage depuis le blog DAINAMICS
                           </p>
                         </div>
-                        <a
-                          href={mailtoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => showShareNotif('Email')}
-                          className="mt-4 w-full py-2.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-medium rounded-lg transition-all inline-flex items-center justify-center"
+                        <button
+                          onClick={handleEmailShare}
+                          className="mt-4 w-full py-2.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-medium rounded-lg transition-all"
                         >
                           Ouvrir dans mon client email
-                        </a>
+                        </button>
                       </div>
                     </motion.div>
                   )}
@@ -910,7 +879,7 @@ const ShareModal = ({
                     {copied ? (
                       <span className="flex items-center justify-center gap-2">
                         <Check className="w-4 h-4" />
-                        Copié
+                        Copie
                       </span>
                     ) : (
                       'Copier'
@@ -959,14 +928,14 @@ const ShareModal = ({
                         style={{ filter: 'invert(1)' }}
                       />
                       <p className="text-sm text-gray-600 mt-3 text-center">
-                        Scannez pour accéder à l'article
+                        Scannez pour acceder a l'article
                       </p>
                       <a
                         href={qrCodeUrl.replace('svg', 'png')}
                         download={`qr-${title.slice(0, 30).replace(/\s/g, '-')}.png`}
                         className="mt-3 text-xs text-dainamics-primary hover:underline"
                       >
-                        Télécharger le QR Code
+                        Telecharger le QR Code
                       </a>
                     </div>
                   </motion.div>
