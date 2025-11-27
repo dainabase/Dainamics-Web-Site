@@ -224,12 +224,12 @@ const FeaturedProjects: React.FC = () => {
               } as React.CSSProperties}
             >
               {/* Screenshot */}
-              <div className="screenshot-wrapper relative h-48 sm:h-56 md:h-64 bg-gray-900/50 overflow-hidden border-0">
+              <div className="screenshot-wrapper relative h-48 sm:h-56 md:h-64 bg-gray-900/50 overflow-hidden">
                 {project.screenshot ? (
                   <img
                     src={project.screenshot}
                     alt={`${project.title} Screenshot`}
-                    className="w-full h-full object-cover border-0"
+                    className="w-full h-full object-cover block"
                   />
                 ) : (
                   <div className="relative flex items-center justify-center h-full bg-gradient-to-br from-gray-900 to-gray-800">
@@ -255,9 +255,9 @@ const FeaturedProjects: React.FC = () => {
                 )}
                 {/* Overlay gradient */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-t ${project.color.gradient} opacity-5 pointer-events-none`}
+                  className={`absolute inset-0 bg-gradient-to-t ${project.color.gradient} opacity-5`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050510]/80 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80" />
               </div>
 
               {/* Contenu */}
