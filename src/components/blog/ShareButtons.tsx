@@ -61,63 +61,6 @@ const PinterestIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Fonction utilitaire pour ouvrir l'email - optimisée pour Mac/Safari
-const openEmailClient = (subject: string, body: string): boolean => {
-  const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  
-  // Méthode 1: Créer un lien et simuler un clic (fonctionne sur Safari/Mac)
-  try {
-    const link = document.createElement('a');
-    link.href = mailtoUrl;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    
-    // Ajouter au DOM (nécessaire pour Safari)
-    link.style.position = 'absolute';
-    link.style.left = '-9999px';
-    link.style.top = '-9999px';
-    document.body.appendChild(link);
-    
-    // Cliquer sur le lien
-    link.click();
-    
-    // Nettoyer après un court délai
-    setTimeout(() => {
-      if (link.parentNode) {
-        link.parentNode.removeChild(link);
-      }
-    }, 100);
-    
-    return true;
-  } catch (e) {
-    console.error('Email method 1 (link click) failed:', e);
-  }
-  
-  // Méthode 2: window.open (fallback)
-  try {
-    const newWindow = window.open(mailtoUrl, '_blank');
-    if (newWindow) {
-      // Fermer la fenêtre après un court délai si elle s'est ouverte
-      setTimeout(() => {
-        try { newWindow.close(); } catch (e) { /* ignore */ }
-      }, 1000);
-      return true;
-    }
-  } catch (e) {
-    console.error('Email method 2 (window.open) failed:', e);
-  }
-  
-  // Méthode 3: location.href (dernier recours)
-  try {
-    window.location.href = mailtoUrl;
-    return true;
-  } catch (e) {
-    console.error('Email method 3 (location.href) failed:', e);
-  }
-  
-  return false;
-};
-
 const ShareButtons = ({
   title,
   url,
@@ -159,6 +102,31 @@ const ShareButtons = ({
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [variant]);
+
+  // Email handler - Direct mailto protocol
+  const handleEmailShare = useCallback(() => {
+    const subject = `Article interessant : ${title.replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u').replace(/[îï]/g, 'i').replace(/[ôö]/g, 'o')}`;
+    const body = `Bonjour,
+
+Je souhaitais partager cet article avec vous :
+
+${title}
+
+${excerpt ? excerpt.substring(0, 200) + (excerpt.length > 200 ? '...' : '') : ''}
+
+Lire l'article : ${shareUrl}
+
+---
+DAINAMICS - Intelligence Artificielle et Automatisation pour PME
+https://dainamics.ch`;
+
+    const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Méthode directe - fonctionne sur Safari/Mac
+    window.location.href = mailtoUrl;
+    
+    showShareNotif('Email');
+  }, [title, excerpt, shareUrl, showShareNotif]);
 
   const shareOptions: ShareOption[] = [
     {
@@ -242,28 +210,7 @@ const ShareButtons = ({
       icon: Mail,
       color: 'bg-gradient-to-br from-orange-500 to-red-500',
       hoverColor: 'hover:from-orange-600 hover:to-red-600',
-      action: () => {
-        const subject = `Article interessant : ${title}`;
-        const body = `Bonjour,
-
-Je souhaitais partager cet article avec vous :
-
-${title}
-
-${excerpt ? `"${excerpt.substring(0, 200)}${excerpt.length > 200 ? '...' : ''}"` : ''}
-
-Lire l'article complet : ${shareUrl}
-
----
-Partage depuis le blog DAINAMICS
-Intelligence Artificielle et Automatisation pour PME
-https://dainamics.ch`;
-
-        const success = openEmailClient(subject, body);
-        if (success) {
-          showShareNotif('Email');
-        }
-      }
+      action: handleEmailShare
     },
     {
       id: 'reddit',
@@ -337,289 +284,357 @@ https://dainamics.ch`;
   }, [title, excerpt, shareUrl, showShareNotif]);
 
   const handlePrint = useCallback(() => {
-    // Fermer le modal avant d'imprimer
+    // Fermer le modal
     setShowModal(false);
     
-    // Attendre que le modal soit fermé
+    // Créer une iframe cachée pour l'impression
     setTimeout(() => {
-      // Créer une feuille de style d'impression
-      const printStylesheet = document.createElement('style');
-      printStylesheet.id = 'dainamics-print-styles';
-      printStylesheet.setAttribute('media', 'print');
-      printStylesheet.textContent = `
-        /* ========== RESET COMPLET POUR IMPRESSION ========== */
-        
-        /* Masquer TOUT par défaut */
-        body * {
-          visibility: hidden !important;
-        }
-        
-        /* Afficher seulement le contenu de l'article */
-        .article-content,
-        .article-content * {
-          visibility: visible !important;
-        }
-        
-        /* Masquer absolument tout ce qui n'est pas le contenu */
-        header,
-        footer,
-        nav,
-        aside,
-        .fixed,
-        .sticky,
-        .modal,
-        [role="dialog"],
-        [aria-modal="true"],
-        button,
-        .share-buttons,
-        .floating-share,
-        [data-hide-print="true"],
-        .backdrop-blur-sm,
-        .backdrop-blur-xl,
-        .bg-black\\/80,
-        .z-50,
-        .z-40,
-        #dainamics-print-styles + div,
-        [class*="ShareModal"],
-        [class*="share"],
-        [class*="Share"] {
-          display: none !important;
-          visibility: hidden !important;
-          opacity: 0 !important;
-          position: absolute !important;
-          left: -9999px !important;
-          width: 0 !important;
-          height: 0 !important;
-          overflow: hidden !important;
-        }
-        
-        /* Forcer le body à être visible et propre */
-        html, body {
-          visibility: visible !important;
-          background: white !important;
-          color: black !important;
-          font-size: 12pt !important;
-          line-height: 1.6 !important;
-          margin: 0 !important;
-          padding: 0 !important;
-          width: 100% !important;
-          height: auto !important;
-          overflow: visible !important;
-        }
-        
-        /* Conteneur principal de l'article */
-        .article-content {
-          display: block !important;
-          visibility: visible !important;
-          position: relative !important;
-          left: 0 !important;
-          top: 0 !important;
-          width: 100% !important;
-          max-width: 100% !important;
-          margin: 0 auto !important;
-          padding: 20px !important;
-          background: white !important;
-          color: black !important;
-          font-size: 12pt !important;
-          line-height: 1.6 !important;
-        }
-        
-        /* Styles du contenu */
-        .article-content h1,
-        .article-content h2,
-        .article-content h3,
-        .article-content h4,
-        .article-content h5,
-        .article-content h6 {
-          color: black !important;
-          background: none !important;
-          border-color: #333 !important;
-          page-break-after: avoid !important;
-          margin-top: 1.5em !important;
-          margin-bottom: 0.5em !important;
-        }
-        
-        .article-content h1 { font-size: 22pt !important; }
-        .article-content h2 { font-size: 18pt !important; border-bottom: 1px solid #ccc !important; padding-bottom: 5px !important; }
-        .article-content h3 { font-size: 14pt !important; }
-        .article-content h4 { font-size: 12pt !important; }
-        
-        .article-content p,
-        .article-content li,
-        .article-content span,
-        .article-content div {
-          color: black !important;
-          background: none !important;
-        }
-        
-        .article-content p {
-          margin-bottom: 1em !important;
-          orphans: 3 !important;
-          widows: 3 !important;
-        }
-        
-        .article-content ul,
-        .article-content ol {
-          margin: 1em 0 !important;
-          padding-left: 2em !important;
-        }
-        
-        .article-content li {
-          margin-bottom: 0.5em !important;
-        }
-        
-        .article-content a {
-          color: black !important;
-          text-decoration: underline !important;
-        }
-        
-        .article-content a[href^="http"]:after {
-          content: " (" attr(href) ")" !important;
-          font-size: 9pt !important;
-          color: #666 !important;
-        }
-        
-        .article-content a[href^="#"]:after,
-        .article-content a[href^="javascript"]:after,
-        .article-content a[href^="mailto"]:after {
-          content: "" !important;
-        }
-        
-        .article-content strong,
-        .article-content b {
-          color: black !important;
-          font-weight: bold !important;
-        }
-        
-        .article-content em,
-        .article-content i {
-          color: black !important;
-          font-style: italic !important;
-        }
-        
-        .article-content code {
-          background: #f5f5f5 !important;
-          color: black !important;
-          padding: 2px 5px !important;
-          border: 1px solid #ddd !important;
-          border-radius: 3px !important;
-          font-family: monospace !important;
-          font-size: 10pt !important;
-        }
-        
-        .article-content pre {
-          background: #f9f9f9 !important;
-          color: black !important;
-          border: 1px solid #ddd !important;
-          padding: 15px !important;
-          margin: 1em 0 !important;
-          overflow-x: auto !important;
-          page-break-inside: avoid !important;
-          white-space: pre-wrap !important;
-          word-wrap: break-word !important;
-        }
-        
-        .article-content pre code {
-          background: none !important;
-          border: none !important;
-          padding: 0 !important;
-        }
-        
-        .article-content blockquote {
-          border-left: 3px solid #333 !important;
-          background: #f9f9f9 !important;
-          margin: 1em 0 !important;
-          padding: 10px 20px !important;
-          color: #333 !important;
-          font-style: italic !important;
-          page-break-inside: avoid !important;
-        }
-        
-        .article-content table {
-          width: 100% !important;
-          border-collapse: collapse !important;
-          margin: 1em 0 !important;
-          page-break-inside: avoid !important;
-        }
-        
-        .article-content th,
-        .article-content td {
-          border: 1px solid #333 !important;
-          padding: 8px !important;
-          text-align: left !important;
-          color: black !important;
-          background: white !important;
-        }
-        
-        .article-content th {
-          background: #f0f0f0 !important;
-          font-weight: bold !important;
-        }
-        
-        .article-content img {
-          max-width: 100% !important;
-          height: auto !important;
-          page-break-inside: avoid !important;
-          margin: 1em 0 !important;
-        }
-        
-        .article-content hr {
-          border: none !important;
-          border-top: 1px solid #ccc !important;
-          margin: 2em 0 !important;
-        }
-        
-        /* Pied de page avec source */
-        .article-content::after {
-          content: "Source: ${shareUrl}" !important;
-          display: block !important;
-          visibility: visible !important;
-          margin-top: 30px !important;
-          padding-top: 15px !important;
-          border-top: 1px solid #ccc !important;
-          font-size: 10pt !important;
-          color: #666 !important;
-        }
-        
-        /* Configuration de la page */
-        @page {
-          size: A4 !important;
-          margin: 2cm !important;
-        }
-        
-        /* Éviter les coupures de page indésirables */
-        h1, h2, h3, h4, h5, h6 {
-          page-break-after: avoid !important;
-        }
-        
-        p, li, blockquote, pre, table, img {
-          page-break-inside: avoid !important;
-        }
-      `;
+      const printFrame = document.createElement('iframe');
+      printFrame.style.position = 'fixed';
+      printFrame.style.right = '0';
+      printFrame.style.bottom = '0';
+      printFrame.style.width = '0';
+      printFrame.style.height = '0';
+      printFrame.style.border = 'none';
+      document.body.appendChild(printFrame);
+
+      const articleContent = document.querySelector('.article-content');
+      const articleHeader = document.querySelector('header h1')?.textContent || title;
+      const articleMeta = document.querySelector('.text-gray-400.mb-8')?.textContent || excerpt;
       
-      // Supprimer les anciens styles d'impression s'ils existent
-      const existingStyles = document.getElementById('dainamics-print-styles');
-      if (existingStyles) {
-        existingStyles.remove();
+      if (printFrame.contentWindow && articleContent) {
+        const doc = printFrame.contentWindow.document;
+        const currentDate = new Date().toLocaleDateString('fr-FR', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+
+        doc.open();
+        doc.write(`
+          <!DOCTYPE html>
+          <html lang="fr">
+          <head>
+            <meta charset="UTF-8">
+            <title>${articleHeader} - DAINAMICS</title>
+            <style>
+              /* Reset et base */
+              * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              }
+              
+              @page {
+                size: A4;
+                margin: 2cm 2.5cm;
+              }
+              
+              body {
+                font-family: 'Georgia', 'Times New Roman', serif;
+                font-size: 11pt;
+                line-height: 1.7;
+                color: #1a1a1a;
+                background: white;
+              }
+              
+              /* En-tête */
+              .print-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: 20px;
+                border-bottom: 2px solid #6366f1;
+                margin-bottom: 30px;
+              }
+              
+              .print-logo {
+                font-family: 'Arial', sans-serif;
+                font-size: 18pt;
+                font-weight: 700;
+                color: #6366f1;
+                letter-spacing: -0.5px;
+              }
+              
+              .print-logo span {
+                color: #1a1a1a;
+              }
+              
+              .print-date {
+                font-family: 'Arial', sans-serif;
+                font-size: 9pt;
+                color: #666;
+              }
+              
+              /* Titre principal */
+              .print-title {
+                font-size: 24pt;
+                font-weight: 700;
+                color: #1a1a1a;
+                line-height: 1.2;
+                margin-bottom: 15px;
+                font-family: 'Arial', 'Helvetica', sans-serif;
+              }
+              
+              /* Sous-titre / excerpt */
+              .print-excerpt {
+                font-size: 12pt;
+                color: #4a4a4a;
+                font-style: italic;
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #e0e0e0;
+                line-height: 1.6;
+              }
+              
+              /* Contenu de l'article */
+              .print-content {
+                column-count: 1;
+              }
+              
+              .print-content h1 {
+                font-family: 'Arial', sans-serif;
+                font-size: 18pt;
+                font-weight: 700;
+                color: #1a1a1a;
+                margin-top: 30px;
+                margin-bottom: 15px;
+                page-break-after: avoid;
+              }
+              
+              .print-content h2 {
+                font-family: 'Arial', sans-serif;
+                font-size: 14pt;
+                font-weight: 700;
+                color: #1a1a1a;
+                margin-top: 25px;
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+                border-bottom: 1px solid #e0e0e0;
+                page-break-after: avoid;
+              }
+              
+              .print-content h3 {
+                font-family: 'Arial', sans-serif;
+                font-size: 12pt;
+                font-weight: 700;
+                color: #333;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                page-break-after: avoid;
+              }
+              
+              .print-content p {
+                margin-bottom: 14px;
+                text-align: justify;
+                orphans: 3;
+                widows: 3;
+              }
+              
+              .print-content a {
+                color: #6366f1;
+                text-decoration: none;
+              }
+              
+              .print-content a::after {
+                content: " [" attr(href) "]";
+                font-size: 8pt;
+                color: #888;
+              }
+              
+              .print-content a[href^="#"]::after,
+              .print-content a[href^="javascript"]::after {
+                content: "";
+              }
+              
+              .print-content strong {
+                font-weight: 700;
+                color: #1a1a1a;
+              }
+              
+              .print-content em {
+                font-style: italic;
+              }
+              
+              .print-content ul,
+              .print-content ol {
+                margin: 15px 0;
+                padding-left: 25px;
+              }
+              
+              .print-content li {
+                margin-bottom: 8px;
+              }
+              
+              .print-content code {
+                font-family: 'Courier New', monospace;
+                font-size: 9pt;
+                background: #f5f5f5;
+                padding: 2px 6px;
+                border-radius: 3px;
+                border: 1px solid #e0e0e0;
+              }
+              
+              .print-content pre {
+                background: #f8f8f8;
+                border: 1px solid #e0e0e0;
+                border-left: 4px solid #6366f1;
+                padding: 15px;
+                margin: 20px 0;
+                overflow-x: auto;
+                font-family: 'Courier New', monospace;
+                font-size: 9pt;
+                line-height: 1.5;
+                page-break-inside: avoid;
+              }
+              
+              .print-content pre code {
+                background: none;
+                border: none;
+                padding: 0;
+              }
+              
+              .print-content blockquote {
+                border-left: 4px solid #6366f1;
+                background: #f8f8fc;
+                margin: 20px 0;
+                padding: 15px 20px;
+                font-style: italic;
+                color: #4a4a4a;
+                page-break-inside: avoid;
+              }
+              
+              .print-content blockquote p {
+                margin-bottom: 0;
+              }
+              
+              .print-content table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 10pt;
+                page-break-inside: avoid;
+              }
+              
+              .print-content th {
+                background: #f0f0f0;
+                font-weight: 700;
+                text-align: left;
+                padding: 10px;
+                border: 1px solid #d0d0d0;
+              }
+              
+              .print-content td {
+                padding: 10px;
+                border: 1px solid #e0e0e0;
+              }
+              
+              .print-content hr {
+                border: none;
+                border-top: 1px solid #e0e0e0;
+                margin: 30px 0;
+              }
+              
+              .print-content img {
+                max-width: 100%;
+                height: auto;
+                margin: 15px 0;
+                page-break-inside: avoid;
+              }
+              
+              /* Pied de page */
+              .print-footer {
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 2px solid #6366f1;
+              }
+              
+              .print-footer-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+              }
+              
+              .print-footer-left {
+                flex: 1;
+              }
+              
+              .print-footer-right {
+                text-align: right;
+              }
+              
+              .print-source {
+                font-family: 'Arial', sans-serif;
+                font-size: 9pt;
+                color: #666;
+                margin-bottom: 5px;
+              }
+              
+              .print-source-url {
+                font-family: 'Courier New', monospace;
+                font-size: 8pt;
+                color: #6366f1;
+                word-break: break-all;
+              }
+              
+              .print-copyright {
+                font-family: 'Arial', sans-serif;
+                font-size: 8pt;
+                color: #888;
+                margin-top: 10px;
+              }
+              
+              .print-qr-note {
+                font-family: 'Arial', sans-serif;
+                font-size: 8pt;
+                color: #888;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="print-header">
+              <div class="print-logo">DAI<span>NAMICS</span></div>
+              <div class="print-date">${currentDate}</div>
+            </div>
+            
+            <h1 class="print-title">${articleHeader}</h1>
+            
+            ${articleMeta ? `<p class="print-excerpt">${articleMeta}</p>` : ''}
+            
+            <div class="print-content">
+              ${articleContent.innerHTML}
+            </div>
+            
+            <div class="print-footer">
+              <div class="print-footer-content">
+                <div class="print-footer-left">
+                  <p class="print-source">Article publie sur le blog DAINAMICS</p>
+                  <p class="print-source-url">${shareUrl}</p>
+                  <p class="print-copyright">© ${new Date().getFullYear()} DAINAMICS - Intelligence Artificielle et Automatisation pour PME</p>
+                </div>
+                <div class="print-footer-right">
+                  <p class="print-qr-note">dainamics.ch/blog</p>
+                </div>
+              </div>
+            </div>
+          </body>
+          </html>
+        `);
+        doc.close();
+
+        // Attendre le chargement puis imprimer
+        printFrame.onload = () => {
+          setTimeout(() => {
+            printFrame.contentWindow?.print();
+            // Nettoyer après impression
+            setTimeout(() => {
+              document.body.removeChild(printFrame);
+            }, 1000);
+          }, 250);
+        };
       }
-      
-      // Ajouter les nouveaux styles
-      document.head.appendChild(printStylesheet);
-      
-      // Lancer l'impression
-      setTimeout(() => {
-        window.print();
-        
-        // Nettoyer les styles après l'impression
-        setTimeout(() => {
-          const styles = document.getElementById('dainamics-print-styles');
-          if (styles) {
-            styles.remove();
-          }
-        }, 1000);
-      }, 100);
     }, 300);
-  }, [shareUrl]);
+  }, [title, excerpt, shareUrl]);
 
   // Generate QR Code URL
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedUrl}&bgcolor=0A0A0F&color=FFFFFF&format=svg`;
