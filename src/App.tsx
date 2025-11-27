@@ -7,6 +7,7 @@ import Realisations from "@/pages/Realisations";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import BlogArticle from "@/pages/BlogArticle";
+import BlogCategory from "@/pages/BlogCategory";
 import AllArticles from "@/pages/AllArticles";
 import FAQ from "@/pages/FAQ";
 import TermsOfService from "@/pages/TermsOfService";
@@ -55,7 +56,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       
-      {/* DEV MENU - Bouton flottant pour accéder aux pages orphelines */}
+      {/* DEV MENU - Bouton flottant pour acceder aux pages orphelines */}
       {/* TODO: Supprimer avant mise en production */}
       <DevMenu />
       
@@ -98,10 +99,13 @@ function App() {
         {/* Portfolio */}
         <Route path="/portfolio" element={<Portfolio />} />
 
-        {/* Resources Routes */}
+        {/* Blog Routes */}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/tous-les-articles" element={<AllArticles />} />
+        <Route path="/blog/categorie/:slug" element={<BlogCategory />} />
         <Route path="/blog/:slug" element={<BlogArticle />} />
+        
+        {/* Resources Routes */}
         <Route path="/faq" element={<FAQ />} />
 
         {/* Legal Pages */}
