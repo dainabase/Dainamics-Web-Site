@@ -48,11 +48,28 @@ const TrustedClients: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center mb-10 sm:mb-12 md:mb-16"
+          className="text-center mb-6 sm:mb-8"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             <span className="text-white">De la PME aux Groupes Internationaux.</span>
           </h2>
+        </motion.div>
+
+        {/* Message rassurant pour PME */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-10 sm:mb-12 md:mb-16 max-w-3xl mx-auto px-4"
+        >
+          <div className="relative p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-dainamics-primary/5 via-dainamics-secondary/5 to-dainamics-primary/5 border border-white/10">
+            <p className="text-center text-gray-300 text-base sm:text-lg leading-relaxed">
+              Que vous soyez une PME de 15 personnes ou un groupe international,
+              notre méthodologie s'adapte à votre réalité.
+              {' '}<span className="text-white font-medium">Même rigueur, même résultats.</span>
+            </p>
+          </div>
         </motion.div>
 
         {/* Carrousel infini */}
@@ -97,23 +114,6 @@ const TrustedClients: React.FC = () => {
             ))}
           </div>
         </div>
-
-        {/* Message rassurant pour PME */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 sm:mt-10 md:mt-12 max-w-3xl mx-auto px-4"
-        >
-          <div className="relative p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-dainamics-primary/5 via-dainamics-secondary/5 to-dainamics-primary/5 border border-white/10">
-            <p className="text-center text-gray-300 text-base sm:text-lg leading-relaxed">
-              Que vous soyez une PME de 15 personnes ou un groupe international,
-              notre méthodologie s'adapte à votre réalité.
-              {' '}<span className="text-white font-medium">Même rigueur, même résultats.</span>
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
