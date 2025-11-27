@@ -1,3 +1,14 @@
+---
+title: "Workflows Multi-Agents : L'Automatisation de Nouvelle Génération"
+date: "2025-11-20"
+author: "Équipe DAINAMICS"
+category: "automatisation"
+tags: ["agents-ia", "workflows", "automatisation", "multi-agents", "orchestration"]
+excerpt: "Les workflows multi-agents permettent d'automatiser des processus métier complets. Guide pratique avec cas d'usage et outils."
+featured: true
+readTime: 12
+---
+
 ## L'ère des agents IA : au-delà du chatbot simple
 
 En 2025, l'automatisation franchit un nouveau cap. Les "agents IA" ne sont plus de la science-fiction : Claude peut désormais travailler de manière autonome pendant **7 heures consécutives**, et les workflows multi-agents permettent de décomposer des tâches complexes en orchestrant plusieurs IA spécialisées.
