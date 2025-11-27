@@ -39,12 +39,12 @@ interface TOCItem {
 }
 
 const BlogArticle = () => {
-  const { slug } = useParams&lt;{ slug: string }>();
-  const [article, setArticle] = useState&lt;BlogArticleMeta | null>(null);
-  const [content, setContent] = useState&lt;string>('');
+  const { slug } = useParams<{ slug: string }>();
+  const [article, setArticle] = useState<BlogArticleMeta | null>(null);
+  const [content, setContent] = useState<string>('');
   const [loading, setLoading] = useState(true);
-  const [tocItems, setTocItems] = useState&lt;TOCItem[]>([]);
-  const [activeSection, setActiveSection] = useState&lt;string>('');
+  const [tocItems, setTocItems] = useState<TOCItem[]>([]);
+  const [activeSection, setActiveSection] = useState<string>('');
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
 
@@ -103,7 +103,7 @@ const BlogArticle = () => {
       
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
-        if (section &amp;&amp; section.offsetTop &lt;= scrollPosition) {
+        if (section && section.offsetTop <= scrollPosition) {
           setActiveSection(tocItems[i].id);
           break;
         }
@@ -163,94 +163,94 @@ const BlogArticle = () => {
 
   if (loading) {
     return (
-      &lt;div className="min-h-screen bg-dainamics-background flex items-center justify-center">
-        &lt;motion.div 
+      <div className="min-h-screen bg-dainamics-background flex items-center justify-center">
+        <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="flex flex-col items-center gap-4"
         >
-          &lt;div className="w-12 h-12 border-2 border-dainamics-primary border-t-transparent rounded-full animate-spin" />
-          &lt;span className="text-white/60">Chargement de l'article...&lt;/span>
-        &lt;/motion.div>
-      &lt;/div>
+          <div className="w-12 h-12 border-2 border-dainamics-primary border-t-transparent rounded-full animate-spin" />
+          <span className="text-white/60">Chargement de l'article...</span>
+        </motion.div>
+      </div>
     );
   }
 
   if (!article) {
-    return &lt;Navigate to="/404" replace />;
+    return <Navigate to="/404" replace />;
   }
 
   return (
-    &lt;div className="min-h-screen bg-dainamics-background">
-      &lt;EnhancedGridBackground />
+    <div className="min-h-screen bg-dainamics-background">
+      <EnhancedGridBackground />
       
       {/* Progress Bar */}
-      &lt;motion.div
+      <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-dainamics-primary via-dainamics-secondary to-dainamics-cta z-50 origin-left"
         style={{ scaleX }}
       />
       
-      &lt;Navigation />
+      <Navigation />
 
       {/* Hero Image Section - Using BlogHeroImage */}
-      &lt;motion.div
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         className="relative h-[35vh] md:h-[45vh] min-h-[280px] md:min-h-[350px] overflow-hidden"
       >
-        &lt;BlogHeroImage 
+        <BlogHeroImage 
           title={article.title}
           categoryId={article.categoryId}
           categoryColor={category?.color}
           className="w-full h-full"
           aspectRatio="hero"
         />
-        &lt;div className="absolute inset-0 bg-gradient-to-t from-dainamics-background via-dainamics-background/30 to-transparent" />
-      &lt;/motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-dainamics-background via-dainamics-background/30 to-transparent" />
+      </motion.div>
 
-      &lt;main className="relative pb-20">
-        &lt;div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="relative pb-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Breadcrumb - Now outside hero, above the card */}
-          &lt;motion.nav
+          <motion.nav
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             className="flex items-center gap-2 text-sm text-gray-400 mb-4 -mt-16 relative z-20"
           >
-            &lt;Link to="/blog" className="hover:text-white transition-colors">
+            <Link to="/blog" className="hover:text-white transition-colors">
               Blog
-            &lt;/Link>
-            &lt;ChevronRight className="w-4 h-4" />
-            {category &amp;&amp; (
-              &lt;>
-                &lt;Link 
+            </Link>
+            <ChevronRight className="w-4 h-4" />
+            {category && (
+              <>
+                <Link 
                   to={`/blog/categorie/${category.slug}`}
                   className="hover:text-white transition-colors"
                   style={{ color: category.color }}
                 >
                   {category.name}
-                &lt;/Link>
-                &lt;ChevronRight className="w-4 h-4" />
-              &lt;/>
+                </Link>
+                <ChevronRight className="w-4 h-4" />
+              </>
             )}
-            &lt;span className="text-white/60 truncate max-w-[200px] sm:max-w-[300px]">
+            <span className="text-white/60 truncate max-w-[200px] sm:max-w-[300px]">
               {article.title}
-            &lt;/span>
-          &lt;/motion.nav>
+            </span>
+          </motion.nav>
 
           {/* Article Header Card */}
-          &lt;motion.header
+          <motion.header
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="max-w-4xl mx-auto relative z-10 mb-12"
           >
-            &lt;div className="bg-dainamics-background/90 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl">
+            <div className="bg-dainamics-background/90 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl">
               {/* Category Badge */}
-              {category &amp;&amp; (
-                &lt;Link 
+              {category && (
+                <Link 
                   to={`/blog/categorie/${category.slug}`}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 hover:scale-105 transition-transform"
                   style={{
@@ -258,99 +258,99 @@ const BlogArticle = () => {
                     border: `1px solid ${category.color}40`
                   }}
                 >
-                  &lt;span 
+                  <span 
                     className="w-2 h-2 rounded-full"
                     style={{ backgroundColor: category.color }}
                   />
-                  &lt;span style={{ color: category.color }} className="text-sm font-medium">
+                  <span style={{ color: category.color }} className="text-sm font-medium">
                     {category.name}
-                  &lt;/span>
-                &lt;/Link>
+                  </span>
+                </Link>
               )}
 
               {/* Title */}
-              &lt;h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15] tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.15] tracking-tight">
                 {article.title}
-              &lt;/h1>
+              </h1>
 
               {/* Excerpt */}
-              &lt;p className="text-base md:text-lg text-gray-400 mb-8 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-400 mb-8 leading-relaxed">
                 {article.excerpt}
-              &lt;/p>
+              </p>
 
               {/* Meta Info Bar */}
-              &lt;div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
-                &lt;div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-400">
-                  {author &amp;&amp; (
-                    &lt;div className="flex items-center gap-3">
-                      &lt;div className="w-10 h-10 rounded-full bg-gradient-to-br from-dainamics-primary to-dainamics-secondary flex items-center justify-center ring-2 ring-white/10">
-                        &lt;span className="text-white font-bold text-sm">
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
+                <div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-400">
+                  {author && (
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-dainamics-primary to-dainamics-secondary flex items-center justify-center ring-2 ring-white/10">
+                        <span className="text-white font-bold text-sm">
                           {author.name.charAt(0)}
-                        &lt;/span>
-                      &lt;/div>
-                      &lt;div>
-                        &lt;p className="text-white font-medium text-sm">{author.name}&lt;/p>
-                        &lt;p className="text-gray-500 text-xs">{author.role}&lt;/p>
-                      &lt;/div>
-                    &lt;/div>
+                        </span>
+                      </div>
+                      <div>
+                        <p className="text-white font-medium text-sm">{author.name}</p>
+                        <p className="text-gray-500 text-xs">{author.role}</p>
+                      </div>
+                    </div>
                   )}
-                  &lt;div className="hidden sm:flex items-center gap-2 text-sm">
-                    &lt;Calendar className="w-4 h-4" />
-                    &lt;span>{formatDate(article.publishedAt)}&lt;/span>
-                  &lt;/div>
-                  &lt;div className="flex items-center gap-2 text-sm">
-                    &lt;Clock className="w-4 h-4" />
-                    &lt;span>{article.readTime} min&lt;/span>
-                  &lt;/div>
-                  &lt;div className="flex items-center gap-2 text-sm">
-                    &lt;BookOpen className="w-4 h-4" />
-                    &lt;span>{tocItems.length} sections&lt;/span>
-                  &lt;/div>
-                &lt;/div>
+                  <div className="hidden sm:flex items-center gap-2 text-sm">
+                    <Calendar className="w-4 h-4" />
+                    <span>{formatDate(article.publishedAt)}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="w-4 h-4" />
+                    <span>{article.readTime} min</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <BookOpen className="w-4 h-4" />
+                    <span>{tocItems.length} sections</span>
+                  </div>
+                </div>
                 
                 {/* Actions */}
-                &lt;div className="flex items-center gap-2">
-                  &lt;button 
+                <div className="flex items-center gap-2">
+                  <button 
                     onClick={() => setTocOpen(!tocOpen)}
                     className="lg:hidden p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
                     title="Table des matières"
                   >
-                    &lt;List className="w-4 h-4 text-gray-400" />
-                  &lt;/button>
-                  &lt;button 
+                    <List className="w-4 h-4 text-gray-400" />
+                  </button>
+                  <button 
                     className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
                     title="Partager"
                     onClick={() => navigator.share?.({ title: article.title, url: window.location.href })}
                   >
-                    &lt;Share2 className="w-4 h-4 text-gray-400" />
-                  &lt;/button>
-                  &lt;button 
+                    <Share2 className="w-4 h-4 text-gray-400" />
+                  </button>
+                  <button 
                     className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
                     title="Sauvegarder"
                   >
-                    &lt;Bookmark className="w-4 h-4 text-gray-400" />
-                  &lt;/button>
-                &lt;/div>
-              &lt;/div>
-            &lt;/div>
-          &lt;/motion.header>
+                    <Bookmark className="w-4 h-4 text-gray-400" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.header>
 
           {/* Mobile TOC Dropdown */}
-          {tocOpen &amp;&amp; tocItems.length > 0 &amp;&amp; (
-            &lt;motion.div
+          {tocOpen && tocItems.length > 0 && (
+            <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               className="lg:hidden max-w-4xl mx-auto mb-8"
             >
-              &lt;div className="bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/10 p-4">
-                &lt;h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                  &lt;List className="w-4 h-4" />
+              <div className="bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/10 p-4">
+                <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                  <List className="w-4 h-4" />
                   Table des matières
-                &lt;/h3>
-                &lt;nav className="space-y-1">
+                </h3>
+                <nav className="space-y-1">
                   {tocItems.map((item) => (
-                    &lt;button
+                    <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
                       className={`block w-full text-left text-sm py-2 px-3 rounded-lg transition-colors ${
@@ -361,29 +361,29 @@ const BlogArticle = () => {
                       style={{ paddingLeft: `${(item.level - 1) * 12 + 12}px` }}
                     >
                       {item.text}
-                    &lt;/button>
+                    </button>
                   ))}
-                &lt;/nav>
-              &lt;/div>
-            &lt;/motion.div>
+                </nav>
+              </div>
+            </motion.div>
           )}
 
           {/* Main Content Area */}
-          &lt;div className="max-w-7xl mx-auto">
-            &lt;div className="flex gap-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex gap-8">
               
               {/* Desktop TOC Sidebar */}
-              {tocItems.length > 0 &amp;&amp; (
-                &lt;aside className="hidden lg:block w-64 flex-shrink-0">
-                  &lt;div className="sticky top-24">
-                    &lt;div className="bg-white/[0.02] backdrop-blur-sm rounded-2xl border border-white/10 p-5">
-                      &lt;h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-                        &lt;List className="w-4 h-4 text-dainamics-primary" />
+              {tocItems.length > 0 && (
+                <aside className="hidden lg:block w-64 flex-shrink-0">
+                  <div className="sticky top-24">
+                    <div className="bg-white/[0.02] backdrop-blur-sm rounded-2xl border border-white/10 p-5">
+                      <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
+                        <List className="w-4 h-4 text-dainamics-primary" />
                         Dans cet article
-                      &lt;/h3>
-                      &lt;nav className="space-y-1 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                      </h3>
+                      <nav className="space-y-1 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
                         {tocItems.map((item) => (
-                          &lt;button
+                          <button
                             key={item.id}
                             onClick={() => scrollToSection(item.id)}
                             className={`block w-full text-left text-sm py-2 px-3 rounded-lg transition-all duration-200 ${
@@ -393,212 +393,212 @@ const BlogArticle = () => {
                             }`}
                             style={{ paddingLeft: `${(item.level - 1) * 8 + 12}px` }}
                           >
-                            &lt;span className="line-clamp-2">{item.text}&lt;/span>
-                          &lt;/button>
+                            <span className="line-clamp-2">{item.text}</span>
+                          </button>
                         ))}
-                      &lt;/nav>
-                    &lt;/div>
-                  &lt;/div>
-                &lt;/aside>
+                      </nav>
+                    </div>
+                  </div>
+                </aside>
               )}
 
               {/* Article Content */}
-              &lt;motion.article
+              <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="flex-1 min-w-0 max-w-4xl"
               >
-                &lt;div
+                <div
                   className="article-content"
                   dangerouslySetInnerHTML={{ __html: parsedContent }}
                 />
 
                 {/* Tags */}
-                {article.tags.length > 0 &amp;&amp; (
-                  &lt;div className="mt-16 pt-8 border-t border-white/10">
-                    &lt;div className="flex items-center gap-2 mb-4">
-                      &lt;Tag className="w-4 h-4 text-dainamics-primary" />
-                      &lt;span className="text-gray-400 text-sm font-medium">Tags&lt;/span>
-                    &lt;/div>
-                    &lt;div className="flex flex-wrap gap-2">
+                {article.tags.length > 0 && (
+                  <div className="mt-16 pt-8 border-t border-white/10">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Tag className="w-4 h-4 text-dainamics-primary" />
+                      <span className="text-gray-400 text-sm font-medium">Tags</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
                       {article.tags.map(tag => (
-                        &lt;span
+                        <span
                           key={tag}
                           className="px-4 py-2 bg-white/5 hover:bg-dainamics-primary/20 rounded-full text-sm text-gray-300 hover:text-white border border-white/10 hover:border-dainamics-primary/40 transition-all cursor-pointer"
                         >
                           #{tag}
-                        &lt;/span>
+                        </span>
                       ))}
-                    &lt;/div>
-                  &lt;/div>
+                    </div>
+                  </div>
                 )}
 
                 {/* Author Box */}
-                {author &amp;&amp; (
-                  &lt;div className="mt-12 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-dainamics-primary/10 to-dainamics-secondary/5 border border-white/10">
-                    &lt;div className="flex flex-col sm:flex-row gap-6">
-                      &lt;div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-dainamics-primary to-dainamics-secondary flex items-center justify-center flex-shrink-0 ring-4 ring-white/10">
-                        &lt;span className="text-white font-bold text-xl">
+                {author && (
+                  <div className="mt-12 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-dainamics-primary/10 to-dainamics-secondary/5 border border-white/10">
+                    <div className="flex flex-col sm:flex-row gap-6">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-dainamics-primary to-dainamics-secondary flex items-center justify-center flex-shrink-0 ring-4 ring-white/10">
+                        <span className="text-white font-bold text-xl">
                           {author.name.charAt(0)}
-                        &lt;/span>
-                      &lt;/div>
-                      &lt;div>
-                        &lt;p className="text-xs text-dainamics-secondary uppercase tracking-wider mb-1 font-medium">À propos de l'auteur&lt;/p>
-                        &lt;h3 className="text-xl font-bold text-white mb-2">{author.name}&lt;/h3>
-                        &lt;p className="text-gray-400 leading-relaxed">{author.bio}&lt;/p>
-                      &lt;/div>
-                    &lt;/div>
-                  &lt;/div>
+                        </span>
+                      </div>
+                      <div>
+                        <p className="text-xs text-dainamics-secondary uppercase tracking-wider mb-1 font-medium">À propos de l'auteur</p>
+                        <h3 className="text-xl font-bold text-white mb-2">{author.name}</h3>
+                        <p className="text-gray-400 leading-relaxed">{author.bio}</p>
+                      </div>
+                    </div>
+                  </div>
                 )}
-              &lt;/motion.article>
-            &lt;/div>
-          &lt;/div>
+              </motion.article>
+            </div>
+          </div>
 
           {/* CTA Section */}
-          &lt;motion.div
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="max-w-4xl mx-auto mt-20"
           >
-            &lt;div className="relative p-8 md:p-12 rounded-3xl overflow-hidden">
-              &lt;div className="absolute inset-0 bg-gradient-to-r from-dainamics-primary/30 via-dainamics-secondary/20 to-dainamics-cta/30" />
-              &lt;div className="absolute inset-0 bg-dainamics-background/60 backdrop-blur-sm" />
-              &lt;div className="absolute inset-0 border border-white/10 rounded-3xl" />
+            <div className="relative p-8 md:p-12 rounded-3xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-dainamics-primary/30 via-dainamics-secondary/20 to-dainamics-cta/30" />
+              <div className="absolute inset-0 bg-dainamics-background/60 backdrop-blur-sm" />
+              <div className="absolute inset-0 border border-white/10 rounded-3xl" />
               
-              &lt;div className="relative z-10 text-center">
-                &lt;div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white/80 text-sm mb-6">
-                  &lt;span className="w-2 h-2 rounded-full bg-dainamics-cta animate-pulse" />
+              <div className="relative z-10 text-center">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white/80 text-sm mb-6">
+                  <span className="w-2 h-2 rounded-full bg-dainamics-cta animate-pulse" />
                   Consultation gratuite
-                &lt;/div>
-                &lt;h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                   Prêt à transformer votre entreprise ?
-                &lt;/h3>
-                &lt;p className="text-gray-300 mb-8 max-w-xl mx-auto">
+                </h3>
+                <p className="text-gray-300 mb-8 max-w-xl mx-auto">
                   Discutons de vos besoins en IA et automatisation. Premier appel gratuit de 30 minutes avec un expert.
-                &lt;/p>
-                &lt;Link
+                </p>
+                <Link
                   to="/contact"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-dainamics-cta hover:bg-dainamics-cta/90 text-white font-semibold rounded-xl transition-all hover:scale-105 shadow-lg shadow-dainamics-cta/25"
                 >
                   Réserver un appel gratuit
-                  &lt;ExternalLink className="w-4 h-4" />
-                &lt;/Link>
-              &lt;/div>
-            &lt;/div>
-          &lt;/motion.div>
+                  <ExternalLink className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Related Articles */}
-          {relatedArticles.length > 0 &amp;&amp; (
-            &lt;motion.section
+          {relatedArticles.length > 0 && (
+            <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               className="max-w-6xl mx-auto mt-20"
             >
-              &lt;div className="flex items-center justify-between mb-8">
-                &lt;h2 className="text-2xl md:text-3xl font-bold text-white">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-white">
                   Articles similaires
-                &lt;/h2>
-                &lt;Link 
+                </h2>
+                <Link 
                   to={`/blog/categorie/${category?.slug}`}
                   className="text-dainamics-secondary hover:text-white transition-colors text-sm flex items-center gap-1 group"
                 >
                   Voir tous
-                  &lt;ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                &lt;/Link>
-              &lt;/div>
+                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
               
-              &lt;div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 {relatedArticles.map((related, index) => {
                   const relatedCategory = getCategoryById(related.categoryId);
                   return (
-                    &lt;motion.div
+                    <motion.div
                       key={related.slug}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.1 * index }}
                     >
-                      &lt;Link
+                      <Link
                         to={`/blog/${related.slug}`}
                         className="group block h-full"
                       >
-                        &lt;div className="h-full rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden flex flex-col">
+                        <div className="h-full rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden flex flex-col">
                           {/* Card Image - Using BlogHeroImage */}
-                          &lt;div className="relative h-40 overflow-hidden">
-                            &lt;BlogHeroImage 
+                          <div className="relative h-40 overflow-hidden">
+                            <BlogHeroImage 
                               title={related.title}
                               categoryId={related.categoryId}
                               categoryColor={relatedCategory?.color}
                               className="w-full h-full group-hover:scale-105 transition-transform duration-500"
                               aspectRatio="card"
                             />
-                            &lt;div className="absolute inset-0 bg-gradient-to-t from-dainamics-background to-transparent" />
-                            {relatedCategory &amp;&amp; (
-                              &lt;div
+                            <div className="absolute inset-0 bg-gradient-to-t from-dainamics-background to-transparent" />
+                            {relatedCategory && (
+                              <div
                                 className="absolute bottom-3 left-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-sm"
                                 style={{
                                   backgroundColor: `${relatedCategory.color}20`,
                                   border: `1px solid ${relatedCategory.color}40`
                                 }}
                               >
-                                &lt;span
+                                <span
                                   className="w-1.5 h-1.5 rounded-full"
                                   style={{ backgroundColor: relatedCategory.color }}
                                 />
-                                &lt;span
+                                <span
                                   className="text-xs font-medium"
                                   style={{ color: relatedCategory.color }}
                                 >
                                   {relatedCategory.name}
-                                &lt;/span>
-                              &lt;/div>
+                                </span>
+                              </div>
                             )}
-                          &lt;/div>
+                          </div>
                           
-                          &lt;div className="p-5 flex flex-col flex-grow">
-                            &lt;h3 className="text-lg font-bold text-white mb-3 group-hover:text-dainamics-secondary transition-colors line-clamp-2 flex-grow">
+                          <div className="p-5 flex flex-col flex-grow">
+                            <h3 className="text-lg font-bold text-white mb-3 group-hover:text-dainamics-secondary transition-colors line-clamp-2 flex-grow">
                               {related.title}
-                            &lt;/h3>
+                            </h3>
 
-                            &lt;div className="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-white/5">
-                              &lt;span>{formatDate(related.publishedAt)}&lt;/span>
-                              &lt;span className="flex items-center gap-1">
-                                &lt;Clock className="w-3 h-3" />
+                            <div className="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-white/5">
+                              <span>{formatDate(related.publishedAt)}</span>
+                              <span className="flex items-center gap-1">
+                                <Clock className="w-3 h-3" />
                                 {related.readTime} min
-                              &lt;/span>
-                            &lt;/div>
-                          &lt;/div>
-                        &lt;/div>
-                      &lt;/Link>
-                    &lt;/motion.div>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </motion.div>
                   );
                 })}
-              &lt;/div>
-            &lt;/motion.section>
+              </div>
+            </motion.section>
           )}
 
           {/* Back to Blog */}
-          &lt;motion.div
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
             className="text-center mt-16"
           >
-            &lt;Link
+            <Link
               to="/blog"
               className="inline-flex items-center gap-2 px-6 py-3 text-gray-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 rounded-xl border border-white/10"
             >
-              &lt;ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4" />
               Retour au blog
-            &lt;/Link>
-          &lt;/motion.div>
-        &lt;/div>
-      &lt;/main>
+            </Link>
+          </motion.div>
+        </div>
+      </main>
 
       {/* Back to Top Button */}
-      &lt;motion.button
+      <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ 
           opacity: showBackToTop ? 1 : 0, 
@@ -609,11 +609,11 @@ const BlogArticle = () => {
         className="fixed bottom-8 right-8 p-4 bg-dainamics-primary hover:bg-dainamics-primary/80 text-white rounded-full shadow-lg shadow-dainamics-primary/25 transition-all hover:scale-110 z-40"
         title="Retour en haut"
       >
-        &lt;ArrowUp className="w-5 h-5" />
-      &lt;/motion.button>
+        <ArrowUp className="w-5 h-5" />
+      </motion.button>
 
       {/* Article Styles */}
-      &lt;style>{`
+      <style>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 4px;
         }
@@ -846,10 +846,10 @@ const BlogArticle = () => {
             padding: 1rem 1.25rem;
           }
         }
-      `}&lt;/style>
+      `}</style>
 
-      &lt;Footer />
-    &lt;/div>
+      <Footer />
+    </div>
   );
 };
 
@@ -860,35 +860,35 @@ const parseMarkdown = (content: string): string => {
   // Headers with IDs for anchor links
   html = html.replace(/^### (.*$)/gim, (_, title) => {
     const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    return `&lt;h3 id="${id}">${title}&lt;/h3>`;
+    return `<h3 id="${id}">${title}</h3>`;
   });
   html = html.replace(/^## (.*$)/gim, (_, title) => {
     const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    return `&lt;h2 id="${id}">${title}&lt;/h2>`;
+    return `<h2 id="${id}">${title}</h2>`;
   });
   html = html.replace(/^# (.*$)/gim, (_, title) => {
     const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    return `&lt;h1 id="${id}">${title}&lt;/h1>`;
+    return `<h1 id="${id}">${title}</h1>`;
   });
 
   // Bold and italic
-  html = html.replace(/\*\*\*(.*?)\*\*\*/gim, '&lt;strong>&lt;em>$1&lt;/em>&lt;/strong>');
-  html = html.replace(/\*\*(.*?)\*\*/gim, '&lt;strong>$1&lt;/strong>');
-  html = html.replace(/\*(.*?)\*/gim, '&lt;em>$1&lt;/em>');
+  html = html.replace(/\*\*\*(.*?)\*\*\*/gim, '<strong><em>$1</em></strong>');
+  html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+  html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
 
   // Links
-  html = html.replace(/\[(.*?)\]\((.*?)\)/gim, '&lt;a href="$2" target="_blank" rel="noopener noreferrer">$1&lt;/a>');
+  html = html.replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
 
   // Code blocks
-  html = html.replace(/```(\w+)?\n([\s\S]*?)```/gim, '&lt;pre>&lt;code class="language-$1">$2&lt;/code>&lt;/pre>');
-  html = html.replace(/```([\s\S]*?)```/gim, '&lt;pre>&lt;code>$1&lt;/code>&lt;/pre>');
-  html = html.replace(/`([^`]+)`/gim, '&lt;code>$1&lt;/code>');
+  html = html.replace(/```(\w+)?\n([\s\S]*?)```/gim, '<pre><code class="language-$1">$2</code></pre>');
+  html = html.replace(/```([\s\S]*?)```/gim, '<pre><code>$1</code></pre>');
+  html = html.replace(/`([^`]+)`/gim, '<code>$1</code>');
 
   // Horizontal rule
-  html = html.replace(/^---$/gim, '&lt;hr>');
+  html = html.replace(/^---$/gim, '<hr>');
 
   // Blockquotes
-  html = html.replace(/^> (.*$)/gim, '&lt;blockquote>&lt;p>$1&lt;/p>&lt;/blockquote>');
+  html = html.replace(/^> (.*$)/gim, '<blockquote><p>$1</p></blockquote>');
 
   // Process lines for lists and tables
   const lines = html.split('\n');
@@ -897,7 +897,7 @@ const parseMarkdown = (content: string): string => {
   let inTable = false;
   const processedLines: string[] = [];
 
-  for (let i = 0; i &lt; lines.length; i++) {
+  for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
 
     // Tables
@@ -905,28 +905,28 @@ const parseMarkdown = (content: string): string => {
       if (!inTable) {
         inTable = true;
         const headers = line.split('|').slice(1, -1).map(h => h.trim());
-        processedLines.push('&lt;table>');
-        processedLines.push('&lt;thead>&lt;tr>');
+        processedLines.push('<table>');
+        processedLines.push('<thead><tr>');
         headers.forEach(header => {
-          processedLines.push(`&lt;th>${header}&lt;/th>`);
+          processedLines.push(`<th>${header}</th>`);
         });
-        processedLines.push('&lt;/tr>&lt;/thead>');
+        processedLines.push('</tr></thead>');
 
         if (lines[i + 1]?.match(/^\|[\s\-:|]+\|$/)) {
           i++;
         }
-        processedLines.push('&lt;tbody>');
+        processedLines.push('<tbody>');
       } else {
         const cells = line.split('|').slice(1, -1).map(c => c.trim());
-        processedLines.push('&lt;tr>');
+        processedLines.push('<tr>');
         cells.forEach(cell => {
-          processedLines.push(`&lt;td>${cell}&lt;/td>`);
+          processedLines.push(`<td>${cell}</td>`);
         });
-        processedLines.push('&lt;/tr>');
+        processedLines.push('</tr>');
       }
     } else {
       if (inTable) {
-        processedLines.push('&lt;/tbody>&lt;/table>');
+        processedLines.push('</tbody></table>');
         inTable = false;
       }
 
@@ -935,42 +935,42 @@ const parseMarkdown = (content: string): string => {
         const content = line.replace(/^\d+\. /, '');
         if (!inOrderedList) {
           if (inList) {
-            processedLines.push('&lt;/ul>');
+            processedLines.push('</ul>');
             inList = false;
           }
-          processedLines.push('&lt;ol>');
+          processedLines.push('<ol>');
           inOrderedList = true;
         }
-        processedLines.push(`&lt;li>${content}&lt;/li>`);
+        processedLines.push(`<li>${content}</li>`);
       }
       // Unordered lists
       else if (line.match(/^[\-\*] (.+)/)) {
         const content = line.replace(/^[\-\*] /, '');
         if (!inList) {
           if (inOrderedList) {
-            processedLines.push('&lt;/ol>');
+            processedLines.push('</ol>');
             inOrderedList = false;
           }
-          processedLines.push('&lt;ul>');
+          processedLines.push('<ul>');
           inList = true;
         }
-        processedLines.push(`&lt;li>${content}&lt;/li>`);
+        processedLines.push(`<li>${content}</li>`);
       } else {
         if (inList) {
-          processedLines.push('&lt;/ul>');
+          processedLines.push('</ul>');
           inList = false;
         }
         if (inOrderedList) {
-          processedLines.push('&lt;/ol>');
+          processedLines.push('</ol>');
           inOrderedList = false;
         }
 
         // Paragraphs
         if (line.trim() === '') {
           // Skip empty lines
-        } else if (!line.match(/^&lt;[h|p|u|o|t|d|b|hr]/)) {
-          if (!line.startsWith('&lt;')) {
-            processedLines.push(`&lt;p>${line}&lt;/p>`);
+        } else if (!line.match(/^<[h|p|u|o|t|d|b|hr]/)) {
+          if (!line.startsWith('<')) {
+            processedLines.push(`<p>${line}</p>`);
           } else {
             processedLines.push(line);
           }
@@ -982,13 +982,13 @@ const parseMarkdown = (content: string): string => {
   }
 
   // Close any open tags
-  if (inList) processedLines.push('&lt;/ul>');
-  if (inOrderedList) processedLines.push('&lt;/ol>');
-  if (inTable) processedLines.push('&lt;/tbody>&lt;/table>');
+  if (inList) processedLines.push('</ul>');
+  if (inOrderedList) processedLines.push('</ol>');
+  if (inTable) processedLines.push('</tbody></table>');
 
   // Merge consecutive blockquotes
   let result = processedLines.join('\n');
-  result = result.replace(/&lt;\/blockquote>\n&lt;blockquote>/g, '\n');
+  result = result.replace(/<\/blockquote>\n<blockquote>/g, '\n');
 
   return result;
 };
