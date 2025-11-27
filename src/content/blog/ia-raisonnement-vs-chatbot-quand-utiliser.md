@@ -1,3 +1,14 @@
+---
+title: "IA de Raisonnement vs Chatbot : Quand Utiliser Quoi ?"
+date: "2025-11-21"
+author: "Équipe DAINAMICS"
+category: "actualites"
+tags: ["ia", "raisonnement", "chatbot", "o1", "comparatif"]
+excerpt: "Les modèles de raisonnement (o1, o3) coûtent 10-50x plus cher. Quand valent-ils l'investissement ? Guide pratique de décision."
+readTime: 11
+featured: true
+---
+
 ## La révolution des modèles de raisonnement
 
 En 2025, une nouvelle catégorie d'IA a émergé : les **modèles de raisonnement**. OpenAI a lancé o1, o3 et o4-mini, tandis que d'autres acteurs suivent avec des offres similaires. Ces modèles "réfléchissent" avant de répondre, parfois pendant plusieurs minutes, pour résoudre des problèmes complexes.
