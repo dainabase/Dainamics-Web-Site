@@ -179,7 +179,7 @@ const EnkiRealtyPlatform = () => {
         </section>
 
         {/* Section 2: Le Défi Client */}
-        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-black/20">
+        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 section-bg-alternate">
           <div className="container mx-auto max-w-7xl">
             <motion.div
               initial="hidden"
@@ -304,7 +304,7 @@ const EnkiRealtyPlatform = () => {
         </section>
 
         {/* Section 4: Fonctionnalités Plateforme */}
-        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-black/20">
+        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 section-bg-alternate">
           <div className="container mx-auto max-w-7xl">
             <motion.div
               initial="hidden"
@@ -442,7 +442,7 @@ const EnkiRealtyPlatform = () => {
         </section>
 
         {/* Section 6: Stack Technique */}
-        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-black/20">
+        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 section-bg-alternate">
           <div className="container mx-auto max-w-5xl">
             <motion.div
               initial="hidden"
@@ -520,7 +520,7 @@ const EnkiRealtyPlatform = () => {
         </section>
 
         {/* Section 8: CTA */}
-        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-black/20">
+        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 section-bg-alternate">
           <div className="container mx-auto max-w-4xl">
             <motion.div
               initial="hidden"

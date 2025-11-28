@@ -126,6 +126,14 @@
     @apply bg-white shadow-md;
   }
   
+  /* Section background alternate (for alternating sections) */
+  .section-bg-alternate {
+    background-color: rgba(0, 0, 0, 0.2); /* bg-black/20 in dark mode */
+  }
+  .light .section-bg-alternate {
+    background-color: rgb(243 244 246) !important; /* gray-100 in light mode */
+  }
+  
   /* Textes adaptatifs */
   .text-adaptive {
     @apply text-white;
