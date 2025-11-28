@@ -58,12 +58,14 @@
   /* ============================================== */
   
   /* Body adapts to theme */
-  .dark body {
+  .dark body,
+  body {
     @apply bg-[#050510] text-white;
   }
   
-  .light body {
-    @apply bg-slate-50 text-gray-900;
+  .light body,
+  html.light body {
+    @apply bg-gray-50 text-gray-900 !important;
   }
 
   /* Selection colors */
@@ -77,9 +79,14 @@
   }
   
   body {
-    @apply bg-dainamics-background text-foreground antialiased overflow-x-hidden;
+    @apply text-foreground antialiased overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
     position: relative;
+  }
+  
+  /* Ensure light mode body background overrides everything */
+  html.light body {
+    background-color: rgb(249 250 251) !important; /* gray-50 */
   }
 
   html {

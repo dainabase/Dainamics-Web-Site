@@ -36,7 +36,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90">
+    <div className="min-h-screen bg-gray-50 dark:bg-gradient-to-b dark:from-dainamics-background dark:to-dainamics-background/90">
       {/* Enhanced Grid Background */}
       <EnhancedGridBackground />
 
