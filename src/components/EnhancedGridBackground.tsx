@@ -1,6 +1,7 @@
 // src/components/EnhancedGridBackground.tsx
 // Clean Background with lighting effects - NO GRID
 // Smooth gradient background with glow effects
+// HIDDEN in light mode for clean appearance
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -11,11 +12,12 @@ export default function EnhancedGridBackground() {
   const y = useTransform(scrollY, [0, 1000], [0, -50]);
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    // Hidden in light mode - these effects are designed for dark backgrounds only
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden dark:block hidden">
 
       {/* Smooth animated gradient - NO GRID */}
 
-      {/* Vignette effect - Darkens edges for depth */}
+      {/* Vignette effect - Darkens edges for depth (dark mode only) */}
       <div
         className="absolute inset-0"
         style={{
@@ -32,7 +34,7 @@ export default function EnhancedGridBackground() {
       />
 
 
-      {/* Bottom accent glow */}
+      {/* Bottom accent glow (dark mode only) */}
       <div
         className="absolute bottom-0 left-1/4 w-[600px] h-[300px]"
         style={{
