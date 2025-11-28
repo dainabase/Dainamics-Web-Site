@@ -42,6 +42,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
     localStorage.setItem(STORAGE_KEY, newTheme);
+    
+    // Apply class immediately (don't wait for useEffect)
+    const resolved = newTheme === 'system' ? getSystemTheme() : newTheme;
+    setResolvedTheme(resolved);
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(resolved);
   };
 
   // Appliquer la classe sur <html> quand le thème change
