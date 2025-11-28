@@ -261,11 +261,11 @@
     box-shadow: none !important;
   }
   
-  /* BLACK OPACITY BACKGROUNDS - convert to gray-50 in light mode */
+  /* BLACK OPACITY BACKGROUNDS - convert to gray-100 in light mode for visible separation */
   .light .bg-black\/10,
   .light .bg-black\/20,
   .light .bg-black\/30 {
-    background-color: rgb(249 250 251) !important; /* gray-50 - same as page background */
+    background-color: rgb(243 244 246) !important; /* gray-100 - section separator */
   }
   
   /* HARDCODED DARK BACKGROUNDS - convert to light mode equivalents */
@@ -1757,7 +1757,7 @@ html.light .bg-black\/30,
 .light .bg-black\/10,
 .light .bg-black\/20,
 .light .bg-black\/30 {
-  background-color: rgba(0, 0, 0, 0.03) !important;
+  background-color: rgb(243 244 246) !important; /* gray-100 - visible section separator */
 }
 
 /* ============================================== */
