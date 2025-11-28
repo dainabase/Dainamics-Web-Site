@@ -1509,3 +1509,30 @@ html.light .bg-black\/30,
 .light .bg-black\/30 {
   background-color: rgba(0, 0, 0, 0.03) !important;
 }
+
+/* ============================================== */
+/*        LIGHT MODE - TEXT GLOW EFFECTS         */
+/* ============================================== */
+
+/* Disable .glow text-shadow in light mode (Hero title, Logo) */
+html.light .glow,
+.light .glow {
+  text-shadow: none !important;
+}
+
+/* Disable any text-shadow with blur in light mode */
+html.light [class*="text-shadow"],
+.light [class*="text-shadow"] {
+  text-shadow: none !important;
+}
+
+/* Ensure gradient text remains visible in light mode without glow */
+html.light .text-gradient-primary,
+.light .text-gradient-primary {
+  text-shadow: none !important;
+  /* Keep gradient visible - slightly darker for light backgrounds */
+  background: linear-gradient(to right, #6B1FEF, #00C4DF) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
