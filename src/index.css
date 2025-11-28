@@ -183,34 +183,12 @@
   /* ============================================== */
   /*        BLUR EFFECTS - HIDDEN IN LIGHT MODE    */
   /* ============================================== */
-  
+
   /* Blur decoratifs - visibles en dark, cachés en light */
   .blur-glow {
     @apply opacity-100;
   }
   .light .blur-glow {
-    @apply opacity-0;
-  }
-  
-  /* Backdrop blur - réduit en light mode */
-  .light .backdrop-blur-sm,
-  .light .backdrop-blur-md,
-  .light .backdrop-blur-lg,
-  .light .backdrop-blur-xl,
-  .light .backdrop-blur-2xl,
-  .light .backdrop-blur-3xl {
-    backdrop-filter: none;
-  }
-  
-  /* Blur décoratifs (blur-[xxpx]) - cachés en light */
-  .light [class*="blur-["] {
-    @apply hidden;
-  }
-  
-  /* Alternative: opacité 0 pour les blurs */
-  .light .blur-3xl,
-  .light .blur-2xl,
-  .light .blur-xl {
     @apply opacity-0;
   }
 
@@ -1446,4 +1424,29 @@
   box-shadow:
     0 20px 60px -15px rgba(0, 0, 0, 0.6),
     0 0 40px -5px var(--expertise-glow, rgba(123, 47, 255, 0.4));
+}
+
+/* ============================================== */
+/*        LIGHT MODE - BLUR EFFECTS CONTROL      */
+/* ============================================== */
+
+/* Disable all backdrop-blur in light mode */
+.light [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Hide decorative blur elements in light mode */
+.light [class*="blur-["],
+.light .blur-3xl,
+.light .blur-2xl,
+.light .blur-xl,
+.light .blur-lg {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Remove filter blur in light mode */
+.light [class*="filter"][class*="blur"] {
+  filter: none !important;
 }
