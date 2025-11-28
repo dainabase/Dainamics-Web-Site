@@ -180,6 +180,40 @@
     @apply hover:bg-gray-100;
   }
 
+  /* ============================================== */
+  /*        BLUR EFFECTS - HIDDEN IN LIGHT MODE    */
+  /* ============================================== */
+  
+  /* Blur decoratifs - visibles en dark, cachés en light */
+  .blur-glow {
+    @apply opacity-100;
+  }
+  .light .blur-glow {
+    @apply opacity-0;
+  }
+  
+  /* Backdrop blur - réduit en light mode */
+  .light .backdrop-blur-sm,
+  .light .backdrop-blur-md,
+  .light .backdrop-blur-lg,
+  .light .backdrop-blur-xl,
+  .light .backdrop-blur-2xl,
+  .light .backdrop-blur-3xl {
+    backdrop-filter: none;
+  }
+  
+  /* Blur décoratifs (blur-[xxpx]) - cachés en light */
+  .light [class*="blur-["] {
+    @apply hidden;
+  }
+  
+  /* Alternative: opacité 0 pour les blurs */
+  .light .blur-3xl,
+  .light .blur-2xl,
+  .light .blur-xl {
+    @apply opacity-0;
+  }
+
   /* Container Custom */
   .container-custom {
     @apply container mx-auto px-4 sm:px-6 lg:px-8;

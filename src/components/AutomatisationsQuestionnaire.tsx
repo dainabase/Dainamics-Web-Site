@@ -384,7 +384,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
+        className="py-24 md:py-32 bg-adaptive"
       >
         <div className="container mx-auto px-4">
           <motion.div
@@ -393,9 +393,9 @@ export default function AutomatisationsQuestionnaire() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">Quel est Votre Plus Grand Défi ?</span>
+              <span className="text-adaptive">Quel est Votre Plus Grand Défi ?</span>
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-xl text-adaptive-secondary max-w-3xl mx-auto">
               Découvrez en 2 minutes les automatisations qui transformeront votre entreprise
             </p>
           </motion.div>
@@ -410,7 +410,7 @@ export default function AutomatisationsQuestionnaire() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => handleCategorieSelect(cat.id)}
-                  className="group relative p-8 bg-slate-900/50 border border-slate-800 rounded-2xl hover:border-dainamics-primary/50 hover:bg-slate-900/80 transition-all duration-300 text-left"
+                  className="group relative p-8 bg-adaptive-card border border-adaptive rounded-2xl hover:border-dainamics-primary/50 transition-all duration-300 text-left"
                 >
                   <div className="flex items-start gap-4 mb-4">
                     <div className="p-3 bg-dainamics-primary/10 rounded-xl group-hover:bg-dainamics-primary/20 transition-colors">
@@ -418,11 +418,11 @@ export default function AutomatisationsQuestionnaire() {
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-dainamics-primary transition-colors">
+                  <h3 className="text-xl font-bold text-adaptive mb-3 group-hover:text-dainamics-primary transition-colors">
                     {cat.titre}
                   </h3>
                   
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-adaptive-muted text-sm leading-relaxed">
                     {cat.description}
                   </p>
 
@@ -450,7 +450,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
+        className="py-24 md:py-32 bg-adaptive"
       >
         <div className="container mx-auto px-4 max-w-4xl">
           {/* En-tête */}
@@ -465,10 +465,10 @@ export default function AutomatisationsQuestionnaire() {
             </div>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">Précisons</span>{' '}
+              <span className="text-adaptive">Précisons</span>{' '}
               <span className="text-dainamics-secondary">Votre Situation</span>
             </h2>
-            <p className="text-slate-300 max-w-2xl mx-auto">
+            <p className="text-adaptive-secondary max-w-2xl mx-auto">
               Ces questions nous aident à recommander les meilleures automatisations pour votre contexte
             </p>
           </motion.div>
@@ -481,9 +481,9 @@ export default function AutomatisationsQuestionnaire() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: qIndex * 0.1 }}
-                className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8"
+                className="bg-adaptive-card border border-adaptive rounded-2xl p-8"
               >
-                <h3 className="text-xl font-semibold text-white mb-6">
+                <h3 className="text-xl font-semibold text-adaptive mb-6">
                   {qIndex + 1}. {question.question}
                 </h3>
 
@@ -498,19 +498,19 @@ export default function AutomatisationsQuestionnaire() {
                           "relative p-4 text-left rounded-xl border-2 transition-all duration-200",
                           isSelected
                             ? "border-dainamics-primary bg-dainamics-primary/10"
-                            : "border-slate-700 bg-slate-900/30 hover:border-slate-600"
+                            : "border-adaptive bg-adaptive-card hover:border-adaptive-strong"
                         )}
                       >
                         <div className="flex items-center gap-3">
                           <div className={cn(
                             "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors",
-                            isSelected ? "border-dainamics-primary bg-dainamics-primary" : "border-slate-600"
+                            isSelected ? "border-dainamics-primary bg-dainamics-primary" : "border-adaptive-strong"
                           )}>
                             {isSelected && <Check className="w-3 h-3 text-white" />}
                           </div>
                           <span className={cn(
                             "font-medium",
-                            isSelected ? "text-dainamics-primary" : "text-slate-300"
+                            isSelected ? "text-dainamics-primary" : "text-adaptive-secondary"
                           )}>
                             {option}
                           </span>
@@ -560,7 +560,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
+        className="py-24 md:py-32 bg-adaptive"
       >
         <div className="container mx-auto px-4 max-w-2xl">
           <motion.div
@@ -574,10 +574,10 @@ export default function AutomatisationsQuestionnaire() {
             </div>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">Recevez</span>{' '}
+              <span className="text-adaptive">Recevez</span>{' '}
               <span className="text-dainamics-secondary">Votre Analyse</span>
             </h2>
-            <p className="text-slate-300">
+            <p className="text-adaptive-secondary">
               Nous vous enverrons vos 3 scénarios d'automatisation personnalisés directement par email
             </p>
           </motion.div>
@@ -586,12 +586,12 @@ export default function AutomatisationsQuestionnaire() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8"
+            className="bg-adaptive-card border border-adaptive rounded-2xl p-8"
           >
             <div className="space-y-6">
               {/* Prénom */}
               <div>
-                <Label htmlFor="prenom" className="text-white mb-2 block">
+                <Label htmlFor="prenom" className="text-adaptive mb-2 block">
                   Prénom *
                 </Label>
                 <Input
@@ -599,14 +599,14 @@ export default function AutomatisationsQuestionnaire() {
                   value={contact.prenom}
                   onChange={(e) => handleContactChange('prenom', e.target.value)}
                   placeholder="Jean"
-                  className="bg-slate-900/50 border-slate-700"
+                  className="bg-adaptive-card border-adaptive"
                   required
                 />
               </div>
 
               {/* Nom */}
               <div>
-                <Label htmlFor="nom" className="text-white mb-2 block">
+                <Label htmlFor="nom" className="text-adaptive mb-2 block">
                   Nom *
                 </Label>
                 <Input
@@ -614,14 +614,14 @@ export default function AutomatisationsQuestionnaire() {
                   value={contact.nom}
                   onChange={(e) => handleContactChange('nom', e.target.value)}
                   placeholder="Dupont"
-                  className="bg-slate-900/50 border-slate-700"
+                  className="bg-adaptive-card border-adaptive"
                   required
                 />
               </div>
 
               {/* Email */}
               <div>
-                <Label htmlFor="email" className="text-white mb-2 block">
+                <Label htmlFor="email" className="text-adaptive mb-2 block">
                   Email Professionnel *
                 </Label>
                 <Input
@@ -630,14 +630,14 @@ export default function AutomatisationsQuestionnaire() {
                   value={contact.email}
                   onChange={(e) => handleContactChange('email', e.target.value)}
                   placeholder="jean.dupont@entreprise.ch"
-                  className="bg-slate-900/50 border-slate-700"
+                  className="bg-adaptive-card border-adaptive"
                   required
                 />
               </div>
 
               {/* Téléphone */}
               <div>
-                <Label htmlFor="telephone" className="text-white mb-2 block">
+                <Label htmlFor="telephone" className="text-adaptive mb-2 block">
                   Téléphone
                 </Label>
                 <Input
@@ -646,13 +646,13 @@ export default function AutomatisationsQuestionnaire() {
                   value={contact.telephone}
                   onChange={(e) => handleContactChange('telephone', e.target.value)}
                   placeholder="+41 XX XXX XX XX"
-                  className="bg-slate-900/50 border-slate-700"
+                  className="bg-adaptive-card border-adaptive"
                 />
               </div>
 
               {/* Entreprise */}
               <div>
-                <Label htmlFor="entreprise" className="text-white mb-2 block">
+                <Label htmlFor="entreprise" className="text-adaptive mb-2 block">
                   Entreprise *
                 </Label>
                 <Input
@@ -660,7 +660,7 @@ export default function AutomatisationsQuestionnaire() {
                   value={contact.entreprise}
                   onChange={(e) => handleContactChange('entreprise', e.target.value)}
                   placeholder="Nom de votre entreprise"
-                  className="bg-slate-900/50 border-slate-700"
+                  className="bg-adaptive-card border-adaptive"
                   required
                 />
               </div>
@@ -706,7 +706,7 @@ export default function AutomatisationsQuestionnaire() {
     return (
       <section 
         id="diagnostic" 
-        className="py-24 md:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
+        className="py-24 md:py-32 bg-adaptive"
       >
         <div className="container mx-auto px-4 max-w-6xl">
           {/* En-tête */}
@@ -721,10 +721,10 @@ export default function AutomatisationsQuestionnaire() {
             </div>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">Vos 3 Scénarios</span>{' '}
+              <span className="text-adaptive">Vos 3 Scénarios</span>{' '}
               <span className="text-dainamics-secondary">Personnalisés</span>
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-xl text-adaptive-secondary max-w-3xl mx-auto">
               Votre analyse complète a été envoyée par email. Découvrez également vos scénarios ci-dessous.
             </p>
           </motion.div>
@@ -737,7 +737,7 @@ export default function AutomatisationsQuestionnaire() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 hover:border-dainamics-primary/50 transition-all duration-300"
+                className="bg-adaptive-card border border-adaptive rounded-2xl p-8 hover:border-dainamics-primary/50 transition-all duration-300"
               >
                 <div className="flex items-start gap-6">
                   {/* Numéro */}
@@ -747,11 +747,11 @@ export default function AutomatisationsQuestionnaire() {
 
                   {/* Contenu */}
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-3">
+                    <h3 className="text-2xl font-bold text-adaptive mb-3">
                       {scenario.titre}
                     </h3>
                     
-                    <p className="text-slate-300 mb-6 leading-relaxed">
+                    <p className="text-adaptive-secondary mb-6 leading-relaxed">
                       {scenario.description}
                     </p>
 
@@ -759,23 +759,23 @@ export default function AutomatisationsQuestionnaire() {
                     <div className="grid md:grid-cols-3 gap-4 mb-6">
                       <div className="p-4 bg-dainamics-success/10 rounded-lg border border-dainamics-success/20">
                         <div className="text-dainamics-success font-semibold mb-1">Gains</div>
-                        <div className="text-white text-sm">{scenario.gains}</div>
+                        <div className="text-adaptive text-sm">{scenario.gains}</div>
                       </div>
                       
                       <div className="p-4 bg-dainamics-secondary/10 rounded-lg border border-dainamics-secondary/20">
                         <div className="text-dainamics-secondary font-semibold mb-1">Durée Projet</div>
-                        <div className="text-white text-sm">{scenario.duree}</div>
+                        <div className="text-adaptive text-sm">{scenario.duree}</div>
                       </div>
                       
                       <div className="p-4 bg-dainamics-primary/10 rounded-lg border border-dainamics-primary/20">
                         <div className="text-dainamics-primary font-semibold mb-1">ROI</div>
-                        <div className="text-white text-sm">{scenario.roiMois}</div>
+                        <div className="text-adaptive text-sm">{scenario.roiMois}</div>
                       </div>
                     </div>
 
                     {/* Automatisations incluses */}
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-slate-400 mb-3">Automatisations Incluses :</h4>
+                      <h4 className="text-sm font-semibold text-adaptive-muted mb-3">Automatisations Incluses :</h4>
                       <div className="flex flex-wrap gap-2">
                         {scenario.automatisations.map((auto, i) => (
                           <span
@@ -805,10 +805,10 @@ export default function AutomatisationsQuestionnaire() {
             transition={{ delay: 0.6 }}
             className="mt-16 text-center p-8 bg-gradient-to-r from-dainamics-primary/10 to-dainamics-secondary/10 rounded-2xl border border-dainamics-primary/20"
           >
-            <h3 className="text-2xl font-bold text-white mb-4">
+            <h3 className="text-2xl font-bold text-adaptive mb-4">
               Prêt à Transformer Votre Entreprise ?
             </h3>
-            <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
+            <p className="text-adaptive-secondary mb-6 max-w-2xl mx-auto">
               Discutons de vos besoins spécifiques et de la faisabilité de ces scénarios pour votre contexte
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
