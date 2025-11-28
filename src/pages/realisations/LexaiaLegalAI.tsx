@@ -134,7 +134,7 @@ const LexaiaLegalAI = () => {
         </section>
 
         {/* Section 2: Le Défi Client */}
-        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 section-bg-alternate">
+        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 ">
           <div className="container mx-auto max-w-7xl">
             <motion.div
               initial="hidden"
@@ -343,7 +343,7 @@ const LexaiaLegalAI = () => {
         </section>
 
         {/* Section 4: Résultats Chiffrés */}
-        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 section-bg-alternate">
+        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 ">
           <div className="container mx-auto max-w-7xl">
             <motion.div
               initial="hidden"
@@ -437,7 +437,7 @@ const LexaiaLegalAI = () => {
         </section>
 
         {/* Section 6: Témoignage */}
-        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 section-bg-alternate">
+        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 ">
           <div className="container mx-auto max-w-4xl">
             <motion.div
               initial="hidden"

@@ -176,7 +176,7 @@ const ApplicationsMobiles = () => {
         </section>
 
         {/* Section 2: Problèmes résolus */}
-        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 section-bg-alternate">
+        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 ">
           <div className="container mx-auto max-w-7xl">
             <motion.div
               initial="hidden"
@@ -323,7 +323,7 @@ const ApplicationsMobiles = () => {
         </section>
 
         {/* Section 4: Cas d'usage */}
-        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 section-bg-alternate">
+        <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 ">
           <div className="container mx-auto max-w-7xl">
             <motion.div
               initial="hidden"
