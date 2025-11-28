@@ -261,6 +261,47 @@
     box-shadow: none !important;
   }
   
+  /* BLACK OPACITY BACKGROUNDS - convert to gray-50 in light mode */
+  .light .bg-black\/10,
+  .light .bg-black\/20,
+  .light .bg-black\/30 {
+    background-color: rgb(249 250 251) !important; /* gray-50 - same as page background */
+  }
+  
+  /* HARDCODED DARK BACKGROUNDS - convert to light mode equivalents */
+  .light .bg-\[\#050510\],
+  .light .bg-\[\#060010\],
+  .light .bg-\[\#0a0a0f\] {
+    background-color: rgb(249 250 251) !important; /* gray-50 - page background */
+  }
+  .light .bg-\[\#0A0A1A\],
+  .light .bg-\[\#0a0a1a\] {
+    background-color: rgb(255 255 255) !important; /* white - for cards */
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1) !important;
+  }
+  
+  /* DARK GRADIENT BACKGROUNDS - convert to light equivalents */
+  .light .bg-gradient-to-b.from-\[\#0a0a1a\].to-\[\#050510\],
+  .light .bg-gradient-to-b.from-\[\#050510\].to-\[\#0a0a1a\],
+  .light .bg-gradient-to-br.from-\[\#0A0A1B\].to-\[\#050510\],
+  .light .bg-gradient-to-b.from-dainamics-background.to-\[\#0A0A1A\] {
+    background: rgb(249 250 251) !important; /* gray-50 - flat, no gradient needed */
+  }
+  
+  /* GRADIENT FROM/TO individual overrides */
+  .light .from-\[\#050510\],
+  .light .from-\[\#0a0a1a\],
+  .light .from-\[\#0A0A1A\],
+  .light .from-\[\#0A0A1B\] {
+    --tw-gradient-from: rgb(249 250 251) !important; /* gray-50 */
+  }
+  .light .to-\[\#050510\],
+  .light .to-\[\#0a0a1a\],
+  .light .to-\[\#0A0A1A\],
+  .light .to-\[\#0A0A1B\] {
+    --tw-gradient-to: rgb(249 250 251) !important; /* gray-50 */
+  }
+  
   /* BORDER COLORS - white opacity becomes gray */
   .light .border-white\/10,
   .light .border-white\/5 {
