@@ -65,7 +65,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 text-dainamics-light overflow-hidden">
+    <div className="min-h-screen bg-adaptive text-dainamics-light overflow-hidden">
       <Navigation />
       <EnhancedGridBackground />
       <CursorEffects />

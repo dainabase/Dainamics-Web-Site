@@ -14,7 +14,7 @@ export default function CookiesPolicy() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90">
+    <div className="min-h-screen bg-adaptive">
       <EnhancedGridBackground />
       <CursorEffects />
       <Navigation />

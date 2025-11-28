@@ -40,7 +40,7 @@ export default function ExpertiseIA() {
 
   if (!pillar) {
     return (
-      <div className="min-h-screen bg-dainamics-background text-dainamics-light flex items-center justify-center">
+      <div className="min-h-screen bg-adaptive text-adaptive flex items-center justify-center">
         <Navigation />
         <div className="text-center p-8">
           <h1 className="text-2xl font-bold mb-4">Erreur: Pilier IA non trouvé</h1>
@@ -60,7 +60,7 @@ export default function ExpertiseIA() {
     : pillar.technologies.filter(tech => tech.proficiency === selectedProficiency);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 text-dainamics-light" ref={containerRef}>
+    <div className="min-h-screen bg-adaptive text-adaptive" ref={containerRef}>
       <EnhancedGridBackground />
       <CursorEffects />
       <Navigation />

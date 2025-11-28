@@ -199,6 +199,195 @@
     @apply opacity-0;
   }
 
+  /* ============================================== */
+  /*   GLOBAL TEXT/BG TRANSFORMS FOR LIGHT MODE    */
+  /*   Auto-adapt text-white, bg-white/X classes   */
+  /* ============================================== */
+
+  /* TEXT COLORS - Global transforms in light mode */
+  /* Main text-white becomes dark */
+  .light .text-white:not(.btn-cta):not([class*="bg-[#FF5A00]"]):not([class*="bg-dainamics-cta"]):not([class*="bg-\[#7B2FFF\]"]):not([class*="bg-dainamics-primary"]) {
+    color: rgb(17 24 39) !important; /* gray-900 */
+  }
+  
+  /* text-white with opacity variants */
+  .light .text-white\/80 {
+    color: rgb(55 65 81) !important; /* gray-700 */
+  }
+  .light .text-white\/70 {
+    color: rgb(75 85 99) !important; /* gray-600 */
+  }
+  .light .text-white\/60 {
+    color: rgb(107 114 128) !important; /* gray-500 */
+  }
+  .light .text-white\/50 {
+    color: rgb(156 163 175) !important; /* gray-400 */
+  }
+  .light .text-white\/40 {
+    color: rgb(156 163 175) !important; /* gray-400 */
+  }
+  .light .text-white\/30 {
+    color: rgb(209 213 219) !important; /* gray-300 - for placeholders */
+  }
+  
+  /* BACKGROUND COLORS - Transparent white becomes light grays */
+  .light .bg-white\/\[0\.03\],
+  .light .bg-white\/\[0\.02\],
+  .light .bg-white\/\[0\.01\] {
+    background-color: rgb(255 255 255) !important; /* white */
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
+  }
+  
+  .light .bg-white\/\[0\.05\],
+  .light .bg-white\/\[0\.06\],
+  .light .bg-white\/\[0\.08\] {
+    background-color: rgb(249 250 251) !important; /* gray-50 */
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1) !important;
+  }
+  
+  .light .bg-white\/5,
+  .light .bg-white\/10 {
+    background-color: rgb(243 244 246) !important; /* gray-100 */
+  }
+  
+  /* BORDER COLORS - white opacity becomes gray */
+  .light .border-white\/10,
+  .light .border-white\/5 {
+    border-color: rgb(229 231 235) !important; /* gray-200 */
+  }
+  .light .border-white\/20,
+  .light .border-white\/30 {
+    border-color: rgb(209 213 219) !important; /* gray-300 */
+  }
+  
+  /* HOVER STATES - white opacity hover becomes gray hover */
+  .light .hover\:bg-white\/\[0\.05\]:hover,
+  .light .hover\:bg-white\/\[0\.06\]:hover,
+  .light .hover\:bg-white\/\[0\.1\]:hover,
+  .light .hover\:bg-white\/10:hover {
+    background-color: rgb(243 244 246) !important; /* gray-100 */
+  }
+  
+  /* PLACEHOLDER COLORS */
+  .light .placeholder-white\/30::placeholder {
+    color: rgb(156 163 175) !important; /* gray-400 */
+  }
+  
+  /* INPUT/FORM ELEMENTS - Special handling */
+  .light input,
+  .light textarea,
+  .light select {
+    background-color: rgb(255 255 255) !important;
+    border-color: rgb(209 213 219) !important; /* gray-300 */
+    color: rgb(17 24 39) !important; /* gray-900 */
+  }
+  .light input::placeholder,
+  .light textarea::placeholder {
+    color: rgb(156 163 175) !important; /* gray-400 */
+  }
+  .light input:focus,
+  .light textarea:focus,
+  .light select:focus {
+    border-color: rgb(123 47 255) !important; /* primary */
+    box-shadow: 0 0 0 1px rgb(123 47 255) !important;
+  }
+  
+  /* SELECT OPTION ELEMENTS */
+  .light option {
+    background-color: rgb(255 255 255) !important;
+    color: rgb(17 24 39) !important;
+  }
+  
+  /* SCROLLBAR for light mode */
+  .light ::-webkit-scrollbar-track {
+    background: rgb(243 244 246) !important; /* gray-100 */
+  }
+  
+  /* Cards and elevated elements in light mode */
+  .light .card-elevated {
+    background: rgb(255 255 255) !important;
+    border-color: rgb(229 231 235) !important; /* gray-200 */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+  }
+  .light .card-elevated:hover {
+    border-color: rgb(123 47 255) !important; /* primary */
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1), 0 0 0 1px rgba(123, 47, 255, 0.3) !important;
+  }
+  
+  /* GLASS EFFECT - becomes solid white in light mode */
+  .light .glass {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgb(229 231 235) !important;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+  }
+  
+  /* GRADIENT BACKGROUNDS - tone down for light mode */
+  .light .bg-gradient-to-b.from-dainamics-background,
+  .light .from-dainamics-background {
+    --tw-gradient-from: rgb(249 250 251) !important; /* gray-50 */
+  }
+  .light .to-dainamics-background\/90 {
+    --tw-gradient-to: rgb(243 244 246) !important; /* gray-100 */
+  }
+  
+  /* GLOW EFFECTS - Remove in light mode */
+  .light .glow,
+  .light .hero-title-glow {
+    text-shadow: none !important;
+  }
+  
+  /* ANIMATED BACKGROUNDS - Reduce opacity in light mode */
+  .light .animated-bg {
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(123, 47, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(16, 228, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 50% 20%, rgba(94, 36, 191, 0.02) 0%, transparent 50%);
+  }
+  
+  /* ICONS - Keep colored icons visible */
+  .light .text-\[\#7B2FFF\],
+  .light .text-\[\#10E4FF\],
+  .light .text-\[\#0AFF9D\],
+  .light .text-\[\#FF5A00\],
+  .light .text-dainamics-primary,
+  .light .text-dainamics-secondary,
+  .light .text-dainamics-success,
+  .light .text-dainamics-cta {
+    /* Keep original colors - no change */
+  }
+  
+  /* GRADIENT TEXT - Keep visible in light mode */
+  .light .gradient-text,
+  .light .text-gradient-primary,
+  .light .bg-gradient-to-r.from-\[\#7B2FFF\].to-\[\#10E4FF\] {
+    /* Keep gradient text as-is */
+  }
+  
+  /* BUTTONS - CTA stays orange with white text */
+  .light .bg-\[\#FF5A00\],
+  .light .bg-dainamics-cta {
+    /* Keep CTA button colors */
+  }
+  .light .bg-\[\#FF5A00\] span,
+  .light .bg-\[\#FF5A00\] *,
+  .light .bg-dainamics-cta span,
+  .light .bg-dainamics-cta * {
+    color: white !important;
+  }
+  
+  /* PRIMARY BUTTONS */
+  .light .bg-\[\#7B2FFF\],
+  .light .bg-dainamics-primary {
+    /* Keep primary button colors */
+  }
+  .light .bg-\[\#7B2FFF\] span,
+  .light .bg-\[\#7B2FFF\] *,
+  .light .bg-dainamics-primary span,
+  .light .bg-dainamics-primary * {
+    color: white !important;
+  }
+
   /* Container Custom */
   .container-custom {
     @apply container mx-auto px-4 sm:px-6 lg:px-8;

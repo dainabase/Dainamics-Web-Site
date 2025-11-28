@@ -40,7 +40,7 @@ export default function ExpertiseAutomatisation() {
 
   if (!pillar) {
     return (
-      <div className="min-h-screen bg-dainamics-background text-dainamics-light flex items-center justify-center">
+      <div className="min-h-screen bg-adaptive text-adaptive flex items-center justify-center">
         <Navigation />
         <div className="text-center p-8">
           <h1 className="text-2xl font-bold mb-4">Erreur: Pilier Automatisation non trouvé</h1>
@@ -57,7 +57,7 @@ export default function ExpertiseAutomatisation() {
   const autoColor = categoryColors['automatisation']; // #10E4FF (CYAN)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 text-dainamics-light">
+    <div className="min-h-screen bg-adaptive text-adaptive">
       <EnhancedGridBackground />
       <CursorEffects />
       <Navigation />

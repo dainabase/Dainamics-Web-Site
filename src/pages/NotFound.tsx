@@ -19,7 +19,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 flex flex-col">
+    <div className="min-h-screen bg-adaptive flex flex-col">
       <EnhancedGridBackground />
       <CursorEffects />
       <Navigation />

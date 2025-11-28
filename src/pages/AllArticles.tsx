@@ -54,7 +54,7 @@ const AllArticles = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dainamics-background">
+    <div className="min-h-screen bg-adaptive">
       <EnhancedGridBackground />
       <Navigation />
 

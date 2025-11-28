@@ -172,7 +172,7 @@ const BlogArticle = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-dainamics-background flex items-center justify-center">
+      <div className="min-h-screen bg-adaptive flex items-center justify-center">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -190,7 +190,7 @@ const BlogArticle = () => {
   }
 
   return (
-    <div className="min-h-screen bg-dainamics-background">
+    <div className="min-h-screen bg-adaptive">
       <EnhancedGridBackground />
       
       {/* Progress Bar - Uses category color */}
@@ -269,7 +269,7 @@ const BlogArticle = () => {
             className="max-w-4xl mx-auto relative z-10 mb-12"
           >
             <div 
-              className="bg-dainamics-background/90 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl relative overflow-hidden"
+              className="bg-adaptive/90 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl relative overflow-hidden"
             >
               {/* Category color accent line on left */}
               <div 
@@ -569,7 +569,7 @@ const BlogArticle = () => {
                   background: `linear-gradient(135deg, ${categoryColor}30, transparent, ${categoryColor}20)`
                 }}
               />
-              <div className="absolute inset-0 bg-dainamics-background/60 backdrop-blur-sm" />
+              <div className="absolute inset-0 bg-adaptive/60 backdrop-blur-sm" />
               <div className="absolute inset-0 border border-white/10 rounded-3xl" />
               
               <div className="relative z-10 text-center">

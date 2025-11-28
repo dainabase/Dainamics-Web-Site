@@ -38,7 +38,7 @@ const InMotionDigitalSignage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-dainamics-background to-dainamics-background/90 text-white">
+    <div className="min-h-screen bg-adaptive text-adaptive">
       <EnhancedGridBackground />
       <CursorEffects />
       <Navigation />

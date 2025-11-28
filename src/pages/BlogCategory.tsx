@@ -28,7 +28,7 @@ const BlogCategory: React.FC = () => {
 
   if (!category) {
     return (
-      <div className="min-h-screen bg-dainamics-background flex flex-col">
+      <div className="min-h-screen bg-adaptive flex flex-col">
         <EnhancedGridBackground />
         <Navigation />
         <main className="flex-grow flex items-center justify-center">
@@ -66,7 +66,7 @@ const BlogCategory: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dainamics-background flex flex-col">
+    <div className="min-h-screen bg-adaptive flex flex-col">
       <EnhancedGridBackground />
       <Navigation />
       
