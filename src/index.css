@@ -230,24 +230,28 @@
     color: rgb(209 213 219) !important; /* gray-300 - for placeholders */
   }
   
-  /* BACKGROUND COLORS - Transparent white becomes light grays */
+  /* BACKGROUND COLORS - Transparent white becomes subtle variations of gray-50 */
+  /* Very low opacity (0.01-0.03) = same as page background (gray-50) with subtle border */
   .light .bg-white\/\[0\.03\],
   .light .bg-white\/\[0\.02\],
   .light .bg-white\/\[0\.01\] {
-    background-color: rgb(255 255 255) !important; /* white */
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
+    background-color: rgb(249 250 251) !important; /* gray-50 - same as page background */
+    border-color: rgb(229 231 235) !important; /* gray-200 - subtle border for definition */
   }
   
+  /* Medium opacity (0.05-0.08) = slightly lighter than background */
   .light .bg-white\/\[0\.05\],
   .light .bg-white\/\[0\.06\],
   .light .bg-white\/\[0\.08\] {
-    background-color: rgb(249 250 251) !important; /* gray-50 */
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1) !important;
+    background-color: rgb(255 255 255) !important; /* white - elevated cards */
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important; /* very subtle shadow */
   }
   
+  /* Higher opacity (5-10) = white cards with subtle shadow */
   .light .bg-white\/5,
   .light .bg-white\/10 {
-    background-color: rgb(243 244 246) !important; /* gray-100 */
+    background-color: rgb(255 255 255) !important; /* white */
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1) !important;
   }
   
   /* BORDER COLORS - white opacity becomes gray */

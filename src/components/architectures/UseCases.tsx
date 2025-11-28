@@ -30,7 +30,7 @@ const UseCases: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-gray-50 dark:bg-transparent">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-5xl font-bold mb-6 text-center">
           Transformations That Redefine Industries
