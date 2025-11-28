@@ -254,10 +254,10 @@
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important; /* more prominent shadow */
   }
   
-  /* SECTION BACKGROUNDS - sections use gray tones for alternating contrast */
+  /* SECTION BACKGROUNDS - sections have same background as page (gray-50) - NO darker backgrounds */
   .light section.bg-white\/\[0\.02\],
   .light section.bg-white\/\[0\.03\] {
-    background-color: rgb(243 244 246) !important; /* gray-100 - subtle alternating section */
+    background-color: rgb(249 250 251) !important; /* gray-50 - same as page background */
     box-shadow: none !important;
   }
   
@@ -341,7 +341,7 @@
     --tw-gradient-from: rgb(249 250 251) !important; /* gray-50 */
   }
   .light .to-dainamics-background\/90 {
-    --tw-gradient-to: rgb(243 244 246) !important; /* gray-100 */
+    --tw-gradient-to: rgb(249 250 251) !important; /* gray-50 - same as page background */
   }
   
   /* GLOW EFFECTS - Remove in light mode */
@@ -1832,7 +1832,7 @@ html.light .bg-gray-900,
 
 html.light .bg-gray-900\/50,
 .light .bg-gray-900\/50 {
-  background-color: rgb(243 244 246 / 0.5) !important; /* gray-100 */
+  background-color: rgb(249 250 251 / 0.5) !important; /* gray-50 */
 }
 
 html.light .bg-gray-800,
@@ -1858,7 +1858,7 @@ html.light .border-white\/20,
 
 html.light .border-white\/5,
 .light .border-white\/5 {
-  border-color: rgb(243 244 246) !important; /* gray-100 */
+  border-color: rgb(229 231 235) !important; /* gray-200 - subtle border */
 }
 
 html.light .border-gray-800,

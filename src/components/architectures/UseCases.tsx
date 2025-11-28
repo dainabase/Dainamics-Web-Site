@@ -41,7 +41,7 @@ const UseCases: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {cases.map((case_, index) => (
-            <div key={index} className="bg-gray-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+            <div key={index} className="bg-white dark:bg-white/[0.03] rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
               <div className="p-6">
                 <div className="inline-block px-3 py-1 bg-dainamics-primary text-white text-sm rounded-full mb-4">
                   {case_.industry}
