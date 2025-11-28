@@ -45,13 +45,11 @@ export function ThemeToggle() {
       onClick={cycleTheme}
       className="
         relative p-2 rounded-lg
-        bg-white/5 hover:bg-white/10
+        bg-gray-900/10 hover:bg-gray-900/20
         dark:bg-white/5 dark:hover:bg-white/10
-        light:bg-gray-900/5 light:hover:bg-gray-900/10
-        border border-white/10 dark:border-white/10 light:border-gray-900/10
-        text-white/70 hover:text-white
+        border border-gray-900/20 dark:border-white/10
+        text-gray-900 hover:text-gray-700
         dark:text-white/70 dark:hover:text-white
-        light:text-gray-900/70 light:hover:text-gray-900
         transition-all duration-200
         focus:outline-none focus:ring-2 focus:ring-dainamics-primary/50
       "
