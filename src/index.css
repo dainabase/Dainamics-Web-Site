@@ -798,6 +798,33 @@
   }
 }
 
+/* ============================================== */
+/*        LIGHT MODE - LOGOS CLIENTS             */
+/* ============================================== */
+
+/* En light mode, afficher logos en couleurs sombres (visibles sur fond clair) */
+.light .logo-item {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.light .logo-item img {
+  /* Logos en version sombre pour fond clair */
+  filter: brightness(0.2) contrast(1.2);
+}
+
+.light .logo-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(123, 47, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 40px rgba(123, 47, 255, 0.1);
+}
+
+.light .logo-item:hover img {
+  filter: brightness(0.1) contrast(1.1);
+}
+
 /* GPU acceleration */
 .logo-track {
   transform: translateZ(0);
@@ -1430,23 +1457,55 @@
 /*        LIGHT MODE - BLUR EFFECTS CONTROL      */
 /* ============================================== */
 
-/* Disable all backdrop-blur in light mode */
+/* Disable ALL backdrop-blur effects in light mode */
+html.light [class*="backdrop-blur"],
 .light [class*="backdrop-blur"] {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 
-/* Hide decorative blur elements in light mode */
+/* Hide decorative blur elements (glow effects) in light mode */
+html.light [class*="blur-["],
+html.light .blur-3xl,
+html.light .blur-2xl,
+html.light .blur-xl,
+html.light .blur-lg,
+html.light .blur-md,
+html.light .blur-sm,
 .light [class*="blur-["],
 .light .blur-3xl,
 .light .blur-2xl,
 .light .blur-xl,
-.light .blur-lg {
+.light .blur-lg,
+.light .blur-md,
+.light .blur-sm {
   opacity: 0 !important;
   visibility: hidden !important;
 }
 
-/* Remove filter blur in light mode */
+/* Remove any filter blur in light mode */
+html.light [class*="filter"][class*="blur"],
 .light [class*="filter"][class*="blur"] {
   filter: none !important;
+}
+
+/* Light mode: replace semi-transparent backgrounds with solid ones */
+html.light .bg-white\/5,
+html.light .bg-white\/10,
+html.light .bg-white\/20,
+.light .bg-white\/5,
+.light .bg-white\/10,
+.light .bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+html.light .bg-black\/5,
+html.light .bg-black\/10,
+html.light .bg-black\/20,
+html.light .bg-black\/30,
+.light .bg-black\/5,
+.light .bg-black\/10,
+.light .bg-black\/20,
+.light .bg-black\/30 {
+  background-color: rgba(0, 0, 0, 0.03) !important;
 }
