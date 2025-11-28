@@ -109,7 +109,7 @@
     @apply bg-[#050510];
   }
   .light .bg-adaptive {
-    @apply bg-slate-50;
+    @apply bg-gray-50;
   }
   
   .bg-adaptive-card {
