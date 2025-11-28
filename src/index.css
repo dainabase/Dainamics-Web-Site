@@ -230,28 +230,35 @@
     color: rgb(209 213 219) !important; /* gray-300 - for placeholders */
   }
   
-  /* BACKGROUND COLORS - Transparent white becomes subtle variations of gray-50 */
-  /* Very low opacity (0.01-0.03) = same as page background (gray-50) with subtle border */
+  /* BACKGROUND COLORS - All card backgrounds become WHITE to contrast with gray-50 page background */
+  /* Low opacity cards (0.01-0.03) = white cards with subtle shadow */
   .light .bg-white\/\[0\.03\],
   .light .bg-white\/\[0\.02\],
   .light .bg-white\/\[0\.01\] {
-    background-color: rgb(249 250 251) !important; /* gray-50 - same as page background */
-    border-color: rgb(229 231 235) !important; /* gray-200 - subtle border for definition */
+    background-color: rgb(255 255 255) !important; /* white - contrasts with gray-50 background */
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08) !important; /* subtle shadow for depth */
   }
   
-  /* Medium opacity (0.05-0.08) = slightly lighter than background */
+  /* Medium opacity (0.05-0.08) = white cards with slightly more shadow */
   .light .bg-white\/\[0\.05\],
   .light .bg-white\/\[0\.06\],
   .light .bg-white\/\[0\.08\] {
-    background-color: rgb(255 255 255) !important; /* white - elevated cards */
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important; /* very subtle shadow */
+    background-color: rgb(255 255 255) !important; /* white */
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.1) !important; /* slightly more prominent shadow */
   }
   
-  /* Higher opacity (5-10) = white cards with subtle shadow */
+  /* Higher opacity (5-10) = white cards with more prominent shadow */
   .light .bg-white\/5,
   .light .bg-white\/10 {
     background-color: rgb(255 255 255) !important; /* white */
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1) !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important; /* more prominent shadow */
+  }
+  
+  /* SECTION BACKGROUNDS - sections use gray tones for alternating contrast */
+  .light section.bg-white\/\[0\.02\],
+  .light section.bg-white\/\[0\.03\] {
+    background-color: rgb(243 244 246) !important; /* gray-100 - subtle alternating section */
+    box-shadow: none !important;
   }
   
   /* BORDER COLORS - white opacity becomes gray */
@@ -264,12 +271,14 @@
     border-color: rgb(209 213 219) !important; /* gray-300 */
   }
   
-  /* HOVER STATES - white opacity hover becomes gray hover */
+  /* HOVER STATES - cards get a subtle gray tint on hover for visual feedback */
+  .light .hover\:bg-white\/\[0\.04\]:hover,
   .light .hover\:bg-white\/\[0\.05\]:hover,
   .light .hover\:bg-white\/\[0\.06\]:hover,
   .light .hover\:bg-white\/\[0\.1\]:hover,
   .light .hover\:bg-white\/10:hover {
-    background-color: rgb(243 244 246) !important; /* gray-100 */
+    background-color: rgb(249 250 251) !important; /* gray-50 - subtle hover effect */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important; /* enhanced shadow on hover */
   }
   
   /* PLACEHOLDER COLORS */
