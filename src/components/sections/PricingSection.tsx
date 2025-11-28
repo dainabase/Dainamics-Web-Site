@@ -118,7 +118,7 @@ const PricingSection: React.FC = () => {
 
   return (
     <section
-      className="pricing-section py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
+      className="pricing-section py-16 sm:py-20 md:py-24 lg:py-32 bg-adaptive"
       aria-labelledby="pricing-heading"
     >
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
@@ -139,12 +139,12 @@ const PricingSection: React.FC = () => {
           </div>
 
           <h2 id="pricing-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4">
-            <span className="text-white">Nos Tarifs.</span>
+            <span className="text-adaptive">Nos Tarifs.</span>
             <br />
-            <span className="text-white">Sans Surprise.</span>
+            <span className="text-adaptive">Sans Surprise.</span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl text-adaptive-muted max-w-2xl mx-auto px-4">
             Pas de "contactez-nous pour un devis mystérieux".
             <br className="hidden sm:block" />
             <span className="sm:inline"> </span>Vous savez exactement à quoi vous attendre.
@@ -179,10 +179,10 @@ const PricingSection: React.FC = () => {
               <div 
                 className={`
                   relative h-full p-6 rounded-2xl 
-                  bg-[#0A0A1A] border transition-all duration-300
+                  bg-adaptive-card border transition-all duration-300
                   ${tier.popular 
                     ? 'border-dainamics-secondary/50 shadow-[0_0_30px_rgba(16,228,255,0.15)]' 
-                    : 'border-white/10 hover:border-white/20'
+                    : 'border-adaptive hover:border-dainamics-primary/30'
                   }
                 `}
               >
@@ -206,7 +206,7 @@ const PricingSection: React.FC = () => {
                 </div>
 
                 {/* Name */}
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
+                <h3 className="text-lg sm:text-xl font-bold text-adaptive mb-2">
                   {tier.name}
                 </h3>
 
@@ -220,19 +220,19 @@ const PricingSection: React.FC = () => {
                       {tier.price}
                     </span>
                   </div>
-                  <div className="text-xs sm:text-sm text-gray-500">
+                  <div className="text-xs sm:text-sm text-adaptive-muted">
                     {tier.priceDetail}
                   </div>
                 </div>
 
                 {/* Duration */}
-                <div className="flex items-center gap-2 mb-4 text-sm text-gray-400">
+                <div className="flex items-center gap-2 mb-4 text-sm text-adaptive-muted">
                   <Clock className="w-4 h-4" />
                   {tier.duration}
                 </div>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-gray-400 mb-4 sm:mb-5 min-h-[40px] text-center">
+                <p className="text-xs sm:text-sm text-adaptive-muted mb-4 sm:mb-5 min-h-[40px] text-center">
                   {tier.description}
                 </p>
 
@@ -244,7 +244,7 @@ const PricingSection: React.FC = () => {
                         className="w-4 h-4 mt-0.5 flex-shrink-0"
                         style={{ color: tier.color }}
                       />
-                      <span className="text-xs sm:text-sm text-gray-300">{feature}</span>
+                      <span className="text-xs sm:text-sm text-adaptive-secondary">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -257,7 +257,7 @@ const PricingSection: React.FC = () => {
                       w-full font-semibold transition-all duration-300
                       ${tier.popular 
                         ? 'bg-gradient-to-r from-[#10E4FF] to-[#0AFF9D] text-[#050510] hover:opacity-90' 
-                        : 'bg-white/10 text-white hover:bg-white/20'
+                        : 'bg-adaptive-elevated text-adaptive hover:bg-dainamics-primary/20'
                       }
                     `}
                   >
@@ -278,7 +278,7 @@ const PricingSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-dainamics-primary/10 via-dainamics-secondary/10 to-dainamics-success/10 border border-white/10 p-6 sm:p-8"
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-dainamics-primary/10 via-dainamics-secondary/10 to-dainamics-success/10 border border-adaptive p-6 sm:p-8"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
             <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left w-full md:w-auto">
@@ -286,10 +286,10 @@ const PricingSection: React.FC = () => {
                 <TrendingUp className="w-7 h-7 sm:w-8 sm:h-8 text-dainamics-success" />
               </div>
               <div>
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
+                <h3 className="text-lg sm:text-xl font-bold text-adaptive mb-1">
                   Garantie ROI 2-6 mois
                 </h3>
-                <p className="text-sm sm:text-base text-gray-400">
+                <p className="text-sm sm:text-base text-adaptive-muted">
                   Si le ROI n'est pas atteint sur nos Quick Wins, on continue gratuitement jusqu'à ce qu'il le soit.
                 </p>
               </div>
@@ -314,7 +314,7 @@ const PricingSection: React.FC = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center text-gray-500 text-xs sm:text-sm mt-6 sm:mt-8 px-4"
+          className="text-center text-adaptive-muted text-xs sm:text-sm mt-6 sm:mt-8 px-4"
         >
           Tous les prix sont HT. Projets facturés en CHF ou EUR selon préférence.
           <br />

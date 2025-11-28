@@ -88,14 +88,14 @@ const cardVariants = {
 
 export const ProblemeCards = () => {
   return (
-    <section className="probleme-cards-section relative py-16 sm:py-20 md:py-24 lg:py-32">
+    <section className="probleme-cards-section relative py-16 sm:py-20 md:py-24 lg:py-32 bg-adaptive">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         {/* Titre */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-adaptive mb-4 sm:mb-6 leading-tight px-4">
             Quel défi freine votre croissance ?
           </h2>
-          <p className="text-white/60 text-base sm:text-lg md:text-xl max-w-2xl mx-auto px-4">
+          <p className="text-adaptive-muted text-base sm:text-lg md:text-xl max-w-2xl mx-auto px-4">
             Cliquez sur votre défi principal. On vous montre comment le résoudre.
           </p>
         </div>
@@ -141,13 +141,12 @@ const ProblemeCardItem = ({ probleme }: { probleme: ProblemeCard }) => {
       >
         <div className="
           h-full
-          bg-white/[0.03]
-          border border-white/10
+          bg-adaptive-card
+          border border-adaptive
           rounded-2xl
           p-6 sm:p-8
           transition-all
           duration-300
-          hover:bg-white/[0.06]
           hover:border-[#7B2FFF]/40
           hover:-translate-y-2
           hover:shadow-2xl
@@ -162,12 +161,12 @@ const ProblemeCardItem = ({ probleme }: { probleme: ProblemeCard }) => {
           </div>
 
           {/* Titre */}
-          <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
+          <h3 className="text-lg sm:text-xl font-semibold text-adaptive mb-2">
             {probleme.title}
           </h3>
 
           {/* Pain Point */}
-          <p className="text-white/50 mb-4 sm:mb-6 text-base sm:text-lg">
+          <p className="text-adaptive-muted mb-4 sm:mb-6 text-base sm:text-lg">
             "{probleme.painPoint}"
           </p>
 

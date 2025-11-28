@@ -77,7 +77,7 @@ const AboutServices: React.FC = () => {
   };
 
   return (
-    <section className="about-services-section py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 relative">
+    <section className="about-services-section py-16 sm:py-20 md:py-24 lg:py-32 bg-adaptive relative">
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         {/* Paragraphe Intro */}
@@ -89,11 +89,11 @@ const AboutServices: React.FC = () => {
           className="intro-text text-center mb-12 sm:mb-16 md:mb-20 max-w-4xl mx-auto"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white">Intelligence Artificielle. Automatisations.</span>
+            <span className="text-adaptive">Intelligence Artificielle. Automatisations.</span>
             <br />
-            <span className="text-white">Développement Software.</span>
+            <span className="text-adaptive">Développement Software.</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed px-4">
+          <p className="text-base sm:text-lg md:text-xl text-adaptive-secondary leading-relaxed px-4">
             Nous construisons les outils technologiques qui propulsent votre
             entreprise.
             <br />
@@ -117,7 +117,7 @@ const AboutServices: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover="hover"
-                className="service-card bg-black border border-gray-800 rounded-2xl p-6 sm:p-8 hover:border-dainamics-primary transition-all duration-300 flex flex-col"
+                className="service-card bg-adaptive-card border border-adaptive rounded-2xl p-6 sm:p-8 hover:border-dainamics-primary transition-all duration-300 flex flex-col"
               >
                 {/* Icon avec glow et animation */}
                 <motion.div
@@ -139,12 +139,12 @@ const AboutServices: React.FC = () => {
                 </motion.div>
 
                 {/* Titre */}
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
+                <h3 className="text-xl sm:text-2xl font-bold text-adaptive mb-3 sm:mb-4">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-400 leading-relaxed text-sm sm:text-base mb-4 sm:mb-6 flex-grow">
+                <p className="text-adaptive-muted leading-relaxed text-sm sm:text-base mb-4 sm:mb-6 flex-grow">
                   {service.description}
                 </p>
 

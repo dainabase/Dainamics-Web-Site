@@ -192,7 +192,7 @@ const FeaturedProjects: React.FC = () => {
   };
 
   return (
-    <section className="featured-projects-section py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 relative overflow-hidden">
+    <section className="featured-projects-section py-16 sm:py-20 md:py-24 lg:py-32 bg-adaptive relative overflow-hidden">
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         {/* Titre section */}
@@ -204,9 +204,9 @@ const FeaturedProjects: React.FC = () => {
           className="text-center mb-10 sm:mb-12 md:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white">Exemples de Projets Réalisés</span>
+            <span className="text-adaptive">Exemples de Projets Réalisés</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl text-adaptive-muted max-w-3xl mx-auto px-4">
             Des architectures IA complexes qui transforment des industries entières
           </p>
         </motion.div>
@@ -223,14 +223,14 @@ const FeaturedProjects: React.FC = () => {
             <motion.div
               key={project.id}
               variants={itemVariants}
-              className="project-card bg-black border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300"
+              className="project-card bg-adaptive-card border border-adaptive rounded-2xl overflow-hidden transition-all duration-300 hover:border-dainamics-primary/40"
               style={{
                 '--hover-border-color': project.color.primary,
                 '--hover-shadow-color': project.color.glow,
               } as React.CSSProperties}
             >
               {/* Screenshot */}
-              <div className="screenshot-wrapper relative h-48 sm:h-56 md:h-64 bg-gray-900/50 overflow-hidden">
+              <div className="screenshot-wrapper relative h-48 sm:h-56 md:h-64 bg-adaptive-elevated overflow-hidden">
                 {project.screenshot ? (
                   <img
                     src={project.screenshot}
@@ -254,8 +254,8 @@ const FeaturedProjects: React.FC = () => {
                       >
                         <div className="w-8 h-8 rounded-lg bg-white/10" />
                       </div>
-                      <p className="text-gray-400 font-semibold text-lg">{project.title}</p>
-                      <p className="text-gray-600 text-sm mt-1">Interface en production</p>
+                      <p className="text-adaptive-muted font-semibold text-lg">{project.title}</p>
+                      <p className="text-adaptive-muted text-sm mt-1">Interface en production</p>
                     </div>
                   </div>
                 )}
@@ -275,7 +275,7 @@ const FeaturedProjects: React.FC = () => {
                 >
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex-1">
-                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-adaptive mb-2">
                         {project.title}
                       </h3>
                       <p
@@ -284,7 +284,7 @@ const FeaturedProjects: React.FC = () => {
                       >
                         {project.subtitle}
                       </p>
-                      <p className="text-xs sm:text-sm text-gray-400">{project.category}</p>
+                      <p className="text-xs sm:text-sm text-adaptive-muted">{project.category}</p>
                     </div>
                     <motion.div
                       animate={{ rotate: expandedProject === project.id ? 180 : 0 }}
@@ -292,7 +292,7 @@ const FeaturedProjects: React.FC = () => {
                       className="flex-shrink-0"
                     >
                       <ChevronDown
-                        className="w-6 h-6 text-gray-400 hover:text-white transition-colors"
+                        className="w-6 h-6 text-adaptive-muted hover:text-adaptive transition-colors"
                         style={{ color: expandedProject === project.id ? project.color.primary : undefined }}
                       />
                     </motion.div>
@@ -311,20 +311,20 @@ const FeaturedProjects: React.FC = () => {
                       className="overflow-hidden"
                     >
                       {/* Description */}
-                      <p className="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+                      <p className="text-sm sm:text-base text-adaptive-secondary mb-6 sm:mb-8 leading-relaxed">
                         {project.description}
                       </p>
 
                       {/* Stack technique */}
                       <div className="mb-5 sm:mb-6">
-                        <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
+                        <h4 className="text-xs sm:text-sm font-semibold text-adaptive mb-3 uppercase tracking-wider">
                           Stack Technique
                         </h4>
                         <div className="flex flex-wrap gap-1.5 sm:gap-2">
                           {project.stack.map((tech, idx) => (
                             <span
                               key={idx}
-                              className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-full bg-gray-800 text-gray-300 border border-gray-700"
+                              className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-full bg-adaptive-elevated text-adaptive-secondary border border-adaptive"
                             >
                               {tech}
                             </span>
@@ -334,7 +334,7 @@ const FeaturedProjects: React.FC = () => {
 
                       {/* Résultats */}
                       <div className="mb-5 sm:mb-6">
-                        <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
+                        <h4 className="text-xs sm:text-sm font-semibold text-adaptive mb-3 uppercase tracking-wider">
                           Résultats Techniques
                         </h4>
                         <ul className="space-y-1.5 sm:space-y-2">
@@ -345,7 +345,7 @@ const FeaturedProjects: React.FC = () => {
                                 style={{ color: project.color.primary }}
                                 strokeWidth={2.5}
                               />
-                              <span className="text-xs sm:text-sm text-gray-300">{result}</span>
+                              <span className="text-xs sm:text-sm text-adaptive-secondary">{result}</span>
                             </li>
                           ))}
                         </ul>
@@ -353,7 +353,7 @@ const FeaturedProjects: React.FC = () => {
 
                       {/* Impact */}
                       <div className="mb-6 sm:mb-8">
-                        <h4 className="text-xs sm:text-sm font-semibold text-white mb-3 uppercase tracking-wider">
+                        <h4 className="text-xs sm:text-sm font-semibold text-adaptive mb-3 uppercase tracking-wider">
                           Impact Métier
                         </h4>
                         <ul className="space-y-1.5 sm:space-y-2">
@@ -363,7 +363,7 @@ const FeaturedProjects: React.FC = () => {
                                 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5 text-dainamics-success"
                                 strokeWidth={2.5}
                               />
-                              <span className="text-xs sm:text-sm text-gray-300">{item}</span>
+                              <span className="text-xs sm:text-sm text-adaptive-secondary">{item}</span>
                             </li>
                           ))}
                         </ul>

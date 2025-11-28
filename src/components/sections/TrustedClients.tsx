@@ -1,29 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-/**
- * Interface TypeScript pour un logo client
- */
 interface Logo {
-  name: string;      // Nom complet du client
-  filename: string;  // Nom du fichier dans /public/logos-clients/
-  scale?: number;    // Facteur d'échelle optionnel (par défaut: 1)
+  name: string;
+  filename: string;
+  scale?: number;
 }
 
-/**
- * TrustedClients Section
- * Affiche un carrousel infini de logos clients avec effet grayscale/hover
- * Position: Après FeaturedProjects sur la homepage
- */
-const TrustedClients: React.FC = () => {
-  /**
-   * Portfolio des 9 clients réels DAINAMICS
-   * ⚠️ NE PAS modifier l'ordre (optimisé pour flow visuel)
-   */
-  interface LogoWithType extends Logo {
-    type: 'enterprise' | 'pme' | 'project';
-  }
+interface LogoWithType extends Logo {
+  type: 'enterprise' | 'pme' | 'project';
+}
 
+const TrustedClients: React.FC = () => {
   const logos: LogoWithType[] = [
     { name: 'Roche', filename: 'roche.png', type: 'enterprise' },
     { name: 'LEXAIA', filename: 'lexaia.svg', scale: 1.2, type: 'project' },
@@ -38,11 +26,10 @@ const TrustedClients: React.FC = () => {
 
   return (
     <section
-      className="trusted-clients-section bg-dainamics-background py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden"
+      className="trusted-clients-section bg-adaptive py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden"
       aria-label="Clients qui nous font confiance"
     >
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
-        {/* Titre */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,11 +38,10 @@ const TrustedClients: React.FC = () => {
           className="text-center mb-6 sm:mb-8"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white">De la PME aux Groupes Internationaux.</span>
+            <span className="text-adaptive">De la PME aux Groupes Internationaux.</span>
           </h2>
         </motion.div>
 
-        {/* Message rassurant pour PME */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,25 +49,17 @@ const TrustedClients: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mb-10 sm:mb-12 md:mb-16 max-w-3xl mx-auto px-4"
         >
-          <p className="text-center text-gray-300 text-base sm:text-lg leading-relaxed">
+          <p className="text-center text-adaptive-secondary text-base sm:text-lg leading-relaxed">
             Que vous soyez une PME de 15 personnes ou un groupe international,
             notre méthodologie s'adapte à votre réalité.
-            {' '}<span className="text-white font-medium">Même rigueur, même résultats.</span>
+            {' '}<span className="text-adaptive font-medium">Même rigueur, même résultats.</span>
           </p>
         </motion.div>
 
-        {/* Carrousel infini */}
         <div className="logo-carousel-wrapper" role="region" aria-label="Carrousel de logos clients">
           <div className="logo-track">
-            {/* Logos originaux (1er set) */}
             {logos.map((logo, index) => (
-              <div
-                key={`original-${index}`}
-                className="logo-item"
-                title={logo.name}
-                role="img"
-                aria-label={`Logo ${logo.name}`}
-              >
+              <div key={`original-${index}`} className="logo-item" title={logo.name}>
                 <img
                   src={`/logos-clients/${logo.filename}`}
                   alt={`Logo ${logo.name}`}
@@ -91,16 +69,8 @@ const TrustedClients: React.FC = () => {
                 />
               </div>
             ))}
-
-            {/* Logos dupliqués (2ème set pour seamless loop) */}
             {logos.map((logo, index) => (
-              <div
-                key={`duplicate-${index}`}
-                className="logo-item"
-                title={logo.name}
-                role="img"
-                aria-label={`Logo ${logo.name}`}
-              >
+              <div key={`duplicate-${index}`} className="logo-item" title={logo.name}>
                 <img
                   src={`/logos-clients/${logo.filename}`}
                   alt={`Logo ${logo.name}`}

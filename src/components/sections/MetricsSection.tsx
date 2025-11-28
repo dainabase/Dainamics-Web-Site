@@ -173,7 +173,7 @@ const MetricsSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="metrics-confidence-section py-16 sm:py-20 md:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-dainamics-background to-dainamics-background/90"
+      className="metrics-confidence-section py-16 sm:py-20 md:py-24 lg:py-32 relative overflow-hidden bg-adaptive"
       role="region"
       aria-labelledby="credibilite-heading"
     >
@@ -186,11 +186,11 @@ const MetricsSection: React.FC = () => {
           className="text-center mb-10 sm:mb-12 md:mb-16"
         >
           <h2 id="credibilite-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white">Résultats Mesurés.</span>
+            <span className="text-adaptive">Résultats Mesurés.</span>
             <br />
-            <span className="text-white">Pas Promis.</span>
+            <span className="text-adaptive">Pas Promis.</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 px-4">
+          <p className="text-base sm:text-lg md:text-xl text-adaptive-muted px-4">
             Chiffres issus de nos projets réels, pas de promesses marketing
           </p>
         </motion.div>
@@ -252,7 +252,7 @@ const MetricsSection: React.FC = () => {
                   <p className="text-base sm:text-lg font-semibold text-gradient-primary mb-1">
                     {metric.label}
                   </p>
-                  <p className="text-sm text-gray-400 mb-2">{metric.sublabel}</p>
+                  <p className="text-sm text-adaptive-muted mb-2">{metric.sublabel}</p>
 
                   <div
                     className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium mt-2"

@@ -37,11 +37,11 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full bg-dainamics-background"
+      className="relative w-full bg-adaptive"
       style={{ zIndex: 1 }}
     >
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-transparent z-0"></div>
 
       {/* Container */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
@@ -58,14 +58,14 @@ export default function Hero() {
               variants={isMobile ? undefined : fadeInUp}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 md:mb-8 tracking-tight leading-tight"
             >
-              <span className="text-dainamics-light">Vos Outils Actuels</span>
+              <span className="text-adaptive">Vos Outils Actuels</span>
               <br />
               <span className="text-gradient-primary glow text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">Vous Freinent</span>
             </motion.h1>
 
             <motion.p
               variants={isMobile ? undefined : fadeInUp}
-              className="text-dainamics-light/70 text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 md:mb-10 font-light tracking-wide"
+              className="text-adaptive-secondary text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 md:mb-10 font-light tracking-wide"
             >
               Processus manuels. Logiciels inadaptés. Données éparpillées.
               <br />

@@ -7,7 +7,6 @@ const COLORS = {
   etape1: '#7B2FFF',
   etape2: '#10E4FF',
   etape3: '#0AFF9D',
-  background: '#050510',
   cardBg: '#0A0A1A'
 };
 
@@ -77,10 +76,10 @@ const processSteps: ProcessStep[] = [
 
 const ProcessusSection_v2 = () => {
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-dainamics-background to-dainamics-background/90 overflow-hidden">
+    <section className="relative py-16 sm:py-20 md:py-24 lg:py-32 bg-adaptive overflow-hidden">
 
       {/* Background decoration */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-30 dark:opacity-30">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-dainamics-primary/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-dainamics-secondary/20 rounded-full blur-3xl" />
       </div>
@@ -95,20 +94,20 @@ const ProcessusSection_v2 = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-4 sm:mb-6">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-adaptive-card border border-adaptive mb-4 sm:mb-6">
             <Sparkles className="w-4 h-4 text-dainamics-primary" />
-            <span className="text-xs sm:text-sm font-semibold text-white/90">Processus Transparent</span>
+            <span className="text-xs sm:text-sm font-semibold text-adaptive">Processus Transparent</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4">
-            <span className="text-white">De l'Idée au ROI Mesurable.</span>
+            <span className="text-adaptive">De l'Idée au ROI Mesurable.</span>
             <br />
             <span className="bg-gradient-to-r from-dainamics-primary via-dainamics-secondary to-dainamics-success bg-clip-text text-transparent">
               En 8 Semaines.
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl text-adaptive-muted max-w-3xl mx-auto px-4">
             Méthode validée par 50+ PME suisses. Résultats garantis, engagement transparent, zéro surprise.
           </p>
         </motion.div>
@@ -133,7 +132,7 @@ const ProcessusSection_v2 = () => {
                 <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl"
                      style={{ background: `radial-gradient(circle at center, ${metric.color}40, transparent)` }}
                 />
-                <div className="relative bg-[#0A0A1A] border border-white/10 rounded-2xl p-6 sm:p-8 text-center hover:border-white/20 transition-all duration-300">
+                <div className="relative bg-adaptive-card border border-adaptive rounded-2xl p-6 sm:p-8 text-center hover:border-dainamics-primary/30 transition-all duration-300">
                   <IconComponent
                     className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 sm:mb-4"
                     style={{ color: metric.color }}
@@ -141,7 +140,7 @@ const ProcessusSection_v2 = () => {
                   <div className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: metric.color }}>
                     {metric.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-gray-400">
+                  <div className="text-xs sm:text-sm text-adaptive-muted">
                     {metric.label}
                   </div>
                 </div>
@@ -154,7 +153,7 @@ const ProcessusSection_v2 = () => {
         <div className="max-w-7xl mx-auto">
           {/* Desktop Timeline */}
           <div className="hidden lg:block relative mb-16">
-            <div className="absolute top-8 left-[8.33%] right-[8.33%] h-0.5 bg-white/10" />
+            <div className="absolute top-8 left-[8.33%] right-[8.33%] h-0.5 bg-adaptive border-adaptive" />
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -188,7 +187,7 @@ const ProcessusSection_v2 = () => {
                   />
 
                   {/* Card */}
-                  <div className="relative h-full bg-[#0A0A1A] border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-white/20 transition-all duration-300 flex flex-col">
+                  <div className="relative h-full bg-adaptive-card border border-adaptive rounded-3xl p-6 sm:p-8 hover:border-dainamics-primary/30 transition-all duration-300 flex flex-col">
 
                     {/* Number Badge */}
                     <motion.div
@@ -220,23 +219,23 @@ const ProcessusSection_v2 = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 text-center">
+                    <h3 className="text-xl sm:text-2xl font-bold text-adaptive mb-3 text-center">
                       {step.title}
                     </h3>
 
                     {/* Duration */}
-                    <div className="flex items-center justify-center gap-2 text-gray-400 mb-4">
+                    <div className="flex items-center justify-center gap-2 text-adaptive-muted mb-4">
                       <Clock className="w-4 h-4" />
                       <span className="text-xs sm:text-sm font-medium">{step.duration}</span>
                     </div>
 
                     {/* Description */}
-                    <p className="text-center text-gray-400 text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed px-2">
+                    <p className="text-center text-adaptive-muted text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed px-2">
                       {step.description}
                     </p>
 
                     {/* Divider */}
-                    <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
+                    <div className="h-px w-full bg-gradient-to-r from-transparent via-adaptive to-transparent mb-6 border-adaptive" />
 
                     {/* Bullets */}
                     <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
@@ -253,7 +252,7 @@ const ProcessusSection_v2 = () => {
                             className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5"
                             style={{ color: step.color }}
                           />
-                          <span className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                          <span className="text-xs sm:text-sm text-adaptive-secondary leading-relaxed">
                             {bullet}
                           </span>
                         </motion.li>
@@ -291,7 +290,7 @@ const ProcessusSection_v2 = () => {
           className="text-center mt-12 sm:mt-16 md:mt-20"
         >
           <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 px-4">
-            <span className="text-white">Prêt à Démarrer Votre Transformation ?</span>
+            <span className="text-adaptive">Prêt à Démarrer Votre Transformation ?</span>
           </h3>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
@@ -315,7 +314,7 @@ const ProcessusSection_v2 = () => {
               asChild
               size="lg"
               variant="outline"
-              className="text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 border-2 hover:bg-white/5 w-full sm:w-auto"
+              className="text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 border-2 hover:bg-adaptive-card w-full sm:w-auto"
               style={{
                 borderColor: COLORS.etape2,
                 color: COLORS.etape2
