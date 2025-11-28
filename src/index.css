@@ -2034,3 +2034,46 @@ html.light .stroke-white\/50,
 .light .stroke-white\/50 {
   stroke: rgb(107 114 128) !important;
 }
+
+/* ============================================== */
+/*        LIGHT MODE - SECTION BACKGROUNDS       */
+/* ============================================== */
+
+/* Force section-bg-alternate to light color */
+html.light .section-bg-alternate,
+.light .section-bg-alternate {
+  background-color: rgb(243 244 246) !important; /* gray-100 */
+}
+
+/* Also handle any bg-white/[0.03] cards inside these sections */
+html.light .section-bg-alternate .bg-white\/\[0\.03\],
+.light .section-bg-alternate .bg-white\/\[0\.03\] {
+  background-color: rgb(255 255 255) !important;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1) !important;
+}
+
+/* Handle text-white inside section-bg-alternate */
+html.light .section-bg-alternate .text-white,
+.light .section-bg-alternate .text-white {
+  color: rgb(17 24 39) !important;
+}
+
+html.light .section-bg-alternate .text-white\/80,
+.light .section-bg-alternate .text-white\/80 {
+  color: rgb(55 65 81) !important;
+}
+
+html.light .section-bg-alternate .text-white\/70,
+.light .section-bg-alternate .text-white\/70 {
+  color: rgb(75 85 99) !important;
+}
+
+html.light .section-bg-alternate .text-white\/60,
+.light .section-bg-alternate .text-white\/60 {
+  color: rgb(107 114 128) !important;
+}
+
+html.light .section-bg-alternate .text-white\/50,
+.light .section-bg-alternate .text-white\/50 {
+  color: rgb(156 163 175) !important;
+}
